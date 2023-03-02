@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Source\EtherEngine\CollisionBase.cpp">
+    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\Source\EtherEngine\Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Source\EtherEngine\stdafx\stdafx.cpp">
+    <ClCompile Include="..\..\Source\EtherEngine\Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Source\EtherEngine\CollisionBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Source\EtherEngine\stdafx\stdafx.h">
+    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

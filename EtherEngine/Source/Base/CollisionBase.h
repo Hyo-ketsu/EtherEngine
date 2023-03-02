@@ -1,0 +1,4 @@
+#ifndef I_COLLISIONBASE_H
+#define I_COLLISIONBASE_H
+
+#endif // !I_COLLISIONBASE_H
