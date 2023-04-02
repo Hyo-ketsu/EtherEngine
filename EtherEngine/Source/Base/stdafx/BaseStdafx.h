@@ -9,6 +9,7 @@
 #include <functional>
 #include <atomic>
 #include <condition_variable>
+#include <type_traits>
 
 #include <Base/IMGUI/imgui.h>
 #include <Eigen/Core>

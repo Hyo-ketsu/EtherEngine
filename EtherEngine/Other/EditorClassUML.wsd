@@ -1,0 +1,39 @@
+@startuml EtherEngine
+    package Game{
+        class GameWinMain{
+            int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+        }
+        note top: ゲーム用メイン関数(便宜上別名)
+    }
+    package EtherEngine{
+        class EtherEngineWinMain{ 
+            int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+        }
+        note top: エディター用メイン関数(便宜上別名)
+
+        class EditorApplication{
+        }
+        note top: エディター用のエディター自体を表現する
+    }
+
+    package DirectX{
+        class GameApplication{            
+        }
+        note top: ゲームアプリケーションを表現する
+    }
+
+    package Base{
+        abstract class AApplication{
+        }
+        note top: ゲームアプリを表現する
+    }
+
+'関連
+GameWinMain -- GameApplication
+EtherEngineWinMain -- EditorApplication
+'汎化
+EditorApplication --|> GameApplication
+'実現
+GameApplication ..|> AApplication
+
+@enduml

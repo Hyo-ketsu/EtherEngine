@@ -18,12 +18,18 @@
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Main.cpp">
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

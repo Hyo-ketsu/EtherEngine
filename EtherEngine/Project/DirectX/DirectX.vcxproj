@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -27,6 +29,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
+    <ClInclude Include="..\..\Source\DirectX\GameApplication.h" />
     <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -83,7 +87,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>$(ProjectName)Library</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)Source/;$(SolutionDir)Library/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <OutDir>$(SolutionDir)Binary/$(ProjectName)/$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
@@ -125,8 +129,11 @@
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +152,10 @@
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,8 +176,11 @@
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,7 +203,10 @@
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
