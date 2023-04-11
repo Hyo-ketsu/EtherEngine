@@ -1,6 +1,7 @@
 #ifndef I_GAMEAPPLICATION_H
 #define I_GAMEAPPLICATION_H
 #include <DirectX/DirectX.h>
+#include <Base/InitUninitPerformer.h>
 
 
 namespace EtherEngine {
@@ -16,6 +17,14 @@ namespace EtherEngine {
 
         // メイン関数
         virtual void MainFunction(void);
+
+
+        // このクラスの初期化前に追加で行う初期化処理
+        virtual void InitFirst(void) {}
+        // このクラスの初期化後に追加で行う初期化処理
+        virtual void InitLast(void) {}
+        // 初期化処理後に追加で行う初期化処理
+        virtual void InitLateFuntion(void) {}
 
 
         // ウィンドウハンドルゲッター
@@ -42,8 +51,6 @@ namespace EtherEngine {
         // WinMain の引数を保持する
         void SetApplicationData(const HINSTANCE hInstace, const LPSTR ipCmdLine, const int& cmdShow);
 
-
-
     protected:
         std::optional<HWND> m_hwnd; // ウィンドウハンドル
         Eigen::Array2<int>  m_windowSize; // ウィンドウのサイズ
@@ -51,6 +58,8 @@ namespace EtherEngine {
         std::optional<LPSTR>     m_ipCmdLine;  // コマンドライン
         std::optional<int>       m_cmdShow;    // アプリケーションの初期表示方法
         DirectXRender            m_dxRender;
+
+        InitUninitPerformer m_initUninitPerformer;  // 初期化・終了処理実行クラス
     };
 }
 

@@ -3,20 +3,26 @@
 
 #include <Base/Singleton.h>
 #include <DirectX/GameApplication.h>
+#include <EtherEngine/ImGuiClass.h>
 
 
 namespace EtherEngine {
     // エディター(ゲームエンジン)を表現するクラス(Singleton)
     class EditorApplication : public GameApplication, public Singleton<EditorApplication> {
     public:
-        using GameApplication::GameApplication;
+        // デストラクタ
+        ~EditorApplication(void) override {}
 
 
     private:
         // コンストラクタ
-        EditorApplication(void) {}
-        // デストラクタ
-        ~EditorApplication(void) override {}
+        using GameApplication::GameApplication;
+
+
+        // 追加初期化(後)
+        void InitLast(void) override;
+
+        std::unique_ptr<IMGUI> m_imGui; // 保持しているIMGUI
 
 
         friend Singleton<EditorApplication>;
