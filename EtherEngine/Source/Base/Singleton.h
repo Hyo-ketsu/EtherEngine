@@ -19,9 +19,6 @@ namespace EtherEngine {
         // インスタンスの取得
         // @ Ret  : 一個しか存在しないことが明確なインスタンス
         static SingletonType* const Get(void);
-        // インスタンスの取得
-        // @ Ret  : 一個しか存在しないことが明確なインスタンス
-        static SingletonType& const GetRef(void);
 
          
         // インスタンスの明示的解放
@@ -64,11 +61,6 @@ namespace EtherEngine {
 
         //----- インスタンスの返却
         return ms_instance.get();
-    }
-    // インスタンスの取得
-    template<class SingletonType>
-    SingletonType& const Singleton<SingletonType>::GetRef(void) {
-        return *Get();
     }
 
 

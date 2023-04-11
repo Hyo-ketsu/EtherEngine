@@ -17,7 +17,7 @@ namespace EtherEngine {
 
     // Handle
     // @ Temp : 管理対象型
-    template <HandleSystemConcept HandleType>
+    template <HandleSystemConcept Type>
     class Handle {
     public:
         // コンストラクタ
@@ -26,9 +26,9 @@ namespace EtherEngine {
         // デストラクタ
         ~Handle(void);
         // コピーコンストラクタ
-        Handle(const Handle<HandleType>& copy);
+        Handle(const Handle<Type>& copy);
         // 代入演算子(Copy)
-        Handle<HandleType>& operator=(const Handle<HandleType>& copy);
+        Handle<Type>& operator=(const Handle<Type>& copy);
 
 
         // コンストラクタ処理セッター
@@ -42,15 +42,15 @@ namespace EtherEngine {
         // Handleから要素を取得、排他制御を行う
         // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
         // @ Ret  : 取得した要素
-        AtomicData<HandleType> GetAtomicItem(void) const;
+        AtomicData<Type> GetAtomicItem(void) const;
         // Handleから要素を取得
         // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
         // @ Ret  : 取得した要素
-        NonAtomicData<HandleType> GetNonAtomicItem(void) const;
+        NonAtomicData<Type> GetNonAtomicItem(void) const;
         // Handleから読み取り専用要素を取得する
         // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
         // @ Ret  : 取得した要素
-        AtomicData<HandleType> GetAtomicItem(void) const;
+        AtomicData<Type> GetAtomicItem(void) const;
         // Handleがロックを行えるか
         // @ Ret  : ロックが行える(= ロックされていない)か
         // @ Memo : 読み取りロックか(Default : false)
@@ -70,7 +70,7 @@ namespace EtherEngine {
 
 
         // 比較
-        bool operator ==(const Handle<HandleType>& handle) const;
+        bool operator ==(const Handle<Type>& handle) const;
 
     private:
         std::optional<HandleNumberType> m_handle;      // 自身が保持しているHandle
@@ -142,28 +142,28 @@ namespace EtherEngine {
 namespace EtherEngine {
     // コンストラクタ
     // @ Arg1 : 生成番号
-    template<HandleSystemConcept HandleType>
-    Handle<HandleType>::Handle(HandleNumberType handleNumber)
+    template<HandleSystemConcept Type>
+    Handle<Type>::Handle(HandleNumberType handleNumber)
         : m_handle(handleNumber)
         , m_constructor(nullptr)
         , m_destructor(nullptr) {
     }
     // デストラクタ
-    template<HandleSystemConcept HandleType>
-    Handle<HandleType>::~Handle(void) {
+    template<HandleSystemConcept Type>
+    Handle<Type>::~Handle(void) {
         if (m_destructor != nullptr) m_destructor();
     }
     // コピーコンストラクタ
-    template<HandleSystemConcept HandleType>
-    Handle<HandleType>::Handle(const Handle<HandleType>& copy)
+    template<HandleSystemConcept Type>
+    Handle<Type>::Handle(const Handle<Type>& copy)
         : m_handle(copy.m_handle)
         , m_constructor(copy.m_constructor)
         , m_destructor(copy.m_destructor) {
         if (m_constructor != nullptr) m_constructor();
     }
     // 代入演算子(Copy)
-    template<HandleSystemConcept HandleType>
-    Handle<HandleType>& Handle<HandleType>::operator=(const Handle<HandleType>& copy) {
+    template<HandleSystemConcept Type>
+    Handle<Type>& Handle<Type>::operator=(const Handle<Type>& copy) {
         m_handle = copy.m_handle;
         m_constructor = copy.m_constructor;
         m_destructor = copy.m_destructor;
@@ -175,59 +175,59 @@ namespace EtherEngine {
     // Handleから要素を取得、排他制御を行う
     // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
     // @ Ret  : 取得した要素
-    template<HandleSystemConcept HandleType>
-    AtomicData<HandleType> Handle<HandleType>::GetAtomicItem(void) const {
+    template<HandleSystemConcept Type>
+    AtomicData<Type> Handle<Type>::GetAtomicItem(void) const {
         if (IsEnable() == false) throw std::runtime_error("A Handle does not hold an element");
         // TODO : もれなく循環参照かまして死ぬ。やっぱHandleSystem.hに統合する？
     }
     // Handleから要素を取得
     // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
     // @ Ret  : 取得した要素
-    template<HandleSystemConcept HandleType>
-    NonAtomicData<HandleType> Handle<HandleType>::GetNonAtomicItem(void) const {
+    template<HandleSystemConcept Type>
+    NonAtomicData<Type> Handle<Type>::GetNonAtomicItem(void) const {
         if (IsEnable() == false) throw std::runtime_error("A Handle does not hold an element");
         // TODO : もれなく循環参照かまして死ぬ。やっぱHandleSystem.hに統合する？
     }
     // Handleから読み取り専用要素を取得する
     // @ Memo : Handleが無効化されている、存在しない場合に例外を吐きます
     // @ Ret  : 取得した要素
-    template<HandleSystemConcept HandleType>
-    AtomicData<HandleType> Handle<HandleType>::GetAtomicItem(void) const {
+    template<HandleSystemConcept Type>
+    AtomicData<Type> Handle<Type>::GetAtomicItem(void) const {
         if (IsEnable() == false) throw std::runtime_error("A Handle does not hold an element");
         // TODO : もれなく循環参照かまして死ぬ。やっぱHandleSystem.hに統合する？
     }
     // Handleがロックを行えるか
     // @ Ret  : ロックが行える(= ロックされていない)か
     // @ Memo : 読み取りロックか(Default : false)
-    template<HandleSystemConcept HandleType>
-    bool Handle<HandleType>::IsLock(const bool& isReadLock) const {
+    template<HandleSystemConcept Type>
+    bool Handle<Type>::IsLock(const bool& isReadLock) const {
         // TODO : もれなく循環参照かまして死ぬ。やっぱHandleSystem.hに統合する？
     }
 
 
     // このHandleが有効か
     // @ Ret  : このHandle自体、Handleの参照先が有効かをそれぞれ判別
-    template<HandleSystemConcept HandleType>
-    bool Handle<HandleType>::IsEnable(void) const {
-        // TODO : もれなく循環参照かまして死ぬ。やっぱHandleSystem.hに統合する？
-        return m_handle.has_value() && HandleSystem::GetRef().IsItemEnable(*this);
+    template<HandleSystemConcept Type>
+    bool Handle<Type>::IsEnable(void) const {
+        
+        return m_handle.has_value() && HandleSystem<Type>:: IsItemEnable(*this);
     }
     // このHandleが有効か
     // @ Ret  : このHandle自体、Handleの参照先が有効かをそれぞれ判別
-    template<HandleSystemConcept HandleType>
-    Handle<HandleType>::operator bool(void) const {
+    template<HandleSystemConcept Type>
+    Handle<Type>::operator bool(void) const {
         return IsEnable();
     }
     // 参照を無効化する
-    template<HandleSystemConcept HandleType>
-    void Handle<HandleType>::Destroy(void) {
+    template<HandleSystemConcept Type>
+    void Handle<Type>::Destroy(void) {
         m_handle.reset();
     }
 
 
     // 比較
-    template<HandleSystemConcept HandleType>
-    bool Handle<HandleType>::operator ==(const Handle<HandleType>& handle) const {
+    template<HandleSystemConcept Type>
+    bool Handle<Type>::operator ==(const Handle<Type>& handle) const {
         //----- 無効値判定
         if (this->IsEnable() == false) return false;
         if (handle.IsEnable() == false) return false;

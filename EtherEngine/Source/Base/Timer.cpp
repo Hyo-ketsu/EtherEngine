@@ -22,6 +22,9 @@ std::chrono::milliseconds Timer::GetDeltaTime(void) {
         //----- 有効値。処理する
         ret = duration_cast<milliseconds>(m_deltaTime.value() - std::chrono::steady_clock::now());
     }
+    else {
+        m_deltaTime.emplace(std::chrono::steady_clock::now());
+    }
 
     //----- 時間更新
     m_deltaTime.value() = std::chrono::steady_clock::now();
