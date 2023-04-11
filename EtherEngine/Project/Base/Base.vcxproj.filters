@@ -60,9 +60,6 @@
     <ClCompile Include="..\..\Source\Base\SpinLock.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Handle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Base\AtomicData.cpp">
       <Filter>ソース ファイル\AtomicData</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\SpinLock.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Handle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\AtomicData.h">

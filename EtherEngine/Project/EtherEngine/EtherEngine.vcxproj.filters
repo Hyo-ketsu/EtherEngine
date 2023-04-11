@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ヘッダー ファイル\IMGUIRapper">
+      <UniqueIdentifier>{24e10bda-9c1e-4a80-be77-2e175e0c8a32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\IMGUIRapper">
+      <UniqueIdentifier>{4c5c8e90-dd08-41c2-a80e-1403f666e062}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
@@ -24,6 +30,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
+      <Filter>ソース ファイル\IMGUIRapper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
@@ -31,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
+      <Filter>ヘッダー ファイル\IMGUIRapper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
