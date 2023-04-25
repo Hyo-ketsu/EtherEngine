@@ -1,10 +1,4 @@
 @startuml EtherEngine
-    package Game{
-        class GameWinMain{
-            int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
-        }
-        note top: ゲーム用メイン関数(便宜上別名)
-    }
     package EtherEngine{
         class EtherEngineWinMain{ 
             int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
@@ -14,26 +8,90 @@
         class EditorApplication{
         }
         note top: エディター用のエディター自体を表現する
+        class IMGUI{
+        }
+        note top: 各ウィンドウ用IMGUIRapper
+    }
+
+    package Game{
+        class GameWinMain{
+            int WinMain(HINSTANCE, HINSTANCE, LPSTR, int);
+        }
+        note top: ゲーム用メイン関数(便宜上別名)
     }
 
     package DirectX{
         class GameApplication{            
         }
         note top: ゲームアプリケーションを表現する
+
+        class DirectX{
+        }
+        note top: 各ウィンドウへの描画を管理するクラス
     }
 
     package Base{
-        abstract class AApplication{
+        class GlobalTime{
+            TimeType GetTime()
         }
-        note top: ゲームアプリを表現する
+        note top: 全体で時間を管理するグローバルタイムインターフェース
+
+        class GameObjectUpdater(){
+
+        }
+        note top: ゲームオブジェクトを一元的に管理、更新するクラス
+
+        class SceneLoader{
+
+        }
+        note top: Scene等を読み込み、削除等を行うクラス
+
+        class Timer{
+            TimeType GetDeltaTime()
+        }
+        note top: 時間を管理するインターフェース
+
+        class GameObject{
+        }
+        note top: ゲームのオブジェクトを表現するクラス
+
+        abstract class ComponentBase{
+            FirstUpdate()
+            Update()
+            LateUpdate()
+            FixedUpdate()
+        }
+        note top: 各コンポーネントのベースとなるクラス（ユーザーが作成するのにも使用）
+
+        class ColliderBase{
+        }
+        note top: 各形のベースとなる当たり判定
+
+        class SceneData{
+        }
+        note top: シーンの情報を表しているクラス
+
+        class Scene{
+        }
+        note top: シーン自体を表現しているクラス
     }
 
 '関連
 GameWinMain -- GameApplication
 EtherEngineWinMain -- EditorApplication
+'コンポジション
+GameObjectUpdater --* GameObject
+GameObject --* SceneData
+GameObject --* ComponentBase 
+note top: HandleSystemを使用して参照をHandleとして保持
+GameObject --* ColliderBase
+note top: HandleSystemを使用して参照をHandleとして保持
+SceneLoader --* Scene
+Scene --* SceneData
+GameApplication --* DirectX
+IMGUI --* EditorApplication
 '汎化
 EditorApplication --|> GameApplication
 '実現
-GameApplication ..|> AApplication
 
 @enduml
