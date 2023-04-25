@@ -24,6 +24,11 @@ namespace EtherEngine {
         // インスタンスの明示的解放
         static void DeleteInstance(void);
 
+
+        // ミューテックス取得
+        // @ Ret  : ミューテックス
+        const std::recursive_mutex& GetMutex(void) const;
+
     protected:
         // コンストラクタ
         Singleton(void) {}
@@ -74,6 +79,12 @@ namespace EtherEngine {
         ms_instance.reset();
     }
 
+
+    // ミューテックス取得
+    template<class SingletonType>
+    const std::recursive_mutex& Singleton<SingletonType>::GetMutex(void) const {
+        return m_mutex;
+    }
 
 
 
