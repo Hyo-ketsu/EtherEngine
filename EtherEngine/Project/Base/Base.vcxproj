@@ -22,13 +22,21 @@
     <ClCompile Include="..\..\Source\Base\Atomic.cpp" />
     <ClCompile Include="..\..\Source\Base\AtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\Handle.cpp" />
+    <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
-    <ClCompile Include="..\..\Source\Base\JobSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
+    <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\Random.cpp" />
+    <ClCompile Include="..\..\Source\Base\RandomManage.cpp" />
+    <ClCompile Include="..\..\Source\Base\Scene.cpp" />
+    <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
+    <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
     <ClCompile Include="..\..\Source\Base\SpinLock.cpp" />
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
@@ -40,24 +48,34 @@
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
+    <ClCompile Include="..\..\Source\Base\WindowName.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Atomic.h" />
     <ClInclude Include="..\..\Source\Base\AtomicData.h" />
     <ClInclude Include="..\..\Source\Base\AtomicReadData.h" />
+    <ClInclude Include="..\..\Source\Base\BaseObject.h" />
+    <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
     <ClInclude Include="..\..\Source\Base\GameObject.h" />
+    <ClInclude Include="..\..\Source\Base\Handle.h" />
+    <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
-    <ClInclude Include="..\..\Source\Base\JobSystem.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
+    <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
+    <ClInclude Include="..\..\Source\Base\RandomManage.h" />
+    <ClInclude Include="..\..\Source\Base\Scene.h" />
+    <ClInclude Include="..\..\Source\Base\SceneData.h" />
+    <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
     <ClInclude Include="..\..\Source\Base\SpinLock.h" />
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />
+    <ClInclude Include="..\..\Source\Base\WindowName.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

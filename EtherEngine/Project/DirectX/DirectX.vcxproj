@@ -22,18 +22,34 @@
     <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\GraphicDefines.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Model.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\ShaderClass.cpp" />
     <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DirectX\Texture.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Window.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
     <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
     <ClInclude Include="..\..\Source\DirectX\GameApplication.h" />
+    <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
+    <ClInclude Include="..\..\Source\DirectX\GraphicDefines.h" />
+    <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />
+    <ClInclude Include="..\..\Source\DirectX\Model.h" />
+    <ClInclude Include="..\..\Source\DirectX\ShaderClass.h" />
     <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
+    <ClInclude Include="..\..\Source\DirectX\Texture.h" />
+    <ClInclude Include="..\..\Source\DirectX\Window.h" />
+    <ClInclude Include="..\..\Source\DirectX\WindowRetention.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">

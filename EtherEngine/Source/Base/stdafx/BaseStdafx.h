@@ -26,6 +26,10 @@
 #include <Eigen/Core>
 
 
+// ”ñ•„†®”‚Ì•Ê–¼’è‹`
+using uint = unsigned int;
+
+
 namespace EtherEngine {
     constexpr float ONE_FRAME = 1.f / 60.f;
 }

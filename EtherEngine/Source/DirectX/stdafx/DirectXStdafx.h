@@ -11,5 +11,9 @@
 #include <dxgi1_6.h>
 #pragma comment(lib, "dxgi.lib")
 
+#include <d3dcompiler.h>
+#pragma comment(lib, "d3dcompiler.lib")
+
+
 #include <processthreadsapi.h>
 #include <DirectXMath.h>
