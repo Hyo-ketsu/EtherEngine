@@ -9,13 +9,13 @@ namespace EtherEngine {
     namespace RandomManage {
         // 32bit,若しくは64bitの数値（整数、浮動小数）か
         template <typename T>
-        concept Number32_64Concept = Random::Random32BitConcept<T> || Random::Random64BitConcept<T>;
+        concept Number32_64ByteConcept = Random::RandomBitConcept<T, 4> || Random::RandomBitConcept<T, 8>;
 
 
         // 乱数を生成する
         // @ Temp: 使用する型
         // @ Ret : 乱数
-        template <Number32_64Concept Type>
+        template <Number32_64ByteConcept Type>
         Type GetRandom(void);
     };
 }
@@ -28,7 +28,7 @@ namespace EtherEngine {
     // 乱数を生成する
     // @ Temp: 使用する型
     // @ Ret : 乱数
-    template <RandomManage::Number32_64Concept Type>
+    template <RandomManage::Number32_64ByteConcept Type>
     Type RandomManage::GetRandom(void) {
         //----- 静的変数宣言
         std::unordered_map<Type, nullptr> random32map;

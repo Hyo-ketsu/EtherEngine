@@ -16,9 +16,8 @@ namespace EtherEngine {
 
 
         // コンストラクタ
-        // @ Memo : 引数は右辺値のみ受け付けます
         // @ Arg1 : 排他を行う情報
-        Atomic(AtomicType&& data);
+        Atomic(AtomicType& data);
         // デストラクタ
         ~Atomic(void) noexcept;
         // ムーブコンストラクタ
@@ -60,11 +59,10 @@ namespace EtherEngine {
 //----- Atomic実装
 namespace EtherEngine {
     // コンストラクタ
-    // @ Memo : 引数はムーブされたもののみ受け付けます
     // @ Arg1 : 排他を行う情報
     template <class AtomicType>
-    Atomic<AtomicType>::Atomic(AtomicType&& data)
-        : m_data(std::make_unique<AtomicType>(data)) {
+    Atomic<AtomicType>::Atomic(AtomicType& data)
+        : m_data(std::make_unique<AtomicType>(std::move(data))) {
     }
     // デストラクタ
     template <class AtomicType>
@@ -88,7 +86,6 @@ namespace EtherEngine {
 
         //----- ムーブ
         m_data = std::move(move.m_data);
-        m_mutex = std::move(move.m_mutex);
     }
 
 
@@ -97,7 +94,9 @@ namespace EtherEngine {
     template <class AtomicType>
     AtomicData<AtomicType> Atomic<AtomicType>::GetData(void) {
         //----- 書き込みが終了するまで待機する
-        std::lock_guard<std::recursive_mutex> lock(m_mutex);
+        {
+            std::lock_guard<decltype(m_mutex)> lock(m_mutex);
+        }
 
         //----- 読み取りロックがされているか
         if (m_readCount.load() > 0) {
@@ -125,8 +124,7 @@ namespace EtherEngine {
         }
 
         //----- 排他データの作成と返却
-        return std::move(NonAtomicData<AtomicType>(*m_data,
-            [this](void) -> void {}, [this](void) -> void {}));
+        return std::move(NonAtomicData<AtomicType>(*m_data));
     }
     // 読み取り専用データを取得する
     // @ Ret  : 排他制御された読み取り専用データ

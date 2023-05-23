@@ -6,16 +6,22 @@
 #include <Base/Atomic.h>
 
 
-//----- HandleSystem 定義
+//----- 定数等定義
 namespace EtherEngine {
     using HandleNumberType = unsigned long long;    // ハンドルとして使用する数値型
 
 
-    // クラスのみ制約
+    const HandleNumberType NO_CREATE_HANDLE_NUMBER = 0; // ハンドルとして使用しない番号
+
+
+    // ハンドル制約（現時点では制約なし）
     template <typename T>
-    concept HandleSystemConcept = std::is_class_v<T>;
+    concept HandleSystemConcept = true;
+}
 
 
+//----- HandleSystem 定義
+namespace EtherEngine {
     // Handleで対象物を管理するクラス
     // @ Temp : 管理対象型
     template <HandleSystemConcept Type>
@@ -28,7 +34,15 @@ namespace EtherEngine {
         HandleNumberType AddItem(Type&& item);
         // 要素を削除する
         // @ Arg1 : 削除する番号
-        void DeleteItem(const HandleNumberType& handle) const;
+        void DeleteItem(const HandleNumberType& handle);
+
+
+        // 要素数のカウントアップ
+        // @ Arg1 : カウントアップする番号
+        void CountUpItem(const HandleNumberType& handle);
+        // 要素数のカウントダウン
+        // @ Arg1 : カウントダウンする番号
+        void CountDownItem(const HandleNumberType& handle);
 
 
         // 指定した要素が存在するか
@@ -49,6 +63,7 @@ namespace EtherEngine {
         // @ Ret  : 取得した要素（optional）
         // @ Arg1 : Handle
         std::optional<AtomicReadData<Type>> GetAtomicReadItem(const HandleNumberType& handle);
+
 
     private:
         // コンストラクタ
@@ -86,20 +101,18 @@ namespace EtherEngine {
             // @ Memo : 単なる番号チェック
             Delete0ReferenceCounter(handle);
             auto item = m_item.find(handle);
-            if (item == m_item.end()) break;
+            if (handle != NO_CREATE_HANDLE_NUMBER && item == m_item.end()) break;
 
             //----- 生成
             handle = EtherEngine::Random::GetRandom<HandleNumberType>();
         }
 
-        //----- 参照を連想配列に格納
-        m_item.emplace(handle, item);
+        //----- 連想配列に格納
+        Atomic<Type> atomic(item);
+        m_item.emplace(handle, std::move(atomic));
 
         //----- 参照カウンタ追加
         m_referenceCounter.emplace(handle, 1);
-
-        //----- コールバック登録
-        handle.SetConstructor();
 
         //----- 返却
         return handle;
@@ -107,11 +120,32 @@ namespace EtherEngine {
     // 要素を削除する
     // @ Arg1 : 削除する番号
     template <HandleSystemConcept Type>
-    void HandleSystem<Type>::DeleteItem(const HandleNumberType& handle) const {
+    void HandleSystem<Type>::DeleteItem(const HandleNumberType& handle) {
         //----- 存在すれば削除
         if (IsItemEnable(handle)) {
             //----- カウントを 0 にし、その後カウント 0 要素を削除
             m_referenceCounter.find(handle)->second = 0;
+            Delete0ReferenceCounter(handle);
+        }
+    }
+
+
+    // 要素数のカウントアップ
+    // @ Arg1 : 削除する番号
+    template <HandleSystemConcept Type>
+    void HandleSystem<Type>::CountUpItem(const HandleNumberType& handle) {
+        auto reference = m_referenceCounter.find(handle);
+        if (reference != m_referenceCounter.end()) {
+            reference->second++;
+        }
+    }
+    // 要素数のカウントダウン
+    // @ Arg1 : 削除する番号
+    template <HandleSystemConcept Type>
+    void HandleSystem<Type>::CountDownItem(const HandleNumberType& handle) {
+        auto reference = m_referenceCounter.find(handle);
+        if (reference != m_referenceCounter.end()) {
+            reference->second--;
             Delete0ReferenceCounter(handle);
         }
     }

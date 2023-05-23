@@ -4,23 +4,20 @@
 
 namespace EtherEngine {
     namespace Random {
-        // 数値型若しくは浮動小数、かつ32bit(4B)か
-        template <class T>
-        concept Random32BitConcept = (std::is_integral_v<T> || std::is_floating_point_v<T>) && (int)sizeof(T) == 4;
-        // 数値型若しくは浮動小数、かつ64bit(8B)か
-        template <class T>
-        concept Random64BitConcept = (std::is_integral_v<T> || std::is_floating_point_v<T>) && (int)sizeof(T) == 8;
+        // 数値型若しくは浮動小数、かつ指定したByte数か
+        template <class T, int Byte>
+        concept RandomBitConcept = (std::is_integral_v<T> || std::is_floating_point_v<T>) && (int)sizeof(T) == Byte;
 
 
-        // 32bit乱数を生成する
+        // 32bit(4Byte)乱数を生成する
         // @ Temp: 使用する型
         // @ Ret : 乱数
-        template <Random32BitConcept Type>
+        template <RandomBitConcept<4> Type>
         Type GetRandom(void);
-        // 64bit乱数を生成する
+        // 64bit(8Byte)乱数を生成する
         // @ Temp: 使用する型
         // @ Ret : 乱数
-        template <Random64BitConcept Type>
+        template <RandomBitConcept<8> Type>
         Type GetRandom(void);
     }
 }
@@ -31,26 +28,26 @@ namespace EtherEngine {
 //----- Random実装
 namespace EtherEngine {
     namespace Random {
-        // 32bit乱数を生成する
+        // 32bit(4Byte)乱数を生成する
         // @ Temp: 使用する型(デフォルト : float)
         // @ Ret : 乱数
-        template <Random32BitConcept Type>
+        template <RandomBitConcept<4> Type>
         Type GetRandom(void) {
             //----- 変数宣言
             static std::random_device randomDevice; // 非決定的な乱数生成器
-            static std::mt19937 mt(rnd());          // 乱数
+            static std::mt19937 mt(randomDevice()); // 乱数
 
             //----- 返却
             return (Type)mt();
         }
-        // 64bit乱数を生成する
+        // 64bit(8Byte)乱数を生成する
         // @ Temp: 使用する型(デフォルト : long long)
         // @ Ret : 乱数
-        template <Random64BitConcept Type>
+        template <RandomBitConcept<8> Type>
         Type GetRandom(void) {
             //----- 変数宣言
-            static std::random_device randomDevice; // 非決定的な乱数生成器
-            static std::mt19937_64 mt(rnd());       // 乱数
+            static std::random_device randomDevice;    // 非決定的な乱数生成器
+            static std::mt19937_64 mt(randomDevice()); // 乱数
 
             //----- 返却
             return (Type)mt();
