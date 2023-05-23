@@ -31,11 +31,6 @@
     }
 
     package Base{
-        class GlobalTime{
-            TimeType GetTime()
-        }
-        note top: 全体で時間を管理するグローバルタイムインターフェース
-
         class GameObjectUpdater(){
 
         }
@@ -83,9 +78,7 @@ EtherEngineWinMain -- EditorApplication
 GameObjectUpdater --* GameObject
 GameObject --* SceneData
 GameObject --* ComponentBase 
-note top: HandleSystemを使用して参照をHandleとして保持
-GameObject --* ColliderBase
-note top: HandleSystemを使用して参照をHandleとして保持
+note top: Handleとして保持
 SceneLoader --* Scene
 Scene --* SceneData
 GameApplication --* DirectX
