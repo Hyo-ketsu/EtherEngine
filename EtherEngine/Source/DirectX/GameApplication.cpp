@@ -1,11 +1,17 @@
 #include <DirectX/GameApplication.h>
 #include <Base/Timer.h>
+#include <Base/WindowName.h>
+#include <Base/HandleHelper.h>
 
 
 namespace EtherEngine {
     // コンストラクタ
     GameApplication::GameApplication(void)
-        : m_windowSize({ 1,1 }) {
+        : Window(WindowName::GAME_APPLICATION_NAME) {
+    }
+    // デストラクタ
+    GameApplication::~GameApplication(void) {
+        HandleSystem<DirectXRender>::Get()->DeleteItem(m_dxRender);
     }
 
 
@@ -98,7 +104,8 @@ namespace EtherEngine {
 #endif // _DEVELOP
 #endif // _RELEASE
 
-        HRESULT hr = m_dxRender.Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
+        m_dxRender = HandleHelper::AddItem<DirectXRender>(DirectXRender());
+        HRESULT hr = m_dxRender.GetAtomicData().Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
         if (FAILED(hr)) {
             return;
         }
@@ -120,7 +127,7 @@ namespace EtherEngine {
         MSG message;
         Timer fpsTimer;
         milliseconds frameSecond = 0ms;
-        while (1) {
+        while (true) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
                 // メッセージを取得
@@ -142,20 +149,16 @@ namespace EtherEngine {
                 if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
                 frameSecond = 0ms;
 
-                ////----- ゲームが終了しているか
-                //if (CSceneLoader::Get()->IsGameEnd()) break;
+                //----- 描画前処理
+                m_dxRender.GetAtomicData().BeginDraw();
+                this->DrawFirst();
 
-                ////----- キーボード入力情報の取得
-                //CInput::UpdateKey();
+                //----- 描画処理
+                m_dxRender.GetAtomicData().Draw();
 
-                ////----- 更新処理
-                //CSceneLoader::Get()->Update();
-
-                ////----- サウンド更新
-                //UpdateSound();
-
-                ////----- 描画処理
-                //drawThread->m_message.Passing(DRAW_MESSAGE::DRAW);
+                //----- 描画後処理
+                this->DrawLast();
+                m_dxRender.GetAtomicData().EndDraw();
             }
         }
 
@@ -164,14 +167,9 @@ namespace EtherEngine {
     }
 
 
-    LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-    {
+    LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
         switch (message) {
-        case WM_KEYDOWN:    // キーボード入力
-            if (wParam == VK_ESCAPE) {
-                DestroyWindow(hWnd);
-                return 0;
-            }
+        case WM_SIZE:
             break;
 
         case WM_CLOSE:  // ウィンドウを削除しようとしている

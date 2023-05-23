@@ -4,6 +4,6 @@
 namespace EtherEngine {
     // í«â¡èâä˙âª(å„)
     void EditorApplication::InitLast(void) {
-        m_imGui = std::make_unique<IMGUI>(m_dxRender.GetDevice(), m_dxRender.GetContext());
+        m_imGui = std::make_unique<IMGUI>(m_dxRender.GetAtomicData().GetDevice(), m_dxRender.GetAtomicData().GetContext());
     }
 }
