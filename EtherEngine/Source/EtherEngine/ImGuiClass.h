@@ -13,6 +13,7 @@ namespace EtherEngine {
         ~IMGUI(void);
 
     private:
+        ImGuiContext* m_imGuiContext;
         ID3D11Device* m_device;
         ID3D11DeviceContext* m_context;
     };
