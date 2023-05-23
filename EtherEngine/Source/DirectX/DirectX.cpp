@@ -7,6 +7,10 @@ namespace EtherEngine {
 		: m_rtv(nullptr)
 		, m_dsv(nullptr) {
 	}
+	// ƒfƒXƒgƒ‰ƒNƒ^
+	DirectXRender::~DirectXRender(void) {
+		Uninit();
+	}
 
 
 	// ‰Šú‰»ŠÖ”
@@ -126,11 +130,27 @@ namespace EtherEngine {
 	}
 	// I—¹ˆ—
 	void DirectXRender::Uninit(void) {
-		m_context.Get()->ClearState();
-		m_swapChain.Get()->SetFullscreenState(false, nullptr);
+		if (m_context.Get()   != nullptr) m_context.Get()->ClearState();
+		if (m_swapChain.Get() != nullptr) m_swapChain.Get()->SetFullscreenState(false, nullptr);
 
 		m_context = nullptr;
 		m_swapChain = nullptr;
 		m_device = nullptr;
+	}
+
+
+	// •`‰æ‘Oˆ—
+	void DirectXRender::BeginDraw(void) {
+		static float color[4] = { 0.3f,0.8f,0.3f,1.f }; // MEMO : ‰¼
+		m_context.Get()->ClearRenderTargetView(m_rtv, color);
+		m_context.Get()->ClearDepthStencilView(m_dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
+	// •`‰æˆ—
+	void DirectXRender::Draw() {
+
+	}
+	// •`‰æŒãˆ—
+	void DirectXRender::EndDraw(void) {
+		m_swapChain.Get()->Present(0, 0);
 	}
 }

@@ -1,6 +1,7 @@
 #ifndef I_DIRECTX_H
 #define I_DIRECTX_H
 #include <DirectX/ComPointer.h>
+#include <Base/Handle.h>
 
 
 namespace EtherEngine {
@@ -9,6 +10,8 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         DirectXRender(void);
+        // デストラクタ
+        ~DirectXRender(void);
 
 
         // SwapChainゲッター
@@ -34,6 +37,14 @@ namespace EtherEngine {
         HRESULT Init(const UINT width, const UINT height, const HWND hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory);
         // 終了処理
         void Uninit(void);
+
+
+        // 描画前処理
+        void BeginDraw(void);
+        // 描画処理
+        void Draw();
+        // 描画後処理
+        void EndDraw(void);
 
     private:
         ComPtr<IDXGISwapChain> m_swapChain; // スワップチェイン

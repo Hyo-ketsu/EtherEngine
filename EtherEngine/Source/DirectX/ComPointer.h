@@ -20,6 +20,8 @@ public:
 
     // COMオブジェクトポインタ取得
     Com* const Get(void) const { return m_com; }
+    // COMオブジェクトポインタ取得
+    Com* operator ->(void) { return m_com; }
     // 編集可能COMオブジェクトポインタ取得
     Com** GetEditable(void) { return &m_com; }
 private:
