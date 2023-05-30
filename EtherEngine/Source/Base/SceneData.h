@@ -4,7 +4,7 @@
 
 namespace EtherEngine {
     // 各Scene用の情報を管理するクラス
-    //（別個にしたのはGameObjectとうにコンポジションした際にデータのみを保持できている方が良いため）
+    //（別個にしたのはGameObject等にコンポジションした際にデータのみを保持できている方が良いため）
     class SceneData {
     public:
         // コンストラクタ

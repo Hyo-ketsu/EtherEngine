@@ -3,7 +3,13 @@
 
 
 namespace EtherEngine {
+    //
     class Scene {
+        // コンストラクタ
+        Scene(void);
+
+        // 初期化関数
+        virtual void Init(void);
     };
 }
 
