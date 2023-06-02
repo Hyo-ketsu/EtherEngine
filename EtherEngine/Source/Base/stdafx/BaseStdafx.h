@@ -28,6 +28,10 @@
 
 // ”ñ•„†®”‚Ì•Ê–¼’è‹`
 using uint = unsigned int;
+// •„†8Byte®”‚Ì•Ê–¼’è‹`
+using llint = long long;
+// ”ñ•„†8Byte®”‚Ì•Ê–¼’è‹`
+using ullint = unsigned long long;
 
 
 namespace EtherEngine {

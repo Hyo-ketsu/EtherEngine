@@ -8,11 +8,13 @@ namespace EtherEngine {
     class SceneData {
     public:
         // コンストラクタ
-        // @ Arg1 : シーン名
-        SceneData(const std::string& sceneName);
+        // @ Temp1 : Scene名
+        // @ Temp2 : Scene番号
+        template <const char* Name, uint Number>
+        SceneData(void);
 
     private:
-        static std::unordered_map<std::string, unsigned long long> ms_sceneNumber;  // シーン名に対応した番号
+
     };
 }
 
