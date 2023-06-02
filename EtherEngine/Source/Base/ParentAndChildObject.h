@@ -4,15 +4,16 @@
 #include <Base/HandleHelper.h>
 
 
-//----- ParentAndChildObject宣言
 namespace EtherEngine {
     // 親子関係をクラスでのみ扱うコンセプト
     // クラスかつ参照やポインタではない
     template <typename T>
-    concept ParentAndChildObjectConcept = std::is_class_v<T> && 
-        !(std::is_reference_v<T>) && !(std::is_pointer_v<T>);
+    concept ParentAndChildObjectConcept = std::is_class_v<T> && !(std::is_reference_v<T>) && !(std::is_pointer_v<T>);
+}
 
 
+//----- ParentAndChildObject宣言
+namespace EtherEngine {
     // 親子関係をオブジェクトとして表現するためのクラス
     // @ Temp: 親子関係を表現するクラス
     template <ParentAndChildObjectConcept Type>
@@ -26,12 +27,7 @@ namespace EtherEngine {
 
         // 親を設定する
         // @ Arg1 : 親に設定するハンドル
-        template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-        void SetParent(const Handle<Type, HandleCountType::Count>& handle);
-        // 親を設定する
-        // @ Arg1 : 親に設定するハンドル
-        template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-        void SetParent(const Handle<Type, HandleCountType::UnCount>& handle);
+        void SetParent(const BaseHandle<Type>& handle);
 
         // 親へのアクセスを削除する
         void DeleteParent(void);
@@ -41,27 +37,20 @@ namespace EtherEngine {
 
         // 親を取得する
         // @ Ret  : 親要素へのハンドル
-        void GetParent(void) const;
+        RefHandle<Type> GetParent(void) const;
 
 
         // 子を追加する
         // @ Arg1 : 子として追加するハンドル
-        template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-        void AddChild(const Handle<Type, HandleCountType::Count>& handle);
-        // 子を追加する
-        // @ Arg1 : 子として追加するハンドル
-        template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-        void AddChild(const Handle<Type, HandleCountType::UnCount>& handle);
+        void AddChild(const BaseHandle<Type>& handle);
 
         // インデックスで子へのアクセスを削除する
         // @ Arg1 : インデックス
         void DeleteChild(const uint index);
         // 指定ハンドルで子へのアクセスを削除する
-        template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-        void DeleteChild(const Handle<Type, HandleCountType::Count>& handle);
+        void DeleteChild(const BaseHandle<Type>& handle);
         // 指定ハンドルで子へのアクセスを削除する
-        template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-        void DeleteChild(const Handle<Type, HandleCountType::UnCount>& handle);
+        void DeleteChild(const BaseHandle<Type>& handle);
         // 全ての子へのアクセスを削除する
         void DeleteChildAll(void);
 
@@ -73,15 +62,11 @@ namespace EtherEngine {
 
         // インデックスで子へのアクセスを取得する
         // @ Arg1 : インデックス
-        void GetChild(const uint index);
+        RefHandle<Type> GetChild(const uint index);
         // 指定ハンドルで子へのアクセスを取得する
-        template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-        void GetChild(const Handle<Type, HandleCountType::Count>& handle);
-        // 指定ハンドルで子へのアクセスを取得する
-        template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-        void GetChild(const Handle<Type, HandleCountType::UnCount>& handle);
+        RefHandle<Type> GetChild(const BaseHandle<Type>& handle);
         // 全ての子へのアクセスを取得する
-        void GetChildAll(void);
+        std::vector<RefHandle<Type>> GetChildAll(void);
 
     private:
         RefHandle<Type>              m_parent;  // 親
@@ -95,15 +80,13 @@ namespace EtherEngine {
     // 親を設定する
     // @ Arg1 : 親に設定するハンドル
     template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-    void ParentAndChildObject<Type>::SetParent(const Handle<Type, HandleCountType::Count>& handle) {
+    void ParentAndChildObject<Type>::SetParent(const BaseHandle<Type>& handle) {
         SetParent(HandleHelper::GetRefHandle(handle));
     }
     // 親を設定する
     // @ Arg1 : 親に設定するハンドル
     template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-    void ParentAndChildObject<Type>::SetParent(const Handle<Type, HandleCountType::UnCount>& handle) {
+    void ParentAndChildObject<Type>::SetParent(const BaseHandle<Type>& handle) {
         m_parent = handle;
     }
 
@@ -116,90 +99,77 @@ namespace EtherEngine {
     // 親要素が存在するか
     template <ParentAndChildObjectConcept Type>
     bool ParentAndChildObject<Type>::IsParent(void) const {
-
+        return m_parent.GetEnable();
     }
 
     // 親を取得する
     // @ Ret  : 親要素へのハンドル
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::GetParent(void) const {
-
+    RefHandle<Type> ParentAndChildObject<Type>::GetParent(void) const {
+        return m_parent;
     }
 
 
     // 子を追加する
     // @ Arg1 : 子として追加するハンドル
     template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-    void ParentAndChildObject<Type>::AddChild(const Handle<Type, HandleCountType::Count>& handle) {
-
-    }
-    // 子を追加する
-    // @ Arg1 : 子として追加するハンドル
-    template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-    void ParentAndChildObject<Type>::AddChild(const Handle<Type, HandleCountType::UnCount>& handle) {
-
+    void ParentAndChildObject<Type>::AddChild(const BaseHandle<Type>& handle) {
+        m_child.push_back(handle);
     }
 
     // インデックスで子へのアクセスを削除する
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChild(const uint index) {
-
+        m_child[index].DeleteRef();
     }
     // 指定ハンドルで子へのアクセスを削除する
     template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-    void ParentAndChildObject<Type>::DeleteChild(const Handle<Type, HandleCountType::Count>& handle) {
-
-    }
-    // 指定ハンドルで子へのアクセスを削除する
-    template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-    void ParentAndChildObject<Type>::DeleteChild(const Handle<Type, HandleCountType::UnCount>& handle) {
-
+    void ParentAndChildObject<Type>::DeleteChild(const BaseHandle<Type>& handle) {
+        for (int i = 0; i < m_child.size(); i++) {
+            if (m_child[index] == handle) {
+                m_child[i].DeleteRef();
+                return;
+            }
+        }
     }
     // 全ての子へのアクセスを削除する
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChildAll(void) {
-
+        m_child.clear();
     }
 
     // 子要素の数
     // @ Ret  : 子要素の数
     template <ParentAndChildObjectConcept Type>
     uint ParentAndChildObject<Type>::GetChildCount(void) const {
-
+        return m_child.size();
     }
     // 子要素が一つでも存在するか
     template <ParentAndChildObjectConcept Type>
     bool ParentAndChildObject<Type>::IsChild(void) const {
-
+        return m_child.size() > 0;
     }
 
     // インデックスで子へのアクセスを取得する
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::GetChild(const uint index) {
-
+    RefHandle<Type> ParentAndChildObject<Type>::GetChild(const uint index) {
+        return m_child[i];
     }
     // 指定ハンドルで子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::Count> HandleType>
-    void ParentAndChildObject<Type>::GetChild(const Handle<Type, HandleCountType::Count>& handle) {
-
-    }
-    // 指定ハンドルで子へのアクセスを取得する
-    template <ParentAndChildObjectConcept Type>
-    template <HandleCountTypeConcept<Type, HandleCountType::UnCount> HandleType>
-    void ParentAndChildObject<Type>::GetChild(const Handle<Type, HandleCountType::UnCount>& handle) {
-
+    RefHandle<Type> ParentAndChildObject<Type>::GetChild(const BaseHandle<Type>& handle) {
+        for (int i = 0; i < m_child.size(); i++) {
+            if (m_child[index] == handle) {
+                return m_child[i];
+            }
+        }
     }
     // 全ての子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::GetChildAll(void) {
-
+    std::vector<RefHandle<Type>> ParentAndChildObject<Type>::GetChildAll(void) {
+        return m_child;
     }
 }
 

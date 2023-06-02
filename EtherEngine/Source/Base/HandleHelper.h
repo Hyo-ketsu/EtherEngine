@@ -14,7 +14,7 @@ namespace EtherEngine {
         // @ Ret  : 追加した要素のハンドル
         // @ Arg1 : 追加する要素
         template <HandleSystemConcept Type, HandleCountType Count = HandleCountType::Count>
-        static Handle<Type, Count> AddItem(Type&& item);
+        static BaseHandle<Type> AddItem(Type&& item);
 
 
         // 参照カウントハンドルから参照ハンドルを作成する
@@ -22,7 +22,7 @@ namespace EtherEngine {
         // @ Ret  : 参照ハンドル
         // @ Arg1 : 参照カウントハンドル
         template <HandleSystemConcept Type>
-        static RefHandle<Type> GetRefHandle(const Handle<Type>& handle);
+        static RefHandle<Type> GetRefHandle(const BaseHandle<Type>& handle);
     };
 }
 
@@ -37,8 +37,8 @@ namespace EtherEngine {
     // @ Ret  : 追加した要素のハンドル
     // @ Arg1 : 追加する要素
     template <HandleSystemConcept Type, HandleCountType Count>
-    Handle<Type, Count> HandleHelper::AddItem(Type&& item) {
-        return Handle<Type, Count>(HandleSystem<Type>::Get()->AddItem(std::move(item)));
+    BaseHandle<Type> HandleHelper::AddItem(Type&& item) {
+        return BaseHandle<Type>(HandleSystem<Type>::Get()->AddItem(std::move(item)), Count);
     }
 
 
@@ -47,7 +47,7 @@ namespace EtherEngine {
     // @ Ret  : 参照ハンドル
     // @ Arg1 : 参照カウントハンドル
     template <HandleSystemConcept Type>
-    RefHandle<Type> HandleHelper::GetRefHandle(const Handle<Type>& handle) {
+    RefHandle<Type> HandleHelper::GetRefHandle(const BaseHandle<Type>& handle) {
         return RefHandle<Type>(handle.GetHandleNumberType());
     }
 }
