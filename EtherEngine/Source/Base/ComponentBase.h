@@ -7,13 +7,23 @@ namespace EtherEngine {
     class ComponentBase {
     public:
         // コンストラクタ
-        ComponentBase(void) {}
+        ComponentBase(void);
         // デストラクタ
         ~ComponentBase(void) {}
 
+        // 更新処理を行う
+        void UpdateFuntion(void);
+        // 描画処理を行う
+        void DrawFuntion(void);
+
+
+    protected:
         virtual void Start(void) {}
         virtual void Update(void) {}
         virtual void Draw(void) {}
+
+    private:
+        bool m_isStart; // 既にStart処理を行っているか
     };
 }
 

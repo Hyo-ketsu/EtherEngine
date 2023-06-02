@@ -24,7 +24,10 @@
     <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
     <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\Base\Handle.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
@@ -56,7 +59,10 @@
     <ClInclude Include="..\..\Source\Base\AtomicReadData.h" />
     <ClInclude Include="..\..\Source\Base\BaseObject.h" />
     <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
+    <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\GameObject.h" />
+    <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />
+    <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
     <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
