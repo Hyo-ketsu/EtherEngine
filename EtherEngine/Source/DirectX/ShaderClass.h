@@ -45,7 +45,7 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : DirectX
         // @ Arg2 : シェーダの種類
-        ShaderBase(const Handle<DirectXRender>& directxRender, ShaderType shaderType);
+        ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType);
 
 
         // シェーダファイルの読み込み後、シェーダの種類別に処理を行う
@@ -59,7 +59,7 @@ namespace EtherEngine {
         HRESULT Make(void* data, uint size);
 
 
-        Handle<DirectXRender> m_directxRender;  // 保持しているDirectX
+        BaseHandle<DirectXRender> m_directxRender;  // 保持しているDirectX
         ShaderType m_shaderType;  // このシェーダーの種類
     };
 }
@@ -72,7 +72,7 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         // @ Arg1 : DirectX
-        VertexShader(const Handle<DirectXRender>& directxRender);
+        VertexShader(const BaseHandle<DirectXRender>& directxRender);
         // デストラクタ
         ~VertexShader(void) override;
 
@@ -97,7 +97,7 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         // @ Arg1 : DirectX
-        PixelShader(const Handle<DirectXRender>& directxRender);
+        PixelShader(const BaseHandle<DirectXRender>& directxRender);
         // デストラクタ
         ~PixelShader(void) override;
 

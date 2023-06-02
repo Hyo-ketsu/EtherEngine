@@ -4,7 +4,7 @@
 //----- ShaderBase定義
 namespace EtherEngine {
     // コンストラクタ
-    ShaderBase::ShaderBase(const Handle<DirectXRender>& directxRender, ShaderType shaderType)
+    ShaderBase::ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType)
         : m_shaderType(shaderType) {
     }
     // デストラクタ
@@ -143,7 +143,7 @@ namespace EtherEngine {
 //----- VertexShader定義
 namespace EtherEngine {
     // コンストラクタ
-    VertexShader::VertexShader(const Handle<DirectXRender>& directxRender)
+    VertexShader::VertexShader(const BaseHandle<DirectXRender>& directxRender)
         : ShaderBase(directxRender, ShaderType::Vertex) {
     }
     // デストラクタ
@@ -240,7 +240,7 @@ namespace EtherEngine {
 //----- PixelShader定義
 namespace EtherEngine {
     // コンストラクタ
-    PixelShader::PixelShader(const Handle<DirectXRender>& directxRender)
+    PixelShader::PixelShader(const BaseHandle<DirectXRender>& directxRender)
         : ShaderBase(directxRender, ShaderType::Pixel) {
     }
     // デストラクタ

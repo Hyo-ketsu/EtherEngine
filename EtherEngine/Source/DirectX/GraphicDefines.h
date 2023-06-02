@@ -18,7 +18,7 @@ namespace EtherEngine {
         Eigen::Vector4f diffuse;    // 拡散光
         Eigen::Vector4f ambient;    // 環境光
         Eigen::Vector4f specular;   // 反射光
-        Handle<Texture> texture;    // テクスチャー
+        BaseHandle<Texture> texture;    // テクスチャー
     };
 
 

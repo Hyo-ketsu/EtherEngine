@@ -12,13 +12,13 @@ namespace EtherEngine {
         // 初期化情報構造体
         struct Description {
             // コンストラクタ
-            Description(Handle<DirectXRender> directXRender,
+            Description(BaseHandle<DirectXRender> directXRender,
                 const void* vertex, uint vertexSize, uint vertexCount, bool isWrite,
                 const void* index, uint indexSize, uint indexCount,
                 D3D11_PRIMITIVE_TOPOLOGY topology);
 
 
-            Handle<DirectXRender> directXRender;
+            BaseHandle<DirectXRender> directXRender;
             const void* vertex;
             uint vertexSize;
             uint vertexCount;
@@ -56,7 +56,7 @@ namespace EtherEngine {
         HRESULT CreateIndexBuffer(const void* index, uint size, uint count);
 
 
-        Handle<DirectXRender> m_directxRender;  // 描画対象
+        BaseHandle<DirectXRender> m_directxRender;  // 描画対象
         ComPtr<ID3D11Buffer> m_vertexBuffer; // 頂点バッファ
         uint m_vertexSize;                   // 頂点バッファのサイズ        
         uint m_vertexCount;                  // 頂点バッファの数

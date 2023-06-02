@@ -120,8 +120,8 @@ namespace EtherEngine {
 		D3D11_VIEWPORT viewPort;
 		viewPort.TopLeftX = 0.0f;
 		viewPort.TopLeftY = 0.0f;
-		viewPort.Width = width;
-		viewPort.Height = height;
+		viewPort.Width    = width;
+		viewPort.Height   = height;
 		viewPort.MinDepth = 0.0f;
 		viewPort.MaxDepth = 1.0f;
 		m_context.Get()->RSSetViewports(1, &viewPort);

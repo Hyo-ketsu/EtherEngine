@@ -43,7 +43,7 @@ namespace EtherEngine {
         const int& GetCmdShow(void) const { return m_cmdShow.value(); }
 
         // DirectXゲッター
-        const Handle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
+        const BaseHandle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
 
 
         // WinMain の引数を保持する
@@ -53,7 +53,7 @@ namespace EtherEngine {
         std::optional<HINSTANCE> m_hInstance;  // インスタンスハンドル
         std::optional<LPSTR>     m_ipCmdLine;  // コマンドライン
         std::optional<int>       m_cmdShow;    // アプリケーションの初期表示方法
-        Handle<DirectXRender>    m_dxRender;
+        BaseHandle<DirectXRender>    m_dxRender;
 
         InitUninitPerformer m_initUninitPerformer;  // 初期化・終了処理実行クラス
     };
