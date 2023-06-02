@@ -19,6 +19,12 @@
     <Filter Include="ソース ファイル\IMGUIRapper">
       <UniqueIdentifier>{4c5c8e90-dd08-41c2-a80e-1403f666e062}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Test">
+      <UniqueIdentifier>{c710d359-8a84-40eb-8a03-50c920e02a4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Test">
+      <UniqueIdentifier>{d51be2ee-43a9-42e0-b837-e5b361166874}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
@@ -33,6 +39,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
       <Filter>ソース ファイル\IMGUIRapper</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.cpp">
+      <Filter>ヘッダー ファイル\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
@@ -43,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
       <Filter>ヘッダー ファイル\IMGUIRapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
