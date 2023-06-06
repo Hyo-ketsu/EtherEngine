@@ -11,13 +11,13 @@ namespace EtherEngine {
     // 更新処理を行う
     void GameObject::Update(void) {
         for (auto& component : m_components) {
-            component.GetAtomicData().UpdateFuntion();
+            component->UpdateFuntion();
         }
     }
     // 描画処理を行う
     void GameObject::Draw(void) {
         for (auto& component : m_components) {
-            component.GetAtomicData().DrawFuntion();
+            component->DrawFuntion();
         }
     }
 }

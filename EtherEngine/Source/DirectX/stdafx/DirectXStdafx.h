@@ -33,6 +33,11 @@
 #endif
 
 
-#include <Assimp/Importer.hpp>
-#include <Assimp/scene.h>
-#include <Assimp/postprocess.h>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#ifdef _DEBUG
+#pragma comment(lib, "assimp/x64/Debug/assimp-vc142-mtd.lib")
+#else
+#pragma comment(lib, "assimp/x64/Release/assimp-vc142-mt.lib")
+#endif

@@ -3,6 +3,7 @@
 #include <Base/HandleHelper.h>
 #include <Base/WindowName.h>
 #include <Base/GameObjectUpdater.h>
+#include <DirectX/ProcedureGameWindow.h>
 
 
 #ifdef _DEBUG
@@ -24,9 +25,6 @@ namespace EtherEngine {
     }
 
 
-    LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-
     // メイン関数
     void GameApplication::MainFunction(void) {
         using namespace std::chrono;
@@ -41,7 +39,7 @@ namespace EtherEngine {
         ZeroMemory(&wcex, sizeof(wcex));                          // サイズ分の初期化
         wcex.hInstance = m_hInstance.value();                     // 紐づいているアプリケーション
         wcex.lpszClassName = m_name.c_str();                      // ウィンドウクラスに設定する名称
-        wcex.lpfnWndProc = MainWndProc;                           // 
+        wcex.lpfnWndProc = WindowGameProcedure;                   // 
         wcex.style = CS_CLASSDC;                                  //   
         wcex.cbSize = sizeof(WNDCLASSEX);                         // 
         wcex.hIcon = LoadIcon(wcex.hInstance, NULL);              // タスクバーのアイコン設定
@@ -173,22 +171,5 @@ namespace EtherEngine {
 
         //----- 終了処理
         m_initUninitPerformer.UnInit();
-    }
-
-
-    LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-        switch (message) {
-        case WM_SIZE:
-            break;
-
-        case WM_CLOSE:  // ウィンドウを削除しようとしている
-            break;
-
-        case WM_DESTROY:    // ウィンドウを削除
-            PostQuitMessage(0); // WM_QUIT メッセージを送信
-            break;
-        }
-
-        return DefWindowProc(hWnd, message, wParam, lParam);
     }
 }

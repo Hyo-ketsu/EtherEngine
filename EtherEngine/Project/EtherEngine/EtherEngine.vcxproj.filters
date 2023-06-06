@@ -48,6 +48,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp">
       <Filter>ソース ファイル\Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestScene.h">
       <Filter>ヘッダー ファイル\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

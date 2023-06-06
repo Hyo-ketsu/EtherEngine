@@ -40,10 +40,12 @@
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\MainWindowProc.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
     <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Model.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ModelComponent.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ShaderClass.cpp" />
     <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
@@ -69,6 +71,7 @@
     <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />
     <ClInclude Include="..\..\Source\DirectX\Model.h" />
     <ClInclude Include="..\..\Source\DirectX\ModelComponent.h" />
+    <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h" />
     <ClInclude Include="..\..\Source\DirectX\ShaderClass.h" />
     <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
     <ClInclude Include="..\..\Source\DirectX\Texture.h" />

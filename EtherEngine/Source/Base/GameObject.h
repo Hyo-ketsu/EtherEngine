@@ -35,13 +35,13 @@ namespace EtherEngine {
         // @ Temp : 追加する通常コンポーネント
         // @ Args : コンストラクタに渡す引数
         template <ComponentConcept ComponentType, typename ...ArgsType>
-        RefHandle<ComponentType> AddConponent(ArgsType&& ...args);
+        std::weak_ptr<ComponentType> AddConponent(ArgsType&& ...args);
 
 
     private:
         Transform m_transform;  // 座標
 
-        std::vector<Handle<ComponentBase>> m_components; // 通常のコンポーネント
+        std::vector<std::shared_ptr<ComponentBase>> m_components; // 通常のコンポーネント
     };
 }
 
@@ -53,11 +53,10 @@ namespace EtherEngine {
     // コンポーネント追加
     // @ Temp : 追加する通常コンポーネント
     template <ComponentConcept ComponentType, typename ...ArgsType>
-    RefHandle<ComponentType> GameObject::AddConponent(ArgsType&& ...args) {
-        ComponentType component(args...);
-        auto handle = HandleHelper::AddItem<ComponentBase>(std::move(component));
-        m_components.push_back(handle);
-        return HandleHelper::GetRefHandle<ComponentType>(handle);
+    std::weak_ptr<ComponentType> GameObject::AddConponent(ArgsType&& ...args) {
+        auto ptr = std::make_shared<ComponentType>(args...);
+        m_components.push_back(ptr);
+        return std::weak_ptr<ComponentType>(ptr);
     }
 }
 

@@ -47,7 +47,6 @@
     <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\Handle.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
-    <ClCompile Include="..\..\Source\Base\HandleRapper.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
@@ -88,7 +87,6 @@
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
     <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
-    <ClInclude Include="..\..\Source\Base\HandleRapper.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
