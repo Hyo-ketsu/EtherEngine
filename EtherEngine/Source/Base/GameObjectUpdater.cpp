@@ -12,4 +12,9 @@ namespace EtherEngine {
             
         }
     }
+
+    // ゲームオブジェクトの描画処理を行う
+    void GameObjectUpdater::Draw(void) {
+
+    }
 }

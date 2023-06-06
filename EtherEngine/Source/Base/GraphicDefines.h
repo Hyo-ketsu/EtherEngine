@@ -9,7 +9,12 @@ namespace EtherEngine {
     struct Vertex {
         Eigen::Vector3f pos;    // 座標
         Eigen::Vector3f normal; // 法線
-        Eigen::Vector3f uv;     // テクスチャ座標
+        Eigen::Vector2f uv;     // テクスチャ座標
+
+        Vertex(void) = default;
+        Vertex(const Vertex& copy) = default;
+        Vertex(Vertex&& move) = default;
+        Vertex& operator =(const Vertex& in) = default;
     };
 
 
@@ -18,15 +23,12 @@ namespace EtherEngine {
         Eigen::Vector4f diffuse;    // 拡散光
         Eigen::Vector4f ambient;    // 環境光
         Eigen::Vector4f specular;   // 反射光
-        BaseHandle<Texture> texture;    // テクスチャー
-    };
+        std::unique_ptr<Texture> texture;    // テクスチャー
 
-
-    // メッシュを表現する構造体
-    struct Mesh {
-        std::vector<Vertex> vertexs;    // 複数の頂点
-        std::vector<uint>   indexs;     // 複数のインデックス
-        uint                materialID; // マテリアルのID
+        Material(void) = default;
+        Material(const Material& copy) = default;
+        Material(Material&& move) = default;
+        Material& operator =(const Material& in) = default;
     };
 }
 

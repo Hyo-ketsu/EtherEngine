@@ -77,8 +77,8 @@ namespace EtherEngine {
     // @ Arg1 : 書き込むシェーダのスロット
     // @ Arg2 : 書き込むデータ
     void ShaderBase::WriteBuffer(uint slot, void* data) {
-        if (slot < m_buffer.size() && m_directxRender.GetEnable()) {
-            m_directxRender.GetAtomicData().GetContext()->UpdateSubresource(m_buffer[slot], 0, nullptr, data, 0, 0);
+        if (slot < m_buffers.size() && m_directxRender.GetEnable()) {
+            m_directxRender.GetAtomicData().GetContext()->UpdateSubresource(m_buffers[slot], 0, nullptr, data, 0, 0);
         }
     }
     // テクスチャーの設定を行う
@@ -116,7 +116,7 @@ namespace EtherEngine {
         //----- 定数バッファ作成
         D3D11_SHADER_DESC shaderDesc;
         reflection->GetDesc(&shaderDesc);
-        m_buffer.resize(shaderDesc.ConstantBuffers, nullptr);
+        m_buffers.resize(shaderDesc.ConstantBuffers, nullptr);
         for (uint i = 0; i < shaderDesc.ConstantBuffers; i++) {
             //----- シェーダーの定数バッファの情報を取得
             D3D11_SHADER_BUFFER_DESC shaderBufDesc;
@@ -130,7 +130,7 @@ namespace EtherEngine {
             bufDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 
             // バッファの作成
-            hr = m_directxRender.GetAtomicData().GetDevice()->CreateBuffer(&bufDesc, nullptr, &m_buffer[i]);
+            hr = m_directxRender.GetAtomicData().GetDevice()->CreateBuffer(&bufDesc, nullptr, &m_buffers[i]);
             if (FAILED(hr)) { return hr; }
         }
 
@@ -156,8 +156,8 @@ namespace EtherEngine {
         auto dxRender = m_directxRender.GetAtomicItem();
         dxRender.GetData().GetContext()->VSSetShader(m_vertexShader, nullptr, 0);
         dxRender.GetData().GetContext()->IASetInputLayout(m_inputLayout);
-        for (int i = 0; i < m_buffer.size(); i++) {
-            dxRender.GetData().GetContext()->VSSetConstantBuffers(i, 1, &m_buffer[i]);
+        for (int i = 0; i < m_buffers.size(); i++) {
+            dxRender.GetData().GetContext()->VSSetConstantBuffers(i, 1, &m_buffers[i]);
         }
     }
 
@@ -252,8 +252,8 @@ namespace EtherEngine {
     void PixelShader::Bind(void) {
         auto dxRender = m_directxRender.GetAtomicItem();
         dxRender.GetData().GetContext()->PSSetShader(m_pixelShader, nullptr, 0);
-        for (int i = 0; i < m_buffer.size(); ++i)
-            dxRender.GetData().GetContext()->PSSetConstantBuffers(i, 1, &m_buffer[i]);
+        for (int i = 0; i < m_buffers.size(); ++i)
+            dxRender.GetData().GetContext()->PSSetConstantBuffers(i, 1, &m_buffers[i]);
     }
 
 

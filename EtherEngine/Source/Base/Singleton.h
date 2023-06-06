@@ -2,12 +2,18 @@
 #define I_SINGLETON_H
 
 
+//----- Singleton宣言
 namespace EtherEngine {
+    // クラスのみを表現するコンセプト
+    template <typename T>
+    concept SingletonConcept = std::is_class_v<T>;
+
+
     // Singleton抽象クラス
     // @ Memo : このクラスをフレンド宣言してください
     // @ Memo : protected や private でコンストラクタを宣言してください
     // @ Temp : 返却するクラス
-    template<class SingletonType>
+    template<SingletonConcept SingletonType>
     class Singleton {
     public:
         Singleton<SingletonType>(const Singleton<SingletonType>&) = delete;
@@ -47,10 +53,10 @@ namespace EtherEngine {
 
 
 
-// Singleton実装
+//----- Singleton実装
 namespace EtherEngine {
     // インスタンスの取得
-    template<class SingletonType>
+    template<SingletonConcept SingletonType>
     SingletonType* const Singleton<SingletonType>::Get(void) {
         //----- インスタンスの生成判断
         if (!(ms_instance)) {
@@ -70,7 +76,7 @@ namespace EtherEngine {
 
 
     // インスタンスの明示的解放
-    template<class SingletonType>
+    template<SingletonConcept SingletonType>
     void Singleton<SingletonType>::DeleteInstance(void) {
         //----- ロック
         std::lock_guard<decltype(ms_updaetrMutex)> lock(ms_updaetrMutex);
@@ -81,16 +87,16 @@ namespace EtherEngine {
 
 
     // ミューテックス取得
-    template<class SingletonType>
+    template<SingletonConcept SingletonType>
     const std::recursive_mutex& Singleton<SingletonType>::GetMutex(void) const {
         return m_mutex;
     }
 
 
 
-    template <class SingletonType>
+    template <SingletonConcept SingletonType>
     std::mutex Singleton<SingletonType>::ms_updaetrMutex; // ミューテックス
-    template <class SingletonType>
+    template <SingletonConcept SingletonType>
     std::unique_ptr<SingletonType> Singleton<SingletonType>::ms_instance; // シングルトンサブクラス
 }
 

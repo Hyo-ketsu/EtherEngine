@@ -23,7 +23,7 @@ namespace EtherEngine {
 
         friend class Singleton<GameObjectStorage>;
 
-        std::vector<BaseHandle<GameObject>> m_gameObject;   // ゲームオブジェクトのハンドル
+        std::vector<BaseHandle<GameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
     };
 }
 

@@ -1,25 +1,26 @@
 #include <DirectX/GameApplication.h>
 #include <Base/Timer.h>
-#include <Base/WindowName.h>
 #include <Base/HandleHelper.h>
+#include <Base/WindowName.h>
+#include <Base/GameObjectUpdater.h>
+
+
+#ifdef _DEBUG
+#ifdef _GAME_TEST
+#include <DirectX/ModelComponent.h>
+#include <EtherEngine/Test/TestDefine.h>
+#endif // _GAME_TEST
+#endif // _DEBUG
 
 
 namespace EtherEngine {
     // コンストラクタ
     GameApplication::GameApplication(void)
-        : Window(WindowName::GAME_APPLICATION_NAME) {
+        : BaseMainWindow(WindowName::GAME_APPLICATION_NAME) {
     }
     // デストラクタ
     GameApplication::~GameApplication(void) {
         HandleSystem<DirectXRender>::Get()->DeleteItem(m_dxRender);
-    }
-
-
-    // Applicationデータセッター
-    void GameApplication::SetApplicationData(const HINSTANCE hInstance, const LPSTR ipCmdLine, const int& cmdShow) {
-        m_hInstance = hInstance;
-        m_ipCmdLine = ipCmdLine;
-        m_cmdShow = cmdShow;
     }
 
 
@@ -39,12 +40,12 @@ namespace EtherEngine {
         WNDCLASSEX wcex;                                          // ウィンドウ情報のクラス
         ZeroMemory(&wcex, sizeof(wcex));                          // サイズ分の初期化
         wcex.hInstance = m_hInstance.value();                     // 紐づいているアプリケーション
-        wcex.lpszClassName = WINDOW_CLASS_NAME.c_str();           // ウィンドウクラスに設定する名称
+        wcex.lpszClassName = m_name.c_str();                      // ウィンドウクラスに設定する名称
         wcex.lpfnWndProc = MainWndProc;                           // 
         wcex.style = CS_CLASSDC;                                  //   
         wcex.cbSize = sizeof(WNDCLASSEX);                         // 
-        wcex.hIcon = LoadIcon(wcex.hInstance, NULL);               // タスクバーのアイコン設定
-        wcex.hIconSm = LoadIcon(wcex.hInstance, NULL);             // スモールアイコン設定
+        wcex.hIcon = LoadIcon(wcex.hInstance, NULL);              // タスクバーのアイコン設定
+        wcex.hIconSm = LoadIcon(wcex.hInstance, NULL);            // スモールアイコン設定
         wcex.hCursor = LoadCursor(NULL, IDC_ARROW);               // マウスカーソル見た目設定
         wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); // ウィンドウ背景色
 
@@ -75,7 +76,7 @@ namespace EtherEngine {
         ShowWindow(m_hwnd.value(), m_cmdShow.value());
         UpdateWindow(m_hwnd.value());
 
-        //ビデオカードの検索
+        //----- ビデオカードの検索
         IDXGIFactory1* factory;
         IDXGIAdapter1* adapter;
         IDXGIAdapter1* adapterMax;
@@ -115,13 +116,20 @@ namespace EtherEngine {
         if (factory) factory->Release();
 
         //----- 初期化・終了処理登録
-        InitFirst();
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
-        InitLast();
 
         //----- 初期化
         m_initUninitPerformer.Init();
-        InitLateFuntion();
+
+#ifdef _DEBUG
+#ifdef _GAME_TEST
+        //----- テスト用ゲームオブジェクト追加
+        GameObject testGameObject = decltype(testGameObject)(Transform());
+        testGameObject.AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "TestAsset.obj", GameApplication::Get()->GetDirectX(),
+            1.0f, false);
+        GameObjectStorage::Get()->AddGameObject(testGameObject);
+#endif // _GAME_TESTB
+#endif // _DEBUG
 
         //----- メッセージループ
         MSG message;
@@ -149,15 +157,16 @@ namespace EtherEngine {
                 if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
                 frameSecond = 0ms;
 
+                //----- Update処理
+                GameObjectUpdater::Get()->Update();
+
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();
-                this->DrawFirst();
 
                 //----- 描画処理
                 m_dxRender.GetAtomicData().Draw();
 
                 //----- 描画後処理
-                this->DrawLast();
                 m_dxRender.GetAtomicData().EndDraw();
             }
         }

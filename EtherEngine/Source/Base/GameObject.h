@@ -5,6 +5,7 @@
 #include <Base/HandleHelper.h>
 #include <Base/Handle.h>
 #include <Base/Scene.h>
+// @ MEMO : ゲームオブジェクト側としてはComponentBaseのハンドルを保持したいが登録する際はサブクラスで登録される矛盾
 
 
 namespace EtherEngine {
@@ -32,14 +33,15 @@ namespace EtherEngine {
 
         // コンポーネント追加
         // @ Temp : 追加する通常コンポーネント
-        template <ComponentConcept ComponentType>
-        RefHandle<ComponentType> AddConponent(void);
+        // @ Args : コンストラクタに渡す引数
+        template <ComponentConcept ComponentType, typename ...ArgsType>
+        RefHandle<ComponentType> AddConponent(ArgsType&& ...args);
 
 
     private:
         Transform m_transform;  // 座標
 
-        std::vector<Handle<ComponentBase>> m_component; // 通常のコンポーネント
+        std::vector<Handle<ComponentBase>> m_components; // 通常のコンポーネント
     };
 }
 
@@ -50,21 +52,12 @@ namespace EtherEngine {
 namespace EtherEngine {
     // コンポーネント追加
     // @ Temp : 追加する通常コンポーネント
-    template <ComponentConcept ComponentType>
-    RefHandle<ComponentType> GameObject::AddConponent(void) {
-        ComponentType component;
-        auto handle = HandleHelper::AddItem(std::move(component), HandleCountType::Count);
-        m_component.push_back(std::move(handle));
-        return HandleHelper::GetRefHandle(handle);
-    }
-    // コンポーネント追加
-    // @ Temp : 追加する描画用コンポーネント
-    template <DrawComponentConcept ComponentType>
-    RefHandle<ComponentType> GameObject::AddConponent(void) {
-        ComponentType component;
-        auto handle = HandleHelper::AddItem(std::move(component), HandleCountType::Count);
-        m_drawComponent.push_back(std::move(handle));
-        return HandleHelper::GetRefHandle(handle);
+    template <ComponentConcept ComponentType, typename ...ArgsType>
+    RefHandle<ComponentType> GameObject::AddConponent(ArgsType&& ...args) {
+        ComponentType component(args...);
+        auto handle = HandleHelper::AddItem<ComponentBase>(std::move(component));
+        m_components.push_back(handle);
+        return HandleHelper::GetRefHandle<ComponentType>(handle);
     }
 }
 

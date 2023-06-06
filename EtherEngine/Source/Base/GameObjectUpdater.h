@@ -12,6 +12,15 @@ namespace EtherEngine {
     public:
         // ゲームオブジェクトに更新処理を行う
         void Update(void);
+
+        // ゲームオブジェクトの描画処理を行う
+        void Draw(void);
+
+    private:
+        // コンストラクタ
+        GameObjectUpdater(void) {}
+
+        friend class Singleton<GameObjectUpdater>;
     };
 }
 

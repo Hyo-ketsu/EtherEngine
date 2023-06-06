@@ -52,7 +52,7 @@ namespace EtherEngine {
         virtual HRESULT MakeShader(void* data, uint size) = 0;
 
 
-        std::vector<ID3D11Buffer*> m_buffer;    // 保持しているバッファー
+        std::vector<ID3D11Buffer*> m_buffers;   // 保持しているバッファー
 
     protected:
         //

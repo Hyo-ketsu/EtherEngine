@@ -39,8 +39,14 @@
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
       <Filter>ソース ファイル\IMGUIRapper</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
+      <Filter>ソース ファイル\Test</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.cpp">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>ソース ファイル\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp">
+      <Filter>ソース ファイル\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,8 +59,17 @@
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
       <Filter>ヘッダー ファイル\IMGUIRapper</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h">
+      <Filter>ヘッダー ファイル\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h">
+      <Filter>ヘッダー ファイル\Test</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\Test\TestScene.h">
+      <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

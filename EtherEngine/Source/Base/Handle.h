@@ -47,23 +47,23 @@ namespace EtherEngine {
 
 
         // Handleから排他制御されていない要素を取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         NonAtomicData<Type> GetNoAtomicItem(void) const;
         // Handleから排他制御された要素を取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         AtomicData<Type> GetAtomicItem(void) const;
         // Handleから排他制御された読み取り専用要素を取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         AtomicReadData<Type> GetAtomicReadItem(void) const;
 
         // Handleから排他制御されていない要素を直接取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         Type& GetNoAtomicData(void) const;
         // Handleから排他制御された要素を直接取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         Type& GetAtomicData(void) const;
         // Handleから排他制御された読み取り専用要素を直接取得する
-        // @ Ret  : 取得した要素（optional）
+        // @ Ret  : 取得した要素
         Type& GetAtomicReadData(void) const;
 
 
@@ -200,38 +200,38 @@ namespace EtherEngine {
 
 
     // Handleから排他制御されていない要素を取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     NonAtomicData<Type> BaseHandle<Type>::GetNoAtomicItem(void) const {
         return HandleSystem<Type>::Get()->GetNoAtomicItem(m_handle).value();
     }
     // Handleから排他制御された要素を取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     AtomicData<Type> BaseHandle<Type>::GetAtomicItem(void) const {
         return HandleSystem<Type>::Get()->GetAtomicItem(m_handle).value();
     }
     // Handleから排他制御された読み取り専用要素を取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     AtomicReadData<Type> BaseHandle<Type>::GetAtomicReadItem(void) const {
         return HandleSystem<Type>::Get()->GetAtomicReadItem(m_handle).value();
     }
 
     // Handleから排他制御されていない要素を直接取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     Type& BaseHandle<Type>::GetNoAtomicData(void) const {
         return GetNoAtomicItem().GetData();
     }
     // Handleから排他制御された要素を直接取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     Type& BaseHandle<Type>::GetAtomicData(void) const {
         return GetAtomicItem().GetData();
     }
     // Handleから排他制御された読み取り専用要素を直接取得する
-    // @ Ret  : 取得した要素（optional）
+    // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     Type& BaseHandle<Type>::GetAtomicReadData(void) const {
         return GetAtomicReadItem().GetData();

@@ -45,10 +45,16 @@
     <ClCompile Include="..\..\Source\DirectX\Model.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\GraphicDefines.cpp">
+    <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp">
+    <ClCompile Include="..\..\Source\DirectX\ModelComponent.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DirectX\Mesh.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\DirectX\BaseMainWindow.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,10 +89,16 @@
     <ClInclude Include="..\..\Source\DirectX\Model.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\GraphicDefines.h">
+    <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h">
+    <ClInclude Include="..\..\Source\DirectX\ModelComponent.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DirectX\Mesh.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DirectX\BaseMainWindow.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

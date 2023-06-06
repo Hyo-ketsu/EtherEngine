@@ -13,10 +13,10 @@ namespace EtherEngine {
 
         // 頂点シェーダーをセットする
         // @ Arg1 : 頂点シェーダーのポインタ
-        static void SetVertexShader()
+        static void SetVertexShader();
 
         // 頂点シェーダをセットする
-        static void SetPixelShader()
+        static void SetPixelShader();
     };
 }
 

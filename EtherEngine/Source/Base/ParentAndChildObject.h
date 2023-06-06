@@ -70,7 +70,7 @@ namespace EtherEngine {
 
     private:
         RefHandle<Type>              m_parent;  // 親
-        std::vector<RefHandle<Type>> m_child;   // 子
+        std::vector<RefHandle<Type>> m_childs;  // 子
     };
 }
 
@@ -114,21 +114,21 @@ namespace EtherEngine {
     // @ Arg1 : 子として追加するハンドル
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::AddChild(const BaseHandle<Type>& handle) {
-        m_child.push_back(handle);
+        m_childs.push_back(handle);
     }
 
     // インデックスで子へのアクセスを削除する
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChild(const uint index) {
-        m_child[index].DeleteRef();
+        m_childs[index].DeleteRef();
     }
     // 指定ハンドルで子へのアクセスを削除する
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChild(const BaseHandle<Type>& handle) {
-        for (int i = 0; i < m_child.size(); i++) {
-            if (m_child[index] == handle) {
-                m_child[i].DeleteRef();
+        for (int i = 0; i < m_childs.size(); i++) {
+            if (m_childs[index] == handle) {
+                m_childs[i].DeleteRef();
                 return;
             }
         }
@@ -136,40 +136,40 @@ namespace EtherEngine {
     // 全ての子へのアクセスを削除する
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChildAll(void) {
-        m_child.clear();
+        m_childs.clear();
     }
 
     // 子要素の数
     // @ Ret  : 子要素の数
     template <ParentAndChildObjectConcept Type>
     uint ParentAndChildObject<Type>::GetChildCount(void) const {
-        return m_child.size();
+        return m_childs.size();
     }
     // 子要素が一つでも存在するか
     template <ParentAndChildObjectConcept Type>
     bool ParentAndChildObject<Type>::IsChild(void) const {
-        return m_child.size() > 0;
+        return m_childs.size() > 0;
     }
 
     // インデックスで子へのアクセスを取得する
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
     RefHandle<Type> ParentAndChildObject<Type>::GetChild(const uint index) {
-        return m_child[i];
+        return m_childs[i];
     }
     // 指定ハンドルで子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
     RefHandle<Type> ParentAndChildObject<Type>::GetChild(const BaseHandle<Type>& handle) {
-        for (int i = 0; i < m_child.size(); i++) {
-            if (m_child[index] == handle) {
-                return m_child[i];
+        for (int i = 0; i < m_childs.size(); i++) {
+            if (m_childs[index] == handle) {
+                return m_childs[i];
             }
         }
     }
     // 全ての子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
     std::vector<RefHandle<Type>> ParentAndChildObject<Type>::GetChildAll(void) {
-        return m_child;
+        return m_childs;
     }
 }
 

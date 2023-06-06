@@ -1,0 +1,6 @@
+#ifndef I_TESTGAMEOBJECT_H
+#define I_TESTGAMEOBJECT_H
+
+
+
+#endif // !I_TESTGAMEOBJECT_H
