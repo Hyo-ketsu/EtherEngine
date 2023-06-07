@@ -5,7 +5,8 @@
 namespace EtherEngine {
     // コンストラクタ
     ShaderBase::ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType)
-        : m_shaderType(shaderType) {
+        : m_directxRender(directxRender)
+        , m_shaderType(shaderType) {
     }
     // デストラクタ
     ShaderBase::~ShaderBase(void) {

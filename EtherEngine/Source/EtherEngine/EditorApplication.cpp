@@ -15,9 +15,6 @@ namespace EtherEngine {
     }
 
 
-    LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-
     // ÉÅÉCÉìä÷êî
     void EditorApplication::MainFunction(void) {
         using namespace std::chrono;

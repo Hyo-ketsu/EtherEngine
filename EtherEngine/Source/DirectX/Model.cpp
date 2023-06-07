@@ -99,7 +99,7 @@ namespace EtherEngine {
 
             //----- メッシュを元に頂点バッファ作成
             MeshBuffer::Description desc = decltype(desc)(
-                BaseHandle<DirectXRender>(),
+                directX,
                 mesh.vertexs.data(),
                 sizeof(Vertex),
                 static_cast<uint>(mesh.vertexs.size()),
@@ -147,7 +147,7 @@ namespace EtherEngine {
                 if (FAILED(hr)) {
                     std::string file = dir;
                     file += path.C_Str();
-                    hr = material.texture->Create(directX, std::string(path.C_Str()));
+                    hr = material.texture->Create(directX, file.c_str());
                 }
                 //----- ファイル名のみで探索
                 if (FAILED(hr)) {
@@ -156,7 +156,7 @@ namespace EtherEngine {
                     if (idx != std::string::npos) {
                         file = file.substr(idx + 1);
                         file = dir + file;
-                        hr = material.texture->Create(directX, std::string(path.C_Str()));
+                        hr = material.texture->Create(directX, file.c_str());
                     }
                 }
                 //----- 失敗していたら例外を吐く

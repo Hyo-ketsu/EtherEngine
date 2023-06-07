@@ -5,8 +5,8 @@
 namespace EtherEngine {
     // 全て Visual Studio 上でのデバッグを想定しています
     namespace TestDefine {
-        const std::string TEST_ASSET_PASS = "Assets/TestAssets/";
-        const std::string TEST_ASSET_MODEL_PASS = TEST_ASSET_PASS + "Model";
+        const std::string TEST_ASSET_PASS = "../../Assets/TestAssets/";
+        const std::string TEST_ASSET_MODEL_PASS = TEST_ASSET_PASS + "Model/";
     }
 }
 

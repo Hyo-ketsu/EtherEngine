@@ -258,6 +258,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
     <ClCompile>
@@ -281,6 +289,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <ClCompile>
@@ -304,6 +320,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
     <ClCompile>
@@ -327,6 +351,14 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
     <ClCompile>
@@ -354,6 +386,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
     <ClCompile>
@@ -381,6 +421,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
     <ClCompile>
@@ -408,6 +456,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
     <ClCompile>
@@ -435,6 +491,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
