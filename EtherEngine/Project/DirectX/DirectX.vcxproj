@@ -40,7 +40,6 @@
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
-    <ClCompile Include="..\..\Source\DirectX\MainWindowProc.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
     <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Model.cpp" />

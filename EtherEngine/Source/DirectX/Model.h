@@ -34,8 +34,14 @@ namespace EtherEngine {
         ~Model(void);
 
 
+        // 描画テクスチャースロットゲッター
+        uint GetTextureSlot(void) const { return m_textureSlot; }
+        // 描画テクスチャースロットセッター
+        void SetTextureSlot(const uint in) { m_textureSlot = in; }
+
+
         // 描画
-        void Draw(void);
+        void DrawModel(void);
 
     protected:
         // モデルを読み込む
@@ -46,6 +52,11 @@ namespace EtherEngine {
         void Load(const std::string& file, const BaseHandle<DirectXRender>& directX, const float scale = 1.0f, const bool isFlip = false);
 
 
+        // Defaultシェーダーを作成する
+        // @ Arg1 : DirectX
+        void MakeDefaultShader(const BaseHandle<DirectXRender>& directX);
+
+        uint m_textureSlot; // 描画テクスチャースロット
         std::vector<Mesh>     m_meshes;      // メッシュ情報
         std::vector<Material> m_materials;   // マテリアル情報
         VertexShader*         m_vertexShader;   // 頂点シェーダー

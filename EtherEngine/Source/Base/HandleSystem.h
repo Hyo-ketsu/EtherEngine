@@ -158,7 +158,7 @@ namespace EtherEngine {
     bool HandleSystem<Type>::IsItemEnable(const HandleNumberType& handle) const {
         if (m_item.find(handle) == m_item.end()) return false;
         if (m_referenceCounter.find(handle) == m_referenceCounter.end()) return false;
-        if (m_referenceCounter.find(handle)->second > 0) return false;
+        if (m_referenceCounter.find(handle)->second < 1) return false;
         return true;
     }
 

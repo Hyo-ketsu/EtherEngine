@@ -57,9 +57,6 @@
     <ClCompile Include="..\..\Source\DirectX\BaseMainWindow.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\MainWindowProc.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>

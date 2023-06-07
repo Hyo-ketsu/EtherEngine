@@ -1,23 +1,49 @@
 #include <DirectX/Model.h>
 
 namespace EtherEngine {
+    std::unique_ptr<VertexShader> Model::ms_defaultVertexShader = nullptr;
+    std::unique_ptr<PixelShader>  Model::ms_defaultPixelShader = nullptr;
+}
+
+namespace EtherEngine {
     // コンストラクタ
     Model::Model(const std::string& file, const BaseHandle<DirectXRender>& directX, const float scale, const bool isFlip,
-        VertexShader* const vertexShader, PixelShader* const pixelShader) {
+        VertexShader* const vertexShader, PixelShader* const pixelShader)
+        : m_textureSlot(0)
+        , m_vertexShader(nullptr)
+        , m_pixelShader(nullptr) {
+        //----- Defaultシェーダー作成
+        if (ms_defaultVertexShader == nullptr && ms_defaultPixelShader == nullptr) {
+            MakeDefaultShader(directX);
+        }
+
+        //----- シェーダー初期化
+        m_vertexShader = ms_defaultVertexShader.get();
+        m_pixelShader = ms_defaultPixelShader.get();
+
+        //----- モデル読み込み
+        Load(file, directX, scale, isFlip);
     }
     // コンストラクタ
     Model::Model(const std::string& file, const BaseHandle<DirectXRender>& directX, VertexShader* const vertexShader, PixelShader* const pixelShader,
-        const float scale, const bool isFlip) {
+        const float scale, const bool isFlip) 
+        : Model(file, directX, scale, isFlip, vertexShader, pixelShader) {
     }
     // デストラクタ
     Model::~Model(void) {
-
     }
 
 
     // 描画
-    void Model::Draw(void) {
-
+    void Model::DrawModel(void) {
+        m_vertexShader->Bind();
+        m_pixelShader->Bind();
+        for (auto&& it : m_meshes) {
+            if (m_textureSlot >= 0) {
+                m_pixelShader->SetTexture(m_textureSlot, m_materials[it.materialID].texture.get());
+            }
+            it.mesh->Draw();
+        }
     }
 
 
@@ -145,5 +171,36 @@ namespace EtherEngine {
             //----- マテリアル追加
             m_materials.push_back(std::move(material));
         }
+    }
+
+
+    void Model::MakeDefaultShader(const BaseHandle<DirectXRender>& directX) {
+        const char* vsCode = R"EOT(
+struct VS_IN {
+	float3 pos : POSITION0;
+	float3 normal : NORMAL0;
+	float2 uv : TEXCOORD0;
+};
+struct VS_OUT {
+	float4 pos : SV_POSITION;
+};
+VS_OUT main(VS_IN vin) {
+	VS_OUT vout;
+	vout.pos = float4(vin.pos, 1.0f);
+	vout.pos.z *= 0.1f;
+	return vout;
+})EOT";
+        const char* psCode = R"EOT(
+struct PS_IN {
+	float4 pos : SV_POSITION;
+};
+float4 main(PS_IN pin) : SV_TARGET
+{
+	return float4(1.0f, 0.0f, 1.0f, 1.0f);
+})EOT";
+        ms_defaultVertexShader = std::make_unique<VertexShader>(directX);
+        ms_defaultVertexShader->Compile(vsCode);
+        ms_defaultPixelShader = std::make_unique<PixelShader>(directX);
+        ms_defaultPixelShader->Compile(psCode);
     }
 }

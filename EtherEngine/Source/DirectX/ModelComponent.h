@@ -10,6 +10,9 @@ namespace EtherEngine {
     class ModelComponent : public ComponentBase, public Model {
     public:
         using Model::Model;
+
+        // •`‰æˆ—
+        void Draw(void) override;
     };
 }
 

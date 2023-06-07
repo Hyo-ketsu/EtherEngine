@@ -9,12 +9,18 @@ namespace EtherEngine {
         for (auto& it : update) {
             if (it.GetEnable() == false) continue;
 
-            
+            it.GetAtomicData().Update();
         }
     }
 
     // ゲームオブジェクトの描画処理を行う
     void GameObjectUpdater::Draw(void) {
+        auto draw = GameObjectStorage::Get()->GetGameObjectAll();
 
+        for (auto& it : draw) {
+            if (it.GetEnable() == false) continue;
+
+            it.GetAtomicData().Update();
+        }
     }
 }

@@ -103,6 +103,34 @@ namespace EtherEngine {
     }
 
 
+    // 入力された文字列からシェーダーをコンパイルする
+    const HRESULT ShaderBase::Compile(const char* code) {
+        const char* target = nullptr;
+        switch (m_shaderType) {
+        case EtherEngine::ShaderType::Vertex:
+            target = "vs_5_0";
+            break;
+        case EtherEngine::ShaderType::Pixel:
+            target = "ps_5_0";
+            break;
+        }
+
+        HRESULT hr;
+        ID3DBlob* blob;
+        ID3DBlob* error;
+        UINT compileFlag = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+        hr = D3DCompile(code, strlen(code), nullptr, nullptr, nullptr,
+            "main", target, compileFlag, 0, &blob, &error);
+        if (FAILED(hr)) { return hr; }
+
+        //----- シェーダ作成
+        hr = Make(blob->GetBufferPointer(), (UINT)blob->GetBufferSize());
+        if (blob != nullptr) blob->Release();
+        if (error != nullptr) error->Release();
+        return hr;
+    }
+
+
     //
     HRESULT ShaderBase::Make(void* data, uint size) {
         //----- 変数宣言

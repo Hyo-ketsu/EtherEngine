@@ -1,4 +1,5 @@
 #include <DirectX/DirectX.h>
+#include <Base/GameObjectUpdater.h>
 
 
 namespace EtherEngine {
@@ -147,7 +148,7 @@ namespace EtherEngine {
 	}
 	// •`‰æˆ—
 	void DirectXRender::Draw() {
-
+		GameObjectUpdater::Get()->Draw();
 	}
 	// •`‰æŒãˆ—
 	void DirectXRender::EndDraw(void) {

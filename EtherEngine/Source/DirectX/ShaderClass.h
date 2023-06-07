@@ -41,6 +41,11 @@ namespace EtherEngine {
         // シェーダを描画に使用する
         virtual void Bind(void) = 0;
 
+
+        // 入力された文字列からシェーダーをコンパイルする
+        // @ Arg1 : 入力文字列
+        const HRESULT Compile(const char* code);
+
     protected:
         // コンストラクタ
         // @ Arg1 : DirectX
