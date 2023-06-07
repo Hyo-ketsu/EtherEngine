@@ -16,7 +16,6 @@
 
 
 #include <processthreadsapi.h>
-#include <DirectXMath.h>
 
 #ifdef _X86_
 #ifdef _DEBUG

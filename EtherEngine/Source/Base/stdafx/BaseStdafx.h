@@ -25,6 +25,8 @@
 #include <Base/Json/nlohmann/json.hpp>
 #include <Eigen/Core>
 
+#include <DirectXMath.h>
+
 
 // ”ñ•„†®”‚Ì•Ê–¼’è‹`
 using uint = unsigned int;
