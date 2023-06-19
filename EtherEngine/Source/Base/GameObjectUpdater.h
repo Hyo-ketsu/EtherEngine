@@ -14,7 +14,9 @@ namespace EtherEngine {
         void Update(void);
 
         // ゲームオブジェクトの描画処理を行う
-        void Draw(void);
+        // @ Arg1 : View行列
+        // @ Arg2 : Projection行列
+        void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
 
     private:
         // コンストラクタ

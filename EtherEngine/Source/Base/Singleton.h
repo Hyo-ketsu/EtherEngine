@@ -1,5 +1,7 @@
 #ifndef I_SINGLETON_H
 #define I_SINGLETON_H
+#include <Base/AtomicData.h>
+#include <Base/AtomicReadData.h>
 
 
 //----- Singleton宣言
@@ -25,6 +27,10 @@ namespace EtherEngine {
         // インスタンスの取得
         // @ Ret  : 一個しか存在しないことが明確なインスタンス
         static SingletonType* const Get(void);
+        // インスタンスの取得
+        // @ Memo : 取得と同時に読み取りロックを取得する
+        // @ Ret  : 一個しか存在しないことが明確なインスタンス
+        static AtomicData<SingletonType* const> GetLock(void);
 
          
         // インスタンスの明示的解放
@@ -33,7 +39,7 @@ namespace EtherEngine {
 
         // ミューテックス取得
         // @ Ret  : ミューテックス
-        const std::recursive_mutex& GetMutex(void) const;
+        std::recursive_mutex& GetMutex(void);
 
     protected:
         // コンストラクタ
@@ -73,6 +79,12 @@ namespace EtherEngine {
         //----- インスタンスの返却
         return ms_instance.get();
     }
+    // インスタンスの取得
+    template<SingletonConcept SingletonType>
+    AtomicData<SingletonType* const> Singleton<SingletonType>::GetLock(void) {
+        return AtomicData<SingletonType>(Get(),
+            []() -> void { ms_updaetrMutex.lock(); }, [=]() -> void { ms_updaetrMutex.unlock(); });
+    }
 
 
     // インスタンスの明示的解放
@@ -88,7 +100,7 @@ namespace EtherEngine {
 
     // ミューテックス取得
     template<SingletonConcept SingletonType>
-    const std::recursive_mutex& Singleton<SingletonType>::GetMutex(void) const {
+    std::recursive_mutex& Singleton<SingletonType>::GetMutex(void) {
         return m_mutex;
     }
 

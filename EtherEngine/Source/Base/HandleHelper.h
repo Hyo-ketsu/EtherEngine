@@ -8,6 +8,9 @@
 namespace EtherEngine {
     class HandleHelper {
     public:
+        HandleHelper(void) = delete;
+
+
         // HandleSystemに追加、要素を取得する
         // @ Temp1: 追加する要素の型
         // @ Temp2: 取得したハンドルが参照カウントを行うか

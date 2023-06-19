@@ -9,6 +9,8 @@
 #ifdef _DEBUG
 #ifdef _GAME_TEST
 #include <DirectX/ModelComponent.h>
+#include <DirectX/ShaderClass.h>
+#include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
 #endif // _GAME_TEST
 #endif // _DEBUG
@@ -97,11 +99,6 @@ namespace EtherEngine {
 
         //----- DirectXを初期化
         bool isFullScreen = false;  // フルスクリーン設定
-#ifdef _RELEASE
-#ifdef _DEVELOP
-        isFullScreen = true;    // Develop_Releaseのみフルスクリーン
-#endif // _DEVELOP
-#endif // _RELEASE
 
         m_dxRender = HandleHelper::AddItem<DirectXRender>(DirectXRender());
         HRESULT hr = m_dxRender.GetAtomicData().Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
@@ -121,11 +118,19 @@ namespace EtherEngine {
 
 #ifdef _DEBUG
 #ifdef _GAME_TEST
+        //----- テスト用シェーダー追加
+        auto vs = VertexShader(this->GetDirectX());
+        vs.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "VS_Test.cso").c_str());
+        auto ps = PixelShader(this->GetDirectX());
+        ps.LoadCompile((TestDefine::TEST_ASSET_SHADER_PASS + "PS_Test.cso").c_str());
+
         //----- テスト用ゲームオブジェクト追加
-        GameObject testGameObject = decltype(testGameObject)(Transform());
-        testGameObject.AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "TestAsset.obj", GameApplication::Get()->GetDirectX(),
-            1.0f, false);
-        GameObjectStorage::Get()->AddGameObject(testGameObject);
+        //auto testGameObject = GameObjectStorage::Get()->CreateGameObject(Transform());
+        //testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "TestAsset.obj", GameApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
+        auto cameraGameObject = GameObjectStorage::Get()->CreateGameObject(Transform());
+        cameraGameObject.GetAtomicData().AccessTransform().AccessPostion().z() = -1;
+        auto camera = cameraGameObject.GetAtomicData().AddConponent<CameraComponent>(Eigen::Vector3f(0.0, 0.0, -3.0f));
+        m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID());
 #endif // _GAME_TESTB
 #endif // _DEBUG
 

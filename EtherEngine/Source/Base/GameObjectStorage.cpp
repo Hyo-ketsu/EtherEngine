@@ -4,9 +4,10 @@
 
 //----- GameObejctStorage宣言
 namespace EtherEngine {
-    // ゲームオブジェクトを追加する
-    BaseHandle<GameObject> GameObjectStorage::AddGameObject(GameObject& gameObject) {
-        auto handle = HandleHelper::AddItem<GameObject, HandleCountType::UnCount>(std::move(gameObject));
+    // ゲームオブジェクトを作成する
+    BaseHandle<GameObject> GameObjectStorage::CreateGameObject(const Transform& transform) {
+        auto handle = HandleHelper::AddItem<GameObject, HandleCountType::UnCount>(GameObject(transform));
+        handle.GetAtomicData().m_handle = handle;
         m_gameObjects.push_back(handle);
         return handle;
     }
@@ -15,5 +16,9 @@ namespace EtherEngine {
     // 全てのゲームオブジェクトを取得する
     std::vector<BaseHandle<GameObject>> GameObjectStorage::GetGameObjectAll(void) {
         return m_gameObjects;
+    }
+
+    void GameObjectStorage::GetFriend(int* hoge) {
+
     }
 }

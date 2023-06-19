@@ -7,6 +7,7 @@ namespace EtherEngine {
     namespace TestDefine {
         const std::string TEST_ASSET_PASS = "../../Assets/TestAssets/";
         const std::string TEST_ASSET_MODEL_PASS = TEST_ASSET_PASS + "Model/";
+        const std::string TEST_ASSET_SHADER_PASS = TEST_ASSET_PASS + "Shader/";
     }
 }
 

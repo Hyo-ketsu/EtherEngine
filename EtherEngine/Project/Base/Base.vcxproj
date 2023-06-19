@@ -38,11 +38,18 @@
     <ClCompile Include="..\..\Source\Base\Atomic.cpp" />
     <ClCompile Include="..\..\Source\Base\AtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\CameraStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Converter.cpp" />
+    <ClCompile Include="..\..\Source\Base\DrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\ErrorUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
@@ -50,8 +57,10 @@
     <ClCompile Include="..\..\Source\Base\Handle.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
+    <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\Random.cpp" />
@@ -80,11 +89,18 @@
     <ClInclude Include="..\..\Source\Base\Atomic.h" />
     <ClInclude Include="..\..\Source\Base\AtomicData.h" />
     <ClInclude Include="..\..\Source\Base\AtomicReadData.h" />
+    <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
+    <ClInclude Include="..\..\Source\Base\BaseInput.h" />
     <ClInclude Include="..\..\Source\Base\BaseObject.h" />
     <ClInclude Include="..\..\Source\Base\CameraBase.h" />
+    <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
+    <ClInclude Include="..\..\Source\Base\CameraStorage.h" />
     <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
+    <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\Converter.h" />
+    <ClInclude Include="..\..\Source\Base\DrawComponent.h" />
+    <ClInclude Include="..\..\Source\Base\ErrorUtility.h" />
     <ClInclude Include="..\..\Source\Base\GameObject.h" />
     <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />
     <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
@@ -92,8 +108,11 @@
     <ClInclude Include="..\..\Source\Base\Handle.h" />
     <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
+    <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
+    <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
+    <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
@@ -266,7 +285,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -289,7 +308,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -312,7 +331,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -335,7 +354,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -360,7 +379,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -387,7 +406,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -414,7 +433,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -441,7 +460,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>

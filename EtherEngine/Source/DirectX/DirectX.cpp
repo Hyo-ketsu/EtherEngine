@@ -1,5 +1,6 @@
 #include <DirectX/DirectX.h>
 #include <Base/GameObjectUpdater.h>
+#include <Base/CameraStorage.h>
 
 
 namespace EtherEngine {
@@ -148,7 +149,14 @@ namespace EtherEngine {
 	}
 	// •`‰æˆ—
 	void DirectXRender::Draw() {
-		GameObjectUpdater::Get()->Draw();
+		//----- ƒJƒƒ‰‚ª‚ ‚ê‚Î•`‰æ‚·‚é
+		if (CameraStorage::Get()->IsIDToCamera(m_cameraID)) {
+			//----- ƒJƒƒ‰æ“¾
+			auto camera = CameraStorage::Get()->GetCamera(m_cameraID);
+
+			//----- •`‰æ
+			GameObjectUpdater::Get()->Draw(camera->GetView(), camera->GetProjection());
+		}
 	}
 	// •`‰æŒãˆ—
 	void DirectXRender::EndDraw(void) {

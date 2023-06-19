@@ -15,13 +15,13 @@ namespace EtherEngine {
 
         // À•W‚ğæ“¾‚·‚é
         // @ Arg1 : À•W
-        Eigen::Vector3f GetPostion(void) const noexcept { return m_postion; }
+        Eigen::Vector3f& AccessPostion(void) noexcept { return m_postion; }
         // Šgk‚ğæ“¾‚·‚é
         // @ Arg1 : Šgk
-        Eigen::Vector3f GetScale(void) const noexcept { return m_scale; }
+        Eigen::Vector3f& AccessScale(void) noexcept { return m_scale; }
         // ‰ñ“]‚ğæ“¾‚·‚é
         // @ Arg1 : ‰ñ“]
-        Eigen::Vector3f GetRotation(void) const noexcept { return m_rotation; }
+        Eigen::Vector3f& AccessRotation(void) noexcept { return m_rotation; }
 
     private:
         Eigen::Vector3f m_postion;  // À•W

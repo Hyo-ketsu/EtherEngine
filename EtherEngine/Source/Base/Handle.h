@@ -174,6 +174,7 @@ namespace EtherEngine {
         m_handle = copy.m_handle;
         m_isCount = copy.m_isCount; 
         CountUp();
+        return *this;
     }
     // 代入演算子(Move)
     template<HandleSystemConcept Type>
@@ -242,7 +243,7 @@ namespace EtherEngine {
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
     template<HandleSystemConcept Type>
     bool BaseHandle<Type>::GetEnable(void) const {
-        return !(HandleSystem<Type>::Get()->IsItemEnable(m_handle));
+        return HandleSystem<Type>::Get()->IsItemEnable(m_handle);
     }
     // このHandleの保持している番号は有効か
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
@@ -291,22 +292,24 @@ namespace EtherEngine {
         }
     }
 }
-//----- Handle宣言
+
+
+//----- Handle実装
 namespace EtherEngine {
     // コンストラクタ
     // @ Arg1 : 生成番号
     template <HandleSystemConcept Type>
     Handle<Type>::Handle(const HandleNumberType& handleNumber)   
-        : BaseHandle(handleNumber, HandleCountType::Count) {
+        : BaseHandle<Type>(handleNumber, HandleCountType::Count) {
     }
 }
-//----- RefHandle宣言
+//----- RefHandle実装
 namespace EtherEngine {
     // コンストラクタ
     // @ Arg1 : 生成番号
     template <HandleSystemConcept Type>
     RefHandle<Type>::RefHandle(const HandleNumberType& handleNumber)
-        : BaseHandle(handleNumber, HandleCountType::UnCount) {
+        : BaseHandle<Type>(handleNumber, HandleCountType::UnCount) {
     }
 }
 

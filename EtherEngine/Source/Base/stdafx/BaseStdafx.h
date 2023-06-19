@@ -2,6 +2,7 @@
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
+#include <concepts>
 #include <float.h> 
 #include <functional>
 #include <deque>
@@ -21,6 +22,7 @@
 #include <thread>
 #include <type_traits>
 #include <unordered_map>
+#include <algorithm>
 
 #include <Base/Json/nlohmann/json.hpp>
 #include <Eigen/Core>
@@ -28,6 +30,10 @@
 #include <DirectXMath.h>
 
 
+// 非符号文字コードの別名定義
+using uchar = unsigned char;
+// 非符号4Byte整数の別名定義
+using usint = unsigned short;
 // 非符号整数の別名定義
 using uint = unsigned int;
 // 符号8Byte整数の別名定義

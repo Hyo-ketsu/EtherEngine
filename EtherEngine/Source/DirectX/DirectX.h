@@ -2,6 +2,7 @@
 #define I_DIRECTX_H
 #include <DirectX/ComPointer.h>
 #include <Base/Handle.h>
+#include <Base/IDClass.h>
 
 
 namespace EtherEngine {
@@ -24,6 +25,10 @@ namespace EtherEngine {
         ID3D11RenderTargetView* const GetRenderTargetView(void) const { return m_rtv; }
         // 深度バッファーゲッター
         ID3D11DepthStencilView* const GetDepthStencilView(void) const { return m_dsv; }
+        // IDゲッター
+        const IDClass& GetCameraID(void) const { return m_cameraID; }
+        // IDセッター
+        void SetCameraID(IDClass in) { m_cameraID = std::move(in); }
 
 
         // 初期化関数
@@ -52,6 +57,7 @@ namespace EtherEngine {
         ComPtr<ID3D11DeviceContext> m_context;
         ID3D11RenderTargetView* m_rtv;
         ID3D11DepthStencilView* m_dsv;
+        IDClass m_cameraID; // 使用するカメラID
     };
 }
 

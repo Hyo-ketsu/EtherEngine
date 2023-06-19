@@ -14,13 +14,13 @@ namespace EtherEngine {
     }
 
     // ゲームオブジェクトの描画処理を行う
-    void GameObjectUpdater::Draw(void) {
+    void GameObjectUpdater::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
         auto draw = GameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : draw) {
             if (it.GetEnable() == false) continue;
 
-            it.GetAtomicData().Update();
+            it.GetAtomicData().Draw(view, projection);
         }
     }
 }

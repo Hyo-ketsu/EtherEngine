@@ -4,6 +4,7 @@
 
 //----- MathConverter宣言
 namespace EtherEngine {
+    //----- EigenとDXのベクトル・行列変換
     namespace MathConverter {
         // Eigenの2次元のベクトルか
         template <typename T>
@@ -18,6 +19,7 @@ namespace EtherEngine {
         // Eigenの行列か
         template <typename T>
         concept EigenMatrixConcept = requires(T instans) { instans[0, 0]; };
+
 
         // DirectXの2次元ベクトルか
         template <typename T>
@@ -42,21 +44,20 @@ namespace EtherEngine {
         // EigenのベクトルからDirectXのベクトルに代入する
         // @ Arg1 : Eigenのベクトル
         // @ Arg2 : DirectXのベクトル
-        template <Eigen3DVectorConcept EigenVec, DirectX3DVectorConcept DXVec = DirectX::XMFLOAT2>
+        template <Eigen3DVectorConcept EigenVec, DirectX3DVectorConcept DXVec = DirectX::XMFLOAT3>
         void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec);
         // EigenのベクトルからDirectXのベクトルに代入する
         // @ Arg1 : Eigenのベクトル
         // @ Arg2 : DirectXのベクトル
-        template <Eigen4DVectorConcept EigenVec, DirectX4DVectorConcept DXVec = DirectX::XMFLOAT2>
+        template <Eigen4DVectorConcept EigenVec, DirectX4DVectorConcept DXVec = DirectX::XMFLOAT4>
         void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec);
 
         // Eigenの行列をDirectXの行列に変換する
-        // @ Memo : 転置も行います
         // @ Arg1 : Eigenの行列
         // @ Arg2 : DirectXの行列
         // @ Arg3 : 次元数(Default : 4)
         template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat = DirectX::XMMATRIX>
-        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const int dimension = 4);
+        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension = 4);
 
 
         // DirectXのベクトルからEigenのベクトルに代入する
@@ -76,18 +77,27 @@ namespace EtherEngine {
         void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec);
 
         // DirectXの行列をEigenの行列に変換する
-        // @ Memo : 転置も行います
         // @ Arg1 : DirectXの行列
         // @ Arg2 : Eigenの行列
         // @ Arg3 : 次元数(Default : 4)
         template <DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat = Eigen::Matrix4f>
-        void EigenToDX(const DXMat& dxMat, EigenMat* const eigenMat, const int dimension = 4);
+        void DXToEigen(const DXMat& dxMat, EigenMat* const eigenMat, const uint dimension = 4);
+    }
+
+
+    //----- XMMATRIXとXMFLOAT4X4変換
+    namespace MathConverter {
+        // XMMATRIXをXMFLOAT4X4に変換する
+        // @ Ret  : 変換されたXMFLOAT4X4
+        // @ Arg1 : XMMATRIX
+        DirectX::XMFLOAT4X4 MatrixToFloat4x4(const DirectX::XMMATRIX& mat);
     }
 }
 
 
 //----- MathConverter宣言
 namespace EtherEngine {
+    //----- EigenとDXのベクトル・行列変換
     namespace MathConverter {
         // EigenのベクトルからDirectXのベクトルに代入する
         // @ Arg1 : Eigenのベクトル
@@ -118,19 +128,18 @@ namespace EtherEngine {
         }
 
         // Eigenの行列をDirectXの行列に変換する
-        // @ Memo : 転置も行います
         // @ Arg1 : Eigenの行列
         // @ Arg2 : DirectXの行列
         // @ Arg3 : 次元数(Default : 4)
         template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat>
-        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const int dimension) {
-            *dxMat = DirectX::XMMatrixTranspose(*dxMat);
+        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension) {
             for (int i = 0; i < dimension; i++) {
                 for (int j = 0; j < dimension; j++) {
-                    dxMat->m[i][j] = eigenMat[i, j];
+                    dxMat->m[i][j] = eigenMat(i, j);
                 }
             }
         }
+
 
         // DirectXのベクトルからEigenのベクトルに代入する
         // @ Arg1 : DirectXのベクトル
@@ -161,18 +170,29 @@ namespace EtherEngine {
         }
 
         // DirectXの行列をEigenの行列に変換する
-        // @ Memo : 転置も行います
         // @ Arg1 : DirectXの行列
         // @ Arg2 : Eigenの行列
         // @ Arg3 : 次元数(Default : 4)
-        template <DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat>
-        void EigenToDX(const DXMat& dxMat, EigenMat* const eigenMat, const uint dimension) {
-            dxMat = DirectX::XMMatrixTranspose(dxMat);
+        template<DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat>
+        void DXToEigen(const DXMat& dxMat, EigenMat* const eigenMat, const uint dimension) {
             for (uint i = 0; i < dimension; i++) {
                 for (uint j = 0; j < dimension; j++) {
-                    (*eigenMat)[i,j] = dxMat.m[i][j];
+                    (*eigenMat)(i,j) = dxMat.m[i][j];
                 }
             }
+        }
+    }
+
+
+    //----- XMMATRIXとXMFLOAT4X4変換
+    namespace MathConverter {
+        // XMMATRIXをXMFLOAT4X4に変換する
+        // @ Ret  : 変換されたXMFLOAT4X4
+        // @ Arg1 : XMMATRIX
+        DirectX::XMFLOAT4X4 MatrixToFloat4x4(const DirectX::XMMATRIX& mat) {
+            DirectX::XMFLOAT4X4 ret;
+            DirectX::XMStoreFloat4x4(&ret, mat);
+            return std::move(ret);
         }
     }
 }

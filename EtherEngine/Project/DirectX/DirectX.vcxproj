@@ -38,6 +38,7 @@
     <ClCompile Include="..\..\Source\DirectX\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="..\..\Source\DirectX\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
     <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
+    <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h" />
     <ClInclude Include="..\..\Source\DirectX\GameApplication.h" />
     <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
     <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
@@ -81,6 +83,28 @@
     <ProjectReference Include="..\Base\Base.vcxproj">
       <Project>{8809734e-0717-4038-9f29-68984d325bf1}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\..\Source\DirectX\Shader\PS_Test.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="..\..\Source\DirectX\Shader\VS_Test.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -239,7 +263,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -257,12 +281,16 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -280,12 +308,16 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -303,12 +335,16 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -326,6 +362,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
     <ClCompile>
@@ -333,7 +373,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -353,6 +393,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
     <ClCompile>
@@ -360,7 +404,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -380,6 +424,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
     <ClCompile>
@@ -387,7 +435,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -407,6 +455,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
     <ClCompile>
@@ -414,7 +466,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -434,6 +486,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
