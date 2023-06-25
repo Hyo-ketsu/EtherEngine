@@ -1,48 +1,47 @@
 #include <Base/SpinLock.h>
 
 
+//----- SpinLockKey 定義
 namespace EtherEngine {
     // コンストラクタ
-    SpinLock::SpinLock(void) 
-        : m_isAtomicBool(ATOMIC_FLAG_INIT) {
+    SpinLock::SpinLockKey::SpinLockKey(SpinLock& lock)
+        : m_spinlock(lock) {
+    }
+    // デストラクタ
+    SpinLock::SpinLockKey::~SpinLockKey(void) {
+        m_spinlock.UnLock();
+    }
+}
+
+
+//----- SpinLock 定義
+namespace EtherEngine {
+    // コンストラクタ
+    SpinLock::SpinLock(void) {
     }
     // デストラクタ
     SpinLock::~SpinLock(void) {
-        DoSpinLock();
     }
 
 
     // スピンロックを試行する
-    void SpinLock::DoSpinLock(void) const noexcept {
-        while (m_isAtomicBool) {}
+    void SpinLock::DoSpinLock(void) {
+        while (m_mutex.try_lock()) {}
+        UnLock();
     }
 
 
     // ロックを行う（RAII）
     SpinLock::SpinLockKey SpinLock::KeyLock(void) {
-        return std::move(SpinLockKey([=]() { Lock(); }, [=]() {UnLock(); }));
+        Lock();
+        return SpinLockKey(*this);
     }
     // 手動ロックを行う
     void SpinLock::Lock(void) {
-        m_isAtomicBool = true;
+        m_mutex.lock();
     }
     // 手動アンロックを行う
     void SpinLock::UnLock(void) {
-        m_isAtomicBool = false;
-    }
-}
-
-
-namespace EtherEngine {
-    // コンストラクタ
-    // @ Arg1 : コンストラクタで行う処理
-    // @ Arg2 : デストラクタで行う処理
-    SpinLock::SpinLockKey::SpinLockKey(std::function<void(void)> constructor, std::function<void(void)> destructor) 
-        : m_destructor(destructor) {
-        constructor();
-    }
-    // デストラクタ
-    SpinLock::SpinLockKey::~SpinLockKey(void) {
-        m_destructor();
+        m_mutex.unlock();
     }
 }

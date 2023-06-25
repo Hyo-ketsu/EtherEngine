@@ -45,7 +45,7 @@ namespace EtherEngine {
 
         friend class Singleton<CameraStorage>;
 
-        std::vector<std::tuple<IDClass, CameraBase, bool>> m_cameras;   // •Û‚µ‚Ä‚¢‚éƒJƒƒ‰
+        std::vector<std::tuple<IDClass, CameraBase*, bool>> m_cameras;   // •Û‚µ‚Ä‚¢‚éƒJƒƒ‰
     };
 }
 

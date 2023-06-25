@@ -4,10 +4,11 @@
 namespace EtherEngine {
     // カメラを追加する
     void CameraStorage::AddCamera(CameraBase& camera, const IDClass& id) {
-        m_cameras.emplace_back(id, camera, false);
+        m_cameras.emplace_back(id, &camera, false);
     }
     // カメラを削除する
     void CameraStorage::DeleteCamera(const IDClass& id) {
+        if (m_cameras.size() == 0) return;
         for (auto it = m_cameras.begin(); it != m_cameras.end(); it++) {
             if (std::get<0>(*it) == id && std::get<2>(*it) == false) {
                 //----- 削除
@@ -36,12 +37,12 @@ namespace EtherEngine {
     [[deprecated]] CameraBase* const CameraStorage::GetCamera(const uint priority) {
         //----- ソートをかける
         std::sort(m_cameras.begin(), m_cameras.end(), [](decltype(*m_cameras.begin()) i, decltype(*m_cameras.begin()) j) -> bool {
-            return std::get<1>(i).AccessCameraData().GetPriority() > std::get<1>(j).AccessCameraData().GetPriority();
+            return std::get<1>(i)->AccessCameraData().GetPriority() > std::get<1>(j)->AccessCameraData().GetPriority();
             });
 
         //----- 優先順位で取得
         if (m_cameras.size() > priority) {
-            return &std::get<1>(m_cameras[priority]);
+            return std::get<1>(m_cameras[priority]);
         }
 
         //----- 指定順位がない or カメラがない。nullptr返却
@@ -53,7 +54,7 @@ namespace EtherEngine {
         //----- IDで取得する
         for (auto&& it : m_cameras) {
             if (std::get<0>(it) == id) {
-                return &std::get<1>(it);
+                return std::get<1>(it);
             }
         }
 

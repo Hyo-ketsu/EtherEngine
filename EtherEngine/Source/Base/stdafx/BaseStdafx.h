@@ -29,6 +29,9 @@
 
 #include <DirectXMath.h>
 
+#include <Windows.h>
+#pragma comment (lib, "winmm.lib")
+
 
 // 非符号文字コードの別名定義
 using uchar = unsigned char;

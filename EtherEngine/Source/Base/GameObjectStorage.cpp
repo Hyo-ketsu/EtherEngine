@@ -6,7 +6,7 @@
 namespace EtherEngine {
     // ゲームオブジェクトを作成する
     BaseHandle<GameObject> GameObjectStorage::CreateGameObject(const Transform& transform) {
-        auto handle = HandleHelper::AddItem<GameObject, HandleCountType::UnCount>(GameObject(transform));
+        auto handle = Handle<GameObject>(GameObject(transform));
         handle.GetAtomicData().m_handle = handle;
         m_gameObjects.push_back(handle);
         return handle;
@@ -16,9 +16,5 @@ namespace EtherEngine {
     // 全てのゲームオブジェクトを取得する
     std::vector<BaseHandle<GameObject>> GameObjectStorage::GetGameObjectAll(void) {
         return m_gameObjects;
-    }
-
-    void GameObjectStorage::GetFriend(int* hoge) {
-
     }
 }

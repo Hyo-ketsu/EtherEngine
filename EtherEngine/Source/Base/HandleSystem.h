@@ -1,6 +1,7 @@
 #ifndef I_HANDLESYSTEM_H
 #define I_HANDLESYSTEM_H
 
+#include <Base/ConceptUtility.h>
 #include <Base/Singleton.h>
 #include <Base/Random.h>
 #include <Base/Atomic.h>
@@ -8,30 +9,33 @@
 
 //----- 定数等定義
 namespace EtherEngine {
-    using HandleNumberType = unsigned long long;    // ハンドルとして使用する数値型
+    using HandleNumberType = ullint;    // ハンドルとして使用する数値型
 
 
     const HandleNumberType NO_CREATE_HANDLE_NUMBER = 0; // ハンドルとして使用しない番号
 
 
-    // ハンドル制約（現時点では制約なし）
+    // ハンドル制約（クラスのみ）
     template <typename T>
-    concept HandleSystemConcept = true;
+    concept HandleSystemConcept = std::is_class_v<T>;
 }
 
 
 //----- HandleSystem 定義
 namespace EtherEngine {
     // Handleで対象物を管理するクラス
-    // @ Temp : 管理対象型
     template <HandleSystemConcept Type>
     class HandleSystem : public Singleton<HandleSystem<Type>> {
     public:
+        // デストラクタ
+        ~HandleSystem(void) override;
+
+
         // 要素を追加、Handleを取得する
-        // @ Memo : 追加の際はヘルパー関数をご使用ください。
+        // @ Memo : 追加の際は若しくはHandleのコンストラクタご使用ください。
         // @ Ret  : 作成された要素へのHandle
         // @ Arg1 : 追加する要素（右辺値）
-        HandleNumberType AddItem(Type&& item);
+        [[nodiscard]] std::pair<HandleNumberType, std::weak_ptr<nullptr_t>> AddItem(Type&& item);
         // 要素を削除する
         // @ Arg1 : 削除する番号
         void DeleteItem(const HandleNumberType& handle);
@@ -74,8 +78,9 @@ namespace EtherEngine {
         void Delete0ReferenceCounter(const HandleNumberType& handle);
 
 
-        std::unordered_map<HandleNumberType, Atomic<Type>> m_item; // 保持している要素の連想配列
+        std::unordered_map<HandleNumberType, Atomic<Type>> m_item;     // 保持している要素の連想配列
         std::unordered_map<HandleNumberType, int> m_referenceCounter;  // そのHandleの参照数
+        std::vector<std::shared_ptr<nullptr_t>> m_deleteHandle;  // 削除時のカウントダウンを行わないフラグ
 
         friend class Singleton<HandleSystem<Type>>;
     };
@@ -86,11 +91,18 @@ namespace EtherEngine {
 
 //----- HandleSystem実装
 namespace EtherEngine {
+    // デストラクタ
+    template <HandleSystemConcept Type>
+    HandleSystem<Type>::~HandleSystem(void) {
+
+    }
+
+
     // 要素を追加、Handleを取得する
     // @ Ret  : 作成された要素へのHandle
     // @ Arg1 : 追加する要素（右辺値）
     template <HandleSystemConcept Type>
-    HandleNumberType HandleSystem<Type>::AddItem(Type&& item) {
+    [[nodiscard]] std::pair<HandleNumberType, std::weak_ptr<nullptr_t>> HandleSystem<Type>::AddItem(Type&& item) {
         //----- ロック
         std::lock_guard<decltype(this->m_mutex)> lock(this->m_mutex);
 
@@ -114,8 +126,12 @@ namespace EtherEngine {
         //----- 参照カウンタ追加
         m_referenceCounter.emplace(handle, 1);
 
+        //----- 返却用変数宣言
+        m_deleteHandle.push_back(std::make_shared<nullptr_t>(nullptr));
+        std::pair<HandleNumberType, std::weak_ptr<nullptr_t>> ret = decltype(ret)(handle, m_deleteHandle.back());
+
         //----- 返却
-        return handle;
+        return ret;
     }
     // 要素を削除する
     // @ Arg1 : 削除する番号
@@ -123,6 +139,9 @@ namespace EtherEngine {
     void HandleSystem<Type>::DeleteItem(const HandleNumberType& handle) {
         //----- 存在すれば削除
         if (IsItemEnable(handle)) {
+            //----- ロック
+            std::lock_guard<decltype(this->m_mutex)> lock(this->m_mutex);
+
             //----- カウントを 0 にし、その後カウント 0 要素を削除
             m_referenceCounter.find(handle)->second = 0;
             Delete0ReferenceCounter(handle);

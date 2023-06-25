@@ -94,6 +94,14 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Pixel</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
     <FxCompile Include="..\..\Source\DirectX\Shader\VS_Test.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">Vertex</ShaderType>
@@ -104,6 +112,14 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Vertex</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Vertex</ShaderType>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">$(SolutionDir)Assets/TestAssets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -283,7 +299,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
@@ -310,7 +326,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
@@ -337,7 +353,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
@@ -364,7 +380,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
@@ -395,7 +411,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
@@ -426,7 +442,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
@@ -457,7 +473,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
@@ -488,7 +504,7 @@
     </Link>
     <FxCompile>
       <ShaderModel>5.0</ShaderModel>
-      <ObjectFileOutput>$(SolutionDir)Assets/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

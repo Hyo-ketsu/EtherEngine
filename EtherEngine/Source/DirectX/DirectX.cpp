@@ -143,7 +143,7 @@ namespace EtherEngine {
 
 	// •`‰æ‘Oˆ—
 	void DirectXRender::BeginDraw(void) {
-		static float color[4] = { 0.3f,0.8f,0.3f,1.f }; // MEMO : ‰¼
+		static float color[4] = { 0.7f,0.9f,0.9f,1.f }; // MEMO : ‰¼
 		m_context.Get()->ClearRenderTargetView(m_rtv, color);
 		m_context.Get()->ClearDepthStencilView(m_dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}

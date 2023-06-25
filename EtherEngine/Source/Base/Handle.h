@@ -24,10 +24,13 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     class BaseHandle {
     public:
-        // コンストラクタ
-        // @ Arg1 : 生成番号
-        // @ Arg2 : 生成数をカウントするか
-        BaseHandle(const HandleNumberType& handleNumber, HandleCountType countType);
+        // コンストラクタ構築
+        // @ Arg1 : 生成数をカウントするか
+        // @ Arg2 : ハンドルとして追加する要素
+        BaseHandle(HandleCountType countType, Type&& item);
+        // コンストラクタ構築
+        // @ Arg1 : 生成数をカウントするか
+        BaseHandle(HandleCountType countType);
         // コンストラクタ
         BaseHandle(void);
         // デストラクタ
@@ -99,7 +102,8 @@ namespace EtherEngine {
         void CountDown(void);
 
         HandleNumberType m_handle; // 自身が保持しているHandle
-        bool m_isCount;          // カウントアップを行うか
+        bool m_isCount;            // カウントアップを行うか
+        std::weak_ptr<nullptr_t> m_weak;    // HandleSystem削除時にHandleSystemを使用するか
     };
 }
 
@@ -112,9 +116,11 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     class Handle : public BaseHandle<Type> {
     public:
-        // コンストラクタ
-        // @ Arg1 : 生成番号
-        Handle(const HandleNumberType& handleNumber);
+        using BaseHandle<Type>::BaseHandle;
+
+        // コンストラクタ構築
+        // @ Arg1 : ハンドルとして追加する要素
+        Handle(Type&& item);
     };
 }
 //----- RefHandle宣言
@@ -123,9 +129,11 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     class RefHandle : public BaseHandle<Type> {
     public:
-        // コンストラクタ
-        // @ Arg1 : 生成番号
-        RefHandle(const HandleNumberType& handleNumber);
+        using BaseHandle<Type>::BaseHandle;
+
+        // コンストラクタ構築
+        // @ Arg1 : ハンドルとして追加する要素
+        RefHandle(Type&& item);
     };
 }
 
@@ -134,12 +142,19 @@ namespace EtherEngine {
 
 //----- Handle実装
 namespace EtherEngine {
-    // コンストラクタ
-    // @ Arg1 : 生成番号
-    // @ Arg2 : 生成数をカウントするか
+    // コンストラクタ構築
+    // @ Arg1 : 生成数をカウントするか
+    // @ Arg2 : ハンドルとして追加する要素
     template <HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(const HandleNumberType& handleNumber, HandleCountType countType)
-        : m_handle(handleNumber) {
+    BaseHandle<Type>::BaseHandle(HandleCountType countType, Type&& item) {
+        //----- ハンドルとして構築
+        auto handle = HandleSystem<Type>::Get()->AddItem(std::move(item));
+
+        //----- メンバ初期化
+        m_handle = handle.first;
+        m_weak = handle.second;
+
+        //----- ハンドルカウントを行うか
         switch (countType) {
         case HandleCountType::Count:
             m_isCount = true;
@@ -149,12 +164,17 @@ namespace EtherEngine {
             break;
         }
 
+        //----- カウントアップ
         CountUp();
+    }
+    // コンストラクタ構築
+    // @ Arg1 : 生成数をカウントするか
+    template <HandleSystemConcept Type>
+    BaseHandle<Type>::BaseHandle(HandleCountType countType) {
     }
     // コンストラクタ
     template<HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(void)
-        : BaseHandle(NO_CREATE_HANDLE_NUMBER, HandleCountType::UnCount) {
+    BaseHandle<Type>::BaseHandle(void) {
     }
     // デストラクタ
     template<HandleSystemConcept Type>
@@ -173,6 +193,7 @@ namespace EtherEngine {
     BaseHandle<Type>& BaseHandle<Type>::operator=(const BaseHandle<Type>& copy) {
         m_handle = copy.m_handle;
         m_isCount = copy.m_isCount; 
+
         CountUp();
         return *this;
     }
@@ -280,14 +301,14 @@ namespace EtherEngine {
     // 参照のカウントアップを行う
     template<HandleSystemConcept Type>
     void BaseHandle<Type>::CountUp(void) {
-        if (m_isCount) {
+        if (m_isCount && m_weak.expired() == false) {
             HandleSystem<Type>::Get()->CountUpItem(m_handle);
         }
     }
     // 参照のカウントダウンを行う
     template<HandleSystemConcept Type>
     void BaseHandle<Type>::CountDown(void) {
-        if (m_isCount) {
+        if (m_isCount && m_weak.expired() == false) {
             HandleSystem<Type>::Get()->CountDownItem(m_handle);
         }
     }
@@ -296,20 +317,20 @@ namespace EtherEngine {
 
 //----- Handle実装
 namespace EtherEngine {
-    // コンストラクタ
-    // @ Arg1 : 生成番号
+    // コンストラクタ構築
+    // @ Arg1 : ハンドルとして追加する要素
     template <HandleSystemConcept Type>
-    Handle<Type>::Handle(const HandleNumberType& handleNumber)   
-        : BaseHandle<Type>(handleNumber, HandleCountType::Count) {
+    Handle<Type>::Handle(Type&& item)
+        : BaseHandle<Type>(HandleCountType::Count, std::move(item)) {
     }
 }
 //----- RefHandle実装
 namespace EtherEngine {
-    // コンストラクタ
-    // @ Arg1 : 生成番号
+    // コンストラクタ構築
+    // @ Arg1 : ハンドルとして追加する要素
     template <HandleSystemConcept Type>
-    RefHandle<Type>::RefHandle(const HandleNumberType& handleNumber)
-        : BaseHandle<Type>(handleNumber, HandleCountType::UnCount) {
+    RefHandle<Type>::RefHandle(Type&& item)
+        : BaseHandle<Type>(HandleCountType::UnCount, std::move(item)) {
     }
 }
 

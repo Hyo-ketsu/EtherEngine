@@ -1,6 +1,7 @@
 #ifndef I_BASEINPUT_H
 #define I_BASEINPUT_H
 #include <Base/ConceptUtility.h>
+// @ MEMO : キーボード入力等があるので分離する？
 
 
 //----- 各入力用ボタン入力設定
@@ -44,7 +45,7 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : 入力ボタン(Default : 0(何も設定しない))
         // @ Arg2 : 設定プレイヤー(Default : 0)
-        XBoxInput(const usint& button = 0, const uint playerIndex);
+        XBoxInput(const usint& button = 0, const uint playerIndex = 0);
         // デストラクタ
         ~XBoxInput(void) override {}
 
@@ -56,6 +57,7 @@ namespace EtherEngine {
         uint m_playerIndex;  // 保持しているプレイヤー番号
     };
 }
+
 
 //----- InputKey宣言
 namespace EtherEngine {
@@ -98,8 +100,17 @@ namespace EtherEngine {
 //----- InputSystem宣言
 namespace EtherEngine {
     // キー or ボタン入力を管理するクラス
+    // @ MEMO : ひとまず Xbox の入力は後回し
     class InputSystem {
     public:
+        // 初期化
+        static void Init(void);
+        // 終了処理
+        static void Uninit(void);
+        // 更新処理
+        static void Update(void);
+
+
         // 指定キー・ボタンが押されているか
         // @ Ret  : 押されているか
         // @ Arg1 : 判定するキー・ボタン
@@ -108,6 +119,10 @@ namespace EtherEngine {
         // @ Ret  : 押された瞬間か
         // @ Arg1 : 判定するキー・ボタン
         static bool IsTrigger(const InputKey& input);
+
+    private:
+        static std::array<uchar, 256> ms_keyTable;    // キーボード入力
+        static std::array<uchar, 256> ms_oldKeyTable; // 前フレームキーボード入力
     };
 }
 

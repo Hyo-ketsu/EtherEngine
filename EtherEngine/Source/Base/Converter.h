@@ -4,7 +4,7 @@
 
 //----- MathConverter宣言
 namespace EtherEngine {
-    //----- EigenとDXのベクトル・行列変換
+    //----- EigenとDXのベクトル変換
     namespace MathConverter {
         // Eigenの2次元のベクトルか
         template <typename T>
@@ -15,10 +15,6 @@ namespace EtherEngine {
         // Eigenの4次元のベクトルか
         template <typename T>
         concept Eigen4DVectorConcept = Eigen3DVectorConcept<T> && requires(T instans) { instans.w(); };
-
-        // Eigenの行列か
-        template <typename T>
-        concept EigenMatrixConcept = requires(T instans) { instans[0, 0]; };
 
 
         // DirectXの2次元ベクトルか
@@ -31,33 +27,18 @@ namespace EtherEngine {
         template <typename T>
         concept DirectX4DVectorConcept = DirectX2DVectorConcept<T> && requires(T instans) { instans.w; };
 
-        // DirectXの行列か
-        template <typename T>
-        concept DirectXMatrixConcept = requires(T instans) { instans.m[0][0]; };
-
 
         // EigenのベクトルからDirectXのベクトルに代入する
         // @ Arg1 : Eigenのベクトル
         // @ Arg2 : DirectXのベクトル
         template <Eigen2DVectorConcept EigenVec, DirectX2DVectorConcept DXVec = DirectX::XMFLOAT2>
         void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec);
-        // EigenのベクトルからDirectXのベクトルに代入する
+        // EigenのベクトルからDirectXのベクトルを取得する
+        // @ Ret  : DirectXのベクトル
         // @ Arg1 : Eigenのベクトル
         // @ Arg2 : DirectXのベクトル
-        template <Eigen3DVectorConcept EigenVec, DirectX3DVectorConcept DXVec = DirectX::XMFLOAT3>
-        void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec);
-        // EigenのベクトルからDirectXのベクトルに代入する
-        // @ Arg1 : Eigenのベクトル
-        // @ Arg2 : DirectXのベクトル
-        template <Eigen4DVectorConcept EigenVec, DirectX4DVectorConcept DXVec = DirectX::XMFLOAT4>
-        void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec);
-
-        // Eigenの行列をDirectXの行列に変換する
-        // @ Arg1 : Eigenの行列
-        // @ Arg2 : DirectXの行列
-        // @ Arg3 : 次元数(Default : 4)
-        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat = DirectX::XMMATRIX>
-        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension = 4);
+        template <Eigen2DVectorConcept EigenVec, DirectX2DVectorConcept DXVec = DirectX::XMFLOAT2>
+        DXVec EigenToDX(const EigenVec& eigenVec, const DXVec& dxVec);
 
 
         // DirectXのベクトルからEigenのベクトルに代入する
@@ -65,16 +46,42 @@ namespace EtherEngine {
         // @ Arg2 : Eigenのベクトル
         template <DirectX2DVectorConcept DXVec, Eigen2DVectorConcept EigenVec = Eigen::Vector2f>
         void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec);
-        // DirectXのベクトルからEigenのベクトルに代入する
+        // DirectXのベクトルからEigenのベクトルを取得する
+        // @ Ret  : Eigenのベクトル
         // @ Arg1 : DirectXのベクトル
         // @ Arg2 : Eigenのベクトル
-        template <DirectX3DVectorConcept DXVec, Eigen3DVectorConcept EigenVec = Eigen::Vector3f>
-        void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec);
-        // DirectXのベクトルからEigenのベクトルに代入する
-        // @ Arg1 : DirectXのベクトル
-        // @ Arg2 : Eigenのベクトル
-        template <DirectX4DVectorConcept DXVec, Eigen4DVectorConcept EigenVec = Eigen::Vector4f>
-        void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec);
+        template <DirectX2DVectorConcept DXVec, Eigen2DVectorConcept EigenVec = Eigen::Vector2f>
+        EigenVec DXToEigen(const DXVec& dxVec, const EigenVec& eigenVec);
+    }
+
+
+    //----- EigenとDXの行列変換
+    namespace MathConverter {
+        // Eigenの行列か
+        template <typename T>
+        concept EigenMatrixConcept = requires(T instans) { instans[0, 0]; };
+        
+        // DirectXの行列か
+        template <typename T>
+        concept DirectXMatrixConcept = requires(T instans) {
+            typeid(DirectX::XMVECTOR) == typeid(instans.r[0]);
+        };
+
+
+        // Eigenの行列をDirectXの行列に変換する
+        // @ Arg1 : Eigenの行列
+        // @ Arg2 : DirectXの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat = DirectX::XMMATRIX>
+        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension = 4);
+        // Eigenの行列をDirectXの行列を取得する
+        // @ Ret  : DirectXの行列
+        // @ Arg1 : Eigenの行列
+        // @ Arg2 : DirectXの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat = DirectX::XMMATRIX>
+        DXMat EigenToDX(const EigenMat& eigenMat, const DXMat& dxMat, const uint dimension = 4);
+
 
         // DirectXの行列をEigenの行列に変換する
         // @ Arg1 : DirectXの行列
@@ -82,6 +89,13 @@ namespace EtherEngine {
         // @ Arg3 : 次元数(Default : 4)
         template <DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat = Eigen::Matrix4f>
         void DXToEigen(const DXMat& dxMat, EigenMat* const eigenMat, const uint dimension = 4);
+        // DirectXの行列をEigenの行列を取得する
+        // @ Ret  : Eigenの行列
+        // @ Arg1 : DirectXの行列
+        // @ Arg2 : Eigenの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat = Eigen::Matrix4f>
+        EigenMat DXToEigen(const DXMat& dxMat, const EigenMat& eigenMat, const uint dimension = 4);
     }
 
 
@@ -95,9 +109,9 @@ namespace EtherEngine {
 }
 
 
-//----- MathConverter宣言
+//----- MathConverter定義
 namespace EtherEngine {
-    //----- EigenとDXのベクトル・行列変換
+    //----- EigenとDXのベクトル変換
     namespace MathConverter {
         // EigenのベクトルからDirectXのベクトルに代入する
         // @ Arg1 : Eigenのベクトル
@@ -106,38 +120,27 @@ namespace EtherEngine {
         void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec) {
             dxVec->x = eigenVec.x();
             dxVec->y = eigenVec.y();
-        }
-        // EigenのベクトルからDirectXのベクトルに代入する
-        // @ Arg1 : Eigenのベクトル
-        // @ Arg2 : DirectXのベクトル
-        template <Eigen3DVectorConcept EigenVec, DirectX3DVectorConcept DXVec>
-        void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec) {
-            dxVec->x = eigenVec.x();
-            dxVec->y = eigenVec.y();
-            dxVec->z = eigenVec.z();
-        }
-        // EigenのベクトルからDirectXのベクトルに代入する
-        // @ Arg1 : Eigenのベクトル
-        // @ Arg2 : DirectXのベクトル
-        template <Eigen4DVectorConcept EigenVec, DirectX4DVectorConcept DXVec>
-        void EigenToDX(const EigenVec& eigenVec, DXVec* const dxVec) {
-            dxVec->x = eigenVec.x();
-            dxVec->y = eigenVec.y();
-            dxVec->z = eigenVec.z();
-            dxVec->w = eigenVec.w();
-        }
-
-        // Eigenの行列をDirectXの行列に変換する
-        // @ Arg1 : Eigenの行列
-        // @ Arg2 : DirectXの行列
-        // @ Arg3 : 次元数(Default : 4)
-        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat>
-        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension) {
-            for (int i = 0; i < dimension; i++) {
-                for (int j = 0; j < dimension; j++) {
-                    dxMat->m[i][j] = eigenMat(i, j);
-                }
+            if constexpr (Eigen3DVectorConcept<EigenVec> && DirectX3DVectorConcept<DXVec>) {
+                dxVec->z = eigenVec.z();
             }
+            if constexpr (Eigen4DVectorConcept<EigenVec> && DirectX4DVectorConcept<DXVec>) {
+                dxVec->w = eigenVec.w();
+            }
+        }
+        // EigenのベクトルからDirectXのベクトルを取得する
+        // @ Ret  : DirectXのベクトル
+        // @ Arg1 : Eigenのベクトル
+        // @ Arg2 : DirectXのベクトル
+        template <Eigen2DVectorConcept EigenVec, DirectX2DVectorConcept DXVec>
+        DXVec EigenToDX(const EigenVec& eigenVec, const DXVec& dxVec) {
+            //----- 宣言
+            DXVec ret = DXVec();
+            
+            //----- 変換
+            EigenToDX(eigenVec, &ret);
+
+            //----- 返却
+            return ret;
         }
 
 
@@ -148,26 +151,63 @@ namespace EtherEngine {
         void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec) {
             eigenVec.x() = dxVec->x;
             eigenVec.y() = dxVec->y;
+            if constexpr (DirectX3DVectorConcept<DXVec> && Eigen3DVectorConcept<EigenVec>) {
+                eigenVec.z() = dxVec->z;
+            }
+            if constexpr (DirectX4DVectorConcept<DXVec> && Eigen4DVectorConcept<EigenVec>) {
+                eigenVec.w() = dxVec->w;
+            }
         }
-        // DirectXのベクトルからEigenのベクトルに代入する
+        // DirectXのベクトルからEigenのベクトルを取得する
+        // @ Ret  : Eigenのベクトル
         // @ Arg1 : DirectXのベクトル
         // @ Arg2 : Eigenのベクトル
-        template <DirectX3DVectorConcept DXVec, Eigen3DVectorConcept EigenVec>
-        void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec) {
-            eigenVec.x() = dxVec->x;
-            eigenVec.y() = dxVec->y;
-            eigenVec.z() = dxVec->z;
+        template <DirectX2DVectorConcept DXVec, Eigen2DVectorConcept EigenVec>
+        EigenVec DXToEigen(const DXVec& dxVec, const EigenVec& eigenVec) {
+            //----- 変数宣言
+            EigenVec ret = EigenVec();
+
+            //----- 変換
+            DXToEigen(dxVec, &ret);
+
+            //----- 返却
+            return ret;
         }
-        // DirectXのベクトルからEigenのベクトルに代入する
-        // @ Arg1 : DirectXのベクトル
-        // @ Arg2 : Eigenのベクトル
-        template <DirectX4DVectorConcept DXVec, Eigen4DVectorConcept EigenVec>
-        void DXToEigen(const DXVec& dxVec, EigenVec* const eigenVec) {
-            eigenVec.x() = dxVec->x;
-            eigenVec.y() = dxVec->y;
-            eigenVec.z() = dxVec->z;
-            eigenVec.w() = dxVec->w;
+    }
+
+
+    //----- EigenとDXの行列変換
+    namespace MathConverter {
+        // Eigenの行列をDirectXの行列に変換する
+        // @ Arg1 : Eigenの行列
+        // @ Arg2 : DirectXの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat>
+        void EigenToDX(const EigenMat& eigenMat, DXMat* const dxMat, const uint dimension) {
+            for (int i = 0; i < dimension; i++) {
+                for (int j = 0; j < dimension; j++) {
+                    dxMat->r[i].m128_f32[j] = eigenMat(i, j);
+                }
+            }
         }
+        // Eigenの行列をDirectXの行列を取得する
+        // @ Ret  : DirectXの行列
+        // @ Arg1 : Eigenの行列
+        // @ Arg2 : DirectXの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <EigenMatrixConcept EigenMat, DirectXMatrixConcept DXMat>
+        DXMat EigenToDX(const EigenMat& eigenMat, const DXMat& dxMat, const uint dimension) {
+            //----- 宣言
+            DXMat ret = DXMat();
+            
+            //----- 変換
+            EigenToDX(eigenMat, &ret, dimension);
+
+            //----- 返却
+            return ret;
+        }
+
+
 
         // DirectXの行列をEigenの行列に変換する
         // @ Arg1 : DirectXの行列
@@ -177,23 +217,27 @@ namespace EtherEngine {
         void DXToEigen(const DXMat& dxMat, EigenMat* const eigenMat, const uint dimension) {
             for (uint i = 0; i < dimension; i++) {
                 for (uint j = 0; j < dimension; j++) {
-                    (*eigenMat)(i,j) = dxMat.m[i][j];
+                    (*eigenMat)(i, j) = dxMat.r[i].m128_f32[j];
                 }
             }
         }
-    }
+        // DirectXの行列をEigenの行列を取得する
+        // @ Ret  : Eigenの行列
+        // @ Arg1 : DirectXの行列
+        // @ Arg2 : Eigenの行列
+        // @ Arg3 : 次元数(Default : 4)
+        template <DirectXMatrixConcept DXMat, EigenMatrixConcept EigenMat>
+        EigenMat DXToEigen(const DXMat& dxMat, const EigenMat& eigenMat, const uint dimension) {
+            //----- 宣言
+            EigenMat ret = EigenMat();
 
+            //----- 変換
+            DXToEigen(dxMat, &ret, dimension);
 
-    //----- XMMATRIXとXMFLOAT4X4変換
-    namespace MathConverter {
-        // XMMATRIXをXMFLOAT4X4に変換する
-        // @ Ret  : 変換されたXMFLOAT4X4
-        // @ Arg1 : XMMATRIX
-        DirectX::XMFLOAT4X4 MatrixToFloat4x4(const DirectX::XMMATRIX& mat) {
-            DirectX::XMFLOAT4X4 ret;
-            DirectX::XMStoreFloat4x4(&ret, mat);
-            return std::move(ret);
+            //----- 返却
+            return ret;
         }
+
     }
 }
 

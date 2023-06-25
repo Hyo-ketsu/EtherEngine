@@ -21,7 +21,6 @@ namespace EtherEngine {
     private:
         friend class Singleton<GameObjectStorage>;
 
-        void GetFriend(int* hoge);
 
         std::vector<BaseHandle<GameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
     };

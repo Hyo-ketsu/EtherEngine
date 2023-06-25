@@ -3,6 +3,7 @@
 #include <Base/HandleHelper.h>
 #include <Base/WindowName.h>
 #include <Base/GameObjectUpdater.h>
+#include <Base/BaseInput.h>
 #include <DirectX/ProcedureGameWindow.h>
 
 
@@ -100,7 +101,7 @@ namespace EtherEngine {
         //----- DirectXを初期化
         bool isFullScreen = false;  // フルスクリーン設定
 
-        m_dxRender = HandleHelper::AddItem<DirectXRender>(DirectXRender());
+        m_dxRender = Handle<DirectXRender>(DirectXRender());
         HRESULT hr = m_dxRender.GetAtomicData().Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
         if (FAILED(hr)) {
             return;
@@ -112,6 +113,7 @@ namespace EtherEngine {
 
         //----- 初期化・終了処理登録
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
+        m_initUninitPerformer.AddInitUninit<InputSystem>();
 
         //----- 初期化
         m_initUninitPerformer.Init();

@@ -1,4 +1,6 @@
 #include <DirectX/ModelComponent.h>
+#include <Base/ComponentHelper.h>
+#include <Base/Converter.h>
 
 
 namespace EtherEngine {
@@ -14,6 +16,24 @@ namespace EtherEngine {
 
     // 描画処理
     void ModelComponent::Draw(void) {
-        DrawModel();
+        //----- 親ゲームオブジェクト保持
+        auto gameObject = ComponentHelper::GetGameObject(this);
+
+        //----- ワールド行列作成
+        DirectX::XMMATRIX world;
+        world = DirectX::XMMatrixScaling(
+                gameObject->AccessTransform().AccessScale().x(), gameObject->AccessTransform().AccessScale().y(), gameObject->AccessTransform().AccessScale().z()
+            ) * DirectX::XMMatrixRotationRollPitchYaw(
+                gameObject->AccessTransform().AccessRotation().x(), gameObject->AccessTransform().AccessRotation().y(), gameObject->AccessTransform().AccessRotation().z()
+            ) * DirectX::XMMatrixTranslation(
+                gameObject->AccessTransform().AccessPostion().x(), gameObject->AccessTransform().AccessPostion().y(), gameObject->AccessTransform().AccessPostion().z()
+            );
+
+        //----- Eigen行列に変換
+        Eigen::Matrix4f eigenMat;
+        MathConverter::DXToEigen(world, &eigenMat);
+
+        //----- 描画
+        DrawModel(eigenMat, GetView(), GetProjection());
     }
 }

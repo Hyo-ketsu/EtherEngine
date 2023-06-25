@@ -32,7 +32,10 @@ namespace EtherEngine {
 
 
         // 描画
-        void DrawModel(void);
+        // @ Arg1 : ワールド行列
+        // @ Arg2 : ビュー行列
+        // @ Arg3 : プロジェクション行列
+        void DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
 
     protected:
         // モデルを読み込む

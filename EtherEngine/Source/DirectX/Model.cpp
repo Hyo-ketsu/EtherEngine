@@ -17,7 +17,16 @@ namespace EtherEngine {
 
 
     // 描画
-    void Model::DrawModel(void) {
+    void Model::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+        //----- 頂点シェーダー
+        Eigen::Matrix4f matrix[3] = { world.transpose(), view.transpose(), projection.transpose() };
+        m_vertexShader->WriteBuffer(0, &matrix);
+        m_vertexShader->Bind();
+
+        //----- ピクセルシェーダー
+        m_pixelShader->Bind();
+
+        //----- 描画
         for (auto&& it : m_meshes) {
             if (m_textureSlot >= 0) {
                 m_pixelShader->SetTexture(m_textureSlot, m_materials[it.materialID].texture.get());

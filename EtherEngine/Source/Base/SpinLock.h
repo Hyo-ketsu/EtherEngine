@@ -10,20 +10,16 @@ namespace EtherEngine {
         class SpinLockKey {
         public:
             // コンストラクタ
-            // @ Arg1 : コンストラクタで行う処理
-            // @ Arg2 : デストラクタで行う処理
-            SpinLockKey(std::function<void(void)> constructor, std::function<void(void)> destructor);
+            // @ Arg1 : 親元の参照
+            SpinLockKey(SpinLock& lock);
             // デストラクタ
             ~SpinLockKey(void);
 
         private:
-
-            std::function<void(void)> m_destructor; // デストラクタで行う処理
+            SpinLock& m_spinlock;
         };
 
     public:
-
-
         // コンストラクタ
         SpinLock(void);
         // デストラクタ
@@ -31,7 +27,7 @@ namespace EtherEngine {
 
 
         // スピンロックを試行する
-        void DoSpinLock(void) const noexcept;
+        void DoSpinLock(void);
 
 
         // ロックを行う（RAII）
@@ -43,7 +39,8 @@ namespace EtherEngine {
         void UnLock(void);
 
     private:
-        std::atomic_bool m_isAtomicBool;  // スピンロックに用いる排他bool
+        std::recursive_mutex m_mutex;  // スピンロックに用いるミューテックス
+        std::atomic_bool m_isAtomic;   // スピンロックに用いるAtomicBool
     };
 }
 

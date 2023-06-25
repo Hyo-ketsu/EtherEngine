@@ -2,7 +2,18 @@
 #include <Base/Timer.h>
 #include <Base/HandleHelper.h>
 #include <Base/WindowName.h>
+#include <Base/BaseInput.h>
 #include <EtherEngine/ProcedureEditorWindow.h>
+#include <EtherEngine/EditorObjectUpdater.h>
+#ifdef _DEBUG
+#include <EtherEngine/EditorCamera.h>
+
+#include <DirectX/ModelComponent.h>
+#include <DirectX/ShaderClass.h>
+#include <Base/GameObjectStorage.h>
+#include <Base/CameraComponent.h>
+#include <EtherEngine/Test/TestDefine.h>
+#endif // _DEBUG
 
 
 namespace EtherEngine {
@@ -87,13 +98,8 @@ namespace EtherEngine {
 
         //----- DirectXを初期化
         bool isFullScreen = false;  // フルスクリーン設定
-#ifdef _RELEASE
-#ifdef _DEVELOP
-        isFullScreen = true;    // Develop_Releaseのみフルスクリーン
-#endif // _DEVELOP
-#endif // _RELEASE
 
-        m_dxRender = HandleHelper::AddItem<DirectXRender>(DirectXRender());
+        m_dxRender = Handle<DirectXRender>(DirectXRender());
         HRESULT hr = m_dxRender.GetAtomicData().Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
         if (FAILED(hr)) {
             return;
@@ -105,9 +111,27 @@ namespace EtherEngine {
 
         //----- 初期化・終了処理登録
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
+        m_initUninitPerformer.AddInitUninit<InputSystem>();
 
         //----- 初期化
         m_initUninitPerformer.Init();
+
+#ifdef _DEBUG
+        auto cameraGameObejct = EditorObjectStorage::Get()->CreateGameObject(Transform());
+        cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;
+        auto camera = cameraGameObejct.GetAtomicData().AddComponent<EditorCamera>();
+
+        //----- テスト用シェーダー追加
+        auto vs = VertexShader(this->GetDirectX());
+        vs.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "VS_Test.cso").c_str());
+        auto ps = PixelShader(this->GetDirectX());
+        ps.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "PS_Test.cso").c_str());
+
+        //----- テスト用ゲームオブジェクト追加
+        auto testGameObject = GameObjectStorage::Get()->CreateGameObject(Transform());
+        testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
+        m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID());
+#endif // _DEBUG
 
         //----- メッセージループ
         MSG message;
@@ -129,14 +153,23 @@ namespace EtherEngine {
             }
             else {   //----- ゲーム処理
                 //----- 定期更新処理
-                frameSecond -= fpsTimer.GetDeltaTime();
+                //frameSecond -= fpsTimer.GetDeltaTime();
 
-                //----- FPS制御
-                if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
-                frameSecond = 0ms;
+                ////----- FPS制御
+                //if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
+                //frameSecond = 0ms;
+
+                //----- 入力更新
+                InputSystem::Update();
+
+                //----- エディター更新処理
+                EditorUpdater::Get()->Update();
 
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();
+
+                //----- エディター描画処理
+                EditorUpdater::Get()->Draw();
 
                 //----- 描画処理
                 m_dxRender.GetAtomicData().Draw();

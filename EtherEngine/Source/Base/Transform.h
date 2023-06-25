@@ -9,8 +9,8 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : 座標(デフォルト：全て0)
         // @ Arg2 : 拡縮(デフォルト：全て0)
-        // @ Arg3 : 回転(デフォルト：全て1)
-        Transform(Eigen::Vector3f pos = { 0,0,0 }, Eigen::Vector3f sca = { 0,0,0 }, Eigen::Vector3f rot = { 0,0,0 });
+        // @ Arg3 : 回転(デフォルト：全て0)
+        Transform(Eigen::Vector3f pos = { 0,0,0 }, Eigen::Vector3f sca = { 1,1,1 }, Eigen::Vector3f rot = { 0,0,0 });
 
 
         // 座標を取得する

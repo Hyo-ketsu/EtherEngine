@@ -38,6 +38,13 @@ namespace EtherEngine {
         // ポインタではないか判定するコンセプト
         template <typename T>
         concept NotPointerConcept = !(PointerConcept<T>);
+
+        // オブジェクト型か判定するコンセプト
+        template <typename T>
+        concept ObjectConcept = std::is_object_v<T>;
+        // オブジェクト型ではないか判定するコンセプト
+        template <typename T>
+        concept NotObjectConcept = !(ObjectConcept<T>);
     }
 }
 

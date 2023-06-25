@@ -17,10 +17,6 @@ namespace EtherEngine {
 
         // 更新処理
         virtual void Update(void) override;
-
-
-        // カメラデータアクセサー
-        CameraData& AccessCameraData(void) { return m_cameraData; }
     };
 }
 

@@ -16,8 +16,8 @@ namespace EtherEngine {
         , m_up(CameraDefine::UP)
         , m_fovy(CameraDefine::FOVY)
         , m_aspect(CameraDefine::ASPECT)
-        , m_near(CameraDefine::NEAR)
-        , m_far(CameraDefine::FAR) {
+        , m_near(CameraDefine::NEAR_)
+        , m_far(CameraDefine::FAR_) {
         SetPos(pos);
         SetLook(look);
     }
@@ -112,7 +112,7 @@ namespace EtherEngine {
         if (isTranspose) view = DirectX::XMMatrixTranspose(view);
         
         //----- •ÏŠ·
-        MathConverter::DXToEigen(MathConverter::MatrixToFloat4x4(view), &ret);
+        MathConverter::DXToEigen(view, &ret);
 
         //----- •Ô‹p
         return ret;
@@ -129,7 +129,7 @@ namespace EtherEngine {
         if (isTranspose) projection = DirectX::XMMatrixTranspose(projection);
 
         //----- •ÏŠ·
-        MathConverter::DXToEigen(MathConverter::MatrixToFloat4x4(projection), &ret);
+        MathConverter::DXToEigen(projection, &ret);
 
         //----- •Ô‹p
         return ret;

@@ -281,7 +281,7 @@ namespace EtherEngine {
     void PixelShader::Bind(void) {
         auto dxRender = m_directxRender.GetAtomicItem();
         dxRender.GetData().GetContext()->PSSetShader(m_pixelShader, nullptr, 0);
-        for (int i = 0; i < m_buffers.size(); ++i)
+        for (int i = 0; i < m_buffers.size(); i++)
             dxRender.GetData().GetContext()->PSSetConstantBuffers(i, 1, &m_buffers[i]);
     }
 
