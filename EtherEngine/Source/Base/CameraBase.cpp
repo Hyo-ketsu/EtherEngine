@@ -81,7 +81,7 @@ namespace EtherEngine {
     CameraBase::CameraBase(const CameraData& data) 
         : m_cameraData(data) {
         //----- カメラのStorage登録
-        CameraStorage::Get()->AddCamera(*this, m_id);
+        m_id = CameraStorage::Get()->AddCamera(*this);
     }
     // デストラクタ
     CameraBase::~CameraBase(void) {

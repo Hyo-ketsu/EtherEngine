@@ -15,12 +15,12 @@ namespace EtherEngine {
 
 
         // カメラを追加する
-        // @ Arg1 : 追加するカメラ
-        // @ Arg2 : ID
-        void AddCamera(CameraBase& camera, const IDClass& id);
+        // @ Ret  : ID
+        // @ Arg1 : 追加するカメラ(参照)
+        [[nodiscard]] CameraID AddCamera(CameraBase& camera);
         // カメラを削除する
         // @ Arg1 : ID
-        void DeleteCamera(const IDClass& id);
+        void DeleteCamera(const CameraID& id);
 
 
         // 指定したIDのカメラが存在するか
@@ -32,8 +32,7 @@ namespace EtherEngine {
         // @ MEMO : ポインタを返すのくそなんで改修予定
         // @ Ret  : カメラへのポインタ(なければnullptr)
         // @ Arg1 : 優先度の順位(Default : 0)
-        [[deprecated]]
-        CameraBase* const GetCamera(const uint priority = 0);
+        [[deprecated]] CameraBase* const GetCamera(const uint priority = 0);
         // カメラを取得する
         // @ Arg1 : 指定ID
         CameraBase* const GetCamera(const IDClass& id);
@@ -45,7 +44,7 @@ namespace EtherEngine {
 
         friend class Singleton<CameraStorage>;
 
-        std::vector<std::tuple<IDClass, CameraBase*, bool>> m_cameras;   // 保持しているカメラ
+        std::vector<std::tuple<std::shared_ptr<IDClass>, CameraBase*, bool>> m_cameras;   // 保持しているカメラ
     };
 }
 

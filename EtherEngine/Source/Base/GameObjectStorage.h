@@ -13,8 +13,8 @@ namespace EtherEngine {
     public:
         // 空のゲームオブジェクトを作成する
         // @ Ret  : 作成したゲームオブジェクトのハンドル
-        // @ Arg1 : 座標
-        BaseHandle<GameObject> CreateGameObject(const Transform& transform);
+        // @ Arg1 : 座標(デフォルト : 座標・回転は0, 拡縮は1)
+        BaseHandle<GameObject> CreateGameObject(const Transform& transform = Transform());
         // 全てのゲームオブジェクトを取得する
         std::vector<BaseHandle<GameObject>> GetGameObjectAll(void);
          

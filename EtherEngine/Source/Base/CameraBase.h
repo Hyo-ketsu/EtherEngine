@@ -3,6 +3,12 @@
 #include <Base/IDClass.h>
 
 
+namespace EtherEngine{
+    // カメラのID用別名
+    using CameraID = std::weak_ptr<IDClass>;
+}
+
+
 //----- CameraData宣言
 namespace EtherEngine {
     // 視野角等のカメラ情報を保持しているクラス
@@ -86,7 +92,7 @@ namespace EtherEngine {
         CameraData& AccessCameraData(void) { return m_cameraData; }
 
         // IDゲッター
-        const IDClass& GetID(void) const { return m_id; }
+        const CameraID& GetID(void) const { return m_id; }
 
 
         // ビュー行列を取得する
@@ -98,9 +104,9 @@ namespace EtherEngine {
         // @ Arg1 : 転置も行うか(Default : ture)
         Eigen::Matrix4f GetProjection(const bool isTranspose = true) const;
 
-    protected:
-        CameraData m_cameraData;    // カメラ情報
-        IDClass    m_id;            // このobjectのID
+    private:
+        CameraData m_cameraData;        // カメラ情報
+        CameraID m_id;    // このobjectのID
     };
 }
 

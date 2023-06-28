@@ -6,9 +6,10 @@ namespace EtherEngine {
     class IMGUI {
     public:
         // コンストラクタ
-        // @ Arg1 : ウィンドウハンドル
+        // @ Arg1 : デバイス
         // @ Arg2 : デバイスコンテキスト
-        IMGUI(ID3D11Device* device, ID3D11DeviceContext* context);
+        // @ Arg3 : ウィンドウハンドル
+        IMGUI(ID3D11Device* device, ID3D11DeviceContext* context, HWND hWnd);
         // デストラクタ
         ~IMGUI(void);
 

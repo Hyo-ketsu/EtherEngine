@@ -53,6 +53,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
@@ -65,6 +66,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">true</ExcludedFromBuild>
@@ -83,9 +85,11 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h" />
@@ -114,12 +118,14 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -127,6 +133,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -134,18 +141,21 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -153,6 +163,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -160,6 +171,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

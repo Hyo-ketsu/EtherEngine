@@ -13,9 +13,17 @@ namespace EtherEngine {
 
     // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì•`‰æˆ—‚ðs‚¤
     void EditorUpdater::Draw(void) {
+        //----- IMGUI•`‰æˆ—
+        ImGui_ImplDX11_NewFrame();
+        ImGui_ImplWin32_NewFrame();
+        ImGui::NewFrame();
+
+        //----- EditorObject•`‰æ
         auto draw = EditorObjectStorage::Get()->GetGameObjectAll();
         for (auto&& it : draw) {
             it.GetAtomicData().Draw();
         }
+
+        ImGui::Render();
     }
 }

@@ -14,8 +14,8 @@ namespace EtherEngine {
     public:
         // 空のエディターオブジェクトを作成する
         // @ Ret  : 作成したエディターオブジェクトのハンドル
-        // @ Arg1 : 座標
-        BaseHandle<EditorObject> CreateGameObject(const Transform& transform);
+        // @ Arg1 : 座標(デフォルト : 座標・回転は0, 拡縮は1)
+        BaseHandle<EditorObject> CreateGameObject(const Transform& transform = Transform());
         // 全てのエディターオブジェクトを取得する
         std::vector<BaseHandle<EditorObject>> GetGameObjectAll(void);
 

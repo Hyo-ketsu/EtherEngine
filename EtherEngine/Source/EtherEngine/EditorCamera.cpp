@@ -63,8 +63,8 @@ namespace EtherEngine {
             Eigen::Vector3f move = { 0.0f,0.0f,0.0f };
             if (InputSystem::IsPress(m_front)) move += Eigen::Vector3f(front.x(), front.y(), front.z());
             if (InputSystem::IsPress(m_back))  move -= Eigen::Vector3f(front.x(), front.y(), front.z());
-            if (InputSystem::IsPress(m_left))  move += Eigen::Vector3f(side.x(), side.y(), side.z());
-            if (InputSystem::IsPress(m_right)) move -= Eigen::Vector3f(side.x(), side.y(), side.z());
+            if (InputSystem::IsPress(m_left))  move -= Eigen::Vector3f(side.x(), side.y(), side.z());
+            if (InputSystem::IsPress(m_right)) move += Eigen::Vector3f(side.x(), side.y(), side.z());
             if (InputSystem::IsPress(m_up))    move += Eigen::Vector3f(up.x(), up.y(), up.z());
             if (InputSystem::IsPress(m_down))  move -= Eigen::Vector3f(up.x(), up.y(), up.z());
 
@@ -83,8 +83,8 @@ namespace EtherEngine {
             Eigen::Vector3f move = { 0.0f,0.0f,0.0f };
             if (InputSystem::IsPress(m_front)) move += Eigen::Vector3f(front.x(), front.y(), front.z());
             if (InputSystem::IsPress(m_back))  move -= Eigen::Vector3f(front.x(), front.y(), front.z());
-            if (InputSystem::IsPress(m_left))  move += Eigen::Vector3f(side.x(), side.y(), side.z());
-            if (InputSystem::IsPress(m_right)) move -= Eigen::Vector3f(side.x(), side.y(), side.z());
+            if (InputSystem::IsPress(m_left))  move -= Eigen::Vector3f(side.x(), side.y(), side.z());
+            if (InputSystem::IsPress(m_right)) move += Eigen::Vector3f(side.x(), side.y(), side.z());
             if (InputSystem::IsPress(m_up))    move += Eigen::Vector3f(up.x(), up.y(), up.z());
             if (InputSystem::IsPress(m_down))  move -= Eigen::Vector3f(up.x(), up.y(), up.z());
 

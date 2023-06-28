@@ -3,14 +3,20 @@
 
 namespace EtherEngine {
     // ƒJƒƒ‰‚ğ’Ç‰Á‚·‚é
-    void CameraStorage::AddCamera(CameraBase& camera, const IDClass& id) {
-        m_cameras.emplace_back(id, &camera, false);
+    [[nodiscard]] CameraID CameraStorage::AddCamera(CameraBase& camera) {
+        //----- ID‚Ìì¬‚Æ’Ç‰Á
+        auto ptr = std::make_shared<IDClass>(IDClass());
+        m_cameras.emplace_back(ptr, &camera, false);
+
+        //----- •Ô‹p
+        return CameraID(ptr);
     }
     // ƒJƒƒ‰‚ğíœ‚·‚é
-    void CameraStorage::DeleteCamera(const IDClass& id) {
+    void CameraStorage::DeleteCamera(const CameraID& id) {
+        if (id.expired()) return;
         if (m_cameras.size() == 0) return;
         for (auto it = m_cameras.begin(); it != m_cameras.end(); it++) {
-            if (std::get<0>(*it) == id && std::get<2>(*it) == false) {
+            if (*std::get<0>(*it) == *id.lock() && std::get<2>(*it) == false) {
                 //----- íœ
                 std::get<2>(*it) = true;
                 m_cameras.erase(it);
@@ -24,7 +30,7 @@ namespace EtherEngine {
     bool CameraStorage::IsIDToCamera(const IDClass& id) {
         //----- ID‚Åæ“¾‚·‚é
         for (auto&& it : m_cameras) {
-            if (std::get<0>(it) == id) {
+            if (*std::get<0>(it) == id) {
                 return true;
             }
         }
@@ -53,7 +59,7 @@ namespace EtherEngine {
     CameraBase* const CameraStorage::GetCamera(const IDClass& id) {
         //----- ID‚Åæ“¾‚·‚é
         for (auto&& it : m_cameras) {
-            if (std::get<0>(it) == id) {
+            if (*std::get<0>(it) == id) {
                 return std::get<1>(it);
             }
         }

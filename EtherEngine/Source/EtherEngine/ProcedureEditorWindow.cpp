@@ -1,8 +1,15 @@
 #include <EtherEngine/EditorApplication.h>
+#include <ImGUI/Platform/imgui_impl_win32.h>
+
+
+// ëOï˚êÈåæ
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 
 namespace EtherEngine {
     LRESULT CALLBACK WindowEditorProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+        if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam)) return true;
+
         switch (message) {
         case WM_SIZE:
             break;
