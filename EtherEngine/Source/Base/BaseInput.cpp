@@ -65,4 +65,5 @@ namespace EtherEngine {
 
     std::array<uchar, 256> InputSystem::ms_keyTable;    // キーボード入力
     std::array<uchar, 256> InputSystem::ms_oldKeyTable; // 前フレームキーボード入力
+    std::optional<Eigen::Matrix<long, 2, 1>> InputSystem::ms_mousePostion;    // マウス座標
 }

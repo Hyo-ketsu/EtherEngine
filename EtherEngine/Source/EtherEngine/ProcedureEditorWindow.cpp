@@ -1,4 +1,5 @@
 #include <EtherEngine/EditorApplication.h>
+#include <DirectX/ProcedureGameWindow.h>
 #include <ImGUI/Platform/imgui_impl_win32.h>
 
 
@@ -8,8 +9,13 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT mes
 
 namespace EtherEngine {
     LRESULT CALLBACK WindowEditorProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+        //----- ImGui処理
         if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam)) return true;
 
+        //----- ベース処理
+        Procedure::BaseFunction();
+
+        //----- メッセージ処理
         switch (message) {
         case WM_SIZE:
             break;

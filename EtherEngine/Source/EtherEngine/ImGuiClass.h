@@ -2,7 +2,9 @@
 #define I_IMGUIINIT_H
 
 
+//----- IMGUI 宣言
 namespace EtherEngine {
+    // IMGUIのラップクラス
     class IMGUI {
     public:
         // コンストラクタ

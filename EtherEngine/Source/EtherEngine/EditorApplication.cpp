@@ -1,7 +1,7 @@
 #include <EtherEngine/EditorApplication.h>
 #include <Base/Timer.h>
 #include <Base/HandleHelper.h>
-#include <Base/WindowName.h>
+#include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <EtherEngine/ProcedureEditorWindow.h>
 #include <EtherEngine/EditorObjectUpdater.h>
@@ -20,7 +20,7 @@
 namespace EtherEngine {
     // コンストラクタ
     EditorApplication::EditorApplication(void) 
-        : BaseMainWindow<EditorApplication>(WindowName::EDITOR_NAME) {
+        : BaseMainWindow<EditorApplication>(WindowDefine::Name::EDITOR_NAME) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -31,18 +31,21 @@ namespace EtherEngine {
     void EditorApplication::MainFunction(void) {
         using namespace std::chrono;
 
+        //----- メモリリークチェック
+        _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
         //----- メインウィンドウ情報作成
         WNDCLASSEX wcex;
         ZeroMemory(&wcex, sizeof(wcex));
-        wcex.hInstance = m_hInstance.value();
+        wcex.hInstance     = m_hInstance.value();
         wcex.lpszClassName = m_name.c_str();
-        wcex.lpszMenuName = NULL;
-        wcex.lpfnWndProc = WindowEditorProcedure;
-        wcex.style = CS_CLASSDC;
-        wcex.cbSize = sizeof(WNDCLASSEX);
-        wcex.hIcon = LoadIcon(wcex.hInstance, NULL);
-        wcex.hIconSm = LoadIcon(wcex.hInstance, NULL);
-        wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+        wcex.lpszMenuName  = NULL;
+        wcex.lpfnWndProc   = WindowEditorProcedure;
+        wcex.style         = CS_CLASSDC;
+        wcex.cbSize        = sizeof(WNDCLASSEX);
+        wcex.hIcon         = LoadIcon(wcex.hInstance, NULL);
+        wcex.hIconSm       = LoadIcon(wcex.hInstance, NULL);
+        wcex.hCursor       = LoadCursor(NULL, IDC_ARROW);
         wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); 
 
         //----- ウィンドウクラス情報の登録
@@ -55,8 +58,9 @@ namespace EtherEngine {
         m_hwnd = CreateWindowEx(
             WS_EX_OVERLAPPEDWINDOW,
             wcex.lpszClassName,
-            "Ether Engine Editor",
+            WindowDefine::Name::EDITOR_NAME.c_str(),
             WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME,
+            //WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
             CW_USEDEFAULT, CW_USEDEFAULT,   // ウィンドウの表示位置
             m_windowSize.x(), m_windowSize.y(), // ウィンドウのサイズ
             HWND_DESKTOP,                   // オーナーウィンドウの設定
@@ -133,11 +137,12 @@ namespace EtherEngine {
         //----- テスト用ゲームオブジェクト追加
         auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
         testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
+        testGameObject.GetAtomicData().AccessName() = "Usi";
         m_dxRender.GetAtomicData().SetCameraID(*camera.lock()->GetID().lock());
 
         //----- エディター用オブジェクト追加
         auto outlinerGameObject = EditorObjectStorage::Get()->CreateGameObject();
-        outlinerGameObject.GetAtomicData().AddComponent<EditorOutliner>(m_dxRender);
+        outlinerGameObject.GetAtomicData().AddComponent<EditorOutliner>(std::string("OutLiner"));
 #endif // _DEBUG
 
         //----- メッセージループ

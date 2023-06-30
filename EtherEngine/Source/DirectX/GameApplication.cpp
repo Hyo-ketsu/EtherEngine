@@ -1,7 +1,7 @@
 #include <DirectX/GameApplication.h>
 #include <Base/Timer.h>
 #include <Base/HandleHelper.h>
-#include <Base/WindowName.h>
+#include <Base/WindowsDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>
 #include <DirectX/ProcedureGameWindow.h>
@@ -20,7 +20,7 @@
 namespace EtherEngine {
     // コンストラクタ
     GameApplication::GameApplication(void)
-        : BaseMainWindow(WindowName::GAME_APPLICATION_NAME) {
+        : BaseMainWindow(WindowDefine::Name::GAME_APPLICATION_NAME) {
     }
     // デストラクタ
     GameApplication::~GameApplication(void) {
@@ -58,13 +58,13 @@ namespace EtherEngine {
 
         //----- ウィンドウの作成
         m_hwnd = CreateWindowEx(
-            WS_EX_OVERLAPPEDWINDOW,         // ウィンドウの外観・動作の指定（拡張版）
-            wcex.lpszClassName,             // 紐づけるウィンドウクラス情報
-            "Test",                         // ウィンドウのタイトル
-            WS_CAPTION | WS_SYSMENU,        // ウィンドウの外観・動作の指定
-            CW_USEDEFAULT, CW_USEDEFAULT,   // ウィンドウの表示位置
-            m_windowSize.x(), m_windowSize.y(), // ウィンドウのサイズ
-            HWND_DESKTOP,                   // オーナーウィンドウの設定
+            WS_EX_OVERLAPPEDWINDOW,
+            wcex.lpszClassName,
+            WindowDefine::Name::GAME_APPLICATION_NAME.c_str(),
+            WS_CAPTION | WS_SYSMENU,
+            CW_USEDEFAULT, CW_USEDEFAULT,
+            m_windowSize.x(), m_windowSize.y(),
+            HWND_DESKTOP,
             NULL, m_hInstance.value(), NULL);
 
         //----- ウィンドウが作成できたか

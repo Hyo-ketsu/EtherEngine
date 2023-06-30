@@ -4,8 +4,9 @@
 
 namespace EtherEngine {
     // コンストラクタ
-    GameObject::GameObject(const Transform& transform)
-        : m_transform(transform) {
+    GameObject::GameObject(const Transform& transform, const std::string& name)
+        : BaseObject(name)
+        , m_transform(transform) {
     }
 
 

@@ -1,18 +1,20 @@
 #ifndef I_COMPONENTBASE_H
 #define I_COMPONENTBASE_H
+#include <Base/BaseObject.h>
 #include <Base/Handle.h>
 
 
-//----- ComponentBase宣言
+//----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase {
+    class ComponentBase : public BaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト
-        ComponentBase(void* gameObject);
-        // デストラクタ
-        ~ComponentBase(void);
+        // @ Arg2 : コンポーネント名(Default : "Conponent")
+        ComponentBase(void* gameObject, const std::string& name = "Conponent");
+        // 純粋仮想デストラクタ
+        virtual ~ComponentBase(void) = 0 {}
         ComponentBase(const ComponentBase& copy) = delete;
         // ムーブコンストラクタ
         ComponentBase(ComponentBase&& move) = default;

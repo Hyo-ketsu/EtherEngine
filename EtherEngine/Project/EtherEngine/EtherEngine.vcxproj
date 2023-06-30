@@ -54,6 +54,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
@@ -86,6 +87,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />

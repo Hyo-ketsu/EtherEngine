@@ -3,23 +3,20 @@
 #include <Base/Handle.h>
 #include <DirectX/DirectX.h>
 #include <EtherEngine/EditorObject.h>
-#include <EtherEngine/EditorComponentBase.h>
+#include <EtherEngine/EditorWindowBase.h>
 
 
 //----- EditorOutliner 宣言
 namespace EtherEngine {
-    class EditorOutliner : public EditorComponentBase {
+    class EditorOutliner : public EditorWindowBase {
     public:
-        // コンストラクタ
-        // @ Arg1 : ゲームオブジェクトのポインタ
-        // @ Arg2 : DirectX
-        EditorOutliner(EditorObject* editorObject, const BaseHandle<DirectXRender>& directX);
+        using EditorWindowBase::EditorWindowBase;
 
 
         // 更新処理
         void Update(void) override;
         // 描画処理
-        void Draw(void) override;
+        void DrawWindow(void) override;
     };
 }
 

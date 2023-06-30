@@ -1,6 +1,7 @@
 #include <EtherEngine/ImGuiClass.h>
 
 
+//----- ImGui 定義
 namespace EtherEngine {
     // コンストラクタ
     IMGUI::IMGUI(ID3D11Device* device, ID3D11DeviceContext* context, HWND hWnd)

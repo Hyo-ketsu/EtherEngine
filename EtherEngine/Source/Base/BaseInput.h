@@ -120,9 +120,18 @@ namespace EtherEngine {
         // @ Arg1 : 判定するキー・ボタン
         static bool IsTrigger(const InputKey& input);
 
+
+        // @ MEMO : 他Platform対応を考慮していないのでひとまずstd::optionalを使用
+        // マウス座標ゲッター
+        static std::optional<Eigen::Matrix<long, 2, 1>> GetMousePostion(void) { return ms_mousePostion; }
+        // マウス座標セッター
+        static void SetMousePostion(const Eigen::Matrix<long, 2, 1>& in) { ms_mousePostion = in; }
+
+
     private:
         static std::array<uchar, 256> ms_keyTable;    // キーボード入力
         static std::array<uchar, 256> ms_oldKeyTable; // 前フレームキーボード入力
+        static std::optional<Eigen::Matrix<long, 2, 1>> ms_mousePostion;    // マウス座標
     };
 }
 

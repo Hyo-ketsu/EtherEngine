@@ -9,8 +9,8 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : エディターオブジェクト
         EditorComponentBase(void* editorObject);
-        // デストラクタ
-        ~EditorComponentBase(void) {}
+        // 純粋仮想デストラクタ
+        virtual ~EditorComponentBase(void) = 0 {}
 
 
         // 親エディターオブジェクト取得

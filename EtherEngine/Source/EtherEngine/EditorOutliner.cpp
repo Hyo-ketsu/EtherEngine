@@ -1,25 +1,33 @@
 #include <EtherEngine/EditorOutliner.h>
+#include <Base/GameObjectStorage.h>
+#ifdef _DEBUG
+#include <Base/BaseInput.h>
 #include <EtherEngine/Test/imgui_demo.h>
+#endif // _DEBUG
 
 
 namespace EtherEngine {
-    // コンストラクタ
-    EditorOutliner::EditorOutliner(EditorObject* editorObject, const BaseHandle<DirectXRender>& directX) 
-        : EditorComponentBase(editorObject) {
-    }
-
-
     // 更新処理
     void EditorOutliner::Update(void) {
 
     }
     // 描画処理
-    void EditorOutliner::Draw(void) {
-        bool hoge = true;
-        ImGui::ShowDemoWindow(&hoge);
+    void EditorOutliner::DrawWindow(void) {
+        //----- 全ゲームオブジェクト取得
+        auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
 
-        ImGui::Begin("Hoge");
-        ImGui::Text("Fuga");
+        ImGui::ShowDemoWindow();
+        ImGui::Begin("hoge");
+        if (InputSystem::GetMousePostion().has_value()) {
+            ImGui::Text("%d %d", InputSystem::GetMousePostion().value().x(), InputSystem::GetMousePostion().value().y());
+        }
         ImGui::End();
+
+        //----- 表示
+        // @ MEMO : 現在は親子関係を一切考慮していません
+        for (auto&& it : gameObjects) {
+            auto gameObject = it.GetNoAtomicItem();
+            ImGui::Text(gameObject.GetData().GetName().c_str());
+        }
     }
 }

@@ -23,6 +23,19 @@ namespace EtherEngine {
         void SetWindSize(const Eigen::Array2<int>& in) { m_windowSize = in; }
 
 
+        // ウィンドウキャプションの文字を取得する
+        // @ Ret  : 現在のウィンドウのキャプション
+        std::string GetCaption(void);
+        // ウィンドウキャプションの文字を設定する
+        // @ Ret  : キャプションの設定ができたか
+        // @ Arg1 : 設定するウィンドウのキャプション
+        bool SetCaption(const std::string& name) { return SetCaption(name.c_str()); }
+        // ウィンドウキャプションの文字を設定する
+        // @ Ret  : キャプションの設定ができたか
+        // @ Arg1 : 設定するウィンドウのキャプション
+        bool SetCaption(const char* name);
+
+
     protected:
         std::string m_name;               // ウィンドウの名前 
         std::optional<HWND> m_hwnd;       // ウィンドウハンドル

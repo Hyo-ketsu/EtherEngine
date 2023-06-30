@@ -62,6 +62,7 @@
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\RAIIClass.cpp" />
     <ClCompile Include="..\..\Source\Base\Random.cpp" />
     <ClCompile Include="..\..\Source\Base\RandomManage.cpp" />
     <ClCompile Include="..\..\Source\Base\Scene.cpp" />
@@ -82,7 +83,7 @@
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
-    <ClCompile Include="..\..\Source\Base\WindowName.cpp" />
+    <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Atomic.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
+    <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
     <ClInclude Include="..\..\Source\Base\RandomManage.h" />
     <ClInclude Include="..\..\Source\Base\Scene.h" />
@@ -124,7 +126,7 @@
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />
-    <ClInclude Include="..\..\Source\Base\WindowName.h" />
+    <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

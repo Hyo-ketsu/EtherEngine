@@ -5,13 +5,11 @@
 //----- ComponentBase定義
 namespace EtherEngine {
     // コンストラクタ
-    ComponentBase::ComponentBase(void* gameObject)
-        : m_isStart(false) 
+    ComponentBase::ComponentBase(void* gameObject, const std::string& name)
+        : BaseObject(name)
+        , m_isStart(false) 
         , m_gameObject(static_cast<GameObject*>(gameObject)) {
         
-    }
-    // デストラクタ
-    ComponentBase::~ComponentBase(void) {
     }
 
 

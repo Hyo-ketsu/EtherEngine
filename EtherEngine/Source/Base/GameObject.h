@@ -1,19 +1,20 @@
 #ifndef I_GAMEOBJECT_H
 #define I_GAMEOBJECT_H
-#include <Base/Transform.h>
+#include <Base/BaseObject.h>
 #include <Base/ComponentBase.h>
+#include <Base/ComponentHelper.h>
+#include <Base/ConceptUtility.h>
 #include <Base/DrawComponent.h> 
 #include <Base/HandleHelper.h>
 #include <Base/Handle.h>
+#include <Base/Transform.h>
 #include <Base/Scene.h>
-#include <Base/ConceptUtility.h>
-#include <Base/ComponentHelper.h>
 
 
 //----- GameObject宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
-    class GameObject{
+    class GameObject : public BaseObject {
     public:
         // 更新処理を行う
         void Update(void);
@@ -33,7 +34,8 @@ namespace EtherEngine {
     protected:
         // コンストラクタ
         // @ Arg1 : 座標
-        GameObject(const Transform& transform);
+        // @ Arg2 : オブジェクト名(Default : GameObject)
+        GameObject(const Transform& transform, const std::string& name = "GameObject");
 
 
         // 通常コンポーネントとして追加する
