@@ -18,28 +18,28 @@
     <ClInclude Include="..\..\Source\ImGUI\stdafx\ImGUIStdafx.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\Platform\imgui_impl_win32.h">
+    <ClInclude Include="..\..\Source\ImGUI\imstb_rectpack.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\Platform\imgui_impl_dx11.h">
+    <ClInclude Include="..\..\Source\ImGUI\imstb_textedit.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imconfig.h">
+    <ClInclude Include="..\..\Source\ImGUI\imstb_truetype.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imgui.h">
+    <ClInclude Include="..\..\Source\ImGUI\imconfig.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imgui_internal.h">
+    <ClInclude Include="..\..\Source\ImGUI\imgui.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imstb_rectpack.h">
+    <ClInclude Include="..\..\Source\ImGUI\imgui_internal.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imstb_textedit.h">
+    <ClInclude Include="..\..\Source\ImGUI\Platform\imgui_impl_win32.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Library\IMGUI\imstb_truetype.h">
+    <ClInclude Include="..\..\Source\ImGUI\Platform\imgui_impl_dx11.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,22 +47,22 @@
     <ClCompile Include="..\..\Source\ImGUI\stdafx\ImGUIStdafx.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\Platform\imgui_impl_win32.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\imgui_tables.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\Platform\imgui_impl_dx11.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\imgui_widgets.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\imgui.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\imgui.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\imgui_draw.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\imgui_draw.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\imgui_tables.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\Platform\imgui_impl_win32.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Library\IMGUI\imgui_widgets.cpp">
+    <ClCompile Include="..\..\Source\ImGUI\Platform\imgui_impl_dx11.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
