@@ -20,7 +20,7 @@
 namespace EtherEngine {
     // コンストラクタ
     GameApplication::GameApplication(void)
-        : BaseMainWindow(WindowDefine::Name::GAME_APPLICATION_NAME) {
+        : BaseMainWindow(WindowDefine::Name::GAME_APPLICATION) {
     }
     // デストラクタ
     GameApplication::~GameApplication(void) {
@@ -60,7 +60,7 @@ namespace EtherEngine {
         m_hwnd = CreateWindowEx(
             WS_EX_OVERLAPPEDWINDOW,
             wcex.lpszClassName,
-            WindowDefine::Name::GAME_APPLICATION_NAME.c_str(),
+            WindowDefine::Name::GAME_APPLICATION.c_str(),
             WS_CAPTION | WS_SYSMENU,
             CW_USEDEFAULT, CW_USEDEFAULT,
             m_windowSize.x(), m_windowSize.y(),

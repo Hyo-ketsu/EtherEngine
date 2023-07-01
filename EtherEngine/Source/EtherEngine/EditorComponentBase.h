@@ -1,10 +1,11 @@
 #ifndef I_EDITORCOMPONENTBASE_H
 #define I_EDITORCOMPONENTBASE_H
+#include <Base/BaseObject.h>
 
 
 //----- EditorComponent宣言
 namespace EtherEngine {
-    class EditorComponentBase {
+    class EditorComponentBase : public BaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : エディターオブジェクト
@@ -23,11 +24,14 @@ namespace EtherEngine {
         void UpdateFunction(void);
         // 描画処理
         void DrawFunction(void);
+        // 削除時処理
+        void DeleteFunction(void);
 
     protected:
         virtual void Start(void) {}
         virtual void Update(void) {}
         virtual void Draw(void) {}
+        virtual void Delete(void) {}
 
     private:
         void* m_eidtorObject;   // 保持してる

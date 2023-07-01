@@ -18,6 +18,7 @@ namespace EtherEngine {
         //----- メッセージ処理
         switch (message) {
         case WM_SIZE:
+            // @ MEMO : リサイズされた際にレンダーターゲットリサイズが必要かと
             break;
 
         case WM_CLOSE:  // ウィンドウを削除しようとしている

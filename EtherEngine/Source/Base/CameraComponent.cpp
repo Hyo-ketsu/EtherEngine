@@ -7,11 +7,11 @@ namespace EtherEngine {
     CameraComponent::CameraComponent(GameObject* gameObject, const Eigen::Vector3f& look)  
         : ComponentBase(gameObject)
         , CameraBase({},look) {
-        AccessCameraData().SetPos(ComponentHelper::GetGameObject(this)->AccessTransform().AccessPostion());
+        AccessCameraData().SetPos(ComponentHelper::GetParentObject(this)->AccessTransform().AccessPostion());
     }
 
     // XVˆ—
     void CameraComponent::Update(void) {
-        AccessCameraData().SetPos(ComponentHelper::GetGameObject(*this)->AccessTransform().AccessPostion());
+        AccessCameraData().SetPos(ComponentHelper::GetParentObject(*this)->AccessTransform().AccessPostion());
     }
 }

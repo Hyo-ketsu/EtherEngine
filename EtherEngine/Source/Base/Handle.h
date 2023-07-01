@@ -85,7 +85,7 @@ namespace EtherEngine {
 
 
         // HandleNumber取得
-        HandleNumberType GetHandleNumberType(void) const;
+        HandleNumberType GetHandleNumber(void) const;
         // HandleNumber取得
         operator HandleNumberType(void) const;
 
@@ -277,24 +277,24 @@ namespace EtherEngine {
     // 同じものを指しているハンドルか
     template<HandleSystemConcept Type>
     bool BaseHandle<Type>::operator ==(const BaseHandle<Type>& comparison) {
-        return comparison == m_handle;
+        return comparison.GetHandleNumber() == m_handle;
     }
     // 同じものを指していないハンドルか
     template<HandleSystemConcept Type>
     bool BaseHandle<Type>::operator !=(const BaseHandle<Type>& comparison) {
-        return comparison != m_handle;
+        return comparison.GetHandleNumber() != m_handle;
     }
 
 
     // HandleNumber取得
     template<HandleSystemConcept Type>
-    HandleNumberType BaseHandle<Type>::GetHandleNumberType(void) const {
+    HandleNumberType BaseHandle<Type>::GetHandleNumber(void) const {
         return m_handle;
     }
     // HandleNumber取得
     template<HandleSystemConcept Type>
     BaseHandle<Type>::operator HandleNumberType(void) const {
-        return GetHandleNumberType();
+        return GetHandleNumber();
     }
 
 

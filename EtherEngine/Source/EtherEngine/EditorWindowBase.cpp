@@ -1,4 +1,5 @@
 #include <EtherEngine/EditorWindowBase.h>
+#include <EtherEngine/EditorObjectStorage.h>
 
 
 namespace EtherEngine {
@@ -11,8 +12,12 @@ namespace EtherEngine {
     }
 
     void EditorWindowBase::Draw(void) {
+        //----- ウィンドウ描画
         ImGui::Begin(m_name.c_str(), &m_isOpen, m_flags);
         DrawWindow();
         ImGui::End();
+
+        //----- 消されたのであれば削除する
+        if (m_isOpen) EditorObjectStorage::Get()->DeleteEditorObject(EditorComponentHelper::GetEditorObject(this)->GetHandle());
     }
 }

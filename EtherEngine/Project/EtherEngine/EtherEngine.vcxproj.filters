@@ -147,7 +147,7 @@
       <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

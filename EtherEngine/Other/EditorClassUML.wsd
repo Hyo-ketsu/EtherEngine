@@ -66,9 +66,6 @@
         }
         note top: シーンの情報を表しているクラス
 
-        class Scene{
-        }
-        note top: シーン自体を表現しているクラス
     }
 
 '関連
@@ -79,8 +76,8 @@ GameObjectUpdater --* GameObject
 GameObject --* SceneData
 GameObject --* ComponentBase 
 note top: Handleとして保持
-SceneLoader --* Scene
-Scene --* SceneData
+'SceneLoader --* Scene
+'Scene --* SceneData
 GameApplication --* DirectX
 IMGUI --* EditorApplication
 '汎化

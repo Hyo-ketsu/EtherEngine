@@ -12,7 +12,7 @@ namespace EtherEngine {
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); 
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         ImGui::SetCurrentContext(m_imGuiContext);
         ImGui_ImplDX11_Init(device, context);
         ImGui_ImplWin32_Init(hWnd);

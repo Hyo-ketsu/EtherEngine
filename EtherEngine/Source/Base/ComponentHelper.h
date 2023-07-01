@@ -15,11 +15,11 @@ namespace EtherEngine {
         // コンポーネントの所属ゲームオブジェクト取得
         // @ Ret  : 所属ゲームオブジェクト
         // @ Arg1 : 所属ゲームオブジェクトを取得したいコンポーネント
-        static GameObject* const GetGameObject(const ComponentBase& component);
+        static GameObject* const GetParentObject(const ComponentBase& component);
         // コンポーネントの所属ゲームオブジェクト取得
         // @ Ret  : 所属ゲームオブジェクト
         // @ Arg1 : 所属ゲームオブジェクトを取得したいコンポーネント
-        static GameObject* const GetGameObject(const ComponentBase* const component);
+        static GameObject* const GetParentObject(const ComponentBase* const component);
     };
 }
 

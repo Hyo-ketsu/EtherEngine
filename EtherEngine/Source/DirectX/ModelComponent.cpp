@@ -17,7 +17,7 @@ namespace EtherEngine {
     // 描画処理
     void ModelComponent::Draw(void) {
         //----- 親ゲームオブジェクト保持
-        auto gameObject = ComponentHelper::GetGameObject(this);
+        auto gameObject = ComponentHelper::GetParentObject(this);
 
         //----- ワールド行列作成
         DirectX::XMMATRIX world;

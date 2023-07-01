@@ -4,12 +4,23 @@
 
 namespace EtherEngine {
     namespace WindowDefine {
+        //----- WindowsのWindow用名称
         namespace Name {
-            const std::string GAME_APPLICATION_NAME = "EtherEgnine Game"; // ゲーム自体のデフォルト名
-            const std::string EDITOR_NAME = "EtherEgnine Engine";         // エンジンの表示名
+            const std::string GAME_APPLICATION = "EtherEgnine Game";        // ゲーム自体のデフォルト名
+            const std::string EDITOR_APPLICATION = "EtherEgnine Engine";    // エンジンの表示名
         }
+
+        //----- その他
         namespace Define {
             const uint MAX_CAPTION_TEXT_SIZE = 255; // キャプションの最大文字長
+        }
+    }
+
+    namespace ImGuiDefine {
+        //----- ImGui等用名称
+        namespace Name {
+            const std::string WINDOW_MENU = "Mein Menu";
+            const std::string WINDOW_SCENE_VIEW = "Scene View";
         }
     }
 }

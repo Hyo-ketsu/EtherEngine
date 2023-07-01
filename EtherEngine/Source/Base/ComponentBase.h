@@ -23,15 +23,18 @@ namespace EtherEngine {
         // 所属ゲームオブジェクトの取得
         // @ MEMO : 循環参照の関係上面倒なことになっています。ヘルパーをご使用ください。
         // @ Arg1 : ゲームオブジェクトを格納する
-        void GetGameObject(void** gameObject) const;
+        void GetParentObject(void** gameObject) const;
 
 
         // 更新処理を行う
         void UpdateFuntion(void);
+        // 削除時処理を行う
+        void DeleteFuntion(void);
 
     protected:
         virtual void Start(void) {}
         virtual void Update(void) {}
+        virtual void Delete(void) {}
 
     private:
         class GameObject* m_gameObject;   // 所属ゲームオブジェクト

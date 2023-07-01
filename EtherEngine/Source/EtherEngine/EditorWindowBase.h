@@ -20,6 +20,8 @@ namespace EtherEngine {
         const std::string& GetName(void) const { return m_name; }
         // 表示名セッター
         void SetName(const std::string& in) { m_name = in; }
+        // 表示名アクセサー
+        std::string& AccessName(void) { return m_name; }
 
         // 表示するかゲッター
         bool GetIsOpen(void) const { return m_isOpen; }

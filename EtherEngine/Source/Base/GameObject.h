@@ -11,7 +11,7 @@
 #include <Base/Scene.h>
 
 
-//----- GameObject宣言
+//----- GameObject 宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
     class GameObject : public BaseObject {
@@ -20,16 +20,45 @@ namespace EtherEngine {
         void Update(void);
         // 描画処理を行う
         void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
+        // 削除時処理を行う
+        void Delete(void);
+
+
+        // 座標ゲッター
+        const Transform& GetTransform(void) const { return m_transform; }
+        // 座標セッター
+        void SetTransform(const Transform& in) { m_transform = in; }
+        // 座標アクセサー
+        Transform& AccessTransform(void) { return m_transform; }
+
+
+        // ハンドルゲッター
+        const BaseHandle<GameObject>& GetHandle(void) const { return m_handle; }
 
 
         // コンポーネント追加
-        // @ Temp : 追加する通常コンポーネント
-        // @ Args : コンストラクタに渡す引数
+        // @ Temp1: 追加するコンポーネントの型
+        // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
+        // @ Args : 追加コンポーネントのコンストラクタに使用する引数
         template <Concept::BaseOfConcept<ComponentBase> ComponentType, typename ...ArgsType>
         std::weak_ptr<ComponentType> AddConponent(ArgsType&& ...args);
-
-        // 座標取得
-        Transform& AccessTransform(void) { return m_transform; }
+        // コンポーネント削除
+        // @ Temp : 削除するコンポーネントの型
+        // @ Ret  : 削除したか
+        template <Concept::BaseOfConcept<ComponentBase> ComponentType>
+        bool DeleteComponent(void);
+        // コンポーネントを取得する
+        // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+        // @ Ret  : 取得したコンポーネント
+        template <typename ComponentType>
+            requires Concept::BaseOfConcept<ComponentType, ComponentBase> && Concept::NotSameConcept<ComponentBase, ComponentType>
+        std::weak_ptr<ComponentBase> GetComponent(void);
+        // コンポーネントを複数取得する
+        // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+        // @ Ret  : 取得したコンポーネント（複数）
+        template <typename ComponentType>
+            requires Concept::BaseOfConcept<ComponentType, ComponentBase> && Concept::NotSameConcept<ComponentBase, ComponentType>
+        std::vector<std::weak_ptr<ComponentBase>> GetComponents(void);
 
     protected:
         // コンストラクタ
@@ -37,20 +66,11 @@ namespace EtherEngine {
         // @ Arg2 : オブジェクト名(Default : GameObject)
         GameObject(const Transform& transform, const std::string& name = "GameObject");
 
-
-        // 通常コンポーネントとして追加する
-        // @ Temp : コンポーネントの種類
-        // @ Arg1 : 追加するコンポーネント
-        template <Concept::NotBaseOfConcept<DrawComponent> ComponentType>
-        void AddConponent(std::shared_ptr<ComponentType>& component);
-        // 描画コンポーネントとして追加する
-        // @ Temp : コンポーネントの種類
-        // @ Arg1 : 追加するコンポーネント
-        template <Concept::BaseOfConcept<DrawComponent> ComponentType>
-        void AddConponent(std::shared_ptr<ComponentType>& component);
-
-
     private:
+        // 削除されたコンポーネントを削除する
+        void DeleteComponentsDelete(void);
+
+
         friend class GameObjectStorage;
 
         Transform m_transform;  // 座標
@@ -63,10 +83,12 @@ namespace EtherEngine {
 
 
 
-//----- GameObject定義
+//----- GameObject 定義
 namespace EtherEngine {
     // コンポーネント追加
-    // @ Temp : 追加する通常コンポーネント
+    // @ Temp1: 追加するコンポーネントの型
+    // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
+    // @ Args : 追加コンポーネントのコンストラクタに使用する引数
     template <Concept::BaseOfConcept<ComponentBase> ComponentType, typename ...ArgsType>
     std::weak_ptr<ComponentType> GameObject::AddConponent(ArgsType&& ...args) {
         //----- 警告表示
@@ -76,26 +98,97 @@ namespace EtherEngine {
         auto ptr = std::make_shared<ComponentType>(this, args...);
 
         //----- 追加
-        AddConponent<ComponentType>(ptr);
+        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+            m_drawComponents.push_back(ptr);
+        }
+        else {
+            m_components.push_back(ptr);
+        }
 
         //----- 返却
         return std::weak_ptr<ComponentType>(ptr);
     }
-
-
-    // 通常コンポーネントとして追加する
-    // @ Temp : コンポーネントの種類
-    // @ Arg1 : 追加するコンポーネント
-    template <Concept::NotBaseOfConcept<DrawComponent> ComponentType>
-    void GameObject::AddConponent(std::shared_ptr<ComponentType>& component) {
-        m_components.push_back(component);
+    // コンポーネント削除
+    // @ Temp : 削除するコンポーネントの型
+    // @ Ret  : 削除したか
+    template <Concept::BaseOfConcept<ComponentBase> ComponentType>
+    bool GameObject::DeleteComponent(void) {
+        //------ 捜索
+        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+            for (auto& component : m_drawComponents) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 削除
+                    component->DeleteFuntion();
+                    component->SetDelete(true);
+                }
+            }
+        }
+        else {
+            for (auto& component : m_components) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 削除
+                    component->DeleteFuntion();
+                    component->SetDelete(true);
+                }
+            }
+        }
     }
-    // 描画コンポーネントとして追加する
-    // @ Temp : コンポーネントの種類
-    // @ Arg1 : 追加するコンポーネント
-    template <Concept::BaseOfConcept<DrawComponent> ComponentType>
-    void GameObject::AddConponent(std::shared_ptr<ComponentType>& component) {
-        m_drawComponents.push_back(component);
+    // コンポーネントを取得する
+    // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+    // @ Ret  : 取得したコンポーネント
+    template <typename ComponentType>
+        requires Concept::BaseOfConcept<ComponentType, ComponentBase>&& Concept::NotSameConcept<ComponentBase, ComponentType>
+    std::weak_ptr<ComponentBase> GameObject::GetComponent(void) {
+        //----- 取得
+        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+            for (auto& component : m_drawComponents) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 返却
+                    return std::weak_ptr<ComponentType>(component);
+                }
+            }
+        }
+        else {
+            for (auto& component : m_components) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 返却
+                    return std::weak_ptr<ComponentType>(component);
+                }
+            }
+        }
+
+        //----- 無効値返却
+        return std::weak_ptr<ComponentType>();
+    }
+    // コンポーネントを複数取得する
+    // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+    // @ Ret  : 取得したコンポーネント（複数）
+    template <typename ComponentType>
+        requires Concept::BaseOfConcept<ComponentType, ComponentBase>&& Concept::NotSameConcept<ComponentBase, ComponentType>
+    std::vector<std::weak_ptr<ComponentBase>> GameObject::GetComponents(void) {
+        //----- 返却用変数宣言
+        std::vector<std::weak_ptr<ComponentBase>> ret;
+
+        //----- 取得
+        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+            for (auto& component : m_drawComponents) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 返却用変数に追加
+                    ret.push_back(std::weak_ptr<ComponentType>(component));
+                }
+            }
+        }
+        else {
+            for (auto& component : m_components) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 返却用変数に追加
+                    ret.push_back(std::weak_ptr<ComponentType>(component));
+                }
+            }
+        }
+
+        //----- 返却
+        return ret;
     }
 }
 

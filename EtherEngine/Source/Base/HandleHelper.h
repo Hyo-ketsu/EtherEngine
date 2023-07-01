@@ -28,7 +28,7 @@ namespace EtherEngine {
     // @ Arg1 : 参照カウントハンドル
     template <HandleSystemConcept Type>
     RefHandle<Type> HandleHelper::GetRefHandle(const BaseHandle<Type>& handle) {
-        return RefHandle<Type>(handle.GetHandleNumberType());
+        return RefHandle<Type>(handle.GetHandleNumber());
     }
 }
 
