@@ -175,7 +175,7 @@ namespace EtherEngine {
         //----- メッセージループ
         MSG message;
         Timer fpsTimer;
-        milliseconds frameSecond = 0ms;
+        nanoseconds frameSecond = 0ns;
         while (true) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
@@ -191,18 +191,14 @@ namespace EtherEngine {
                 }
             }
             else {   //----- ゲーム処理
-                //----- 定期更新処理
-                //frameSecond -= fpsTimer.GetDeltaTime();
+                frameSecond += fpsTimer.GetDeltaTime();
 
-                ////----- FPS制御
-                //if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
-                //frameSecond = 0ms;
+                //----- FPS制御
+                if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
+                frameSecond = 0ns;
 
                 //----- 入力更新
                 InputSystem::Update();
-
-                //----- エディター更新処理
-                EditorUpdater::Get()->Update();
 
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();

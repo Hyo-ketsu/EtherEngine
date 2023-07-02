@@ -10,13 +10,13 @@ namespace EtherEngine {
     public:
         // 現在時間を取得する
         // @ Ret  :  現在時刻
-        std::chrono::milliseconds GetTime(void);
+        std::chrono::nanoseconds GetTime(void);
 
 
         // 前回からの経過時間を取得する
         // @ Memo : 初使用の際は0を返却します
         // @ Ret  : 前回DeltaTime使用時からの経過時間
-        std::chrono::milliseconds GetDeltaTime(void);
+        std::chrono::nanoseconds GetDeltaTime(void);
 
     private:
         std::optional<std::chrono::steady_clock::time_point> m_deltaTime;   // 前回DeltaTime使用時時刻

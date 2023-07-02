@@ -1,5 +1,6 @@
 #ifndef I_EDITORDEBUG_H
 #define I_EDITORDEBUG_H
+#include <Base/Timer.h>
 #include <EtherEngine/EditorWindowBase.h>
 
 
@@ -10,8 +11,12 @@ namespace EtherEngine {
     public:
         using EditorWindowBase::EditorWindowBase;
 
-        
+        void Start(void) override;
+        void Update(void) override;
         void Draw(void) override;
+
+    private:
+        Timer m_timer;  // 保持しているタイマー
     };
 }
 

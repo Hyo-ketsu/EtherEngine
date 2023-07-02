@@ -3,22 +3,22 @@
 
 namespace EtherEngine {
     // 現在時間を取得する
-    std::chrono::milliseconds Timer::GetTime(void) {
+    std::chrono::nanoseconds Timer::GetTime(void) {
         using namespace std::chrono;
-        return duration_cast<milliseconds>(GlobalTimer::Get()->GetGlobalTime());
+        return duration_cast<nanoseconds>(GlobalTimer::Get()->GetGlobalTime());
     }
 
 
     // 前回からの経過時間を取得する
-    std::chrono::milliseconds Timer::GetDeltaTime(void) {
+    std::chrono::nanoseconds Timer::GetDeltaTime(void) {
         //----- usingと変数宣言
         using namespace std::chrono;
-        std::chrono::milliseconds ret{ 0ms };
+        std::chrono::nanoseconds ret{};
 
         //----- 減算処理
         if (m_deltaTime.has_value()) {
             //----- 有効値。処理する
-            ret = duration_cast<milliseconds>(m_deltaTime.value() - std::chrono::steady_clock::now());
+            ret = duration_cast<nanoseconds>(std::chrono::steady_clock::now() - m_deltaTime.value());
         }
         else {
             m_deltaTime.emplace(std::chrono::steady_clock::now());
