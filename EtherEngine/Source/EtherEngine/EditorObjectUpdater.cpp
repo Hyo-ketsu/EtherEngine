@@ -140,7 +140,7 @@ namespace EtherEngine {
                 }
                 else {
                     //----- åüçı
-                    if (Utilty::IsDuplicationName(it.GetNoAtomicData().GetName(),name,count, Utilty::DuplicationNameObjectName::PARENTHESES_NUMBER)) count++;
+                    if (Utilty::IsDuplicationName(it.GetNoAtomicData().GetName(), name, count, Utilty::DuplicationNameObjectName::PARENTHESES_NUMBER)) count++;
                 }
             }
 
