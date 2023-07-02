@@ -13,6 +13,8 @@ namespace EtherEngine {
         using EditorWindowBase::EditorWindowBase;
 
 
+        // ‰Šú‰»ˆ—
+        void Start(void) override;
         // XVˆ—
         void Update(void) override;
         // •`‰æˆ—

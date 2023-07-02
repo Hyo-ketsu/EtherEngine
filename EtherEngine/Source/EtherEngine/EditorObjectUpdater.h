@@ -19,6 +19,8 @@ namespace EtherEngine {
         EditorUpdater(void) {}
 
         friend class Singleton<EditorUpdater>;
+
+        std::vector<BaseHandle<EditorObject>> m_windows; // 現在表示しているウィンドウ一覧
     };
 }
 

@@ -50,6 +50,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp" />
@@ -67,6 +68,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">true</ExcludedFromBuild>
@@ -83,6 +85,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentHelper.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorDefine.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h" />
@@ -91,6 +94,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h" />

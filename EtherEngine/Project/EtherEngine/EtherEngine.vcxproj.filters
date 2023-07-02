@@ -39,9 +39,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
       <Filter>ソース ファイル\IMGUIRapper</Filter>
     </ClCompile>
@@ -91,6 +88,15 @@
       <Filter>ソース ファイル\Test</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp">
+      <Filter>ソース ファイル\EngineObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp">
+      <Filter>ソース ファイル\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
+      <Filter>ソース ファイル\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
       <Filter>ソース ファイル\EngineObject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,6 +153,12 @@
       <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h">
+      <Filter>ヘッダー ファイル\EngineObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h">
+      <Filter>ヘッダー ファイル\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
   </ItemGroup>

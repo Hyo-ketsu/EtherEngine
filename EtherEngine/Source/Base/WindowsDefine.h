@@ -21,6 +21,8 @@ namespace EtherEngine {
         namespace Name {
             const std::string WINDOW_MENU = "Mein Menu";
             const std::string WINDOW_SCENE_VIEW = "Scene View";
+            const std::string WINDOW_OUTLINER = "Out Liner";
+            const std::string WINDOW_DEBUG = "Debug Window";
         }
     }
 }

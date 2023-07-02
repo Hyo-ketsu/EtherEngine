@@ -14,6 +14,7 @@
 #include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
 #include <EtherEngine/EditorOutliner.h>
+#include <EtherEngine/Test/EditorDebugWindow.h>
 #endif // _DEBUG
 
 
@@ -150,6 +151,10 @@ namespace EtherEngine {
         m_initUninitPerformer.Init();
 
 #ifdef _DEBUG
+        //----- テストウィンドウ
+        auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
+        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
+
         auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();
         cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;
         auto camera = cameraGameObejct.GetAtomicData().AddComponent<EditorCamera>();
@@ -165,10 +170,6 @@ namespace EtherEngine {
         testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
         testGameObject.GetAtomicData().AccessName() = "Usi";
         m_dxRender.GetAtomicData().SetCameraID(*camera.lock()->GetID().lock());
-
-        //----- エディター用オブジェクト追加
-        auto outlinerGameObject = EditorObjectStorage::Get()->CreateEditorObject();
-        outlinerGameObject.GetAtomicData().AddComponent<EditorOutliner>(std::string("OutLiner"));
 #endif // _DEBUG
 
         //----- メッセージループ

@@ -9,7 +9,7 @@
 
 //----- EditorObjectéŒ¾
 namespace EtherEngine {
-    class EditorObject : BaseObject {
+    class EditorObject : public BaseObject {
     public:
         // XVˆ—‚ğs‚¤
         void Update(void);

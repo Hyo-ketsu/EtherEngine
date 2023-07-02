@@ -31,11 +31,11 @@ namespace EtherEngine {
         bool& AccessIsOpen(void) { return m_isOpen; }
 
         // 表示フラグゲッター
-        ImGuiBackendFlags GetFlags(void) const { return m_flags; }
+        ImGuiWindowFlags GetFlags(void) const { return m_flags; }
         // 表示フラグセッター
-        void SetFlags(const ImGuiBackendFlags& in) { m_flags = in; }
+        void SetFlags(const ImGuiWindowFlags& in) { m_flags = in; }
         // 表示フラグアクセサー
-        ImGuiBackendFlags& AccessFlags(void) { return m_flags; }
+        ImGuiWindowFlags& AccessFlags(void) { return m_flags; }
 
 
         // 描画処理
@@ -46,7 +46,7 @@ namespace EtherEngine {
     private:
         std::string m_name; // 表示名
         bool m_isOpen;      // 表示するか
-        ImGuiBackendFlags m_flags;  // 表示フラグ
+        ImGuiWindowFlags m_flags;  // 表示フラグ
     };
 }
 

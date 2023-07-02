@@ -18,6 +18,6 @@ namespace EtherEngine {
         ImGui::End();
 
         //----- Á‚³‚ê‚½‚Ì‚Å‚ ‚ê‚Îíœ‚·‚é
-        if (m_isOpen) EditorObjectStorage::Get()->DeleteEditorObject(EditorComponentHelper::GetEditorObject(this)->GetHandle());
+        if (m_isOpen == false) EditorObjectStorage::Get()->DeleteEditorObject(EditorComponentHelper::GetEditorObject(this)->GetHandle());
     }
 }
