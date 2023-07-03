@@ -99,6 +99,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
       <Filter>ソース ファイル\EngineObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp">
+      <Filter>ソース ファイル\EngineObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -159,6 +162,9 @@
       <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h">
+      <Filter>ヘッダー ファイル\EngineObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
   </ItemGroup>

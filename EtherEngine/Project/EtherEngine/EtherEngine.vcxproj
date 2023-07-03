@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorComponentHelper.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorDefine.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">true</ExcludedFromBuild>
@@ -85,6 +86,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentHelper.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorDefine.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
