@@ -7,11 +7,11 @@
 namespace EtherEngine {
     // 画面出力ログの種類
     enum class LogWindowMessageType {
-        MESSAGE_SHOW = 0,   // 通常のメッセージ
-        HELP_SHOW,          // ヘルプ表示
-        WARNING_SHOW,       // 警告表示
-        ERROR_SHOW,         // エラー表示
-        NONE_SHOW,          // 特に表示しない
+        MessageShow = 0,    // 通常のメッセージ
+        HelpShow,           // ヘルプ表示
+        WarningShow,        // 警告表示
+        ErrorShow,          // エラー表示
+        NoneShow,           // 特に表示しない
     };
 
 

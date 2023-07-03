@@ -7,9 +7,9 @@ namespace EtherEngine {
     namespace Utilty {
         // 重複オブジェクト名命名方法
         enum class DuplicationNameObjectName {
-            PARENTHESES_NUMBER = 0, // Hoge (1)
-            NUMBER,                 // Hoge 1
-            UNDERSCORE_NUMBER       // Hoge_1
+            ParenthesesNumber = 0,  // Hoge (1)
+            Number,                 // Hoge 1
+            UnderscoreNumber        // Hoge_1
         };
 
 

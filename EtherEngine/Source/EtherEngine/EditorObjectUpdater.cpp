@@ -140,7 +140,7 @@ namespace EtherEngine {
                 }
                 else {
                     //----- åüçı
-                    if (Utilty::IsDuplicationName(it.GetNoAtomicData().GetName(), name, count, Utilty::DuplicationNameObjectName::PARENTHESES_NUMBER)) count++;
+                    if (Utilty::IsDuplicationName(it.GetNoAtomicData().GetName(), name, count, Utilty::DuplicationNameObjectName::ParenthesesNumber)) count++;
                 }
             }
 
@@ -150,8 +150,8 @@ namespace EtherEngine {
                 object.GetAtomicData().AccessName() = name;
             }
             else {
-                object.GetAtomicData().AddComponent<WindowType>(Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::PARENTHESES_NUMBER));
-                object.GetAtomicData().AccessName() = Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::PARENTHESES_NUMBER);
+                object.GetAtomicData().AddComponent<WindowType>(Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::ParenthesesNumber));
+                object.GetAtomicData().AccessName() = Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::ParenthesesNumber);
             }
 
             //----- í«â¡

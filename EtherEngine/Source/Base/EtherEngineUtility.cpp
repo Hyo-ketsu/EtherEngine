@@ -6,13 +6,13 @@ namespace EtherEngine {
         // 重複したオブジェクトに名前を付ける
         std::string DuplicationName(const std::string& name, const uint number, const DuplicationNameObjectName& type) {
             switch (type) {
-            case DuplicationNameObjectName::PARENTHESES_NUMBER:
+            case DuplicationNameObjectName::ParenthesesNumber:
                 return name + "(" + std::to_string(number) + ")";
                 break;
-            case DuplicationNameObjectName::NUMBER:
+            case DuplicationNameObjectName::Number:
                 return name + " " + std::to_string(number);
                 break;
-            case DuplicationNameObjectName::UNDERSCORE_NUMBER:
+            case DuplicationNameObjectName::UnderscoreNumber:
                 return name + "_" + std::to_string(number);
                 break;
             }
