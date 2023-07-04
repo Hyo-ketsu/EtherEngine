@@ -169,7 +169,7 @@ namespace EtherEngine {
         auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
         testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
         testGameObject.GetAtomicData().AccessName() = "Usi";
-        m_dxRender.GetAtomicData().SetCameraID(*camera.lock()->GetID().lock());
+        m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID());
 #endif // _DEBUG
 
         //----- メッセージループ
