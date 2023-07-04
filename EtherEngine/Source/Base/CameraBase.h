@@ -1,15 +1,10 @@
 #ifndef I_CAMERABASE_H
 #define I_CAMERABASE_H
 #include <Base/IDClass.h>
+#include <Base/StorageSystem.h>
 
 
-namespace EtherEngine{
-    // カメラのID用別名
-    using CameraID = std::weak_ptr<IDClass>;
-}
-
-
-//----- CameraData宣言
+//----- CameraData 宣言
 namespace EtherEngine {
     // 視野角等のカメラ情報を保持しているクラス
     class CameraData {
@@ -71,7 +66,7 @@ namespace EtherEngine {
 }
 
 
-//----- CameraBase宣言
+//----- CameraBase 宣言
 namespace EtherEngine {
     // カメラを表現するクラス
     class CameraBase {
@@ -92,7 +87,7 @@ namespace EtherEngine {
         CameraData& AccessCameraData(void) { return m_cameraData; }
 
         // IDゲッター
-        const CameraID& GetID(void) const { return m_id; }
+        const IDClass& GetID(void) { return m_id; }
 
 
         // ビュー行列を取得する
@@ -106,7 +101,7 @@ namespace EtherEngine {
 
     private:
         CameraData m_cameraData;        // カメラ情報
-        CameraID m_id;    // このobjectのID
+        StorageID<CameraBase> m_id;    // このobjectのID
     };
 }
 
