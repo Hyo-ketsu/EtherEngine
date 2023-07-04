@@ -3,6 +3,7 @@
 #include <Base/BaseObject.h>
 #include <Base/ComponentBase.h>
 #include <Base/ComponentHelper.h>
+#include <Base/CollisionComponent.h>
 #include <Base/ConceptUtility.h>
 #include <Base/DrawComponent.h> 
 #include <Base/HandleHelper.h>
@@ -76,6 +77,7 @@ namespace EtherEngine {
         Transform m_transform;  // 座標
         BaseHandle<GameObject> m_handle;    // 自身のハンドル
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
+        std::vector<std::shared_ptr<CollisionComponent>> m_collision; // 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
     };
 }
