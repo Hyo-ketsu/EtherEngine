@@ -89,12 +89,11 @@ namespace EtherEngine {
 
 
 
-//----- HandleSystem実装
+//----- HandleSystem 実装
 namespace EtherEngine {
     // デストラクタ
     template <HandleSystemConcept Type>
     HandleSystem<Type>::~HandleSystem(void) {
-
     }
 
 

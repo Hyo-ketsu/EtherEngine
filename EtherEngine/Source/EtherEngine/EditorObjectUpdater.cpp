@@ -15,7 +15,7 @@ namespace EtherEngine {
     // @ Arg1 : オブジェクト情報
     // @ Arg2 : 表示名
     template <Concept::BaseOfConcept<EditorWindowBase> WindowType>
-    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>& windows, const std::string& name);
+    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>* windows, const std::string& name);
 }
 
 
@@ -74,7 +74,7 @@ namespace EtherEngine {
                     }
 
                     //----- 項目表示
-                    ShowWindowMenu<EditorOutliner>(m_windows, Name::WINDOW_OUTLINER);
+                    ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
 
                     ImGui::EndMenu();
                 }
@@ -125,15 +125,29 @@ namespace EtherEngine {
 namespace EtherEngine {
     // メインメニューを表示する
     template <Concept::BaseOfConcept<EditorWindowBase> WindowType>
-    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>& windows, const std::string& name) {
+    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>* windows, const std::string& name) {
+        //----- 一応nullチェック
+        if (windows == nullptr) throw std::exception("Error! Null");
+
         //----- 表示
         if (ImGui::MenuItem(name.c_str(), NULL)) {
             //----- 作成
             auto object = EditorObjectStorage::Get()->CreateEditorObject();
 
+            //----- 削除済みWindow削除
+            //for (auto it = windows->begin(); it != windows->end();) {
+            //    if (it->GetEnable() == false) {
+            //        windows->erase(it);
+            //    }
+            //    else {
+            //        it++;
+            //    }
+            //}
+
             //----- 同名捜索
             uint count = 0;  // 同名オブジェクト数
-            for (auto&& it : windows) {
+            for (auto&& it : *windows) {
+                if (it.GetEnable() == false) continue;
                 if (count == 0) {   // 重複した名前が出た際に Hoge(1) などと照合するため
                     //----- 通常の検索
                     if (it.GetNoAtomicData().GetName() == name) count++; 
@@ -155,7 +169,7 @@ namespace EtherEngine {
             }
 
             //----- 追加
-            windows.push_back(object);
+            windows->push_back(object);
         }
     }
 }
