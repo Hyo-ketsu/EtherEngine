@@ -150,9 +150,9 @@ namespace EtherEngine {
 	// •`‰æˆ—
 	void DirectXRender::Draw() {
 		//----- ƒJƒƒ‰‚ª‚ ‚ê‚Î•`‰æ‚·‚é
-		if (CameraStorage::Get()->IsIDToCamera(m_cameraID)) {
+		if (CameraStorage::Get()->IsIDToData(m_cameraID)) {
 			//----- ƒJƒƒ‰Žæ“¾
-			auto camera = CameraStorage::Get()->GetCamera(m_cameraID);
+			auto camera = CameraStorage::Get()->GetData(m_cameraID);
 
 			//----- •`‰æ
 			GameObjectUpdater::Get()->Draw(camera->GetView(), camera->GetProjection());
