@@ -3,10 +3,10 @@
 #include <Base/Singleton.h>
 #include <Base/Scene.h>
 
-// @ MEMO : 現段階では「動く」目標。DLL名渡して、というのも考えられるがひとまず描画させる
+// @ MEMO : 現段階では「動く」目標。DLL名渡して、というのも考えられるが
 
 
-//----- SceneLoader宣言
+//----- SceneLoader 宣言
 namespace EtherEngine {
     // Sceneのみを表現するコンセプト
     // @ Temp2 : nullptrを許容するか
@@ -40,7 +40,7 @@ namespace EtherEngine {
         // コンストラクタ
         SceneLoader(void);
 
-
+        
         friend class Singleton<SceneLoader>;
     };
 }
