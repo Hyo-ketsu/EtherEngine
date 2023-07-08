@@ -28,7 +28,7 @@ namespace EtherEngine {
         // IDゲッター
         const IDClass& GetCameraID(void) const { return m_cameraID; }
         // IDセッター
-        void SetCameraID(IDClass in) { m_cameraID = std::move(in); }
+        void SetCameraID(const IDClass& in) { m_cameraID = in; }
 
 
         // 初期化関数

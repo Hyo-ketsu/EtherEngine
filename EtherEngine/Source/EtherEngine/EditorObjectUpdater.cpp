@@ -6,6 +6,7 @@
 #include <EtherEngine/EditorApplication.h>
 #include <EtherEngine/EditorObjectStorage.h>
 
+#include <EtherEngine/EditorLogWindow.h>
 #include <EtherEngine/EditorOutliner.h>
 
 
@@ -74,6 +75,7 @@ namespace EtherEngine {
                     }
 
                     //----- 項目表示
+                    ShowWindowMenu<EditorLogWindow>(&m_windows, Name::WINDOW_LOG);
                     ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
 
                     ImGui::EndMenu();
@@ -133,16 +135,6 @@ namespace EtherEngine {
         if (ImGui::MenuItem(name.c_str(), NULL)) {
             //----- 作成
             auto object = EditorObjectStorage::Get()->CreateEditorObject();
-
-            //----- 削除済みWindow削除
-            //for (auto it = windows->begin(); it != windows->end();) {
-            //    if (it->GetEnable() == false) {
-            //        windows->erase(it);
-            //    }
-            //    else {
-            //        it++;
-            //    }
-            //}
 
             //----- 同名捜索
             uint count = 0;  // 同名オブジェクト数

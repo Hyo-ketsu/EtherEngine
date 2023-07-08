@@ -21,11 +21,15 @@ namespace EtherEngine {
         // @ Arg1 : 表示メッセージタイプ
         // @ Arg2 : メッセージ出力時間
         // @ Arg3 : メッセージ
-        LogWindowMessage(const LogWindowMessageType& type, const std::chrono::steady_clock::time_point& timeStamp, const std::string& message);
+        LogWindowMessage(const LogWindowMessageType& type, const std::chrono::system_clock::time_point& timeStamp, const std::string& message);
+        // コンストラクタ
+        // @ Arg1 : メッセージ
+        // @ Arg2 : 表示メッセージタイプ(Default : MessageShow)
+        LogWindowMessage(const std::string& message, const LogWindowMessageType& type = LogWindowMessageType::MessageShow);
 
 
         LogWindowMessageType m_type;    // 表示メッセージタイプ
-        std::chrono::steady_clock::time_point m_timeStamp;  // メッセージ出力時間
+        std::chrono::system_clock::time_point m_timeStamp;  // メッセージ出力時間
         std::string m_message;          // メッセージ
     };
 }

@@ -1,6 +1,7 @@
 #ifndef I_EDITORLOGWINDOW_H
 #define I_EDITORLOGWINDOW_H
 #include <EtherEngine/EditorWindowBase.h>
+#include <Base/LogSystem.h>
 
 
 //----- EditorLogWindow éŒ¾
@@ -14,6 +15,9 @@ namespace EtherEngine {
         void Start(void) override;
         void Update(void) override;
         void DrawWindow(void) override;
+
+    private:
+        std::vector<LogWindowMessage> m_log;    // •Û‚µ‚Ä‚¢‚éƒƒO
     };
 }
 

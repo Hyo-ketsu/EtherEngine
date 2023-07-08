@@ -4,13 +4,14 @@
 //----- 画面出力あたりの定義
 namespace EtherEngine {
     // コンストラクタ
-    // @ Arg1 : 表示メッセージタイプ
-    // @ Arg2 : メッセージ出力時間
-    // @ Arg3 : メッセージ
-    LogWindowMessage::LogWindowMessage(const LogWindowMessageType& type, const std::chrono::steady_clock::time_point& timeStamp, const std::string& message) 
+    LogWindowMessage::LogWindowMessage(const LogWindowMessageType& type, const std::chrono::system_clock::time_point& timeStamp, const std::string& message)
         : m_type(type)
         , m_timeStamp(timeStamp) 
         , m_message(message) {
+    }
+    // コンストラクタ
+    LogWindowMessage::LogWindowMessage(const std::string& message, const LogWindowMessageType& type)
+        : LogWindowMessage(type, std::chrono::system_clock::now(), message){
     }
 }
 

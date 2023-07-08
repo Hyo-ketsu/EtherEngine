@@ -155,6 +155,7 @@ namespace EtherEngine {
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
 
+        //----- エディター用カメラ作成
         auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();
         cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;
         auto camera = cameraGameObejct.GetAtomicData().AddComponent<EditorCamera>();
@@ -199,6 +200,9 @@ namespace EtherEngine {
 
                 //----- 入力更新
                 InputSystem::Update();
+
+                //----- エディター更新処理
+                EditorUpdater::Get()->Update();
 
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();
