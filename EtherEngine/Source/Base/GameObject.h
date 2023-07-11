@@ -19,10 +19,18 @@ namespace EtherEngine {
     public:
         // 更新処理を行う
         void Update(void);
+        // 物理更新処理を行う
+        void FixedUpdate(void);
         // 描画処理を行う
         void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
         // 削除時処理を行う
         void Delete(void);
+        // 衝突開始処理を行う
+        void CollsionStart(void);
+        // 衝突終了処理を行う
+        void CollsionEnd(void);
+        // 衝突処理を行う
+        void CollsionHit(void);
 
 
         // 座標ゲッター
@@ -35,6 +43,13 @@ namespace EtherEngine {
 
         // ハンドルゲッター
         const BaseHandle<GameObject>& GetHandle(void) const { return m_handle; }
+
+
+        // 衝突情報を削除する
+        void DeleteCollisionData(void);
+        // 衝突情報を追加する
+        // @ Arg1 : 追加する当たり判定情報
+        void AddCollisionData(const CollisionHitData data);
 
 
         // コンポーネント追加
@@ -79,6 +94,8 @@ namespace EtherEngine {
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collision; // 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
+        std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
+        std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
     };
 }
 
@@ -103,7 +120,9 @@ namespace EtherEngine {
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             m_drawComponents.push_back(ptr);
         }
-        else {
+        else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
+            m_collision.push_back(ptr);
+        } else {
             m_components.push_back(ptr);
         }
 
@@ -118,6 +137,15 @@ namespace EtherEngine {
         //------ 捜索
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             for (auto& component : m_drawComponents) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 削除
+                    component->DeleteFuntion();
+                    component->SetDelete(true);
+                }
+            }
+        }
+        else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
+            for (auto& component : m_collision) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
                     component->DeleteFuntion();
@@ -150,6 +178,14 @@ namespace EtherEngine {
                 }
             }
         }
+        else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
+            for (auto& component : m_collision) {
+                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 返却
+                    return std::weak_ptr<ComponentType>(component);
+                }
+            }
+        }
         else {
             for (auto& component : m_components) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
@@ -174,7 +210,15 @@ namespace EtherEngine {
         //----- 取得
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             for (auto& component : m_drawComponents) {
-                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
+                    //----- 返却用変数に追加
+                    ret.push_back(std::weak_ptr<ComponentType>(component));
+                }
+            }
+        }
+        else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
+            for (auto& component : m_collision) {
+                if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
                     //----- 返却用変数に追加
                     ret.push_back(std::weak_ptr<ComponentType>(component));
                 }
@@ -182,7 +226,7 @@ namespace EtherEngine {
         }
         else {
             for (auto& component : m_components) {
-                if (dynamic_cast<ComponentType>(component) != nullptr) {
+                if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
                     //----- 返却用変数に追加
                     ret.push_back(std::weak_ptr<ComponentType>(component));
                 }

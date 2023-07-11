@@ -2,9 +2,6 @@
 #define I_GAMEOBJECTUPDATER_H
 #include <Base/GameObjectStorage.h>
 
-// @ MEMO : 現状Updateのみ
-
-
 
 //----- GameObjectUpdater宣言
 namespace EtherEngine {
@@ -12,6 +9,8 @@ namespace EtherEngine {
     public:
         // ゲームオブジェクトに更新処理を行う
         void Update(void);
+        // ゲームオブジェクトに物理更新処理を行う
+        void FixedUpdate(void);
 
         // ゲームオブジェクトの描画処理を行う
         // @ Arg1 : View行列

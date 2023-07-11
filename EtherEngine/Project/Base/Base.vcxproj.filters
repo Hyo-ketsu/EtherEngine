@@ -25,6 +25,12 @@
     <Filter Include="ソース ファイル\Collision">
       <UniqueIdentifier>{d1c83f75-fc2b-4d8e-b0e7-8e15a642b2f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Collision\CollisionFunction">
+      <UniqueIdentifier>{039a06a6-fe9b-4700-8c11-51e181d72871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Collision\CollisionFunction">
+      <UniqueIdentifier>{f8b884b2-e8bb-435d-bd73-2c7c1c6ded12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
@@ -163,6 +169,18 @@
       <Filter>ソース ファイル\Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\StorageSystem.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\CollisionSphere.cpp">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\CollisionFunction.cpp">
+      <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\CollisionHelper.cpp">
+      <Filter>ソース ファイル\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\CollisionShapeData.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -306,6 +324,18 @@
       <Filter>ヘッダー ファイル\Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\StorageSystem.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionSphere.h">
+      <Filter>ヘッダー ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionFunction.h">
+      <Filter>ヘッダー ファイル\Collision\CollisionFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionHelper.h">
+      <Filter>ヘッダー ファイル\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionShapeData.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
