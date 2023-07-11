@@ -3,8 +3,6 @@
 #include <Base/Singleton.h>
 #include <Base/IDClass.h>
 
-// @ MEMO : CameraStorageのこれへの移行、CollisonでのSrorage使用
-
 
 //----- その他宣言
 namespace EtherEngine {
@@ -31,9 +29,9 @@ namespace EtherEngine {
         // 有効な shared_ptr をさしているか
         operator bool(void) const;
         // IDの取得
-        IDClass GetId(void);
+        IDClass GetId(void) const;
         // IDの取得
-        operator IDClass(void);
+        operator IDClass(void) const;
 
     private:
         std::weak_ptr<IDClass> m_id;        // 保持しているID
@@ -110,12 +108,12 @@ namespace EtherEngine {
     }
     // IDの取得
     template <StorageSystemConcept DataType>
-    IDClass StorageID<DataType>::GetId(void) {
+    IDClass StorageID<DataType>::GetId(void) const {
         return *m_id.lock();
     }
     // IDの取得
     template <StorageSystemConcept DataType>
-    StorageID<DataType>::operator IDClass(void) {
+    StorageID<DataType>::operator IDClass(void) const {
         return GetId();
     }
 }

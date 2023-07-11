@@ -1,6 +1,6 @@
 #ifndef I_BASEOBJECT_H_
 #define I_BASEOBJECT_H_
-
+#include <Base/IDClass.h>
 // @ MEMO : ファイルパスを含めるか検討？
 
 
@@ -21,6 +21,9 @@ namespace EtherEngine {
         // オブジェクト名アクセサー
         std::string& AccessName(void) { return m_name; }
 
+        // IDゲッター
+        const IDClass& GetId(void) const { return m_id; }
+
         // オブジェクトアクティブゲッター
         bool GetActive(void) const { return m_isActive; }
         // オブジェクトアクティブセッター
@@ -32,9 +35,13 @@ namespace EtherEngine {
 
         // このオブジェクトを削除する
         void DeleteObject(void);
+        // このオブジェクトが使えないか判定する
+        // @ Ret  : 使用できないなら true
+        bool IsUnvalidObject(void) const;
 
     private:
         std::string m_name;     // オブジェクト名
+        IDClass m_id;           // 自身のID
         bool m_isActive;        // そのオブジェクトが有効か
         bool m_isDelete;        // そのオブジェクトは削除済みか
     };
