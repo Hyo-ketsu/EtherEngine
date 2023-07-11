@@ -18,7 +18,7 @@ namespace EtherEngine {
     // 描画処理
     void EditorOutliner::DrawWindow(void) {
         //----- 全ゲームオブジェクト取得
-        auto gameObjects = GameObjectStorage::Get()->GetEditorObjectAll();
+        auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
 
         //----- 表示
         // @ MEMO : 現在は親子関係を一切考慮していません

@@ -45,6 +45,10 @@ namespace EtherEngine {
         // オブジェクト型ではないか判定するコンセプト
         template <typename T>
         concept NotObjectConcept = !(ObjectConcept<T>);
+
+        // 特定の型を継承している、かつその特定の型か判定するかのコンセプト
+        template <typename T, typename U>
+        concept SameSubClass = BaseOfConcept<U, T> && NotSameConcept<U, T>;
     }
 }
 

@@ -15,7 +15,7 @@ namespace EtherEngine {
 
 
         // 親エディターオブジェクト取得
-        // @ MEMO : ヘルパーをご利用ください
+        // @ Memo : ヘルパーをご利用ください
         // @ Arg1 : 親エディターオブジェクトへのポインタ
         void GetEditorObject(void** editerObject) const;
 

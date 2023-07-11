@@ -87,7 +87,7 @@ namespace EtherEngine {
         CameraData& AccessCameraData(void) { return m_cameraData; }
 
         // IDゲッター
-        const IDClass& GetID(void) { return m_id; }
+        const StorageID<CameraBase>& GetID(void) { return m_id; }
 
 
         // ビュー行列を取得する

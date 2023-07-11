@@ -4,7 +4,6 @@
 #include <Base/InitUninitPerformer.h>
 #include <DirectX/Window.h>
 #include <DirectX/DirectX.h>
-// @ MEMO : 現在のGameApplication等をただのウィンドウ、メインウィンドウに分離する
 
 
 //----- BaseMainWindow宣言
