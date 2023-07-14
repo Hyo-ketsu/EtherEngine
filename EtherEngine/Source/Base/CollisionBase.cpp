@@ -24,10 +24,6 @@ namespace EtherEngine {
         : mc_shape(shape)
         , m_type(type) 
         , m_offset(offset)
-        , m_id(StorageSystem<CollisionBase>::Get()->AddData(*this)) 
-        , m_data(shape) {
-    }
-    // デストラクタ
-    CollisionBase::~CollisionBase(void) {
+        , m_id(StorageSystem<CollisionBase>::Get()->AddData(*this)) {
     }
 }

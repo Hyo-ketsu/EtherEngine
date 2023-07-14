@@ -22,6 +22,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGUI", "Project\ImGUI\ImGU
 		{75776CCC-0223-4F76-989D-2B9B089281C0} = {75776CCC-0223-4F76-989D-2B9B089281C0}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{D09C71CF-AE0B-4CEC-A404-30AC01EDEF64}"
+	ProjectSection(SolutionItems) = preProject
+		Memo.txt = Memo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Editor_Debug|x64 = Editor_Debug|x64

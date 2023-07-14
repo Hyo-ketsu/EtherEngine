@@ -7,9 +7,9 @@
 #include <EtherEngine/EditorObjectUpdater.h>
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
-
 #include <DirectX/ModelComponent.h>
 #include <DirectX/ShaderClass.h>
+#include <Base/CollisionSphere.h>
 #include <Base/GameObjectStorage.h>
 #include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
