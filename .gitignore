@@ -2,3 +2,4 @@ EtherEngine/.vs/*
 EtherEngine/Binary
 EtherEngine/Object
 EtherEngine/Project/EtherEngine/imgui.ini
+EtherEngine/Project/*/*.dll
