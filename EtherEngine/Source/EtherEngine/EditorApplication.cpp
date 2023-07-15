@@ -177,7 +177,7 @@ namespace EtherEngine {
         }
         {
             auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
-            testGameObject.GetAtomicData().AccessTransform().AccessPostion().x() += 0.25f;
+            testGameObject.GetAtomicData().AccessTransform().AccessPostion().x() += 0.15f;
             testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
             testGameObject.GetAtomicData().AddComponent<TestComponent>();
             testGameObject.GetAtomicData().AccessName() = "Usisisisi";

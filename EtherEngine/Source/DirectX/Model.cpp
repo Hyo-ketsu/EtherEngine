@@ -19,7 +19,7 @@ namespace EtherEngine {
     // 描画
     void Model::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
         //----- 頂点シェーダー
-        Eigen::Matrix4f matrix[3] = { world.transpose(), view.transpose(), projection.transpose() };
+        Eigen::Matrix4f matrix[3] = { world, view.transpose(), projection.transpose() };
         m_vertexShader->WriteBuffer(0, &matrix);
         m_vertexShader->Bind();
 

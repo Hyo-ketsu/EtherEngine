@@ -32,6 +32,7 @@ namespace EtherEngine {
         //----- Eigens—ñ‚É•ÏŠ·
         Eigen::Matrix4f eigenMat;
         MathConverter::DXToEigen(world, &eigenMat);
+        eigenMat.transpose();
 
         //----- •`‰æ
         DrawModel(eigenMat, GetView(), GetProjection());
