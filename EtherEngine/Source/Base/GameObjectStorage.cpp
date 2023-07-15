@@ -29,7 +29,7 @@ namespace EtherEngine {
 
 
     // 全てのゲームオブジェクトを取得する
-    std::vector<BaseHandle<GameObject>> GameObjectStorage::GetGameObjectAll(void) {
+    std::vector<BaseHandle<GameObject>> GameObjectStorage::GetGameObjectAll(void) const{
         return m_gameObjects;
     }
 

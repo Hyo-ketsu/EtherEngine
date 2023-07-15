@@ -3,6 +3,7 @@
 #include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
+#include <Base/GameObjectUpdater.h>
 #include <EtherEngine/ProcedureEditorWindow.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #ifdef _DEBUG
@@ -13,6 +14,7 @@
 #include <Base/GameObjectStorage.h>
 #include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
+#include <EtherEngine/Test/TestComponent.h>
 #include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
 #endif // _DEBUG
@@ -167,9 +169,21 @@ namespace EtherEngine {
         ps.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "PS_Test.cso").c_str());
 
         //----- テスト用ゲームオブジェクト追加
-        auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
-        testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
-        testGameObject.GetAtomicData().AccessName() = "Usi";
+        {
+            auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
+            testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
+            testGameObject.GetAtomicData().AddComponent<TestComponent>();
+            testGameObject.GetAtomicData().AccessName() = "Usi";
+        }
+        {
+            auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
+            testGameObject.GetAtomicData().AccessTransform().AccessPostion().x() += 0.25f;
+            testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
+            testGameObject.GetAtomicData().AddComponent<TestComponent>();
+            testGameObject.GetAtomicData().AccessName() = "Usisisisi";
+        }
+
+        //----- カメラ設定
         m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());
 #endif // _DEBUG
 
@@ -203,6 +217,10 @@ namespace EtherEngine {
 
                 //----- エディター更新処理
                 EditorUpdater::Get()->Update();
+
+                //----- 更新処理
+                GameObjectUpdater::Get()->FixedUpdate();
+                GameObjectUpdater::Get()->Update();
 
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();

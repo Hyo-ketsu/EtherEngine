@@ -1,5 +1,6 @@
 #include <Base/GameObject.h>
 #include <Base/GameObjectStorage.h>
+#include <Base/CollisionHelper.h>
 
 
 namespace EtherEngine {
@@ -68,32 +69,105 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 衝突開始処理を行う
-    void GameObject::CollsionStart(void) {
+    void GameObject::CollisionStart(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
+
+        //----- 変数宣言
+        std::vector<CollisionHitData> hitDatas; // タイミングにあった衝突判定
+
+        //----- データ判定
+        for (auto&& hitData : m_hitData) {
+            bool isNewOldHit = false;
+            for (auto&& oldHitData : m_oldHitData) {
+                //----- 過去と現在に衝突している( = Hit)なのでスルーする
+                if (CollisionHelper::GetParentObject(hitData)->GetId() == CollisionHelper::GetParentObject(oldHitData)->GetId()) {
+                    isNewOldHit = true;
+                    break;
+                }
+            }
+
+            if (isNewOldHit == false) hitDatas.push_back(hitData);
+        }
+
+        //----- データが空であれば何もしない
+        if (hitDatas.empty()) return;
+
+        //----- コンポーネントに情報を与える
+        for (auto& component : m_components) {
+            component->SetCollisionHitData(hitDatas);
+        }
+
+        //----- 処理を行う
+        for (auto& component : m_components) {
+            component->CollisionStartFunction();
+        }
+        DeleteComponentsDelete();
+    }
+    // 衝突終了処理を行う
+    void GameObject::CollisionEnd(void) {
+        //----- アクティブチェック
+        if (IsUnvalidObject()) return;
+
+        //----- 変数宣言
+        std::vector<CollisionHitData> hitDatas; // タイミングにあった衝突判定
+
+        //----- データ判定
+        for (auto&& oldHitData : m_oldHitData) {
+            bool isNewOldHit = false;
+            for (auto&& hitData : m_hitData) {
+                //----- 過去と現在に衝突している( = Hit)なのでスルーする
+                if (CollisionHelper::GetParentObject(oldHitData)->GetId() == CollisionHelper::GetParentObject(hitData)->GetId()) {
+                    isNewOldHit = true;
+                    break;
+                }
+            }
+
+            if (isNewOldHit == false) hitDatas.push_back(oldHitData);
+        }
+
+        //----- データが空であれば何もしない
+        if (hitDatas.empty()) return;
+
+        //----- コンポーネントに情報を与える
+        for (auto& component : m_components) {
+            component->SetCollisionHitData(hitDatas);
+        }
 
         for (auto& component : m_components) {
             component->CollisionEndFunction();
         }
         DeleteComponentsDelete();
     }
-    // 衝突終了処理を行う
-    void GameObject::CollsionEnd(void) {
+    // 衝突処理を行う
+    void GameObject::CollisionHit(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
+
+        //----- 変数宣言
+        std::vector<CollisionHitData> hitDatas; // タイミングにあった衝突判定
+
+        //----- データ判定
+        for (auto&& hitData : m_hitData) {
+            for (auto&& oldHitData : m_oldHitData) {
+                //----- 過去と現在に衝突しているのでそれを代入する
+                if (CollisionHelper::GetParentObject(hitData)->GetId() == CollisionHelper::GetParentObject(oldHitData)->GetId()) {
+                    hitDatas.push_back(hitData);
+                    break;
+                }
+            }
+        }
+
+        //----- データがからであれば何もしない
+        if (hitDatas.empty()) return;
+
+        //----- コンポーネントに情報を与える
+        for (auto& component : m_components) {
+            component->SetCollisionHitData(hitDatas);
+        }
 
         for (auto& component : m_components) {
             component->CollisionHitFunction();
-        }
-        DeleteComponentsDelete();
-    }
-    // 衝突処理を行う
-    void GameObject::CollsionHit(void) {
-        //----- アクティブチェック
-        if (IsUnvalidObject()) return;
-
-        for (auto& component : m_components) {
-            component->DeleteFuntion();
         }
         DeleteComponentsDelete();
     }
@@ -124,18 +198,13 @@ namespace EtherEngine {
     }
 
 
-    // 衝突情報を削除する
-    void GameObject::DeleteCollisionData(void) {
-        //----- コンポーネント全てから衝突情報を削除
-        for (auto& component : m_components) {
-            component->SetCollisionHitData({});
-        }
+    // 衝突情報を削除・スタッキングする
+    void GameObject::SidelineCollisionData(void) {
+        m_oldHitData = std::move(m_hitData);
+        m_hitData = decltype(m_hitData)();
     }
     // 衝突情報を追加する
     void GameObject::AddCollisionData(const CollisionHitData data) {
-        //----- コンポーネント全てに衝突情報を追加
-        for (auto& component : m_components) {
-            component->AccessCollisionHitData().push_back(data);
-        }
+        m_hitData.push_back(data);
     }
 }

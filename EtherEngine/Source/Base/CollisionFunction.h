@@ -18,12 +18,12 @@ namespace EtherEngine {
             // @ Arg1 : 自身のゲームオブジェクトへのポインタ
             // @ Arg2 : 座標
             // @ Arg3 : 情報
-            CollisionCheckData(GameObject* gameObject, const Transform& transform, const CollisionData& data) : m_gameObject(gameObject), m_transform(transform), m_data(data) {}
+            CollisionCheckData(GameObject* gameObject, const Transform& transform, const CollisionData& data) : m_gameObject(gameObject), m_transform(transform), mc_data(data) {}
 
 
-            GameObject* m_gameObject;   // 自身のゲームオブジェクト
-            Transform m_transform;      // 座標
-            CollisionData m_data;       // 情報
+            GameObject* m_gameObject;       // 自身のゲームオブジェクト
+            Transform m_transform;          // 座標
+            const CollisionData& mc_data;   // 情報
         };
     }
 }
@@ -32,8 +32,13 @@ namespace EtherEngine {
 // 当たり判定を行う関数
 namespace EtherEngine {
     // 当たり判定を行う関数
+    // @ MEMO : 必要か？
     // @ Arg1 : 判定を行う当たり判定コンポーネント
     void AllCollisionCheck(std::vector<std::weak_ptr<CollisionComponent>> collisions);
+    // 当たり判定を行う関数
+    // @ Arg1 : 判定を行う当たり判定コンポーネント
+    // @ Arg2 : 判定を行う当たり判定コンポーネント
+    void AllCollisionCheck(std::vector<std::weak_ptr<CollisionComponent>> thisCollisions, std::vector<std::weak_ptr<CollisionComponent>> subjectCollisions);
 
 
     // 当たり判定をとる

@@ -23,6 +23,7 @@
 #include <type_traits>
 #include <unordered_map>
 #include <algorithm>
+#include <variant>
 
 #include <Base/Json/nlohmann/json.hpp>
 #include <Eigen/Core>

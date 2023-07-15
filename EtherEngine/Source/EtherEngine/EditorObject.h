@@ -35,24 +35,23 @@ namespace EtherEngine {
         // @ Temp1: 追加するコンポーネントの型
         // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
         // @ Args : 追加コンポーネントのコンストラクタに使用する引数
-        template <Concept::BaseOfConcept<EditorComponentBase> ComponentType, typename ...ArgsType>
+        template <Concept::SubClassOnly<EditorComponentBase> ComponentType, typename ...ArgsType>
         std::weak_ptr<ComponentType> AddComponent(ArgsType... args);
         // コンポーネント削除
         // @ Temp : 削除するコンポーネントの型
         // @ Ret  : 削除したか
-        template <Concept::BaseOfConcept<EditorComponentBase> ComponentType>
+        template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
         bool DeleteComponent(void);
         // コンポーネントを取得する
-        // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+        // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント
-        template <typename ComponentType>
-            requires Concept::BaseOfConcept<EditorComponentBase, ComponentBase>&& Concept::NotSameConcept<EditorComponentBase, ComponentType>
-        std::weak_ptr<ComponentBase> GetComponent(void);
+        // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
+        template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
+        std::weak_ptr<ComponentBase> GetComponent(uint index = 0);
         // コンポーネントを複数取得する
-        // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+        // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント（複数）
-        template <typename ComponentType>
-            requires Concept::BaseOfConcept<EditorComponentBase, ComponentBase>&& Concept::NotSameConcept<EditorComponentBase, ComponentType>
+        template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
         std::vector<std::weak_ptr<ComponentBase>> GetComponents(void);
 
     protected:
@@ -78,7 +77,7 @@ namespace EtherEngine {
 //----- EditorObject定義
 namespace EtherEngine {
     // コンポーネントを追加する
-    template <Concept::BaseOfConcept<EditorComponentBase> ComponentType, typename ...ArgsType>
+    template <Concept::SubClassOnly<EditorComponentBase> ComponentType, typename ...ArgsType>
     std::weak_ptr<ComponentType> EditorObject::AddComponent(ArgsType... args) {
         //----- 警告表示
         static_assert((std::is_constructible_v<ComponentType, EditorObject*, ArgsType...>), "Error! AddComponent Args");
@@ -95,7 +94,7 @@ namespace EtherEngine {
     // コンポーネント削除
     // @ Temp : 削除するコンポーネントの型
     // @ Ret  : 削除したか
-    template <Concept::BaseOfConcept<EditorComponentBase> ComponentType>
+    template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
     bool EditorObject::DeleteComponent(void) {
         for (auto& component : m_components) {
             if (dynamic_cast<ComponentType>(component) != nullptr) {
@@ -106,13 +105,20 @@ namespace EtherEngine {
         }
     }
     // コンポーネントを取得する
-    // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+    // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント
-    template <typename ComponentType>
-        requires Concept::BaseOfConcept<EditorComponentBase, ComponentBase> && Concept::NotSameConcept<EditorComponentBase, ComponentType>
-    std::weak_ptr<ComponentBase> EditorObject::GetComponent(void) {
+    // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
+    template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
+    std::weak_ptr<ComponentBase> EditorObject::GetComponent(uint index) {
         for (auto& component : m_components) {
             if (dynamic_cast<ComponentType>(component) != nullptr) {
+                //----- 指定番号か
+                if (index != 0) {
+                    //----- 指定の番号まで達していない。番号を1削減して取得を継続する
+                    index--;
+                    continue;
+                }
+
                 //----- 返却
                 return std::weak_ptr<ComponentType>(component);
             }
@@ -121,10 +127,9 @@ namespace EtherEngine {
         return std::weak_ptr<ComponentType>();
     }
     // コンポーネントを複数取得する
-    // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
+    // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント（複数）
-    template <typename ComponentType>
-        requires Concept::BaseOfConcept<EditorComponentBase, ComponentBase> && Concept::NotSameConcept<EditorComponentBase, ComponentType>
+    template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
     std::vector<std::weak_ptr<ComponentBase>> EditorObject::GetComponents(void) {
         //----- 返却用変数宣言
         std::vector<std::weak_ptr<ComponentBase>> ret;

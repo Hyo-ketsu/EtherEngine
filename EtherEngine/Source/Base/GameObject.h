@@ -26,11 +26,11 @@ namespace EtherEngine {
         // 削除時処理を行う
         void Delete(void);
         // 衝突開始処理を行う
-        void CollsionStart(void);
+        void CollisionStart(void);
         // 衝突終了処理を行う
-        void CollsionEnd(void);
+        void CollisionEnd(void);
         // 衝突処理を行う
-        void CollsionHit(void);
+        void CollisionHit(void);
 
 
         // 座標ゲッター
@@ -45,8 +45,8 @@ namespace EtherEngine {
         const BaseHandle<GameObject>& GetHandle(void) const { return m_handle; }
 
 
-        // 衝突情報を削除する
-        void DeleteCollisionData(void);
+        // 衝突情報を削除・スタッキングする
+        void SidelineCollisionData(void);
         // 衝突情報を追加する
         // @ Arg1 : 追加する当たり判定情報
         void AddCollisionData(const CollisionHitData data);
@@ -56,25 +56,24 @@ namespace EtherEngine {
         // @ Temp1: 追加するコンポーネントの型
         // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
         // @ Args : 追加コンポーネントのコンストラクタに使用する引数
-        template <Concept::BaseOfConcept<ComponentBase> ComponentType, typename ...ArgsType>
-        std::weak_ptr<ComponentType> AddConponent(ArgsType&& ...args);
+        template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
+        std::weak_ptr<ComponentType> AddComponent(ArgsType&& ...args);
         // コンポーネント削除
         // @ Temp : 削除するコンポーネントの型
         // @ Ret  : 削除したか
-        template <Concept::BaseOfConcept<ComponentBase> ComponentType>
+        template <Concept::SubClassOnly<ComponentBase> ComponentType>
         bool DeleteComponent(void);
         // コンポーネントを取得する
         // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント
-        template <typename ComponentType>
-            requires Concept::BaseOfConcept<ComponentType, ComponentBase> && Concept::NotSameConcept<ComponentBase, ComponentType>
-        std::weak_ptr<ComponentBase> GetComponent(void);
+        // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
+        template <Concept::SubClassOnly<ComponentBase> ComponentType>
+        std::weak_ptr<ComponentType> GetComponent(uint index = 0);
         // コンポーネントを複数取得する
         // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント（複数）
-        template <typename ComponentType>
-            requires Concept::BaseOfConcept<ComponentType, ComponentBase> && Concept::NotSameConcept<ComponentBase, ComponentType>
-        std::vector<std::weak_ptr<ComponentBase>> GetComponents(void);
+        template <Concept::SubClassOnly<ComponentBase> ComponentType>
+        std::vector<std::weak_ptr<ComponentType>> GetComponents(void);
 
     protected:
         // コンストラクタ
@@ -108,8 +107,8 @@ namespace EtherEngine {
     // @ Temp1: 追加するコンポーネントの型
     // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
     // @ Args : 追加コンポーネントのコンストラクタに使用する引数
-    template <Concept::BaseOfConcept<ComponentBase> ComponentType, typename ...ArgsType>
-    std::weak_ptr<ComponentType> GameObject::AddConponent(ArgsType&& ...args) {
+    template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
+    std::weak_ptr<ComponentType> GameObject::AddComponent(ArgsType&& ...args) {
         //----- 警告表示
         static_assert((std::is_constructible_v<ComponentType, GameObject*, ArgsType...>), "Error! AddComponent Args");
 
@@ -132,7 +131,7 @@ namespace EtherEngine {
     // コンポーネント削除
     // @ Temp : 削除するコンポーネントの型
     // @ Ret  : 削除したか
-    template <Concept::BaseOfConcept<ComponentBase> ComponentType>
+    template <Concept::SubClassOnly<ComponentBase> ComponentType>
     bool GameObject::DeleteComponent(void) {
         //------ 捜索
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
@@ -166,13 +165,20 @@ namespace EtherEngine {
     // コンポーネントを取得する
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント
-    template <typename ComponentType>
-        requires Concept::BaseOfConcept<ComponentType, ComponentBase>&& Concept::NotSameConcept<ComponentBase, ComponentType>
-    std::weak_ptr<ComponentBase> GameObject::GetComponent(void) {
+    // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
+    template <Concept::SubClassOnly<ComponentBase> ComponentType>
+    std::weak_ptr<ComponentType> GameObject::GetComponent(uint index) {
         //----- 取得
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             for (auto& component : m_drawComponents) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 指定番号か
+                    if (index != 0) {
+                        //----- 指定の番号まで達していない。番号を1削減して取得を継続する
+                        index--;
+                        continue;
+                    }
+
                     //----- 返却
                     return std::weak_ptr<ComponentType>(component);
                 }
@@ -181,6 +187,13 @@ namespace EtherEngine {
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
             for (auto& component : m_collision) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 指定番号か
+                    if (index != 0) {
+                        //----- 指定の番号まで達していない。番号を1削減して取得を継続する
+                        index--;
+                        continue;
+                    }
+
                     //----- 返却
                     return std::weak_ptr<ComponentType>(component);
                 }
@@ -189,6 +202,13 @@ namespace EtherEngine {
         else {
             for (auto& component : m_components) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
+                    //----- 指定番号か
+                    if (index != 0) {
+                        //----- 指定の番号まで達していない。番号を1削減して取得を継続する
+                        index--;
+                        continue;
+                    }
+
                     //----- 返却
                     return std::weak_ptr<ComponentType>(component);
                 }
@@ -201,11 +221,10 @@ namespace EtherEngine {
     // コンポーネントを複数取得する
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント（複数）
-    template <typename ComponentType>
-        requires Concept::BaseOfConcept<ComponentType, ComponentBase>&& Concept::NotSameConcept<ComponentBase, ComponentType>
-    std::vector<std::weak_ptr<ComponentBase>> GameObject::GetComponents(void) {
+    template <Concept::SubClassOnly<ComponentBase> ComponentType>
+    std::vector<std::weak_ptr<ComponentType>> GameObject::GetComponents(void) {
         //----- 返却用変数宣言
-        std::vector<std::weak_ptr<ComponentBase>> ret;
+        std::vector<std::weak_ptr<ComponentType>> ret;
 
         //----- 取得
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {

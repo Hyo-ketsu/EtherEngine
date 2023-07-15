@@ -64,7 +64,7 @@ namespace EtherEngine {
         // デストラクタ
         virtual ~CollisionBase(void) {}
         // コピーコンストラクタ
-        CollisionBase(const CollisionBase& copy) = delete;
+        CollisionBase(const CollisionBase& copy) = default;
         // ムーブコンストラクタ
         CollisionBase(CollisionBase&& move) = default;
 

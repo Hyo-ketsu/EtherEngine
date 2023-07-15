@@ -13,7 +13,7 @@ namespace EtherEngine {
 
             //----- ‹——£ŒvŽZ
             Eigen::Vector3f distance = { powf(subjectToThis.x(), 2), powf(subjectToThis.y(), 2) ,powf(subjectToThis.z(), 2) };
-            float radius = powf(thisSphere.m_data.GetRadius(), 2) + powf(subjectCollision.m_data.GetRadius(), 2);
+            float radius = powf(thisSphere.mc_data.GetRadius(), 2) + powf(subjectCollision.mc_data.GetRadius(), 2);
 
             //----- ”»’è
             if (distance.x() + distance.y() + distance.z() <= radius) {

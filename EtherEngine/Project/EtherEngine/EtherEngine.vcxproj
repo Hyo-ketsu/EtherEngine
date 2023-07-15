@@ -72,6 +72,7 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestComponent.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">true</ExcludedFromBuild>
@@ -100,6 +101,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h" />

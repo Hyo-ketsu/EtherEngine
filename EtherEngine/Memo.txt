@@ -1,1 +1,4 @@
 // @ MEMO : モデルだけ別に分離した方が良さそう（ModelComponentとModelRenderComponentみたいな？）
+
+// @ MEMO : 本格的に更新と描画で並列化するならAtomic当たりでのデッドロック判定が必要でしょう（最低限デッドロック時に例外出力できるようにする）
+// @ MEMO : 

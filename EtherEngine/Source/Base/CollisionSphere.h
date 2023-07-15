@@ -12,7 +12,7 @@ namespace EtherEngine {
         // @ Arg1 : 当たり判定の種類
         // @ Arg2 : 球の半径
         // @ Arg3 : 当たり判定位置(デフォルト : 全て0.0f)
-        CollisionSphere(const CollisionType& type, const float& radius, const Eigen::Vector3f& offset);
+        CollisionSphere(const CollisionType& type, const float& radius, const Eigen::Vector3f& offset = Eigen::Vector3f::Zero());
 
 
         // 球の半径ゲッター

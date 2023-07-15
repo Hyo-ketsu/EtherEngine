@@ -14,13 +14,13 @@ namespace EtherEngine {
         // @ Temp : コリジョンのタイプ
         // @ Arg1 : ゲームオブジェクトのポインタ
         // @ Arg2 : コリジョン
-        template <Concept::SameSubClass<CollisionBase> Type>
-        CollisionComponent(void* gameObject, Type&& collision);
+        template <Concept::SubClassOnly<CollisionBase> Type>
+        CollisionComponent(void* gameObject, const Type& collision);
 
     
         // コリジョンゲッター
-        template <Concept::SameSubClass<CollisionBase> Type>
-        std::weak_ptr<Type> GetCollision(void) { return std::weak_ptr<Type>(m_collision); }
+        template <Concept::SubClassOnly<CollisionBase> Type>
+        Type* const GetCollision(void) { return dynamic_cast<Type*>(m_collision.get()); }
 
         // コリジョン形状ゲッター
         CollisionShape GetCollisionShape(void) const { return m_collision->GetShape(); }
@@ -36,10 +36,10 @@ namespace EtherEngine {
 //----- CollisionComponent 定義
 namespace EtherEngine {
     // コンストラクタ
-    template <Concept::SameSubClass<CollisionBase> Type>
-    CollisionComponent::CollisionComponent(void* gameObject, Type&& collision) 
+    template <Concept::SubClassOnly<CollisionBase> Type>
+    CollisionComponent::CollisionComponent(void* gameObject, const Type& collision) 
         : ComponentBase(gameObject) 
-        , m_collision(std::make_shared<CollisionBase>(collision)) {
+        , m_collision(std::make_shared<Type>(collision)) {
     }
 }
 #endif // !I_COLLISIONCOMPONENT_H

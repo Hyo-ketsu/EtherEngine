@@ -10,7 +10,6 @@ namespace EtherEngine {
     void EditorLogWindow::Update(void) {
         //----- ログの取得
         m_log = LogSystem::GetLogWindowMessage();
-        LogSystem::AddLogWindowMessage(LogWindowMessage("Hogehoge"));
     }
     void EditorLogWindow::DrawWindow(void) {
         //----- ログ削除ボタン表示

@@ -22,7 +22,7 @@ namespace EtherEngine {
 
 
         // 全てのゲームオブジェクトを取得する
-        std::vector<BaseHandle<GameObject>> GetGameObjectAll(void);
+        std::vector<BaseHandle<GameObject>> GetGameObjectAll(void) const;
 
 
         // 削除済みのゲームオブジェクトを削除する

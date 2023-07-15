@@ -1,13 +1,14 @@
 #include <Base/GameObjectUpdater.h>
 #include <Base/CollisionBase.h>
+#include <Base/CollisionFunction.h>
 
 
 namespace EtherEngine {
     // ゲームオブジェクトに更新処理を行う
     void GameObjectUpdater::Update(void) {
-        auto update = GameObjectStorage::Get()->GetGameObjectAll();
+        auto updates = GameObjectStorage::Get()->GetGameObjectAll();
 
-        for (auto& it : update) {
+        for (auto& it : updates) {
             if (it.GetEnable() == false) continue;
 
             it.GetAtomicData().Update();
@@ -18,9 +19,9 @@ namespace EtherEngine {
     void GameObjectUpdater::FixedUpdate(void) {
         //----- 物理処理
         {
-            auto fixedUpdate = GameObjectStorage::Get()->GetGameObjectAll();
+            auto fixedUpdates = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : fixedUpdate) {
+            for (auto& it : fixedUpdates) {
                 if (it.GetEnable() == false) continue;
 
                 it.GetAtomicData().FixedUpdate();
@@ -30,56 +31,74 @@ namespace EtherEngine {
 
         //----- ゲームオブジェクトの衝突情報削除
         {
-            auto collision = GameObjectStorage::Get()->GetGameObjectAll();
+            auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : collision) {
+            for (auto& it : collisions) {
                 if (it.GetEnable() == false) continue;
 
-                it.GetAtomicData().DeleteCollisionData();
+                it.GetAtomicData().SidelineCollisionData();
             }
         }
 
         //----- 衝突判定
         {
-            auto collision = GameObjectStorage::Get()->GetGameObjectAll();
+            auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : collision) {
-                if (it.GetEnable() == false) continue;
+            //----- 全てのゲームオブジェクトからCollisionComponentを取得、当たり判定処理を行う
+            for (auto& thisGameObject : gameObjects) {  // 自身のゲームオブジェクト
+                for (auto& subjectCollision : gameObjects) {    // 対象のゲームオブジェクト
+                    //----- 変数宣言
+                    decltype(auto) thisAtomic = thisGameObject.GetAtomicData();
+                    decltype(auto) subjectAtomic = subjectCollision.GetAtomicData();
 
-                it.GetAtomicData().GetComponents<CollisionComponent>();
+                    //----- 判定チェック(ガード節)
+                    // どちらかが使用不可ならスルーする
+                    if (thisAtomic.IsUnvalidObject() || subjectAtomic.IsUnvalidObject()) continue;
+                    // 同オブジェクトならスルーする
+                    if (thisAtomic.GetId() == subjectAtomic.GetId()) continue;
+
+                    //----- コリジョンの取得
+                    auto thisCollisions = thisAtomic.GetComponents<CollisionComponent>();
+                    auto subjectCollisions = subjectAtomic.GetComponents<CollisionComponent>();
+
+                    //----- 判定
+                    AllCollisionCheck(thisCollisions, subjectCollisions);
+                }
             }
         }
 
         //----- 各衝突処理実行
         {
-            auto collision = GameObjectStorage::Get()->GetGameObjectAll();
+            {
+                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : collision) {
-                if (it.GetEnable() == false) continue;
+                for (auto& it : collisions) {
+                    if (it.GetEnable() == false) continue;
 
-                it.GetAtomicData().CollsionHit();
+                    it.GetAtomicData().CollisionHit();
+                }
+                GameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
-            GameObjectStorage::Get()->DeleteGameObjectsDelete();
-        }
-        {
-            auto collision = GameObjectStorage::Get()->GetGameObjectAll();
+            {
+                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : collision) {
-                if (it.GetEnable() == false) continue;
+                for (auto& it : collisions) {
+                    if (it.GetEnable() == false) continue;
 
-                it.GetAtomicData().CollsionEnd();
+                    it.GetAtomicData().CollisionEnd();
+                }
+                GameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
-            GameObjectStorage::Get()->DeleteGameObjectsDelete();
-        }
-        {
-            auto collision = GameObjectStorage::Get()->GetGameObjectAll();
+            {
+                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
-            for (auto& it : collision) {
-                if (it.GetEnable() == false) continue;
+                for (auto& it : collisions) {
+                    if (it.GetEnable() == false) continue;
 
-                it.GetAtomicData().CollsionHit();
+                    it.GetAtomicData().CollisionHit();
+                }
+                GameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
-            GameObjectStorage::Get()->DeleteGameObjectsDelete();
         }
     }
 
