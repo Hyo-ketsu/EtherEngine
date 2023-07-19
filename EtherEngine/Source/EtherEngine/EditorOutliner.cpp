@@ -22,9 +22,31 @@ namespace EtherEngine {
 
         //----- 表示
         // @ MEMO : 現在は親子関係を一切考慮していません
-        for (auto&& it : gameObjects) {
-            auto gameObject = it.GetNoAtomicItem();
-            ImGui::Text(gameObject.GetData().GetName().c_str());
+        if (ImGui::BeginListBox("GameObjectList")) {
+            int i = 0;
+            for (auto&& it : gameObjects) {
+                auto gameObject = it.GetNoAtomicItem();
+                bool isSelect = ms_selectNumber == i;  // 選択されているか
+                if (ImGui::Selectable(gameObject.GetData().GetName().c_str(), &isSelect)) {
+                    ms_selectNumber = i;
+                }
+                if (isSelect) {
+                    ImGui::SetItemDefaultFocus();
+                }
+
+                i++;
+            }
+
+            ImGui::EndListBox();
         }
     }
+
+
+    // 現在選択されているゲームオブジェクトを渡す
+    BaseHandle<GameObject> EditorOutliner::GetSelectGameObject(void) {
+        return GameObjectStorage::Get()->GetGameObjectAll()[ms_selectNumber];
+    }
+
+
+    int EditorOutliner::ms_selectNumber = -1; // 選択されている番号
 }

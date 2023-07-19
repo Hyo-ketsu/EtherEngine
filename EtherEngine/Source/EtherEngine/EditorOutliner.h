@@ -19,6 +19,13 @@ namespace EtherEngine {
         void Update(void) override;
         // 描画処理
         void DrawWindow(void) override;
+
+        // 現在選択されているゲームオブジェクトを渡す
+        // @ Ret  : 現在選択されているゲームオブジェクト(無効ハンドルを返す場合があります)
+        static BaseHandle<GameObject> GetSelectGameObject(void);
+
+    private:
+        static int ms_selectNumber; // 選択されている番号
     };
 }
 

@@ -8,6 +8,7 @@
 
 #include <EtherEngine/EditorLogWindow.h>
 #include <EtherEngine/EditorOutliner.h>
+#include <EtherEngine/EditorExplorerWindow.h>
 
 
 namespace EtherEngine {
@@ -77,6 +78,7 @@ namespace EtherEngine {
                     //----- 項目表示
                     ShowWindowMenu<EditorLogWindow>(&m_windows, Name::WINDOW_LOG);
                     ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
+                    ShowWindowMenu<ExplorerWindow>(&m_windows, Name::WINDOW_EXPLORER);
 
                     ImGui::EndMenu();
                 }
@@ -139,7 +141,7 @@ namespace EtherEngine {
             //----- 同名捜索
             uint count = 0;  // 同名オブジェクト数
             for (auto&& it : *windows) {
-                if (it.GetEnable() == false) continue;
+                if (it.IsEnable() == false) continue;
                 if (count == 0) {   // 重複した名前が出た際に Hoge(1) などと照合するため
                     //----- 通常の検索
                     if (it.GetNoAtomicData().GetName() == name) count++; 
