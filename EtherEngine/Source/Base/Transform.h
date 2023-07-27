@@ -1,10 +1,11 @@
 #ifndef I_TRANSFORM_H
 #define I_TRANSFORM_H
+#include <Base/EtherEngineUtility.h>
 
 
 namespace EtherEngine {
     // 座標・回転・拡縮を保持するクラス
-    class Transform {
+    class Transform : public ISerialize {
     public:
         // コンストラクタ
         // @ Arg1 : 座標(デフォルト：全て0)
@@ -22,6 +23,12 @@ namespace EtherEngine {
         // 回転を取得する
         // @ Arg1 : 回転
         Eigen::Vector3f& AccessRotation(void) noexcept { return m_rotation; }
+
+
+        // 外部出力
+        std::string Output(void) override;
+        // 外部入力
+        void Input(const std::string& input) override;
 
     private:
         Eigen::Vector3f m_postion;  // 座標

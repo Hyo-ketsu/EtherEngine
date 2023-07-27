@@ -72,7 +72,7 @@ namespace EtherEngine {
 
         // このHandleの保持している番号は有効か
         // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
-        bool GetEnable(void) const;
+        bool IsEnable(void) const;
         // このHandleの保持している番号は有効か
         // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
         operator bool(void) const;
@@ -225,21 +225,21 @@ namespace EtherEngine {
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     NonAtomicData<Type> BaseHandle<Type>::GetNoAtomicItem(void) const {
-        if (this->GetEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetNoAtomicItem(m_handle).value();
     }
     // Handleから排他制御された要素を取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     AtomicData<Type> BaseHandle<Type>::GetAtomicItem(void) const {
-        if (this->GetEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetAtomicItem(m_handle).value();
     }
     // Handleから排他制御された読み取り専用要素を取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     AtomicReadData<Type> BaseHandle<Type>::GetAtomicReadItem(void) const {
-        if (this->GetEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetAtomicReadItem(m_handle).value();
     }
 
@@ -266,14 +266,14 @@ namespace EtherEngine {
     // このHandleの保持している番号は有効か
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
     template<HandleSystemConcept Type>
-    bool BaseHandle<Type>::GetEnable(void) const {
+    bool BaseHandle<Type>::IsEnable(void) const {
         return HandleSystem<Type>::Get()->IsItemEnable(m_handle);
     }
     // このHandleの保持している番号は有効か
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
     template<HandleSystemConcept Type>
     BaseHandle<Type>::operator bool(void) const {
-        GetEnable();
+        return IsEnable();
     }
 
 

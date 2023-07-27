@@ -10,12 +10,14 @@
 #include <Base/Handle.h>
 #include <Base/Transform.h>
 #include <Base/Scene.h>
+#include <Base/ParentAndChildObject.h>
+#include <Base/EtherEngineUtility.h>
 
 
 //----- GameObject 宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
-    class GameObject : public BaseObject {
+    class GameObject : public BaseObject , public ISerialize {
     public:
         // 更新処理を行う
         void Update(void);
@@ -34,11 +36,36 @@ namespace EtherEngine {
 
 
         // 座標ゲッター
+        // @ Ret  : 絶対座標
         const Transform& GetTransform(void) const { return m_transform; }
         // 座標セッター
+        // @ Arg1 : 絶対座標
         void SetTransform(const Transform& in) { m_transform = in; }
         // 座標アクセサー
+        // @ Ret  : 絶対座標
         Transform& AccessTransform(void) { return m_transform; }
+
+        // 相対座標ゲッター
+        // @ MEMO : 未実装
+        // @ Ret  : 相対座標
+        const Transform& GetLocalTransform(void) const;
+        // 相対座標セッター
+        // @ MEMO : 未実装
+        // @ Arg1 : 相対座標
+        void SetLocalTransform(const Transform& in);
+
+
+        // シーン情報ゲッター
+        const SceneData& GetScene(void) const { return m_scene; }
+        // シーン情報セッター
+        void SetScene(const SceneData& in) { m_scene = in; }
+
+        // 親子関係ゲッター
+        const ParentAndChildObject<GameObject> GetParentAndChild(void) const { return m_parentAndChild; }
+        // 親子関係セッター
+        void SetParentAndChild(const ParentAndChildObject<GameObject>& in) { m_parentAndChild = in; }
+        // 親子関係アクセサー
+        ParentAndChildObject<GameObject>& AccessParentAndChild(void) { return m_parentAndChild; }
 
 
         // ハンドルゲッター
@@ -75,6 +102,12 @@ namespace EtherEngine {
         template <Concept::SubClassOnly<ComponentBase> ComponentType>
         std::vector<std::weak_ptr<ComponentType>> GetComponents(void);
 
+
+        // 外部出力
+        std::string Output(void) override;
+        // 外部入力
+        void Input(const std::string& input) override;
+
     protected:
         // コンストラクタ
         // @ Arg1 : 座標
@@ -89,7 +122,9 @@ namespace EtherEngine {
         friend class GameObjectStorage;
 
         Transform m_transform;  // 座標
+        SceneData m_scene;      // 現在所属シーン
         BaseHandle<GameObject> m_handle;    // 自身のハンドル
+        ParentAndChildObject<GameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collision; // 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント

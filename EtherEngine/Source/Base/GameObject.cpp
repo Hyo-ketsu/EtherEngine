@@ -198,6 +198,16 @@ namespace EtherEngine {
     }
 
 
+    // 相対座標ゲッター
+    const Transform& GameObject::GetLocalTransform(void) const {
+        return m_transform;
+    }
+    // 相対座標セッター
+    void GameObject::SetLocalTransform(const Transform& in) {
+        m_transform = in;
+    }
+
+
     // 衝突情報を削除・スタッキングする
     void GameObject::SidelineCollisionData(void) {
         m_oldHitData = std::move(m_hitData);
@@ -206,5 +216,15 @@ namespace EtherEngine {
     // 衝突情報を追加する
     void GameObject::AddCollisionData(const CollisionHitData data) {
         m_hitData.push_back(data);
+    }
+
+
+    // 外部出力
+    std::string GameObject::Output(void) {
+
+    }
+    // 外部入力
+    void GameObject::Input(const std::string& input) {
+
     }
 }

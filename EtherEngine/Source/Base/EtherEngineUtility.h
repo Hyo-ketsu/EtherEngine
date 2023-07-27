@@ -2,6 +2,25 @@
 #define I_ETHERENGINEUTILITY_H
 
 
+// DLL呼び出し用
+#define DLL_CALL(ReturnType) extern "C" __declspec(dllexport) ReturnType  
+
+
+//----- インターフェース定義
+namespace EtherEngine {
+    // Serialize・Deserialize用インターフェース(Json想定)
+    class ISerialize {
+    public:
+        // 出力する
+        // @ Ret  : 出力文字列
+        virtual std::string Output(void) = 0;
+        // 入力する
+        // @ Arg1 : 入力文字列
+        virtual void Input(const std::string& input) = 0;
+    };
+}
+
+
 //----- 重複オブジェクト名命名定義
 namespace EtherEngine {
     namespace Utilty {

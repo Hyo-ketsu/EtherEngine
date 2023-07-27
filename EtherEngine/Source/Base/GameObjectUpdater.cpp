@@ -9,7 +9,7 @@ namespace EtherEngine {
         auto updates = GameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : updates) {
-            if (it.GetEnable() == false) continue;
+            if (it.IsEnable() == false) continue;
 
             it.GetAtomicData().Update();
         }
@@ -22,7 +22,7 @@ namespace EtherEngine {
             auto fixedUpdates = GameObjectStorage::Get()->GetGameObjectAll();
 
             for (auto& it : fixedUpdates) {
-                if (it.GetEnable() == false) continue;
+                if (it.IsEnable() == false) continue;
 
                 it.GetAtomicData().FixedUpdate();
             }
@@ -34,7 +34,7 @@ namespace EtherEngine {
             auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
             for (auto& it : collisions) {
-                if (it.GetEnable() == false) continue;
+                if (it.IsEnable() == false) continue;
 
                 it.GetAtomicData().SidelineCollisionData();
             }
@@ -73,7 +73,7 @@ namespace EtherEngine {
                 auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
-                    if (it.GetEnable() == false) continue;
+                    if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionHit();
                 }
@@ -83,7 +83,7 @@ namespace EtherEngine {
                 auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
-                    if (it.GetEnable() == false) continue;
+                    if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionEnd();
                 }
@@ -93,7 +93,7 @@ namespace EtherEngine {
                 auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
-                    if (it.GetEnable() == false) continue;
+                    if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionHit();
                 }
@@ -108,7 +108,7 @@ namespace EtherEngine {
         auto draw = GameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : draw) {
-            if (it.GetEnable() == false) continue;
+            if (it.IsEnable() == false) continue;
 
             it.GetAtomicData().Draw(view, projection);
         }

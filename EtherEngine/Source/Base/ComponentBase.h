@@ -1,6 +1,7 @@
 #ifndef I_COMPONENTBASE_H
 #define I_COMPONENTBASE_H
 #include <Base/CollisionBase.h>
+#include <Base/EtherEngineUtility.h>
 #include <Base/BaseObject.h>
 #include <Base/Handle.h>
 
@@ -8,7 +9,7 @@
 //----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase : public BaseObject {
+    class ComponentBase : public BaseObject , public ISerialize {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト

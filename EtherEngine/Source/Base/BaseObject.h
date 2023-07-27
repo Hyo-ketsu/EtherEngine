@@ -39,10 +39,6 @@ namespace EtherEngine {
         // @ Ret  : 使用できないなら true
         bool IsUnvalidObject(void) const;
 
-
-        // シリアライズ・表示を行うための関数
-        virtual void Serialize(void) {}
-
     private:
         std::string m_name;     // オブジェクト名
         IDClass m_id;           // 自身のID

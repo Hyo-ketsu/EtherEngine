@@ -49,8 +49,6 @@ namespace EtherEngine {
         void DeleteChild(const uint index);
         // 指定ハンドルで子へのアクセスを削除する
         void DeleteChild(const BaseHandle<Type>& handle);
-        // 指定ハンドルで子へのアクセスを削除する
-        void DeleteChild(const BaseHandle<Type>& handle);
         // 全ての子へのアクセスを削除する
         void DeleteChildAll(void);
 
@@ -77,12 +75,6 @@ namespace EtherEngine {
 
 //----- ParentAndChildObject実装
 namespace EtherEngine {
-    // 親を設定する
-    // @ Arg1 : 親に設定するハンドル
-    template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::SetParent(const BaseHandle<Type>& handle) {
-        SetParent(HandleHelper::GetRefHandle(handle));
-    }
     // 親を設定する
     // @ Arg1 : 親に設定するハンドル
     template <ParentAndChildObjectConcept Type>
@@ -127,7 +119,7 @@ namespace EtherEngine {
     template <ParentAndChildObjectConcept Type>
     void ParentAndChildObject<Type>::DeleteChild(const BaseHandle<Type>& handle) {
         for (int i = 0; i < m_childs.size(); i++) {
-            if (m_childs[index] == handle) {
+            if (m_childs[i] == handle) {
                 m_childs[i].DeleteRef();
                 return;
             }
@@ -155,13 +147,13 @@ namespace EtherEngine {
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
     RefHandle<Type> ParentAndChildObject<Type>::GetChild(const uint index) {
-        return m_childs[i];
+        return m_childs[index];
     }
     // 指定ハンドルで子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
     RefHandle<Type> ParentAndChildObject<Type>::GetChild(const BaseHandle<Type>& handle) {
         for (int i = 0; i < m_childs.size(); i++) {
-            if (m_childs[index] == handle) {
+            if (m_childs[i] == handle) {
                 return m_childs[i];
             }
         }

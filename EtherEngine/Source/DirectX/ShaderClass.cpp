@@ -78,7 +78,7 @@ namespace EtherEngine {
     // @ Arg1 : 書き込むシェーダのスロット
     // @ Arg2 : 書き込むデータ
     void ShaderBase::WriteBuffer(uint slot, void* data) {
-        if (slot < m_buffers.size() && m_directxRender.GetEnable()) {
+        if (slot < m_buffers.size() && m_directxRender.IsEnable()) {
             m_directxRender.GetAtomicData().GetContext()->UpdateSubresource(m_buffers[slot], 0, nullptr, data, 0, 0);
         }
     }
