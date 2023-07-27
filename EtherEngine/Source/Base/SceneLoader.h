@@ -1,19 +1,12 @@
 #ifndef I_SCENELOADER_H
 #define I_SCENELOADER_H
 #include <Base/Singleton.h>
+#include <Base/ConceptUtility.h>
 #include <Base/Scene.h>
-
-// @ MEMO : 現段階では「動く」目標。DLL名渡して、というのも考えられるが
 
 
 //----- SceneLoader 宣言
 namespace EtherEngine {
-    // Sceneのみを表現するコンセプト
-    // @ Temp2 : nullptrを許容するか
-    template <typename T, bool IsNullptr>
-    concept SceneConcept = std::is_base_of_v<Scene, T> && (IsNullptr || std::is_null_pointer_v<T>);
-
-
     // シーンを総括するクラス
     class SceneLoader : public Singleton<SceneLoader> {
     public:
@@ -21,19 +14,28 @@ namespace EtherEngine {
         ~SceneLoader(void) override;
 
 
+        // 現在シーン情報ゲッター
+        const std::optional<SceneData>& GetCurrentSceneData(void) const { return m_currentSceneData; }
+
+
+        // シーン情報登録
+        
         // シーン追加
-        // @ Temp : 追加するシーン
-        template <SceneConcept<false> SceneType>
-        void AddScene(void);
+        // @ MEMO : 未実装
+        // @ Arg1 : 追加するシーン
+        void AddScene(const SceneData data);
         // シーン削除
-        // @ Temp : 削除するシーン(Default : nullptr_t。全シーン削除)
-        template <SceneConcept<true> SceneType = nullptr_t>
+        // @ MEMO : 未実装
+        // @ Arg1 : 削除するシーン
+        void DeleteScene(const SceneData data);
+        // シーン削除
+        // @ MEMO : 未実装
+        // @ Memo : 全てのシーンの削除を行います
         void DeleteScene(void);
         // シーン移動
-        // @ Temp : 移動するシーン
-        template <SceneConcept<false> SceneType>
-        [deprecated("未実装")]
-        void MoveScene(void);
+        // @ MEMO : 未実装
+        // @ Arg1 : 移動するシーン
+        void MoveScene(const SceneData data);
 
 
     private:
@@ -42,29 +44,10 @@ namespace EtherEngine {
 
         
         friend class Singleton<SceneLoader>;
+
+        std::vector<SceneData>   m_sceneData;  // 現在保持しているシーンの情報
+        std::optional<SceneData> m_currentSceneData;    // 現在初期化しているシーンの情報
     };
-}
-
-
-//----- SceneLoader実装
-namespace EtherEngine {
-    // シーン追加
-    // @ Temp : 追加するシーン
-    template <SceneConcept<false> SceneType>
-    void SceneLoader::AddScene(void) {
-
-    }
-    // シーン削除
-    // @ Temp : 削除するシーン(Default : nullptr_t。全シーン削除)
-    template <SceneConcept<true> SceneType>
-    void SceneLoader::DeleteScene(void) {
-
-    }
-    // シーン移動
-    // @ Temp : 移動するシーン
-    template <SceneConcept<false> SceneType>
-    void SceneLoader::MoveScene(void) {
-    }
 }
 
 

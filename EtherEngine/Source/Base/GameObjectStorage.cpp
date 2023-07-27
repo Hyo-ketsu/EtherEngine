@@ -1,13 +1,15 @@
 #include <Base/GameObjectStorage.h>
 #include <Base/HandleHelper.h>
+#include <Base/SceneLoader.h>
 
 
 //----- GameObejctStorage宣言
 namespace EtherEngine {
     // ゲームオブジェクトを作成する
-    BaseHandle<GameObject> GameObjectStorage::CreateEditorObject(const Transform& transform) {
-        auto handle = Handle<GameObject>(GameObject(transform));
+    BaseHandle<GameObject> GameObjectStorage::CreateEditorObject(const Transform& transform, const std::string& name) {
+        auto handle = Handle<GameObject>(GameObject(transform, name));
         handle.GetAtomicData().m_handle = handle;
+        if (SceneLoader::Get()->GetCurrentSceneData().has_value()) { handle.GetAtomicData().SetScene(SceneLoader::Get()->GetCurrentSceneData().value()); }
         m_gameObjects.push_back(handle);
         return handle;
     }

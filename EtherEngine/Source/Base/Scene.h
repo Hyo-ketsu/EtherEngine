@@ -1,20 +1,17 @@
 #ifndef I_SCENEG_H
 #define I_SCENEG_H
 
-// @ MEMO : 現状この形で実装しています。要改修
+
+// シーン初期化用関数名
+#define ETHERENGINE_INIT_SCENE_FUNCTION SceneInit
+// シーン初期化用関数名
+#define ETHERENGINE_INIT_SCENE_FUNCTION_LITERAL "SceneInit"
 
 
-//----- Scene 宣言
+//----- シーン情報定義
 namespace EtherEngine {
-    // シーンを表現するクラス
-    class Scene {
-        // コンストラクタ
-        Scene(void);
-
-
-        // 初期化関数
-        virtual void Start(void) = 0;
-    };
+    // シーンをどういう形で識別するか
+    using SceneData = std::string;
 }
 
 
