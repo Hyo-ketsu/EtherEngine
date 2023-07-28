@@ -367,7 +367,7 @@
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -390,7 +390,7 @@
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -469,7 +469,7 @@
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -496,7 +496,7 @@
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>

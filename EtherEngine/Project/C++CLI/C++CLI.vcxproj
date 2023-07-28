@@ -35,115 +35,50 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorCamera.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentHelper.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorDefine.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">Create</PrecompiledHeader>
+    <ClCompile Include="..\..\Source\C++CLI\GameComponent.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\GameDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestComponent.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\UserComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorCamera.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorComponentHelper.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorDefine.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestScene.h" />
+    <ClInclude Include="..\..\Source\C++CLI\GameComponent.h" />
+    <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h" />
+    <ClInclude Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.h" />
+    <ClInclude Include="..\..\Source\C++CLI\UserComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">
       <Project>{8809734e-0717-4038-9f29-68984d325bf1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\C++CLI\C++CLI.vcxproj">
-      <Project>{acea6d06-056b-4569-9f8a-ec2e3527c469}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\DirectX\DirectX.vcxproj">
-      <Project>{75776ccc-0223-4f76-989d-2b9b089281c0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ImGUI\ImGUI.vcxproj">
-      <Project>{688a54a1-1a61-4077-846e-e088f2cb833d}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}</ProjectGuid>
+    <ProjectGuid>{ACEA6D06-056B-4569-9F8A-EC2E3527C469}</ProjectGuid>
     <RootNamespace>EtherEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -151,7 +86,7 @@
     <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -159,7 +94,7 @@
     <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -167,7 +102,7 @@
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -175,7 +110,7 @@
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -184,13 +119,14 @@
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>false</EnableASAN>
     <CLRSupport>true</CLRSupport>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -245,6 +181,7 @@
     <LibraryPath>$(SolutionDir)Library/;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
+    <ManagedAssembly>true</ManagedAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
@@ -253,6 +190,7 @@
     <LibraryPath>$(SolutionDir)Library/;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
+    <ManagedAssembly>true</ManagedAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
     <TargetName>$(ProjectName)</TargetName>
@@ -277,6 +215,7 @@
     <LibraryPath>$(SolutionDir)Library/;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
+    <ManagedAssembly>false</ManagedAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
@@ -285,6 +224,7 @@
     <LibraryPath>$(SolutionDir)Library/;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
+    <ManagedAssembly>false</ManagedAssembly>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">
     <ClCompile>
@@ -306,16 +246,12 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
     <ClCompile>
@@ -337,16 +273,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <ClCompile>
@@ -368,16 +300,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
     <ClCompile>
@@ -399,16 +327,12 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_DEBUG;_GAME_TEST;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
     <ClCompile>
@@ -432,18 +356,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
     <ClCompile>
@@ -467,18 +387,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
     <ClCompile>
@@ -502,18 +418,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
     <ClCompile>
@@ -537,18 +449,14 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <PreprocessorDefinitions>_RELEASE;_GAME_TEST;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(ProjectDir) *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
-    </PostBuildEvent>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>$(SolutionDir)Assets/Shader/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
