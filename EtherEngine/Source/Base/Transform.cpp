@@ -16,20 +16,32 @@ namespace EtherEngine {
     // äOïîèoóÕ
     std::string Transform::Output(void) {
         nlohmann::json json;
-        json["Transform"] = {
-            {"px", m_postion.x()}, {"py", m_postion.y()}, {"pz", m_postion.z()},
-            {"sx", m_scale.x()}, {"sy", m_scale.y()}, {"sz", m_scale.z()},
-            {"rx", m_rotation.x()}, {"ry", m_rotation.y()}, {"rz", m_rotation.z()},
-        };
 
-        return json.dump();
+        json["Transform"]["px"] = m_postion.x(); 
+        json["Transform"]["py"] = m_postion.y(); 
+        json["Transform"]["pz"] = m_postion.z(); 
+        json["Transform"]["sx"] = m_scale.x(); 
+        json["Transform"]["sy"] = m_scale.y(); 
+        json["Transform"]["sz"] = m_scale.z(); 
+        json["Transform"]["rx"] = m_rotation.x(); 
+        json["Transform"]["ry"] = m_rotation.y(); 
+        json["Transform"]["rz"] = m_rotation.z(); 
+
+        return json.dump(IInOuter::msc_dump);
     }
     // äOïîì¸óÕ
     void Transform::Input(const std::string& input) {
-        nlohmann::json json = input;
+        nlohmann::json json = nlohmann::json::parse(input);
 
-        m_postion.x()  = json["Transform"]["px"]; m_postion.y()  = json["Transform"]["py"]; m_postion.z()  = json["Transform"]["pz"];
-        m_scale.x()    = json["Transform"]["sx"]; m_scale.y()    = json["Transform"]["sy"]; m_scale.z()    = json["Transform"]["sz"];
-        m_rotation.x() = json["Transform"]["rx"]; m_rotation.y() = json["Transform"]["ry"]; m_rotation.z() = json["Transform"]["rz"];
+        auto& transform = json["Transform"];
+        m_postion.x() = transform["px"];
+        m_postion.y() = transform["py"];
+        m_postion.z() = transform["pz"];
+        m_scale.x() = transform["sx"];
+        m_scale.y() = transform["sy"];
+        m_scale.z() = transform["sz"];
+        m_rotation.x() = transform["rx"];
+        m_rotation.y() = transform["ry"];
+        m_rotation.z() = transform["rz"];
     }
 }

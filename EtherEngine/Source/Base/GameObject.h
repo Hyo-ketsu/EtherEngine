@@ -1,5 +1,6 @@
 #ifndef I_GAMEOBJECT_H
 #define I_GAMEOBJECT_H
+#include <Base/BaseDefines.h>
 #include <Base/BaseObject.h>
 #include <Base/ComponentBase.h>
 #include <Base/ComponentHelper.h>
@@ -17,7 +18,7 @@
 //----- GameObject 宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
-    class GameObject : public BaseObject , public ISerialize {
+    class GameObject : public BaseObject, public IInOuter {
     public:
         // 更新処理を行う
         void Update(void);
@@ -120,16 +121,20 @@ namespace EtherEngine {
 
 
         friend class GameObjectStorage;
+        friend class CPPCLI;
 
         Transform m_transform;  // 座標
         SceneData m_scene;      // 現在所属シーン
         BaseHandle<GameObject> m_handle;    // 自身のハンドル
         ParentAndChildObject<GameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
-        std::vector<std::shared_ptr<CollisionComponent>> m_collision; // 当たり判定コンポーネント
+        std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
         std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
         std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
+
+        static std::function<std::shared_ptr<ComponentBase>&&(GameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
+        static std::function<std::shared_ptr<DrawComponent>&&(GameObject*, const std::string&)> ms_getDrawComponent; // C++CLIのGameDrawComponentなどを取得するためのラムダ
     };
 }
 
@@ -155,7 +160,7 @@ namespace EtherEngine {
             m_drawComponents.push_back(ptr);
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
-            m_collision.push_back(ptr);
+            m_collisions.push_back(ptr);
         } else {
             m_components.push_back(ptr);
         }
@@ -179,7 +184,7 @@ namespace EtherEngine {
             }
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
-            for (auto& component : m_collision) {
+            for (auto& component : m_collisions) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
                     component->DeleteFuntion();
@@ -220,7 +225,7 @@ namespace EtherEngine {
             }
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
-            for (auto& component : m_collision) {
+            for (auto& component : m_collisions) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 指定番号か
                     if (index != 0) {
@@ -271,7 +276,7 @@ namespace EtherEngine {
             }
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
-            for (auto& component : m_collision) {
+            for (auto& component : m_collisions) {
                 if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
                     //----- 返却用変数に追加
                     ret.push_back(std::weak_ptr<ComponentType>(component));

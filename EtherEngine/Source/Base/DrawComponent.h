@@ -26,7 +26,7 @@ namespace EtherEngine {
         // 各プラットフォーム用描画処理
         virtual void DrawPlatformFunction(void) {}
         // 描画処理
-        virtual void Draw(void) {}
+        virtual void Draw(void) = 0;
 
     private:
         Eigen::Matrix4f m_view; // ビュー行列

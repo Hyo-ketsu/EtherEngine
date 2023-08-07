@@ -44,7 +44,6 @@
     <ClCompile Include="..\..\Source\C++CLI\GameDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\ModelRender.cpp" />
-    <ClCompile Include="..\..\Source\C++CLI\Serializer.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">Create</PrecompiledHeader>
@@ -64,7 +63,6 @@
     <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\ModelComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\ModelRender.h" />
-    <ClInclude Include="..\..\Source\C++CLI\Serializer.h" />
     <ClInclude Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.h" />
     <ClInclude Include="..\..\Source\C++CLI\UserComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\UserDrawComponent.h" />

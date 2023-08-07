@@ -18,10 +18,14 @@ namespace EtherEngine {
     template<SingletonConcept SingletonType>
     class Singleton {
     public:
-        Singleton<SingletonType>(const Singleton<SingletonType>&) = delete;
-        Singleton<SingletonType>(Singleton<SingletonType>&&) = delete;
-        Singleton<SingletonType>& operator=(const Singleton<SingletonType>&) = delete;
-        Singleton<SingletonType>& operator=(Singleton<SingletonType>&&) = delete;
+        // コピーコンストラクタ
+        Singleton<SingletonType>(const Singleton<SingletonType>& copy) = delete;
+        // ムーブコンストラクタ
+        Singleton<SingletonType>(Singleton<SingletonType>&& move) = delete;
+        // コピー代入
+        Singleton<SingletonType>& operator=(const Singleton<SingletonType>& copy) = delete;
+        // ムーブ代入
+        Singleton<SingletonType>& operator=(Singleton<SingletonType>&& move) = delete;
 
 
         // インスタンスの取得

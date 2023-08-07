@@ -1,6 +1,6 @@
 #ifndef I_EDITORCAMERA_H
 #define I_EDITORCAMERA_H
-#include <Base/CameraComponent.h>
+#include <Base/CameraBase.h>
 #include <Base/BaseInput.h>
 #include <EtherEngine/EditorComponentBase.h>
 #include <EtherEngine/EditorObject.h>

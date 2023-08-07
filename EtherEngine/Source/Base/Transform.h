@@ -5,7 +5,7 @@
 
 namespace EtherEngine {
     // 座標・回転・拡縮を保持するクラス
-    class Transform : public ISerialize {
+    class Transform : public IInOuter {
     public:
         // コンストラクタ
         // @ Arg1 : 座標(デフォルト：全て0)
@@ -15,13 +15,16 @@ namespace EtherEngine {
 
 
         // 座標を取得する
-        // @ Arg1 : 座標
+        const Eigen::Vector3f& GetPostion(void) const noexcept { return m_postion; }
+        // 座標を取得する
         Eigen::Vector3f& AccessPostion(void) noexcept { return m_postion; }
         // 拡縮を取得する
-        // @ Arg1 : 拡縮
+        const Eigen::Vector3f& GetScale(void) const noexcept { return m_scale; }
+        // 拡縮を取得する
         Eigen::Vector3f& AccessScale(void) noexcept { return m_scale; }
         // 回転を取得する
-        // @ Arg1 : 回転
+        const Eigen::Vector3f& GetRotation(void) const noexcept { return m_rotation; }
+        // 回転を取得する
         Eigen::Vector3f& AccessRotation(void) noexcept { return m_rotation; }
 
 

@@ -15,7 +15,7 @@ namespace EtherEngine {
         // @ Ret  : 作成したゲームオブジェクトのハンドル
         // @ Arg1 : 座標(デフォルト : 座標・回転は0, 拡縮は1)
         // @ Arg2 : 名前(Default : GameObject)
-        BaseHandle<GameObject> CreateEditorObject(const Transform& transform = Transform(), const std::string& name = "GameObject");
+        BaseHandle<GameObject> CreateGameObject(const Transform& transform = Transform(), const std::string& name = "GameObject");
         // ゲームオブジェクトを削除する
         // @ Ret  : 削除されたか
         // @ Arg1 : 削除するゲームオブジェクトのハンドル

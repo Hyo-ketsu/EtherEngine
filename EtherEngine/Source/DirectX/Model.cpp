@@ -3,13 +3,12 @@
 
 namespace EtherEngine {
     // コンストラクタ
-    Model::Model(const std::string& file, const BaseHandle<DirectXRender>& directX, VertexShader* const vertexShader, PixelShader* const pixelShader,
-        const float scale, const bool isFlip) 
-        : m_textureSlot(0) 
-        , m_vertexShader(vertexShader)
-        , m_pixelShader(pixelShader){
-        //----- モデル読み込み
-        Load(file, directX, scale, isFlip);
+    Model::Model(void) 
+        : m_isLoad(false)
+        , m_isFlip(false)
+        , m_scale(1.0f)
+        , m_loadModel("")
+        , m_textureSlot(0) {
     }
     // デストラクタ
     Model::~Model(void) {
@@ -17,22 +16,22 @@ namespace EtherEngine {
 
 
     // 描画
-    void Model::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+    bool Model::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection, PixelShader* pixelShader) {
+        //----- 読み込みが行われていなければ例外送出
+        if (m_isLoad == false) return false;
+
         //----- 頂点シェーダー
         Eigen::Matrix4f matrix[3] = { world, view.transpose(), projection.transpose() };
-        m_vertexShader->WriteBuffer(0, &matrix);
-        m_vertexShader->Bind();
-
-        //----- ピクセルシェーダー
-        m_pixelShader->Bind();
 
         //----- 描画
         for (auto&& it : m_meshes) {
             if (m_textureSlot >= 0) {
-                m_pixelShader->SetTexture(m_textureSlot, m_materials[it.materialID].texture.get());
+                pixelShader->SetTexture(m_textureSlot, m_materials[it.materialID].texture.get());
             }
             it.mesh->Draw();
         }
+
+        return true;
     }
 
 
@@ -160,5 +159,33 @@ namespace EtherEngine {
             //----- マテリアル追加
             m_materials.push_back(std::move(material));
         }
+
+        //----- 読込ステータス保持
+        m_isFlip = isFlip;
+        m_scale = scale;
+        m_loadModel = file;
+
+        //----- 読込フラグを立てる
+        m_isLoad = true;
+    }
+
+
+    // 外部出力
+    std::string Model::Output(void) {
+        nlohmann::json json;
+
+        json["Model"]["LoadFile"] = m_loadModel;
+        json["Model"]["Filp"] = m_isFlip;
+        json["Model"]["Scale"] = m_scale;
+
+        return json.dump(msc_dump);
+    }
+    // 外部入力
+    void Model::Input(const std::string& input) {
+        nlohmann::json json = nlohmann::json::parse(input);
+
+        m_loadModel = json["Model"]["LoadFile"];
+        m_isFlip = json["Model"]["Filp"];
+        m_scale = json["Model"]["Scale"];
     }
 }

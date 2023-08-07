@@ -8,8 +8,6 @@
 //----- CameraData定義
 namespace EtherEngine {
     // コンストラクタ
-    // @ Arg1 : 座標
-    // @ Arg2 : 注視点
     CameraData::CameraData(const Eigen::Vector3f& pos, const Eigen::Vector3f& look) 
         : m_pos(pos)
         , m_look(look)
@@ -20,6 +18,10 @@ namespace EtherEngine {
         , m_far(CameraDefine::FAR_) {
         SetPos(pos);
         SetLook(look);
+    }
+    // Jsonコンストラクタ
+    CameraData::CameraData(const std::string& json) {
+        this->Input(json);
     }
 
 
@@ -56,6 +58,49 @@ namespace EtherEngine {
         // 一定値以上にすると弊害があるようなら付けます
         // if (m_far > 1000.0f) m_far = 1000.0f;
         if (m_far < m_near) m_far = m_near;
+    }
+
+
+    // 外部出力する
+    std::string CameraData::Output(void) {
+        nlohmann::json json;
+
+        json["CameraData"]["posX"] = m_pos.x();
+        json["CameraData"]["posY"] = m_pos.y();
+        json["CameraData"]["posZ"] = m_pos.z();
+        json["CameraData"]["lookX"] = m_look.x();
+        json["CameraData"]["lookY"] = m_look.y();
+        json["CameraData"]["lookZ"] = m_look.z();
+        json["CameraData"]["upX"] = m_up.x();
+        json["CameraData"]["upZ"] = m_up.z();
+        json["CameraData"]["upY"] = m_up.y();
+        json["CameraData"]["priority"] = m_priority;
+        json["CameraData"]["fovy"]     = m_fovy;
+        json["CameraData"]["aspect"]   = m_aspect;
+        json["CameraData"]["near"]     = m_near;
+        json["CameraData"]["far"]      = m_far;
+
+        return json.dump(IInOuter::msc_dump);
+    }
+    // 外部入力する
+    void CameraData::Input(const std::string& input) {
+        nlohmann::json json = nlohmann::json::parse(input);
+
+        auto& cameraData = json["CameraData"];
+        m_pos.x() = cameraData["posX"];
+        m_pos.y() = cameraData["posY"];
+        m_pos.z() = cameraData["posZ"];
+        m_look.x() = cameraData["lookX"];
+        m_look.y() = cameraData["lookY"];
+        m_look.z() = cameraData["lookZ"];
+        m_up.x() = cameraData["upX"];
+        m_up.z() = cameraData["upZ"];
+        m_up.y() = cameraData["upY"];
+        m_priority = cameraData["priority"];
+        m_fovy     = cameraData["fovy"];
+        m_aspect   = cameraData["aspect"];
+        m_near     = cameraData["near"];
+        m_far      = cameraData["far"];
     }
 
 
@@ -130,5 +175,21 @@ namespace EtherEngine {
 
         //----- 返却
         return ret;
+    }
+
+
+    // 外部出力する
+    std::string CameraBase::Output(void) {
+        nlohmann::json json;
+
+        json["CameraBase"] = m_cameraData.Output();
+
+        return json.dump(IInOuter::msc_dump);
+    }
+    // 入力する
+    void CameraBase::Input(const std::string& input) {
+        nlohmann::json json = nlohmann::json::parse(input);
+
+        m_cameraData.Input(json["CameraBase"]);
     }
 }

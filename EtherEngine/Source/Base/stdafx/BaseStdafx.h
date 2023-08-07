@@ -1,11 +1,11 @@
+#include <algorithm>
 #include <array>
 #include <atomic>
-#include <chrono>
 #include <condition_variable>
 #include <concepts>
 #include <deque>
 #include <float.h> 
-#include <filesystem>
+#include <fstream>
 #include <functional>
 #include <limits.h>
 #include <list>
@@ -23,16 +23,17 @@
 #include <thread>
 #include <type_traits>
 #include <unordered_map>
-#include <algorithm>
+#include <utility>
 #include <variant>
 
-#include <Base/Json/nlohmann/json.hpp>
 #include <Eigen/Core>
-
 #include <DirectXMath.h>
-
 #include <Windows.h>
+#include <Base/Json/nlohmann/json.hpp>
 #pragma comment (lib, "winmm.lib")
+
+
+#include <Base/PathClass.h>
 
 
 // 非符号文字コードの別名定義
@@ -45,8 +46,3 @@ using uint = unsigned int;
 using llint = long long;
 // 非符号8Byte整数の別名定義
 using ullint = unsigned long long;
-
-
-namespace EtherEngine {
-    constexpr float ONE_FRAME = 1.f / 60.f;
-}

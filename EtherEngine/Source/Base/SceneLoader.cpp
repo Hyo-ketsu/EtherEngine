@@ -1,5 +1,8 @@
 #include <Base/SceneLoader.h>
+#include <Base/BaseDefines.h>   
 #include <Base/DirectoryNameDefine.h>
+#include <Base/GameObjectUpdater.h>
+#include <Base/GameObjectStorage.h>
 
 
 namespace EtherEngine {
@@ -14,27 +17,33 @@ namespace EtherEngine {
     // シーン追加
     void SceneLoader::AddScene(const SceneData data) {
         //----- 読み込みディレクトリ修飾
-        // @ Memo : Hoge -> Scene/Hoge.dll
+        // @ Memo : Hoge -> Scene/Hoge.sceneData
         std::string loadSceneName;
-        if (data.rfind(".dll") == std::string::npos) {
-            loadSceneName = DirectoryDefine::SCENE_DATA + data + ",dll";
+        if (data.rfind(FilenameExtensionDefine::SCENE) == std::string::npos) {
+            loadSceneName = DirectoryDefine::SCENE_DATA + data + FilenameExtensionDefine::SCENE;
         }
         else {
             loadSceneName = DirectoryDefine::SCENE_DATA + data;
         }
 
-        //----- DLL読み込み
-        HMODULE dll = LoadLibrary(loadSceneName.c_str());
-        if (dll == nullptr) { throw std::exception("Error!"); }
+        //----- ファイルオープン
+        std::ifstream scene(loadSceneName);
+        if (scene.is_open() == false) throw std::exception((std::string("Exception! SceneData : ") + loadSceneName + " Non file!").c_str());
 
-        //----- シーン読み込み
-        using InitSceneFunction = void*(__stdcall*)();
-        auto InitScene = (InitSceneFunction)GetProcAddress(dll, ETHERENGINE_INIT_SCENE_FUNCTION_LITERAL);
-        // @ MEMO : 思い出したら関数がなかった場合の例外処理
+        //----- 読み込み
+        // @ Memo : EOFまで全て読み込みます
+        std::string sceneString;
+        std::string line;
+        while (std::getline(scene, line)) {
+            sceneString += line;
+        }
 
-        //----- 読み込んだシーンを用いて初期化を行う
-        m_currentSceneData = data;
-        InitScene();
+        //----- 生成
+        nlohmann::json json = nlohmann::json::parse(sceneString);
+        for (auto& it : json["GameObejcts"]) {
+            auto gameObject = GameObjectStorage::Get()->CreateGameObject();
+            gameObject.GetNoAtomicData().Input(it);
+        }
     }
     // シーン削除
     void SceneLoader::DeleteScene(const SceneData data) {

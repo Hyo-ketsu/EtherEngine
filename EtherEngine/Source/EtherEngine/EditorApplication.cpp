@@ -4,6 +4,7 @@
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <Base/GameObjectUpdater.h>
+#include <C++CLI/C++CLIInit.h>
 #include <EtherEngine/ProcedureEditorWindow.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #ifdef _DEBUG
@@ -32,7 +33,9 @@ namespace EtherEngine {
 
     // メイン関数
     void EditorApplication::MainFunction(void) {
-        using namespace std::chrono;
+        //----- データ読み取り
+        // @ MEMO : ひとまず仮で（現状ProjectData側でデータを生成しているので）
+        m_projectData = std::make_unique<ProjectData>();
 
         //----- メモリリークチェック
         _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -140,6 +143,7 @@ namespace EtherEngine {
         if (factory) factory->Release();
 
         //----- 初期化・終了処理登録
+        m_initUninitPerformer.AddInitUninit<CPPCLI>();
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
         m_initUninitPerformer.AddInitUninit<InputSystem>();
         m_initUninitPerformer.AddInitUninit(
@@ -152,7 +156,7 @@ namespace EtherEngine {
         //----- 初期化
         m_initUninitPerformer.Init();
 
-#ifdef _DEBUG
+#ifndef _DEBUG
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
@@ -170,13 +174,13 @@ namespace EtherEngine {
 
         //----- テスト用ゲームオブジェクト追加
         {
-            auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
+            auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
             testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
             testGameObject.GetAtomicData().AddComponent<TestComponent>();
             testGameObject.GetAtomicData().AccessName() = "Usi";
         }
         {
-            auto testGameObject = GameObjectStorage::Get()->CreateEditorObject();
+            auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
             testGameObject.GetAtomicData().AccessTransform().AccessPostion().x() += 0.15f;
             testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
             testGameObject.GetAtomicData().AddComponent<TestComponent>();
@@ -190,7 +194,7 @@ namespace EtherEngine {
         //----- メッセージループ
         MSG message;
         Timer fpsTimer;
-        nanoseconds frameSecond = 0ns;
+        milliSecond frameSecond = 0;
         while (true) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
@@ -209,11 +213,12 @@ namespace EtherEngine {
                 frameSecond += fpsTimer.GetDeltaTime();
 
                 //----- FPS制御
-                if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
-                frameSecond = 0ns;
+                if (frameSecond < ONE_FRAME * 1000) continue;
+                frameSecond = 0;
 
-                //----- 入力更新
+                //----- 更新
                 InputSystem::Update();
+                GlobalTimer::Get()->Update();
 
                 //----- エディター更新処理
                 EditorUpdater::Get()->Update();
@@ -242,5 +247,4 @@ namespace EtherEngine {
         //----- 終了処理
         m_initUninitPerformer.UnInit();
     }
-
 }

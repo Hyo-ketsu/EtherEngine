@@ -1,31 +1,66 @@
 #include <Base/Timer.h>
 
 
+//----- 前方宣言定義
 namespace EtherEngine {
+    namespace ForwardDeclaration {
+        // TimePointer用前方宣言
+        class TimePointer {
+        public:
+            // コンストラクタ
+            TimePointer(std::chrono::steady_clock::time_point timePoint)
+                : m_timePoint(timePoint) {
+            }
+            // デストラクタ
+            TimePointer(void) {}
+            // コピー代入
+            TimePointer& operator =(const TimePointer& copy) = default;
+
+
+            operator std::chrono::steady_clock::time_point(void) { return m_timePoint; }
+
+
+            std::chrono::steady_clock::time_point m_timePoint;  
+        };
+    }
+}
+
+
+//----- Timer 定義
+namespace EtherEngine {
+    using namespace EtherEngine::ForwardDeclaration;
+
+
+    // コンストラクタ
+    Timer::Timer(void) 
+        : m_deltaTime(nullptr) {
+    }
+    // デストラクタ
+    Timer::~Timer(void) {
+    }
     // 現在時間を取得する
-    std::chrono::nanoseconds Timer::GetTime(void) {
-        using namespace std::chrono;
-        return duration_cast<nanoseconds>(GlobalTimer::Get()->GetGlobalTime());
+    milliSecond Timer::GetTime(void) {
+        return GlobalTimer::Get()->GetGlobalTime();
     }
 
 
     // 前回からの経過時間を取得する
-    std::chrono::nanoseconds Timer::GetDeltaTime(void) {
+    milliSecond Timer::GetDeltaTime(void) {
         //----- usingと変数宣言
-        using namespace std::chrono;
-        std::chrono::nanoseconds ret{};
+        milliSecond ret = 0;
 
         //----- 減算処理
-        if (m_deltaTime.has_value()) {
-            //----- 有効値。処理する
-            ret = duration_cast<nanoseconds>(std::chrono::steady_clock::now() - m_deltaTime.value());
+        if (m_deltaTime == nullptr) {
+            //----- 無効値。初期化
+            m_deltaTime = new TimePointer(std::chrono::steady_clock::now());
         }
         else {
-            m_deltaTime.emplace(std::chrono::steady_clock::now());
+            //----- 有効値。処理する
+            ret = (std::chrono::steady_clock::now() - m_deltaTime->m_timePoint).count() * 0.001f * 0.001f;  // ナノ秒をマイクロ秒、ミリ秒へ変換
         }
 
         //----- 時間更新
-        m_deltaTime.value() = std::chrono::steady_clock::now();
+        *m_deltaTime = std::chrono::steady_clock::now();
 
         //----- 返却
         return ret;
@@ -34,9 +69,26 @@ namespace EtherEngine {
 
 
 namespace EtherEngine {
+    // コンストラクタ
+    GlobalTimer::GlobalTimer(void) 
+        : m_firstTime(nullptr) 
+        , m_updateTime(nullptr) {
+    }
+    // デストラクタ
+    GlobalTimer::~GlobalTimer(void) {
+        delete m_updateTime;
+        delete m_firstTime;
+    }
+
+
     // 初期化
     void GlobalTimer::Init(void) {
-        m_firstTime = std::chrono::steady_clock::now();
+        m_firstTime = new TimePointer(std::chrono::steady_clock::now());
+        m_updateTime = new TimePointer(*m_firstTime);
+    }
+    // 更新
+    void GlobalTimer::Update(void) {
+        *m_updateTime = TimePointer(std::chrono::steady_clock::now());
     }
     // 終了
     void GlobalTimer::Uninit(void) {
@@ -46,7 +98,11 @@ namespace EtherEngine {
 
     // グローバルタイムを取得する
     // @ Ret  : GlobalTimer初期時からの経過時間
-    std::chrono::nanoseconds GlobalTimer::GetGlobalTime(void) {
-        return std::chrono::steady_clock::now() - m_firstTime.value();
+    milliSecond GlobalTimer::GetGlobalTime(void) {
+        //----- 経過時間をナノ秒で取得
+        auto second = std::chrono::steady_clock::now() - m_firstTime->m_timePoint;
+
+        //----- ナノ秒をマイクロ秒からミリ秒に変換して返却
+        return second.count() * 0.001f * 0.001f;
     }
 }

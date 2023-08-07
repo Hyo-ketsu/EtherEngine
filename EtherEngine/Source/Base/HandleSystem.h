@@ -1,6 +1,5 @@
 #ifndef I_HANDLESYSTEM_H
 #define I_HANDLESYSTEM_H
-
 #include <Base/ConceptUtility.h>
 #include <Base/Singleton.h>
 #include <Base/Random.h>

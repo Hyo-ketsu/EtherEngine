@@ -18,6 +18,16 @@ namespace EtherEngine {
     }
 
 
+    // コンポーネント名の取得
+    std::string ComponentBase::GetComponentName(void) const {
+        return this->GetName();
+    }
+    // コンポーネントタイプ名の取得
+    std::string ComponentBase::GetComponentTypeName(void) const {
+        return Component::TYPE_COMPONENT;
+    }
+
+
     // 更新処理を行う
     void ComponentBase::UpdateFuntion(void) {
         //----- アクティブチェック

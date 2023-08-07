@@ -22,8 +22,8 @@ namespace EtherEngine {
         ImGui::BeginChild("LogWindow");
         for (auto&& it : m_log) {
             // @ MEMO : ŠÔ•\¦‚ª‚¨‚©‚µ‚¢‚ª‚Ü‚ •ú’uBŒã‚Å’¼‚·
-            auto message = std::format("{:%X}", it.m_timeStamp) + " : " + it.m_message;
-            ImGui::Text(message.c_str());
+            //auto message = std::format("{:%X}", it.m_timeStamp) + " : " + it.m_message;
+            //ImGui::Text(message.c_str());
         }
         ImGui::EndChild();
     }

@@ -2,17 +2,21 @@
 #define I_CAMERABASE_H
 #include <Base/IDClass.h>
 #include <Base/StorageSystem.h>
+#include <Base/EtherEngineUtility.h>
 
 
 //----- CameraData 宣言
 namespace EtherEngine {
     // 視野角等のカメラ情報を保持しているクラス
-    class CameraData {
+    class CameraData : public IInOuter {
     public:
         // コンストラクタ
         // @ Arg1 : 座標
         // @ Arg2 : 注視点
         CameraData(const Eigen::Vector3f& pos, const Eigen::Vector3f& look);
+        // Jsonコンストラクタ
+        // @ Arg1 : Json文字列
+        CameraData(const std::string& json);
         // デストラクタ
         ~CameraData(void) {}
 
@@ -50,6 +54,12 @@ namespace EtherEngine {
         // 最長クリップ距離セッター
         void SetFar(const float in);
 
+
+        // 外部出力する
+        std::string Output(void) override;
+        // 外部入力する
+        void Input(const std::string& input) override;
+
     private:
         // 座標と注視点が同座標の場合に例外を出力します
         void CheckPosLookPosition(void) const;
@@ -69,7 +79,7 @@ namespace EtherEngine {
 //----- CameraBase 宣言
 namespace EtherEngine {
     // カメラを表現するクラス
-    class CameraBase {
+    class CameraBase : public IInOuter {
     public:
         // コンストラクタ
         // @ Arg1 : 座標
@@ -98,6 +108,12 @@ namespace EtherEngine {
         // @ Ret  : 取得したプロジェクション行列
         // @ Arg1 : 転置も行うか(Default : ture)
         Eigen::Matrix4f GetProjection(const bool isTranspose = true) const;
+
+
+        // 外部出力する
+        std::string Output(void) override;
+        // 入力する
+        void Input(const std::string& input) override;
 
     private:
         CameraData m_cameraData;        // カメラ情報

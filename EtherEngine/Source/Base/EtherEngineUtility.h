@@ -9,7 +9,7 @@
 //----- インターフェース定義
 namespace EtherEngine {
     // Serialize・Deserialize用インターフェース(Json想定)
-    class ISerialize {
+    class IInOuter {
     public:
         // 出力する
         // @ Ret  : 出力文字列
@@ -17,6 +17,10 @@ namespace EtherEngine {
         // 入力する
         // @ Arg1 : 入力文字列
         virtual void Input(const std::string& input) = 0;
+
+
+    protected:
+        static constexpr uint msc_dump = 4;  // ダンプ空白数
     };
 }
 

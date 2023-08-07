@@ -48,9 +48,6 @@
     <ClCompile Include="..\..\Source\C++CLI\GameDrawComponent.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\C++CLI\Serializer.cpp">
-      <Filter>ソース ファイル\Base</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\ModelComponent.cpp">
       <Filter>ソース ファイル\Component</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\Serializer.h">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\UserComponent.h">

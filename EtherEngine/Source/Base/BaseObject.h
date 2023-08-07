@@ -23,6 +23,8 @@ namespace EtherEngine {
 
         // IDゲッター
         const IDClass& GetId(void) const { return m_id; }
+        // IDセッター
+        void SetId(const IDClass& in) { m_id = in; }
 
         // オブジェクトアクティブゲッター
         bool GetActive(void) const { return m_isActive; }

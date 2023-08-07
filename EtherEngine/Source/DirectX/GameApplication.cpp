@@ -5,6 +5,7 @@
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>
 #include <DirectX/ProcedureGameWindow.h>
+#include <C++CLI/C++CLIInit.h>
 
 
 #ifdef _DEBUG
@@ -112,6 +113,7 @@ namespace EtherEngine {
         if (factory) factory->Release();
 
         //----- 初期化・終了処理登録
+        m_initUninitPerformer.AddInitUninit<CPPCLI>();
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
         m_initUninitPerformer.AddInitUninit<InputSystem>();
 
@@ -139,7 +141,7 @@ namespace EtherEngine {
         //----- メッセージループ
         MSG message;
         Timer fpsTimer;
-        nanoseconds frameSecond = 0ms;
+        milliSecond frameSecond = 0;
         while (true) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
@@ -159,8 +161,8 @@ namespace EtherEngine {
                 frameSecond += fpsTimer.GetDeltaTime();
 
                 //----- FPS制御
-                if (frameSecond < milliseconds(int(ONE_FRAME * 1'000))) continue;
-                frameSecond = 0ms;
+                if (frameSecond < (ONE_FRAME * 1'000)) continue;
+                frameSecond = 0;
 
                 //----- Update処理
                 GameObjectUpdater::Get()->Update();

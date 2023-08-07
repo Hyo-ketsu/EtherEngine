@@ -25,12 +25,7 @@ namespace EtherEngine {
 		//----- ÉtÉ@ÉCÉãï ì«Ç›çûÇ›
 		DirectX::TexMetadata mdata;
 		DirectX::ScratchImage image;
-		if (strstr(file.c_str(), ".tga")) {
-			hr = DirectX::LoadFromTGAFile(wPath, &mdata, image);
-		}
-		else {
-			hr = DirectX::LoadFromWICFile(wPath, DirectX::WIC_FLAGS::WIC_FLAGS_NONE, &mdata, image);
-		}
+		hr = DirectX::LoadFromWICFile(wPath, DirectX::WIC_FLAGS::WIC_FLAGS_NONE, &mdata, image);
 		if (FAILED(hr)) {
 			return E_FAIL;
 		}
