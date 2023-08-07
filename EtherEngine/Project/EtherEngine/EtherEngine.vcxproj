@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Editor_Debug|Win32">
@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorComponentHelper.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorDefine.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorExplorerWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
@@ -57,6 +58,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
@@ -95,6 +97,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
@@ -126,6 +129,7 @@
     <ProjectGuid>{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}</ProjectGuid>
     <RootNamespace>EtherEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'" Label="Configuration">
@@ -134,6 +138,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -141,6 +146,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -149,6 +155,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -157,6 +164,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <EnableASAN>true</EnableASAN>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -180,7 +188,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <EnableASAN>false</EnableASAN>
+    <EnableASAN>true</EnableASAN>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'" Label="Configuration">
@@ -189,7 +197,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <EnableASAN>false</EnableASAN>
+    <EnableASAN>true</EnableASAN>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -290,7 +298,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -298,7 +306,7 @@
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>_DEBUG;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
@@ -321,7 +329,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -329,7 +337,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>_DEBUG;_GAME_TEST;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
@@ -352,7 +360,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -383,7 +391,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -416,7 +424,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -424,7 +432,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>_RELEASE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
@@ -451,7 +459,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -459,7 +467,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <DisableSpecificWarnings>4819;4099;4221</DisableSpecificWarnings>
       <ForcedIncludeFiles>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</ForcedIncludeFiles>
       <TreatSpecificWarningsAsErrors>4834</TreatSpecificWarningsAsErrors>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>_RELEASE;_GAME_TEST;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
@@ -486,7 +494,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
@@ -521,7 +529,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>false</SDLCheck>
+      <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33516.290
+# Visual Studio 15
+VisualStudioVersion = 15.0.33801.198
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EtherEngine", "Project\EtherEngine\EtherEngine.vcxproj", "{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -100,11 +100,12 @@ Global
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Release|x86.Build.0 = Release|Win32
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x64.ActiveCfg = Debug|x64
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x64.Build.0 = Debug|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.ActiveCfg = Game_Debug|Win32
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.Build.0 = Game_Debug|Win32
+		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.ActiveCfg = Debug|Win32
+		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.Build.0 = Debug|Win32
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x64.ActiveCfg = Release|x64
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x64.Build.0 = Release|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x86.ActiveCfg = Game_Debug|Win32
+		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x86.ActiveCfg = Release|Win32
+		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x86.Build.0 = Release|Win32
 		{ACEA6D06-056B-4569-9F8A-EC2E3527C469}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{ACEA6D06-056B-4569-9F8A-EC2E3527C469}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{ACEA6D06-056B-4569-9F8A-EC2E3527C469}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
