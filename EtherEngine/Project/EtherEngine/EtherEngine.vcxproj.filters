@@ -93,9 +93,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp">
       <Filter>ソース ファイル\Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
       <Filter>ソース ファイル\EngineObject</Filter>
     </ClCompile>
@@ -107,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestComponent.cpp">
       <Filter>ソース ファイル\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp">
+      <Filter>ソース ファイル\EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorExplorerWindow.cpp">
+      <Filter>ソース ファイル\EngineObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
+      <Filter>ソース ファイル\EngineSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +158,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorCamera.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
@@ -176,8 +179,14 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h">
+      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
+      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

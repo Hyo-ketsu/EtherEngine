@@ -183,6 +183,12 @@
     <ClCompile Include="..\..\Source\Base\CollisionSphereXSphereFunction.cpp">
       <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Base\PathClass.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\ProjectData.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
@@ -337,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionSphereXSphereFunction.h">
       <Filter>ヘッダー ファイル\Collision\CollisionFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\PathClass.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
