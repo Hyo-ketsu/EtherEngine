@@ -3,9 +3,13 @@
 
 
 namespace EtherEngine {
+    // エディター定数定義
+    namespace EditorDefine {
+        const std::string EDITOR_DEFAULT_SCENE_NAME = "Scene";  // シーンを開いていなかった際につけるシーン名
+    }
     // エディターのDefault設定
     namespace EditorDefaultConfig {
-        const float EditorCameraSpeed = 0.025f;   // エディターのカメラの初期速度
+        const float EDITOR_CAMERA_SPEED = 0.025f;   // エディターのカメラの初期速度
     }
 }
 

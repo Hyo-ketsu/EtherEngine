@@ -20,14 +20,20 @@ namespace EtherEngine {
         //----- 全ゲームオブジェクト取得
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
 
+        //----- 右クリックメニュー入力
+        if (ImGui::IsMouseReleased(1)) {
+            ImGui::OpenPopup("Outliner Popup");
+        }
+
         //----- 表示
         // @ MEMO : 現在は親子関係を一切考慮していません
         if (ImGui::BeginListBox("GameObjectList")) {
             int i = 0;
             for (auto&& it : gameObjects) {
                 auto gameObject = it.GetNoAtomicItem();
-                bool isSelect = ms_selectNumber == i;  // 選択されているか
-                if (ImGui::Selectable(gameObject.GetData().GetName().c_str(), &isSelect)) {
+                auto name = gameObject.GetData().GetName() + std::to_string(i);
+                bool isSelect = (ms_selectNumber == i);  // 選択されているか
+                if (ImGui::Selectable(name.c_str(), isSelect)) {
                     ms_selectNumber = i;
                 }
                 if (isSelect) {
@@ -38,6 +44,21 @@ namespace EtherEngine {
             }
 
             ImGui::EndListBox();
+        }
+
+        //----- 右クリックメニュー表示
+        if (ImGui::BeginPopup("Outliner Popup")) {
+            //----- オブジェクト生成
+            if (ImGui::MenuItem("CreateGameObejct")) {
+                GameObjectStorage::Get()->CreateGameObject();
+            }
+            //----- オブジェクト削除
+            if (ImGui::MenuItem("DeleteGameObject")) {
+                GameObjectStorage::Get()->DeleteGameObject(gameObjects[ms_selectNumber]);
+            }
+
+            //----- メニュー表示終了
+            ImGui::EndPopup();
         }
     }
 

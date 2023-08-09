@@ -62,6 +62,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Create</PrecompiledHeader>
@@ -101,6 +102,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />

@@ -31,11 +31,15 @@ namespace EtherEngine {
     }
 
 
-    // メイン関数
-    void EditorApplication::MainFunction(void) {
+    // 初期化関数
+    void EditorApplication::InitFunction(void) {
         //----- データ読み取り
         // @ MEMO : ひとまず仮で（現状ProjectData側でデータを生成しているので）
         m_projectData = std::make_unique<ProjectData>();
+        m_projectEditorData = std::make_unique<ProjectEditorData>();
+    }
+    // メイン関数
+    void EditorApplication::MainFunction(void) {
 
         //----- メモリリークチェック
         _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);

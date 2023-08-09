@@ -26,6 +26,8 @@ namespace EtherEngine {
         const BaseHandle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
 
 
+        // ‰Šú‰»ŠÖ”
+        virtual void InitFunction(void) {}
         // ƒƒCƒ“ŠÖ”
         virtual void MainFunction(void) = 0;
 

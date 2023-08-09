@@ -10,7 +10,7 @@ namespace EtherEngine {
     EditorCamera::EditorCamera(EditorObject* editorObject) 
         : EditorComponentBase(editorObject) 
         , CameraBase(editorObject->AccessTransform().AccessPostion(), editorObject->AccessTransform().AccessPostion() - Eigen::Vector3f(0,0,-10.0f)) 
-        , m_speed(EditorDefaultConfig::EditorCameraSpeed)
+        , m_speed(EditorDefaultConfig::EDITOR_CAMERA_SPEED)
         , m_front(KeyboardInput('W'))
         , m_back(KeyboardInput('S'))
         , m_left(KeyboardInput('A'))
