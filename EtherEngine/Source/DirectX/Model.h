@@ -45,9 +45,9 @@ namespace EtherEngine {
 
 
         // ŠO•”o—Í
-        std::string Output(void) override;
+        Json Output(void) override;
         // ŠO•”“ü—Í
-        void Input(const std::string& input) override;
+        void Input(const Json& input) override;
 
     protected:
         bool m_isLoad;              // “Ç‚İ‚İ‚ª‚Å‚«‚½‚©

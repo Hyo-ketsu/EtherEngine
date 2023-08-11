@@ -172,21 +172,19 @@ namespace EtherEngine {
 
 
     // äOïîèoóÕ
-    std::string Model::Output(void) {
+    Json Model::Output(void) {
         nlohmann::json json;
 
         json["Model"]["LoadFile"] = m_loadModel;
         json["Model"]["Filp"] = m_isFlip;
         json["Model"]["Scale"] = m_scale;
 
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // äOïîì¸óÕ
-    void Model::Input(const std::string& input) {
-        nlohmann::json json = nlohmann::json::parse(input);
-
-        m_loadModel = json["Model"]["LoadFile"];
-        m_isFlip = json["Model"]["Filp"];
-        m_scale = json["Model"]["Scale"];
+    void Model::Input(const Json& input) {
+        m_loadModel = input["Model"]["LoadFile"];
+        m_isFlip = input["Model"]["Filp"];
+        m_scale = input["Model"]["Scale"];
     }
 }

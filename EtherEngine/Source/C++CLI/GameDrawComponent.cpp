@@ -52,11 +52,11 @@ namespace EtherEngine {
 
 
     // ŠO•”o—Í
-    std::string GameDrawComponent::Output(void) {
+    Json GameDrawComponent::Output(void) {
         return GameComponent::Output();
     }
     // ŠO•”“ü—Í
-    void GameDrawComponent::Input(const std::string& input) {
+    void GameDrawComponent::Input(const Json& input) {
         GameComponent::Input(input);
     }
 }

@@ -19,9 +19,9 @@ namespace EtherEngine {
 
 
         // 外部出力
-        std::string Output(void) override;
+        Json Output(void) override;
         // 外部入力
-        void Input(const std::string& input) override;
+        void Input(const Json& input) override;
 
     private:
         std::optional<SceneData> m_currentScene;    // 現在開いているシーン

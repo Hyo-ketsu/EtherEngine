@@ -56,9 +56,9 @@ namespace EtherEngine {
 
 
         // 外部出力する
-        std::string Output(void) override;
+        Json Output(void) override;
         // 外部入力する
-        void Input(const std::string& input) override;
+        void Input(const Json& input) override;
 
     private:
         // 座標と注視点が同座標の場合に例外を出力します
@@ -111,9 +111,9 @@ namespace EtherEngine {
 
 
         // 外部出力する
-        std::string Output(void) override;
+        Json Output(void) override;
         // 入力する
-        void Input(const std::string& input) override;
+        void Input(const Json& input) override;
 
     private:
         CameraData m_cameraData;        // カメラ情報

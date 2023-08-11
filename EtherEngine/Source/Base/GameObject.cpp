@@ -220,13 +220,13 @@ namespace EtherEngine {
 
 
     // 外部出力
-    std::string GameObject::Output(void) {
+    Json GameObject::Output(void) {
         //----- 変数宣言
         nlohmann::json json;
 
         //----- ゲームオブジェクト自身の情報出力
-        json["GameObject"]["ID"] = GetId().Get();
-        json["GameObject"]["Name"] = GetName();
+        json["GameObject"]["ID"] = 0;// GetId().Get();
+        json["GameObject"]["Name"] = GetName().c_str();
 
         //----- コンポーネント出力
         for (auto& it : m_components) {
@@ -246,22 +246,19 @@ namespace EtherEngine {
         //}
 
         //----- 返却
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // 外部入力
-    void GameObject::Input(const std::string& input) {
-        //----- 変数宣言
-        nlohmann::json json = nlohmann::json::parse(input);
-
+    void GameObject::Input(const Json& input) {
         //----- ゲームオブジェクト自身の情報取得
         // @ MEMO : IDは保留
         //this->SetId(json["GameObject"]["ID"])
-        SetName(json["GameObject"]["Name"]);
+        SetName(input["GameObject"]["Name"]);
 
         //----- コンポーネント入力
-        for (auto& it : json["GameObject"]["Components"]) {
+        for (auto& it : input["GameObject"]["Components"]) {
             //----- タイプに沿ったコンポーネント生成
-            std::string type = json["GameObject"]["Components"]["ComponentType"];
+            std::string type = input["GameObject"]["Components"]["ComponentType"];
             
             do {
                 //----- 通常コンポーネント生成

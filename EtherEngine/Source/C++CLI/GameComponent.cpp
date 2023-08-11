@@ -49,11 +49,11 @@ namespace EtherEngine {
 
 
     // ŠO•”o—Í
-    std::string GameComponent::Output(void) {
+    Json GameComponent::Output(void) {
         return m_component->Serialize();
     }
     // ŠO•”“ü—Í
-    void GameComponent::Input(const std::string& input) {
+    void GameComponent::Input(const Json& input) {
         m_component->Deserialize(input);
     }
 }

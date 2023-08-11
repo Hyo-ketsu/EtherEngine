@@ -28,10 +28,13 @@ namespace EtherEngine {
         }
 
         //----- ゲームオブジェクト出力
+        nlohmann::json gameObjectArray;
         for (auto& it : sceneObject) {
-            json["GameObjects"] = it.GetAtomicData().Output();
+            gameObjectArray.push_back(it.GetAtomicData().Output());
         }
-
-        scene << json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        auto fuga = gameObjectArray.dump(4);
+        json["GameObjects"] = gameObjectArray;
+        auto hoge = json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        scene << hoge;
     }
 }

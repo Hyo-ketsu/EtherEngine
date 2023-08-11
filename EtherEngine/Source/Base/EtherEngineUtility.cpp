@@ -1,6 +1,15 @@
 #include <Base/EtherEngineUtility.h>
 
 
+//----- Jsonインターフェース 定義
+namespace EtherEngine {
+    // 入力する
+    void IInOuter::Input(const std::string& input) {
+        Input(Json::parse(input));
+    }
+}
+
+
 //----- 便利関数 定義
 namespace EtherEngine {
     // 入力ファイルの中身を全て読み取る

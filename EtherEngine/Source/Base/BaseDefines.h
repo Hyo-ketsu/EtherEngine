@@ -5,6 +5,9 @@
 
 //----- ’è”’è‹`
 namespace EtherEngine {
+    //----- Œ^–¼’è‹`
+    using Json = nlohmann::json;    // Json
+
     //----- FPS
     const float ONE_FRAME = 1.f / 60.f;
 

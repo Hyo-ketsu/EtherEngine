@@ -29,9 +29,9 @@ namespace EtherEngine {
 
 
         // 外部出力
-        std::string Output(void) override;
+        Json Output(void) override;
         // 外部入力
-        void Input(const std::string& input) override;
+        void Input(const Json& input) override;
 
     private:
         Eigen::Vector3f m_postion;  // 座標

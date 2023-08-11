@@ -15,21 +15,21 @@ namespace EtherEngine {
 
 
     // ŠO•”o—Í
-    std::string ProjectEditorData::Output(void) {
+    Json ProjectEditorData::Output(void) {
         nlohmann::json json;
 
         if (m_currentScene.has_value()) json["ProjectEditorData"]["CurrentScene"] = m_currentScene.value();
 
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // ŠO•”“ü—Í
-    void ProjectEditorData::Input(const std::string& input) {
+    void ProjectEditorData::Input(const Json& input) {
         //----- •Ï”éŒ¾
         nlohmann::json json;
 
         //----- “Ç‚İ‚İ
         try {
-            json = nlohmann::json::parse(RoadFileAll(input));
+            json = RoadFileAll(input);
         }
         catch (...) {
             goto END;

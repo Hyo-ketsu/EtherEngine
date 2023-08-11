@@ -15,7 +15,7 @@ namespace EtherEngine {
 
 
     // äOïîèoóÕ
-    std::string Transform::Output(void) {
+    Json Transform::Output(void) {
         nlohmann::json json;
 
         json["Transform"]["px"] = m_postion.x(); 
@@ -28,13 +28,11 @@ namespace EtherEngine {
         json["Transform"]["ry"] = m_rotation.y(); 
         json["Transform"]["rz"] = m_rotation.z(); 
 
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // äOïîì¸óÕ
-    void Transform::Input(const std::string& input) {
-        nlohmann::json json = nlohmann::json::parse(input);
-
-        auto& transform = json["Transform"];
+    void Transform::Input(const Json& input) {
+        auto& transform = input["Transform"];
         m_postion.x() = transform["px"];
         m_postion.y() = transform["py"];
         m_postion.z() = transform["pz"];

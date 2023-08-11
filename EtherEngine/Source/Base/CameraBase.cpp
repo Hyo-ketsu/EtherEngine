@@ -62,7 +62,7 @@ namespace EtherEngine {
 
 
     // 外部出力する
-    std::string CameraData::Output(void) {
+    Json CameraData::Output(void) {
         nlohmann::json json;
 
         json["CameraData"]["posX"] = m_pos.x();
@@ -80,13 +80,11 @@ namespace EtherEngine {
         json["CameraData"]["near"]     = m_near;
         json["CameraData"]["far"]      = m_far;
 
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // 外部入力する
-    void CameraData::Input(const std::string& input) {
-        nlohmann::json json = nlohmann::json::parse(input);
-
-        auto& cameraData = json["CameraData"];
+    void CameraData::Input(const Json& input) {
+        auto& cameraData = input["CameraData"];
         m_pos.x() = cameraData["posX"];
         m_pos.y() = cameraData["posY"];
         m_pos.z() = cameraData["posZ"];
@@ -179,17 +177,15 @@ namespace EtherEngine {
 
 
     // 外部出力する
-    std::string CameraBase::Output(void) {
+    Json CameraBase::Output(void) {
         nlohmann::json json;
 
         json["CameraBase"] = m_cameraData.Output();
 
-        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        return json;
     }
     // 入力する
-    void CameraBase::Input(const std::string& input) {
-        nlohmann::json json = nlohmann::json::parse(input);
-
-        m_cameraData.Input(json["CameraBase"]);
+    void CameraBase::Input(const Json& input) {
+        m_cameraData.Input(input["CameraBase"]);
     }
 }

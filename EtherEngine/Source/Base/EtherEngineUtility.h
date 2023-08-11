@@ -1,5 +1,6 @@
 #ifndef I_ETHERENGINEUTILITY_H
 #define I_ETHERENGINEUTILITY_H
+#include <Base/BaseDefines.h>
 
 
 // DLL呼び出し用
@@ -12,11 +13,14 @@ namespace EtherEngine {
     class IInOuter {
     public:
         // 出力する
-        // @ Ret  : 出力文字列
-        virtual std::string Output(void) = 0;
+        // @ Ret  : 出力Json
+        virtual Json Output(void) = 0;
         // 入力する
         // @ Arg1 : 入力文字列
-        virtual void Input(const std::string& input) = 0;
+        virtual void Input(const Json& input) = 0;
+        // 入力する
+        // @ Arg1 : 入力文字列
+        void Input(const std::string& input);
     };
 }
 
