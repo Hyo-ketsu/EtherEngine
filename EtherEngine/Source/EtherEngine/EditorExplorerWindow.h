@@ -16,11 +16,12 @@ namespace EtherEngine {
         void DrawWindow(void) override;
 
         // 最上位ディレクトリセッター
-        static void SetTopDirectory(const PathClass& in) { ms_topDirectory = in; }
+        static void SetTopDirectory(const PathClass& in) { ms_rootDirectory = in; }
 
     private:
-        static std::optional<PathClass> ms_topDirectory;     // 最上位ディレクトリ
-        static PathClass ms_currentDirectory; // 現在表示Directory
+        static std::optional<PathClass> ms_rootDirectory;   // 最上位ディレクトリ
+        static PathClass              ms_currentDirectory;  // 現在表示ディレクトリ
+        static int ms_selectNumber; // 選択されているリスト番号
         ImVec2 m_hierarchyView;  // 階層表示ウィンドウのサイズ
     };
 }

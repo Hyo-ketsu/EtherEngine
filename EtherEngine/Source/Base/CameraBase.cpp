@@ -80,7 +80,7 @@ namespace EtherEngine {
         json["CameraData"]["near"]     = m_near;
         json["CameraData"]["far"]      = m_far;
 
-        return json.dump(IInOuter::msc_dump);
+        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
     // ŠO•”“ü—Í‚·‚é
     void CameraData::Input(const std::string& input) {
@@ -184,7 +184,7 @@ namespace EtherEngine {
 
         json["CameraBase"] = m_cameraData.Output();
 
-        return json.dump(IInOuter::msc_dump);
+        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
     // “ü—Í‚·‚é
     void CameraBase::Input(const std::string& input) {

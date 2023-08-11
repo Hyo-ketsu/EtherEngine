@@ -1,4 +1,5 @@
 #include <Base/Transform.h>
+#include <Base/BaseDefines.h>
 
 
 namespace EtherEngine {
@@ -27,7 +28,7 @@ namespace EtherEngine {
         json["Transform"]["ry"] = m_rotation.y(); 
         json["Transform"]["rz"] = m_rotation.z(); 
 
-        return json.dump(IInOuter::msc_dump);
+        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
     // ŠO•”“ü—Í
     void Transform::Input(const std::string& input) {

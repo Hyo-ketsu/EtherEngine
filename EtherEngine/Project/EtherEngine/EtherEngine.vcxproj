@@ -60,6 +60,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />

@@ -18,6 +18,7 @@
 #include <EtherEngine/Test/TestComponent.h>
 #include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
+#include <EtherEngine/EditorExplorerWindow.h>
 #endif // _DEBUG
 
 
@@ -160,7 +161,7 @@ namespace EtherEngine {
         //----- 初期化
         m_initUninitPerformer.Init();
 
-#ifndef _DEBUG
+#ifdef _DEBUG
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
@@ -175,21 +176,6 @@ namespace EtherEngine {
         vs.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "VS_Test.cso").c_str());
         auto ps = PixelShader(this->GetDirectX());
         ps.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "PS_Test.cso").c_str());
-
-        //----- テスト用ゲームオブジェクト追加
-        {
-            auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
-            testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
-            testGameObject.GetAtomicData().AddComponent<TestComponent>();
-            testGameObject.GetAtomicData().AccessName() = "Usi";
-        }
-        {
-            auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
-            testGameObject.GetAtomicData().AccessTransform().AccessPostion().x() += 0.15f;
-            testGameObject.GetAtomicData().AddComponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "spot/spot.fbx", EditorApplication::Get()->GetDirectX(), vs, ps, 1.0f, false);
-            testGameObject.GetAtomicData().AddComponent<TestComponent>();
-            testGameObject.GetAtomicData().AccessName() = "Usisisisi";
-        }
 
         //----- カメラ設定
         m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());

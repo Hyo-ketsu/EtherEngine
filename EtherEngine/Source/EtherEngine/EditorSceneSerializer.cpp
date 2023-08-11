@@ -1,4 +1,5 @@
 #include <EtherEngine/EditorSceneSerializer.h>
+#include <Base/BaseDefines.h>
 #include <Base/GameObjectStorage.h>
 
 
@@ -11,10 +12,11 @@ namespace EtherEngine {
         std::ofstream scene;
 
         //----- 常に新規作成する
-        scene.open(path, std::ios::out);
+        (path /= sceneData).GetDirectory().CreateDirectories();
+        scene.open(path /= std::string(sceneData) += FileDefine::SCENE, std::ios::out);
 
         //----- シーン情報出力
-        json["SceneName"] = sceneData;
+        json["SceneName"] = sceneData.c_str();
 
         //----- ゲームオブジェクト取得・シーン別振り分け
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
@@ -29,5 +31,7 @@ namespace EtherEngine {
         for (auto& it : sceneObject) {
             json["GameObjects"] = it.GetAtomicData().Output();
         }
+
+        scene << json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
 }

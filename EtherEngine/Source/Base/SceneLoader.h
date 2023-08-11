@@ -19,21 +19,23 @@ namespace EtherEngine {
 
 
         // シーン情報登録
+        // @ Memo : 読込等を行わない、純粋にシーン情報を与えるだけのメンバ関数です
+        // @ Arg1 : 追加するシーン
+        // @ Arg2 : サブシーンか（現在のシーンとして登録されません。Default : false)
+        void RegistryScene(const SceneData data, const bool isSubScene = false);
+
         
         // シーン追加
-        // @ MEMO : 未実装
         // @ Arg1 : 追加するシーン
-        void AddScene(const SceneData data);
+        // @ Arg2 : サブシーンか（現在のシーンとして登録されません。Default : false）
+        void AddScene(const SceneData data, const bool isSubScene = false);
         // シーン削除
-        // @ MEMO : 未実装
         // @ Arg1 : 削除するシーン
         void DeleteScene(const SceneData data);
         // シーン削除
-        // @ MEMO : 未実装
         // @ Memo : 全てのシーンの削除を行います
         void DeleteScene(void);
         // シーン移動
-        // @ MEMO : 未実装
         // @ Arg1 : 移動するシーン
         void MoveScene(const SceneData data);
 

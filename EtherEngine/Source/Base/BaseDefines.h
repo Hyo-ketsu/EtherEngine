@@ -19,14 +19,16 @@ namespace EtherEngine {
     namespace CameraDefine {
         const Eigen::Vector3f UP = { 0.0f,1.0f,0.0f };      // カメラの上方向
         const float FOVY = DirectX::XMConvertToRadians(60); // 視野角
-        const float ASPECT = AspectDefine::HD<>;    // 画面アスペクト比
+        const float ASPECT = AspectDefine::HD<>;     // 画面アスペクト比
         const float NEAR_ = 0.2f;                    // 最短クリップ距離
         const float FAR_ = 1000.0f;                  // 最長クリップ距離
     }
 
-    //----- 拡張子定義
-    namespace FilenameExtensionDefine {
+    //----- ファイル用定義
+    namespace FileDefine {
         const std::string SCENE = ".scenedata"; // シーン情報の拡張子
+
+        const int JSON_DUMP_NUMBER_OF_STAGES = 4;   // JsonのDump数
     }
 }
 

@@ -1,4 +1,5 @@
 #include <DirectX/Model.h>
+#include <Base/BaseDefines.h>
 
 
 namespace EtherEngine {
@@ -178,7 +179,7 @@ namespace EtherEngine {
         json["Model"]["Filp"] = m_isFlip;
         json["Model"]["Scale"] = m_scale;
 
-        return json.dump(msc_dump);
+        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
     // ŠO•”“ü—Í
     void Model::Input(const std::string& input) {

@@ -246,7 +246,7 @@ namespace EtherEngine {
         //}
 
         //----- •Ô‹p
-        return json.dump(msc_dump);
+        return json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
     }
     // ŠO•”“ü—Í
     void GameObject::Input(const std::string& input) {

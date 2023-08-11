@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // エディター定数定義
     namespace EditorDefine {
-        const std::string EDITOR_DEFAULT_SCENE_NAME = "Scene";  // シーンを開いていなかった際につけるシーン名
+        const std::string EDITOR_DEFAULT_SCENE_NAME = "UndefineScene";  // シーンを開いていなかった際につけるシーン名
     }
     // エディターのDefault設定
     namespace EditorDefaultConfig {

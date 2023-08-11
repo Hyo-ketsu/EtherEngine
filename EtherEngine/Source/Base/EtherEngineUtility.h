@@ -17,11 +17,17 @@ namespace EtherEngine {
         // 入力する
         // @ Arg1 : 入力文字列
         virtual void Input(const std::string& input) = 0;
-
-
-    protected:
-        static constexpr uint msc_dump = 4;  // ダンプ空白数
     };
+}
+
+
+//----- 便利関数 定義
+namespace EtherEngine {
+    // 入力ファイルの中身を全て読み取る
+    // @ Exce : ファイルが開けない
+    // @ Ret  : 読み取った結果
+    // @ Arg1 : 読み取るファイル
+    std::string RoadFileAll(const std::string& file);
 }
 
 

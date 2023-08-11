@@ -1,6 +1,28 @@
 #include <Base/EtherEngineUtility.h>
 
 
+//----- 便利関数 定義
+namespace EtherEngine {
+    // 入力ファイルの中身を全て読み取る
+    std::string RoadFileAll(const std::string& file) {
+        //----- ファイルオープン
+        std::ifstream scene(file);
+        if (scene.is_open() == false) throw std::exception((std::string("Exception! SceneData : ") + file + " Non file!").c_str());
+
+        //----- 読み込み
+        // @ Memo : EOFまで全て読み込みます
+        std::string fileString;
+        std::string line;
+        while (std::getline(scene, line)) {
+            fileString += line;
+        }
+
+        //----- 返却
+        return std::move(fileString);
+    }
+}
+
+
 namespace EtherEngine {
     namespace Utilty {
         // 重複したオブジェクトに名前を付ける
