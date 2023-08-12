@@ -115,14 +115,14 @@ namespace EtherEngine {
                     //----- リスト要素表示
                     if (i == ms_selectNumber) {
                         //----- その番号のものが選択済み。使用
-                        if (ImGui::Selectable(it.Get().c_str(), true)) {
+                        if (ImGui::Selectable(it.GetFile().c_str(), true)) {
                             ImGui::SetItemDefaultFocus();
                             FileOpen(it);
                         }
                     }
                     else {
                         //----- 選択されていない。通常表示・選択
-                        if (ImGui::Selectable(it.Get().c_str(), false)) {
+                        if (ImGui::Selectable(it.GetFile().c_str(), false)) {
                             ms_selectNumber = i;
                             ImGui::SetItemDefaultFocus();
                         }

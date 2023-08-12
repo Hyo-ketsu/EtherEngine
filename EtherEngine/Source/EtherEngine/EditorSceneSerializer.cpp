@@ -11,12 +11,17 @@ namespace EtherEngine {
         nlohmann::json json;
         std::ofstream scene;
 
-        //----- 常に新規作成する
-        (path /= sceneData).GetDirectory().CreateDirectories();
-        scene.open(path /= std::string(sceneData) += FileDefine::SCENE, std::ios::out);
+        //----- パス定義
+        (path /= sceneData).GetDirectory().CreateDirectories(); // ディレクトリ作成
+        auto fileName = PathClass(sceneData).HasExtension() ?
+            path /= std::string(sceneData) :
+            path /= std::string(sceneData) += FileDefine::SCENE;
+
+        //----- ファイルの新規作成
+        scene.open(fileName, std::ios::out);
 
         //----- シーン情報出力
-        json["SceneName"] = sceneData.c_str();
+        json["SceneName"] = StringSubstitution(sceneData, "\\", "/");
 
         //----- ゲームオブジェクト取得・シーン別振り分け
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
@@ -28,13 +33,12 @@ namespace EtherEngine {
         }
 
         //----- ゲームオブジェクト出力
-        nlohmann::json gameObjectArray;
         for (auto& it : sceneObject) {
-            gameObjectArray.push_back(it.GetAtomicData().Output());
+            json["GameObjects"] += it.GetAtomicData().Output();
         }
-        auto fuga = gameObjectArray.dump(4);
-        json["GameObjects"] = gameObjectArray;
-        auto hoge = json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
-        scene << hoge;
+
+        //----- 文字列出力
+        auto data = json.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
+        scene << data;
     }
 }

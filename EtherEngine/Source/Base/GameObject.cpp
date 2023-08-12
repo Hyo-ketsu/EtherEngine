@@ -256,6 +256,7 @@ namespace EtherEngine {
         SetName(input["GameObject"]["Name"]);
 
         //----- コンポーネント入力
+        if (input["GameObject"].contains("Components") == false) goto NO_CREATE_COMPONENT;
         for (auto& it : input["GameObject"]["Components"]) {
             //----- タイプに沿ったコンポーネント生成
             std::string type = input["GameObject"]["Components"]["ComponentType"];
@@ -281,6 +282,8 @@ namespace EtherEngine {
                 //}
             } while (false);
         }
+
+        NO_CREATE_COMPONENT: {}
     }
 
 

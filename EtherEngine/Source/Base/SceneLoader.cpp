@@ -31,15 +31,16 @@ namespace EtherEngine {
         // @ Memo : Hoge -> Scene/Hoge.sceneData
         std::string loadSceneName;
         if (data.rfind(FileDefine::SCENE) == std::string::npos) {
-            loadSceneName = DirectoryDefine::SCENE_DATA + data + FileDefine::SCENE;
+            loadSceneName = data + FileDefine::SCENE;
         }
         else {
-            loadSceneName = DirectoryDefine::SCENE_DATA + data;
+            loadSceneName = data;
         }
 
         //----- ¶¬
-        nlohmann::json json = nlohmann::json::parse(RoadFileAll(loadSceneName));
-        for (auto& it : json["GameObejcts"]) {
+        auto hoge = RoadFileAll(loadSceneName);
+        nlohmann::json json = nlohmann::json::parse(hoge);
+        for (auto& it : json["GameObjects"]) {
             auto gameObject = GameObjectStorage::Get()->CreateGameObject();
             gameObject.GetNoAtomicData().Input(it);
         }

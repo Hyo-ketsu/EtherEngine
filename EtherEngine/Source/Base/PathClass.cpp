@@ -77,6 +77,9 @@ namespace EtherEngine {
         //----- 宣言
         std::vector<PathClass> ret;
 
+        //----- ディレクトリでなければそのまま返却
+        if (this->IsDirectory() == false) return ret;
+
         //----- 全ての下位ファイル取得
         for (auto& it : directory_iterator(path(m_path))) {
             ret.push_back(path(it).string());

@@ -54,7 +54,9 @@ namespace EtherEngine {
             }
             //----- オブジェクト削除
             if (ImGui::MenuItem("DeleteGameObject")) {
-                GameObjectStorage::Get()->DeleteGameObject(gameObjects[ms_selectNumber]);
+                if (ms_selectNumber > -1 && gameObjects.size() >= ms_selectNumber) {
+                    GameObjectStorage::Get()->DeleteGameObject(gameObjects[ms_selectNumber]);
+                }
             }
 
             //----- メニュー表示終了

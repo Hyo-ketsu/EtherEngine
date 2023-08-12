@@ -19,8 +19,8 @@ namespace EtherEngine {
         static void SetTopDirectory(const PathClass& in) { ms_rootDirectory = in; }
 
     private:
-        static std::optional<PathClass> ms_rootDirectory;   // 最上位ディレクトリ
-        static PathClass              ms_currentDirectory;  // 現在表示ディレクトリ
+        static std::optional<PathClass> ms_rootDirectory;    // 最上位ディレクトリ
+        static PathClass                ms_currentDirectory; // 現在表示ディレクトリ
         static int ms_selectNumber; // 選択されているリスト番号
         ImVec2 m_hierarchyView;  // 階層表示ウィンドウのサイズ
     };
