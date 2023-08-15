@@ -55,5 +55,8 @@ namespace EtherEngine {
     // ŠO•”“ü—Í
     void GameComponent::Input(const Json& input) {
         m_component->Deserialize(input);
+    }    // Inspector•\Ž¦
+    void GameComponent::ShowInspector(void) {
+        m_component->DrawInspector();
     }
 }

@@ -92,6 +92,8 @@ namespace EtherEngine {
 
         // 参照カウントを行うかゲッター
         bool GetIsCountUp(void) const { return m_isCount; }
+        // 弱参照ハンドルゲッター
+        std::weak_ptr<nullptr_t> GetDeleteHandle(void) const { return m_deleteHandle; }
 
     protected:
         // 参照のカウントアップを行う
@@ -103,7 +105,7 @@ namespace EtherEngine {
 
         HandleNumberType m_handle; // 自身が保持しているHandle
         bool m_isCount;            // カウントアップを行うか
-        std::weak_ptr<nullptr_t> m_weak;    // HandleSystem削除時にHandleSystemを使用するか
+        std::weak_ptr<nullptr_t> m_deleteHandle;    // HandleSystem削除時にHandleSystemを使用するか
     };
 }
 
@@ -152,7 +154,7 @@ namespace EtherEngine {
 
         //----- メンバ初期化
         m_handle = handle.first;
-        m_weak = handle.second;
+        m_deleteHandle = handle.second;
 
         //----- ハンドルカウントを行うか
         switch (countType) {
@@ -185,7 +187,8 @@ namespace EtherEngine {
     template<HandleSystemConcept Type>
     BaseHandle<Type>::BaseHandle(const BaseHandle<Type>& copy)
         : m_handle(copy.m_handle) 
-        , m_isCount(copy.m_isCount) {
+        , m_isCount(copy.m_isCount) 
+        , m_deleteHandle(copy.m_deleteHandle) {
         CountUp();
     }
     // 代入演算子(Copy)
@@ -193,6 +196,7 @@ namespace EtherEngine {
     BaseHandle<Type>& BaseHandle<Type>::operator=(const BaseHandle<Type>& copy) {
         m_handle = copy.m_handle;
         m_isCount = copy.m_isCount; 
+        m_deleteHandle = copy.m_deleteHandle;
 
         CountUp();
         return *this;
@@ -202,6 +206,7 @@ namespace EtherEngine {
     BaseHandle<Type>& BaseHandle<Type>::operator=(BaseHandle<Type>&& move) {
         m_handle = move.m_handle;
         m_isCount = move.m_isCount;
+        m_deleteHandle = move.m_deleteHandle;
 
         CountUp();
         return *this;
@@ -304,14 +309,14 @@ namespace EtherEngine {
     // 参照のカウントアップを行う
     template<HandleSystemConcept Type>
     void BaseHandle<Type>::CountUp(void) {
-        if (m_isCount && m_weak.expired() == false) {
+        if (m_isCount && m_deleteHandle.expired() == false) {
             HandleSystem<Type>::Get()->CountUpItem(m_handle);
         }
     }
     // 参照のカウントダウンを行う
     template<HandleSystemConcept Type>
     void BaseHandle<Type>::CountDown(void) {
-        if (m_isCount && m_weak.expired() == false) {
+        if (m_isCount && m_deleteHandle.expired() == false) {
             HandleSystem<Type>::Get()->CountDownItem(m_handle);
         }
     }

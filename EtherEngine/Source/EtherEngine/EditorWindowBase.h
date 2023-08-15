@@ -43,6 +43,15 @@ namespace EtherEngine {
         // サブクラス用描画処理
         virtual void DrawWindow(void) {}
 
+
+        // 外部出力
+        Json Output(void) override { return Json(); }
+        // 外部入力
+        void Input(const Json& input) override {}
+        // Inspector表示
+        void ShowInspector(void) override {}
+
+
     private:
         std::string m_name; // 表示名
         bool m_isOpen;      // 表示するか

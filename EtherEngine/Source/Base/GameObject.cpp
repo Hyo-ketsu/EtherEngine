@@ -1,6 +1,7 @@
 #include <Base/GameObject.h>
 #include <Base/GameObjectStorage.h>
 #include <Base/CollisionHelper.h>
+#include <ImGUI/ImGUIWrapFunction.h>
 
 
 namespace EtherEngine {
@@ -284,6 +285,29 @@ namespace EtherEngine {
         }
 
         NO_CREATE_COMPONENT: {}
+    }
+
+
+    // Inspector表示
+    void GameObject::ShowInspector(void) {
+        //----- 名前表示
+        ImGuiFunction::ImGuiShow(this->AccessName(), "Name");
+
+        //----- 各コンポーネント表示
+        for (auto&& it : m_components) {
+            it->ShowInspector();
+        }
+        for (auto&& it : m_drawComponents) {
+            it->ShowInspector();
+        }
+        for (auto&& it : m_collisions) {
+            it->ShowInspector();
+        }
+
+        //----- コンポーネント追加ボタン
+        if (ImGui::Button("Add Component")) {
+
+        }
     }
 
 

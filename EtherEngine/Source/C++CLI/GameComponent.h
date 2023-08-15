@@ -39,6 +39,9 @@ namespace EtherEngine {
         // 外部入力
         void Input(const Json& input) override;
 
+        // Inspector表示
+        void ShowInspector(void) override;
+
     protected:
         std::string m_componentName;    // 自身のコンポーネント名
         msclr::gcroot<UserBaseComponent^> m_component;  // 保持しているコンポーネント

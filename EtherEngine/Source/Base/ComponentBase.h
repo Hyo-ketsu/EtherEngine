@@ -19,7 +19,7 @@ namespace EtherEngine {
 //----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase : public BaseObject, public IInOuter {
+    class ComponentBase : public BaseObject{
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト

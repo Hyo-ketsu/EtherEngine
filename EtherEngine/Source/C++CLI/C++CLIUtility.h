@@ -3,6 +3,27 @@
 #include <Base/ConceptUtility.h>
 
 
+//----- インタフェース定義
+namespace EtherEngine {
+    // Serialize, DeserializeInterface
+    public interface class ISerializer {
+    public:
+        // 外部出力する
+        std::string Serialize(void);
+        // 外部入力する
+        void Deserialize(const std::string& input);
+    };
+
+
+    // Inspector表示Interface
+    public interface class IInspectorDrawer {
+    public:
+        // 表示する
+        void DrawInspector(void);
+    };
+}
+
+
 //----- 文字列変換関数
 namespace EtherEngine {
     // .NET文字列をC++文字列に変換する
@@ -18,16 +39,6 @@ namespace EtherEngine {
 
 //----- Serializer 宣言
 namespace EtherEngine {
-    // Serialize, DeserializeInterface
-    public interface class ISerializer {
-    public:
-        // 外部出力する
-        std::string Serialize(void);
-        // 外部入力する
-        void Deserialize(const std::string& input);
-    };
-
-
     // Serialize, Deserialize自体を行うクラス
     public ref class Serializer : public ISerializer {
     public:

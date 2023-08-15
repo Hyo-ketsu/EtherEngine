@@ -1,13 +1,14 @@
 #ifndef I_BASEOBJECT_H_
 #define I_BASEOBJECT_H_
 #include <Base/IDClass.h>
+#include <Base/EtherEngineUtility.h>
 // @ MEMO : ファイルパスを含めるか検討？
 
 
 //----- BaseObject 宣言
 namespace EtherEngine {
-    // GameObject等、外部出力
-    class BaseObject {
+    // エンジンで汎用的に使われる基底クラス
+    class BaseObject : public IInOuter, public IInspectorShow {
     public:
         // コンストラクタ
         // @ Arg1 : オブジェクト名

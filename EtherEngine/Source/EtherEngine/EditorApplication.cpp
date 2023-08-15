@@ -164,7 +164,7 @@ namespace EtherEngine {
 #ifdef _DEBUG
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
-        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
+        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG);
 
         //----- エディター用カメラ作成
         auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();

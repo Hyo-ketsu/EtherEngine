@@ -9,6 +9,7 @@
 #include <EtherEngine/EditorLogWindow.h>
 #include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/EditorExplorerWindow.h>
+#include <EtherEngine/EditorInspectorWindow.h>
 
 
 namespace EtherEngine {
@@ -79,6 +80,7 @@ namespace EtherEngine {
                     ShowWindowMenu<EditorLogWindow>(&m_windows, Name::WINDOW_LOG);
                     ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
                     ShowWindowMenu<ExplorerWindow>(&m_windows, Name::WINDOW_EXPLORER);
+                    ShowWindowMenu<EditorInspectorWindow>(&m_windows, Name::WINDOW_INSPECTOR);
 
                     ImGui::EndMenu();
                 }
@@ -154,11 +156,11 @@ namespace EtherEngine {
 
             //----- 名前変更・コンポーネント追加
             if (count == 0) {
-                object.GetAtomicData().AddComponent<WindowType>(name.c_str());
+                object.GetAtomicData().AddComponent<WindowType>(name);
                 object.GetAtomicData().AccessName() = name;
             }
             else {
-                object.GetAtomicData().AddComponent<WindowType>(Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::ParenthesesNumber));
+                object.GetAtomicData().AddComponent<WindowType>(Utilty::DuplicationName(name, count, Utilty::DuplicationNameObjectName::ParenthesesNumber));
                 object.GetAtomicData().AccessName() = Utilty::DuplicationName(name.c_str(), count, Utilty::DuplicationNameObjectName::ParenthesesNumber);
             }
 

@@ -11,6 +11,7 @@ namespace EtherEngine {
     public:
         using EditorWindowBase::EditorWindowBase;
 
+
         void Start(void) override;
         void Update(void) override;
         void DrawWindow(void) override;

@@ -22,6 +22,14 @@ namespace EtherEngine {
         // @ Arg1 : 入力文字列
         void Input(const std::string& input);
     };
+
+
+    // Inspector表示用インターフェイス
+    class IInspectorShow {
+    public:
+        // 表示する
+        virtual void ShowInspector(void) = 0;
+    };
 }
 
 

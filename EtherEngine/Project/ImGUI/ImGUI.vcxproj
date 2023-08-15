@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\ImGUI\imconfig.h" />
     <ClInclude Include="..\..\Source\ImGUI\imgui.h" />
+    <ClInclude Include="..\..\Source\ImGUI\ImGUIWrapFunction.h" />
     <ClInclude Include="..\..\Source\ImGUI\imgui_internal.h" />
     <ClInclude Include="..\..\Source\ImGUI\imstb_rectpack.h" />
     <ClInclude Include="..\..\Source\ImGUI\imstb_textedit.h" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\ImGUI\imgui.cpp" />
+    <ClCompile Include="..\..\Source\ImGUI\ImGUIWrapFunction.cpp" />
     <ClCompile Include="..\..\Source\ImGUI\imgui_draw.cpp" />
     <ClCompile Include="..\..\Source\ImGUI\imgui_tables.cpp" />
     <ClCompile Include="..\..\Source\ImGUI\imgui_widgets.cpp" />
@@ -44,8 +46,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DirectX\DirectX.vcxproj">
-      <Project>{75776ccc-0223-4f76-989d-2b9b089281c0}</Project>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{8809734e-0717-4038-9f29-68984d325bf1}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

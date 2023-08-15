@@ -16,11 +16,11 @@ namespace EtherEngine {
     // ゲームオブジェクトを削除する
     bool GameObjectStorage::DeleteGameObject(const BaseHandle<GameObject>& gameObject) {
         //----- 削除するハンドルをなめる
-        for (auto it = m_gameObjects.begin(); it != m_gameObjects.end(); it++) {
-            if (*it == gameObject) {
+        for (auto&& it : m_gameObjects){
+            if (it == gameObject) {
                 //----- 同ハンドル。削除する
-                it->GetAtomicData().Delete();
-                it->GetAtomicData().DeleteObject();
+                it.GetAtomicData().Delete();
+                it.GetAtomicData().DeleteObject();
                 return true;
             }
         }

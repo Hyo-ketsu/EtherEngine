@@ -18,7 +18,7 @@
 //----- GameObject 宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
-    class GameObject : public BaseObject, public IInOuter {
+    class GameObject : public BaseObject {
     public:
         // 更新処理を行う
         void Update(void);
@@ -108,6 +108,10 @@ namespace EtherEngine {
         Json Output(void) override;
         // 外部入力
         void Input(const Json& input) override;
+
+
+        // Inspector表示
+        void ShowInspector(void) override;
 
     protected:
         // コンストラクタ

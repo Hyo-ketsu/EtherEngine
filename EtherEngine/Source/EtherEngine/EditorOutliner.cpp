@@ -1,9 +1,6 @@
 #include <EtherEngine/EditorOutliner.h>
 #include <Base/GameObjectStorage.h>
-#ifdef _DEBUG
-#include <Base/BaseInput.h>
-#include <EtherEngine/Test/imgui_demo.h>
-#endif // _DEBUG
+#include <EtherEngine/EditorInspectorWindow.h>
 
 
 namespace EtherEngine {
@@ -35,6 +32,7 @@ namespace EtherEngine {
                 bool isSelect = (ms_selectNumber == i);  // ‘I‘ð‚³‚ê‚Ä‚¢‚é‚©
                 if (ImGui::Selectable(name.c_str(), isSelect)) {
                     ms_selectNumber = i;
+                    EditorInspectorWindow::SetInspectorShow(EditorInspectorObject(&it.GetNoAtomicData(), [=]() -> bool { return it.IsEnable(); }));
                 }
                 if (isSelect) {
                     ImGui::SetItemDefaultFocus();
