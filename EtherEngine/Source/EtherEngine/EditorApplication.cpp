@@ -166,6 +166,10 @@ namespace EtherEngine {
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG);
 
+        //----- テストコンポーネント
+        auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
+        testGameObject.GetAtomicData().AddComponent("TestComponent");
+
         //----- エディター用カメラ作成
         auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();
         cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;

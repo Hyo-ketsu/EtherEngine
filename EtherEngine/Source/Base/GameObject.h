@@ -83,6 +83,7 @@ namespace EtherEngine {
         // コンポーネント追加
         // @ Temp1: 追加するコンポーネントの型
         // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
+        // @ Ret  : 追加したコンポーネント
         // @ Args : 追加コンポーネントのコンストラクタに使用する引数
         template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
         std::weak_ptr<ComponentType> AddComponent(ArgsType&& ...args);
@@ -102,6 +103,28 @@ namespace EtherEngine {
         // @ Ret  : 取得したコンポーネント（複数）
         template <Concept::SubClassOnly<ComponentBase> ComponentType>
         std::vector<std::weak_ptr<ComponentType>> GetComponents(void);
+        // コンポーネント追加
+        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
+        // @ Ret  : 追加したコンポーネント
+        // @ Arg1 : 追加コンポーネント名
+        std::weak_ptr<ComponentBase> AddComponent(const std::string& componentTypeName);
+        // コンポーネント削除
+        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
+        // @ Ret  : 削除したコンポーネント
+        // @ Arg1 : 削除コンポーネント名
+        bool DeleteComponent(const std::string& componentTypeName);
+        // コンポーネントを取得する
+        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
+        // @ Ret  : 取得したコンポーネント
+        // @ Arg1 : 取得するコンポーネント名
+        // @ Arg2 : 何番目のコンポーネントを使用するか(Default : 0)
+        std::weak_ptr<ComponentBase> GetComponent(const std::string& componentTypeName, uint index = 0);
+        // コンポーネントを取得する
+        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
+        // @ Ret  : 取得したコンポーネント
+        // @ Arg1 : 取得するコンポーネント名
+        // @ Arg2 : 何番目のコンポーネントを使用するか(Default : 0)
+        std::vector<std::weak_ptr<ComponentBase>> GetComponents(const std::string& componentTypeName);
 
 
         // 外部出力
@@ -137,8 +160,9 @@ namespace EtherEngine {
         std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
         std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
 
-        static std::function<std::shared_ptr<ComponentBase>&&(GameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
-        static std::function<std::shared_ptr<DrawComponent>&&(GameObject*, const std::string&)> ms_getDrawComponent; // C++CLIのGameDrawComponentなどを取得するためのラムダ
+        static std::function<std::shared_ptr<ComponentBase>(GameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
+        static std::function<std::shared_ptr<ComponentBase>(GameObject*)> ms_addComponentMenu; // AddComponent用のメニュー表示ラムダ
+        static std::function<std::string(const std::string&, const uint, const bool)> ms_getFullName; // 各コンポーネント名の完全修飾名取得ラムダ
     };
 }
 
@@ -165,7 +189,8 @@ namespace EtherEngine {
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
             m_collisions.push_back(ptr);
-        } else {
+        }
+        else {
             m_components.push_back(ptr);
         }
 
@@ -183,7 +208,8 @@ namespace EtherEngine {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
                     component->DeleteFuntion();
-                    component->SetDelete(true);
+                    component->DeleteObject();
+                    return true;
                 }
             }
         }
@@ -192,7 +218,8 @@ namespace EtherEngine {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
                     component->DeleteFuntion();
-                    component->SetDelete(true);
+                    component->DeleteObject();
+                    return true;
                 }
             }
         }
@@ -201,10 +228,13 @@ namespace EtherEngine {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
                     component->DeleteFuntion();
-                    component->SetDelete(true);
+                    component->DeleteObject();
+                    return true;
                 }
             }
         }
+
+        return false;
     }
     // コンポーネントを取得する
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)

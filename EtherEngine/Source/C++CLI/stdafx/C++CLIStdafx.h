@@ -3,6 +3,3 @@
 
 #include <msclr/gcroot.h>
 #include <vcclr.h>
-
-
-using namespace System;

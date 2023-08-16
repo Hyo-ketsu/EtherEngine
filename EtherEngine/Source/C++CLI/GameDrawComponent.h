@@ -2,6 +2,7 @@
 #define I_GAMEDRAWCOMPONENT_H
 #include <Base/DrawComponent.h>
 #include <C++CLI/GameComponent.h>
+#include <C++CLI/UserDrawComponent.h>
 
 
 //----- 描画コンポーネント

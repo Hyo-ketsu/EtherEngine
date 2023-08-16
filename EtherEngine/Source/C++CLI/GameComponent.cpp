@@ -1,4 +1,5 @@
 #include <C++CLI/GameComponent.h>
+#include <Base/BaseDefines.h>
 #include <C++CLI/C++CLIUtility.h>
 
 
@@ -11,8 +12,8 @@ namespace EtherEngine {
         : ComponentBase(gameObject, componentName) 
         , m_componentName(componentName) {
         // @ MEMO : 名前からの生成
-        Type^ type = Type::GetType(UnToManage(componentName));
-        auto component = dynamic_cast<UserBaseComponent^>(Activator::CreateInstance(type));
+        System::Type^ type = System::Type::GetType(UnToManage(componentName));
+        auto component = dynamic_cast<UserBaseComponent^>(System::Activator::CreateInstance(type));
 
         if (component == nullptr) throw std::exception("Error! Non UserComponent");
 
@@ -50,12 +51,17 @@ namespace EtherEngine {
 
     // 外部出力
     Json GameComponent::Output(void) {
-        return m_component->Serialize();
+        auto ret = Json(Json::parse(m_component->Serialize()));
+        ret["ComponentName"] = this->GetComponentName();
+        ret["Active"] = this->GetActive();
+        return ret;
     }
     // 外部入力
     void GameComponent::Input(const Json& input) {
-        m_component->Deserialize(input);
-    }    // Inspector表示
+        m_component->Deserialize(input.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES));
+        SetActive(input["Active"]);
+    }
+    // Inspector表示
     void GameComponent::ShowInspector(void) {
         m_component->DrawInspector();
     }

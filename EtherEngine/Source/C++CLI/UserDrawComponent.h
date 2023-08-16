@@ -31,9 +31,9 @@ namespace EtherEngine {
         void SetProjection(UnmanageMaintainer<Eigen::Matrix4f> in) { m_projection = in; }
 
         // 頂点シェーダー名アクセサー
-        String^ AccessThisVertexShader(void) { return m_thisVertexShader; }
+        System::String^ AccessThisVertexShader(void) { return m_thisVertexShader; }
         // ピクセルシェーダー名アクセサー
-        String^ AccessThisPixelShader(void) { return m_thisPixelShader; }
+        System::String^ AccessThisPixelShader(void) { return m_thisPixelShader; }
 
         // 頂点シェーダーゲッター
         VertexShader* const GetVertexShader(void) { return m_vertexShader; }
@@ -53,8 +53,8 @@ namespace EtherEngine {
         }
 
     private:
-        [Attribute::Serialize] String^ m_thisVertexShader; // 現在保持している頂点シェーダー名
-        [Attribute::Serialize] String^ m_thisPixelShader;  // 現在保持しているpixelシェーダー名
+        [Attribute::Serialize] System::String^ m_thisVertexShader; // 現在保持している頂点シェーダー名
+        [Attribute::Serialize] System::String^ m_thisPixelShader;  // 現在保持しているpixelシェーダー名
         VertexShader* m_vertexShader;    // 頂点シェーダー
         PixelShader* m_pixelShader;      // ピクセルシェーダー
         UnmanageMaintainer<Eigen::Matrix4f> m_view;         // ビュー行列

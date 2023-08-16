@@ -9,6 +9,10 @@
 
 //----- インターフェース定義
 namespace EtherEngine {
+    //----- 型名定義
+    using Json = nlohmann::json;    // Json
+
+
     // Serialize・Deserialize用インターフェース(Json想定)
     class IInOuter {
     public:

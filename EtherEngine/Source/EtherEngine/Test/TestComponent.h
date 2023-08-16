@@ -1,23 +1,17 @@
-//#ifndef I_TESTCOMPONENT_H
-//#define I_TESTCOMPONENT_H
-//#include <Base/ComponentBase.h>
-//
-//
-////----- TestComponent êÈåæ
-//namespace EtherEngine {
-//    class TestComponent : public ComponentBase {
-//    public:
-//        using ComponentBase::ComponentBase;
-//
-//    protected:
-//        virtual void Start(void) override;
-//        virtual void Update(void) override;
-//        virtual void Delete(void) override;
-//        virtual void CollisionStart(void) override;
-//        virtual void CollisionEnd(void) override;
-//        virtual void CollisionHit(void) override;
-//    };
-//}
-//
-//
-//#endif // !I_TESTCOMPONENT_H
+#ifndef I_TESTCOMPONENT_H
+#define I_TESTCOMPONENT_H
+#include <C++CLI/UserComponent.h>
+
+
+//----- TestComponent êÈåæ
+namespace EtherEngine {
+    public ref class TestComponent : public UserBaseComponent {
+    public:
+        void Update(void) override {
+            System::Type^ type = System::Type::GetType(UnToManage("TestComponent"));
+        }
+    };
+}
+
+
+#endif // !I_TESTCOMPONENT_H

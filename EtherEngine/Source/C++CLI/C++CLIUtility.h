@@ -1,6 +1,7 @@
 #ifndef I_CPPCLIUTILITY_H
 #define I_CPPCLIUTILITY_H
 #include <Base/ConceptUtility.h>
+#include <Base/BaseDefines.h>
 
 
 //----- インタフェース定義
@@ -29,11 +30,30 @@ namespace EtherEngine {
     // .NET文字列をC++文字列に変換する
     // @ Ret  : C++文字列
     // @ Arg1 : .NET文字列
-    std::string ManageToUn(String^ manage);
+    std::string ManageToUn(System::String^ manage);
     // C++文字列を.NET文字列に変換する
     // @ Ret  : .NET文字列
     // @ Arg1 : C++文字列
-    String^ UnToManage(const std::string& un);
+    System::String^ UnToManage(const std::string& un);
+}
+
+
+//----- 完全修飾名取得関数 定義
+namespace EtherEngine {
+    // 完全修飾名を取得する
+    // @ Exce : クラス名が存在しない
+    // @ Ret  : 完全修飾名(Hoge.Fuga)
+    // @ Arg1 : クラス名
+    // @ Arg2 : 何番名の名前空間を採用するか(Default : 0)。例として"Foo.Hoge", "Bar.Hoge"を、0番を指定すると"Foo.Hoge"を取得する
+    // @ Arg3 : System名前空間を含めるか(Default : 含めない。false)
+    std::string GetFullName(const std::string& className, const uint index = 0, const bool isSystem = false);
+    // 完全修飾名を取得する
+    // @ Exce : クラス名が存在しない
+    // @ Ret  : 完全修飾名(Hoge.Fuga)
+    // @ Arg1 : クラス名
+    // @ Arg2 : 何番名の名前空間を採用するか(Default : 0)。例として"Foo.Hoge", "Bar.Hoge"を、0番を指定すると"Foo.Hoge"を取得する
+    // @ Arg3 : System名前空間を含めるか(Default : 含めない。false)
+    System::String^ GetFullName(System::String^ className, const uint index = 0, const bool isSystem = false);
 }
 
 
@@ -48,7 +68,7 @@ namespace EtherEngine {
 
             //----- 変数宣言
             nlohmann::json serialize;   // 出力するJson文字列
-            Type^ thisType = GetType();
+            System::Type^ thisType = GetType();
 
             //----- 全てのFieldを取得、出力する
             auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::DeclaredOnly);
@@ -66,7 +86,7 @@ namespace EtherEngine {
                 for each (auto attribute in attributes) {
                     if (isOutput) {
                         //----- Public時。非公開属性か
-                        if (attribute->GetType() == Type::GetType("EtherEngineNonSerializeAttribute")) {
+                        if (attribute->GetType() == System::Type::GetType("EtherEngineNonSerializeAttribute")) {
                             //----- 定義されている。このループを終了
                             isOutput = false;
                             break;
@@ -74,7 +94,7 @@ namespace EtherEngine {
                     }
                     else {
                         //----- 非Public時。公開属性か
-                        if (attribute->GetType() == Type::GetType("EtherEngineSerializeAttribute")) {
+                        if (attribute->GetType() == System::Type::GetType("EtherEngineSerializeAttribute")) {
                             //----- 定義されている。このループを終了
                             isOutput = true;
                             break;
@@ -93,7 +113,7 @@ namespace EtherEngine {
             }
 
             //----- 返却
-            return serialize;
+            return serialize.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
         }
         // 外部入力する
         void Deserialize(const std::string& input) override {
@@ -101,7 +121,7 @@ namespace EtherEngine {
 
             //----- 変数宣言
             nlohmann::json serialize = nlohmann::json::parse(input);   // 入力するJson文字列
-            Type^ thisType = GetType();
+            System::Type^ thisType = GetType();
 
             //----- 全てのFieldを取得、出力する
             auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::Instance);
@@ -121,9 +141,9 @@ namespace EtherEngine {
                 }
                 else {
                     try {
-                        field->SetValue(this, Convert::ChangeType(UnToManage(serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)]), field->FieldType));
+                        field->SetValue(this, System::Convert::ChangeType(UnToManage(serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)]), field->FieldType));
                     }
-                    catch (InvalidCastException^) {
+                    catch (System::InvalidCastException^) {
                     }
                 }
             }
@@ -215,13 +235,6 @@ namespace EtherEngine {
         UnmanageType* m_maintainer; // 保持している対象
         bool m_isNew;               // 右辺値を受け取り構築したか
     };
-}
-
-
-
-
-//----- UnmanageMaintainer 定義
-namespace EtherEngine {
 }
 
 

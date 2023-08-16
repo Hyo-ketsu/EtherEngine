@@ -5,9 +5,6 @@
 
 //----- 定数定義
 namespace EtherEngine {
-    //----- 型名定義
-    using Json = nlohmann::json;    // Json
-
     //----- FPS
     const float ONE_FRAME = 1.f / 60.f;
 
@@ -31,7 +28,7 @@ namespace EtherEngine {
     namespace FileDefine {
         const std::string SCENE = ".scenedata"; // シーン情報の拡張子
 
-        const int JSON_DUMP_NUMBER_OF_STAGES = 4;   // JsonのDump数
+        const int JSON_DUMP_NUMBER_OF_STAGES = 2;   // JsonのDump数
     }
 }
 

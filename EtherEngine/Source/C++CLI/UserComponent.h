@@ -43,7 +43,11 @@ namespace EtherEngine {
             using namespace System::Reflection;
 
             //----- 変数宣言
-            Type^ thisType = GetType();
+            System::Type^ thisType = GetType();
+
+            //----- 名前入力欄とアクティブcheck
+
+
 
             //----- 全てのFieldを取得、出力する
             auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::DeclaredOnly);
@@ -61,7 +65,7 @@ namespace EtherEngine {
                 for each (auto attribute in attributes) {
                     if (isOutput) {
                         //----- Public時。非公開属性か
-                        if (attribute->GetType() == Type::GetType("EtherEngineNonSerializeAttribute")) {
+                        if (attribute->GetType() == System::Type::GetType("EtherEngineNonSerializeAttribute")) {
                             //----- 定義されている。このループを終了
                             isOutput = false;
                             break;
@@ -69,7 +73,7 @@ namespace EtherEngine {
                     }
                     else {
                         //----- 非Public時。公開属性か
-                        if (attribute->GetType() == Type::GetType("EtherEngineSerializeAttribute")) {
+                        if (attribute->GetType() == System::Type::GetType("EtherEngineSerializeAttribute")) {
                             //----- 定義されている。このループを終了
                             isOutput = true;
                             break;
@@ -117,15 +121,15 @@ namespace EtherEngine {
                     }
                     // string
                     // @ MEMO : 複数行使用属性対応予定
-                    if (field->GetType() == String::typeid) {
-                        auto str = ManageToUn(safe_cast<String^>(field->GetValue(nullptr)));
+                    if (field->GetType() == System::String::typeid) {
+                        auto str = ManageToUn(safe_cast<System::String^>(field->GetValue(nullptr)));
                         ImGuiFunction::ImGuiShow<std::string>(str, ManageToUn(field->Name));
                         field->SetValue(nullptr, UnToManage(str));
                         break;
                     }
                     // Array
                     // @ MEMO : 後回し
-                    if (field->GetType() == Array::typeid) {
+                    if (field->GetType() == System::Array::typeid) {
 
                     }
                 } while (false);

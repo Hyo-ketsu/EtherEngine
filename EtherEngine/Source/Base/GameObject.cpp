@@ -220,31 +220,123 @@ namespace EtherEngine {
     }
 
 
+    // コンポーネント追加
+    std::weak_ptr<ComponentBase> GameObject::AddComponent(const std::string& componentTypeName) {
+        //----- コンポーネント生成
+        auto component = ms_getComponent(this, componentTypeName);
+        if (component == nullptr) return std::weak_ptr<ComponentBase>();
+
+        //----- 通常コンポーネント生成
+        if (component->GetComponentTypeName() == Component::TYPE_COMPONENT) {
+            m_components.push_back(component);
+            return std::weak_ptr<ComponentBase>(component);
+        }
+        //----- 描画コンポーネント生成
+        if (component->GetComponentTypeName() == Component::TYPE_DRAW_COMPONENT) {
+            auto drawComponent = std::dynamic_pointer_cast<DrawComponent>(component);
+            m_drawComponents.push_back(drawComponent);
+            return std::weak_ptr<ComponentBase>(drawComponent);
+        }
+        //----- 当たり判定コンポーネント生成
+        // @ MEMO : 後回し
+        //if (type == Component::TYPE_DRAW_COMPONENT) {
+        //    m_collisions.push_back(std::make_shared<CollisionComponent>(CollisionComponent<>()));
+        //}
+    }
+    // コンポーネント削除
+    bool GameObject::DeleteComponent(const std::string& componentTypeName) {
+        //----- 各コンポーネントから走査、削除
+        for (auto&& it : m_components) {
+            if (it->GetComponentName() == componentTypeName) {
+                it->DeleteFuntion();
+                it->DeleteObject();
+                return true;
+            }
+        }
+        for (auto&& it : m_drawComponents) {
+            if (it->GetComponentName() == componentTypeName) {
+                it->DeleteFuntion();
+                it->DeleteObject();
+                return true;
+            }
+        }
+        for (auto&& it : m_collisions) {
+            if (it->GetComponentName() == componentTypeName) {
+                it->DeleteFuntion();
+                it->DeleteObject();
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // コンポーネントを取得する
+    std::weak_ptr<ComponentBase> GameObject::GetComponent(const std::string& componentTypeName, uint index) {
+        //----- 各コンポーネントから走査、取得
+        for (auto&& it : m_components) {
+            if (it->GetComponentName() == componentTypeName) {
+                return std::weak_ptr<ComponentBase>(it);
+            }
+        }
+        for (auto&& it : m_drawComponents) {
+            if (it->GetComponentName() == componentTypeName) {
+                return std::weak_ptr<ComponentBase>(it);
+            }
+        }
+        for (auto&& it : m_collisions) {
+            if (it->GetComponentName() == componentTypeName) {
+                return std::weak_ptr<ComponentBase>(it);
+            }
+        }
+    }
+    // コンポーネントを取得する
+    std::vector<std::weak_ptr<ComponentBase>> GameObject::GetComponents(const std::string& componentTypeName) {
+        //----- 変数宣言
+        std::vector<std::weak_ptr<ComponentBase>> ret;
+
+        //----- コンポーネントが取得できなくなるまで取得
+        for (uint i = 0;; i++) {
+            auto component = GetComponent(componentTypeName);
+            if (component.expired()) {
+                break;
+            }
+            else {
+                ret.push_back(component);
+            }
+        }
+
+        //----- 返却
+        return ret;
+    }
+
+
     // 外部出力
     Json GameObject::Output(void) {
         //----- 変数宣言
         nlohmann::json json;
 
         //----- ゲームオブジェクト自身の情報出力
-        json["GameObject"]["ID"] = 0;// GetId().Get();
+        json["GameObject"]["ID"] = GetId().Get();
         json["GameObject"]["Name"] = GetName().c_str();
 
         //----- コンポーネント出力
+        auto components = nlohmann::json::array();
         for (auto& it : m_components) {
-            json["GameObject"]["Components"][it->GetComponentName()] = it->Output();
-            json["GameObject"]["Components"][it->GetComponentName()]["ComponentType"] = it->GetComponentTypeName();
+            components.push_back(it->Output());
         }
         //----- 描画コンポーネント出力
         for (auto& it : m_drawComponents) {
-            json["GameObject"]["Components"][it->GetComponentName()] = it->Output();
-            json["GameObject"]["Components"][it->GetComponentName()]["ComponentType"] = it->GetComponentTypeName();
+            components.push_back(it->Output());
         }
         //----- 当たり判定コンポーネント出力
         // @ MEMO : 現在は未実装
         //for (auto& it : m_collisions) {
-        //    json["GameObject"]["Components"][it->GetComponentName()] = it->Output();
-        //    json["GameObject"]["Components"][it->GetComponentName()]["ComponentType"] = it->GetComponentTypeName();
+        //    components[it->GetComponentName()] = it->Output();
+        //    components[it->GetComponentName()]["ComponentType"] = it->GetComponentTypeName();
         //}
+
+        //----- 配列出力
+        json["GameObject"]["Components"] = components;
 
         //----- 返却
         return json;
@@ -257,31 +349,15 @@ namespace EtherEngine {
         SetName(input["GameObject"]["Name"]);
 
         //----- コンポーネント入力
+        auto hoge = input["GameObject"]["Components"].dump(2);
         if (input["GameObject"].contains("Components") == false) goto NO_CREATE_COMPONENT;
-        for (auto& it : input["GameObject"]["Components"]) {
-            //----- タイプに沿ったコンポーネント生成
-            std::string type = input["GameObject"]["Components"]["ComponentType"];
+        for (auto& it : input["GameObject"]["Components"].items()) {            
+            //----- コンポーネント生成
+            auto ret = AddComponent(it.value()["ComponentName"]);
+            if (ret.expired()) continue;
             
-            do {
-                //----- 通常コンポーネント生成
-                // @ MEMO : ここをのちにAddComponentに換装？
-                if (type == Component::TYPE_COMPONENT) {
-                    m_components.push_back(ms_getComponent(this, type));
-                    m_components.back()->Input(it);
-                    break;
-                }
-                //----- 描画コンポーネント生成
-                if (type == Component::TYPE_DRAW_COMPONENT) {
-                    m_drawComponents.push_back(ms_getDrawComponent(this, type));
-                    m_drawComponents.back()->Input(it);
-                    break;
-                }
-                //----- 当たり判定コンポーネント生成
-                // @ MEMO : 後回し
-                //if (type == Component::TYPE_DRAW_COMPONENT) {
-                //    m_collisions.push_back(std::make_shared<CollisionComponent>(CollisionComponent<>()));
-                //}
-            } while (false);
+            //----- 入力値入力
+            ret.lock()->Input(it.value());
         }
 
         NO_CREATE_COMPONENT: {}
@@ -295,22 +371,50 @@ namespace EtherEngine {
 
         //----- 各コンポーネント表示
         for (auto&& it : m_components) {
+            ImGui::Text(it->GetName().c_str());
             it->ShowInspector();
         }
         for (auto&& it : m_drawComponents) {
+            ImGui::Text(it->GetName().c_str());
             it->ShowInspector();
         }
         for (auto&& it : m_collisions) {
+            ImGui::Text(it->GetName().c_str());
             it->ShowInspector();
         }
 
         //----- コンポーネント追加ボタン
         if (ImGui::Button("Add Component")) {
+            ImGui::OpenPopup("AddComponent Popup");
+        }
 
+        //----- コンポーネント追加ボタンメニュー表示
+        if (ImGui::BeginPopup("AddComponent Popup")) {
+            //----- メニュー表示
+            auto component = ms_addComponentMenu(this);
+
+            //----- コンポーネント追加
+            if (component != nullptr) {
+                if (component->GetComponentTypeName() == Component::TYPE_COMPONENT) {
+                    m_components.push_back(component);
+                } 
+                else if (component->GetComponentTypeName() == Component::TYPE_DRAW_COMPONENT) {
+                    auto drawComponent = std::dynamic_pointer_cast<DrawComponent>(component);
+                    m_drawComponents.push_back(drawComponent);
+                }
+                else if (component->GetComponentTypeName() == Component::TYPE_COLLISION_COMPONENT) {
+                    auto collisionComponent = std::dynamic_pointer_cast<CollisionComponent>(component);
+                    m_collisions.push_back(collisionComponent);
+                }
+            }
+
+            //----- メニュー表示終了
+            ImGui::EndPopup();
         }
     }
 
 
-    std::function<std::shared_ptr<ComponentBase>&&(GameObject*, const std::string&)> GameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
-    std::function<std::shared_ptr<DrawComponent>&&(GameObject*, const std::string&)> GameObject::ms_getDrawComponent = nullptr; // C++CLIのGameDrawComponentなどを取得するためのラムダ
+    std::function<std::shared_ptr<ComponentBase>(GameObject*, const std::string&)> GameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
+    std::function<std::shared_ptr<ComponentBase>(GameObject*)> GameObject::ms_addComponentMenu; // C++CLIのGameDrawComponentなどを取得するためのラムダ
+    std::function<std::string(const std::string&, const uint, const bool)> GameObject::ms_getFullName; // 各コンポーネント名の完全修飾名取得ラムダ
 }

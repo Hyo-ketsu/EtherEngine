@@ -5,12 +5,12 @@
 namespace EtherEngine {
     namespace Attribute {
         // Serialize,Deserialize‚·‚é‚½‚ß‚Ì‘®«
-        public ref class Serialize : Attribute {
+        public ref class Serialize : System::Attribute {
         };
 
 
         // Serialize,Deserialize‚³‚ê‚é‚à‚Ì‚ğSerialize,Deserialize‚µ‚È‚¢‚½‚ß‚Ì‘®«
-        public ref class NonSerialize : Attribute {
+        public ref class NonSerialize : System::Attribute {
         };
     }
 }
