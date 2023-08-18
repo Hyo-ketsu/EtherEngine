@@ -23,7 +23,8 @@ namespace EtherEngine {
         static std::optional<PathClass> ms_rootDirectory;    // 最上位ディレクトリ
         static PathClass                ms_currentDirectory; // 現在表示ディレクトリ
         static int ms_selectNumber; // 選択されているリスト番号
-        ImVec2 m_hierarchyView;  // 階層表示ウィンドウのサイズ
+        static bool ms_isContentsSelect; // コンテンツウィンドウが選択されているか
+        ImVec2 m_windowSize;  // 階層表示ウィンドウのサイズ
     };
 }
 

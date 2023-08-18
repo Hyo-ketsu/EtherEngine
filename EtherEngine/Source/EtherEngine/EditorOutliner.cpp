@@ -18,7 +18,7 @@ namespace EtherEngine {
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
 
         //----- 右クリックメニュー入力
-        if (ImGui::IsMouseReleased(1)) {
+        if (ImGui::IsWindowFocused(ImGuiFocusedFlags_RootAndChildWindows) && ImGui::IsMouseReleased(1)) {
             ImGui::OpenPopup("Outliner Popup");
         }
 

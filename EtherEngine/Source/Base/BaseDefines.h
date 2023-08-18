@@ -27,6 +27,17 @@ namespace EtherEngine {
     //----- ファイル用定義
     namespace FileDefine {
         const std::string SCENE = ".scenedata"; // シーン情報の拡張子
+        const std::string CPPCLISCRIPT = ".h";  // スクリプト用拡張子
+
+        const std::string CPPCLISCRIPT_FILE_STRING = R"(
+//===== 仮で書いてます。のちに修正してください。=====//
+#include <C++CLI/UserComponent.h>
+
+public ref class クラス名 : public UserBaseComponent {
+public:
+
+}
+)";
 
         const int JSON_DUMP_NUMBER_OF_STAGES = 2;   // JsonのDump数
     }

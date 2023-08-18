@@ -26,6 +26,10 @@ namespace EtherEngine {
     std::string PathClass::GetFile(void) const {
         return path(m_path).filename().string();
     }
+    // 拡張子含めないファイル名取得
+    std::string PathClass::GetFileName(void) const {
+        return path(m_path).stem().string();
+    }
     // ディレクトリ名を取得
     PathClass PathClass::GetDirectory(void) const {
         return PathClass(path(m_path).remove_filename().string());
@@ -45,6 +49,33 @@ namespace EtherEngine {
     // 現在収納されているディレクトリを全て生成する
     bool PathClass::CreateDirectories(void) const {
         return create_directories(path(m_path));
+    }
+    // 現在格納されているパスでファイルを生成する
+    bool PathClass::CreateFiles(const std::string& fileString) {
+        //----- 変数宣言
+        path path = m_path;
+
+        //----- ファイルが存在しているかチェック
+        if (exists(path)) return false;
+
+        //----- ファイルオープン
+        std::ofstream ofs(path);
+        if (ofs.is_open() == false) return false;
+
+        //----- 文字列格納
+        ofs << fileString;
+
+        //----- 返却
+        return true; 
+    }
+    // 現在のファイル・ディレクトリを削除します
+    bool PathClass::DeleteFiles(const bool isAllRemove) {
+        if (isAllRemove) {
+            return remove_all(path(m_path)) > 0;
+        }
+        else {
+            return remove(path(m_path));
+        }
     }
 
 
