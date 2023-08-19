@@ -6,6 +6,8 @@
 #include <EtherEngine/EditorApplication.h>
 #include <EtherEngine/EditorObjectStorage.h>
 
+#include <EtherEngine/EditorBuildMenuWindow.h>
+
 #include <EtherEngine/EditorLogWindow.h>
 #include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/EditorExplorerWindow.h>
@@ -65,8 +67,18 @@ namespace EtherEngine {
                     ImGui::EndMenu();
                 }
 
-                //----- "Window"項目表示
-                if (ImGui::BeginMenu("Window")) {
+                //----- "Menu" 表示
+                if (ImGui::BeginMenu("Menu")) {
+                    using namespace EtherEngine::ImGuiDefine;
+
+                    //----- 項目表示
+                    ShowWindowMenu<BuildMenu>(&m_windows, Name::WINDOW_BUILD_MENU);
+
+                    ImGui::EndMenu();
+                }
+
+                //----- "Editor Window"項目表示
+                if (ImGui::BeginMenu("Editor Window")) {
                     using namespace EtherEngine::ImGuiDefine;
 
                     //----- 全削除メニュー表示

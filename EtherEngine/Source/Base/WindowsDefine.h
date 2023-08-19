@@ -27,6 +27,8 @@ namespace EtherEngine {
             const std::string WINDOW_LOG = "Log Window";
             const std::string WINDOW_INSPECTOR = "Inspector";
 
+            const std::string WINDOW_BUILD_MENU = "Build";
+
             const std::string WINDOW_EXPLORER_HIERARCHY = ImGuiDefine::Name::WINDOW_EXPLORER + " HierarchyView";
             const std::string WINDOW_EXPLORER_CONTENTS = ImGuiDefine::Name::WINDOW_EXPLORER + " ContentsView";
         }

@@ -52,7 +52,7 @@ namespace EtherEngine {
         void ShowInspector(void) override {}
 
 
-    private:
+    protected:
         std::string m_name; // 表示名
         bool m_isOpen;      // 表示するか
         ImGuiWindowFlags m_flags;  // 表示フラグ

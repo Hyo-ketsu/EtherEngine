@@ -7,6 +7,7 @@
 #include <C++CLI/C++CLIInit.h>
 #include <EtherEngine/ProcedureEditorWindow.h>
 #include <EtherEngine/EditorObjectUpdater.h>
+#include <EtherEngine/MSVCMediation.h>
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
 #include <DirectX/ModelComponent.h>
@@ -152,11 +153,16 @@ namespace EtherEngine {
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
         m_initUninitPerformer.AddInitUninit<InputSystem>();
         m_initUninitPerformer.AddInitUninit(
-            [=]() { m_imGui = std::make_unique<IMGUI>(
+            [&]() { m_imGui = std::make_unique<IMGUI>(
                 m_dxRender.GetAtomicData().GetDevice(),
                 m_dxRender.GetAtomicData().GetContext(),
                 m_hwnd.value()); },
-            [=]() { m_imGui.reset(); });
+            [&]() { m_imGui.reset(); }
+        );
+        m_initUninitPerformer.AddInitUninit(
+            [&]() { MSVCMediation::Get()->Init(m_projectData->GetCmdPath(), m_projectData->GetMsvcPath()); },
+            []() {MSVCMediation::Get()->Uninit(); }
+        );
 
         //----- 初期化
         m_initUninitPerformer.Init();
@@ -183,6 +189,8 @@ namespace EtherEngine {
 
         //----- カメラ設定
         m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());
+
+        MSVCMediation::Get()->Command(std::string("dotnet new sln -o ") + PathClass::GetCurDirectory());
 #endif // _DEBUG
 
         //----- メッセージループ

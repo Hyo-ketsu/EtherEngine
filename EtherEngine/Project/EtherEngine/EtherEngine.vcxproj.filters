@@ -120,6 +120,15 @@
     <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp">
       <Filter>ソース ファイル\EngineSystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -199,6 +208,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h">
       <Filter>ヘッダー ファイル\EngineSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
