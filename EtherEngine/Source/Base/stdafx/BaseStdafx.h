@@ -29,8 +29,9 @@
 #include <Eigen/Core>
 #include <DirectXMath.h>
 #include <Windows.h>
-#include <Base/Json/nlohmann/json.hpp>
 #pragma comment (lib, "winmm.lib")
+#include <Base/Json/nlohmann/json.hpp>
+#include <Base/Xml/tinyxml2.h>
 
 
 #include <Base/PathClass.h>
