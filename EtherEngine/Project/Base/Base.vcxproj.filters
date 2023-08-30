@@ -31,6 +31,12 @@
     <Filter Include="ヘッダー ファイル\Collision\CollisionFunction">
       <UniqueIdentifier>{f8b884b2-e8bb-435d-bd73-2c7c1c6ded12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\XML">
+      <UniqueIdentifier>{410f7e69-91fe-4232-9ed8-838182815b59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\XML">
+      <UniqueIdentifier>{0431ad58-0666-41c8-a62d-af6d7634be30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
@@ -189,6 +195,9 @@
     <ClCompile Include="..\..\Source\Base\ProjectData.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp">
+      <Filter>ソース ファイル\XML</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
@@ -346,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\PathClass.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
+      <Filter>ヘッダー ファイル\XML</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

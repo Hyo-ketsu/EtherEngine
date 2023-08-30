@@ -27,6 +27,7 @@ namespace EtherEngine {
     private:
         PathClass m_cmdPath;    // コマンドプロンプトが存在するパス
         PathClass m_msvcPath;   // MSVCがあるパス
+        PathClass m_visualStudioPath;   // VisualStudioのあるパス
     };
 }
 

@@ -4,6 +4,8 @@
 #include <Base/WindowsDefine.h>
 #include <EtherEngine/EditorApplication.h>
 #include <EtherEngine/EditorSceneSerializer.h>
+#include <EtherEngine/ProjectMediation.h>
+#include <EtherEngine/MSVCMediation.h>
 
 
 //----- EditorDebug ’è‹`
@@ -35,6 +37,10 @@ namespace EtherEngine {
                 EditorSceneSerialize(PathClass::GetCurDirectory(), SceneLoader::Get()->GetCurrentSceneData().value());
             }
 
+            //----- Build
+            if (ImGui::Button("Script Build")) {
+                MSVCMediation::Get()->Command(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
+            }
         }
         ImGui::End();
     }

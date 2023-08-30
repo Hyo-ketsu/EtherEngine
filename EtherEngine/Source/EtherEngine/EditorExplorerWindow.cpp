@@ -2,6 +2,8 @@
 #include <Base/WindowsDefine.h>
 #include <Base/EtherEngineUtility.h>
 #include <EtherEngine/FileOpener.h>
+#include <EtherEngine/FileCreater.h>
+#include <EtherEngine/FileDeleter.h>
 
 
 //----- 関数実装
@@ -58,54 +60,6 @@ namespace EtherEngine {
         }
         ImGui::TreePop();
     }
-
-
-    // ファイル名走査関数
-    // @ Ret  : 判定結果のファイル名
-    // @ Arg1 : 判定対象
-    // @ Arg2 : 命名法則
-    PathClass GetFileName(const PathClass& path, const Utilty::DuplicationNameObjectName& nameRule) {
-        //----- 変数宣言
-        int countNumber = 1; 
-        std::vector<PathClass> directoryFile;
-        auto createPath = PathClass(path.GetFile());
-
-        //----- 同じ拡張子のファイル取得
-        for (auto&& it : path.GetDirectory().GetLowerDirectory()) {
-            if (it.GetExtension() == path.GetExtension()) {
-                directoryFile.push_back(it.GetFile());
-            }
-        }
-
-        //----- 同じ名前のファイル走査
-        while (true) {
-            //----- 変数宣言
-            bool isEnable = false; // 同じファイル名が存在するか
-
-            //----- 走査
-            for (auto&& it : directoryFile) {
-                if (createPath.Get() == it.Get()) {
-                    //----- 同名が存在する。
-                    isEnable = true;
-                    break;
-                }
-            }
-
-            //----- 同名が存在したか
-            if (isEnable) {
-                //----- 存在した。名前を生成し再判定
-                auto extension = path.GetExtension();
-                createPath = path.GetFileName();
-                Utilty::DuplicationName(&createPath.Access(), countNumber, nameRule);
-                createPath = createPath += extension;
-                countNumber++;
-            }
-            else {
-                //----- 存在しない。返却
-                return path.GetDirectory() /= createPath;
-            }
-        }
-    }
 }
 
 
@@ -157,7 +111,11 @@ namespace EtherEngine {
         //----- 階層ウィンドウ右クリックメニュー表示
         if (ImGui::BeginPopupContextItem("Explorer Hierarchy Popup")) {
             //----- オブジェクト生成
-            if (ImGui::MenuItem("Create")) {}
+            if (ImGui::MenuItem("Create")) {
+                FileCreate("NewDirectory", "", ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber, "", true);
+            }
+            if (ImGui::MenuItem("Delete")) {
+            }
             //----- メニュー表示終了
             ImGui::EndPopup();
         }
@@ -217,24 +175,12 @@ namespace EtherEngine {
         if (ImGui::BeginPopupContextItem("Explorer Contents Popup")) {
             //----- オブジェクト生成
             if (ImGui::BeginMenu("Create")) {
-                //----- 変数宣言
-                PathClass createFile = ms_currentDirectory;
-                std::string createFileName;     //
-                std::string fileString = "";    // 新規生成ファイルに与える文字列
-
                 //----- 各ファイル生成
                 if (ImGui::MenuItem("Scene")) {
-                    createFileName = "NewScene" + FileDefine::SCENE;
+                    FileCreate("NewScene", FileDefine::SCENE, ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber);
                 }
                 if (ImGui::MenuItem("Script")) {
-                    createFileName = "NewScript" + FileDefine::CPPCLISCRIPT;
-                    fileString = FileDefine::CPPCLISCRIPT_FILE_STRING;
-                }
-
-                //----- ファイル生成
-                if (createFileName.empty() == false) {
-                    createFile = GetFileName(createFile /= createFileName, Utilty::DuplicationNameObjectName::ParenthesesNumber);    // @ MEMO : 命名規則は仮置き
-                    createFile.CreateFiles(fileString);
+                    FileCreate("Script", FileDefine::CPPCLISCRIPT, ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
                 }
 
                 ImGui::EndMenu();
@@ -243,7 +189,7 @@ namespace EtherEngine {
             if (ImGui::MenuItem("Delete")) {
                 //----- 選択番号のファイル削除
                 if (ms_currentDirectory.GetLowerDirectory().size() > ms_selectNumber) {
-                    ms_currentDirectory.GetLowerDirectory()[ms_selectNumber + 1].DeleteFiles(true);
+                    FileDelete(ms_currentDirectory.GetLowerDirectory()[ms_selectNumber], true);
                 }
             }
 

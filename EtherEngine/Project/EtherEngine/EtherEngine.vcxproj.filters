@@ -37,6 +37,12 @@
     <Filter Include="ヘッダー ファイル\EngineObject">
       <UniqueIdentifier>{418d382b-67f7-43cf-b731-4e9a8ba5911e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\EngineSystem\FileFunction">
+      <UniqueIdentifier>{0501d020-62a6-4f80-b2dd-e4b88f4de955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\EngineSystem\FileFunction">
+      <UniqueIdentifier>{48371787-2f89-438a-bf3f-4ff8dcf29cc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
@@ -117,9 +123,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -127,7 +130,19 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp">
+      <Filter>ソース ファイル\EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp">
+      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp">
+      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp">
+      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +221,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -216,7 +228,19 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h">
+      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\FileCreater.h">
+      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h">
+      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h">
+      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

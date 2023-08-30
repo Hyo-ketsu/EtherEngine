@@ -8,6 +8,7 @@
 #include <EtherEngine/ProcedureEditorWindow.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/MSVCMediation.h>
+#include <EtherEngine/ProjectMediation.h> 
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
 #include <DirectX/ModelComponent.h>
@@ -161,7 +162,11 @@ namespace EtherEngine {
         );
         m_initUninitPerformer.AddInitUninit(
             [&]() { MSVCMediation::Get()->Init(m_projectData->GetCmdPath(), m_projectData->GetMsvcPath()); },
-            []() {MSVCMediation::Get()->Uninit(); }
+            []() { MSVCMediation::Get()->Uninit(); }
+        );
+        m_initUninitPerformer.AddInitUninit(
+            [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::PROJECT); },
+            []() { ProjectMediation::Get()->Uninit(); }
         );
 
         //----- 初期化
@@ -189,8 +194,6 @@ namespace EtherEngine {
 
         //----- カメラ設定
         m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());
-
-        MSVCMediation::Get()->Command(std::string("dotnet new sln -o ") + PathClass::GetCurDirectory());
 #endif // _DEBUG
 
         //----- メッセージループ

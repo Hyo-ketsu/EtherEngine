@@ -12,10 +12,10 @@ namespace EtherEngine {
         std::ofstream scene;
 
         //----- パス定義
-        (path /= sceneData).GetDirectory().CreateDirectories(); // ディレクトリ作成
+        (path / sceneData).GetDirectory().CreateDirectories(); // ディレクトリ作成
         auto fileName = PathClass(sceneData).HasExtension() ?
-            path /= std::string(sceneData) :
-            path /= std::string(sceneData) += FileDefine::SCENE;
+            path / std::string(sceneData) :
+            path / std::string(sceneData) += FileDefine::SCENE;
 
         //----- ファイルの新規作成
         scene.open(fileName, std::ios::out);

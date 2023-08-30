@@ -14,5 +14,9 @@ namespace EtherEngine {
                 break;
             }
         } while (false);
+
+        //----- 指定されたファイル以外
+        // @ MEMO : system使ってるので後で修正
+        system((std::string("start ") + file.Get()).c_str());
     }
 }

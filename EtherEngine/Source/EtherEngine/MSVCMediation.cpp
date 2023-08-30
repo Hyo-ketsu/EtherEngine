@@ -35,6 +35,9 @@ namespace EtherEngine {
         startupInfo.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE); // Use the standard output handle of the parent process
         startupInfo.hStdInput = m_childStdInRead; // Use the read end of the input pipe for the child process
         startupInfo.dwFlags |= STARTF_USESTDHANDLES;
+#ifdef _DEBUG
+        startupInfo.wShowWindow = SW_HIDE;
+#endif // _DEBUG
 
         //----- 入力コマンド用変数宣言
         // @ Memo : CreateProcessの第2引数がconst char*では正常に動作しないため

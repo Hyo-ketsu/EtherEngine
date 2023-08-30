@@ -94,5 +94,50 @@ namespace EtherEngine {
                 return true;
             }
         }
+        // ファイル名走査関数
+        std::string GetFileName(const PathClass& path, const Utilty::DuplicationNameObjectName& nameRule) {
+            //----- 変数宣言
+            int countNumber = 1;
+            std::vector<PathClass> directoryFile;
+            auto createPath = PathClass(path.GetFile());
+
+            //----- 同じ拡張子のファイル取得
+            for (auto&& it : path.GetDirectory().GetLowerDirectory()) {
+                if (it.GetExtension() == path.GetExtension()) {
+                    directoryFile.push_back(it.GetFile());
+                }
+            }
+
+            //----- 同じ名前のファイル走査
+            while (true) {
+                //----- 変数宣言
+                bool isEnable = false; // 同じファイル名が存在するか
+
+                //----- 走査
+                for (auto&& it : directoryFile) {
+                    if (createPath.Get() == it.Get()) {
+                        //----- 同名が存在する。
+                        isEnable = true;
+                        break;
+                    }
+                }
+
+                //----- 同名が存在したか
+                if (isEnable) {
+                    //----- 存在した。名前を生成し再判定
+                    auto extension = path.GetExtension();
+                    createPath = path.GetFileName();
+                    Utilty::DuplicationName(&createPath.Access(), countNumber, nameRule);
+                    createPath = createPath += extension;
+                    countNumber++;
+                }
+                else {
+                    //----- 存在しない。返却
+                    PathClass ret = path.GetDirectory();
+                    ret /= createPath;
+                    return ret.Get();
+                }
+            }
+        }
     }
 }

@@ -28,9 +28,11 @@ namespace EtherEngine {
     namespace FileDefine {
         const std::string SCENE = ".scenedata"; // シーン情報の拡張子
         const std::string CPPCLISCRIPT = ".h";  // スクリプト用拡張子
+        const std::string SOLUTION = ".sln";    // ソリューションの拡張子
+        const std::string PROJECT = ".vcxproj"; // プロジェクト拡張子
+        const std::string PROJECTNAME = "EtherEngineProject";   // プロジェクト名
 
-        const std::string CPPCLISCRIPT_FILE_STRING = R"(
-//===== 仮で書いてます。のちに修正してください。=====//
+        const std::string CPPCLISCRIPT_FILE_STRING = R"(//===== 仮で書いてます。のちに修正してください。=====//
 #include <C++CLI/UserComponent.h>
 
 public ref class クラス名 : public UserBaseComponent {

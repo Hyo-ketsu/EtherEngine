@@ -4,3 +4,7 @@ EtherEngine/Object
 EtherEngine/Debug
 EtherEngine/Project/EtherEngine/imgui.ini
 EtherEngine/Project/*/*.dll
+EtherEngine/EtherEngineData/.vs/
+EtherEngine/EtherEngineData/Binary/
+EtherEngine/EtherEngineData/EtherEngineLibrary/
+EtherEngine/EtherEngineData/Object/

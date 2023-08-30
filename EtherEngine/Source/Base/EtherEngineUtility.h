@@ -1,6 +1,7 @@
 #ifndef I_ETHERENGINEUTILITY_H
 #define I_ETHERENGINEUTILITY_H
 #include <Base/BaseDefines.h>
+#include <Base/PathClass.h>
 
 
 // DLL呼び出し用
@@ -84,6 +85,11 @@ namespace EtherEngine {
         // @ Arg3 : 何個目の同名オブジェクトか（1 ~ ）
         // @ Arg4 : 命名方法
         bool IsDuplicationName(const std::string& name, const std::string& base, const uint number, const DuplicationNameObjectName& type);
+        // ファイル名走査関数
+        // @ Ret  : 判定結果のファイル名
+        // @ Arg1 : 判定対象
+        // @ Arg2 : 命名法則
+        std::string GetFileName(const PathClass& path, const Utilty::DuplicationNameObjectName& nameRule); 
     }
 }
 

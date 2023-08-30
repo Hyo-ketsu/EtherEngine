@@ -62,11 +62,14 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Create</PrecompiledHeader>
@@ -106,11 +109,14 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\FileCreater.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h" />
     <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />

@@ -1,4 +1,5 @@
 #include <Base/PathClass.h>
+#include <Base/EtherEngineUtility.h>
 #include <filesystem>
 
 
@@ -17,8 +18,8 @@ namespace EtherEngine {
 
 
     // カレントディレクトリゲッター
-    std::string PathClass::GetCurDirectory(void) {
-        return current_path().string();
+    PathClass PathClass::GetCurDirectory(void) {
+        return PathClass(current_path().string());
     }
 
 
@@ -50,8 +51,12 @@ namespace EtherEngine {
     bool PathClass::CreateDirectories(void) const {
         return create_directories(path(m_path));
     }
+    // 現在収納されているディレクトリを生成する
+    bool PathClass::CreateDirectorys(void) const {
+        return create_directory(path(m_path));
+    }
     // 現在格納されているパスでファイルを生成する
-    bool PathClass::CreateFiles(const std::string& fileString) {
+    bool PathClass::CreateFiles(const std::string& fileString) const {
         //----- 変数宣言
         path path = m_path;
 
@@ -69,7 +74,7 @@ namespace EtherEngine {
         return true; 
     }
     // 現在のファイル・ディレクトリを削除します
-    bool PathClass::DeleteFiles(const bool isAllRemove) {
+    bool PathClass::DeleteFiles(const bool isAllRemove) const {
         if (isAllRemove) {
             return remove_all(path(m_path)) > 0;
         }
@@ -77,14 +82,34 @@ namespace EtherEngine {
             return remove(path(m_path));
         }
     }
+    // 現在のファイルをコピーする
+    bool PathClass::CopyFiles(const PathClass& copyPath) {
+        //----- コピーが可能か判定
+        if (copyPath.IsExists() == false) return false;
+        if (this->IsFile() == false) return false;
+
+        //----- 同名ファイルを対象パスに作成
+        auto myFileString = RoadFileAll(m_path);
+        (copyPath / this->GetFile()).CreateFiles(myFileString);
+    }
 
 
     // パス要素追加
-    const PathClass PathClass::operator/=(const std::string& path) const {
+    PathClass& PathClass::operator/=(const std::string& path) {
+        m_path = (std::filesystem::path(m_path) /= path).string();
+        return *this;
+    }
+    // パス要素追加
+    PathClass PathClass::operator/(const std::string& path) const {
         return PathClass((std::filesystem::path(m_path) /= path).string());
     }
     // パス文字列追加
-    const PathClass PathClass::operator+=(const std::string& string) const {
+    PathClass& PathClass::operator+=(const std::string& string)  {
+        m_path = (std::filesystem::path(m_path) += string).string();
+        return *this;
+    }
+    // パス文字列追加
+    PathClass PathClass::operator+(const std::string& string) const {
         return PathClass((std::filesystem::path(m_path) += string).string());
     }
 
