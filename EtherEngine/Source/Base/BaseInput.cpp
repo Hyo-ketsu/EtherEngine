@@ -48,21 +48,6 @@ namespace EtherEngine {
     }
 
 
-    // 指定キー・ボタンが押されているか
-    bool InputSystem::IsPress(const InputKey& input) {
-        //----- キーボード処理
-        return ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
-    }
-    // 指定キー・ボタンが押された瞬間か
-    bool InputSystem::IsTrigger(const InputKey& input) {
-        //----- キーボード処理
-        bool isOld = ms_oldKeyTable.at(input.GetKeyboard().GetInput()) & 0x80;
-        bool isNew = ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
-
-        //----- 返却
-        return (isOld == false) && (isNew == true) ? true : false;
-    }
-
     std::array<uchar, 256> InputSystem::ms_keyTable;    // キーボード入力
     std::array<uchar, 256> InputSystem::ms_oldKeyTable; // 前フレームキーボード入力
     std::optional<Eigen::Matrix<long, 2, 1>> InputSystem::ms_mousePostion;    // マウス座標

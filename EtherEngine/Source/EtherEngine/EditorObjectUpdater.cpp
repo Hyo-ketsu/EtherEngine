@@ -98,32 +98,18 @@ namespace EtherEngine {
                 }
                 ImGui::EndMenuBar();
             }
+            //----- ゲーム再生・停止ボタン表示
+            ImGui::Columns(5, (ImGuiDefine::Name::WINDOW_MENU + "GameButton Columns").c_str(), false);
+            ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
+            if (ImGui::Button("Start")) EditorApplication::Get()->StartGameMode(); ImGui::SameLine();
+            if (ImGui::Button("Stop")) EditorApplication::Get()->StopGameMode(); ImGui::SameLine();
+            if (ImGui::Button("End")) EditorApplication::Get()->EndGameMode(); ImGui::SameLine();
+            ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
+
             //----- ウィンドウ位置・座標設定
             ImGui::SetWindowPos(ImVec2(0 - 1, 0));
-            ImGui::SetWindowSize(ImVec2(EditorApplication::Get()->GetWindSize().x() + 2, 20));
+            ImGui::SetWindowSize(ImVec2(EditorApplication::Get()->GetWindSize().x() + 2, 60));
 
-            //----- ドッキング用ウィンドウ作成
-            // @ MEMO : 一旦保留
-            //{
-            //    //----- フラグ設定
-            //    ImGuiBackendFlags flags = ImGuiWindowFlags_None
-            //        | ImGuiWindowFlags_NoTitleBar
-            //        | ImGuiWindowFlags_NoResize
-            //        | ImGuiWindowFlags_NoMove
-            //        | ImGuiWindowFlags_NoScrollbar
-            //        | ImGuiWindowFlags_NoScrollWithMouse
-            //        | ImGuiWindowFlags_NoCollapse
-            //        | ImGuiWindowFlags_NoBackground
-            //        | ImGuiWindowFlags_NoSavedSettings
-            //        | ImGuiWindowFlags_HorizontalScrollbar;
-
-            //    //----- 表示
-            //    ImGui::Begin(ImGuiDefine::Name::WINDOW_SCENE_VIEW.c_str(), NULL, flags);
-            //    ImGui::SetWindowPos(ImVec2(0 - 1, 18));
-            //    ImGui::SetWindowSize(ImVec2(EditorApplication::Get()->GetWindSize().x() + 2, EditorApplication::Get()->GetWindSize().y() - 18));
-            //    ImGui::SetWindowFocus();
-            //    ImGui::End();
-            //}
             ImGui::End();
         }
 

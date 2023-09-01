@@ -26,8 +26,9 @@
 
 namespace EtherEngine {
     // コンストラクタ
-    EditorApplication::EditorApplication(void) 
-        : BaseMainWindow<EditorApplication>(WindowDefine::Name::EDITOR_APPLICATION) {
+    EditorApplication::EditorApplication(void)
+        : BaseMainWindow<EditorApplication>(WindowDefine::Name::EDITOR_APPLICATION)
+        , m_isGameMode(false) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -50,16 +51,16 @@ namespace EtherEngine {
         //----- メインウィンドウ情報作成
         WNDCLASSEX wcex;
         ZeroMemory(&wcex, sizeof(wcex));
-        wcex.hInstance     = m_hInstance.value();
+        wcex.hInstance = m_hInstance.value();
         wcex.lpszClassName = m_name.c_str();
-        wcex.lpszMenuName  = NULL;
-        wcex.lpfnWndProc   = WindowEditorProcedure;
-        wcex.style         = CS_CLASSDC;
-        wcex.cbSize        = sizeof(WNDCLASSEX);
-        wcex.hIcon         = LoadIcon(wcex.hInstance, NULL);
-        wcex.hIconSm       = LoadIcon(wcex.hInstance, NULL);
-        wcex.hCursor       = LoadCursor(NULL, IDC_ARROW);
-        wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH); 
+        wcex.lpszMenuName = NULL;
+        wcex.lpfnWndProc = WindowEditorProcedure;
+        wcex.style = CS_CLASSDC;
+        wcex.cbSize = sizeof(WNDCLASSEX);
+        wcex.hIcon = LoadIcon(wcex.hInstance, NULL);
+        wcex.hIconSm = LoadIcon(wcex.hInstance, NULL);
+        wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+        wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 
         //----- ウィンドウクラス情報の登録
         if (!RegisterClassEx(&wcex)) {
@@ -84,7 +85,7 @@ namespace EtherEngine {
             MessageBox(NULL, "ウィンドウの作成に失敗しました", "Error", MB_OK);
             return;
         }
-        
+
         //----- ウィンドウリサイズ
         do {
             //----- 変数宣言
@@ -251,5 +252,19 @@ namespace EtherEngine {
 
         //----- 終了処理
         m_initUninitPerformer.UnInit();
+    }
+
+
+    // ゲームモードを開始する
+    void EditorApplication::StartGameMode(void) {
+
+    }
+    // ゲームモードを一時中断する
+    void EditorApplication::StopGameMode(void) {
+
+    }
+    // ゲームモードを終了する
+    void EditorApplication::EndGameMode(void) {
+
     }
 }

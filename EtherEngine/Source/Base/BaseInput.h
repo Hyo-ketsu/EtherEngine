@@ -59,45 +59,13 @@ namespace EtherEngine {
 }
 
 
-//----- InputKey宣言
-namespace EtherEngine {
-    // キーボードやコントローラーの入力を保持するクラス
-    class InputKey {
-    public:
-        // コンストラクタ
-        // @ Arg1 : キーボード入力
-        // @ Arg2 : コントローラ入力(Default : なし)
-        InputKey(const KeyboardInput& keyboard, const XBoxInput& xbox = XBoxInput());
-        // コンストラクタ
-        // @ Arg1 : コントローラ入力
-        // @ Arg2 : キーボード入力(Default : なし)
-        InputKey(const XBoxInput& xbox, const KeyboardInput& keyboard = KeyboardInput());
-
-
-        // Keyboard入力ゲッター
-        const KeyboardInput& GetKeyboard(void) const { return m_keyboard; }
-        // Keyboard入力セッター
-        void SetKeyboard(const KeyboardInput& in) { m_keyboard = in; }
-
-        // XBox入力ゲッター
-        const XBoxInput& GetXBox(void) const { return m_xbox; }
-        // XBox入力セッター
-        void SetXBox(const XBoxInput& in) { m_xbox = in; }
-
-    private:
-        KeyboardInput m_keyboard;   // キーボード入力キー
-        XBoxInput m_xbox;       // Xboxコントローラボタン
-    };
-}
-
-
 //----- AxisInput宣言
 namespace EtherEngine {
     // @ MEMO : 未実装。後で実装
 }
 
 
-//----- InputSystem宣言
+//----- InputSystem 宣言
 namespace EtherEngine {
     // キー or ボタン入力を管理するクラス
     // @ MEMO : ひとまず Xbox の入力は後回し
@@ -114,11 +82,15 @@ namespace EtherEngine {
         // 指定キー・ボタンが押されているか
         // @ Ret  : 押されているか
         // @ Arg1 : 判定するキー・ボタン
-        static bool IsPress(const InputKey& input);
+        template <typename Input>
+            requires Concept::SameConcept<Input, KeyboardInput> || Concept::SameConcept<Input, XBoxInput>
+        static bool IsPress(const Input& input);
         // 指定キー・ボタンが押された瞬間か
         // @ Ret  : 押された瞬間か
         // @ Arg1 : 判定するキー・ボタン
-        static bool IsTrigger(const InputKey& input);
+        template <typename Input>
+            requires Concept::SameConcept<Input, KeyboardInput> || Concept::SameConcept<Input, XBoxInput>
+        static bool IsTrigger(const Input& input);
 
 
         // @ MEMO : 他Platform対応を考慮していないのでひとまずstd::optionalを使用
@@ -133,6 +105,41 @@ namespace EtherEngine {
         static std::array<uchar, 256> ms_oldKeyTable; // 前フレームキーボード入力
         static std::optional<Eigen::Matrix<long, 2, 1>> ms_mousePostion;    // マウス座標
     };
+}
+
+
+
+
+//----- InputSystem 定義
+namespace EtherEngine {
+    // 指定キー・ボタンが押されているか
+    template <typename Input>
+        requires Concept::SameConcept<Input, KeyboardInput> || Concept::SameConcept<Input, XBoxInput>
+    bool InputSystem::IsPress(const Input& input) {
+        if constexpr (Concept::SameConcept<Input, KeyboardInput>) {
+            //----- キーボード処理
+            return ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
+        }
+        if constexpr (Concept::SameConcept<Input, XBoxInput>) {
+            static_cast(false, "Not yet implemented");
+        }
+    }
+    // 指定キー・ボタンが押された瞬間か
+    template <typename Input>
+        requires Concept::SameConcept<Input, KeyboardInput> || Concept::SameConcept<Input, XBoxInput>
+    bool InputSystem::IsTrigger(const Input& input) {
+        if constexpr (Concept::SameConcept<Input, KeyboardInput>) {
+            //----- キーボード処理
+            bool isOld = ms_oldKeyTable.at(input.GetKeyboard().GetInput()) & 0x80;
+            bool isNew = ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
+
+            //----- 返却
+            return (isOld == false) && (isNew == true) ? true : false;
+        }
+        if constexpr (Concept::SameConcept<Input, XBoxInput>) {
+            static_cast(false, "Not yet implemented");
+        }
+    }
 }
 
 
