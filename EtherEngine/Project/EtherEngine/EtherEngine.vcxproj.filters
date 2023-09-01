@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ヘッダー ファイル\IMGUIRapper">
-      <UniqueIdentifier>{24e10bda-9c1e-4a80-be77-2e175e0c8a32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\IMGUIRapper">
-      <UniqueIdentifier>{4c5c8e90-dd08-41c2-a80e-1403f666e062}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Test">
       <UniqueIdentifier>{c710d359-8a84-40eb-8a03-50c920e02a4d}</UniqueIdentifier>
     </Filter>
@@ -43,10 +37,16 @@
     <Filter Include="ヘッダー ファイル\EngineSystem\FileFunction">
       <UniqueIdentifier>{48371787-2f89-438a-bf3f-4ff8dcf29cc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ImGui">
+      <UniqueIdentifier>{4c5c8e90-dd08-41c2-a80e-1403f666e062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ImGui">
+      <UniqueIdentifier>{24e10bda-9c1e-4a80-be77-2e175e0c8a32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
-      <Filter>ソース ファイル\IMGUIRapper</Filter>
+      <Filter>ソース ファイル\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
       <Filter>ソース ファイル\Test</Filter>
@@ -144,10 +144,13 @@
     <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp">
       <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp">
+      <Filter>ソース ファイル\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
-      <Filter>ヘッダー ファイル\IMGUIRapper</Filter>
+      <Filter>ヘッダー ファイル\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h">
       <Filter>ヘッダー ファイル\Test</Filter>
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h">
       <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h">
+      <Filter>ヘッダー ファイル\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

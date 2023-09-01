@@ -1,6 +1,7 @@
 #include <EtherEngine/EditorOutliner.h>
 #include <Base/GameObjectStorage.h>
 #include <EtherEngine/EditorInspectorWindow.h>
+#include <EtherEngine/ImGuiUtility.h>
 
 
 namespace EtherEngine {

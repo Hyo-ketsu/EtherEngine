@@ -66,6 +66,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h" />
     <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h" />
     <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
