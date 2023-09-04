@@ -28,12 +28,12 @@ namespace EtherEngine {
 
     private:
         float    m_speed;   // カメラの移動速度
-        InputKey m_front;   // 前進
-        InputKey m_back;    // 後退
-        InputKey m_left;    // 左進
-        InputKey m_right;   // 右進
-        InputKey m_up;      // 上昇
-        InputKey m_down;    // 下降
+        KeyboardInput m_front;   // 前進
+        KeyboardInput m_back;    // 後退
+        KeyboardInput m_left;    // 左進
+        KeyboardInput m_right;   // 右進
+        KeyboardInput m_up;      // 上昇
+        KeyboardInput m_down;    // 下降
     };
 }
 

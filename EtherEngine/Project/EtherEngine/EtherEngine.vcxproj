@@ -100,6 +100,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentHelper.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorDefine.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h" />

@@ -4,7 +4,6 @@
 #include <EtherEngine/FileOpener.h>
 #include <EtherEngine/FileCreater.h>
 #include <EtherEngine/FileDeleter.h>
-#include <EtherEngine/ImGuiUtility.h>
 
 
 //----- 関数実装
@@ -144,28 +143,54 @@ namespace EtherEngine {
 
             //----- 要素表示
             int i = 0;
+            std::vector<std::pair<PathClass, std::string>> createFile;  // 作成ファイル一覧
+            std::vector<PathClass> deleteFile;  // 削除ファイル一覧
             for (auto&& it : ms_currentDirectory.GetLowerDirectory()) {
                 //----- ディレクトリは表示しない
                 if (it.IsDirectory()) continue;
 
                 //----- リスト要素表示
-                if (i == ms_selectNumber) {
-                    //----- その番号のものが選択済み。使用
-                    if (ImGui::Selectable(it.GetFile().c_str(), true)) {
-                        ImGui::SetItemDefaultFocus();
-                        FileOpen(it);
+                ImGuiUtility::RenameableSelectableMessage mes;
+                do {
+                    if (i == ms_selectNumber) {
+                        //----- その番号のものが選択済み。使用
+                        mes = m_renameableSelectable.Show(it.GetFile(), i, true);
+
+                        //----- 選択時
+                        if (mes == decltype(mes)::SelectYes) {
+                            ImGui::SetItemDefaultFocus();
+                            FileOpen(it);
+                            break;
+                        }
                     }
-                }
-                else {
-                    //----- 選択されていない。通常表示・選択
-                    if (ImGui::Selectable(it.GetFile().c_str(), false)) {
-                        ms_selectNumber = i;
-                        ms_isContentsSelect = true;
-                        ImGui::SetItemDefaultFocus();
+                    else {
+                        //----- 選択されていない。通常表示・選択
+                        mes = m_renameableSelectable.Show(it.GetFile(), i, false);
+
+                        //----- 選択時
+                        if (mes == decltype(mes)::SelectYes) {
+                            ms_selectNumber = i;
+                            ms_isContentsSelect = true;
+                            ImGui::SetItemDefaultFocus();
+                            break;
+                        }
                     }
-                }
+                    //----- リネームが行われたか
+                    if (mes == decltype(mes)::RenameDecision) {
+                        createFile.push_back(std::make_pair<PathClass,std::string>(it.GetDirectory() / m_renameableSelectable.GetRename(), RoadFileAll(it)));
+                        deleteFile.push_back(it);
+                    }
+                } while (false);
 
                 i++;
+            }
+
+            //----- ファイル削除・ファイル作成
+            for (auto&& it : deleteFile) {
+                it.DeleteFiles(true);
+            }
+            for (auto&& it : createFile) {
+                it.first.CreateFiles(it.second);
             }
 
             ImGui::EndChild();

@@ -54,6 +54,32 @@ namespace EtherEngine {
     // @ Arg3 : 置換後文字列
     std::string StringSubstitution(const std::string& target, const std::string& dest, const std::string& replacement);
 }
+//----- 便利クラス 定義
+namespace EtherEngine {
+    // boolのトリガーを行うクラス
+    // @ Memo : フラグが true の際に false を設定してもフラグは折りません
+    class Trigger {
+    public:
+        // コンストラクタ
+        Trigger(void) : m_isFrag(false) {}
+        // デストラクタ
+        ~Trigger(void) {}
+        
+
+        // フラグを取得する
+        bool GetFrag(void);
+        // フラグを取得する
+        operator bool(void);
+
+        // フラグを設定する
+        void SetFrag(const bool& isFrag);
+        // フラグを設定する
+        void operator=(const bool& isFrag);
+
+    private:
+        bool m_isFrag;
+    };
+}
 
 
 //----- 重複オブジェクト名命名定義

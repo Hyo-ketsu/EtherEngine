@@ -14,20 +14,6 @@ namespace EtherEngine {
 }
 
 
-//----- InputKey宣言
-namespace EtherEngine {
-    // コンストラクタ
-    InputKey::InputKey(const KeyboardInput& keyboard, const XBoxInput& xbox) 
-        : m_keyboard(keyboard)
-        , m_xbox(xbox) {
-    }
-    // コンストラクタ
-    InputKey::InputKey(const XBoxInput& xbox, const KeyboardInput& keyboard) 
-        : InputKey(keyboard, xbox) {
-    }
-}
-
-
 //----- InputSystem定義
 namespace EtherEngine {
     // 初期化

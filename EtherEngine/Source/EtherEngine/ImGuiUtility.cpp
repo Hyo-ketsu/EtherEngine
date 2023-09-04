@@ -27,17 +27,20 @@ namespace EtherEngine {
 
         // 改名後の名前ゲッター
         std::string RenameableSelectable::GetRename(void) const {
-            if (m_isRename == false) throw std::exception("Error! Rename");
+            if (m_isRename) throw std::exception("Error! Rename");
             return std::string(m_inputText.data());
         }
         // リネーム可能なSelectable
         RenameableSelectableMessage RenameableSelectable::Show(const std::string& name, const uint index, const bool isSelect) {
             if (m_isRename && index == m_index) {
                 //----- 名前入力
-                ImGui::InputText("Rename... :", m_inputText.data(), m_inputText.size());
+                ImGui::Text("Rename... :"); 
+                ImGui::SameLine();
+                ImGui::InputText(" ", m_inputText.data(), m_inputText.size());
+                if (m_focus) { ImGui::SetItemDefaultFocus(); }
 
                 //----- リネームを決定して終了するか
-                if (ImGui::IsItemFocused() == false || InputSystem::IsPress(EditorKey::INPUT_DECISION)) {
+                if (InputSystem::IsPress(EditorKey::INPUT_DECISION)) {
                     //----- リネームモード終了
                     m_isRename = false;
 
@@ -65,16 +68,18 @@ namespace EtherEngine {
                 auto ret = ImGuiUtility::BlankSelectable(name, isSelect);
 
                 //----- F2入力でリネーム
-                if (ImGui::IsItemFocused() && InputSystem::IsPress(EditorKey::INPUT_RENAME)) {
+                if (m_isRename == false && ImGui::IsItemFocused() && InputSystem::IsPress(EditorKey::INPUT_RENAME)) {
                     m_isRename = true;
                     m_index = index;
                     m_inputText.fill('\0');
                     // 文字列コピー
+                    int i = 0;
                     for (auto&& it : m_inputText) {
-                        for (auto&& cha : name) {
-                            it = cha;
-                        }
+                        if (i >= name.size()) break;
+                        it = name[i];
+                        i++;
                     }
+                    m_focus = true;
                 }
 
                 //----- 返却

@@ -1,5 +1,6 @@
 #ifndef I_IMGUIUTILITY_H
 #define I_IMGUIUTILITY_H
+#include <Base/EtherEngineUtility.h>
 
 
 //----- ImGui用の便利関数
@@ -25,7 +26,6 @@ namespace EtherEngine {
         class RenameableSelectable {
         public:
             // コンストラクタ
-            // @ Arg1 : 
             RenameableSelectable(void);
             // デストラクタ
             ~RenameableSelectable(void);
@@ -54,6 +54,7 @@ namespace EtherEngine {
             std::array<char, 256> m_inputText;  // 入力改名名
             bool m_isRename; // 現在入力中か
             uint m_index;    // 名前変更をしているインデックス
+            Trigger m_focus;    // リネームキー入力後のフォーカスを当てるためのフラグ
         };
         
     }

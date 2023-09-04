@@ -2,6 +2,7 @@
 #define I_EDITOREXPLORERWINDOW_H
 #include <EtherEngine/EditorComponentBase.h>
 #include <EtherEngine/EditorWindowBase.h>
+#include <EtherEngine/ImGuiUtility.h>
 
 
 //----- ExplorerWindow 宣言
@@ -25,6 +26,7 @@ namespace EtherEngine {
         static int ms_selectNumber; // 選択されているリスト番号
         static bool ms_isContentsSelect; // コンテンツウィンドウが選択されているか
         ImVec2 m_windowSize;  // 階層表示ウィンドウのサイズ
+        ImGuiUtility::RenameableSelectable m_renameableSelectable;
     };
 }
 

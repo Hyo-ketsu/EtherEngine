@@ -248,5 +248,8 @@
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h">
       <Filter>ヘッダー ファイル\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h">
+      <Filter>ヘッダー ファイル\EngineObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

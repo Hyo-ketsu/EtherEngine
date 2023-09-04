@@ -60,6 +60,30 @@ namespace EtherEngine {
 }
 
 
+//----- 便利クラス 定義
+namespace EtherEngine {
+    // フラグを取得する
+    bool Trigger::GetFrag(void) {
+        bool ret = m_isFrag;
+        m_isFrag = false;
+        return ret;
+    }
+    // フラグを取得する
+    Trigger::operator bool (void) {
+        return GetFrag();
+    }
+
+
+    // フラグを設定する
+    void Trigger::SetFrag(const bool& isFrag) {
+        m_isFrag |= isFrag;
+    }
+    // フラグを設定する
+    void Trigger::operator=(const bool& isFrag) {
+        SetFrag(isFrag);
+    }
+}
+
 namespace EtherEngine {
     namespace Utilty {
         // 重複したオブジェクトに名前を付ける

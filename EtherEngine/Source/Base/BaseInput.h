@@ -118,10 +118,10 @@ namespace EtherEngine {
     bool InputSystem::IsPress(const Input& input) {
         if constexpr (Concept::SameConcept<Input, KeyboardInput>) {
             //----- キーボード処理
-            return ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
+            return ms_keyTable.at(input.GetInput()) & 0x80;
         }
         if constexpr (Concept::SameConcept<Input, XBoxInput>) {
-            static_cast(false, "Not yet implemented");
+            static_assert(Concept::SameConcept<Input, XBoxInput>, "Not yet implemented");
         }
     }
     // 指定キー・ボタンが押された瞬間か
@@ -130,14 +130,14 @@ namespace EtherEngine {
     bool InputSystem::IsTrigger(const Input& input) {
         if constexpr (Concept::SameConcept<Input, KeyboardInput>) {
             //----- キーボード処理
-            bool isOld = ms_oldKeyTable.at(input.GetKeyboard().GetInput()) & 0x80;
-            bool isNew = ms_keyTable.at(input.GetKeyboard().GetInput()) & 0x80;
+            bool isOld = ms_oldKeyTable.at(input.GetInput()) & 0x80;
+            bool isNew = ms_keyTable.at(input.GetInput()) & 0x80;
 
             //----- 返却
             return (isOld == false) && (isNew == true) ? true : false;
         }
         if constexpr (Concept::SameConcept<Input, XBoxInput>) {
-            static_cast(false, "Not yet implemented");
+            static_assert(Concept::SameConcept<Input, XBoxInput>, "Not yet implemented");
         }
     }
 }
