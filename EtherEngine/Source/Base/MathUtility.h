@@ -13,7 +13,6 @@ namespace EtherEngine {
 
         // 浮動小数値の = 処理
         // @ Ret  : 同値か
-        // @ Temp : 比較に使用する誤差値
         // @ Arg1 : 比較浮動小数値
         // @ Arg2 : 比較浮動小数値(Default : 0.0f)
         static bool FloatEqual(const float float1, const float float2 = 0.0f);

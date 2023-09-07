@@ -16,8 +16,12 @@ namespace EtherEngine {
 
 
         // コンストラクタ
+        // @ Memo : 内部でムーブします
         // @ Arg1 : 排他を行う情報
         Atomic(AtomicType& data);
+        // コンストラクタ
+        // @ Arg1 : 排他を行う情報
+        Atomic(AtomicType&& data);
         // デストラクタ
         ~Atomic(void) noexcept;
         // ムーブコンストラクタ
@@ -63,6 +67,12 @@ namespace EtherEngine {
     template <class AtomicType>
     Atomic<AtomicType>::Atomic(AtomicType& data)
         : m_data(std::make_unique<AtomicType>(std::move(data))) {
+    }
+    // コンストラクタ
+    // @ Arg1 : 排他を行う情報
+    template <class AtomicType>
+    Atomic<AtomicType>::Atomic(AtomicType&& data) 
+        : m_data(std::make_unique<AtomicType>(data)) {
     }
     // デストラクタ
     template <class AtomicType>

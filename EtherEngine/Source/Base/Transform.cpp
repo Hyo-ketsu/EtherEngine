@@ -1,5 +1,6 @@
 #include <Base/Transform.h>
 #include <Base/BaseDefines.h>
+#include <Base/Converter.h>
 
 
 namespace EtherEngine {
@@ -11,6 +12,20 @@ namespace EtherEngine {
         : m_postion(pos)
         , m_scale(sca)
         , m_rotation(rot) {
+    }
+
+
+    // ワールド行列を作成する
+    Eigen::Matrix4f Transform::CreateWorld(void) const {
+        auto toRad = [](float in) {return DirectX::XMConvertToRadians(in); };    // ショートカットラムダ
+        Eigen::Matrix4f ret{};
+        auto mat =
+            DirectX::XMMatrixScaling(m_scale.x(), m_scale.y(), m_scale.z()) *
+            DirectX::XMMatrixRotationRollPitchYaw(toRad(m_rotation.z()), toRad(m_rotation.x()), toRad(m_rotation.y())) *
+            DirectX::XMMatrixTranslation(m_postion.x(), m_postion.y(), m_postion.z());
+
+        MathConverter::DXToEigen(mat, &ret);
+        return ret;
     }
 
 

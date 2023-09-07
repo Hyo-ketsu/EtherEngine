@@ -118,7 +118,7 @@ namespace EtherEngine {
         }
 
         //----- 連想配列に格納
-        Atomic<Type> atomic(item);
+        Atomic<Type> atomic(std::move(item));
         m_item.emplace(handle, std::move(atomic));
 
         //----- 参照カウンタ追加

@@ -21,7 +21,6 @@ namespace EtherEngine {
         // プロジェクション行列セッター
         void SetProjection(const Eigen::Matrix4f& in) { m_projection = in; }
 
-
     protected:
         // 各プラットフォーム用描画処理
         virtual void DrawPlatformFunction(void) {}

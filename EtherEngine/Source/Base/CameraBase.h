@@ -22,11 +22,11 @@ namespace EtherEngine {
 
 
         // 座標ゲッター
-        Eigen::Vector3f GetPos(void) const { return m_pos; }
+        Eigen::Vector3f GetPos(void) const;
         // 座標セッター
         void SetPos(const Eigen::Vector3f& in);
         // 注視点ゲッター
-        Eigen::Vector3f GetLook(void) const { return m_look; }
+        Eigen::Vector3f GetLook(void) const;
         // 注視点セッター
         void SetLook(const Eigen::Vector3f& in);
         // 上方向ゲッター
@@ -97,7 +97,7 @@ namespace EtherEngine {
         CameraData& AccessCameraData(void) { return m_cameraData; }
 
         // IDゲッター
-        const StorageID<CameraBase>& GetID(void) { return m_id; }
+        const StorageID<CameraBase> GetID(void) const { return m_id; }
 
 
         // ビュー行列を取得する

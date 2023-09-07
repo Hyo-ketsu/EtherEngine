@@ -8,9 +8,9 @@ namespace EtherEngine {
     class Transform : public IInOuter {
     public:
         // コンストラクタ
-        // @ Arg1 : 座標(デフォルト：全て0)
-        // @ Arg2 : 拡縮(デフォルト：全て0)
-        // @ Arg3 : 回転(デフォルト：全て0)
+        // @ Arg1 : 座標(Default : 0,0,0)
+        // @ Arg2 : 拡縮(Default : 1,1,1)
+        // @ Arg3 : 回転(Default : 0,0,0)
         Transform(Eigen::Vector3f pos = { 0,0,0 }, Eigen::Vector3f sca = { 1,1,1 }, Eigen::Vector3f rot = { 0,0,0 });
 
 
@@ -26,6 +26,11 @@ namespace EtherEngine {
         const Eigen::Vector3f& GetRotation(void) const noexcept { return m_rotation; }
         // 回転を取得する
         Eigen::Vector3f& AccessRotation(void) noexcept { return m_rotation; }
+
+
+        // ワールド行列を作成する
+        // @ Ret  : ワールド行列
+        Eigen::Matrix4f CreateWorld(void) const;
 
 
         // 外部出力

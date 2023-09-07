@@ -75,7 +75,7 @@ namespace EtherEngine {
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
-                    it.GetAtomicData().CollisionHit();
+                    it.GetAtomicData().CollisionStart();
                 }
                 GameObjectStorage::Get()->DeleteGameObjectsDelete();
             }

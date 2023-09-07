@@ -65,7 +65,7 @@ namespace EtherEngine {
         if (IsUnvalidObject()) return;
 
         for (auto& component : m_components) {
-            component->CollisionStartFunction();
+            component->DeleteFuntion();
         }
         DeleteComponentsDelete();
     }

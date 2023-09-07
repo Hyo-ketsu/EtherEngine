@@ -25,15 +25,23 @@ namespace EtherEngine {
     }
 
 
+    // 座標ゲッター
+    Eigen::Vector3f CameraData::GetPos(void) const {
+        CheckPosLookPosition();
+        return m_pos;
+    }
     // 座標セッター
     void CameraData::SetPos(const Eigen::Vector3f& in) {
         m_pos = in;
+    }
+    // 注視点ゲッター
+    Eigen::Vector3f CameraData::GetLook(void) const {
         CheckPosLookPosition();
+        return m_look;
     }
     // 注視点セッター
     void CameraData::SetLook(const Eigen::Vector3f& in) {
         m_look = in;
-        CheckPosLookPosition();
     }
     // 視野角セッター
     void CameraData::SetFovy(const float in) {
@@ -48,14 +56,14 @@ namespace EtherEngine {
     // 最短クリップ距離セッター
     void CameraData::SetNear(const float in) {
         m_near = in;
-        // 一定値以下にすると弊害があるようなら付けます
+        // @ MEMO : 一定値以下にすると弊害があるようなら付けます
         // if (m_near < 1.0f) m_near = 1.0f;
         if (m_near > m_far) m_near = m_far;
     }
     // 最長クリップ距離セッター
     void CameraData::SetFar(const float in) {
         m_far = in;
-        // 一定値以上にすると弊害があるようなら付けます
+        // @ MEMO : 一定値以上にすると弊害があるようなら付けます
         // if (m_far > 1000.0f) m_far = 1000.0f;
         if (m_far < m_near) m_far = m_near;
     }
