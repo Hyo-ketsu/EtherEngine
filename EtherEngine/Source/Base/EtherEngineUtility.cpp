@@ -86,7 +86,7 @@ namespace EtherEngine {
 
 
 namespace EtherEngine {
-    namespace Utilty {
+    namespace Utility {
         // 重複したオブジェクトに名前を付ける
         std::string DuplicationName(const std::string& name, const uint number, const DuplicationNameObjectName& type) {
             switch (type) {
@@ -120,7 +120,7 @@ namespace EtherEngine {
             }
         }
         // ファイル名走査関数
-        std::string GetFileName(const PathClass& path, const Utilty::DuplicationNameObjectName& nameRule) {
+        std::string GetFileName(const PathClass& path, const Utility::DuplicationNameObjectName& nameRule) {
             //----- 変数宣言
             int countNumber = 1;
             std::vector<PathClass> directoryFile;
@@ -152,7 +152,7 @@ namespace EtherEngine {
                     //----- 存在した。名前を生成し再判定
                     auto extension = path.GetExtension();
                     createPath = path.GetFileName();
-                    Utilty::DuplicationName(&createPath.Access(), countNumber, nameRule);
+                    Utility::DuplicationName(&createPath.Access(), countNumber, nameRule);
                     createPath = createPath += extension;
                     countNumber++;
                 }

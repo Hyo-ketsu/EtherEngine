@@ -3,7 +3,7 @@
 #include <Base/GraphicDefines.h>
 #include <Base/DrawComponent.h>
 #include <DirectX/ShaderClass.h>
-
+// @ MEMO : •s—v‚Å‚ÍH
 
 //----- DXDrawComponentéŒ¾
 namespace EtherEngine {

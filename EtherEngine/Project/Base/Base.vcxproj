@@ -45,6 +45,7 @@
     <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\CollisionBoxXBox.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionComponent.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionHelper.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
     <ClInclude Include="..\..\Source\Base\CameraStorage.h" />
     <ClInclude Include="..\..\Source\Base\CollisionBase.h" />
+    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h" />
     <ClInclude Include="..\..\Source\Base\CollisionComponent.h" />
     <ClInclude Include="..\..\Source\Base\CollisionFunction.h" />
     <ClInclude Include="..\..\Source\Base\CollisionHelper.h" />

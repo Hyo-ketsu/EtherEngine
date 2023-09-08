@@ -19,7 +19,8 @@ namespace EtherEngine {
     class StorageID {
     public:
         // コンストラクタ
-        StorageID(std::weak_ptr<IDClass> id);
+        // @ Arg1 : ID
+        StorageID(std::weak_ptr<IDClass> id = nullptr);
         // デストラクタ
         ~StorageID(void);
 
@@ -55,7 +56,7 @@ namespace EtherEngine {
         [[nodiscard]] StorageID<DataType> AddData(DataType& data);
         // データを削除する
         // @ Arg1 : ID
-        void DeleteData(StorageID<DataType>& id);
+        void DeleteData(const StorageID<DataType>& id);
 
 
         // 指定したIDのデータが存在するか
@@ -130,15 +131,15 @@ namespace EtherEngine {
     [[nodiscard]] StorageID<DataType> StorageSystem<DataType>::AddData(DataType& data) {
         //----- IDの作成と追加
         auto ptr = std::make_shared<IDClass>(IDClass());
-        m_datas.emplace_back(ptr, &data);
+        m_datas.emplace_back(std::move(ptr), &data);
 
         //----- 返却
-        return StorageID<DataType>(std::weak_ptr<IDClass>(ptr));
+        return StorageID<DataType>(std::weak_ptr<IDClass>(std::get<0>(m_datas.back())));
     }
     // データを削除する
     // @ Arg1 : ID
     template <StorageSystemConcept DataType>
-    void StorageSystem<DataType>::DeleteData(StorageID<DataType>& id) {
+    void StorageSystem<DataType>::DeleteData(const StorageID<DataType>& id) {
         if (m_datas.size() == 0) return;
         for (auto it = m_datas.begin(); it != m_datas.end(); it++) {
             if (*std::get<0>(*it) == id.GetId()) {

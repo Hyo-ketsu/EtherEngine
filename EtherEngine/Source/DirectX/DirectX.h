@@ -51,12 +51,18 @@ namespace EtherEngine {
         // 描画後処理
         void EndDraw(void);
 
+
+        // 深度バッファ
+        // @ Arg1 : 有効にするか
+        void SetDepthEnable(bool isEnable);
+
     private:
         ComPtr<IDXGISwapChain> m_swapChain; // スワップチェイン
         ComPtr<ID3D11Device>   m_device;
         ComPtr<ID3D11DeviceContext> m_context;
         ID3D11RenderTargetView* m_rtv;
         ID3D11DepthStencilView* m_dsv;
+        ID3D11DepthStencilState* m_dss;
         IDClass m_cameraID; // 使用するカメラID
     };
 }

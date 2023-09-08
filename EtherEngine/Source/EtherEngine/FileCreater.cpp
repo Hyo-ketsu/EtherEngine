@@ -6,7 +6,7 @@
 namespace EtherEngine {
     // @ ファイルを生成、同時に(行うのであれば)処理を行う
     PathClass FileCreate(const std::string& fileName, const PathClass& extension, const PathClass& createDirectory,
-        const Utilty::DuplicationNameObjectName& nameRule, const std::string& fileString, bool isCreateDirectory) {
+        const Utility::DuplicationNameObjectName& nameRule, const std::string& fileString, bool isCreateDirectory) {
         //----- ファイル生成
         PathClass createFile = GetFileName(createDirectory / fileName += extension, nameRule);
         if (isCreateDirectory) {

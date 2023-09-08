@@ -84,7 +84,7 @@ namespace EtherEngine {
 
 //----- 重複オブジェクト名命名定義
 namespace EtherEngine {
-    namespace Utilty {
+    namespace Utility {
         // 重複オブジェクト名命名方法
         enum class DuplicationNameObjectName {
             ParenthesesNumber = 0,  // Hoge (1)
@@ -115,7 +115,7 @@ namespace EtherEngine {
         // @ Ret  : 判定結果のファイル名
         // @ Arg1 : 判定対象
         // @ Arg2 : 命名法則
-        std::string GetFileName(const PathClass& path, const Utilty::DuplicationNameObjectName& nameRule); 
+        std::string GetFileName(const PathClass& path, const Utility::DuplicationNameObjectName& nameRule); 
     }
 }
 

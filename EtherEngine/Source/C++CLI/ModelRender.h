@@ -16,7 +16,7 @@ namespace EtherEngine {
         }
         // •`‰æŠÖ”
         void Draw(void) override {
-            m_model.GetValue().DrawModel(GetGameObject()->GetTransform().GetPostion(), GetView().GetValue(), GetProjection().GetValue(), GetPixelShader());
+            m_model.GetValue().DrawModel(GetGameObject()->GetTransform().CreateWorld(), GetView().GetValue(), GetProjection().GetValue(), GetPixelShader());
         }
 
     private:

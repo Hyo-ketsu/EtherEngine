@@ -112,7 +112,7 @@ namespace EtherEngine {
         if (ImGui::BeginPopupContextItem("Explorer Hierarchy Popup")) {
             //----- オブジェクト生成
             if (ImGui::MenuItem("Create")) {
-                FileCreate("NewDirectory", "", ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber, "", true);
+                FileCreate("NewDirectory", "", ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, "", true);
             }
             if (ImGui::MenuItem("Delete")) {
             }
@@ -203,10 +203,10 @@ namespace EtherEngine {
             if (ImGui::BeginMenu("Create")) {
                 //----- 各ファイル生成
                 if (ImGui::MenuItem("Scene")) {
-                    FileCreate("NewScene", FileDefine::SCENE, ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber);
+                    FileCreate("NewScene", FileDefine::SCENE, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber);
                 }
                 if (ImGui::MenuItem("Script")) {
-                    FileCreate("Script", FileDefine::CPPCLISCRIPT, ms_currentDirectory, Utilty::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
+                    FileCreate("Script", FileDefine::CPPCLISCRIPT, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
                 }
 
                 ImGui::EndMenu();

@@ -128,6 +128,18 @@ namespace EtherEngine {
 		viewPort.MaxDepth = 1.0f;
 		m_context.Get()->RSSetViewports(1, &viewPort);
 
+		// デプスステンシルステート設定
+		D3D11_DEPTH_STENCIL_DESC depthStencilDesc{};
+		depthStencilDesc.DepthEnable = TRUE;
+		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		depthStencilDesc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+		depthStencilDesc.StencilEnable = FALSE;
+		m_device->CreateDepthStencilState(&depthStencilDesc, &m_dss);//深度有効ステート
+		//depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+		//m_Device->CreateDepthStencilState(&depthStencilDesc, &m_DepthStateDisable);//深度無効ステート
+		m_context->OMSetDepthStencilState(m_dss, NULL);
+
+
 		return S_OK;
 	}
 	// 終了処理
@@ -161,5 +173,16 @@ namespace EtherEngine {
 	// 描画後処理
 	void DirectXRender::EndDraw(void) {
 		m_swapChain.Get()->Present(0, 0);
+	}
+
+
+	// 深度バッファ
+	void DirectXRender::SetDepthEnable(bool isEnable) {
+		if (isEnable) {
+			m_context->OMGetDepthStencilState(&m_dss, NULL);
+		}
+		else {
+			m_context->OMGetDepthStencilState(nullptr, NULL);
+		}
 	}
 }

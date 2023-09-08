@@ -26,6 +26,10 @@ namespace EtherEngine {
         // @ Ret  : 読み込みに成功したか
         // @ Arg1 : 読み込みたいcsoファイル名
         HRESULT LoadFile(const char* fileName);
+        // シェーダファイル(.cso)読み込み処理
+        // @ Ret  : 読み込みに成功したか
+        // @ Arg1 : 読み込みたいcsoファイル名
+        HRESULT LoadFile(const std::string& fileName) { return LoadFile(fileName.c_str()); }
         // 文字列からシェーダをコンパイルする処理
         HRESULT LoadCompile(const char* code);
 
@@ -50,7 +54,8 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : DirectX
         // @ Arg2 : シェーダの種類
-        ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType);
+        // @ Arg3 : 読み込みシェーダー名(Default : "")
+        ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile);
 
 
         // シェーダファイルの読み込み後、シェーダの種類別に処理を行う
@@ -77,7 +82,8 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         // @ Arg1 : DirectX
-        VertexShader(const BaseHandle<DirectXRender>& directxRender);
+        // @ Arg2 : 読み込みシェーダー名(Default : "")
+        VertexShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile = "");
         // デストラクタ
         ~VertexShader(void) override;
 
@@ -102,7 +108,8 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         // @ Arg1 : DirectX
-        PixelShader(const BaseHandle<DirectXRender>& directxRender);
+        // @ Arg2 : 読み込みシェーダー名(Default : "")
+        PixelShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile = "");
         // デストラクタ
         ~PixelShader(void) override;
 

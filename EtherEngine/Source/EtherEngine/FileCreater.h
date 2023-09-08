@@ -14,7 +14,7 @@ namespace EtherEngine {
     // @ Arg5 : 生成時にファイルに与える文字列(Default : "")
     // @ Arg6 : ファイルではなくディレクトリを生成するか(Default : false)
     PathClass FileCreate(const std::string& fileName, const PathClass& extension, const PathClass& createDirectory, 
-        const Utilty::DuplicationNameObjectName& nameRule, const std::string& fileString = "", bool isCreateDirectory = false);
+        const Utility::DuplicationNameObjectName& nameRule, const std::string& fileString = "", bool isCreateDirectory = false);
 }
 
 

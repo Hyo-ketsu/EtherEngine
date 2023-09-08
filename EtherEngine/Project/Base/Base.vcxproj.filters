@@ -198,6 +198,9 @@
     <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp">
       <Filter>ソース ファイル\XML</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Base\CollisionBoxXBox.cpp">
+      <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
@@ -358,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
       <Filter>ヘッダー ファイル\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
