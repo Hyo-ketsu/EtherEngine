@@ -1,21 +1,23 @@
 #ifndef I_GAMEAPPLICATION_H
 #define I_GAMEAPPLICATION_H
 #include <DirectX/DirectX.h>
-#include <DirectX/BaseMainWindow.h>
+#include <C++CLI/BaseMainWindow.h>
 
 
 namespace EtherEngine {
     // ゲームアプリケーションを表現するクラス
-    class GameApplication : public BaseMainWindow<GameApplication> {
+    class GameApplication : public BaseMainWindow, public Singleton<GameApplication> {
     public:
-        // コンストラクタ
-        GameApplication(void);
         // デストラクタ
         ~GameApplication(void);
 
-
+    protected:
         // メイン関数
         void MainFunction(void) override;
+
+    private:
+        // コンストラクタ
+        GameApplication(void);
     };
 }
 
