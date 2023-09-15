@@ -51,9 +51,6 @@
     <ClCompile Include="..\..\Source\C++CLI\ModelComponent.cpp">
       <Filter>ソース ファイル\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\C++CLI\ModelRender.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\UserDrawComponent.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
@@ -61,6 +58,21 @@
       <Filter>ソース ファイル\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\C++CLIInit.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\GameApplication.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\BaseMainWindow.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\ModelRender.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\ManageSingleton.cpp">
+      <Filter>ソース ファイル\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\AssemblyHolder.cpp">
       <Filter>ソース ファイル\Base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -99,6 +111,18 @@
       <Filter>ヘッダー ファイル\Component</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\C++CLIInit.h">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\GameApplication.h">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\BaseMainWindow.h">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\AssemblyHolder.h">
+      <Filter>ヘッダー ファイル\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\ManageSingleton.h">
       <Filter>ヘッダー ファイル\Base</Filter>
     </ClInclude>
   </ItemGroup>

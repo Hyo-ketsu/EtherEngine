@@ -1,4 +1,5 @@
 #include <C++CLI/C++CLIUtility.h>
+#include <C++CLI/AssemblyHolder.h>
 // @ MEMO : w_cahrからcharにしているのでエラー起こすかも
      
 
@@ -43,7 +44,7 @@ namespace EtherEngine {
         uint currentIndex = 0;
 
         //----- アセンブリのロード
-        auto assembly = System::Reflection::Assembly::GetExecutingAssembly();
+        auto assembly = AssemblyHolder::GetAssembly();
 
         //----- 型の取得
         auto types = assembly->GetTypes();
@@ -85,7 +86,7 @@ namespace EtherEngine {
         uint currentIndex = 0;
 
         //----- アセンブリのロード
-        auto assembly = System::Reflection::Assembly::GetExecutingAssembly();
+        auto assembly = AssemblyHolder::GetAssembly();
 
         //----- 型の取得
         auto types = assembly->GetTypes();

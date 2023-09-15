@@ -21,9 +21,6 @@
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\BaseMainWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -69,9 +63,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DirectX\DirectX.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\GameApplication.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h">
@@ -102,9 +93,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DirectX\Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\BaseMainWindow.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h">

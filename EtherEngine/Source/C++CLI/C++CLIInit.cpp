@@ -3,6 +3,7 @@
 #include <C++CLI/GameComponent.h>
 #include <C++CLI/GameDrawComponent.h>
 #include <C++CLI/C++CLIUtility.h>
+#include <C++CLI/AssemblyHolder.h>
 
 
 //----- 関数定義
@@ -17,7 +18,7 @@ namespace EtherEngine {
     std::shared_ptr<ComponentBase> AddComponentMenu(GameObject* gameObject) {
         //----- 各サブクラス取得
         // @ MEMO : あたり判定だけ別枠？
-        auto assembly = System::Reflection::Assembly::GetExecutingAssembly();
+        auto assembly = AssemblyHolder::GetAssembly();
         auto types = assembly->GetTypes();
         std::vector<std::pair<std::string,std::string>> showTypeName;
 

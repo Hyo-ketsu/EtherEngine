@@ -161,9 +161,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h">
       <Filter>ヘッダー ファイル\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestScene.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h">
       <Filter>ヘッダー ファイル\EngineSystem</Filter>
     </ClInclude>

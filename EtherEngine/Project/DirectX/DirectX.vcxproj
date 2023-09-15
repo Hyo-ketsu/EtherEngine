@@ -35,11 +35,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\DirectX\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\DirectX\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
     <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
@@ -62,11 +60,9 @@
     <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\DirectX\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
     <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
     <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h" />
-    <ClInclude Include="..\..\Source\DirectX\GameApplication.h" />
     <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
     <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
     <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />

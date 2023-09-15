@@ -28,6 +28,13 @@ namespace EtherEngine {
             InitUninitType::Uninit();
         }
         void AddInitUninit(void);
+        // 指定クラスを渡し、自動で::Init,::Uninitを行う
+        template <typename InitUninitType>
+            requires requires() {
+            InitUninitType::Get()->Init();
+            InitUninitType::Get()->Uninit();
+        }
+        void AddInitUninit(void);
 
 
         // 初期化処理実行
@@ -52,11 +59,12 @@ namespace EtherEngine {
         instans.Init();
         instans.Uninit();
     }
+
+
     void InitUninitPerformer::AddInitUninit(InitUninitType* classRef) {
         m_init.push_front([=](void) { classRef->Init(); });
         m_uninit.push_back([=](void) mutable { classRef->Uninit(); });
     }
-
     // 指定クラスを渡し、自動で::Init,::Uninitを行う
     template <typename InitUninitType>
         requires requires() {
@@ -66,6 +74,16 @@ namespace EtherEngine {
     void InitUninitPerformer::AddInitUninit(void) {
         m_init.push_front([=](void) { InitUninitType::Init(); });
         m_uninit.push_back([=](void) mutable { InitUninitType::Uninit(); });
+    }
+    // 指定クラスを渡し、自動で::Init,::Uninitを行う
+    template <typename InitUninitType>
+        requires requires() {
+        InitUninitType::Get()->Init();
+        InitUninitType::Get()->Uninit();
+    }
+    void InitUninitPerformer::AddInitUninit(void) {
+        m_init.push_front([=](void) { InitUninitType::Get()->Init(); });
+        m_uninit.push_back([=](void) mutable { InitUninitType::Get()->Uninit(); });
     }
 }
 

@@ -127,7 +127,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\Test\TestScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">

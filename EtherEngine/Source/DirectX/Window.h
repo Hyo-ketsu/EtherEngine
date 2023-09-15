@@ -1,5 +1,6 @@
 #ifndef I_WINDOW_H
 #define I_WINDOW_H
+#include <DirectX/DirectX.h>
 
 
 //----- Window 定義
@@ -10,6 +11,10 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : ウィンドウの名前
         Window(const std::string& name);
+
+
+        // ウィンドウを作成する
+        bool Create_Window();
 
 
         // ウィンドウハンドルゲッター
@@ -40,6 +45,7 @@ namespace EtherEngine {
         std::string m_name;               // ウィンドウの名前 
         std::optional<HWND> m_hwnd;       // ウィンドウハンドル
         Eigen::Array2<int>  m_windowSize; // ウィンドウのサイズ
+        BaseHandle<DirectXRender> m_dxRender;
     };
 }
 

@@ -21,7 +21,9 @@ namespace EtherEngine {
         Eigen::Matrix4f ret{};
         auto mat =
             DirectX::XMMatrixScaling(m_scale.x(), m_scale.y(), m_scale.z()) *
-            DirectX::XMMatrixRotationRollPitchYaw(toRad(m_rotation.z()), toRad(m_rotation.x()), toRad(m_rotation.y())) *
+            DirectX::XMMatrixRotationX(toRad(m_rotation.x())) *
+            DirectX::XMMatrixRotationY(toRad(m_rotation.y())) *
+            DirectX::XMMatrixRotationZ(toRad(m_rotation.z())) *
             DirectX::XMMatrixTranslation(m_postion.x(), m_postion.y(), m_postion.z());
 
         MathConverter::DXToEigen(mat, &ret);

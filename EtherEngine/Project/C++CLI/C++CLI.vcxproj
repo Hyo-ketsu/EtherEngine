@@ -35,13 +35,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\C++CLI\AssemblyHolder.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\AttributeDefine.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\C++CLIInit.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\C++CLIUtility.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\ComponentInterface.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\GameComponent.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\GameDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\C++CLI\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\ModelRender.cpp" />
     <ClCompile Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.cpp">
@@ -54,13 +58,17 @@
     <ClCompile Include="..\..\Source\C++CLI\UserDrawComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\C++CLI\AssemblyHolder.h" />
     <ClInclude Include="..\..\Source\C++CLI\AttributeDefine.h" />
+    <ClInclude Include="..\..\Source\C++CLI\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\C++CLI\C++CLIInit.h" />
     <ClInclude Include="..\..\Source\C++CLI\C++CLIUtility.h" />
     <ClInclude Include="..\..\Source\C++CLI\CameraComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\ComponentInterface.h" />
+    <ClInclude Include="..\..\Source\C++CLI\GameApplication.h" />
     <ClInclude Include="..\..\Source\C++CLI\GameComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h" />
+    <ClInclude Include="..\..\Source\C++CLI\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\C++CLI\ModelComponent.h" />
     <ClInclude Include="..\..\Source\C++CLI\ModelRender.h" />
     <ClInclude Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.h" />
