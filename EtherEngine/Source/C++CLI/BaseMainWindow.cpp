@@ -63,7 +63,7 @@ namespace EtherEngine {
             CW_USEDEFAULT, CW_USEDEFAULT,   // ウィンドウの表示位置
             m_windowSize.x(), m_windowSize.y(), // ウィンドウのサイズ
             HWND_DESKTOP,                   // オーナーウィンドウの設定
-            NULL, NULL, NULL);
+            NULL, m_hInstance.value(), NULL);
 
         //----- ウィンドウが作成できたか
         if (m_hwnd.value() == NULL) {
