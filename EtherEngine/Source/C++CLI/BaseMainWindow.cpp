@@ -12,8 +12,7 @@
 namespace EtherEngine {
     // コンストラクタ
     BaseMainWindow::BaseMainWindow(const std::string& name) 
-        : Window(name) 
-        , m_proc(nullptr) {
+        : Window(name) {
     }
 
 
@@ -42,9 +41,9 @@ namespace EtherEngine {
         wcex.lpfnWndProc = *m_proc;
         wcex.style = CS_CLASSDC;
         wcex.cbSize = sizeof(WNDCLASSEX);
-        wcex.hIcon = LoadIcon(wcex.hInstance, NULL);
-        wcex.hIconSm = LoadIcon(wcex.hInstance, NULL);
-        wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+        wcex.hIcon = NULL;
+        wcex.hIconSm = NULL;
+        wcex.hCursor = NULL;
         wcex.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 
         //----- ウィンドウクラス情報の登録
@@ -57,7 +56,7 @@ namespace EtherEngine {
         m_hwnd = CreateWindowEx(
             WS_EX_OVERLAPPEDWINDOW,
             wcex.lpszClassName,
-            WindowDefine::Name::EDITOR_APPLICATION.c_str(),
+            (LPCSTR)WindowDefine::Name::EDITOR_APPLICATION.c_str(),
             WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_THICKFRAME,
             //WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
             CW_USEDEFAULT, CW_USEDEFAULT,   // ウィンドウの表示位置
@@ -158,7 +157,7 @@ namespace EtherEngine {
     // メイン関数
     void BaseMainWindow::BaseMainFunction(void) {
         this->BaseInitFunction();
-        this->BaseMainFunction();
+        this->MainFunction();
         this->BaseUninitFunction();
     }
 }

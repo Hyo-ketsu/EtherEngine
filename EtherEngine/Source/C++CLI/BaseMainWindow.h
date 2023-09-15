@@ -23,7 +23,7 @@ namespace EtherEngine {
         // CmdShowゲッター
         const int& GetCmdShow(void) const { return m_cmdShow.value(); }
         // Procセッター
-        void SetProc(WNDPROC* in) { m_proc = in; }
+        void SetProc(const WNDPROC& in) { m_proc = in; }
 
         // DirectXゲッター
         const BaseHandle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
@@ -61,7 +61,7 @@ namespace EtherEngine {
         std::optional<HINSTANCE> m_hInstance;  // インスタンスハンドル
         std::optional<LPSTR>     m_ipCmdLine;  // コマンドライン
         std::optional<int>       m_cmdShow;    // アプリケーションの初期表示方法
-        WNDPROC*                 m_proc;
+        std::optional<WNDPROC>   m_proc;
         InitUninitPerformer m_initUninitPerformer;  // 初期化・終了処理実行クラス
     };
 }
