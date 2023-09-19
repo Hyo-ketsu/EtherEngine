@@ -203,10 +203,10 @@ namespace EtherEngine {
             if (ImGui::BeginMenu("Create")) {
                 //----- 各ファイル生成
                 if (ImGui::MenuItem("Scene")) {
-                    FileCreate("NewScene", FileDefine::SCENE, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber);
+                    FileCreate("NewScene", FileDefine::Extended::SCENE, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber);
                 }
                 if (ImGui::MenuItem("Script")) {
-                    FileCreate("Script", FileDefine::CPPCLISCRIPT, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
+                    FileCreate("Script", FileDefine::Extended::CPPCLISCRIPT, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
                 }
 
                 ImGui::EndMenu();

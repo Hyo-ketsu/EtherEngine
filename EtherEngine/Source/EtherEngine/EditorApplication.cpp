@@ -9,6 +9,7 @@
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/MSVCMediation.h>
 #include <EtherEngine/ProjectMediation.h> 
+#include <EtherEngine/EditorPopupWindow.h>
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
 #include <DirectX/ModelComponent.h>
@@ -35,21 +36,27 @@ namespace EtherEngine {
     }
 
 
-    // 初期化関数
+    // 初期化前関数
     void EditorApplication::InitFirstFunction(void) {
         //----- データ読み取り
-        // @ MEMO : ひとまず仮で（現状ProjectData側でデータを生成しているので）
+#ifdef _DEBUG
         m_projectData = std::make_unique<ProjectData>();
+        // @ MEMO : 全て深谷PCのパス等を打ち込んでいます。
+        m_projectData->SetCmdPath("C:\\Windows\\System32\\cmd.exe");
+        m_projectData->SetMsvcPath("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\"");
+        m_projectData->SetVisualStudioPath("C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com");
+
         m_projectEditorData = std::make_unique<ProjectEditorData>();
+#endif // _DEBUG
     }
-    // 初期化関数
+    // 初期化後関数
     void EditorApplication::InitLateFunction(void) {
         m_initUninitPerformer.AddInitUninit(
             [&]() { MSVCMediation::Get()->Init(m_projectData->GetCmdPath(), m_projectData->GetMsvcPath()); },
             []() { MSVCMediation::Get()->Uninit(); }
         );
         m_initUninitPerformer.AddInitUninit(
-            [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::PROJECT); },
+            [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
             []() { ProjectMediation::Get()->Uninit(); }
         );
         m_initUninitPerformer.AddInitUninit(
@@ -60,12 +67,26 @@ namespace EtherEngine {
             [&]() { m_imGui.reset(); }
         );
     }
+    // 初期化終了後関数
+    void EditorApplication::EndInitLateFunction(void) {
+
+    }
+    // 終了前関数
+    void EditorApplication::UninitFirstFunction(void) {
+#ifndef _DEBUG
+        //----- 出力
+        // @ MEMO : 面倒なんで後回し
+#endif // !_DEBUG
+    }
     // メイン関数
     void EditorApplication::MainFunction(void) {
 #ifdef _DEBUG
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG);
+
+        EditorMessagePopupResult result{};
+        CreatePopWindow<EditorMessagePopup<EditorMessagePopupType::YesNoCancel>>(std::string("Hoge"), std::string("Fuga"), result);
 
         ////----- テストコンポーネント
         //auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
@@ -137,8 +158,8 @@ namespace EtherEngine {
                 //----- 描画処理
                 m_dxRender.GetAtomicData().Draw();
 
-                //----- IMGUI描画後処理
-                ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+                //----- エディター描画後処理
+                EditorUpdater::Get()->LateDraw();
 
                 //----- 描画後処理
                 m_dxRender.GetAtomicData().EndDraw();

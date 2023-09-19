@@ -107,8 +107,31 @@ namespace EtherEngine {
             ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
 
             //----- ウィンドウ位置・座標設定
-            ImGui::SetWindowPos(ImVec2(0 - 1, 0));
-            ImGui::SetWindowSize(ImVec2(EditorApplication::Get()->GetWindSize().x() + 2, 60));
+            Eigen::Vector2i windowPostion;
+            Eigen::Vector2i frameSize;
+            RECT clientSize;
+            {
+                auto hWnd = EditorApplication::Get()->GetHWND();
+
+                //----- 変数宣言
+                RECT windowSize;
+
+                //----- ウィンドウ位置・サイズを取得
+                if (GetWindowRect(hWnd, &windowSize) == false) std::exception("Error! Non GetWindowRect");
+
+                //----- クライアント領域を取得
+                if (GetClientRect(hWnd, &clientSize) == false) std::exception("Error! Non GetClientRect");
+
+                //----- フレームサイズ算出
+                frameSize.x() = (windowSize.right - windowSize.left) - (clientSize.right - clientSize.left);
+                frameSize.y() = (windowSize.bottom - windowSize.top) - (clientSize.bottom - clientSize.top);
+
+                //----- 最終的な位置計算
+                windowPostion.x() = windowSize.left + clientSize.left;
+                windowPostion.y() = windowSize.top + clientSize.top;
+            }
+            ImGui::SetWindowPos(ImVec2(windowPostion.x() + (frameSize.x() / 2), windowPostion.y() + (frameSize.y() / 2) + (frameSize.y() / 4)));
+            ImGui::SetWindowSize(ImVec2(clientSize.right, 60));
 
             ImGui::End();
         }
@@ -122,6 +145,16 @@ namespace EtherEngine {
         EditorObjectStorage::Get()->DeleteEditorObjectsDelete();
 
         ImGui::Render();
+    }
+    // エディターオブジェクトの描画後処理を行う
+    void EditorUpdater::LateDraw(void) {
+        //----- IMGUI描画後処理
+        auto io = ImGui::GetIO();
+        ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+        }
     }
 }
 

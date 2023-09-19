@@ -10,9 +10,10 @@ namespace EtherEngine {
     public:
         // エディターオブジェクトに更新処理を行う
         void Update(void);
-
         // エディターオブジェクトの描画処理を行う
         void Draw(void);
+        // エディターオブジェクトの描画後処理を行う
+        void LateDraw(void);
 
     private:
         // コンストラクタ

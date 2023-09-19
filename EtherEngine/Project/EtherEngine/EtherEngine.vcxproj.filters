@@ -147,6 +147,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp">
       <Filter>ソース ファイル\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorPopupWindow.cpp">
+      <Filter>ソース ファイル\EngineObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -246,6 +249,9 @@
       <Filter>ヘッダー ファイル\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h">
+      <Filter>ヘッダー ファイル\EngineObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorPopupWindow.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
     </ClInclude>
   </ItemGroup>

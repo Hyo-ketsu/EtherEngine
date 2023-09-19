@@ -18,7 +18,7 @@ namespace EtherEngine {
     Json ProjectEditorData::Output(void) {
         nlohmann::json json;
 
-        if (m_currentScene.has_value()) json["ProjectEditorData"]["CurrentScene"] = m_currentScene.value();
+        json["ProjectEditorData"]["CurrentScene"] = m_currentScene;
 
         return json;
     }
@@ -38,8 +38,8 @@ namespace EtherEngine {
         //----- Json読み込み
         // シーン読込
         if (json.contains("ProjectEditorData") && json["ProjectEditorData"].contains("CurrentScene")) {
-            m_currentScene.value() = json["ProjectEditorData"]["CurrentScene"];
-            SceneLoader::Get()->MoveScene(m_currentScene.value());
+            m_currentScene = json["ProjectEditorData"]["CurrentScene"];
+            SceneLoader::Get()->MoveScene(m_currentScene);
         }
         else {
             goto END;
@@ -52,7 +52,7 @@ namespace EtherEngine {
         END: {
             //----- 存在しないためデフォルトシーンを作成、登録
             m_currentScene = SceneData(DirectoryDefine::SCENE_DATA + '\\' + EditorDefine::EDITOR_DEFAULT_SCENE_NAME);
-            SceneLoader::Get()->RegistryScene(m_currentScene.value());
+            SceneLoader::Get()->RegistryScene(m_currentScene);
         }
     }
 }

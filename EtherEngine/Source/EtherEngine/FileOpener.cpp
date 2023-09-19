@@ -9,7 +9,7 @@ namespace EtherEngine {
     void FileOpen(const PathClass& file) {
         do {
             //----- scene
-            if (FileDefine::SCENE == file.GetExtension()) {
+            if (FileDefine::Extended::SCENE == file.GetExtension()) {
                 SceneLoader::Get()->MoveScene(file);
                 break;
             }

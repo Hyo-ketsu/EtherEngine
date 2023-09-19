@@ -36,7 +36,7 @@ namespace EtherEngine {
         // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
         // @ Args : 追加コンポーネントのコンストラクタに使用する引数
         template <Concept::SubClassOnly<EditorComponentBase> ComponentType, typename ...ArgsType>
-        std::weak_ptr<ComponentType> AddComponent(ArgsType... args);
+        std::weak_ptr<ComponentType> AddComponent(ArgsType ...args);
         // コンポーネント削除
         // @ Temp : 削除するコンポーネントの型
         // @ Ret  : 削除したか
@@ -88,7 +88,7 @@ namespace EtherEngine {
 namespace EtherEngine {
     // コンポーネントを追加する
     template <Concept::SubClassOnly<EditorComponentBase> ComponentType, typename ...ArgsType>
-    std::weak_ptr<ComponentType> EditorObject::AddComponent(ArgsType... args) {
+    std::weak_ptr<ComponentType> EditorObject::AddComponent(ArgsType ...args) {
         //----- 警告表示
         static_assert((std::is_constructible_v<ComponentType, EditorObject*, ArgsType...>), "Error! AddComponent Args");
 

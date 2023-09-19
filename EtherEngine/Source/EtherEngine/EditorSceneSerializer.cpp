@@ -15,7 +15,7 @@ namespace EtherEngine {
         (path / sceneData).GetDirectory().CreateDirectories(); // ディレクトリ作成
         auto fileName = PathClass(sceneData).HasExtension() ?
             path / std::string(sceneData) :
-            path / std::string(sceneData) += FileDefine::SCENE;
+            path / std::string(sceneData) += FileDefine::Extended::SCENE;
 
         //----- ファイルの新規作成
         scene.open(fileName, std::ios::out);

@@ -26,10 +26,10 @@ namespace EtherEngine {
             }
 
             //----- 生成ファイル(拡張子)ごとに処理
-            if (extension.Get() == FileDefine::SCENE) {
+            if (extension.Get() == FileDefine::Extended::SCENE) {
                 break;
             }
-            else if (extension.Get() == FileDefine::CPPCLISCRIPT) {
+            else if (extension.Get() == FileDefine::Extended::CPPCLISCRIPT) {
                 ProjectMediation::Get()->AddSource(createFile);
                 break;
             }

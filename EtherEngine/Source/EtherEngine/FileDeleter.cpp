@@ -21,9 +21,9 @@ namespace EtherEngine {
             }
 
             //----- ’Êíƒtƒ@ƒCƒ‹ˆ—
-            if (extension == FileDefine::SCENE) {
+            if (extension == FileDefine::Extended::SCENE) {
             }
-            if (extension == FileDefine::CPPCLISCRIPT) {
+            if (extension == FileDefine::Extended::CPPCLISCRIPT) {
                 ProjectMediation::Get()->DeleteSource(deleteFile);
             }
 

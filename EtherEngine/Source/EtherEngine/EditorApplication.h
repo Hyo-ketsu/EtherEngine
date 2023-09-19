@@ -25,10 +25,14 @@ namespace EtherEngine {
         void EndGameMode(void);
         
     protected:
-        // 初期化関数
-        virtual void InitFirstFunction(void) override;
-        // 初期化関数
-        virtual void InitLateFunction(void) override;
+        // 初期化前関数
+        void InitFirstFunction(void) override;
+        // 初期化後関数
+        void InitLateFunction(void) override;
+        // 初期化終了後関数
+        void EndInitLateFunction(void) override;
+        // 終了前関数
+        void UninitFirstFunction(void) override;
         // メイン関数
         void MainFunction(void) override;
 

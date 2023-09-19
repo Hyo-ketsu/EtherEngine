@@ -26,10 +26,15 @@ namespace EtherEngine {
 
     //----- ファイル用定義
     namespace FileDefine {
-        const std::string SCENE = ".scenedata"; // シーン情報の拡張子
-        const std::string CPPCLISCRIPT = ".h";  // スクリプト用拡張子
-        const std::string SOLUTION = ".sln";    // ソリューションの拡張子
-        const std::string PROJECT = ".vcxproj"; // プロジェクト拡張子
+        //----- 拡張子定義
+        namespace Extended {
+            const std::string SCENE = ".scenedata"; // シーン情報の拡張子
+            const std::string CPPCLISCRIPT = ".h";  // スクリプト用拡張子
+            const std::string SOLUTION = ".sln";    // ソリューションの拡張子
+            const std::string PROJECT = ".vcxproj"; // プロジェクト拡張子
+            const std::string PROJECT_DATA = ".projdata"; // プロジェクト情報拡張子
+        }
+
         const std::string PROJECTNAME = "EtherEngineProject";   // プロジェクト名
 
         const std::string CPPCLISCRIPT_FILE_STRING = R"(//===== 仮で書いてます。のちに修正してください。=====//

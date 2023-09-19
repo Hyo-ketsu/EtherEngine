@@ -51,7 +51,6 @@ namespace EtherEngine {
         // Inspector•\Ž¦
         void ShowInspector(void) override {}
 
-
     protected:
         std::string m_name; // •\Ž¦–¼
         bool m_isOpen;      // •\Ž¦‚·‚é‚©

@@ -15,11 +15,19 @@ namespace EtherEngine {
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
         ImGui::SetCurrentContext(m_imGuiContext);
-        ImGui_ImplDX11_Init(device, context);
+        ImGui::StyleColorsDark();
+        ImGuiStyle& style = ImGui::GetStyle();
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            style.WindowRounding = 0.0f;
+            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+        }
         ImGui_ImplWin32_Init(hWnd);
+        ImGui_ImplDX11_Init(device, context);
     }
     // デストラクタ
     IMGUI::~IMGUI(void) {
         ImGui_ImplDX11_Shutdown();
+        ImGui_ImplWin32_Shutdown();
+        ImGui::DestroyContext();
     }
 }

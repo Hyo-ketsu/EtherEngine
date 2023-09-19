@@ -30,8 +30,8 @@ namespace EtherEngine {
         //----- 読み込みディレクトリ修飾
         // @ Memo : Hoge -> Scene/Hoge.sceneData
         std::string loadSceneName;
-        if (data.rfind(FileDefine::SCENE) == std::string::npos) {
-            loadSceneName = data + FileDefine::SCENE;
+        if (data.rfind(FileDefine::Extended::SCENE) == std::string::npos) {
+            loadSceneName = data + FileDefine::Extended::SCENE;
         }
         else {
             loadSceneName = data;
