@@ -5,7 +5,7 @@
 //----- BuildMenu ’è‹`
 namespace EtherEngine {
     // XV
-    void BuildMenu::Update(void) {
+    void BuildMenu::UpdateWindow(void) {
 
     }
     // •`‰æ

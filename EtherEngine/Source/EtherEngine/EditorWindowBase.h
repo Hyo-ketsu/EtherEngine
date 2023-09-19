@@ -27,8 +27,11 @@ namespace EtherEngine {
         bool GetIsOpen(void) const { return m_isOpen; }
         // 表示するかセッター
         void SetIsOpen(const bool in) { m_isOpen = in; }
-        // 表示するかアクセサー
-        bool& AccessIsOpen(void) { return m_isOpen; }
+
+        // Transform使用ゲッター
+        bool GetIsUseTransform(void) const { return m_isUseTranform; }
+        // Transform使用セッター
+        void SetIsUseTransform(const bool in) { m_isUseTranform = in; }
 
         // 表示フラグゲッター
         ImGuiWindowFlags GetFlags(void) const { return m_flags; }
@@ -38,6 +41,10 @@ namespace EtherEngine {
         ImGuiWindowFlags& AccessFlags(void) { return m_flags; }
 
 
+        // 更新処理
+        virtual void Update(void) override;
+        // サブクラス用更新処理
+        virtual void UpdateWindow(void) {}
         // 描画処理
         virtual void Draw(void) override;
         // サブクラス用描画処理
@@ -52,8 +59,9 @@ namespace EtherEngine {
         void ShowInspector(void) override {}
 
     protected:
-        std::string m_name; // 表示名
-        bool m_isOpen;      // 表示するか
+        std::string m_name;     // 表示名
+        bool m_isOpen;          // 表示するか
+        bool m_isUseTranform;   // ウィンドウ位置に所属エディターオブジェクトのTransformを使用するか
         ImGuiWindowFlags m_flags;  // 表示フラグ
     };
 }

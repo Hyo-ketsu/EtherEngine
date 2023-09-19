@@ -10,7 +10,7 @@ namespace EtherEngine {
         using EditorWindowBase::EditorWindowBase;
 
         // 更新
-        void Update(void) override;
+        void UpdateWindow(void) override;
         // 描画
         void Draw(void) override;
         // ウィンドウ描画

@@ -38,7 +38,7 @@ namespace EtherEngine {
 
 
         // XVˆ—
-        void Update(void) override {}
+        void UpdateWindow(void) override {}
         // •`‰æˆ—
         void DrawWindow(void) override;
 

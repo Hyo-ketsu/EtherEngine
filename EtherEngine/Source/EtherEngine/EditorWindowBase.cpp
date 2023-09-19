@@ -11,6 +11,10 @@ namespace EtherEngine {
         , m_flags(flag) {
     }
 
+
+    // 更新処理
+    void EditorWindowBase::Update(void) {
+    }
     void EditorWindowBase::Draw(void) {
         //----- ウィンドウ描画
         ImGui::Begin(m_name.c_str(), &m_isOpen, m_flags);

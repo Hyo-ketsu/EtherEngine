@@ -12,7 +12,7 @@
 namespace EtherEngine {
     void EditorDebugWindow::Start(void) {
     }
-    void EditorDebugWindow::Update(void) {
+    void EditorDebugWindow::UpdateWindow(void) {
     }
     void EditorDebugWindow::Draw(void) {
         ImGui::ShowDemoWindow();

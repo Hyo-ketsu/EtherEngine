@@ -14,7 +14,7 @@ namespace EtherEngine {
 
 
         void Start(void) override;
-        void Update(void) override;
+        void UpdateWindow(void) override;
         void DrawWindow(void) override;
 
         // 最上位ディレクトリセッター

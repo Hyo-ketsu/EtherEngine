@@ -73,7 +73,7 @@ namespace EtherEngine {
             ms_currentDirectory = ms_rootDirectory.value();
         }
     }
-    void ExplorerWindow::Update(void) {
+    void ExplorerWindow::UpdateWindow(void) {
     }
 
 

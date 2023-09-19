@@ -9,7 +9,7 @@ namespace EtherEngine {
         , m_isCloseButton(isCloseButton) {
     }
 
-    void EditorPopupWindow::Update(void) {
+    void EditorPopupWindow::UpdateWindow(void) {
 
     }
     void EditorPopupWindow::Draw(void) {

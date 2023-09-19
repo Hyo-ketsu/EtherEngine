@@ -39,7 +39,7 @@ namespace EtherEngine {
         EditorPopupWindow(EditorObject* editorObject, const std::string& name, const bool isCloseButton, const ImGuiBackendFlags& flag = ImGuiBackendFlags_None);
 
     private:
-        void Update(void) override;
+        void UpdateWindow(void) override;
         void Draw(void) override;
 
         bool m_isCloseButton;   // x ƒ{ƒ^ƒ“‚ð•\Ž¦‚·‚é‚©

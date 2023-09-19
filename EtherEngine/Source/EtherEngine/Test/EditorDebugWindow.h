@@ -12,7 +12,7 @@ namespace EtherEngine {
         using EditorWindowBase::EditorWindowBase;
 
         void Start(void) override;
-        void Update(void) override;
+        void UpdateWindow(void) override;
         void Draw(void) override;
 
     private:

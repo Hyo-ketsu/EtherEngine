@@ -7,7 +7,7 @@ namespace EtherEngine {
         //----- ˆê‰íœ
         LogSystem::DeleteLogWindowMessage();
     }
-    void EditorLogWindow::Update(void) {
+    void EditorLogWindow::UpdateWindow(void) {
         //----- ƒƒO‚Ìæ“¾
         m_log = LogSystem::GetLogWindowMessage();
     }
