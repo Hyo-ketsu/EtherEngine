@@ -6,7 +6,7 @@
 
 namespace EtherEngine {
     // ‰Šú‰»ˆ—
-    void EditorOutliner::Start(void) {
+    void EditorOutliner::StartWindow(void) {
         AccessFlags() |= ImGuiWindowFlags_NoCollapse;
     }
     // XVˆ—

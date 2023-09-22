@@ -14,7 +14,7 @@ namespace EtherEngine {
 
 
         // ‰Šú‰»ˆ—
-        void Start(void) override;
+        void StartWindow(void) override;
         // XVˆ—
         void UpdateWindow(void) override;
         // •`‰æˆ—

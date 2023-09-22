@@ -83,10 +83,10 @@ namespace EtherEngine {
 #ifdef _DEBUG
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
-        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>(ImGuiDefine::Name::WINDOW_DEBUG);
+        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>();
 
         EditorMessagePopupResult result{};
-        CreatePopWindow<EditorMessagePopup<EditorMessagePopupType::YesNoCancel>>(std::string("Hoge"), std::string("Fuga"), result);
+        //CreatePopWindow<EditorMessagePopup<EditorMessagePopupType::YesNoCancel>>(std::string("Hoge"), std::string("Fuga"), result);
 
         ////----- テストコンポーネント
         //auto testGameObject = GameObjectStorage::Get()->CreateGameObject();

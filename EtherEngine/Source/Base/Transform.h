@@ -12,6 +12,12 @@ namespace EtherEngine {
         // @ Arg2 : 拡縮(Default : 1,1,1)
         // @ Arg3 : 回転(Default : 0,0,0)
         Transform(Eigen::Vector3f pos = { 0,0,0 }, Eigen::Vector3f sca = { 1,1,1 }, Eigen::Vector3f rot = { 0,0,0 });
+        // デストラクタ
+        ~Transform(void) = default;
+        // コピーコンストラクタ
+        Transform(const Transform& copy) = default;
+        // ムーブコンストラクタ
+        Transform(Transform&& move) = default;
 
 
         // 座標を取得する
@@ -31,6 +37,18 @@ namespace EtherEngine {
         // ワールド行列を作成する
         // @ Ret  : ワールド行列
         Eigen::Matrix4f CreateWorld(void) const;
+
+
+        // 加算
+        Transform operator+(const Transform& transform);
+        // 減算
+        Transform operator-(const Transform& transform);
+        // 代入
+        Transform& operator=(const Transform& transform);
+        // 加算代入
+        Transform& operator+=(const Transform& transform);
+        // 減算代入
+        Transform& operator-=(const Transform& transform);
 
 
         // 外部出力

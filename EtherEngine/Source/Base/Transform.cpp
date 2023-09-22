@@ -1,4 +1,5 @@
 #include <Base/Transform.h>
+#include <Base/MathUtility.h>
 #include <Base/BaseDefines.h>
 #include <Base/Converter.h>
 
@@ -28,6 +29,45 @@ namespace EtherEngine {
 
         MathConverter::DXToEigen(mat, &ret);
         return ret;
+    }
+
+
+    // ‰ÁŽZ
+    Transform Transform::operator+(const Transform& transform) {
+        Transform ret = *this;
+        ret.m_postion += transform.m_postion;
+        ret.m_rotation += transform.m_rotation;
+        ret.m_scale += transform.m_scale;
+        return ret;
+    }
+    // Œ¸ŽZ
+    Transform Transform::operator-(const Transform& transform) {
+        Transform ret = *this;
+        ret.m_postion -= transform.m_postion;
+        ret.m_rotation -= transform.m_rotation;
+        ret.m_scale -= transform.m_scale;
+        return ret;
+    }
+    // ‘ã“ü
+    Transform& Transform::operator=(const Transform& transform) {
+        m_postion = transform.m_postion;
+        m_rotation = transform.m_rotation;
+        m_scale = transform.m_scale;
+        return *this;
+    }
+    // ‰ÁŽZ‘ã“ü
+    Transform& Transform::operator+=(const Transform& transform) {
+        m_postion += transform.m_postion;
+        m_rotation += transform.m_rotation;
+        m_scale += transform.m_scale;
+        return *this;
+    }
+    // Œ¸ŽZ‘ã“ü
+    Transform& Transform::operator-=(const Transform& transform) {
+        m_postion -= transform.m_postion;
+        m_rotation -= transform.m_rotation;
+        m_scale -= transform.m_scale;
+        return *this;
     }
 
 

@@ -3,7 +3,7 @@
 
 //----- EditorLogWindow ’è‹`
 namespace EtherEngine {
-    void EditorLogWindow::Start(void) {
+    void EditorLogWindow::StartWindow(void) {
         //----- ˆê‰íœ
         LogSystem::DeleteLogWindowMessage();
     }

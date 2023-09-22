@@ -65,7 +65,7 @@ namespace EtherEngine {
 
 //----- ExplorerWindow 定義
 namespace EtherEngine {
-    void ExplorerWindow::Start(void) {
+    void ExplorerWindow::StartWindow(void) {
         //----- 初期ディレクトリ設定
         // @ MEMO : 仮でカレントディレクトリ
         if (ms_rootDirectory.has_value() == false) {

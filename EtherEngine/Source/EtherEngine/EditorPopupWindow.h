@@ -36,7 +36,7 @@ namespace EtherEngine {
         // @ Arg2 : ウィンドウ名
         // @ Arg3 : 右上のウィンドウの x  ボタンを表示するか
         // @ Arg4 : フラグ設定(Default : 何も設定しない)
-        EditorPopupWindow(EditorObject* editorObject, const std::string& name, const bool isCloseButton, const ImGuiBackendFlags& flag = ImGuiBackendFlags_None);
+        EditorPopupWindow(EditorObject* editorObject, const std::string& name, const bool isCloseButton, const ImGuiWindowFlags& flag = ImGuiWindowFlags_None);
 
     private:
         void UpdateWindow(void) override;

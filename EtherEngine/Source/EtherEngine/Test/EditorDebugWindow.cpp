@@ -10,13 +10,16 @@
 
 //----- EditorDebug 定義
 namespace EtherEngine {
-    void EditorDebugWindow::Start(void) {
+    // コンストラクタ
+    EditorDebugWindow::EditorDebugWindow(EditorObject* editorObject) 
+        : EditorWindowBase(editorObject, ImGuiDefine::Name::WINDOW_DEBUG,true, ImGuiWindowFlags_None,EditorWindowSizeType::AutoSizeFixed) {
+    }
+    void EditorDebugWindow::StartWindow(void) {
     }
     void EditorDebugWindow::UpdateWindow(void) {
     }
-    void EditorDebugWindow::Draw(void) {
+    void EditorDebugWindow::DrawWindow(void) {
         ImGui::ShowDemoWindow();
-        ImGui::Begin(ImGuiDefine::Name::WINDOW_DEBUG.c_str());
         if (InputSystem::GetMousePostion().has_value()) {
             //----- FPS表示
             {
@@ -42,6 +45,5 @@ namespace EtherEngine {
                 MSVCMediation::Get()->Command(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
             }
         }
-        ImGui::End();
     }
 }

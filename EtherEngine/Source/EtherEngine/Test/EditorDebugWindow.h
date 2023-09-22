@@ -9,11 +9,14 @@ namespace EtherEngine {
     // デバッグ用のウィンドウ
     class EditorDebugWindow : public EditorWindowBase {
     public:
-        using EditorWindowBase::EditorWindowBase;
+        // コンストラクタ
+        // @ Arg1 : 親エディターオブジェクト
+        EditorDebugWindow(EditorObject* editorObject);
 
-        void Start(void) override;
+
+        void StartWindow(void) override;
         void UpdateWindow(void) override;
-        void Draw(void) override;
+        void DrawWindow(void) override;
 
     private:
         Timer m_timer;  // 保持しているタイマー
