@@ -152,11 +152,11 @@ namespace EtherEngine {
                 //----- 描画前処理
                 m_dxRender.GetAtomicData().BeginDraw();
 
-                //----- エディター描画処理
-                EditorUpdater::Get()->Draw();
-
                 //----- 描画処理
                 m_dxRender.GetAtomicData().Draw();
+
+                //----- エディター描画処理
+                EditorUpdater::Get()->Draw();
 
                 //----- エディター描画後処理
                 EditorUpdater::Get()->LateDraw();

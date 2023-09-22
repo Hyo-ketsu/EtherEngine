@@ -68,56 +68,91 @@ namespace EtherEngine {
             return;
         }
 
-        //----- サイズ設定がManualなら何もしない
-        if (m_sizeType == EtherEngine::EditorWindowSizeType::ManualSize) return;
-
         //----- キャッシング
         auto gameObject = EditorComponentHelper::GetEditorObject(this);
         auto& transform = gameObject->AccessTransform();
-        auto& position = transform.AccessPostion();
+        auto& postion = transform.AccessPostion();
         auto& scale = transform.AccessScale();
-        return;
 
-        //----- 既に取得している過去Transformと現在Transformが違う(=他コンポーネント等で座標や拡縮が編集されている)か
-        bool isEqualPos = m_prevTransform.has_value()   // 全て同値であればtrue
-            && MathUtility::FloatEqual(position.x(), m_prevTransform->GetPostion().x())
-            && MathUtility::FloatEqual(position.y(), m_prevTransform->GetPostion().y())
-            && MathUtility::FloatEqual(position.z(), m_prevTransform->GetPostion().z());
-        bool isEqualScale = m_prevTransform.has_value() // 全て同値であればtrue
-            && MathUtility::FloatEqual(scale.x(), m_prevTransform->GetScale().x())
-            && MathUtility::FloatEqual(scale.y(), m_prevTransform->GetScale().y())
-            && MathUtility::FloatEqual(scale.z(), m_prevTransform->GetScale().z());
-        if (isEqualPos == false || isEqualScale == false) { // 同値でないものがあるか
-            //----- ImGuiウィンドウの座標、サイズを自身の親エディターオブジェクトのTrasnformに適用する
+        //----- 拡縮に対する処理
+        do {
             if (m_isUseTranform) {
-                //----- 拡縮を設定
+                //----- いずれかに該当するなら処理をしない
+                if (m_sizeType == EditorWindowSizeType::ManualSize) break;
+
+                //----- Transformの拡縮に対してImGuiウィンドウのサイズを適用する
                 switch (m_sizeType) {
-                case EtherEngine::EditorWindowSizeType::AutoSizeFixed:
+                case EtherEngine::EditorWindowSizeType::AutoSizeFixed:  // 自動固定サイズ
                     for (int i = 0; i < 2; i++) {
                         scale[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
                     }
                     break;
-                case EtherEngine::EditorWindowSizeType::AutoSizeFluctuation:
+                case EtherEngine::EditorWindowSizeType::AutoSizeFluctuation:    // 自動変動サイズ
                     for (int i = 0; i < 2; i++) {
                         scale[i] = fabsf(ImGui::GetWindowSize()[i]);
                         if (scale[i] < fabsf(ImGui::GetContentRegionAvail()[i])) scale[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
                     }
                     break;
+                //case EtherEngine::EditorWindowSizeType::SemiAutoSize
+                }
+                
+                //----- 調整後の拡縮をImGuiウィンドウに設定する
+                ImGui::SetWindowSize(ImVec2(scale.x(), scale.y()));
+            }
+            else {
+                //----- ImGuiウィンドウの拡縮を変更する
+                ImVec2 size;
+                switch (m_sizeType) {
+                case EtherEngine::EditorWindowSizeType::AutoSizeFixed:  // 自動固定サイズ
+                    for (int i = 0; i < 2; i++) {
+                        size[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                    }
+                    break;
+                case EtherEngine::EditorWindowSizeType::AutoSizeFluctuation:    // 自動変動サイズ
+                    for (int i = 0; i < 2; i++) {
+                        size[i] = fabsf(ImGui::GetWindowSize()[i]);
+                        if (size[i] < fabsf(ImGui::GetContentRegionAvail()[i])) size[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                    }
+                    break;
                     //case EtherEngine::EditorWindowSizeType::SemiAutoSize
                 }
-                scale = Eigen::Vector3f(ImGui::GetWindowSize().x, ImGui::GetWindowSize().y, scale.z());
+
+                //----- 調整後の拡縮を設定する
+                ImGui::SetWindowSize(ImVec2(size.x, size.y));
             }
-        }
-        else {
-            //----- 自身の親エディターオブジェクトのTransformをImGuiウィンドウの座標、サイズに適用する
-            if (m_isUseTranform) {
-                //----- 最適なサイズを設定
-                ImGui::SetWindowSize(ImVec2(scale.x(),scale.y()));
+        } while (false);
+
+        //----- 座標に対する処理
+        do {
+            //----- Transformを使用しないのであれば何もしない
+            if (m_isUseTranform == false) break;
+
+            //----- 既に取得している過去座標と現在座標が違う(=他コンポーネント等で座標が編集されている)か
+            bool isEqualPostion = m_prevTransform.has_value() // 全て同値であればtrue
+                && MathUtility::FloatEqual(postion.x(), m_prevTransform->GetPostion().x())
+                && MathUtility::FloatEqual(postion.y(), m_prevTransform->GetPostion().y());
+            bool isEqualImGuiPostion = m_prevImGuiPostion.has_value() // 全て同値であればtrue
+                && MathUtility::FloatEqual(ImGui::GetWindowPos().x, m_prevImGuiPostion->x)
+                && MathUtility::FloatEqual(ImGui::GetWindowPos().y, m_prevImGuiPostion->y);
+
+            //----- どちらかも true = ImGuiウィンドウかTransformの座標が変更されていないので何もしない
+            if (isEqualPostion && isEqualImGuiPostion) break;
+
+            //----- それぞれの座標を処理（両方動いていればTransformを優先する）
+            if (isEqualPostion == false) {
+                //----- Transformの座標が変わっている。Transformの座標をImGuiウィンドウの座標に適用
+                ImGui::SetWindowPos(ImVec2(postion.x(), postion.y()));
             }
-        }
+            if (isEqualImGuiPostion == false) {
+                //----- ImGuiウィンドウの座標が変わっている。ImGuiウィンドウの座標をTransformの座標に適用
+                postion = Eigen::Vector3f(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, postion.z());
+            }
+        } while (false);
 
         //----- 過去座標を現在のTransformで上書き
         m_prevTransform = transform;
+        m_prevImGuiScale = ImGui::GetWindowSize();
+        m_prevImGuiPostion = ImGui::GetWindowPos();
     }
 
 

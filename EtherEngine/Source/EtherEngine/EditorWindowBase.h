@@ -98,7 +98,9 @@ namespace EtherEngine {
         bool m_isUseTranform;   // ウィンドウ位置に所属エディターオブジェクトのTransformを使用するか
         ImGuiWindowFlags m_flags;     // 表示フラグ
         EditorWindowSizeType m_sizeType;    // サイズ設定
-        std::optional<Transform> m_prevTransform;    // エディターオブジェクトの過去座標
+        std::optional<Transform> m_prevTransform;   // エディターオブジェクトの過去Transform
+        std::optional<ImVec2> m_prevImGuiPostion;   // エディターオブジェクトの過去座標
+        std::optional<ImVec2> m_prevImGuiScale;     // エディターオブジェクトの過去拡縮
         static std::unordered_map<std::string, uint> ms_windowCount; // ウィンドウの使用数
     };
 }
