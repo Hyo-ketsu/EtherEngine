@@ -8,7 +8,7 @@
 namespace EtherEngine {
     // コンストラクタ
     EditorWindowBase::EditorWindowBase(EditorObject* editorObject, const std::string& name, const bool isUseTransform, 
-        const ImGuiWindowFlags& flag, const EditorWindowSizeType& sizeType, const Eigen::Vector2f& windowSize)
+        const ImGuiWindowFlags& flag, const EditorWindowSizeType& sizeType, const Eigen::Vector2i& windowSize)
         : EditorComponentBase(editorObject)
         , m_name(name) 
         , m_isOpen(true) 
@@ -31,6 +31,16 @@ namespace EtherEngine {
         else {
             //----- 存在しない。追加
             ms_windowCount.emplace(m_name, 1);
+        }
+
+        //----- ウィンドウのサイズ関連設定
+        if (windowSize.x() < 0 && windowSize.y() < 0) {
+            //----- どちらも負数。設定されていないものとする
+            m_sizeType = decltype(m_sizeType)::ManualSize;
+        }
+        else {
+            //----- どちらかが正数。設定
+            m_windowSize = ImVec2(windowSize.x(), windowSize.y());
         }
     }
 
@@ -79,18 +89,19 @@ namespace EtherEngine {
             if (m_isUseTranform) {
                 //----- いずれかに該当するなら処理をしない
                 if (m_sizeType == EditorWindowSizeType::ManualSize) break;
+                if (m_windowSize.has_value() == false) break;
 
                 //----- Transformの拡縮に対してImGuiウィンドウのサイズを適用する
                 switch (m_sizeType) {
                 case EtherEngine::EditorWindowSizeType::AutoSizeFixed:  // 自動固定サイズ
                     for (int i = 0; i < 2; i++) {
-                        scale[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                        scale[i] = fabsf((*m_windowSize)[i]);
                     }
                     break;
                 case EtherEngine::EditorWindowSizeType::AutoSizeFluctuation:    // 自動変動サイズ
                     for (int i = 0; i < 2; i++) {
                         scale[i] = fabsf(ImGui::GetWindowSize()[i]);
-                        if (scale[i] < fabsf(ImGui::GetContentRegionAvail()[i])) scale[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                        if (scale[i] < fabsf((*m_windowSize)[i])) scale[i] = fabsf((*m_windowSize)[i]);
                     }
                     break;
                 //case EtherEngine::EditorWindowSizeType::SemiAutoSize
@@ -105,13 +116,13 @@ namespace EtherEngine {
                 switch (m_sizeType) {
                 case EtherEngine::EditorWindowSizeType::AutoSizeFixed:  // 自動固定サイズ
                     for (int i = 0; i < 2; i++) {
-                        size[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                        size[i] = fabsf((*m_windowSize)[i]);
                     }
                     break;
                 case EtherEngine::EditorWindowSizeType::AutoSizeFluctuation:    // 自動変動サイズ
                     for (int i = 0; i < 2; i++) {
                         size[i] = fabsf(ImGui::GetWindowSize()[i]);
-                        if (size[i] < fabsf(ImGui::GetContentRegionAvail()[i])) size[i] = fabsf(ImGui::GetContentRegionAvail()[i]);
+                        if (size[i] < fabsf((*m_windowSize)[i])) size[i] = fabsf((*m_windowSize)[i]);
                     }
                     break;
                     //case EtherEngine::EditorWindowSizeType::SemiAutoSize
@@ -131,8 +142,8 @@ namespace EtherEngine {
             bool isEqualPostion = m_prevTransform.has_value() // 全て同値であればtrue
                 && MathUtility::FloatEqual(postion.x(), m_prevTransform->GetPostion().x())
                 && MathUtility::FloatEqual(postion.y(), m_prevTransform->GetPostion().y());
-            bool isEqualImGuiPostion = m_prevImGuiPostion.has_value() // 全て同値であればtrue
-                && MathUtility::FloatEqual(ImGui::GetWindowPos().x, m_prevImGuiPostion->x)
+            bool isEqualImGuiPostion = m_prevImGuiPostion.has_value() == false // 全て同値であればtrue
+                || MathUtility::FloatEqual(ImGui::GetWindowPos().x, m_prevImGuiPostion->x)
                 && MathUtility::FloatEqual(ImGui::GetWindowPos().y, m_prevImGuiPostion->y);
 
             //----- どちらかも true = ImGuiウィンドウかTransformの座標が変更されていないので何もしない

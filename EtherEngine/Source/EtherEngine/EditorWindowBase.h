@@ -33,9 +33,9 @@ namespace EtherEngine {
         // @ Arg3 : 親エディターオブジェクトのTransformを使用するか(Default : 使用する)
         // @ Arg4 : フラグ設定(Default : 何も設定しない)
         // @ Arg5 : ウィンドウサイズ設定(Default : 手動)
-        // @ Arg6 : 初期ウィンドウサイズ(Default : 0,0)
+        // @ Arg6 : 初期ウィンドウサイズ(Default : 負数)
         EditorWindowBase(EditorObject* editorObject, const std::string& name, const bool isUseTransform = true, const ImGuiWindowFlags& flag = ImGuiWindowFlags_None,
-            const EditorWindowSizeType& sizeType = EditorWindowSizeType::ManualSize, const Eigen::Vector2f& windowSize = { 0.0f,0.0f });
+            const EditorWindowSizeType& sizeType = EditorWindowSizeType::ManualSize, const Eigen::Vector2i& windowSize = { -1,-1 });
 
 
         // 表示名ゲッター
@@ -101,6 +101,7 @@ namespace EtherEngine {
         std::optional<Transform> m_prevTransform;   // エディターオブジェクトの過去Transform
         std::optional<ImVec2> m_prevImGuiPostion;   // エディターオブジェクトの過去座標
         std::optional<ImVec2> m_prevImGuiScale;     // エディターオブジェクトの過去拡縮
+        std::optional<ImVec2> m_windowSize;     // ウィンドウのサイズ
         static std::unordered_map<std::string, uint> ms_windowCount; // ウィンドウの使用数
     };
 }
