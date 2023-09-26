@@ -11,11 +11,11 @@ namespace EtherEngine {
         PathClass createFile = GetFileName(createDirectory / fileName += extension, nameRule);
         if (isCreateDirectory) {
             //----- ディレクトリ作成
-            createFile.CreateDirectories();
+            createFile.Create_Directorie();
         }
         else {
             //----- 通常ファイル作成
-            createFile.CreateFiles(fileString);
+            createFile.Create_File(fileString);
         }
 
         //----- 各ファイルごと処理

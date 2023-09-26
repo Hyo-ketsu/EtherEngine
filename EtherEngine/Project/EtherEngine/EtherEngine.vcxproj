@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorCamera.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorCamera.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h" />

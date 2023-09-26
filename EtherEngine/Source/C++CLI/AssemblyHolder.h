@@ -22,7 +22,7 @@ namespace EtherEngine {
             }
         }
         // 現在読み込みアセンブリが存在するか
-        // @ Ret  : 
+        // @ Ret  : アセンブリを取得しているか
         static bool IsLoadAssemblyEnable(void) {
             return ms_assembly == nullptr ? false : true;
         }

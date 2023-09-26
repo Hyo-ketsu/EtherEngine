@@ -17,7 +17,7 @@ namespace EtherEngine {
         do {
             //----- ディレクトリ・非拡張子削除
             if (deleteFile.IsDirectory()) {
-                return deleteFile.DeleteFiles(isRecursion);
+                return deleteFile.Delete_File(isRecursion);
             }
 
             //----- 通常ファイル処理
@@ -28,7 +28,7 @@ namespace EtherEngine {
             }
 
             //----- 削除処理
-            return deleteFile.DeleteFiles();
+            return deleteFile.Delete_File();
         } while (false);
     }
 }

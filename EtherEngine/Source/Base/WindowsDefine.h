@@ -6,7 +6,7 @@ namespace EtherEngine {
     namespace WindowDefine {
         //----- WindowsのWindow用名称
         namespace Name {
-            const std::string GAME_APPLICATION = "EtherEngine Game";        // ゲーム自体のデフォルト名
+            const std::string GAME_APPLICATION = "EtherEngine Game";  // ゲーム自体のデフォルト名
             const std::string EDITOR_APPLICATION = "Ether Engine";    // エンジンの表示名
         }
 

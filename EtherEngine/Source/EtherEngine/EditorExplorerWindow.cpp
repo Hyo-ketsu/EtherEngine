@@ -187,10 +187,10 @@ namespace EtherEngine {
 
             //----- ファイル削除・ファイル作成
             for (auto&& it : deleteFile) {
-                it.DeleteFiles(true);
+                it.Delete_File(true);
             }
             for (auto&& it : createFile) {
-                it.first.CreateFiles(it.second);
+                it.first.Create_File(it.second);
             }
 
             ImGui::EndChild();

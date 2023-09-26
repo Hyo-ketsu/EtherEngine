@@ -47,33 +47,29 @@ namespace EtherEngine {
         std::string GetExtension(void) const;
 
 
-        // 拡張子を持っているか
-        bool HasExtension(void) const;
-
 
         // 現在収納されているディレクトリを全て生成する
         // @ Memo : 例として、"Hoge/"まであるとして、"Hoge/Fuga/Piyo/foo.txt"を保持していたら、
         // @ Memo : "Hoge/Fuga","Hoge/Fuga/Piyo/"を生成する
         // @ Ret  : 生成できたか
-        bool CreateDirectories(void) const;
+        bool Create_Directorie(void) const;
         // 現在収納されているディレクトリを生成する
         // @ Ret  : 生成できたか
-        bool CreateDirectorys(void) const;
+        bool Create_Directory(void) const;
         // 現在格納されているパスでファイルを生成する
         // @ Memo : 既にファイルがある場合は生成しません
         // @ Memo : 途中の階層のディレクトリは生成しません
         // @ Ret  : 生成できたか
         // @ Arg1 : 生成したファイルに渡す文字列(Default : "")
-        bool CreateFiles(const std::string& fileString = "") const;
+        bool Create_File(const std::string& fileString = "") const;
         // 現在のファイル・ディレクトリを削除する
         // @ Ret  : 削除が行われたか
         // @ Arg1 : 再帰的に削除するか(true : 中身があるディレクトリ削除可能, false : 中身があるディレクトリ削除不可。Default : false)
-        bool DeleteFiles(const bool isAllRemove = false) const;
+        bool Delete_File(const bool isAllRemove = false) const;
         // 現在のファイルをコピーする
         // @ Ret  : コピーが行われたか
         // @ Arg1 : コピー先パス
-        bool CopyFiles(const PathClass& copyPath);
-
+        bool Copy_File(const PathClass& copyPath);
 
 
         // パス要素追加
@@ -92,6 +88,8 @@ namespace EtherEngine {
         bool IsFile(void) const;
         // ディレクトリか　
         bool IsDirectory(void) const;
+        // 拡張子を持っているか
+        bool HasExtension(void) const;
 
 
         // 取得

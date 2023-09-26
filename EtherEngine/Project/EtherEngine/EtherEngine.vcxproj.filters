@@ -150,6 +150,9 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorPopupWindow.cpp">
       <Filter>ソース ファイル\EngineObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorPopupWindow.h">
       <Filter>ヘッダー ファイル\EngineObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

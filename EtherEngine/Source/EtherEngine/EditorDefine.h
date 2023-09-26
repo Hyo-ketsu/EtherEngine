@@ -23,6 +23,12 @@ namespace EtherEngine {
         
         const KeyboardInput INPUT_RENAME = VK_F2;   // リネームキー
     }
+
+
+    // エディターのファイル構成
+    namespace EditorFileDefine {
+        const std::string EDITOR_SETTING = "EditorSetting"; // エディターについての設定を保持しているディレクトリ
+    }
 }
 
 

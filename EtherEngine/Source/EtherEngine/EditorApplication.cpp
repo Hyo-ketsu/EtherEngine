@@ -107,6 +107,9 @@ namespace EtherEngine {
         //m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());
 #endif // _DEBUG
 
+        //----- VS等の設定
+        // @ MEMO : 後で実装する
+
         //----- メッセージループ
         MSG message;
         Timer fpsTimer;
@@ -131,7 +134,9 @@ namespace EtherEngine {
 
                 //----- アセンブリ存在チェック
                 if (AssemblyHolder::IsLoadAssemblyEnable() == false) {
-
+                    //----- 存在しない。読み込みまたはリフレッシュ
+                    // @ MEMO : 現時点では即リフレッシュしているがのちに「最新のファイルがある」場合は単なる読み込みにするべき
+                    AssemblyHolder::LoadAssembly()
                 }
 
                 //----- FPS制御

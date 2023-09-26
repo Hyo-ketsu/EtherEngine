@@ -40,8 +40,8 @@ namespace EtherEngine {
                 EditorSceneSerialize(PathClass::GetCurDirectory(), SceneLoader::Get()->GetCurrentSceneData().value());
             }
 
-            //----- Build
-            if (ImGui::Button("Script Build")) {
+            //----- Refresh
+            if (ImGui::Button("Script Refresh")) {
                 MSVCMediation::Get()->Command(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
             }
         }

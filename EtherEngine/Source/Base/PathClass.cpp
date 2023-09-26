@@ -41,22 +41,16 @@ namespace EtherEngine {
     }
 
 
-    // 拡張子を持っているか
-    bool PathClass::HasExtension(void) const {
-        return path(m_path).has_extension();
-    }
-
-
     // 現在収納されているディレクトリを全て生成する
-    bool PathClass::CreateDirectories(void) const {
+    bool PathClass::Create_Directorie(void) const {
         return create_directories(path(m_path));
     }
     // 現在収納されているディレクトリを生成する
-    bool PathClass::CreateDirectorys(void) const {
+    bool PathClass::Create_Directory(void) const {
         return create_directory(path(m_path));
     }
     // 現在格納されているパスでファイルを生成する
-    bool PathClass::CreateFiles(const std::string& fileString) const {
+    bool PathClass::Create_File(const std::string& fileString) const {
         //----- 変数宣言
         path path = m_path;
 
@@ -74,7 +68,7 @@ namespace EtherEngine {
         return true; 
     }
     // 現在のファイル・ディレクトリを削除します
-    bool PathClass::DeleteFiles(const bool isAllRemove) const {
+    bool PathClass::Delete_File(const bool isAllRemove) const {
         if (isAllRemove) {
             return remove_all(path(m_path)) > 0;
         }
@@ -83,14 +77,14 @@ namespace EtherEngine {
         }
     }
     // 現在のファイルをコピーする
-    bool PathClass::CopyFiles(const PathClass& copyPath) {
+    bool PathClass::Copy_File(const PathClass& copyPath) {
         //----- コピーが可能か判定
         if (copyPath.IsExists() == false) return false;
         if (this->IsFile() == false) return false;
 
         //----- 同名ファイルを対象パスに作成
         auto myFileString = RoadFileAll(m_path);
-        (copyPath / this->GetFile()).CreateFiles(myFileString);
+        (copyPath / this->GetFile()).Create_File(myFileString);
     }
 
 
@@ -125,6 +119,10 @@ namespace EtherEngine {
     // ディレクトリか　
     bool PathClass::IsDirectory(void) const {
         return is_directory(path(m_path));
+    }
+    // 拡張子を持っているか
+    bool PathClass::HasExtension(void) const {
+        return path(m_path).has_extension();
     }
 
 
