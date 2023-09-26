@@ -45,10 +45,10 @@ namespace EtherEngine {
         // @ Arg1 : 親となるエディターオブジェクト
         // @ Arg2 : ウィンドウ名
         // @ Arg3 : ウィンドウでの制御(Default : ウィンドウ処理、ウィンドウ&ImGuiウィンドウxボタン非表示)
-        // @ Arg4 : フラグ設定(Default : 何も設定しない)
-        // @ Arg5 : ウィンドウサイズ(Default : 負数)
+        // @ Arg4 : ウィンドウサイズ(Default : 負数)
+        // @ Arg5 : フラグ設定(Default : 何も設定しない)
         EditorPopupWindow(EditorObject* editorObject, const std::string& name, const EditorPopupControl popupControl,
-            const ImGuiWindowFlags& flag = ImGuiWindowFlags_None, const Eigen::Vector2i& = { -1,-1 });
+            const Eigen::Vector2i & = { -1,-1 }, const ImGuiWindowFlags& flag = ImGuiWindowFlags_None);
 
     private:
         void UpdateWindow(void) override;
@@ -110,7 +110,7 @@ namespace EtherEngine {
     // コンストラクタ
     template <EditorMessagePopupType Type>
     EditorMessagePopup<Type>::EditorMessagePopup(EditorObject* editorObject, const std::string& name, const std::string& message, const EditorMessagePopupResult& result)
-        : EditorPopupWindow(editorObject, name, EditorPopupControl::None, ImGuiWindowFlags_NoCollapse, {600,400})
+        : EditorPopupWindow(editorObject, name, EditorPopupControl::None, {600,400}, ImGuiWindowFlags_NoCollapse)
         , m_message(message) 
         , m_result(result == nullptr ? decltype(m_result)() : decltype(m_result)(result)) {
         //----- 念のための Result 初期化

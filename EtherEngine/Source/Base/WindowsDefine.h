@@ -32,6 +32,9 @@ namespace EtherEngine {
             const std::string WINDOW_EXPLORER_HIERARCHY = ImGuiDefine::Name::WINDOW_EXPLORER + " HierarchyView";
             const std::string WINDOW_EXPLORER_CONTENTS = ImGuiDefine::Name::WINDOW_EXPLORER + " ContentsView";
         }
+        namespace Name {
+            const std::string WINDOW_PROGRESS_TITLE = "Progress...";
+        }
     }
 }
 

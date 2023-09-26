@@ -42,7 +42,7 @@ namespace EtherEngine {
 
             //----- Refresh
             if (ImGui::Button("Script Refresh")) {
-                MSVCMediation::Get()->Command(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
+                MSVCMediation::Get()->WriteCmd(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
             }
         }
     }

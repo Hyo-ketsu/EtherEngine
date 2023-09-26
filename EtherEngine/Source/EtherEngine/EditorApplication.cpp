@@ -3,6 +3,7 @@
 #include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
+#include <Base/BaseDefines.h>
 #include <Base/GameObjectUpdater.h>
 #include <C++CLI/C++CLIInit.h>
 #include <C++CLI/AssemblyHolder.h>
@@ -10,6 +11,7 @@
 #include <EtherEngine/MSVCMediation.h>
 #include <EtherEngine/ProjectMediation.h> 
 #include <EtherEngine/EditorPopupWindow.h>
+#include <EtherEngine/EditorAssemblyRefresh.h>
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
 #include <DirectX/ModelComponent.h>
@@ -110,6 +112,9 @@ namespace EtherEngine {
         //----- VS等の設定
         // @ MEMO : 後で実装する
 
+        // @ MEMO : テスト
+        Refresh::AssemblyRefresh();
+
         //----- メッセージループ
         MSG message;
         Timer fpsTimer;
@@ -136,7 +141,21 @@ namespace EtherEngine {
                 if (AssemblyHolder::IsLoadAssemblyEnable() == false) {
                     //----- 存在しない。読み込みまたはリフレッシュ
                     // @ MEMO : 現時点では即リフレッシュしているがのちに「最新のファイルがある」場合は単なる読み込みにするべき
-                    AssemblyHolder::LoadAssembly()
+                    if (AssemblyHolder::LoadAssembly(FileDefine::PROJECTNAME + ".dll") == false) {
+                        int hoge = 1;
+                        auto fuga = MSVCMediation::Get()->ReadCmd();
+                        auto piyo = MSVCMediation::Get()->ReadCmdError();
+                        if (fuga != "") {
+                            int foo = 1;
+                        }
+                        if (piyo != "") {
+                            int foo = 1;
+                        }
+
+                    }
+                    else {
+                        int hoge = 1;
+                    }
                 }
 
                 //----- FPS制御

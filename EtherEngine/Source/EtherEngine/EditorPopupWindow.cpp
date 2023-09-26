@@ -6,7 +6,7 @@
 //----- EditorPopupWindow 定義
 namespace EtherEngine {
     // コンストラクタ
-    EditorPopupWindow::EditorPopupWindow(EditorObject* editorObject, const std::string& name, EditorPopupControl popupControl, const ImGuiWindowFlags& flag, const Eigen::Vector2i& windowSize)
+    EditorPopupWindow::EditorPopupWindow(EditorObject* editorObject, const std::string& name, EditorPopupControl popupControl, const Eigen::Vector2i& windowSize, const ImGuiWindowFlags& flag)
         : EditorWindowBase(editorObject, name, true, flag | ImGuiWindowFlags_NoCollapse, EditorWindowSizeType::AutoSizeFixed, windowSize) 
         , m_popupControl(popupControl) {
         //----- 
