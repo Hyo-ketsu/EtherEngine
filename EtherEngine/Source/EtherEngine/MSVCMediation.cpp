@@ -105,7 +105,6 @@ namespace EtherEngine {
         DWORD readBytes;    // “Ç‚İ‚Ü‚ê‚½ƒoƒCƒg”
 
         //----- “Ç‚İ‚İ
-        WaitForSingleObject(m_processInfo.hProcess, 10000);
         while (ReadFile(m_childRead, buffer, sizeof(buffer), &readBytes, NULL) && readBytes > 0) {
             ret.append(buffer, readBytes);
         }
