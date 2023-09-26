@@ -20,25 +20,32 @@ namespace EtherEngine {
 
 
         // コマンド入力
-        // @ Ret  : コマンド入力が成功したか
-        // @ Arg1 : コマンド入力
-        bool Command(const std::string& commnad);
-
-
-        // 
-
+        // @ Arg1 : 入力コマンド
+        void WriteCmd(const std::string& commnad);
+        // コマンドプロンプト出力取得
+        // @ Memo : この関数は待ちなどは一切行いません。
+        // @ Ret  : 取得結果
+        std::string ReadCmd(void);
+        // コマンドプロンプトエラー出力取得
+        // @ Memo : この関数は待ちなどは一切行いません。
+        // @ Ret  : 取得結果
+        std::string ReadCmdError(void);
 
     private:
         // コンストラクタ
         MSVCMediation(void);
 
+
+        // ハンドルのクローズ
+        void HandleClose(void);
+
         friend class Singleton<MSVCMediation>;
 
-        std::string m_output;   // 外部出力
-        std::string m_error;    // エラー出力
         PROCESS_INFORMATION m_processInfo;
-        HANDLE m_childStdInRead;
-        HANDLE m_childStdInWrite;
+        HANDLE m_childRead;        // 読み取り用パイプ
+        HANDLE m_childWrite;       // 書き込み用パイプ
+        HANDLE m_childErrorRead;   // エラー読み取り用パイプ
+        HANDLE m_childErrorWrite;  // エラー書き込み用パイプ
     };
 }
 
