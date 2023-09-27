@@ -14,28 +14,27 @@ namespace EtherEngine {
         STARTUPINFO startupInfo;
         ZeroMemory(&startupInfo, sizeof(startupInfo));
         ZeroMemory(&m_processInfo, sizeof(m_processInfo));
-        startupInfo.cb = sizeof(startupInfo);
 
         //----- パイプ作成
         SECURITY_ATTRIBUTES saAttr;
         saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
         saAttr.bInheritHandle = TRUE;
         saAttr.lpSecurityDescriptor = NULL;
-        if (!CreatePipe(&m_childStdInRead, &m_childStdInWrite, &saAttr, 0)) {
+        if (!CreatePipe(&m_childRead, &m_childWrite, &saAttr, 0) ||
+            !CreatePipe(&m_read, &m_write, &saAttr, 0)) {
             //----- パイプが作成できなかった。例外送出
             throw std::exception("Error!");
         }
 
         //----- 
-        SetHandleInformation(m_childStdInWrite, HANDLE_FLAG_INHERIT, 0);
-
-        //-----
-        startupInfo.cb = sizeof(STARTUPINFO);
-        startupInfo.hStdError = GetStdHandle(STD_ERROR_HANDLE); // Use the standard error handle of the parent process
-        startupInfo.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE); // Use the standard output handle of the parent process
-        startupInfo.hStdInput = m_childStdInRead; // Use the read end of the input pipe for the child process
+        startupInfo.cb = sizeof(startupInfo);
+        startupInfo.hStdError = GetStdHandle(STD_ERROR_HANDLE);
+        startupInfo.hStdOutput = m_write;
+        startupInfo.hStdInput = m_childRead;
         startupInfo.dwFlags |= STARTF_USESTDHANDLES;
 #ifdef _DEBUG
+        startupInfo.wShowWindow = SW_NORMAL;
+#else 
         startupInfo.wShowWindow = SW_HIDE;
 #endif // _DEBUG
 
@@ -58,14 +57,14 @@ namespace EtherEngine {
             &m_processInfo
         )) {
             //----- 立ち上げができなかった。例外送出
-            CloseHandle(m_childStdInRead);
-            CloseHandle(m_childStdInWrite);
+            HandleClose();
             throw std::exception("Error!");
         }
+        Sleep(1000);
     }
     // 終了処理
     void MSVCMediation::Uninit(void) {
-        CloseHandle(m_childStdInWrite);
+        HandleClose();
 
         WaitForSingleObject(m_processInfo.hProcess, INFINITE);
 
@@ -75,26 +74,68 @@ namespace EtherEngine {
 
 
     // コマンド入力
-    bool MSVCMediation::Command(const std::string& command) {
+    void MSVCMediation::WriteCmd(const std::string& command) {
         //----- 変数宣言
-        DWORD bytesWritten;
+        DWORD bytesWritten; // 書き込みバイト数
         char inputCommand[1024];
 
-        //----- コマンドの設定
+        //----- コマンド設定
         strcpy_s(inputCommand, command.c_str());
         inputCommand[strlen(inputCommand) + 1] = '\0';
         inputCommand[strlen(inputCommand)] = '\n';
 
         //----- パイプ書き込み
         if (!WriteFile(
-            m_childStdInWrite,
+            m_childWrite,
             inputCommand,
             strlen(inputCommand),
             &bytesWritten,
             NULL
         )) {
             //----- 書き込めない。例外送出
+            HandleClose();
             throw std::exception("Error! Non write pipe");
         }
+    }
+    // コマンドプロンプト出力取得
+    std::string MSVCMediation::ReadCmd(void) {
+        //----- 変数宣言
+        std::string ret;    // 読み込まれた文字列
+        char buffer[256];   // 読み込みバッファ
+        DWORD readBytes;    // 読み込まれたバイト数
+
+        //----- 読み込み
+        if (ReadFile(m_read, buffer, sizeof(buffer), &readBytes, NULL) && readBytes > 0) {
+            ret.append(buffer, readBytes);
+        }
+
+        //----- 返却
+        return ret;
+    }
+    // コマンドプロンプトエラー出力取得
+    std::string MSVCMediation::ReadCmdError(void) {
+        //----- 変数宣言
+        std::string ret;    // 読み込まれた文字列
+        char buffer[256];   // 読み込みバッファ
+        DWORD readBytes;    // 読み込まれたバイト数
+
+        //----- 読み込み
+        if (ReadFile(m_childErrorRead, buffer, sizeof(buffer), &readBytes, NULL) && readBytes > 0) {
+            ret.append(buffer, readBytes);
+        }
+
+        //----- 返却
+        return ret;
+    }
+
+
+    // ハンドルのクローズ
+    void MSVCMediation::HandleClose(void) {
+        if (!CloseHandle(m_read)) throw std::exception("Error! Pipe close");
+        if (!CloseHandle(m_write)) throw std::exception("Error! Pipe close");
+        if (!CloseHandle(m_childRead)) throw std::exception("Error! Pipe close");
+        if (!CloseHandle(m_childWrite)) throw std::exception("Error! Pipe close");
+        if (!CloseHandle(m_childErrorRead)) throw std::exception("Error! Pipe close");
+        if (!CloseHandle(m_childErrorWrite)) throw std::exception("Error! Pipe close");
     }
 }
