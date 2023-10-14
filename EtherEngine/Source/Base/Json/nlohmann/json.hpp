@@ -3988,19 +3988,19 @@ namespace detail
         return value;
     }
 
-    template<typename... Types>
-    using all_integral = conjunction<std::is_integral<Types>...>;
+    template<typename... ArgsType>
+    using all_integral = conjunction<std::is_integral<ArgsType>...>;
 
-    template<typename... Types>
-    using all_signed = conjunction<std::is_signed<Types>...>;
+    template<typename... ArgsType>
+    using all_signed = conjunction<std::is_signed<ArgsType>...>;
 
-    template<typename... Types>
-    using all_unsigned = conjunction<std::is_unsigned<Types>...>;
+    template<typename... ArgsType>
+    using all_unsigned = conjunction<std::is_unsigned<ArgsType>...>;
 
     // there's a disjunction trait in another PR; replace when merged
-    template<typename... Types>
+    template<typename... ArgsType>
     using same_sign = std::integral_constant < bool,
-        all_signed<Types...>::value || all_unsigned<Types...>::value >;
+        all_signed<ArgsType...>::value || all_unsigned<ArgsType...>::value >;
 
     template<typename OfType, typename T>
     using never_out_of_range = std::integral_constant < bool,

@@ -6,7 +6,7 @@
 namespace EtherEngine {
     namespace Refresh {
         // エラー内容
-        enum class RefreshError {
+        enum class RefreshStateType {
             Ok = 0,   // 問題なし
             CurrentlyRefresh,       // 現在リフレッシュ中
             NoneLoadProject,        // プロジェクトが読み込まれていない
@@ -18,7 +18,7 @@ namespace EtherEngine {
 
         // リフレッシュを行う
         // @ Ret  : リフレッシュ状況
-        RefreshError AssemblyRefresh(void);
+        RefreshStateType AssemblyRefresh(void);
     }
 }
 

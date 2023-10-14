@@ -139,23 +139,8 @@ namespace EtherEngine {
 
                 //----- アセンブリ存在チェック
                 if (AssemblyHolder::IsLoadAssemblyEnable() == false) {
-                    //----- 存在しない。読み込みまたはリフレッシュ
-                    // @ MEMO : 現時点では即リフレッシュしているがのちに「最新のファイルがある」場合は単なる読み込みにするべき
-                    if (AssemblyHolder::LoadAssembly(FileDefine::PROJECTNAME + ".dll") == false) {
-                        int hoge = 1;
-                        auto fuga = MSVCMediation::Get()->ReadCmd();
-                        auto piyo = MSVCMediation::Get()->ReadCmdError();
-                        if (fuga != "") {
-                            int foo = 1;
-                        }
-                        if (piyo != "") {
-                            int foo = 1;
-                        }
-
-                    }
-                    else {
-                        int hoge = 1;
-                    }
+                    //----- Refreshを行う
+                    ProjectMediation::Get()->RefreshAssembly();
                 }
 
                 //----- FPS制御

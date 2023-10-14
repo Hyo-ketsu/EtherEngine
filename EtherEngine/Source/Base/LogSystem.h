@@ -42,6 +42,8 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         LogSystem(void) = delete;
+        // デストラクタ
+        ~LogSystem(void) = delete;
         // コピーコンストラクタ
         LogSystem(const LogSystem& copy) = delete;
         // ムーブコンストラクタ

@@ -71,6 +71,7 @@
     <ClCompile Include="..\..\Source\Base\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
@@ -95,6 +96,7 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
     <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
     <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
@@ -138,6 +140,7 @@
     <ClInclude Include="..\..\Source\Base\LogSystem.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
+    <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
@@ -152,6 +155,7 @@
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
+    <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />
     <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />

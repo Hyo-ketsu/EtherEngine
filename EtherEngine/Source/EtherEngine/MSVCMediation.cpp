@@ -60,7 +60,7 @@ namespace EtherEngine {
             HandleClose();
             throw std::exception("Error!");
         }
-        Sleep(1000);
+        Sleep(3000);   // ‚¨‚¨‚Ş‚Ë‹N“®‚·‚é‚Ü‚Å‘Ò‚Â
     }
     // I—¹ˆ—
     void MSVCMediation::Uninit(void) {

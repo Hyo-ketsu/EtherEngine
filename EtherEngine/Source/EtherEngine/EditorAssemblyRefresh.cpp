@@ -9,26 +9,27 @@ namespace EtherEngine {
     namespace Refresh {
         // リフレッシュを行う
         // @ MEMO : 暫定的処理。プログレスバーなどの表示を行わない
-        RefreshError AssemblyRefresh(void) {
+        RefreshStateType AssemblyRefresh(void) {
         //----- 静的変数宣言
         static std::shared_ptr<ProgressClass> s_progress;
 
         //----- 既にリフレッシュを行っているか
         if (s_progress != nullptr && s_progress->IsEnd() == false) {
-            return RefreshError::CurrentlyRefresh;
+            return RefreshStateType::CurrentlyRefresh;
         }
 
         //----- リフレッシュは行われていない。新しくリフレッシュ
 
+
         //----- まずプロジェクトが既に読み込みできるか(ガード節
-        if (ProjectMediation::Get()->GetVcxproj().Get() == "") return RefreshError::NoneLoadProject;
+        if (ProjectMediation::Get()->GetVcxproj().Get() == "") return RefreshStateType::NoneLoadProject;
 
         //----- ビルド
         try {
             MSVCMediation::Get()->WriteCmd(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
         }
         catch (...) {
-            return RefreshError::InputCommandFailed;
+            return RefreshStateType::InputCommandFailed;
         }
 
         //----- プログレスバー出力

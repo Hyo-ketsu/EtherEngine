@@ -28,6 +28,7 @@ namespace EtherEngine {
     // エディターのファイル構成
     namespace EditorFileDefine {
         const std::string EDITOR_SETTING = "EditorSetting"; // エディターについての設定を保持しているディレクトリ
+        const std::string EDITOR_MIDDLE_DATA = "Object";    // エディターの中間ファイル(アセンブリやプロジェクト自体の中間ファイル等)が格納されているディレクトリ
     }
 }
 

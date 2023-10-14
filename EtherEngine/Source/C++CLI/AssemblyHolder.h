@@ -21,11 +21,6 @@ namespace EtherEngine {
                 return ms_assembly;
             }
         }
-        // 現在読み込みアセンブリが存在するか
-        // @ Ret  : アセンブリを取得しているか
-        static bool IsLoadAssemblyEnable(void) {
-            return ms_assembly == nullptr ? false : true;
-        }
 
 
         // アセンブリを読み込む
@@ -44,8 +39,17 @@ namespace EtherEngine {
             ms_assembly = nullptr;
         }
 
+
+        // 現在読み込みアセンブリが存在するか
+        // @ Ret  : アセンブリを取得しているか
+        static bool IsLoadAssemblyEnable(void) {
+            return ms_assembly == nullptr ? false : true;
+        }
+
     private:
         static System::Reflection::Assembly^ ms_assembly = nullptr;   // 現在保持しているアセンブリ
+        static bool ms_isBuild = true;      // buildが成功しているか
+        static bool ms_isUpdate = false;    // ソリューションが更新されているか
     };
 }
 
