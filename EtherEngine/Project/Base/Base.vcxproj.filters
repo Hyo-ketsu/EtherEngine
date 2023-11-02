@@ -1,387 +1,185 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\AtomicData">
+    <Filter Include="AtomicData">
       <UniqueIdentifier>{974882ee-40d0-4758-aa54-ab1dfa7a822d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\AtomicData">
-      <UniqueIdentifier>{37518dcb-0083-4c67-9fa1-9f63b244c7d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Collision">
-      <UniqueIdentifier>{b9b410f4-b595-4bfc-866d-3d91683d2c54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Collision">
+    <Filter Include="Collision">
       <UniqueIdentifier>{d1c83f75-fc2b-4d8e-b0e7-8e15a642b2f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Collision\CollisionFunction">
+    <Filter Include="Collision\CollisionFunction">
       <UniqueIdentifier>{039a06a6-fe9b-4700-8c11-51e181d72871}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Collision\CollisionFunction">
-      <UniqueIdentifier>{f8b884b2-e8bb-435d-bd73-2c7c1c6ded12}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\XML">
+    <Filter Include="XML">
       <UniqueIdentifier>{410f7e69-91fe-4232-9ed8-838182815b59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\XML">
-      <UniqueIdentifier>{0431ad58-0666-41c8-a62d-af6d7634be30}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\GameObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Atomic.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Transform.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ObejctTag.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\MainFunction.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Singleton.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Timer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\HandleSystem.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Random.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\SpinLock.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Base\AtomicData.cpp">
-      <Filter>ソース ファイル\AtomicData</Filter>
+      <Filter>AtomicData</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp">
-      <Filter>ソース ファイル\AtomicData</Filter>
+      <Filter>AtomicData</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp">
-      <Filter>ソース ファイル\AtomicData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\SceneData.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ComponentBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\HandleHelper.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Scene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\SceneLoader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\RandomManage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Handle.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\BaseObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\CameraBase.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Converter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\BaseDefines.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\CameraComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\MathUtility.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\CameraStorage.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\IDClass.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\DrawComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\BaseInput.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\RAIIClass.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\LogSystem.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>AtomicData</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionBase.cpp">
-      <Filter>ソース ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionComponent.cpp">
-      <Filter>ソース ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionStorage.cpp">
-      <Filter>ソース ファイル\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\StorageSystem.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionSphere.cpp">
-      <Filter>ソース ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionFunction.cpp">
-      <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
+      <Filter>Collision\CollisionFunction</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionHelper.cpp">
-      <Filter>ソース ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionSphereXSphereFunction.cpp">
-      <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\PathClass.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ProjectData.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>Collision\CollisionFunction</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp">
-      <Filter>ソース ファイル\XML</Filter>
+      <Filter>XML</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionBoxXBox.cpp">
-      <Filter>ソース ファイル\Collision\CollisionFunction</Filter>
+      <Filter>Collision\CollisionFunction</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Base\BaseUtility.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\ThreadPool.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\MessageQue.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <ClCompile Include="..\..\Source\Base\Atomic.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp" />
+    <ClCompile Include="..\..\Source\Base\BaseUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\CameraBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\CameraStorage.cpp" />
+    <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
+    <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\Converter.cpp" />
+    <ClCompile Include="..\..\Source\Base\DrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
+    <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp" />
+    <ClCompile Include="..\..\Source\Base\Handle.cpp" />
+    <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
+    <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
+    <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
+    <ClCompile Include="..\..\Source\Base\LogSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
+    <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
+    <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
+    <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
+    <ClCompile Include="..\..\Source\Base\ProjectData.cpp" />
+    <ClCompile Include="..\..\Source\Base\RAIIClass.cpp" />
+    <ClCompile Include="..\..\Source\Base\Random.cpp" />
+    <ClCompile Include="..\..\Source\Base\RandomManage.cpp" />
+    <ClCompile Include="..\..\Source\Base\Scene.cpp" />
+    <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
+    <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
+    <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
+    <ClCompile Include="..\..\Source\Base\SpinLock.cpp" />
+    <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
+    <ClCompile Include="..\..\Source\Base\Timer.cpp" />
+    <ClCompile Include="..\..\Source\Base\Transform.cpp" />
+    <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\GameObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Atomic.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Transform.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ObejctTag.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\MainFunction.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Singleton.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Timer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\HandleSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Random.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\SpinLock.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\AtomicData.h">
-      <Filter>ヘッダー ファイル\AtomicData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\AtomicReadData.h">
-      <Filter>ヘッダー ファイル\AtomicData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\NonAtomicData.h">
-      <Filter>ヘッダー ファイル\AtomicData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\SceneData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ComponentBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\HandleHelper.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Scene.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\SceneLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\RandomManage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Handle.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\WindowsDefine.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\BaseObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\GameObjectStorage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ConceptUtility.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\GraphicDefines.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CameraBase.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Converter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\BaseDefines.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\MathUtility.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CameraComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CameraStorage.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\IDClass.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\DrawComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\BaseHelper.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ComponentHelper.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\BaseInput.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\RAIIClass.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\LogSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
+      <Filter>XML</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionBase.h">
-      <Filter>ヘッダー ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionComponent.h">
-      <Filter>ヘッダー ファイル\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CollisionStorage.h">
-      <Filter>ヘッダー ファイル\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\StorageSystem.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CollisionSphere.h">
-      <Filter>ヘッダー ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionFunction.h">
-      <Filter>ヘッダー ファイル\Collision\CollisionFunction</Filter>
+      <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionHelper.h">
-      <Filter>ヘッダー ファイル\Collision</Filter>
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\CollisionSphere.h">
+      <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\CollisionSphereXSphereFunction.h">
-      <Filter>ヘッダー ファイル\Collision\CollisionFunction</Filter>
+      <Filter>Collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\PathClass.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\Source\Base\CollisionStorage.h">
+      <Filter>Collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
-      <Filter>ヘッダー ファイル\XML</Filter>
+    <ClInclude Include="..\..\Source\Base\NonAtomicData.h">
+      <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\Source\Base\AtomicData.h">
+      <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\BaseUtility.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\Source\Base\AtomicReadData.h">
+      <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\ThreadPool.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Base\MessageQue.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\Atomic.h" />
+    <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
+    <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
+    <ClInclude Include="..\..\Source\Base\BaseInput.h" />
+    <ClInclude Include="..\..\Source\Base\BaseObject.h" />
+    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
+    <ClInclude Include="..\..\Source\Base\BaseUtility.h" />
+    <ClInclude Include="..\..\Source\Base\CameraBase.h" />
+    <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
+    <ClInclude Include="..\..\Source\Base\CameraStorage.h" />
+    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h" />
+    <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
+    <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
+    <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
+    <ClInclude Include="..\..\Source\Base\Converter.h" />
+    <ClInclude Include="..\..\Source\Base\DrawComponent.h" />
+    <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h" />
+    <ClInclude Include="..\..\Source\Base\GameObject.h" />
+    <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />
+    <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
+    <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
+    <ClInclude Include="..\..\Source\Base\Handle.h" />
+    <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
+    <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
+    <ClInclude Include="..\..\Source\Base\IDClass.h" />
+    <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
+    <ClInclude Include="..\..\Source\Base\LogSystem.h" />
+    <ClInclude Include="..\..\Source\Base\MainFunction.h" />
+    <ClInclude Include="..\..\Source\Base\MathUtility.h" />
+    <ClInclude Include="..\..\Source\Base\MessageQue.h" />
+    <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
+    <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
+    <ClInclude Include="..\..\Source\Base\PathClass.h" />
+    <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
+    <ClInclude Include="..\..\Source\Base\Random.h" />
+    <ClInclude Include="..\..\Source\Base\RandomManage.h" />
+    <ClInclude Include="..\..\Source\Base\Scene.h" />
+    <ClInclude Include="..\..\Source\Base\SceneData.h" />
+    <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
+    <ClInclude Include="..\..\Source\Base\Singleton.h" />
+    <ClInclude Include="..\..\Source\Base\SpinLock.h" />
+    <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
+    <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
+    <ClInclude Include="..\..\Source\Base\Timer.h" />
+    <ClInclude Include="..\..\Source\Base\Transform.h" />
+    <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />
   </ItemGroup>
 </Project>

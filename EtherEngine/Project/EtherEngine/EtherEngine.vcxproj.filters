@@ -1,264 +1,221 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Test">
-      <UniqueIdentifier>{c710d359-8a84-40eb-8a03-50c920e02a4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Test">
-      <UniqueIdentifier>{d51be2ee-43a9-42e0-b837-e5b361166874}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\EngineSystem">
-      <UniqueIdentifier>{40bb524f-6036-4ad9-ac41-28fea36554fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\EngineObject">
-      <UniqueIdentifier>{ece1d101-09bc-47e5-814f-8b54d142e28e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\EngineSystem">
-      <UniqueIdentifier>{d450e880-a4ef-4ca5-9ec0-fa473906712c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\EngineObject">
+    <Filter Include="EngineObject">
       <UniqueIdentifier>{418d382b-67f7-43cf-b731-4e9a8ba5911e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\EngineSystem\FileFunction">
-      <UniqueIdentifier>{0501d020-62a6-4f80-b2dd-e4b88f4de955}</UniqueIdentifier>
+    <Filter Include="EngineSystem">
+      <UniqueIdentifier>{d450e880-a4ef-4ca5-9ec0-fa473906712c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\EngineSystem\FileFunction">
+    <Filter Include="EngineSystem\FileFunction">
       <UniqueIdentifier>{48371787-2f89-438a-bf3f-4ff8dcf29cc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ImGui">
-      <UniqueIdentifier>{4c5c8e90-dd08-41c2-a80e-1403f666e062}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\ImGui">
+    <Filter Include="ImGui">
       <UniqueIdentifier>{24e10bda-9c1e-4a80-be77-2e175e0c8a32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{d51be2ee-43a9-42e0-b837-e5b361166874}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
-      <Filter>ソース ファイル\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentHelper.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorDefine.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorCamera.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\Test\TestComponent.cpp">
-      <Filter>ソース ファイル\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
+      <Filter>EngineObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorExplorerWindow.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp">
+      <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp">
+      <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
+      <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp">
-      <Filter>ソース ファイル\EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp">
-      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp">
-      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp">
-      <Filter>ソース ファイル\EngineSystem\FileFunction</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp">
-      <Filter>ソース ファイル\ImGui</Filter>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp">
+      <Filter>EngineObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorPopupWindow.cpp">
-      <Filter>ソース ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp">
+      <Filter>EngineObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp">
+      <Filter>EngineSystem\FileFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp">
+      <Filter>EngineSystem\FileFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp">
+      <Filter>EngineSystem\FileFunction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentBase.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorComponentHelper.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorDefine.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorObjectUpdater.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\imgui_demo.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestComponent.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameMain.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
-      <Filter>ヘッダー ファイル\ImGui</Filter>
+      <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestDefine.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObject.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestGameObjectModel.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentBase.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorComponentHelper.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorDefine.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectUpdater.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorCamera.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h">
-      <Filter>ヘッダー ファイル\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>Test</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h">
-      <Filter>ヘッダー ファイル\EngineSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileCreater.h">
-      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+      <Filter>EngineSystem\FileFunction</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h">
-      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+      <Filter>EngineSystem\FileFunction</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h">
-      <Filter>ヘッダー ファイル\EngineSystem\FileFunction</Filter>
+      <Filter>EngineSystem\FileFunction</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h">
-      <Filter>ヘッダー ファイル\ImGui</Filter>
+      <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorPopupWindow.h">
-      <Filter>ヘッダー ファイル\EngineObject</Filter>
+      <Filter>EngineObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
   </ItemGroup>
 </Project>

@@ -1,106 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\DirectX.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\Geometry.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\ShaderClass.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\Texture.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\Window.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\Model.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\ModelComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\Mesh.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Model.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\ModelComponent.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\ShaderClass.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Texture.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\Window.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\DirectX.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\ComPointer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\Geometry.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\ShaderClass.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\Texture.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\Window.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\WindowRetention.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\Model.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\ModelComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
+    <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
+    <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
+    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
+    <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h" />
+    <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
+    <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
+    <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />
+    <ClInclude Include="..\..\Source\DirectX\Model.h" />
+    <ClInclude Include="..\..\Source\DirectX\ModelComponent.h" />
+    <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h" />
+    <ClInclude Include="..\..\Source\DirectX\ShaderClass.h" />
+    <ClInclude Include="..\..\Source\DirectX\Texture.h" />
+    <ClInclude Include="..\..\Source\DirectX\Window.h" />
+    <ClInclude Include="..\..\Source\DirectX\WindowRetention.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\Source\DirectX\Shader\PS_Test.hlsl">

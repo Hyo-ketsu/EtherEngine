@@ -1,129 +1,115 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Base">
+    <Filter Include="Base">
       <UniqueIdentifier>{74c69215-a139-48a8-8c28-238792a7be24}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Component">
+    <Filter Include="Component">
       <UniqueIdentifier>{c311ea5a-5913-45ef-ae41-fa37b1788d69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Base">
-      <UniqueIdentifier>{5a16b5f0-4e88-40f6-a8bf-78dfb305d2b9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Component">
-      <UniqueIdentifier>{7345955d-c562-4623-9905-010cbc716859}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\C++CLI\UserComponent.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\AttributeDefine.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\C++CLIUtility.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\ComponentInterface.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\GameComponent.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\GameDrawComponent.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\ModelComponent.cpp">
-      <Filter>ソース ファイル\Component</Filter>
+      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\UserDrawComponent.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\CameraComponent.cpp">
-      <Filter>ソース ファイル\Component</Filter>
+      <Filter>Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\C++CLIInit.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\GameApplication.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\BaseMainWindow.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\ModelRender.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\ManageSingleton.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\C++CLI\AssemblyHolder.cpp">
-      <Filter>ソース ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\C++CLI\AssemblyHolder.h">
+      <Filter>Base</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\AttributeDefine.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\C++CLIUtility.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\ComponentInterface.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\GameComponent.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\UserComponent.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\UserDrawComponent.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\ModelRender.h">
-      <Filter>ヘッダー ファイル\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\CameraComponent.h">
-      <Filter>ヘッダー ファイル\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\ModelComponent.h">
-      <Filter>ヘッダー ファイル\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\C++CLIInit.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\GameApplication.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\BaseMainWindow.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\C++CLI\AssemblyHolder.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+    <ClInclude Include="..\..\Source\C++CLI\C++CLIInit.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\stdafx\C++CLIStdafx.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\C++CLIUtility.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\ComponentInterface.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\GameApplication.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\GameComponent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\GameDrawComponent.h">
+      <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\C++CLI\ManageSingleton.h">
-      <Filter>ヘッダー ファイル\Base</Filter>
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\UserComponent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\UserDrawComponent.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\CameraComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\ModelComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\C++CLI\ModelRender.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
