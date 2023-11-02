@@ -59,8 +59,20 @@ namespace EtherEngine {
         // 画面表示ログを消去する
         static void DeleteLogWindowMessage(void);
 
+
+        // ビルド結果のメッセージをログに追加する
+        // @ Memo : 改行が自動的に行われます
+        // @ Arg1 : 追加する行
+        static void AddBuildLogMessage(const std::string& message);
+        // ビルド結果のログを取得する
+        // @ Ret  : ビルドログ
+        static std::string GetBuildLogMessage(void);
+        // ビルドログをすべて消去する
+        static void DeleteBuildLogMessage(void);
+
     private:
         static std::vector<LogWindowMessage> ms_logWindowMessage;    // 画面表示のログ
+        static std::string ms_buildLog; // build結果の出力ログ
         static SpinLock ms_spinlock; // スピンロックを提供する
     };
 }

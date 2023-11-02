@@ -7,6 +7,9 @@ namespace EtherEngine {
     // エディター定数定義
     namespace EditorDefine {
         const std::string EDITOR_DEFAULT_SCENE_NAME = "UndefineScene";  // シーンを開いていなかった際につけるシーン名
+        const std::string EDITOR_BUILD_TOOKEN = "@@@";
+        const std::string EDITOR_BUILD_OK = EDITOR_BUILD_TOOKEN + "OK!" + EDITOR_BUILD_TOOKEN;
+        const std::string EDITOR_BUILD_ERROR = EDITOR_BUILD_TOOKEN + "Error!" + EDITOR_BUILD_TOOKEN;
     }
 
 

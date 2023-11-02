@@ -6,6 +6,7 @@
 #include <EtherEngine/EditorSceneSerializer.h>
 #include <EtherEngine/ProjectMediation.h>
 #include <EtherEngine/MSVCMediation.h>
+#include <EtherEngine/EditorAssemblyRefresh.h>
 
 
 //----- EditorDebug ’è‹`
@@ -42,7 +43,7 @@ namespace EtherEngine {
 
             //----- Refresh
             if (ImGui::Button("Script Refresh")) {
-                MSVCMediation::Get()->WriteCmd(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get());
+                Refresh::AssemblyRefresh();
             }
         }
     }

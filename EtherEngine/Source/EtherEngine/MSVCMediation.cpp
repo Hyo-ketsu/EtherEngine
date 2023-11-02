@@ -1,6 +1,14 @@
 #include <EtherEngine/MSVCMediation.h>
 
 
+//----- 定数定義
+namespace EtherEngine {
+    const int READ_COMMAND_SIZE = 256;
+}
+
+
+
+
 //----- MSVCMediation 定義
 namespace EtherEngine {
     // コンストラクタ
@@ -60,7 +68,6 @@ namespace EtherEngine {
             HandleClose();
             throw std::exception("Error!");
         }
-        Sleep(3000);   // おおむね起動するまで待つ
     }
     // 終了処理
     void MSVCMediation::Uninit(void) {
@@ -85,13 +92,7 @@ namespace EtherEngine {
         inputCommand[strlen(inputCommand)] = '\n';
 
         //----- パイプ書き込み
-        if (!WriteFile(
-            m_childWrite,
-            inputCommand,
-            strlen(inputCommand),
-            &bytesWritten,
-            NULL
-        )) {
+        if (!WriteFile(m_childWrite, inputCommand, strlen(inputCommand), &bytesWritten, NULL)) {
             //----- 書き込めない。例外送出
             HandleClose();
             throw std::exception("Error! Non write pipe");
@@ -101,12 +102,17 @@ namespace EtherEngine {
     std::string MSVCMediation::ReadCmd(void) {
         //----- 変数宣言
         std::string ret;    // 読み込まれた文字列
-        char buffer[256];   // 読み込みバッファ
         DWORD readBytes;    // 読み込まれたバイト数
+        char buffer[READ_COMMAND_SIZE] = {'\0'};  // 読み込みバッファ
 
-        //----- 読み込み
-        if (ReadFile(m_read, buffer, sizeof(buffer), &readBytes, NULL) && readBytes > 0) {
+        //----- 読み取りが行えなくなるまで読み込み
+        while (PeekNamedPipe(m_read, NULL, NULL, NULL, NULL, NULL) != 0) {
+            //----- 読み取りと追加
+            ReadFile(m_read, buffer, sizeof(buffer), &readBytes, NULL);
             ret.append(buffer, readBytes);
+
+            //----- これ以上読み取れないなら強制的に終了する
+            if (readBytes != READ_COMMAND_SIZE) break;
         }
 
         //----- 返却

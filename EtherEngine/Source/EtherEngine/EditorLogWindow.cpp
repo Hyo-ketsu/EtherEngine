@@ -1,4 +1,5 @@
 #include <EtherEngine/EditorLogWindow.h>
+#include <EtherEngine/EditorAssemblyRefresh.h>
 
 
 //----- EditorLogWindow 定義
@@ -10,6 +11,7 @@ namespace EtherEngine {
     void EditorLogWindow::UpdateWindow(void) {
         //----- ログの取得
         m_log = LogSystem::GetLogWindowMessage();
+
     }
     void EditorLogWindow::DrawWindow(void) {
         //----- ログ削除ボタン表示
@@ -23,7 +25,11 @@ namespace EtherEngine {
         for (auto&& it : m_log) {
             // @ MEMO : 時間表示がおかしいがまあ放置。後で直す
             //auto message = std::format("{:%X}", it.m_timeStamp) + " : " + it.m_message;
-            //ImGui::Text(message.c_str());
+            ImGui::Text(it.m_message.c_str());
+        }
+        ImGui::Text("BuildLog");
+        for (auto&& it : Refresh::GetRefreshLog()) {
+            int hoge = 1;//ImGui::Text(it)
         }
         ImGui::EndChild();
     }

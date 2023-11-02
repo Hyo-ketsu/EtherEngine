@@ -68,6 +68,8 @@ namespace EtherEngine {
                 m_hwnd.value()); },
             [&]() { m_imGui.reset(); }
         );
+
+        Sleep(3000);   // おおむね起動するまで待つ
     }
     // 初期化終了後関数
     void EditorApplication::EndInitLateFunction(void) {
@@ -86,9 +88,6 @@ namespace EtherEngine {
         //----- テストウィンドウ
         auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
         testWindow.GetAtomicData().AddComponent<EditorDebugWindow>();
-
-        EditorMessagePopupResult result{};
-        CreatePopWindow<EditorMessagePopup<EditorMessagePopupType::YesNoCancel>>(std::string("Hoge"), std::string("Fuga"), result);
 
         ////----- テストコンポーネント
         //auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
@@ -138,9 +137,11 @@ namespace EtherEngine {
                 frameSecond += fpsTimer.GetDeltaTime();
 
                 //----- アセンブリ存在チェック
-                if (AssemblyHolder::IsLoadAssemblyEnable() == false) {
+                if (AssemblyHolder::IsLoadAssemblyEnable() == false && Refresh::GetRefreshState() != Refresh::RefreshStateType::CurrentlyRefresh) {
                     //----- Refreshを行う
-                    ProjectMediation::Get()->RefreshAssembly();
+                    if (false) {
+                        ProjectMediation::Get()->RefreshAssembly();
+                    }
                 }
 
                 //----- FPS制御
