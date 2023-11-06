@@ -21,16 +21,15 @@ namespace EtherEngine {
         }
 
         //----- ログ表示
-        ImGui::BeginChild("LogWindow");
+        //ImGui::BeginChild("LogWindow");
         for (auto&& it : m_log) {
             // @ MEMO : 時間表示がおかしいがまあ放置。後で直す
             //auto message = std::format("{:%X}", it.m_timeStamp) + " : " + it.m_message;
             ImGui::Text(it.m_message.c_str());
         }
         ImGui::Text("BuildLog");
-        for (auto&& it : Refresh::GetRefreshLog()) {
-            int hoge = 1;//ImGui::Text(it)
-        }
-        ImGui::EndChild();
+        auto buildLog = Refresh::GetRefreshLog();
+        ImGui::Text(buildLog.c_str());
+        //ImGui::EndChild();
     }
 }

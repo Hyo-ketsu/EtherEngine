@@ -20,8 +20,7 @@ namespace EtherEngine {
     //----- ビルド
     try {
         MSVCMediation::Get()->WriteCmd(std::string("msbuild ") + ProjectMediation::Get()->GetSln().Get() + " && " +
-            + "if %ERRORLEVEL% equ 0 (echo " + EditorDefine::EDITOR_BUILD_OK + ")"
-            + "if %ERRORLEVEL% neq 0 (echo " + EditorDefine::EDITOR_BUILD_ERROR + ")");
+            + "if %ERRORLEVEL%==0 (echo " + EditorDefine::EDITOR_BUILD_OK + ")" + " ELSE " + "echo " + EditorDefine::EDITOR_BUILD_ERROR + ")");
     }
     catch (...) {
         return RefreshStateType::InputCommandFailed;
@@ -68,7 +67,7 @@ namespace EtherEngine {
         }
 
         //----- ログを追加
-        ms_buildLog = logText;
+        ms_buildLog += logText;
 
         //----- ログの返却
         return ms_buildLog;

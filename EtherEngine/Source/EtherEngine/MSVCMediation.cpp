@@ -106,13 +106,11 @@ namespace EtherEngine {
         char buffer[READ_COMMAND_SIZE] = {'\0'};  // 読み込みバッファ
 
         //----- 読み取りが行えなくなるまで読み込み
-        while (PeekNamedPipe(m_read, NULL, NULL, NULL, NULL, NULL) != 0) {
+        while (PeekNamedPipe(m_read, buffer, 1, &readBytes, NULL, NULL) != FALSE && readBytes != 0) {   // 読み込みが行える、かつ1文字以上でも読み込んだか
             //----- 読み取りと追加
-            ReadFile(m_read, buffer, sizeof(buffer), &readBytes, NULL);
-            ret.append(buffer, readBytes);
-
-            //----- これ以上読み取れないなら強制的に終了する
-            if (readBytes != READ_COMMAND_SIZE) break;
+            if (ReadFile(m_read, buffer, sizeof(buffer), &readBytes, NULL) != FALSE) {
+                ret.append(buffer, readBytes);
+            }
         }
 
         //----- 返却
