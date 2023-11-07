@@ -25,7 +25,7 @@ namespace EtherEngine {
         virtual void Input(const Json& input) = 0;
         // “ü—Í‚·‚é
         // @ Arg1 : “ü—Í•¶Žš—ñ
-        void Input(const std::string& input);
+        void InputString(const std::string& input);
     };
 
 

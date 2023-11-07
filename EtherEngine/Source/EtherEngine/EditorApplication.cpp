@@ -24,6 +24,7 @@
 #include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
 #include <EtherEngine/EditorExplorerWindow.h>
+#include <EtherEngine/EditorDefine.h>
 #endif // _DEBUG
 
 
@@ -31,7 +32,8 @@ namespace EtherEngine {
     // コンストラクタ
     EditorApplication::EditorApplication(void)
         : BaseMainWindow(WindowDefine::Name::EDITOR_APPLICATION)
-        , m_isGameMode(false) {
+        , m_isGameMode(false) 
+        , m_isWindowFunctionEnable(true) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -40,19 +42,44 @@ namespace EtherEngine {
 
     // 初期化前関数
     void EditorApplication::InitFirstFunction(void) {
-        //----- データ読み取り
+        //----- パス等のデータ読み取り
 #ifdef _DEBUG
         m_projectData = std::make_unique<ProjectData>();
-        // @ MEMO : 全て深谷PCのパス等を打ち込んでいます。
+        m_editorData = std::make_unique<EditorData>();
         m_projectData->SetCmdPath("C:\\Windows\\System32\\cmd.exe");
         m_projectData->SetMsvcPath("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\"");
         m_projectData->SetVisualStudioPath("C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com");
-
-        m_projectEditorData = std::make_unique<ProjectEditorData>();
 #endif // _DEBUG
     }
     // 初期化後関数
     void EditorApplication::InitLateFunction(void) {
+        m_initUninitPerformer.AddInitUninit(
+            [&]() { m_imGui = std::make_unique<IMGUI>(
+            m_dxRender.GetAtomicData().GetDevice(),
+            m_dxRender.GetAtomicData().GetContext(),
+            m_hwnd.value()); },
+            [&]() { m_imGui.reset(); }
+        );
+
+//#ifndef _DEBUG
+#ifdef _DEBUG
+        ////----- ファイルパスの読み込み
+        //try {
+        //    auto projectData = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::PROJECT_DATA);
+        //    m_projectData->InputString(projectData);
+        //}
+        //catch (const std::exception& e) {
+        //    //----- ない。ユーザーにどれを使用するか選択させる
+
+        //}
+
+        ////----- プロジェクト設定の読み込み
+        //try {
+        //    auto projectSetting = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::EDITOR_SETTING);
+        //    m_editorData
+        //}
+#endif
+
         m_initUninitPerformer.AddInitUninit(
             [&]() { MSVCMediation::Get()->Init(m_projectData->GetCmdPath(), m_projectData->GetMsvcPath()); },
             []() { MSVCMediation::Get()->Uninit(); }
@@ -60,13 +87,6 @@ namespace EtherEngine {
         m_initUninitPerformer.AddInitUninit(
             [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
             []() { ProjectMediation::Get()->Uninit(); }
-        );
-        m_initUninitPerformer.AddInitUninit(
-            [&]() { m_imGui = std::make_unique<IMGUI>(
-                m_dxRender.GetAtomicData().GetDevice(),
-                m_dxRender.GetAtomicData().GetContext(),
-                m_hwnd.value()); },
-            [&]() { m_imGui.reset(); }
         );
 
         Sleep(3000);   // おおむね起動するまで待つ

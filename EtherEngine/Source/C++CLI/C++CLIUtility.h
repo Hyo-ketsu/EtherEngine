@@ -225,7 +225,7 @@ namespace EtherEngine {
         // ŠO•”“ü—Í‚·‚é
         void Deserialize(const std::string& input) override {
             if constexpr (Concept::BaseOfConcept<UnmanageType, IInOuter>) {
-                dynamic_cast<IInOuter*>(m_maintainer)->Input(input);
+                dynamic_cast<IInOuter*>(m_maintainer)->InputString(input);
             }
             else {
             }

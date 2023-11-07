@@ -8,15 +8,15 @@
 //----- ProjectEditorData 宣言
 namespace EtherEngine {
     // エディター上でのデータを保持しておくクラス
-    class ProjectEditorData : public IInOuter {
+    class EditorData : public IInOuter {
     public:
         // コンストラクタ
         // @ Arg1 : 開くパス
-        ProjectEditorData(const PathClass& path);
+        EditorData(const PathClass& path);
         // 作成のみ行うコンストラクタ
-        ProjectEditorData(void) {}
+        EditorData(void) {}
         // デストラクタ
-        ~ProjectEditorData(void) {}
+        ~EditorData(void) {}
 
 
         // 現在シーンゲッター

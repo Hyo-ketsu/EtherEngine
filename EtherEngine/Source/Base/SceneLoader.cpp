@@ -38,8 +38,7 @@ namespace EtherEngine {
         }
 
         //----- ¶¬
-        auto hoge = RoadFileAll(loadSceneName);
-        nlohmann::json json = nlohmann::json::parse(hoge);
+        nlohmann::json json = nlohmann::json::parse(RoadFileAll(loadSceneName));
         for (auto& it : json["GameObjects"]) {
             auto gameObject = GameObjectStorage::Get()->CreateGameObject();
             gameObject.GetNoAtomicData().Input(it);

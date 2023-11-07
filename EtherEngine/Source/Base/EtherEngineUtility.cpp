@@ -5,7 +5,7 @@
 //----- Jsonインターフェース 定義
 namespace EtherEngine {
     // 入力する
-    void IInOuter::Input(const std::string& input) {
+    void IInOuter::InputString(const std::string& input) {
         Input(Json::parse(input));
     }
 }

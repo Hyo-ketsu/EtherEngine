@@ -139,7 +139,7 @@ namespace EtherEngine {
         if (!CloseHandle(m_write)) throw std::exception("Error! Pipe close");
         if (!CloseHandle(m_childRead)) throw std::exception("Error! Pipe close");
         if (!CloseHandle(m_childWrite)) throw std::exception("Error! Pipe close");
-        if (!CloseHandle(m_childErrorRead)) throw std::exception("Error! Pipe close");
-        if (!CloseHandle(m_childErrorWrite)) throw std::exception("Error! Pipe close");
+        //if (!CloseHandle(m_childErrorRead)) throw std::exception("Error! Pipe close");    // @ MEMO : 例外を吐くのでいったんコメントアウト
+        //if (!CloseHandle(m_childErrorWrite)) throw std::exception("Error! Pipe close");
     }
 }

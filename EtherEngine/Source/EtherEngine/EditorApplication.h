@@ -54,7 +54,7 @@ namespace EtherEngine {
         bool m_isWindowFunctionEnable;  // ウィンドウの機能が有効か
         std::unique_ptr<IMGUI> m_imGui; // 保持しているIMGUI
         std::unique_ptr<ProjectData> m_projectData; // 現在保持しているプロジェクトデータ
-        std::unique_ptr<ProjectEditorData> m_projectEditorData; // 現在保持しているエディターデータ
+        std::unique_ptr<EditorData> m_editorData; // 現在保持しているエディターデータ
 
         friend Singleton<EditorApplication>;
     };

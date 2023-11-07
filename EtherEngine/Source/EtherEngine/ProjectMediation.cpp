@@ -175,7 +175,7 @@ namespace EtherEngine {
         //----- Refreshを実行する
         if (Refresh::AssemblyRefresh() == Refresh::RefreshStateType::Ok) {
             //----- リフレッシュが完了。アセンブリを格納 
-            AssemblyHolder::LoadAssembly(GetVcxproj().GetDirectory() / EditorFileDefine::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll");
+            AssemblyHolder::LoadAssembly(GetVcxproj().GetDirectory() / EditorFileDefine::Directory::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll");
             return true;
         }
         else {

@@ -9,13 +9,13 @@
 //----- ProjectEditorData 定義
 namespace EtherEngine {
     // コンストラクタ
-    ProjectEditorData::ProjectEditorData(const PathClass& path) {
+    EditorData::EditorData(const PathClass& path) {
         Input(path);
     }
 
 
     // 外部出力
-    Json ProjectEditorData::Output(void) {
+    Json EditorData::Output(void) {
         nlohmann::json json;
 
         json["ProjectEditorData"]["CurrentScene"] = m_currentScene;
@@ -23,7 +23,7 @@ namespace EtherEngine {
         return json;
     }
     // 外部入力
-    void ProjectEditorData::Input(const Json& input) {
+    void EditorData::Input(const Json& input) {
         //----- 変数宣言
         nlohmann::json json;
 
