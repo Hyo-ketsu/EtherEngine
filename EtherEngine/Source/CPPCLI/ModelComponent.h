@@ -1,7 +1,7 @@
 #ifndef I_MODELCOMPONENT_H
 #define I_MODELCOMPONENT_H
 #include <DirectX/Model.h>
-#include <C++CLI/UserComponent.h>
+#include <CPPCLI/UserComponent.h>
 
 
 //----- ModelComponent êÈåæ

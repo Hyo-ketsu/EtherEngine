@@ -137,8 +137,8 @@
     <ProjectReference Include="..\Base\Base.vcxproj">
       <Project>{8809734e-0717-4038-9f29-68984d325bf1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\C++CLI\C++CLI.vcxproj">
-      <Project>{acea6d06-056b-4569-9f8a-ec2e3527c469}</Project>
+    <ProjectReference Include="..\CPPCLI\CPPCLI.vcxproj">
+      <Project>{250757d6-44e7-4c42-b57d-2cae39082ee1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\DirectX\DirectX.vcxproj">
       <Project>{75776ccc-0223-4f76-989d-2b9b089281c0}</Project>

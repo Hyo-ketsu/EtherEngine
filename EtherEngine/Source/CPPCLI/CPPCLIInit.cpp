@@ -1,9 +1,9 @@
-#include <C++CLI/C++CLIInit.h>
+#include <CPPCLI/CPPCLIInit.h>
 #include <Base/GameObject.h>
-#include <C++CLI/GameComponent.h>
-#include <C++CLI/GameDrawComponent.h>
-#include <C++CLI/C++CLIUtility.h>
-#include <C++CLI/AssemblyHolder.h>
+#include <CPPCLI/GameComponent.h>
+#include <CPPCLI/GameDrawComponent.h>
+#include <CPPCLI/CPPCLIUtility.h>
+#include <CPPCLI/AssemblyHolder.h>
 
 
 //----- ŠÖ”’è‹`

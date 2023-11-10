@@ -1,9 +1,9 @@
 #ifndef I_USERDRAWCOMPONENT_H
 #define I_USERDRAWCOMPONENT_H
 #include <DirectX/ShaderClass.h>
-#include <C++CLI/UserComponent.h>
-#include <C++CLI/C++CLIUtility.h>
-#include <C++CLI/AttributeDefine.h>
+#include <CPPCLI/UserComponent.h>
+#include <CPPCLI/CPPCLIUtility.h>
+#include <CPPCLI/AttributeDefine.h>
 
 
 //----- UserDrawBaseComponent êÈåæ

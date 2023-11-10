@@ -1,7 +1,7 @@
 #ifndef I_ASSEMBLYHOLDER_H
 #define I_ASSEMBLYHOLDER_H
-#include <C++CLI/ManageSingleton.h>
-#include <C++CLI/C++CLIUtility.h>
+#include <CPPCLI/ManageSingleton.h>
+#include <CPPCLI/CPPCLIUtility.h>
 
 
 //----- AssemblyHolder ’è‹`

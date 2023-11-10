@@ -5,8 +5,8 @@
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
 #include <Base/GameObjectUpdater.h>
-#include <C++CLI/C++CLIInit.h>
-#include <C++CLI/AssemblyHolder.h>
+#include <CPPCLI/CPPCLIInit.h>
+#include <CPPCLI/AssemblyHolder.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/MSVCMediation.h>
 #include <EtherEngine/ProjectMediation.h> 

@@ -1,7 +1,7 @@
 #ifndef I_GAMEAPPLICATION_H
 #define I_GAMEAPPLICATION_H
 #include <DirectX/DirectX.h>
-#include <C++CLI/BaseMainWindow.h>
+#include <CPPCLI/BaseMainWindow.h>
 
 
 namespace EtherEngine {

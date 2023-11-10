@@ -38,7 +38,7 @@ namespace EtherEngine {
         const std::string PROJECTNAME = "EtherEngineProject";   // プロジェクト名
 
         const std::string CPPCLISCRIPT_FILE_STRING = R"(//===== 仮で書いてます。のちに修正してください。=====//
-#include <C++CLI/UserComponent.h>
+#include <CPPCLI/UserComponent.h>
 
 public ref class クラス名 : public UserBaseComponent {
 public:

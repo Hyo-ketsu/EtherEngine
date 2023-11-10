@@ -1,7 +1,7 @@
 #ifndef I_ETHERENGINESTDAFX_H
 #define I_ETHERENGINESTDAFX_H
 #define CPPCLI_CPPCLI_CLASS_DECLARATION
-#include <C++CLI/stdafx/C++CLIStdafx.h>
+#include <CPPCLI/stdafx/CPPCLIStdafx.h>
 
 #include <IMGUI/imgui.h>
 #include <IMGUI/Platform/imgui_impl_dx11.h>

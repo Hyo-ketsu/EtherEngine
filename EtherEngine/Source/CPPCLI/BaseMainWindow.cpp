@@ -1,12 +1,12 @@
-#include <C++CLI/BaseMainWindow.h>
+#include <CPPCLI/BaseMainWindow.h>
 #include <Base/WindowsDefine.h>
 #include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/Timer.h>
-#include <C++CLI/C++CLIInit.h>
-#include <C++CLI/AssemblyHolder.h>
+#include <CPPCLI/CPPCLIInit.h>
+#include <CPPCLI/AssemblyHolder.h>
 
 
 namespace EtherEngine {

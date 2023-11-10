@@ -1,8 +1,8 @@
 #ifndef I_MODELRENDER_H
 #define I_MODELRENDER_H
 #include <DirectX/Model.h>
-#include <C++CLI/UserDrawComponent.h>
-#include <C++CLI/C++CLIUtility.h>
+#include <CPPCLI/UserDrawComponent.h>
+#include <CPPCLI/CPPCLIUtility.h>
 
 
 //----- ModelRender éŒ¾

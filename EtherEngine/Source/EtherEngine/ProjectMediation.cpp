@@ -1,5 +1,5 @@
 #include <EtherEngine/ProjectMediation.h>
-#include <C++CLI/AssemblyHolder.h>
+#include <CPPCLI/AssemblyHolder.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #include <EtherEngine/EditorDefine.h>
 

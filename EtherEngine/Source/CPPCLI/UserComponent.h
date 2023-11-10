@@ -1,8 +1,8 @@
 #ifndef I_USERCOMPONENT_H
 #define I_USERCOMPONENT_H
 // @ MEMO : 実際にユーザーが記述するためのもととなるクラス
-#include <C++CLI/ComponentInterface.h>
-#include <C++CLI/C++CLIUtility.h>
+#include <CPPCLI/ComponentInterface.h>
+#include <CPPCLI/CPPCLIUtility.h>
 #include <ImGUI/ImGUIWrapFunction.h>
 #include <Base/GameObject.h>
 

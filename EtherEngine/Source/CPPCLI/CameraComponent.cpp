@@ -1,4 +1,4 @@
-#include <C++CLI/CameraComponent.h>
+#include <CPPCLI/CameraComponent.h>
 
 
 namespace EtherEngine {

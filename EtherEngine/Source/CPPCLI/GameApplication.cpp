@@ -1,10 +1,10 @@
-#include <C++CLI/GameApplication.h>
+#include <CPPCLI/GameApplication.h>
 #include <Base/Timer.h>
 #include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>
-#include <C++CLI/C++CLIInit.h>
+#include <CPPCLI/CPPCLIInit.h>
 
 
 #ifdef _DEBUG

@@ -1,4 +1,4 @@
-#include <C++CLI/GameApplication.h>
+#include <CPPCLI/GameApplication.h>
 #include <DirectX/ProcedureGameWindow.h>
 
 

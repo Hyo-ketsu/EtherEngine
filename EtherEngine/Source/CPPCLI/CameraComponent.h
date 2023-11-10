@@ -1,9 +1,9 @@
 #ifndef I_CAMERACOMPONENT_H
 #define I_CAMERACOMPONENT_H
 #include <Base/CameraBase.h>
-#include <C++CLI/UserComponent.h>
-#include <C++CLI/C++CLIUtility.h>
-#include <C++CLI/AttributeDefine.h>
+#include <CPPCLI/UserComponent.h>
+#include <CPPCLI/CPPCLIUtility.h>
+#include <CPPCLI/AttributeDefine.h>
 
 
 //----- CameraComponent ’è‹`

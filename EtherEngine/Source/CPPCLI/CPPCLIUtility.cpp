@@ -1,5 +1,5 @@
-#include <C++CLI/C++CLIUtility.h>
-#include <C++CLI/AssemblyHolder.h>
+#include <CPPCLI/CPPCLIUtility.h>
+#include <CPPCLI/AssemblyHolder.h>
 // @ MEMO : w_cahr‚©‚çchar‚É‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‹N‚±‚·‚©‚à
      
 
