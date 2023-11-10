@@ -8,6 +8,7 @@
 
 //----- UserDrawBaseComponent 宣言
 namespace EtherEngine {
+#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // 描画コンポーネント
     public ref class UserDrawBaseComponent : public UserBaseComponent {
     public:
@@ -60,6 +61,7 @@ namespace EtherEngine {
         UnmanageMaintainer<Eigen::Matrix4f> m_view;         // ビュー行列
         UnmanageMaintainer<Eigen::Matrix4f> m_projection;   // プロジェクション行列
     };
+#endif
 }
 
 

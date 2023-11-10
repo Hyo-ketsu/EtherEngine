@@ -3,7 +3,6 @@
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #include <EtherEngine/EditorDefine.h>
 
-
 //----- ソースファイルが含まれている属性取得
 namespace EtherEngine {
     // ソースファイルが含まれている<ItemGroup>を取得する
@@ -169,6 +168,8 @@ namespace EtherEngine {
         if (GetIsUpdateFile()) {
             return CoercionRefreshAssembly();
         }
+
+        return false;
     }
     // アセンブリを強制リフレッシュする
     bool ProjectMediation::CoercionRefreshAssembly(void) {

@@ -7,49 +7,33 @@
 //----- AssemblyHolder 定義
 namespace EtherEngine {
     // ゲームのアセンブリを保持したクラス
-    static public ref class AssemblyHolder {
+    class AssemblyHolder {
     public:
         // アセンブリを取得する
         // @ Ret  : 取得したアセンブリ、または現在のアセンブリ
-        static System::Reflection::Assembly^ GetAssembly(void) {
-            if (ms_assembly == nullptr) {
-                //----- 何も読み込んでいない。現在のアセンブリを取得
-                return System::Reflection::Assembly::GetCallingAssembly();
-            }
-            else {
-                //----- アセンブリ返却
-                return ms_assembly;
-            }
-        }
+        static System::Reflection::Assembly^ GetAssembly(void);
 
 
         // アセンブリを読み込む
         // @ Ret  : アセンブリが読み込めたか
         // @ Arg1 : 読み込むアセンブリ名
-        static bool LoadAssembly(const PathClass& assemblyPath) {
-            //----- dllかファイルチェック
-            if (assemblyPath.IsExists() == false) return false;
-            if (assemblyPath.HasExtension() && assemblyPath.GetExtension() != "dll") return false;
-
-            //----- 読み込む
-            ms_assembly = System::Reflection::Assembly::LoadFrom(UnToManage(assemblyPath));
-        }
+        static bool LoadAssembly(const PathClass& assemblyPath);
         // 現在読み込みアセンブリを削除する
-        static void DeleteAssembly(void) {
-            ms_assembly = nullptr;
-        }
+        static void DeleteAssembly(void);
 
 
         // 現在読み込みアセンブリが存在するか
         // @ Ret  : アセンブリを取得しているか
-        static bool IsLoadAssemblyEnable(void) {
-            return ms_assembly == nullptr ? false : true;
-        }
+        static bool IsLoadAssemblyEnable(void);
 
     private:
-        static System::Reflection::Assembly^ ms_assembly = nullptr;   // 現在保持しているアセンブリ
-        static bool ms_isBuild = true;      // buildが成功しているか
-        static bool ms_isUpdate = false;    // ソリューションが更新されているか
+        /// @brief コンストラクタ
+        AssemblyHolder(void) {}
+
+
+        static msclr::gcroot<System::Reflection::Assembly^> ms_assembly;   // 現在保持しているアセンブリ
+        static bool ms_isBuild;     // buildが成功しているか
+        static bool ms_isUpdate;    // ソリューションが更新されているか
     };
 }
 

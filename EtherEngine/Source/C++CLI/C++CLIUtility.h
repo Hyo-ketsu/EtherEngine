@@ -6,6 +6,7 @@
 
 //----- インタフェース定義
 namespace EtherEngine {
+#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serialize, DeserializeInterface
     public interface class ISerializer {
     public:
@@ -22,6 +23,7 @@ namespace EtherEngine {
         // 表示する
         void DrawInspector(void);
     };
+#endif
 }
 
 
@@ -59,6 +61,7 @@ namespace EtherEngine {
 
 //----- Serializer 宣言
 namespace EtherEngine {
+#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serialize, Deserialize自体を行うクラス
     public ref class Serializer : public ISerializer {
     public:
@@ -149,23 +152,32 @@ namespace EtherEngine {
             }
         }
     };
+#endif
 }
 
 
 //----- UnmanageMaintainer 宣言
 namespace EtherEngine {
+#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Unmanage Class を value class で保持するクラス
     // @ Memo : 手動で解放処理を呼び出してください
     template <typename UnmanageType>
-    public value class UnmanageMaintainer : ISerializer {
+    public value class UnmanageMaintainer : public ISerializer {
     public:
-        // コンストラクタ
+        // ポインタを保持するコンストラクタ
         // @ Arg1 : 対象
         UnmanageMaintainer(UnmanageType* maintainer)
             : m_maintainer(maintainer)
             , m_isNew(false) {
         }
-        // コンストラクタ
+        //// 生成を行うコンストラクタ
+        //// @ Args : 初期化に必要な変数
+        //template <typename ...ArgsType>
+        //UnmanageMaintainer(ArgsType... args)
+        //    : m_maintainer(new UnmanageType(args...))
+        //    , m_isNew(true) {
+        //}
+        // コピーとnewを行うコンストラクタ
         // @ Arg1 : 対象
         UnmanageMaintainer(UnmanageType&& maintainer)
             : m_maintainer(new UnmanageType(maintainer))
@@ -232,9 +244,16 @@ namespace EtherEngine {
         }
 
     private:
+        // 自動削除用クラス
+        ref class Deleter {
+        public:
+        };
+
+
         UnmanageType* m_maintainer; // 保持している対象
         bool m_isNew;               // 右辺値を受け取り構築したか
     };
+#endif
 }
 
 

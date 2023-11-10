@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorUI/$(Platform)/$(Configuration)/</BaseIntermediateOutputPath>
+    <Configurations>GameTest_Release;GameTest_Debug;Editor_Debug;Editor_Release</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="EditorUI\" />
+  </ItemGroup>
+
+</Project>

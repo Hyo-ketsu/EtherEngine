@@ -63,21 +63,23 @@ namespace EtherEngine {
 
 //#ifndef _DEBUG
 #ifdef _DEBUG
-        ////----- ファイルパスの読み込み
-        //try {
-        //    auto projectData = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::PROJECT_DATA);
-        //    m_projectData->InputString(projectData);
-        //}
-        //catch (const std::exception& e) {
-        //    //----- ない。ユーザーにどれを使用するか選択させる
+        //----- ファイルパスの読み込み
+        try {
+            auto projectData = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::PROJECT_DATA);
+            m_projectData->InputString(projectData);
+        }
+        catch (const std::exception& e) {
+            //----- ない。ユーザーにどれを使用するか選択させる
 
-        //}
+        }
 
-        ////----- プロジェクト設定の読み込み
-        //try {
-        //    auto projectSetting = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::EDITOR_SETTING);
-        //    m_editorData
-        //}
+        //----- プロジェクト設定の読み込み
+        try {
+            auto projectSetting = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::EDITOR_SETTING);
+            //m_editorData
+        }
+        catch (const std::exception& e) {
+        }
 #endif
 
         m_initUninitPerformer.AddInitUninit(
@@ -88,8 +90,6 @@ namespace EtherEngine {
             [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
             []() { ProjectMediation::Get()->Uninit(); }
         );
-
-        Sleep(3000);   // おおむね起動するまで待つ
     }
     // 初期化終了後関数
     void EditorApplication::EndInitLateFunction(void) {

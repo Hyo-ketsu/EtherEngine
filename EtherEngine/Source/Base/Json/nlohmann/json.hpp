@@ -133,16 +133,11 @@
 #ifndef NLOHMANN_JSON_NAMESPACE_BEGIN
 #define NLOHMANN_JSON_NAMESPACE_BEGIN                \
     namespace nlohmann                               \
-    {                                                \
-    inline namespace NLOHMANN_JSON_NAMESPACE_CONCAT( \
-                NLOHMANN_JSON_ABI_TAGS,              \
-                NLOHMANN_JSON_NAMESPACE_VERSION)     \
     {
 #endif
 
 #ifndef NLOHMANN_JSON_NAMESPACE_END
 #define NLOHMANN_JSON_NAMESPACE_END                                     \
-    }  /* namespace (inline namespace) NOLINT(readability/namespace) */ \
     }  // namespace nlohmann
 #endif
 

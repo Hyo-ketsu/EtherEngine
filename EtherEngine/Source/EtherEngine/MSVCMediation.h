@@ -42,6 +42,7 @@ namespace EtherEngine {
         friend class Singleton<MSVCMediation>;
 
         PROCESS_INFORMATION m_processInfo;
+        bool m_isInit;  // 初期化されているか
         HANDLE m_childRead;   // cmd用読み取り用パイプ
         HANDLE m_childWrite;  // cmd用書き込み用パイプ
         HANDLE m_read;        // 読み取り用パイプ

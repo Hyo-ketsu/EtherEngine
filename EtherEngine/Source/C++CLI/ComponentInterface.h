@@ -4,8 +4,9 @@
 
 //----- 各種Interface宣言
 namespace EtherEngine {
+#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serializeを行うInterface
-    public interface class ISerialize {
+    interface class ISerialize {
     public:
         // 外部出力する
         // @ Memo : public, もしくはEtherEngineSerializeがついていれば出力します
@@ -15,6 +16,7 @@ namespace EtherEngine {
         // @ Arg1 : 読み取るJson文字列
         void Deserialize(const std::string& input);
     };
+#endif
 }
 
 

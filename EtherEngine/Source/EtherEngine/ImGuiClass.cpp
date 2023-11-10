@@ -1,9 +1,9 @@
-#include <EtherEngine/ImGuiClass.h>
+ï»¿#include <EtherEngine/ImGuiClass.h>
 
 
-//----- ImGui ’è‹`
+//----- ImGui å®šç¾©
 namespace EtherEngine {
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     IMGUI::IMGUI(ID3D11Device* device, ID3D11DeviceContext* context, HWND hWnd)
         : m_imGuiContext(ImGui::CreateContext())
         , m_device(device) 
@@ -27,7 +27,7 @@ namespace EtherEngine {
         ImGui_ImplWin32_Init(hWnd);
         ImGui_ImplDX11_Init(device, context);
     }
-    // ƒfƒXƒgƒ‰ƒNƒ^
+    // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     IMGUI::~IMGUI(void) {
         ImGui_ImplDX11_Shutdown();
         ImGui_ImplWin32_Shutdown();

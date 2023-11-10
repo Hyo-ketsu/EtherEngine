@@ -35,7 +35,7 @@ namespace EtherEngine {
         // ビルドログを読み取る
         // @ Ret  : ビルドログ
         static std::string GetRefreshLog(void);
-
+        
     private:
         static std::shared_ptr<ProgressClass> ms_progress;   // プログレスバー
         static std::string ms_buildLog; // ビルドログ

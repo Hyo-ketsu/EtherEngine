@@ -120,6 +120,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EtherEngineAssemblyInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">

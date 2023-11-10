@@ -61,6 +61,7 @@
     <ClCompile Include="..\..\Source\C++CLI\AssemblyHolder.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\C++CLI\CPPCLIAssemblyInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\C++CLI\AssemblyHolder.h">
