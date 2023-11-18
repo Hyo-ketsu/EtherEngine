@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</BaseOutputPath>
+    <Platforms>AnyCPU;x64;x86</Platforms>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/$(Platform)/$(Configuration)/</BaseIntermediateOutputPath>
+    <Configurations>Release;Debug</Configurations>
+    <StartupObject>EditorMain.EditorMain</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 EXIT 0" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPPCLI\CPPCLI.vcxproj" />
+  </ItemGroup>
+
+</Project>
