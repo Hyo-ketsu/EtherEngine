@@ -14,7 +14,7 @@ namespace EtherEngine {
 
 
         // ウィンドウを作成する
-        bool Create_Window();
+        bool Create_Window(void);
 
 
         // ウィンドウハンドルゲッター

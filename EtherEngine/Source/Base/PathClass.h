@@ -69,7 +69,7 @@ namespace EtherEngine {
         // 現在のファイルをコピーする
         // @ Ret  : コピーが行われたか
         // @ Arg1 : コピー先パス
-        bool Copy_File(const PathClass& copyPath);
+        bool Copy_File(const PathClass& copyPath) const;
 
 
         // パス要素追加

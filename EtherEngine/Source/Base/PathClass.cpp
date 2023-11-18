@@ -77,7 +77,7 @@ namespace EtherEngine {
         }
     }
     // 現在のファイルをコピーする
-    bool PathClass::Copy_File(const PathClass& copyPath) {
+    bool PathClass::Copy_File(const PathClass& copyPath) const {
         //----- コピーが可能か判定
         if (copyPath.IsExists() == false) return false;
         if (this->IsFile() == false) return false;
@@ -85,6 +85,8 @@ namespace EtherEngine {
         //----- 同名ファイルを対象パスに作成
         auto myFileString = RoadFileAll(m_path);
         (copyPath / this->GetFile()).Create_File(myFileString);
+
+        return true;
     }
 
 

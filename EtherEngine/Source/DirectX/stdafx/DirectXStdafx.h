@@ -36,7 +36,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #ifdef _DEBUG
-#pragma comment(lib, "assimp/x64/Debug/assimp-vc142-mtd.lib")
+#pragma comment(lib, "assimp/x64/Debug/assimp-vc142d.lib")
 #else
-#pragma comment(lib, "assimp/x64/Release/assimp-vc142-mt.lib")
+#pragma comment(lib, "assimp/x64/Release/assimp-vc142.lib")
 #endif

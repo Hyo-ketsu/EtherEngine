@@ -23,9 +23,13 @@ namespace EtherEngine {
         // 番号を生成、追加する
         // @ Ret  : 生成された番号
         [[nodiscard]] IDNumberType AddNumber(void);
+        // 番号を追加で保持する
+        // @ Ret  : 番号が追加されたか
+        // @ Arg1 : 生成された番号
+        bool AddNumber(IDNumberType id);
 
     private:
-        std::vector<IDNumberType> m_number;   // 保持している番号と参照数一覧
+        std::vector<IDNumberType> m_number;   // 保持している番号
         SpinLock m_spinlock; // スピンロック用変数
     };
 }
@@ -38,14 +42,19 @@ namespace EtherEngine {
     public:
         // コンストラクタ
         IDClass(void);
+        // コンストラクタ
+        // @ Arg1 : 生成時に与える番号
+        IDClass(const IDNumberType& number);
         // デストラクタ
         virtual ~IDClass(void);
         // コピーコンストラクタ
-        IDClass(const IDClass& copy);
+        IDClass(const IDClass& copy) = default;
         // ムーブコンストラクタ
-        IDClass(IDClass&& move) noexcept;
-        // 代入演算子
-        IDClass& operator =(const IDClass& copy);
+        IDClass(IDClass&& move) = default;
+        // コピー演算子
+        IDClass& operator =(const IDClass& copy) = default;
+        // コピー演算子
+        IDClass& operator =(IDClass&& move) = default;
 
 
         // 番号を取得する

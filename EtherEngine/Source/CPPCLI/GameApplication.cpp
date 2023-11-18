@@ -78,13 +78,13 @@ namespace EtherEngine {
                 GameObjectUpdater::Get()->Update();
 
                 //----- •`‰æ‘Oˆ—
-                m_dxRender.GetAtomicData().BeginDraw();
+                m_dxRender.GetAtomicData().AccessWindowRenders()[0].BeginDraw();
 
                 //----- •`‰æˆ—
-                m_dxRender.GetAtomicData().Draw();
+                m_dxRender.GetAtomicData().AccessWindowRenders()[0].Draw();
 
                 //----- •`‰æŒãˆ—
-                m_dxRender.GetAtomicData().EndDraw();
+                m_dxRender.GetAtomicData().AccessWindowRenders()[0].EndDraw();
             }
         }
 

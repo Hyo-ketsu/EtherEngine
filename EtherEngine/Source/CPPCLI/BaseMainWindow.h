@@ -29,6 +29,10 @@ namespace EtherEngine {
         const BaseHandle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
 
 
+        // ウィンドウ関連の初期化
+        void WindowFunction(void);
+
+
         // 初期化関数
         void BaseInitFunction(void);
         // 終了関数
@@ -37,7 +41,7 @@ namespace EtherEngine {
         void BaseMainFunction(void);
 
         // 初期化前関数
-        virtual void InitFirstFunction(void) {}
+        virtual void InitFirstFunction(void);
         // 初期化後関数
         virtual void InitLateFunction(void) {}
         // 初期化処理完了後関数

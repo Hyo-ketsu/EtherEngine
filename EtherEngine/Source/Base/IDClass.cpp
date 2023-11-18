@@ -8,21 +8,13 @@ namespace EtherEngine {
     IDClass::IDClass(void)
         : m_number(ms_idClassStorage.AddNumber()) {
     }
+    // コンストラクタ
+    IDClass::IDClass(const IDNumberType& number)
+        : m_number(number) {
+        ms_idClassStorage.AddNumber(number);
+    }
     // デストラクタ
     IDClass::~IDClass(void) {
-    }
-    // コピーコンストラクタ
-    IDClass::IDClass(const IDClass& copy) 
-        : m_number(copy.m_number) {
-    }
-    // ムーブコンストラクタ
-    IDClass::IDClass(IDClass&& move) noexcept
-        : m_number(move.m_number) {
-    }
-    // 代入演算子
-    IDClass& IDClass::operator =(const IDClass& copy) {
-        m_number = copy.m_number;
-        return *this;
     }
 
 
@@ -55,24 +47,33 @@ namespace EtherEngine {
             //----- 生成
             createNumber = Random::GetRandom<IDNumberType>();
 
-            //----- 重複Check
-            // @ MEMO : 必要ならソート、照合を効率化させてください
-            bool isDuplication = false;
-            for (auto& it : m_number) {
-                if (createNumber == it) {
-                    isDuplication = true;
-                    break;
-                }
-            }
-
-            //----- 重複していないならループを抜ける
-            if (isDuplication == false) break;
+            //----- 番号を追加する
+            if (AddNumber(createNumber)) break;
         }
 
-        //----- 番号を追加する
-        m_number.push_back(createNumber);
 
         //----- 返却
         return createNumber;
+    }
+    // 番号を追加で保持する
+    bool IDClassStorage::AddNumber(IDNumberType id) {
+        //----- スピンロックを行う
+        auto lock = m_spinlock.KeyLock();
+
+        //----- 昇順でソートされているとして仮定、頭から舐める
+        int i = 0;
+        for (auto& it : m_number) {
+            //----- 同値はそのまま終了する
+            if (id == it) return false;
+
+            //----- 自身より大きいか。そうであればないものと判定する
+            if (id < it) break;
+
+            i++;
+        }
+
+        //----- 追加する
+        m_number.emplace(m_number.begin() + i, id);
+        return true;
     }
 }

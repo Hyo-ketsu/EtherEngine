@@ -242,6 +242,8 @@ namespace EtherEngine {
         //if (type == Component::TYPE_DRAW_COMPONENT) {
         //    m_collisions.push_back(std::make_shared<CollisionComponent>(CollisionComponent<>()));
         //}
+
+        return std::weak_ptr<ComponentBase>();
     }
     // コンポーネント削除
     bool GameObject::DeleteComponent(const std::string& componentTypeName) {
@@ -288,6 +290,8 @@ namespace EtherEngine {
                 return std::weak_ptr<ComponentBase>(it);
             }
         }
+
+        return std::weak_ptr<ComponentBase>();
     }
     // コンポーネントを取得する
     std::vector<std::weak_ptr<ComponentBase>> GameObject::GetComponents(const std::string& componentTypeName) {

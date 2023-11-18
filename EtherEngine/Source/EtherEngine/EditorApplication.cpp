@@ -156,11 +156,60 @@ namespace EtherEngine {
                 //----- ゲーム処理
                 frameSecond += fpsTimer.GetDeltaTime();
 
+                //----- ウィンドウ処理
+                // シーンウィンドウの追加
+                while (true) {
+                    //----- ウィンドウの取得(取得できなかったら終了)
+                    auto window = EditorUI::GetWindow::GetCreateWindow<EditorUI::SceneView^>();
+                    if (window == nullptr) break;
+
+                    //----- 前準備
+                    auto engineLock = window->GetEngineLock();  // ロック取得
+                    auto size = engineLock.Item2->NewWindowSize;    // このウィンドウのサイズ
+                    if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
+
+                    //----- ラムダ用意
+                    // @ MEMO : 結果的に参照をラムダでキャプチャしている。windowRenderが死んだら解放されるだろうけど要注意？
+                    DrawFunctionLambda drawFunction = [&](Eigen::Matrix4f view, Eigen::Matrix4f projection) {    // ウィンドウで行う描画
+                        GameObjectUpdater::Get()->Draw(view, projection);
+                    };
+                    msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
+                    WindowEnableLambda enableFunction = [=]() -> bool {
+                        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2->IsActive;
+                    };
+                    WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
+                        auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;
+                        if (size.HasValue) {
+                            //----- リサイズを行う
+                            // @ MEMO : 現状行っておりません。
+                        }
+                    };
+
+                    //----- 新規に作成
+                    m_dxRender.GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y),static_cast<HWND>(engineLock.Item2->SceneViewTarget.ToPointer()),
+                        false, drawFunction, enableFunction, windowFunction);
+                }
+
                 //----- アセンブリ存在チェック
                 if (AssemblyHolder::IsLoadAssemblyEnable() == false && Refresh::GetRefreshState() != Refresh::RefreshStateType::CurrentlyRefresh) {
                     //----- Refreshを行う
                     if (false) {
                         ProjectMediation::Get()->RefreshAssembly();
+                    }
+                }
+
+                //----- シーンウィンドウ更新処理
+                auto windowData = m_dxRender.GetAtomicData();
+                for (auto it = windowData.AccessWindowRenders().begin(); it != windowData.AccessWindowRenders().end();) {
+                    //----- 生存チェック
+                    if (it->GetWindowEnableFunction()()) {
+                        //----- 生存している。更新
+                        it->GetWindowFunction()(&*it);
+                        it++;
+                    }
+                    else {
+                        //----- 生存していない。削除
+                        windowData.AccessWindowRenders().erase(it);
                     }
                 }
 
@@ -180,10 +229,14 @@ namespace EtherEngine {
                 GameObjectUpdater::Get()->Update();
 
                 //----- 描画前処理
-                m_dxRender.GetAtomicData().BeginDraw();
+                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
+                    it.BeginDraw();
+                }
 
                 //----- 描画処理
-                m_dxRender.GetAtomicData().Draw();
+                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
+                    it.Draw();
+                }
 
                 //----- エディター描画処理
                 EditorUpdater::Get()->Draw();
@@ -192,7 +245,9 @@ namespace EtherEngine {
                 EditorUpdater::Get()->LateDraw();
 
                 //----- 描画後処理
-                m_dxRender.GetAtomicData().EndDraw();
+                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
+                    it.EndDraw();
+                }
             }
         }
     }

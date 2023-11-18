@@ -8,6 +8,29 @@ namespace {
 }
 
 
+//----- 生存確認クラス 宣言
+namespace EtherEngine {
+    // 生存確認用インターフェース 宣言
+    class EnableCheckClass {
+    public:
+        // コピーコンストラクタ
+        EnableCheckClass(const EnableCheckClass& copy);
+
+
+        // 生存確認用のキーを取得する
+        // @ Ret  : 取得したキー
+        std::weak_ptr<void> GetEnableKey(void);
+
+    protected:
+        // コンストラクタ
+        EnableCheckClass(void); 
+
+    private:
+        std::shared_ptr<void> m_sharedPtr;
+    };
+}
+
+
 //----- 便利関数 宣言
 namespace EtherEngine {
     // 全ての入力と比較する

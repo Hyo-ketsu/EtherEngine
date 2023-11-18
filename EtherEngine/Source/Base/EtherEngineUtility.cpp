@@ -99,6 +99,8 @@ namespace EtherEngine {
             case DuplicationNameObjectName::UnderscoreNumber:
                 return name + "_" + std::to_string(number);
                 break;
+            default:
+                return name;
             }
         }
         // 重複したオブジェクトに名前を付ける

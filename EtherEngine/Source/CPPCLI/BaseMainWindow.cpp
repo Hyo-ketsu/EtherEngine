@@ -24,11 +24,8 @@ namespace EtherEngine {
     }
 
 
-    // 初期化関数
-    void BaseMainWindow::BaseInitFunction(void) {
-        //----- 初期化呼び出し
-        InitFirstFunction();
-
+    // ウィンドウ関連の初期化
+    void BaseMainWindow::WindowFunction(void) {
         //----- メモリリークチェック
         _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
@@ -99,6 +96,7 @@ namespace EtherEngine {
         //----- ウィンドウの表示
         ShowWindow(m_hwnd.value(), m_cmdShow.value());
         UpdateWindow(m_hwnd.value());
+        
 
         //----- ビデオカードの検索
         IDXGIFactory1* factory;
@@ -125,14 +123,18 @@ namespace EtherEngine {
         bool isFullScreen = false;  // フルスクリーン設定
 
         m_dxRender = Handle<DirectXRender>(DirectXRender());
-        HRESULT hr = m_dxRender.GetAtomicData().Init(m_windowSize.x(), m_windowSize.y(), m_hwnd.value(), isFullScreen, adapterMax, factory);
-        if (FAILED(hr)) {
-            return;
-        }
+        m_dxRender.GetAtomicData().Init(m_windowSize, m_hwnd.value(), isFullScreen);
+    }
 
-        if (adapter) adapter->Release();
-        if (adapterMax) adapterMax->Release();
-        if (factory) factory->Release();
+
+    // 初期化前関数
+    void BaseMainWindow::InitFirstFunction(void) {
+        WindowFunction();
+    }
+    // 初期化関数
+    void BaseMainWindow::BaseInitFunction(void) {
+        //----- 初期化呼び出し
+        InitFirstFunction();
 
         //----- 初期化・終了処理登録
         m_initUninitPerformer.AddInitUninit<CPPCLI>();
