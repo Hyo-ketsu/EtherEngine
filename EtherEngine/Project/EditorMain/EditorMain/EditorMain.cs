@@ -5,10 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace EditorMain.EditorMain {
+namespace EditorMain {
     /// <summary>エディターのエントリーポイント</summary>
     internal class EditorMain {
+        [STAThread]
         static public void Main() {
+            //----- アプリケーションを始動
+            var application = new EditorUI.EtherEngineApplication(EtherEngine.EtherEngineMainFunction.MainFunction);
+            application.Run();
         }
     }
 }

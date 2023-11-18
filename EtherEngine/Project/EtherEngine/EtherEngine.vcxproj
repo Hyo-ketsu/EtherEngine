@@ -107,6 +107,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorMain.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObject.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorObjectStorage.h" />
@@ -151,13 +152,14 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>15.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <EnableManagedPackageReferenceSupport>true</EnableManagedPackageReferenceSupport>
     <ProjectGuid>{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}</ProjectGuid>
+    <Keyword>NetCoreCProj</Keyword>
     <RootNamespace>EtherEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <TargetFramework>net7.0</TargetFramework>
     <WindowsTargetPlatformMinVersion>7.0</WindowsTargetPlatformMinVersion>
-    <TargetFrameworkVersion />
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'" Label="Configuration">

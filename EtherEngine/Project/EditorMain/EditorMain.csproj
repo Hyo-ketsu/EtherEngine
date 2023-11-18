@@ -8,24 +8,24 @@
     <UseWindowsForms>True</UseWindowsForms>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
-    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</BaseOutputPath>
+    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/Editor_$(Configuration)/</BaseOutputPath>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/$(Platform)/$(Configuration)/</BaseIntermediateOutputPath>
-    <Configurations>GameTest_Release;GameTest_Debug;Editor_Debug;Editor_Release</Configurations>
-    <StartupObject>EditorMain.EditorMain.EditorMain</StartupObject>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/$(Platform)/Editor_$(Configuration)/</BaseIntermediateOutputPath>
+    <Configurations>Release;Debug</Configurations>
+    <StartupObject>EditorMain.EditorMain</StartupObject>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|AnyCPU'" />
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'" />
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
 
   <ItemGroup>
     <ProjectReference Include="..\EditorUI\EditorUI.csproj" />
     <ProjectReference Include="..\EtherEngine\EtherEngine.vcxproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="robocopy $(SolutionDir)DLL/$(Configuration)/ $(OutDir) *.dll /E /COPY:DT&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 EXIT 0" />
+  </Target>
 
 </Project>

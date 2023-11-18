@@ -38,6 +38,7 @@
     <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\DXWindowRender.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
     <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
     <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
     <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h" />
+    <ClInclude Include="..\..\Source\DirectX\DXWindowRender.h" />
     <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
     <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
     <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />

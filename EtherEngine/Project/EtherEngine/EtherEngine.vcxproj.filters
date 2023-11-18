@@ -218,5 +218,8 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorMain.h">
+      <Filter>EngineSystem</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

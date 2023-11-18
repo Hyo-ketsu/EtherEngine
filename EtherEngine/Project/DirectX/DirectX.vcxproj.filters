@@ -21,6 +21,7 @@
     <ClCompile Include="..\..\Source\DirectX\Texture.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Window.cpp" />
     <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\DXWindowRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
@@ -37,6 +38,7 @@
     <ClInclude Include="..\..\Source\DirectX\Texture.h" />
     <ClInclude Include="..\..\Source\DirectX\Window.h" />
     <ClInclude Include="..\..\Source\DirectX\WindowRetention.h" />
+    <ClInclude Include="..\..\Source\DirectX\DXWindowRender.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\Source\DirectX\Shader\PS_Test.hlsl">
