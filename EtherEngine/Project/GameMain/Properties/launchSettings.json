@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GameMain": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)/Debug",
+      "nativeDebugging": true
+    }
+  }
+}

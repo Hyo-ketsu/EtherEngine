@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "EditorUI": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)/Debug",
+      "nativeDebugging": true
+    }
+  }
+}

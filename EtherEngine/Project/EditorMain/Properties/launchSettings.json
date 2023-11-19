@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "EditorMain": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)/Debug",
+      "nativeDebugging": true
+    }
+  }
+}
