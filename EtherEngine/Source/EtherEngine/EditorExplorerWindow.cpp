@@ -206,7 +206,7 @@ namespace EtherEngine {
                     FileCreate("NewScene", FileDefine::Extended::SCENE, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber);
                 }
                 if (ImGui::MenuItem("Script")) {
-                    FileCreate("Script", FileDefine::Extended::CPPCLISCRIPT, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, FileDefine::CPPCLISCRIPT_FILE_STRING);
+                    FileCreate("Script", FileDefine::Extended::SCRIPT, ms_currentDirectory, Utility::DuplicationNameObjectName::ParenthesesNumber, FileDefine::SCRIPT_FILE_STRING);
                 }
 
                 ImGui::EndMenu();

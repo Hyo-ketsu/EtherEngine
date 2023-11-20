@@ -1,8 +1,8 @@
 #ifndef I_GAMEDRAWCOMPONENT_H
 #define I_GAMEDRAWCOMPONENT_H
 #include <Base/DrawComponent.h>
-#include <CPPCLI/GameComponent.h>
-#include <CPPCLI/UserDrawComponent.h>
+#include <EngineLibrary/GameComponent.h>
+#include <EngineLibrary/UserDrawComponent.h>
 
 
 //----- 描画コンポーネント

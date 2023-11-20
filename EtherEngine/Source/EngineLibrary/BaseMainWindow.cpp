@@ -1,12 +1,12 @@
-#include <CPPCLI/BaseMainWindow.h>
+#include <EngineLibrary/BaseMainWindow.h>
 #include <Base/WindowsDefine.h>
 #include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/Timer.h>
-#include <CPPCLI/CPPCLIInit.h>
-#include <CPPCLI/AssemblyHolder.h>
+#include <EngineLibrary/EngineLibraryInit.h>
+#include <EngineLibrary/AssemblyHolder.h>
 
 
 namespace EtherEngine {
@@ -137,7 +137,7 @@ namespace EtherEngine {
         InitFirstFunction();
 
         //----- ‰Šú‰»EI—¹ˆ—“o˜^
-        m_initUninitPerformer.AddInitUninit<CPPCLI>();
+        m_initUninitPerformer.AddInitUninit<EngineLibrary>();
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
         m_initUninitPerformer.AddInitUninit<InputSystem>();
 

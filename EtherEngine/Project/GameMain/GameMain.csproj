@@ -23,8 +23,4 @@
     <Exec Command="robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 EXIT 0" />
   </Target>
 
-  <ItemGroup>
-    <ProjectReference Include="..\CPPCLI\CPPCLI.vcxproj" />
-  </ItemGroup>
-
 </Project>

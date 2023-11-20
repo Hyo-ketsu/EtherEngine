@@ -35,39 +35,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\CPPCLI\AssemblyHolder.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\AttributeDefine.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\BaseMainWindow.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\CPPCLIInit.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\CPPCLIUtility.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\CameraComponent.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\ComponentInterface.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\GameApplication.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\GameComponent.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\GameDrawComponent.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\ManageSingleton.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\ModelComponent.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\ModelRender.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\stdafx\CPPCLIStdafx.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\UserComponent.h" />
-    <ClInclude Include="..\..\Source\CPPCLI\UserDrawComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryInit.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\CPPCLI\AssemblyHolder.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\AttributeDefine.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\BaseMainWindow.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\CPPCLIInit.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\CPPCLIUtility.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\CameraComponent.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\ComponentInterface.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\CPPCLIAssemblyInfo.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\GameApplication.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\GameComponent.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\GameDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\ManageSingleton.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\ModelComponent.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\ModelRender.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\stdafx\CPPCLIStdafx.cpp">
+    <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryInit.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Create</PrecompiledHeader>
@@ -77,8 +77,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CPPCLI\UserComponent.cpp" />
-    <ClCompile Include="..\..\Source\CPPCLI\UserDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">

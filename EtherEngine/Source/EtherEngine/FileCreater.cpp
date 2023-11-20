@@ -29,7 +29,7 @@ namespace EtherEngine {
             if (extension.Get() == FileDefine::Extended::SCENE) {
                 break;
             }
-            else if (extension.Get() == FileDefine::Extended::CPPCLISCRIPT) {
+            else if (extension.Get() == FileDefine::Extended::SCRIPT) {
                 ProjectMediation::Get()->AddSource(createFile);
                 break;
             }

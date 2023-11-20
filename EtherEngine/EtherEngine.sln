@@ -33,15 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorMain", "Project\Edito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorUI", "Project\EditorUI\EditorUI.csproj", "{9C260F32-9684-4062-A29A-DF6B7C723990}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPPCLI", "Project\CPPCLI\CPPCLI.vcxproj", "{250757D6-44E7-4C42-B57D-2CAE39082EE1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{688A54A1-1A61-4077-846E-E088F2CB833D} = {688A54A1-1A61-4077-846E-E088F2CB833D}
-		{75776CCC-0223-4F76-989D-2B9B089281C0} = {75776CCC-0223-4F76-989D-2B9B089281C0}
-		{8809734E-0717-4038-9F29-68984D325BF1} = {8809734E-0717-4038-9F29-68984D325BF1}
-		{9C260F32-9684-4062-A29A-DF6B7C723990} = {9C260F32-9684-4062-A29A-DF6B7C723990}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameMain", "Project\GameMain\GameMain.csproj", "{F49FC924-259A-443A-A6D7-56BF1793131B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLibrary", "Project\EngineLibrary\EngineLibrary.vcxproj", "{250757D6-44E7-4C42-B57D-2CAE39082EE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +133,18 @@ Global
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.ActiveCfg = Editor_Release|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.ActiveCfg = Editor_Release|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.ActiveCfg = Editor_Release|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x64.ActiveCfg = Debug|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x86.ActiveCfg = Debug|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x64.ActiveCfg = GameTest_Release|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x86.ActiveCfg = GameTest_Release|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.ActiveCfg = Debug|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.Build.0 = Debug|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.ActiveCfg = Debug|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.Build.0 = Debug|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.ActiveCfg = GameTest_Release|x86
+		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.Build.0 = GameTest_Release|x86
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
@@ -155,18 +161,6 @@ Global
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x86.Build.0 = GameTest_Release|Win32
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x64.ActiveCfg = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x86.ActiveCfg = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x64.ActiveCfg = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x86.ActiveCfg = GameTest_Release|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.ActiveCfg = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.Build.0 = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.ActiveCfg = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.Build.0 = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.ActiveCfg = GameTest_Release|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.Build.0 = GameTest_Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

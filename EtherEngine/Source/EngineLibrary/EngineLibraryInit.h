@@ -4,10 +4,10 @@
 
 //----- 初期化・終了処理定義
 namespace EtherEngine {
-    class CPPCLI {
+    class EngineLibrary {
     public:
         // デストラクタ
-        ~CPPCLI(void) {}
+        ~EngineLibrary(void) {}
 
 
         static void Init(void);
@@ -15,7 +15,7 @@ namespace EtherEngine {
 
     private:
         // コンストラクタ
-        CPPCLI(void) {}
+        EngineLibrary(void) {}
     };
 }
 

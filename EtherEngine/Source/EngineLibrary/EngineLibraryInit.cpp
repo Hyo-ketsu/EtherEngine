@@ -1,9 +1,9 @@
-#include <CPPCLI/CPPCLIInit.h>
+#include <EngineLibrary/EngineLibraryInit.h>
 #include <Base/GameObject.h>
-#include <CPPCLI/GameComponent.h>
-#include <CPPCLI/GameDrawComponent.h>
-#include <CPPCLI/CPPCLIUtility.h>
-#include <CPPCLI/AssemblyHolder.h>
+#include <EngineLibrary/GameComponent.h>
+#include <EngineLibrary/GameDrawComponent.h>
+#include <EngineLibrary/EngineLibraryUtility.h>
+#include <EngineLibrary/AssemblyHolder.h>
 
 
 //----- 関数定義
@@ -46,7 +46,7 @@ namespace EtherEngine {
 //----- 初期化・終了処理定義
 namespace EtherEngine {
     // 初期化処理
-    void CPPCLI::Init(void) {
+    void EngineLibrary::Init(void) {
         GameObject::ms_getComponent = GetComponent;
         GameObject::ms_addComponentMenu = AddComponentMenu;
         GameObject::ms_getFullName = [](const std::string& name, const uint index = 0, const bool isSystem = false) -> std::string { 
@@ -54,6 +54,6 @@ namespace EtherEngine {
         };
     }
     // 終了処理
-    void CPPCLI::Uninit(void) {
+    void EngineLibrary::Uninit(void) {
     }
 }

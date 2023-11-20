@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Base">
+      <UniqueIdentifier>{6902a6de-d980-4021-96d8-415c1f20bf9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{30c3502c-cfc1-4897-a911-1f22da85825d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{5472d816-0842-4487-8659-5281bdf130d9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryInit.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryInit.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
+  </ItemGroup>
+</Project>

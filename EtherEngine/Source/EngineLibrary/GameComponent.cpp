@@ -1,6 +1,6 @@
-#include <CPPCLI/GameComponent.h>
+#include <EngineLibrary/GameComponent.h>
 #include <Base/BaseDefines.h>
-#include <CPPCLI/CPPCLIUtility.h>
+#include <EngineLibrary/EngineLibraryUtility.h>
 
 
 namespace EtherEngine {

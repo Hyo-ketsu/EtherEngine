@@ -1,6 +1,6 @@
 #ifndef I_TESTCOMPONENT_H
 #define I_TESTCOMPONENT_H
-#include <CPPCLI/UserComponent.h>
+#include <EngineLibrary/UserComponent.h>
 
 
 //----- TestComponent éŒ¾

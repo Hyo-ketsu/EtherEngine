@@ -58,6 +58,7 @@
     <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Converter.cpp" />
     <ClCompile Include="..\..\Source\Base\DrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
     <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
@@ -126,6 +127,7 @@
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\Converter.h" />
     <ClInclude Include="..\..\Source\Base\DrawComponent.h" />
+    <ClInclude Include="..\..\Source\Base\EditorException.h" />
     <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h" />
     <ClInclude Include="..\..\Source\Base\GameObject.h" />
     <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />

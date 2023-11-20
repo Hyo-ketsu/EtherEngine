@@ -1,5 +1,5 @@
-#include <CPPCLI/CPPCLIUtility.h>
-#include <CPPCLI/AssemblyHolder.h>
+#include <EngineLibrary/EngineLibraryUtility.h>
+#include <EngineLibrary/AssemblyHolder.h>
 // @ MEMO : w_cahr‚©‚çchar‚É‚µ‚Ä‚¢‚é‚Ì‚ÅƒGƒ‰[‹N‚±‚·‚©‚à
      
 

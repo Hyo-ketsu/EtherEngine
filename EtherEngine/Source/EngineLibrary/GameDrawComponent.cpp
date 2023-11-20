@@ -1,5 +1,5 @@
-#include <CPPCLI/GameDrawComponent.h>
-#include <CPPCLI/UserDrawComponent.h>
+#include <EngineLibrary/GameDrawComponent.h>
+#include <EngineLibrary/UserDrawComponent.h>
 
 
 //----- GameDrawComponent ’è‹`

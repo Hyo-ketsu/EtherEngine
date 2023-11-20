@@ -148,7 +148,7 @@ namespace EtherEngine {
 
 
         friend class GameObjectStorage;
-        friend class CPPCLI;
+        friend class EngineLibrary;
 
         Transform m_transform;  // À•W
         SceneData m_scene;      // Œ»İŠ‘®ƒV[ƒ“

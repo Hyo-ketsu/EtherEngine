@@ -1,5 +1,5 @@
 #include <EtherEngine/EditorMain.h>
-#include <CPPCLI/CPPCLIUtility.h>
+#include <EngineLibrary/EngineLibraryUtility.h>
 
 
 //----- EtherEngineMainFunction ’è‹`

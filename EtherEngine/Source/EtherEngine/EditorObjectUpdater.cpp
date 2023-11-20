@@ -41,101 +41,101 @@ namespace EtherEngine {
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
 
-        //----- 常時透明・ドッキング可能なウィンドウを表示する
-        {
-            //----- メニューバー用ウィンドウ表示
-            if (ImGui::Begin(ImGuiDefine::Name::WINDOW_MENU.c_str(), NULL, ImGuiWindowFlags_None
-                | ImGuiWindowFlags_NoTitleBar
-                | ImGuiWindowFlags_NoResize
-                | ImGuiWindowFlags_NoMove
-                | ImGuiWindowFlags_NoScrollbar
-                | ImGuiWindowFlags_NoScrollWithMouse
-                | ImGuiWindowFlags_NoCollapse
-                | ImGuiWindowFlags_NoBackground
-                | ImGuiWindowFlags_NoSavedSettings
-                | ImGuiWindowFlags_MenuBar
-                | ImGuiWindowFlags_HorizontalScrollbar
-                | ImGuiWindowFlags_NoFocusOnAppearing
-                | ImGuiWindowFlags_NoDocking
-                )) {
-                //----- メニュー表示
-                if (ImGui::BeginMenuBar()) {
-                    //----- "File"項目表示
-                    if (ImGui::BeginMenu("File")) {
-                        //if (ImGui::MenuItem("Hoge", NULL, true)) {
-                        //}
-                        ImGui::EndMenu();
-                    }
+        ////----- 常時透明・ドッキング可能なウィンドウを表示する
+        //{
+        //    //----- メニューバー用ウィンドウ表示
+        //    if (ImGui::Begin(ImGuiDefine::Name::WINDOW_MENU.c_str(), NULL, ImGuiWindowFlags_None
+        //        | ImGuiWindowFlags_NoTitleBar
+        //        | ImGuiWindowFlags_NoResize
+        //        | ImGuiWindowFlags_NoMove
+        //        | ImGuiWindowFlags_NoScrollbar
+        //        | ImGuiWindowFlags_NoScrollWithMouse
+        //        | ImGuiWindowFlags_NoCollapse
+        //        | ImGuiWindowFlags_NoBackground
+        //        | ImGuiWindowFlags_NoSavedSettings
+        //        | ImGuiWindowFlags_MenuBar
+        //        | ImGuiWindowFlags_HorizontalScrollbar
+        //        | ImGuiWindowFlags_NoFocusOnAppearing
+        //        | ImGuiWindowFlags_NoDocking
+        //        )) {
+        //        //----- メニュー表示
+        //        if (ImGui::BeginMenuBar()) {
+        //            //----- "File"項目表示
+        //            if (ImGui::BeginMenu("File")) {
+        //                //if (ImGui::MenuItem("Hoge", NULL, true)) {
+        //                //}
+        //                ImGui::EndMenu();
+        //            }
 
-                    //----- "Menu" 表示
-                    if (ImGui::BeginMenu("Menu")) {
-                        using namespace EtherEngine::ImGuiDefine;
+        //            //----- "Menu" 表示
+        //            if (ImGui::BeginMenu("Menu")) {
+        //                using namespace EtherEngine::ImGuiDefine;
 
-                        //----- 項目表示
-                        ShowWindowMenu<BuildMenu>(&m_windows, Name::WINDOW_BUILD_MENU);
+        //                //----- 項目表示
+        //                ShowWindowMenu<BuildMenu>(&m_windows, Name::WINDOW_BUILD_MENU);
 
-                        ImGui::EndMenu();
-                    }
+        //                ImGui::EndMenu();
+        //            }
 
-                    //----- "Editor Window"項目表示
-                    if (ImGui::BeginMenu("Editor Window")) {
-                        using namespace EtherEngine::ImGuiDefine;
+        //            //----- "Editor Window"項目表示
+        //            if (ImGui::BeginMenu("Editor Window")) {
+        //                using namespace EtherEngine::ImGuiDefine;
 
-                        //----- 全削除メニュー表示
-                        if (ImGui::MenuItem("All Window Delete", NULL)) {
-                            for (auto&& it : m_windows) {
-                                EditorObjectStorage::Get()->DeleteEditorObject(it);
-                            }
-                        }
+        //                //----- 全削除メニュー表示
+        //                if (ImGui::MenuItem("All Window Delete", NULL)) {
+        //                    for (auto&& it : m_windows) {
+        //                        EditorObjectStorage::Get()->DeleteEditorObject(it);
+        //                    }
+        //                }
 
-                        //----- 項目表示
-                        ShowWindowMenu<EditorLogWindow>(&m_windows, Name::WINDOW_LOG);
-                        ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
-                        ShowWindowMenu<ExplorerWindow>(&m_windows, Name::WINDOW_EXPLORER);
-                        ShowWindowMenu<EditorInspectorWindow>(&m_windows, Name::WINDOW_INSPECTOR);
+        //                //----- 項目表示
+        //                ShowWindowMenu<EditorLogWindow>(&m_windows, Name::WINDOW_LOG);
+        //                ShowWindowMenu<EditorOutliner>(&m_windows, Name::WINDOW_OUTLINER);
+        //                ShowWindowMenu<ExplorerWindow>(&m_windows, Name::WINDOW_EXPLORER);
+        //                ShowWindowMenu<EditorInspectorWindow>(&m_windows, Name::WINDOW_INSPECTOR);
 
-                        ImGui::EndMenu();
-                    }
-                    ImGui::EndMenuBar();
-                }
-                //----- ゲーム再生・停止ボタン表示
-                ImGui::Columns(5, (ImGuiDefine::Name::WINDOW_MENU + "GameButton Columns").c_str(), false);
-                ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
-                if (ImGui::Button("Start")) EditorApplication::Get()->StartGameMode(); ImGui::SameLine();
-                if (ImGui::Button("Stop")) EditorApplication::Get()->StopGameMode(); ImGui::SameLine();
-                if (ImGui::Button("End")) EditorApplication::Get()->EndGameMode(); ImGui::SameLine();
-                ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
+        //                ImGui::EndMenu();
+        //            }
+        //            ImGui::EndMenuBar();
+        //        }
+        //        //----- ゲーム再生・停止ボタン表示
+        //        ImGui::Columns(5, (ImGuiDefine::Name::WINDOW_MENU + "GameButton Columns").c_str(), false);
+        //        ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
+        //        if (ImGui::Button("Start")) EditorApplication::Get()->StartGameMode(); ImGui::SameLine();
+        //        if (ImGui::Button("Stop")) EditorApplication::Get()->StopGameMode(); ImGui::SameLine();
+        //        if (ImGui::Button("End")) EditorApplication::Get()->EndGameMode(); ImGui::SameLine();
+        //        ImGui::Dummy(ImVec2()); ImGui::NextColumn(); ImGui::Dummy(ImVec2()); ImGui::NextColumn();
 
-                //----- ウィンドウ位置・座標設定
-                Eigen::Vector2i windowPostion;
-                Eigen::Vector2i frameSize;
-                RECT clientSize;
-                {
-                    auto hWnd = EditorApplication::Get()->GetHWND();
+        //        //----- ウィンドウ位置・座標設定
+        //        Eigen::Vector2i windowPostion;
+        //        Eigen::Vector2i frameSize;
+        //        RECT clientSize;
+        //        {
+        //            auto hWnd = EditorApplication::Get()->GetHWND();
 
-                    //----- 変数宣言
-                    RECT windowSize;
+        //            //----- 変数宣言
+        //            RECT windowSize;
 
-                    //----- ウィンドウ位置・サイズを取得
-                    if (GetWindowRect(hWnd, &windowSize) == false) std::exception("Error! Non GetWindowRect");
+        //            //----- ウィンドウ位置・サイズを取得
+        //            if (GetWindowRect(hWnd, &windowSize) == false) std::exception("Error! Non GetWindowRect");
 
-                    //----- クライアント領域を取得
-                    if (GetClientRect(hWnd, &clientSize) == false) std::exception("Error! Non GetClientRect");
+        //            //----- クライアント領域を取得
+        //            if (GetClientRect(hWnd, &clientSize) == false) std::exception("Error! Non GetClientRect");
 
-                    //----- フレームサイズ算出
-                    frameSize.x() = (windowSize.right - windowSize.left) - (clientSize.right - clientSize.left);
-                    frameSize.y() = (windowSize.bottom - windowSize.top) - (clientSize.bottom - clientSize.top);
+        //            //----- フレームサイズ算出
+        //            frameSize.x() = (windowSize.right - windowSize.left) - (clientSize.right - clientSize.left);
+        //            frameSize.y() = (windowSize.bottom - windowSize.top) - (clientSize.bottom - clientSize.top);
 
-                    //----- 最終的な位置計算
-                    windowPostion.x() = windowSize.left + clientSize.left;
-                    windowPostion.y() = windowSize.top + clientSize.top;
-                }
-                ImGui::SetWindowPos(ImVec2(windowPostion.x() + (frameSize.x() / 2), windowPostion.y() + (frameSize.y() / 2) + (frameSize.y() / 4)));
-                ImGui::SetWindowSize(ImVec2(clientSize.right, 60));
+        //            //----- 最終的な位置計算
+        //            windowPostion.x() = windowSize.left + clientSize.left;
+        //            windowPostion.y() = windowSize.top + clientSize.top;
+        //        }
+        //        ImGui::SetWindowPos(ImVec2(windowPostion.x() + (frameSize.x() / 2), windowPostion.y() + (frameSize.y() / 2) + (frameSize.y() / 4)));
+        //        ImGui::SetWindowSize(ImVec2(clientSize.right, 60));
 
-                ImGui::End();
-            }
-        }
+        //        ImGui::End();
+        //    }
+        //}
 
         //----- EditorObject描画
         auto draw = EditorObjectStorage::Get()->GetEditorObjectAll();

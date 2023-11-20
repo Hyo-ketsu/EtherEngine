@@ -1,7 +1,7 @@
 #ifndef I_GAMECOMPONENT_H
 #define I_GAMECOMPONENT_H
 #include <Base/GameObject.h>
-#include <CPPCLI/UserComponent.h>
+#include <EngineLibrary/UserComponent.h>
 
 
 //----- GameCompnent éŒ¾

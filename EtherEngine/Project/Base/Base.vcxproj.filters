@@ -100,6 +100,7 @@
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
     <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
+    <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
@@ -181,5 +182,6 @@
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />
     <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />
+    <ClInclude Include="..\..\Source\Base\EditorException.h" />
   </ItemGroup>
 </Project>

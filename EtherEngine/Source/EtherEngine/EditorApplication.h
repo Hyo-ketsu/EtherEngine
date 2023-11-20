@@ -1,7 +1,7 @@
 #ifndef I_EDITORAPPLICATION_H
 #define I_EDITORAPPLICATION_H
 #include <Base/ProjectData.h>
-#include <CPPCLI/BaseMainWindow.h>
+#include <EngineLibrary/BaseMainWindow.h>
 #include <EtherEngine/ImGuiClass.h>
 #include <EtherEngine/ProjectEditorData.h>
 
