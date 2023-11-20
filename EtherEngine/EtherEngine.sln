@@ -26,6 +26,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{D09C71CF-AE0B-4CEC-A404-30AC01EDEF64}"
 	ProjectSection(SolutionItems) = preProject
 		Memo.txt = Memo.txt
+		UseFile.txt = UseFile.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorMain", "Project\EditorMain\EditorMain.csproj", "{402B45D8-6B6C-4232-9352-F1D606C5298F}"
@@ -126,22 +127,18 @@ Global
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Debug|x86.ActiveCfg = Debug|x86
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Release|x64.ActiveCfg = Release|x64
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Release|x86.ActiveCfg = Release|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x86.ActiveCfg = Editor_Debug|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x86.Build.0 = Editor_Debug|x86
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.ActiveCfg = Debug|x64
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.Build.0 = Debug|x64
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x86.ActiveCfg = Debug|x86
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x86.Build.0 = Debug|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x64.ActiveCfg = Editor_Release|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x86.ActiveCfg = Editor_Release|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x86.Build.0 = Editor_Release|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x64.Build.0 = GameTest_Debug|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.Build.0 = GameTest_Debug|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.ActiveCfg = GameTest_Release|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.Build.0 = GameTest_Release|x86
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x64.ActiveCfg = Editor_Release|x64
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.ActiveCfg = Editor_Release|x86
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.ActiveCfg = Editor_Release|x64
+		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.ActiveCfg = Editor_Release|x86
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32

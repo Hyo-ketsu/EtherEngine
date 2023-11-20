@@ -4,7 +4,6 @@
 
 //----- ŠeíInterfaceéŒ¾
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serialize‚ğs‚¤Interface
     interface class ISerialize {
     public:
@@ -16,7 +15,6 @@ namespace EtherEngine {
         // @ Arg1 : “Ç‚İæ‚éJson•¶š—ñ
         void Deserialize(const std::string& input);
     };
-#endif
 }
 
 

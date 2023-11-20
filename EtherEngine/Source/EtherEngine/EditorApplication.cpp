@@ -160,7 +160,7 @@ namespace EtherEngine {
                 // シーンウィンドウの追加
                 while (true) {
                     //----- ウィンドウの取得(取得できなかったら終了)
-                    auto window = EditorUI::GetWindow::GetCreateWindow<EditorUI::SceneView^>();
+                    auto window = EditorUI::GetEditorWindow::GetCreateWindow<EditorUI::SceneViewVM^>();
                     if (window == nullptr) break;
 
                     //----- 前準備
@@ -175,7 +175,7 @@ namespace EtherEngine {
                     };
                     msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
                     WindowEnableLambda enableFunction = [=]() -> bool {
-                        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2->IsActive;
+                        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2 != nullptr;
                     };
                     WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
                         auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;

@@ -13,7 +13,7 @@ namespace EditorUI {
         public static void MainFunction(object? sender, EventArgs e) {
             //----- ウィンドウを取得、表示する
             {
-                var window = CreateWindow.GetCreateWindow();
+                var window = CreateEditorWindow.GetCreateWindow();
                 window?.GetUILock().Item2.Show();
             }
         }

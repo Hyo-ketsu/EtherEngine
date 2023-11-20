@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace EditorUI {
     /// <summary>エンジン側からウィンドウを追加するクラス</summary>
-    public static class CreateWindow {
+    public static class CreateEditorWindow {
         /// <summary>ウィンドウを追加する</summary>
         /// <param name="window">UIに追加したいウィンドウ</param>
         /// <returns>追加したウィンドウへのアクセス</returns>
@@ -43,44 +44,44 @@ namespace EditorUI {
     }
 
 
-    /// <summary>UI側からのウィンドウを取得するクラス</summary>
-    public static class GetWindow {
-        /// <summary>ウィンドウを追加する</summary>
-        /// <param name="window">UIに追加したいウィンドウ</param>
-        /// <returns>追加したウィンドウへのアクセス</returns>
-        internal static AtomicData<Window> AddCreateWindow(Window window) {
+    /// <summary>UI側からのViewModelを取得するクラス</summary>
+    public static class GetEditorWindow {
+        /// <summary>ViewModelを追加する</summary>
+        /// <param name="viewModel">UIに追加したいViewModel</param>
+        /// <returns>追加したViewModelへのアクセス</returns>
+        internal static AtomicData<object> AddCreateWindow(object viewModel) {
             lock (ms_lockObject) {
                 //----- 生成して追加する
-                var createWindow = new AtomicData<Window>(window);
-                ms_createWindows.Add(createWindow);
-                return createWindow;
+                var createViewModel = new AtomicData<object>(viewModel);
+                ms_createViewModel.Add(createViewModel);
+                return createViewModel;
             }
         }
 
 
-        /// <summary>追加されたウィンドウの名前のリストを取得する</summary>
-        /// <returns>追加されたウィンドウのリスト</returns>
+        /// <summary>追加されたViewModelの名前のリストを取得する</summary>
+        /// <returns>追加されたViewModelのリスト</returns>
         public static List<string> GetCreateWindowCount() {
             //----- 変数宣言
             List<string> ret = new();
 
-            //----- window名を全て舐める
-            foreach (var window in ms_createWindows) {
-                ret.Add(window.GetUILock().Item2.Name);
+            //----- ViewModel名を全て舐める
+            foreach (var viewModel in ms_createViewModel) {
+                ret.Add(viewModel.GetUILock().Item2.GetType().Name);
             }
 
             //----- 返却
             return ret;
         }
-        /// <summary>追加されたウィンドウを取得する</summary>
-        /// <param name="windowType">取得するウィンドウの型</param>
+        /// <summary>追加されたViewModelを取得する</summary>
+        /// <typeparam name="ViewModelType">取得するViewModelの型</typeparam>
         /// <returns></returns>
-        public static AtomicData<WindowType>? GetCreateWindow<WindowType>() where WindowType : Window {
-            //----- リストから windowType に合致したものを返却
+        public static AtomicData<ViewModelType>? GetCreateWindow<ViewModelType>() where ViewModelType : class {
+            //----- リストから ViewModelType に合致したものを返却
             lock (ms_lockObject) {
-                foreach (var createWindow in ms_createWindows) {
-                    if (createWindow.GetType() == typeof(WindowType)) {
-                        return createWindow.GetCast<WindowType>();
+                foreach (var createViewModel in ms_createViewModel) {
+                    if (createViewModel.GetType() == typeof(ViewModelType)) {
+                        return createViewModel.GetCast<ViewModelType>();
                     }
                 }
             }
@@ -91,7 +92,7 @@ namespace EditorUI {
 
         /// <summary>ロックオブジェクト</summary>
         private static object ms_lockObject = new();
-        /// <summary>保持しているウィンドウ</summary>
-        private static List<AtomicData<Window>> ms_createWindows = new();
+        /// <summary>保持しているViewModel</summary>
+        private static List<AtomicData<object>> ms_createViewModel = new();
     }
 }

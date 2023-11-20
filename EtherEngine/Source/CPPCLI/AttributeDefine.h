@@ -4,7 +4,6 @@
 
 namespace EtherEngine {
     namespace Attribute {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
         // Serialize,Deserialize‚·‚é‚½‚ß‚Ì‘®«
         public ref class Serialize : System::Attribute {
         };
@@ -14,7 +13,6 @@ namespace EtherEngine {
         public ref class NonSerialize : System::Attribute {
         };
     }
-#endif
 }
 
 

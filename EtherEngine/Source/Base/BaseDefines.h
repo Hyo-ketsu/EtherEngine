@@ -8,12 +8,14 @@ namespace EtherEngine {
     //----- FPS
     const float ONE_FRAME = 1.f / 60.f;
 
+
     //----- 画面比率
     namespace AspectDefine {
         // HD比率
         template <Concept::ArithmeticConcept T = float>
         const float HD = 16.0f / 9.0f;
     }
+
 
     //----- カメラ用の定数
     namespace CameraDefine {
@@ -23,6 +25,7 @@ namespace EtherEngine {
         const float NEAR_ = 0.2f;                    // 最短クリップ距離
         const float FAR_ = 1000.0f;                  // 最長クリップ距離
     }
+
 
     //----- ファイル用定義
     namespace FileDefine {
@@ -48,6 +51,14 @@ public:
 
         const int JSON_DUMP_NUMBER_OF_STAGES = 2;   // JsonのDump数
     }
+
+
+    //----- 言語列挙体
+    enum class LanguageEnum : char {
+        EN = 0, // 英語
+        JP,     // 日本語
+        None,   // 言語未設定
+    };
 }
 
 

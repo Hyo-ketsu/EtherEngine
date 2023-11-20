@@ -9,7 +9,6 @@
 
 //----- UseBaseComponent 宣言
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     public ref class UserBaseComponent : public Serializer, public IInspectorDrawer {
     public:
         // コンストラクタ
@@ -140,7 +139,6 @@ namespace EtherEngine {
     private:
         GameObject* m_gameObject; // 自身を保持しているゲームオブジェクト
     };
-#endif
 }
 
 

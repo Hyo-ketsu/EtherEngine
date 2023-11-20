@@ -45,16 +45,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorExplorerWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObject.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorObjectStorage.cpp" />
@@ -63,6 +54,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorPopupWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\EditorUtility.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EtherEngineAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp" />
@@ -116,6 +108,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorPopupWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\EditorUtility.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorWindowBase.h" />
     <ClInclude Include="..\..\Source\EtherEngine\FileCreater.h" />
     <ClInclude Include="..\..\Source\EtherEngine\FileDeleter.h" />

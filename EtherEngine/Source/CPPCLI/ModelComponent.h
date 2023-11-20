@@ -6,12 +6,10 @@
 
 //----- ModelComponent êÈåæ
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     //-----
     public ref class ModelComponent : UserBaseComponent {
     public:
     };
-#endif
 }
 
 

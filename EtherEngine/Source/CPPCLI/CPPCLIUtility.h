@@ -6,7 +6,6 @@
 
 //----- インタフェース定義
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serialize, DeserializeInterface
     public interface class ISerializer {
     public:
@@ -23,7 +22,6 @@ namespace EtherEngine {
         // 表示する
         void DrawInspector(void);
     };
-#endif
 }
 
 
@@ -61,7 +59,6 @@ namespace EtherEngine {
 
 //----- Serializer 宣言
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Serialize, Deserialize自体を行うクラス
     public ref class Serializer : public ISerializer {
     public:
@@ -152,13 +149,11 @@ namespace EtherEngine {
             }
         }
     };
-#endif
 }
 
 
 //----- UnmanageMaintainer 宣言
 namespace EtherEngine {
-#ifndef CPPCLI_CPPCLI_CLASS_DECLARATION
     // Unmanage Class を value class で保持するクラス
     // @ Memo : 手動で解放処理を呼び出してください
     template <typename UnmanageType>
@@ -253,7 +248,6 @@ namespace EtherEngine {
         UnmanageType* m_maintainer; // 保持している対象
         bool m_isNew;               // 右辺値を受け取り構築したか
     };
-#endif
 }
 
 
