@@ -5,6 +5,10 @@
 #pragma comment(lib,"d3d11.lib")
 #include <Windows.h>
 #pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "user32.lib")
+#pragma comment(lib, "gdi32.lib")
+#pragma comment(lib, "Ole32.lib")
+
 
 #include <Xinput.h>
 #pragma comment(lib, "Xinput.lib")
@@ -17,18 +21,12 @@
 
 #include <processthreadsapi.h>
 
-#ifdef _X86_
-#ifdef _DEBUG
-#pragma comment(lib, "DirectXTex/Win32/Debug/DirectXTex.lib")
-#else
-#pragma comment(lib, "DirectXTex/Win32/Release/DirectXTex.lib")
-#endif
-#else
+
+#include <DirectXTex/DirectXTex.h>
 #ifdef _DEBUG
 #pragma comment(lib, "DirectXTex/x64/Debug/DirectXTex.lib")
 #else
 #pragma comment(lib, "DirectXTex/x64/Release/DirectXTex.lib")
-#endif
 #endif
 
 

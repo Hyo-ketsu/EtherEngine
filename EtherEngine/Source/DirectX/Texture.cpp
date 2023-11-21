@@ -1,5 +1,4 @@
 #include <DirectX/Texture.h>
-#include <DirectXTex/DirectXTex.h>
 
 
 //----- TextureÀ‘•

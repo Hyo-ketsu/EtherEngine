@@ -10,6 +10,9 @@
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{5472d816-0842-4487-8659-5281bdf130d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Wrapper">
+      <UniqueIdentifier>{a9537dc6-33df-4cb1-aa98-4a8b2fc23011}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
@@ -28,6 +31,8 @@
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
@@ -47,5 +52,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp" />
   </ItemGroup>
 </Project>
