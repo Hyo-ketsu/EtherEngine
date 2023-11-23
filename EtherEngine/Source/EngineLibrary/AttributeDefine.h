@@ -3,6 +3,7 @@
 
 
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     namespace Attribute {
         // Serialize,Deserialize‚·‚é‚½‚ß‚Ì‘®«
         public ref class Serialize : System::Attribute {
@@ -13,6 +14,7 @@ namespace EtherEngine {
         public ref class NonSerialize : System::Attribute {
         };
     }
+#endif
 }
 
 

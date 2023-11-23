@@ -7,7 +7,7 @@
 //----- GameCompnent 宣言
 namespace EtherEngine {
     // 
-    class GameComponent : public ComponentBase {
+    class ENGINELIBRARY_API GameComponent : public ComponentBase {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します

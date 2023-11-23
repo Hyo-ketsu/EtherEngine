@@ -6,7 +6,7 @@
 
 namespace EtherEngine {
     // ゲームアプリケーションを表現するクラス
-    class GameApplication : public BaseMainWindow, public Singleton<GameApplication> {
+    class ENGINELIBRARY_API GameApplication : public BaseMainWindow, public Singleton<GameApplication> {
     public:
         // デストラクタ
         ~GameApplication(void);
@@ -18,6 +18,8 @@ namespace EtherEngine {
     private:
         // コンストラクタ
         GameApplication(void);
+
+        friend class Singleton<GameApplication>;
     };
 }
 

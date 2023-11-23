@@ -1,13 +1,13 @@
 #ifndef I_ASSEMBLYHOLDER_H
 #define I_ASSEMBLYHOLDER_H
-#include <EngineLibrary/ManageSingleton.h>
-#include <EngineLibrary/EngineLibraryUtility.h>
+#include <EngineLibrary/EngineLibraryDefine.h>
 
 
 //----- AssemblyHolder 定義
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     // ゲームのアセンブリを保持したクラス
-    class AssemblyHolder {
+    public ref class AssemblyHolder {
     public:
         // アセンブリを取得する
         // @ Ret  : 取得したアセンブリ、または現在のアセンブリ
@@ -17,7 +17,7 @@ namespace EtherEngine {
         // アセンブリを読み込む
         // @ Ret  : アセンブリが読み込めたか
         // @ Arg1 : 読み込むアセンブリ名
-        static bool LoadAssembly(const PathClass& assemblyPath);
+        static bool LoadAssembly(PathString^ assemblyPath);
         // 現在読み込みアセンブリを削除する
         static void DeleteAssembly(void);
 
@@ -27,14 +27,15 @@ namespace EtherEngine {
         static bool IsLoadAssemblyEnable(void);
 
     private:
-        /// @brief コンストラクタ
+        // コンストラクタ
         AssemblyHolder(void) {}
 
 
-        static msclr::gcroot<System::Reflection::Assembly^> ms_assembly;   // 現在保持しているアセンブリ
-        static bool ms_isBuild;     // buildが成功しているか
-        static bool ms_isUpdate;    // ソリューションが更新されているか
+        static System::Reflection::Assembly^ ms_assembly = nullptr;   // 現在保持しているアセンブリ
+        static bool ms_isBuild = true;      // buildが成功しているか
+        static bool ms_isUpdate = false;    // ソリューションが更新されているか
     };
+#endif
 }
 
 

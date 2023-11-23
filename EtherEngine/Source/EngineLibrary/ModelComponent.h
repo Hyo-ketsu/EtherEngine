@@ -6,10 +6,12 @@
 
 //----- ModelComponent éŒ¾
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     //-----
     public ref class ModelComponent : UserBaseComponent {
     public:
     };
+#endif
 }
 
 

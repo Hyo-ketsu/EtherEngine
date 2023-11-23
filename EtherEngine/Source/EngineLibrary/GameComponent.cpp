@@ -12,7 +12,7 @@ namespace EtherEngine {
         : ComponentBase(gameObject, componentName) 
         , m_componentName(componentName) {
         // @ MEMO : ñºëOÇ©ÇÁÇÃê∂ê¨
-        System::Type^ type = System::Type::GetType(UnToManage(componentName));
+        System::Type^ type = System::Type::GetType(UNMANAGE_TO_MANAGE_STRING(componentName));
         auto component = dynamic_cast<UserBaseComponent^>(System::Activator::CreateInstance(type));
 
         if (component == nullptr) throw std::exception("Error! Non UserComponent");

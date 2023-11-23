@@ -86,7 +86,7 @@ namespace EtherEngine {
     // インスタンスの取得
     template<SingletonConcept SingletonType>
     AtomicData<SingletonType* const> Singleton<SingletonType>::GetLock(void) {
-        return AtomicData<SingletonType>(Get(),
+        return AtomicData<SingletonType *const>(Get(),
             []() -> void { ms_updaetrMutex.lock(); }, [=]() -> void { ms_updaetrMutex.unlock(); });
     }
 

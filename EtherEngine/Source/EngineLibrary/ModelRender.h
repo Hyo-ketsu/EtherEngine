@@ -7,6 +7,7 @@
 
 //----- ModelRender 宣言
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     public ref class ModelRender : UserDrawBaseComponent {
     public:
         // コンストラクタ
@@ -22,6 +23,7 @@ namespace EtherEngine {
     private:
         [Attribute::Serialize] UnmanageMaintainer<Model> m_model;   // 保持モデル
     };
+#endif
 }
 
 

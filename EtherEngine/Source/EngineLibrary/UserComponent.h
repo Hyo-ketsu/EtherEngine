@@ -9,6 +9,7 @@
 
 //----- UseBaseComponent 宣言
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     public ref class UserBaseComponent : public Serializer, public IInspectorDrawer {
     public:
         // コンストラクタ
@@ -44,6 +45,7 @@ namespace EtherEngine {
     private:
         GameObject* m_gameObject; // 自身を保持しているゲームオブジェクト
     };
+#endif
 }
 
 

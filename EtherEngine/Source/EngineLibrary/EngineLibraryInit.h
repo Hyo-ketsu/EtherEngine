@@ -4,6 +4,7 @@
 
 //----- 初期化・終了処理定義
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     class EngineLibrary {
     public:
         // デストラクタ
@@ -17,6 +18,7 @@ namespace EtherEngine {
         // コンストラクタ
         EngineLibrary(void) {}
     };
+#endif
 }
 
 

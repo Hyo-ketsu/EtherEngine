@@ -1,7 +1,9 @@
 #include <EtherEngine/ProjectMediation.h>
 #include <EngineLibrary/AssemblyHolder.h>
+#include <EngineLibrary/ConvertManage.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #include <EtherEngine/EditorDefine.h>
+
 
 //----- ソースファイルが含まれている属性取得
 namespace EtherEngine {
@@ -176,7 +178,8 @@ namespace EtherEngine {
         //----- Refreshを実行する
         if (Refresh::AssemblyRefresh() == Refresh::RefreshStateType::Ok) {
             //----- リフレッシュが完了。アセンブリを格納 
-            AssemblyHolder::LoadAssembly(GetVcxproj().GetDirectory() / EditorFileDefine::Directory::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll");
+            auto assemblyPath = GetVcxproj().GetDirectory() / EditorFileDefine::Directory::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll";
+            AssemblyHolder::LoadAssembly(UNMANAGE_TO_MANAGE_STRING(assemblyPath.Get()));
             return true;
         }
         else {

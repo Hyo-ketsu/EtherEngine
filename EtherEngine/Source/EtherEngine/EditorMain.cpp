@@ -13,7 +13,7 @@ namespace EtherEngine {
             EtherEngine::EditorApplication::Get()->BaseMainFunction();
         }
         catch (const std::exception& exception) {
-            auto manageException = gcnew System::ApplicationException(UnToManage(exception.what()));
+            auto manageException = gcnew System::ApplicationException(gcnew System::String(exception.what()));
             throw gcnew System::Runtime::InteropServices::SEHException("EtherEngine Exception!", manageException);
         }
 #else

@@ -2,10 +2,12 @@
 #define I_CPPCLIUTILITY_H
 #include <Base/ConceptUtility.h>
 #include <Base/BaseDefines.h>
+#include <EngineLibrary/ConvertManage.h>
 
 
 //----- インタフェース定義
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     // Serialize, DeserializeInterface
     public interface class ISerializer {
     public:
@@ -22,20 +24,10 @@ namespace EtherEngine {
         // 表示する
         void DrawInspector(void);
     };
+#endif
 }
 
 
-//----- 文字列変換関数
-namespace EtherEngine {
-    // .NET文字列をC++文字列に変換する
-    // @ Ret  : C++文字列
-    // @ Arg1 : .NET文字列
-    std::string ManageToUn(System::String^ manage);
-    // C++文字列を.NET文字列に変換する
-    // @ Ret  : .NET文字列
-    // @ Arg1 : C++文字列
-    System::String^ UnToManage(const std::string& un);
-}
 
 
 //----- 完全修飾名取得関数 定義
@@ -57,6 +49,9 @@ namespace EtherEngine {
 }
 
 
+
+
+#ifdef _ENGINELIBRARY
 //----- Serializer 宣言
 namespace EtherEngine {
     // Serialize, Deserialize自体を行うクラス
@@ -105,10 +100,10 @@ namespace EtherEngine {
                 //----- 公開するのであればJson出力
                 Serializer^ iSerialize = dynamic_cast<Serializer^>(field->GetValue(this));
                 if (iSerialize != nullptr) {
-                    serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)] = iSerialize->Serialize();
+                    serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)] = iSerialize->Serialize();
                 }
                 else {
-                    serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)] = ManageToUn(field->ToString());
+                    serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)] = ManageToUnmanage::String(field->ToString());
                 }
             }
 
@@ -127,21 +122,21 @@ namespace EtherEngine {
             auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::Instance);
 
             //----- そもそも自コンポーネントが存在しなければ入力しない
-            if (serialize.contains(ManageToUn(thisType->Name)) == false) return;
+            if (serialize.contains(ManageToUnmanage::String(thisType->Name)) == false) return;
 
             //----- 全てのFieldに対し入力する
             for each (auto field in fields) {
                 //----- そのFieldが存在するか
-                if (serialize.contains(ManageToUn(field->Name)) == false) continue;
+                if (serialize.contains(ManageToUnmanage::String(field->Name)) == false) continue;
 
                 //----- 代入
                 Serializer^ iSerialize = dynamic_cast<Serializer^>(field->GetValue(this));
                 if (iSerialize != nullptr) {
-                    iSerialize->Deserialize(serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)]);
+                    iSerialize->Deserialize(serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)]);
                 }
                 else {
                     try {
-                        field->SetValue(this, System::Convert::ChangeType(UnToManage(serialize[ManageToUn(thisType->Name)][ManageToUn(field->Name)]), field->FieldType));
+                        //field->SetValue(this, System::Convert::ChangeType(UnmanageToManage::String(serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)]), field->FieldType));
                     }
                     catch (System::InvalidCastException^) {
                     }
@@ -150,8 +145,12 @@ namespace EtherEngine {
         }
     };
 }
+#endif
 
 
+
+
+#ifdef _ENGINELIBRARY
 //----- UnmanageMaintainer 宣言
 namespace EtherEngine {
     // Unmanage Class を value class で保持するクラス
@@ -249,6 +248,7 @@ namespace EtherEngine {
         bool m_isNew;               // 右辺値を受け取り構築したか
     };
 }
+#endif;
 
 
 #endif // !I_CPPCLIUtility_H

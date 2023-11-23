@@ -8,7 +8,7 @@
 //----- 描画コンポーネント
 namespace EtherEngine {
     // 描画コンポーネント
-    public class GameDrawComponent : public GameComponent, public virtual DrawComponent {
+    class ENGINELIBRARY_API GameDrawComponent : public GameComponent, public virtual DrawComponent {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します

@@ -1,11 +1,12 @@
 #include <EngineLibrary/AssemblyHolder.h>
+#include <EngineLibrary/EngineLibraryUtility.h>
 
 
 //----- AssemblyHolder 定義
 namespace EtherEngine {
     // アセンブリを取得する
     System::Reflection::Assembly^ AssemblyHolder::GetAssembly(void) {
-        if (static_cast<System::Reflection::Assembly^>(ms_assembly) == nullptr) {
+        if (ms_assembly == nullptr) {
             //----- 何も読み込んでいない。現在のアセンブリを取得
             return System::Reflection::Assembly::GetCallingAssembly();
         }
@@ -17,13 +18,13 @@ namespace EtherEngine {
 
 
     // アセンブリを読み込む
-    bool AssemblyHolder::LoadAssembly(const PathClass& assemblyPath) {
+    bool AssemblyHolder::LoadAssembly(PathString^ assemblyPath) {
         //----- dllかファイルチェック
-        if (assemblyPath.IsExists() == false) return false;
-        if (assemblyPath.HasExtension() && assemblyPath.GetExtension() != "dll") return false;
+        if (System::IO::Path::Exists(assemblyPath->ToString()) == false) return false;
+        if (System::IO::Path::HasExtension(assemblyPath->ToString()) && System::IO::Path::GetExtension(assemblyPath->ToString()) != ".dll") return false;
 
         //----- 読み込む
-        ms_assembly = System::Reflection::Assembly::LoadFrom(UnToManage(assemblyPath));
+        ms_assembly = System::Reflection::Assembly::LoadFrom(assemblyPath->ToString());
         return true;
     }
     // 現在読み込みアセンブリを削除する
@@ -34,11 +35,6 @@ namespace EtherEngine {
 
     // 現在読み込みアセンブリが存在するか
     bool AssemblyHolder::IsLoadAssemblyEnable(void) {
-        return static_cast<System::Reflection::Assembly^>(ms_assembly) == nullptr ? false : true;
+        return ms_assembly == nullptr ? false : true;
     }
-
-
-    msclr::gcroot<System::Reflection::Assembly^> AssemblyHolder::ms_assembly = nullptr;   // 現在保持しているアセンブリ
-    bool AssemblyHolder::ms_isBuild = true;      // buildが成功しているか
-    bool AssemblyHolder::ms_isUpdate = false;    // ソリューションが更新されているか
 }

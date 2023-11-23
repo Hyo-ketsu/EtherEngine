@@ -3,9 +3,11 @@
 
 
 namespace EtherEngine {
+#ifdef _ENGINELIBRARY
     public ref class UserBaseObject {
 
     };
+#endif  
 }
 
 

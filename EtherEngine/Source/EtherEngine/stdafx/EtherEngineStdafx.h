@@ -1,6 +1,7 @@
 #ifndef I_ETHERENGINESTDAFX_H
 #define I_ETHERENGINESTDAFX_H
 #include <EngineLibrary/stdafx/EngineLibraryStdafx.h>
+#pragma comment(lib, "EngineLibrary.lib")
 
 
 #include <IMGUI/imgui.h>

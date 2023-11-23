@@ -25,7 +25,7 @@ namespace EtherEngine {
         //----- Component’Ç‰Á
         for each (auto type in types) {
             if (UserBaseComponent::typeid->IsAssignableFrom(type) && UserBaseComponent::typeid != type && UserDrawBaseComponent::typeid != type) {
-                showTypeName.push_back(std::make_pair<std::string, std::string>(ManageToUn(type->Name), ManageToUn(type->FullName)));
+                showTypeName.push_back(std::make_pair<std::string, std::string>(ManageToUnmanage::String(type->Name), ManageToUnmanage::String(type->FullName)));
             }
         }
 
