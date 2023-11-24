@@ -1,5 +1,6 @@
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/AssemblyHolder.h>
+#include <Base/EditorException.h>
 // @ MEMO : w_cahrからcharにしているのでエラー起こすかも
      
 
@@ -51,7 +52,7 @@ namespace EtherEngine {
         }
 
         //----- （恐らく）クラス名が存在しない。例外送出
-        throw std::exception("Error! No Class Name!");
+        throw EditorException("Error! No Class Name!");
     }
     // 完全修飾名を取得する
     System::String^ GetFullName(System::String^ className, const uint index, const bool isSystem) {
@@ -93,6 +94,6 @@ namespace EtherEngine {
         }
 
         //----- （恐らく）クラス名が存在しない。例外送出
-        throw std::exception("Error! No Class Name!");
+        throw EditorException("Error! No Class Name!");
     }
 }

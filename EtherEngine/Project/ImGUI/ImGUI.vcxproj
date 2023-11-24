@@ -172,7 +172,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
@@ -180,7 +180,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
@@ -188,7 +188,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
@@ -196,7 +196,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
@@ -204,7 +204,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
@@ -212,7 +212,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
@@ -220,7 +220,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
@@ -228,7 +228,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/Native/</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">

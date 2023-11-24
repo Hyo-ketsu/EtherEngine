@@ -124,7 +124,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'" Label="Configuration">
@@ -139,7 +139,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
@@ -154,7 +154,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'" Label="Configuration">
@@ -169,7 +169,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
@@ -204,60 +204,76 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <ClCompile>

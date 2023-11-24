@@ -1,4 +1,5 @@
 #include <Base/ThreadPool.h>
+#include <Base/EditorException.h>
 
 
 //----- ThreadPool 定義
@@ -64,7 +65,7 @@ namespace EtherEngine {
         //----- 非MainThreadからタスクが送信されているか
         if (ms_mainThread != std::this_thread::get_id()) {
             //----- 非MainThreadからタスクが送られてきている。例外を送出
-            throw std::exception("Error! Not main thread to task");
+            throw EditorException("Error! Not main thread to task");
         }
 
         //----- タスクを投げる

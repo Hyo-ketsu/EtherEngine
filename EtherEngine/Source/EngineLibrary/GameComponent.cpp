@@ -1,5 +1,6 @@
 #include <EngineLibrary/GameComponent.h>
 #include <Base/BaseDefines.h>
+#include <Base/EditorException.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 
 
@@ -15,7 +16,7 @@ namespace EtherEngine {
         System::Type^ type = System::Type::GetType(UNMANAGE_TO_MANAGE_STRING(componentName));
         auto component = dynamic_cast<UserBaseComponent^>(System::Activator::CreateInstance(type));
 
-        if (component == nullptr) throw std::exception("Error! Non UserComponent");
+        if (component == nullptr) throw EditorException("Error! Non UserComponent");
 
         m_component = component;
 

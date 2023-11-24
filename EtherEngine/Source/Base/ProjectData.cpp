@@ -1,15 +1,15 @@
 #include <Base/ProjectData.h>
 #include <Base/BaseDefines.h>
+#include <Base/EditorException.h>
 
 
 //----- ProjectData 定義
 namespace EtherEngine {
     // コンストラクタ
-    // @ MEMO : ひとまずテストできるように深谷PCのパスを打っています
     ProjectData::ProjectData(const PathClass& path) {
         //----- ファイルから読み込み
-        if (path.IsExists() == false) throw std::exception("Error! ProjectData NonFile!");
-        if (path.HasExtension() && path.GetExtension() != FileDefine::Extended::PROJECT_DATA) throw std::exception("Error! Is File ProjectData File?");
+        if (path.IsExists() == false) throw EditorException("Error! ProjectData NonFile!");
+        if (path.HasExtension() && path.GetExtension() != FileDefine::Extended::PROJECT_DATA) throw EditorException("Error! Is File ProjectData File?");
 
         //----- 読み込み
         Input(EtherEngine::RoadFileAll(path.Get()));

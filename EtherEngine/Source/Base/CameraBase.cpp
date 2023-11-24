@@ -3,6 +3,7 @@
 #include <Base/MathUtility.h>
 #include <Base/Converter.h>
 #include <Base/CameraStorage.h>
+#include <Base/EditorException.h>
 
 
 //----- CameraData’è‹`
@@ -116,7 +117,7 @@ namespace EtherEngine {
             MathUtility::FloatEqual(m_pos.y(), m_look.y()) &&
             MathUtility::FloatEqual(m_pos.z(), m_look.z()) 
             ) {
-            throw std::exception("Exception! pos and look are the same coordinates.");
+            throw EditorException("Exception! pos and look are the same coordinates.");
         }
     }
 }

@@ -1,4 +1,5 @@
 #include <Base/EtherEngineUtility.h>
+#include <Base/EditorException.h>
 #include <filesystem>
 
 
@@ -17,7 +18,7 @@ namespace EtherEngine {
     std::string RoadFileAll(const std::string& file) {
         //----- ファイルオープン
         std::ifstream readFile(file, std::ios::in | std::ios::binary);
-        if (readFile.is_open() == false) throw std::exception((std::string("Exception! SceneData : ") + file + " Non file!").c_str());
+        if (readFile.is_open() == false) throw EditorException((std::string("Exception! SceneData : ") + file + " Non file!").c_str());
 
         //----- 読み込み
         // @ Memo : EOFまで全て読み込みます

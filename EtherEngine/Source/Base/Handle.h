@@ -1,6 +1,7 @@
 #ifndef I_HANDLE_H
 #define I_HANDLE_H
 #include <Base/HandleSystem.h>
+#include <Base/EditorException.h>
 
 
 namespace EtherEngine {
@@ -230,21 +231,21 @@ namespace EtherEngine {
     // @ Ret  : æ“¾‚µ‚½—v‘f
     template<HandleSystemConcept Type>
     NonAtomicData<Type> BaseHandle<Type>::GetNoAtomicItem(void) const {
-        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetNoAtomicItem(m_handle).value();
     }
     // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚½—v‘f‚ğæ“¾‚·‚é
     // @ Ret  : æ“¾‚µ‚½—v‘f
     template<HandleSystemConcept Type>
     AtomicData<Type> BaseHandle<Type>::GetAtomicItem(void) const {
-        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetAtomicItem(m_handle).value();
     }
     // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚½“Ç‚İæ‚èê—p—v‘f‚ğæ“¾‚·‚é
     // @ Ret  : æ“¾‚µ‚½—v‘f
     template<HandleSystemConcept Type>
     AtomicReadData<Type> BaseHandle<Type>::GetAtomicReadItem(void) const {
-        if (this->IsEnable() == false) throw std::exception("Erorr! Accessing unused handles.");
+        if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetAtomicReadItem(m_handle).value();
     }
 

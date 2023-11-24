@@ -1,5 +1,6 @@
 #include <DirectX/DXWindowRender.h>
 #include <Base/CameraStorage.h>
+#include <Base/EditorException.h>
 #include <DirectX/DirectX.h>
 
 
@@ -17,7 +18,7 @@ namespace EtherEngine {
 		, m_windowFunction(windowFunction)
 		, m_backColor(0.7f, 0.9f, 0.9f, 1.0f) {
 		//----- Nullチェック
-		if (directX == nullptr) throw std::exception("Error! directX is Null");
+		if (directX == nullptr) throw EditorException("Error! directX is Null");
 
 		//----- 生存確認
 		m_dxEnable = m_directX->GetEnableKey();
@@ -86,7 +87,7 @@ namespace EtherEngine {
 				m_directX->GetEditableContext());	// デバイスコンテキスト
 			if (SUCCEEDED(hr)) break;
 		}
-		if (FAILED(hr)) throw std::exception(std::to_string(hr).c_str());
+		if (FAILED(hr)) throw EditorException(std::to_string(hr).c_str());
 
 		//--- レンダーターゲット作成
 		// バックバッファのポインタを取得
@@ -105,14 +106,14 @@ namespace EtherEngine {
 		dsvTexDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 		ID3D11Texture2D* pDSVTex;
 		hr = m_directX->GetDevice()->CreateTexture2D(&dsvTexDesc, nullptr, &pDSVTex);
-		if (FAILED(hr)) throw std::exception(std::to_string(hr).c_str());
+		if (FAILED(hr)) throw EditorException(std::to_string(hr).c_str());
 
 		//----- 深度バッファを作成
 		D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
 		dsvDesc.Format = dsvTexDesc.Format;
 		dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 		hr = m_directX->GetDevice()->CreateDepthStencilView(pDSVTex, &dsvDesc, &m_dsv);
-		if (FAILED(hr)) throw std::exception(std::to_string(hr).c_str());
+		if (FAILED(hr)) throw EditorException(std::to_string(hr).c_str());
 
 		//----- 描画先（レンダーターゲット）と深度バッファを設定
 		m_directX->GetContext()->OMSetRenderTargets(1, &m_rtv, m_dsv);

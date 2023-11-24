@@ -1,4 +1,5 @@
 #include <EtherEngine/EditorMain.h>
+#include <Base/EditorException.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 
 
@@ -14,6 +15,23 @@ namespace EtherEngine {
         }
         catch (const std::exception& exception) {
             auto manageException = gcnew System::ApplicationException(gcnew System::String(exception.what()));
+            throw gcnew System::Runtime::InteropServices::SEHException("EtherEngine Exception!", manageException);
+        }
+        catch (const EditorException& exception) {
+            //----- 全例外メッセージ取得
+            std::string message;
+            for (int i = 0;; i++) {
+                auto text = exception.GetErrorMessage(i);
+                if (text.has_value()) {
+                    message += text.value();
+                }
+                else {
+                    break;
+                }
+            }
+
+            //----- 例外の送出
+            auto manageException = gcnew System::ApplicationException(UNMANAGE_TO_MANAGE_STRING(message));
             throw gcnew System::Runtime::InteropServices::SEHException("EtherEngine Exception!", manageException);
         }
 #else

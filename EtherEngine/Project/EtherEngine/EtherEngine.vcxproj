@@ -257,73 +257,89 @@
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|Win32'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Debug|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
     <TargetName>$(ProjectName)</TargetName>
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</OutDir>
+    <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
+    <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
+    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">
     <ClCompile>
@@ -352,7 +368,7 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -383,8 +399,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
@@ -414,7 +429,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT
 IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -445,8 +460,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
@@ -480,8 +494,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
@@ -515,8 +528,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
@@ -550,8 +562,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
@@ -585,8 +596,7 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Debug/ $(SolutionDir)Debug/ *.dll /E /COPY:DT
-IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

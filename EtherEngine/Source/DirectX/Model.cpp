@@ -1,5 +1,6 @@
 #include <DirectX/Model.h>
 #include <Base/BaseDefines.h>
+#include <Base/EditorException.h>
 
 
 namespace EtherEngine {
@@ -50,7 +51,7 @@ namespace EtherEngine {
         //----- assimp‚Å“Ç‚İ‚İ
         auto scene = importer.ReadFile(file, flag);
         if (!scene) {
-            throw std::exception((importer.GetErrorString() + std::string(" Don't Created")).c_str());
+            throw EditorException((importer.GetErrorString() + std::string(" Don't Created")).c_str());
         }
 
         //----- ƒƒbƒVƒ…‚Ìì¬
@@ -150,7 +151,7 @@ namespace EtherEngine {
                 }
                 //----- ¸”s‚µ‚Ä‚¢‚½‚ç—áŠO‚ğ“f‚­
                 if (FAILED(hr)) {
-                    throw std::exception((std::string(path.C_Str()) + "No Texture").c_str());
+                    throw EditorException((std::string(path.C_Str()) + "No Texture").c_str());
                 }
             }
             else {

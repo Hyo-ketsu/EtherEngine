@@ -2,6 +2,7 @@
 #define I_CPPCLIUTILITY_H
 #include <Base/ConceptUtility.h>
 #include <Base/BaseDefines.h>
+#include <Base/EditorException.h>
 #include <EngineLibrary/ConvertManage.h>
 
 
@@ -196,7 +197,7 @@ namespace EtherEngine {
         // @ Memo : ‘ÎÛ‚ª–³‚¯‚ê‚Î—áŠO‚ğo—Í‚µ‚Ü‚·
         // @ Ret  : ‘ÎÛ
         UnmanageType& GetValue(void) {
-            if (HasValue() == false) throw std::exception("Error! Non Maintainer");
+            if (HasValue() == false) throw EditorException("Error! Non Maintainer");
             return *m_maintainer;
         }
         // ‘ÎÛ‚ğİ’è‚·‚é

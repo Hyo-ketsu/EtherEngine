@@ -8,9 +8,9 @@
     <UseWindowsForms>True</UseWindowsForms>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
-    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/$(Configuration)/</BaseOutputPath>
+    <BaseOutputPath>$(SolutionDir)Binary/</BaseOutputPath>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/$(Platform)/$(Configuration)/</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/GameMain/</BaseIntermediateOutputPath>
     <Configurations>Release;Debug</Configurations>
     <StartupObject>EditorMain.EditorMain</StartupObject>
   </PropertyGroup>
@@ -18,9 +18,5 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="robocopy $(SolutionDir)DLL/Debug/ $(OutDir) *.dll /E /COPY:DT&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 EXIT 0" />
-  </Target>
 
 </Project>

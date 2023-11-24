@@ -8,24 +8,48 @@
     <UseWindowsForms>True</UseWindowsForms>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
-    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/Editor_$(Configuration)/</BaseOutputPath>
+    <BaseOutputPath>$(SolutionDir)Binary/</BaseOutputPath>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/$(Platform)/Editor_$(Configuration)/</BaseIntermediateOutputPath>
-    <Configurations>Release;Debug</Configurations>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorMain/</BaseIntermediateOutputPath>
+    <Configurations>Editor_Release;Editor_Debug</Configurations>
     <StartupObject>EditorMain.EditorMain</StartupObject>
+    <SignAssembly>False</SignAssembly>
+    <ErrorReport>send</ErrorReport>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+  </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x86'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x86'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+  </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EditorUI\EditorUI.csproj" />
     <ProjectReference Include="..\EtherEngine\EtherEngine.vcxproj" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="robocopy $(SolutionDir)DLL/$(Configuration)/ $(OutDir) *.dll /E /COPY:DT&#xD;&#xA;IF %25ERRORLEVEL%25 LSS 8 EXIT 0" />
-  </Target>
 
 </Project>

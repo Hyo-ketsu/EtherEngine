@@ -8,33 +8,39 @@
     <Platforms>AnyCPU;x64;x86</Platforms>
     <PlatformTarget>x64</PlatformTarget>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <BaseOutputPath>$(SolutionDir)Binary/$(Platform)/Editor_$(Configuration)/</BaseOutputPath>
-    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorUI/$(Platform)/Editor_$(Configuration)/</BaseIntermediateOutputPath>
-    <Configurations>Debug;Release</Configurations>
+    <BaseOutputPath>$(SolutionDir)Binary/</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)Object/EditorUI/</BaseIntermediateOutputPath>
+    <Configurations>Editor_Debug;Editor_Release</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|AnyCPU'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x86'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x86'">
     <Optimize>False</Optimize>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
