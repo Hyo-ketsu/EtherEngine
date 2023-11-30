@@ -82,9 +82,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp">
-      <Filter>EngineSystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
@@ -122,6 +119,9 @@
       <Filter>EngineSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorUtility.cpp">
+      <Filter>EngineSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\CommandPrompt.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,9 +195,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h">
       <Filter>Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h">
-      <Filter>EngineSystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\FileCreater.h">
       <Filter>EngineSystem\FileFunction</Filter>
     </ClInclude>
@@ -225,5 +222,8 @@
       <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorUtility.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\CommandPrompt.h">
+      <Filter>EngineSystem</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,6 +13,13 @@ namespace EtherEngine {
 
         //----- 読み込み
         Input(EtherEngine::RoadFileAll(path.Get()));
+        m_path = path;
+    }
+    // デストラクタ
+    ProjectData::~ProjectData(void) {
+        std::ofstream ofs(m_path);
+
+        ofs << Output();
     }
 
 
@@ -20,9 +27,7 @@ namespace EtherEngine {
     Json ProjectData::Output(void) {
         Json json;
 
-        json["ProjectData"]["cmdPath"] = m_cmdPath;
-        json["ProjectData"]["msvcPath"] = m_msvcPath;
-        json["ProjectData"]["visualStudioPath"] = m_visualStudioPath;
+        json["ProjectData"]["visualStudioPath"] = m_msbuildPath;
 
         return json;
     }
@@ -30,8 +35,6 @@ namespace EtherEngine {
     void ProjectData::Input(const Json& input) {
         auto& projectData = input["ProjectData"];
 
-        m_cmdPath.Access() = projectData["cmdPath"];
-        m_msvcPath.Access() = projectData["msvcPath"];
-        m_visualStudioPath.Access() = projectData["visualStudioPath"];
+        m_msbuildPath.Access() = projectData["visualStudioPath"];
     }
 }

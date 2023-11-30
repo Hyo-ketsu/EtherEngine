@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace EditorUI {
     /// <summary>言語列挙体</summary>
+    [TypeConverter(typeof(EditorLanguageEnum))]
     public enum EditorLanguageEnum {
         /// <summary>英語</summary>
         EN = 0, 

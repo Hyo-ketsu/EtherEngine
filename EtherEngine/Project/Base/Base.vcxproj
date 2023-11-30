@@ -146,6 +146,7 @@
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
+    <ClInclude Include="..\..\Source\Base\ProjectData.h" />
     <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
     <ClInclude Include="..\..\Source\Base\RandomManage.h" />

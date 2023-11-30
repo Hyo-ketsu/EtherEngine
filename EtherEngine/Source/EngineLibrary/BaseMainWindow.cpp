@@ -142,7 +142,7 @@ namespace EtherEngine {
         m_initUninitPerformer.AddInitUninit<InputSystem>();
 
         InitLateFunction();
-
+        
         //----- ‰Šú‰»
         m_initUninitPerformer.Init();
     }

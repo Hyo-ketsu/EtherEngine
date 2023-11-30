@@ -13,10 +13,10 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : 開くパス
         EditorData(const PathClass& path);
-        // 作成のみ行うコンストラクタ
+        // デフォルトコンストラクタ
         EditorData(void) {}
         // デストラクタ
-        ~EditorData(void) {}
+        ~EditorData(void);
 
 
         // 現在シーンゲッター
@@ -31,7 +31,8 @@ namespace EtherEngine {
         void Input(const Json& input) override;
 
     private:
-        SceneData m_currentScene;    // 現在シーン
+        SceneData m_currentScene;   // 現在シーン
+        PathClass m_path;           // 保持しているパス
     };
 }
 

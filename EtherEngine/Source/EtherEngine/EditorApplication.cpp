@@ -8,7 +8,7 @@
 #include <EngineLibrary/EngineLibraryInit.h>
 #include <EngineLibrary/AssemblyHolder.h>
 #include <EtherEngine/EditorObjectUpdater.h>
-#include <EtherEngine/MSVCMediation.h>
+#include <EtherEngine/CommandPrompt.h>
 #include <EtherEngine/ProjectMediation.h> 
 #include <EtherEngine/EditorPopupWindow.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
@@ -28,6 +28,7 @@
 #endif // _DEBUG
 
 
+//----- EditorApplication 定義
 namespace EtherEngine {
     // コンストラクタ
     EditorApplication::EditorApplication(void)
@@ -43,13 +44,11 @@ namespace EtherEngine {
     // 初期化前関数
     void EditorApplication::InitFirstFunction(void) {
         //----- パス等のデータ読み取り
-#ifdef _DEBUG
+//#ifdef _DEBUG
         m_projectData = std::make_unique<ProjectData>();
-        m_editorData = std::make_unique<EditorData>();
-        m_projectData->SetCmdPath("C:\\Windows\\System32\\cmd.exe");
-        m_projectData->SetMsvcPath("/k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\"");
-        m_projectData->SetVisualStudioPath("C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com");
-#endif // _DEBUG
+        m_projectData->SetMSBuildPath(R"(C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe)");
+        m_projectData.reset();  // 保存させるため。
+//#endif // _DEBUG
     }
     // 初期化後関数
     void EditorApplication::InitLateFunction(void) {
@@ -61,33 +60,31 @@ namespace EtherEngine {
             [&]() { m_imGui.reset(); }
         );
 
-//#ifndef _DEBUG
-#ifdef _DEBUG
-        //----- ファイルパスの読み込み
-        try {
-            auto projectData = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::PROJECT_DATA);
-            m_projectData->InputString(projectData);
-        }
-        catch (const std::exception& e) {
-            //----- ない。ユーザーにどれを使用するか選択させる
-
-        }
-
         //----- プロジェクト設定の読み込み
         try {
-            auto projectSetting = RoadFileAll(EditorFileDefine::Directory::EDITOR_SETTING + EditorFileDefine::EDITOR_SETTING);
-            //m_editorData
+            m_projectData = std::make_unique<ProjectData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
         }
-        catch (const std::exception& e) {
+        catch (const EditorException& e) {
+            //----- ない。スタートアップウィンドウ起動
+            auto VM = EditorUI::CreateEditorWindow::AddCreateWindow<EditorUI::StartupWindow^, EditorUI::StartupVM^>(true);
+
+            //----- スタートアップウィンドウ終了待ち
+            while (VM->GetEngineLock().Item2->MSBuildPath == nullptr) { 
+                ThisThreadSleep();
+            }
         }
-#endif
+
+        //----- エディター設定の読み込み
+        try {
+            m_editorData = std::make_unique<EditorData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::EDITOR_SETTING);
+        }
+        catch (...) {
+            //----- ない。1から生成
+            m_editorData = std::make_unique<EditorData>();
+        }
 
         m_initUninitPerformer.AddInitUninit(
-            [&]() { MSVCMediation::Get()->Init(m_projectData->GetCmdPath(), m_projectData->GetMsvcPath()); },
-            []() { MSVCMediation::Get()->Uninit(); }
-        );
-        m_initUninitPerformer.AddInitUninit(
-            [&]() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
+            []() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
             []() { ProjectMediation::Get()->Uninit(); }
         );
     }
@@ -106,8 +103,8 @@ namespace EtherEngine {
     void EditorApplication::MainFunction(void) {
 #ifdef _DEBUG
         //----- テストウィンドウ
-        auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
-        testWindow.GetAtomicData().AddComponent<EditorDebugWindow>();
+        //auto testWindow = EditorObjectStorage::Get()->CreateEditorObject();
+        //testWindow.GetAtomicData().AddComponent<EditorDebugWindow>();
 
         ////----- テストコンポーネント
         //auto testGameObject = GameObjectStorage::Get()->CreateGameObject();
@@ -138,7 +135,7 @@ namespace EtherEngine {
         MSG message;
         Timer fpsTimer;
         milliSecond frameSecond = 0;
-        while (true) {
+        while (GetIsGameLoop()) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
                 // メッセージを取得
@@ -199,7 +196,7 @@ namespace EtherEngine {
                 }
 
                 //----- シーンウィンドウ更新処理
-                auto windowData = m_dxRender.GetAtomicData();
+                auto& windowData = m_dxRender.GetAtomicData();
                 for (auto it = windowData.AccessWindowRenders().begin(); it != windowData.AccessWindowRenders().end();) {
                     //----- 生存チェック
                     if (it->GetWindowEnableFunction()()) {

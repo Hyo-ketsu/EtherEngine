@@ -21,11 +21,11 @@ namespace EditorUI {
     public partial class ExceptionPopupWindow : Window {
         /// <summary>コンストラクタ</summary>
         /// <param name="showText"></param>
-        public ExceptionPopupWindow(string showText) {
+        internal ExceptionPopupWindow(string showText) {
             InitializeComponent();
 
             //----- テキスト追加
-            m_vm.ShowText.Value = mr_editorText.Text;
+            m_vm.ShowText.Value = "";// mr_editorText.Text;
             m_vm.ShowText.Value += showText;
 
             //----- バインディング
@@ -39,9 +39,9 @@ namespace EditorUI {
         /// <summary>保持しているView Model</summary>
         private ExceptionPopupVM m_vm = new();
 
-        readonly EditorText mr_editorText = new(
-            en:"The following serious exception was thrown:\n\n",
-            jp:"以下の重篤な例外が送出されました。\n\n"
-            );
+        //readonly EditorText mr_editorText = new(
+        //    en:"The following serious exception was thrown:\n\n",
+        //    jp:"以下の重篤な例外が送出されました。\n\n"
+        //    );
     }
 }

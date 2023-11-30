@@ -23,6 +23,12 @@ namespace EditorUI {
             CompositionTarget.Rendering += UIMainFunction.MainFunction;
 
             InitializeComponent();
+
+            DataContext = VM;
         }
+
+
+        /// <summary>保持しているViewModel</summary>
+        VMObject<MainViewModel> VM { set; get; } = new(new MainViewModel());
     }
 }

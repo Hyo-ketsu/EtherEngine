@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\EtherEngine\CommandPrompt.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorApplication.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp" />
@@ -62,7 +63,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiClass.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ImGuiUtility.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\MSVCMediation.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
@@ -89,6 +89,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\Test\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\EtherEngine\CommandPrompt.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorApplication.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h" />
@@ -115,7 +116,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\FileOpener.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\MSVCMediation.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h" />

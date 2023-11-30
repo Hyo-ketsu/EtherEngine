@@ -6,6 +6,7 @@
 #include <EtherEngine/ProjectEditorData.h>
 
 
+//----- EditorApplication 宣言
 namespace EtherEngine {
     // エディター(ゲームエンジン)を表現するクラス(Singleton)
     class EditorApplication : public BaseMainWindow, public Singleton<EditorApplication> {
@@ -54,10 +55,27 @@ namespace EtherEngine {
         bool m_isWindowFunctionEnable;  // ウィンドウの機能が有効か
         std::unique_ptr<IMGUI> m_imGui; // 保持しているIMGUI
         std::unique_ptr<ProjectData> m_projectData; // 現在保持しているプロジェクトデータ
-        std::unique_ptr<EditorData> m_editorData; // 現在保持しているエディターデータ
+        std::unique_ptr<EditorData> m_editorData;   // 現在保持しているエディターデータ
 
-        friend Singleton<EditorApplication>;
+        friend class Singleton<EditorApplication>;
     };
+}
+
+
+//----- Wrapper
+namespace EtherEngine {
+    namespace Wrapper {
+        //----- エディターのアプリケーション
+        public ref class EditorApplication {
+        public:
+            // エディターを終了させる
+            static property bool IsGameLoop {
+                void set(bool value){
+                    EtherEngine::EditorApplication::Get()->SetIsGameLoop(value);
+                }
+            }
+        };
+    }
 }
 
 

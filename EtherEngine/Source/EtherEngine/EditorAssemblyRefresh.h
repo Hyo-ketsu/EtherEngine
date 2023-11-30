@@ -1,6 +1,7 @@
 #ifndef I_EDITORASSEMBLYREFRESH_H
 #define I_EDITORASSEMBLYREFRESH_H
 #include <EtherEngine/EditorProgressBar.h>
+#include <EtherEngine/CommandPrompt.h>
 
 
 //----- アセンブリのリフレッシュ関数
@@ -14,7 +15,7 @@ namespace EtherEngine {
             StartRefresh,           // リフレッシュ開始
             CurrentlyRefresh,       // 現在リフレッシュ中
             NoneLoadProject,        // プロジェクトが読み込まれていない
-            NoneMSVCMediationInit,  // MSVCMediationが初期化されていない
+            NoneCommandPromptInit,  // CommandPromptが初期化されていない
             InputCommandFailed,     // コマンド入力が失敗した
             CompileError,           // ビルドの際コンパイルエラーが出力された
         };
@@ -37,7 +38,7 @@ namespace EtherEngine {
         static std::string GetRefreshLog(void);
         
     private:
-        static std::shared_ptr<ProgressClass> ms_progress;   // プログレスバー
+        static std::unique_ptr<CommandPrompt> ms_cmd;   // 保持しているコマンドプロンプト
         static std::string ms_buildLog; // ビルドログ
         static bool ms_isBuildEnd;      // ビルドが終了したか
         static bool ms_isBuildSuccess;  // ビルドが成功したか

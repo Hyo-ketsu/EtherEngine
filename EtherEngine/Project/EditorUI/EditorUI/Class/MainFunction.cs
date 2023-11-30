@@ -11,11 +11,6 @@ namespace EditorUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public static void MainFunction(object? sender, EventArgs e) {
-            //----- ウィンドウを取得、表示する
-            {
-                var window = CreateEditorWindow.GetCreateWindow();
-                window?.GetUILock().Item2.Show();
-            }
         }
     }
 }

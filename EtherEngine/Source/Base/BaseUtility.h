@@ -49,6 +49,11 @@ namespace EtherEngine {
     // @ Arg2 : 全てorなら true 全てandなら false
     template <typename TargetType, equalConcept<TargetType> ArgType>
     bool IsInputComparison(const TargetType& target, const bool isOr, const ArgType& arg);
+
+
+    // 自身のスレッドを指定msスリープする
+    // @ Arg1 : スリープ秒数(Default : 60/1秒)
+    void ThisThreadSleep(uint ms = 16);
 }
 
 

@@ -5,7 +5,7 @@
 #include <EtherEngine/EditorApplication.h>
 #include <EtherEngine/EditorSceneSerializer.h>
 #include <EtherEngine/ProjectMediation.h>
-#include <EtherEngine/MSVCMediation.h>
+#include <EtherEngine/CommandPrompt.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 
 

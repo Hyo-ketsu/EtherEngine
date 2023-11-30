@@ -16,6 +16,10 @@ namespace EtherEngine {
         BaseMainWindow(const std::string& name);
 
 
+        // ゲームループ有効ゲッター
+        bool GetIsGameLoop(void) const { return m_isGameLoop; }
+        // ゲームループ有効セッター
+        void SetIsGameLoop(const bool in) { m_isGameLoop = in; }
         // HInstanceゲッター
         const HINSTANCE& GetHInstance(void) const { return m_hInstance.value(); }
         // IpCmdLineゲッター
@@ -62,9 +66,10 @@ namespace EtherEngine {
         virtual void MainFunction(void) = 0;
 
 
-        std::optional<HINSTANCE> m_hInstance;  // インスタンスハンドル
-        std::optional<LPSTR>     m_ipCmdLine;  // コマンドライン
-        std::optional<int>       m_cmdShow;    // アプリケーションの初期表示方法
+        bool m_isGameLoop;                    // ゲームループが有効か
+        std::optional<HINSTANCE> m_hInstance; // インスタンスハンドル
+        std::optional<LPSTR>     m_ipCmdLine; // コマンドライン
+        std::optional<int>       m_cmdShow;   // アプリケーションの初期表示方法
         std::optional<WNDPROC>   m_proc;
         InitUninitPerformer m_initUninitPerformer;  // 初期化・終了処理実行クラス
     };

@@ -20,15 +20,14 @@ namespace EditorUI {
     /// </summary>
     public partial class SceneViewWindow : Window {
         /// <summary>コンストラクタ</summary>
-        public SceneViewWindow() {
+        internal SceneViewWindow() {
             //----- 初期化
             InitializeComponent();
 
-            //----- ViewModel初期化
-            m_vm = new(SceneViewWindowForms.Handle, new Vector2(SceneViewWindowForms.Width, SceneViewWindowForms.Height));
+            //----- ViewModel追加
+            VM = new(new SceneViewVM(SceneViewWindowForms.Handle, new Vector2(SceneViewWindowForms.Width, SceneViewWindowForms.Height)));
 
-            //----- エディター側で必要なのでメッセージとして追加
-            GetEditorWindow.AddCreateWindow(m_vm);
+            DataContext = VM;
         }
 
 
@@ -41,11 +40,11 @@ namespace EditorUI {
             if (windowsFormsHostPanel != null) { throw new Exception(); }
 
             //----- 現在のサイズを取得
-            m_vm.NewWindowSize = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);
+            VM.Get.NewWindowSize = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);
         }
 
 
-        /// <summary>保持しているViewModel</summary>
-        SceneViewVM m_vm;
+        /// <summary>ViewModel</summary>
+        public VMObject<SceneViewVM> VM { get; private set; }
     }
 }

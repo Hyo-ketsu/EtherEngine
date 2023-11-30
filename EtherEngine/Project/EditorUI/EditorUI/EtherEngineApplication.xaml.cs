@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace EditorUI {
     /// <summary>エディターを表現するApplication</summary>
     public partial class EtherEngineApplication : Application {
-        public delegate void EtherEngineMainFunction(IntPtr hInstance, int windowSizeX, int windowSizeY, string cmdLine, int nShowCmd);
+        public delegate void EtherEngineMainFunction(int windowSizeX, int windowSizeY, string cmdLine, int nShowCmd);
 
         public EtherEngineApplication(EtherEngineMainFunction mainFunction) {
             //----- UI関連処理
@@ -30,15 +30,46 @@ namespace EditorUI {
 
             //----- メイン関数スレッド立ち上げ
             var startFunction = new ThreadStart(() => {
-                Dispatcher.Invoke(() => {
+                try {
                     while (m_mainWindow == null) { }
 
-                    var interopHelper = new WindowInteropHelper(Current.MainWindow);
-                    mainFunction(interopHelper.Handle, (int)m_mainWindow.Width, (int)m_mainWindow.Height, "", 0);
-                });
+                    int? width = null;
+                    int? height = null;
+                    //----- UI関連処理
+                    Dispatcher.Invoke(() => {
+                        width = (int)m_mainWindow.Width;
+                        height = (int)m_mainWindow.Height;
+                    });
+                    while (width == null || height == null) { }
+
+                    mainFunction(width.Value, height.Value, "", 0);
+                } catch (System.Runtime.InteropServices.SEHException exception) { // エディターを開始出来ない例外をキャッチ
+                    //----- 変数宣言
+                    string message;
+
+                    //----- 例外表示
+                    if (exception.InnerException != null) {
+                        //----- 非マネージの例外
+                        message = exception.InnerException.ToString();
+                    }
+                    else {
+                        //----- マネージの例外
+                        message = exception.ToString();
+                    }
+
+                    //----- 例外ウィンドウ出力
+                    Dispatcher.Invoke(() => {
+                        var exceptionWindow = new ExceptionPopupWindow(message);
+                        exceptionWindow.ShowDialog();
+
+                        //----- アプリケーション終了
+                        Current.Shutdown();
+                    });
+                }
             });
             var thread = new Thread(startFunction);
-            thread.Name = "Main Thread";
+            thread.Name = "Engine Main Thread";
+            thread.Start();
         }
 
 

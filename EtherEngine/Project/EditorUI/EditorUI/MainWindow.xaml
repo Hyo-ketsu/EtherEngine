@@ -15,6 +15,15 @@
       
       <!-- メニュー -->
       <Menu Grid.Row="0" Name="Menu">
+         <MenuItem Header="Main"></MenuItem>
+         <MenuItem Header="Window">
+            <MenuItem>
+               <MenuItem.Header>
+                  <local:EditorText JP="Hoge" EN="Fuga"/>
+               </MenuItem.Header>
+            </MenuItem>
+         </MenuItem>
+         <MenuItem Header="UserWindow"></MenuItem>
       </Menu>
       
       <!-- ウィンドウ本体 -->

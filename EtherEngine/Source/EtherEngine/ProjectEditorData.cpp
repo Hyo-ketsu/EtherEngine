@@ -3,6 +3,7 @@
 #include <Base/BaseDefines.h>
 #include <Base/SceneLoader.h>
 #include <Base/EtherEngineUtility.h>
+#include <Base/EditorException.h>
 #include <EtherEngine/EditorDefine.h>
 
 
@@ -10,7 +11,20 @@
 namespace EtherEngine {
     // コンストラクタ
     EditorData::EditorData(const PathClass& path) {
-        Input(path);
+        //----- ファイルから読み込み
+        if (path.IsExists() == false) throw EditorException("Error! ProjectData NonFile!");
+        if (path.HasExtension() && path.GetExtension() != FileDefine::Extended::PROJECT_DATA) throw EditorException("Error! Is File ProjectData File?");
+
+        //----- 読み込み
+        Input(EtherEngine::RoadFileAll(path.Get()));
+        m_path = path;
+    }
+
+    // デストラクタ
+    EditorData::~EditorData(void) {
+        std::ofstream ofs(m_path);
+        
+        ofs << Output();
     }
 
 

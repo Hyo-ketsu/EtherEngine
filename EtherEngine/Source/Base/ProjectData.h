@@ -10,24 +10,18 @@ namespace EtherEngine {
     class ProjectData : public IInOuter {
     public:
         // コンストラクタ
-        // @ Arg1 : 読み込みファイルパス(Default : パス指定なし)
+        // @ Arg1 : 読み込みファイルパス
         ProjectData(const PathClass& path);
-        // 作成のみ行うコンストラクタ
+        // デフォルトコンストラクタ
         ProjectData(void) {}
+        // デストラクタ
+        ~ProjectData(void);
 
 
-        // コマンドプロンプトパスゲッター
-        const PathClass& GetCmdPath(void) const { return m_cmdPath; }
-        // コマンドプロンプトパスセッター
-        void SetCmdPath(const PathClass& in) { m_cmdPath = in; }
-        // MSVCパスゲッター
-        const PathClass& GetMsvcPath(void) const { return m_msvcPath; }
-        // MSVCパスセッター
-        void SetMsvcPath(const PathClass& in) { m_msvcPath = in; }
-        // VisualStudioパスセッター
-        const PathClass& GetVisualStudioPath(void) const { return m_visualStudioPath; }
-        // VisualStudioパスゲッター
-        void SetVisualStudioPath(const PathClass& in) { m_visualStudioPath = in; }
+        // MSBuildパスセッター
+        const PathClass& GetMSBuildPath(void) const { return m_msbuildPath; }
+        // MSBuildパスゲッター
+        void SetMSBuildPath(const PathClass& in) { m_msbuildPath = in; }
 
 
         // 出力する
@@ -36,9 +30,8 @@ namespace EtherEngine {
         void Input(const Json& input) override;
 
     private:
-        PathClass m_cmdPath;    // コマンドプロンプトが存在するパス
-        PathClass m_msvcPath;   // MSVCがあるパス
-        PathClass m_visualStudioPath;   // VisualStudioのあるパス
+        PathClass m_msbuildPath;    // MSBuildのあるパス
+        PathClass m_path;           // 情報自体を保持しているクラス
     };
 }
 

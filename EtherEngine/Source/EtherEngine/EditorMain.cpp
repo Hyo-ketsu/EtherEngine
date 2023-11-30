@@ -6,16 +6,11 @@
 //----- EtherEngineMainFunction 定義
 namespace EtherEngine {
     // メイン関数
-    void EtherEngineMainFunction::MainFunction(System::IntPtr hInstance, int windowSizeX, int windowSizeY, System::String^ cmdLine, int nShowCmd) {
-#ifdef _DEBUG
+    void EtherEngineMainFunction::MainFunction(int windowSizeX, int windowSizeY, System::String^ cmdLine, int nShowCmd) {
         try {
-            EtherEngine::EditorApplication::Get()->SetApplicationData(static_cast<HINSTANCE>(hInstance.ToPointer()), nullptr, nShowCmd);    // @ MEMO : ipCmdLineが必要だったら直して
+            EtherEngine::EditorApplication::Get()->SetApplicationData(nullptr, nullptr, nShowCmd);    // @ MEMO : ipCmdLineが必要だったら直して
             EtherEngine::EditorApplication::Get()->SetWindSize({ windowSizeX,windowSizeY });
             EtherEngine::EditorApplication::Get()->BaseMainFunction();
-        }
-        catch (const std::exception& exception) {
-            auto manageException = gcnew System::ApplicationException(gcnew System::String(exception.what()));
-            throw gcnew System::Runtime::InteropServices::SEHException("EtherEngine Exception!", manageException);
         }
         catch (const EditorException& exception) {
             //----- 全例外メッセージ取得
@@ -34,10 +29,5 @@ namespace EtherEngine {
             auto manageException = gcnew System::ApplicationException(UNMANAGE_TO_MANAGE_STRING(message));
             throw gcnew System::Runtime::InteropServices::SEHException("EtherEngine Exception!", manageException);
         }
-#else
-        EtherEngine::EditorApplication::Get()->SetApplicationData(static_cast<HINSTANCE>(hInstance.ToPointer()), nullptr, nShowCmd);    // @ MEMO : ipCmdLineが必要だったら直して
-        EtherEngine::EditorApplication::Get()->SetWindSize({ windowSizeX,windowSizeY });
-        EtherEngine::EditorApplication::Get()->BaseMainFunction();
-#endif
     }
 }

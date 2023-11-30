@@ -4,45 +4,44 @@
 #include <Base/PathClass.h>
 
 
-//----- MSVCMediation 定義
+//----- CommandPrompt 定義
 namespace EtherEngine {
-    class MSVCMediation : public Singleton<MSVCMediation> {
+    // コマンドプロンプトでの入出力を仲介するクラス
+    class CommandPrompt {
     public:
+        // コンストラクタ
+        // @ MEMO : プロンプト表示には現在対応しておりません(子プロセスの出力パイプは取ったままなので)
+        // @ Arg1 : プロンプトを表示するか(Default : false)
+        CommandPrompt(const bool isShowPrompt = false);
         // デストラクタ
-        ~MSVCMediation(void) {}
-
-        // 初期化する
-        // @ Arg1 : コマンドプロンプトパス
-        // @ Arg2 : MSVCパス
-        void Init(const PathClass& cmdPath, const PathClass& msvcPath);
-        // 終了処理
-        void Uninit(void);
+        ~CommandPrompt(void);
+        // コピーコンストラクタ
+        CommandPrompt(const CommandPrompt& copy) = delete;
+        // ムーブコンストラクタ
+        CommandPrompt(CommandPrompt&& move) = delete;
 
 
         // コマンド入力
         // @ Arg1 : 入力コマンド
-        void WriteCmd(const std::string& commnad);
+        void Write(const std::string& commnad);
+        // ディレクトリ遷移
+        // @ Exce : 遷移が行えたか
+        // @ Arg1 : 遷移先ディレクトリ
+        void CD(const std::string& dir);
         // コマンドプロンプト出力取得
         // @ Memo : この関数は待ちなどは一切行いません。
         // @ Ret  : 取得結果
-        std::string ReadCmd(void);
+        std::string Read(void);
         // コマンドプロンプトエラー出力取得
         // @ Memo : この関数は待ちなどは一切行いません。
         // @ Ret  : 取得結果
-        std::string ReadCmdError(void);
+        std::string ReadError(void);
 
     private:
-        // コンストラクタ
-        MSVCMediation(void);
-
-
         // ハンドルのクローズ
         void HandleClose(void);
 
-        friend class Singleton<MSVCMediation>;
-
         PROCESS_INFORMATION m_processInfo;
-        bool m_isInit;  // 初期化されているか
         HANDLE m_childRead;   // cmd用読み取り用パイプ
         HANDLE m_childWrite;  // cmd用書き込み用パイプ
         HANDLE m_read;        // 読み取り用パイプ

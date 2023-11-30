@@ -52,7 +52,7 @@ namespace EtherEngine {
         MSG message;
         Timer fpsTimer;
         milliSecond frameSecond = 0;
-        while (true) {
+        while (GetIsGameLoop()) {
             //----- メッセージ確認
             if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
                 // メッセージを取得

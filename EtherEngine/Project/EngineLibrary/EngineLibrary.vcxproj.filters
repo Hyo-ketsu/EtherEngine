@@ -35,6 +35,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\LambdaWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
@@ -58,5 +59,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\LambdaWrapper.cpp" />
   </ItemGroup>
 </Project>

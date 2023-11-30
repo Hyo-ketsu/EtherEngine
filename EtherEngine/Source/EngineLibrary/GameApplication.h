@@ -22,6 +22,21 @@ namespace EtherEngine {
         friend class Singleton<GameApplication>;
     };
 }
+//----- Wrapper
+namespace EtherEngine {
+    namespace Wrapper {
+        //----- エディターのアプリケーション
+        public ref class GameApplication {
+        public:
+            // エディターを終了させる
+            static property bool IsGameLoop {
+                void set(bool value) {
+                    EtherEngine::GameApplication::Get()->SetIsGameLoop(value);
+                }
+            }
+        };
+    }
+}
 
 
 #endif // !I_GAMEAPPLICATION_H

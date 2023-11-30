@@ -183,5 +183,6 @@
     <ClInclude Include="..\..\Source\Base\Transform.h" />
     <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />
     <ClInclude Include="..\..\Source\Base\EditorException.h" />
+    <ClInclude Include="..\..\Source\Base\ProjectData.h" />
   </ItemGroup>
 </Project>
