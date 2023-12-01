@@ -9,8 +9,7 @@
 #include <EngineLibrary/AssemblyHolder.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/CommandPrompt.h>
-#include <EtherEngine/ProjectMediation.h> 
-#include <EtherEngine/EditorPopupWindow.h>
+#include <EtherEngine/ProjectMediation.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
@@ -21,9 +20,7 @@
 #include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
 #include <EtherEngine/Test/TestComponent.h>
-#include <EtherEngine/EditorOutliner.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
-#include <EtherEngine/EditorExplorerWindow.h>
 #include <EtherEngine/EditorDefine.h>
 #endif // _DEBUG
 
@@ -45,9 +42,14 @@ namespace EtherEngine {
     void EditorApplication::InitFirstFunction(void) {
         //----- パス等のデータ読み取り
 //#ifdef _DEBUG
-        m_projectData = std::make_unique<ProjectData>();
-        m_projectData->SetMSBuildPath(R"(C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe)");
-        m_projectData.reset();  // 保存させるため。
+        try {
+            m_projectData = std::make_unique<ProjectData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
+        }
+        catch (...) {
+            m_projectData = std::make_unique<ProjectData>();
+            m_projectData->SetMSBuildPath(R"(C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe)");
+            m_projectData.reset();  // 保存させるため。
+        }
 //#endif // _DEBUG
     }
     // 初期化後関数
@@ -65,13 +67,21 @@ namespace EtherEngine {
             m_projectData = std::make_unique<ProjectData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
         }
         catch (const EditorException& e) {
+            using namespace EditorUI;
+
             //----- ない。スタートアップウィンドウ起動
-            auto VM = EditorUI::CreateEditorWindow::AddCreateWindow<EditorUI::StartupWindow^, EditorUI::StartupVM^>(true);
+            auto VM = CreateEditorWindow::AddCreateWindow<StartupWindow^, StartupVM^>(true);
 
             //----- スタートアップウィンドウ終了待ち
-            while (VM->GetEngineLock().Item2->MSBuildPath == nullptr) { 
+            StartupMessage^ message = nullptr;
+            while (message == nullptr) { 
+                message = MessageQue<StartupMessage^>::GetEngineMessage();
                 ThisThreadSleep();
             }
+
+            //----- 取得したパスを設定
+            m_projectData = std::make_unique<ProjectData>();
+            m_projectData->SetMSBuildPath(ManageToUnmanage::String(message->Path));
         }
 
         //----- エディター設定の読み込み

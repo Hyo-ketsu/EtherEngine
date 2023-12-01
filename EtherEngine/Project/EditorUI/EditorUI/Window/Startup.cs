@@ -5,10 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Reactive.Bindings;
-using Reactive.Bindings.ObjectExtensions;
 
 
 namespace EditorUI {
+    /// <summary>送信メッセージ</summary>
+    public class StartupMessage {
+        public StartupMessage(string path) { 
+            Path = path;
+        }
+
+
+        public string Path { get; private set; }
+    }
+
+
     /// <summary>vsのエディション</summary>
     public enum VisualStudioEdition {
         Community = 0,
@@ -54,6 +64,11 @@ namespace EditorUI {
             if (msbuilds.Length > 0) {
                 //----- 存在した。1つ目の要素をpathとして取得
                 MSBuildPath = msbuilds[0];
+
+                //----- メッセージを送信する
+                MessageQue<StartupMessage>.AddUIMessage(new(MSBuildPath));
+
+                //----- 返却
                 return StartupVMErrorCode.OK;
             }
             else {

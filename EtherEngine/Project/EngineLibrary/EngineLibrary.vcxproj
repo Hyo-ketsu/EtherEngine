@@ -39,6 +39,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryInit.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
@@ -47,7 +48,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\LambdaWrapper.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\LogSystem.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
@@ -62,6 +63,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryInit.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
@@ -71,7 +73,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\LambdaWrapper.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />

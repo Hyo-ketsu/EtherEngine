@@ -1,6 +1,5 @@
 #ifndef I_EDITORASSEMBLYREFRESH_H
 #define I_EDITORASSEMBLYREFRESH_H
-#include <EtherEngine/EditorProgressBar.h>
 #include <EtherEngine/CommandPrompt.h>
 
 

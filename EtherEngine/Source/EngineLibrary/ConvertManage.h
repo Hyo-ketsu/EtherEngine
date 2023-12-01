@@ -11,18 +11,27 @@ namespace EtherEngine {
 
 
 //----- 変換関数
-namespace EtherEngine {
-#ifdef _ENGINELIBRARY
-    //----- マネージからアンマネージへの変換
-    public ref class ManageToUnmanage {
-    public:
-        // 文字列変換
-        static std::string String(System::String^ manage);
-
-        // パス変換
-        static PathClass Path(PathString^ manage);
-    };
-#endif
+#define MANAGE_TO_UNMANAGE_CLASS_DECLARE  \
+namespace ManageToUnmanage {\
+    std::string String(System::String^ manage);\
+    PathClass Path(PathString^ manage);\
 }
+
+#define MANAGE_TO_UNMANAGE_CLASS_DEFINE \
+namespace ManageToUnmanage {\
+    std::string String(System::String^ manage) {\
+        std::string ret;\
+        auto wchars = manage->ToCharArray();\
+        ret.reserve(wchars->Length);\
+        for (int i = 0; i < wchars->Length; i++) {\
+            ret.push_back(static_cast<char>(wchars[i]));\
+        }\
+        return ret;\
+    }\
+    PathClass Path(PathString^ manage) {\
+        return PathClass(String(manage));\
+    }\
+}
+
 
 #endif // !I_CONVERTMANAGE_H

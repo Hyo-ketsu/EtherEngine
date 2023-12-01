@@ -2,6 +2,7 @@
 #include <Base/BaseDefines.h>
 #include <Base/EditorException.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
+#include <EngineLibrary/ConvertManageToUnmanage.h>
 
 
 namespace EtherEngine {

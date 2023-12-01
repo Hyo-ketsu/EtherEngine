@@ -43,9 +43,19 @@ namespace EditorUI {
     }
 
 
+    /// <summary>エンジン側ロックオブジェクト</summary>
     public class EngineLock : LogicLockObject {
+        /// <summary>コンストラクタ</summary>
+        public EngineLock()
+            : base() { 
+        }
     }
+    /// <summary>UI側ロックオブジェクト</summary>
     internal class UILock : LogicLockObject {
+        /// <summary>コンストラクタ</summary>
+        public UILock() 
+            : base() {
+        }
     }
 
 

@@ -79,7 +79,6 @@
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
-    <ClCompile Include="..\..\Source\Base\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
-    <ClInclude Include="..\..\Source\Base\LogSystem.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />

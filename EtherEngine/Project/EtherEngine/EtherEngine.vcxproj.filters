@@ -25,24 +25,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorCamera.cpp">
       <Filter>EngineObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorExplorerWindow.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorInspectorWindow.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorLogWindow.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorMainMenu.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorOutliner.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\EditorPopupWindow.cpp">
-      <Filter>EngineObject</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp">
       <Filter>EngineObject</Filter>
     </ClCompile>
@@ -110,8 +92,6 @@
       <Filter>Test</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EditorProgressBar.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EtherEngineAssemblyInfo.cpp" />
@@ -124,6 +104,7 @@
     <ClCompile Include="..\..\Source\EtherEngine\CommandPrompt.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EtherEngine\ConvertManage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -165,9 +146,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorCamera.h">
       <Filter>EngineObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorOutliner.h">
-      <Filter>EngineObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h">
       <Filter>Test</Filter>
     </ClInclude>
@@ -176,15 +154,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h">
       <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorMainMenu.h">
-      <Filter>EngineObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorLogWindow.h">
-      <Filter>EngineObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorInspectorWindow.h">
-      <Filter>EngineObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h">
       <Filter>EngineSystem</Filter>
@@ -207,16 +176,8 @@
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiUtility.h">
       <Filter>ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorExplorerWindow.h">
-      <Filter>EngineObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorPopupWindow.h">
-      <Filter>EngineObject</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorBuildMenuWindow.h" />
-    <ClInclude Include="..\..\Source\EtherEngine\EditorProgressBar.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
     <ClInclude Include="..\..\Source\EtherEngine\EditorMain.h">
       <Filter>EngineSystem</Filter>
@@ -225,5 +186,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\CommandPrompt.h">
       <Filter>EngineSystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\ConvertManage.h" />
   </ItemGroup>
 </Project>

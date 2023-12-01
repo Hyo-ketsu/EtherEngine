@@ -3,7 +3,7 @@
 #include <Base/ConceptUtility.h>
 #include <Base/BaseDefines.h>
 #include <Base/EditorException.h>
-#include <EngineLibrary/ConvertManage.h>
+#include <EngineLibrary/ConvertManageToUnmanage.h>
 
 
 //----- インタフェース定義

@@ -8,11 +8,6 @@
 
 #include <EtherEngine/EditorBuildMenuWindow.h>
 
-#include <EtherEngine/EditorLogWindow.h>
-#include <EtherEngine/EditorOutliner.h>
-#include <EtherEngine/EditorExplorerWindow.h>
-#include <EtherEngine/EditorInspectorWindow.h>
-
 
 namespace EtherEngine {
     // メインメニューを表示する

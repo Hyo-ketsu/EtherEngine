@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,10 +34,14 @@ namespace EditorUI {
 
 
         /// <summary>テキストを現在の言語で取得する</summary>
-        /// <param name=""></param>
         /// <returns>取得したテキスト</returns>
         public string Text {
             get { return GetText(ms_language); }
+        }
+        /// <summary>テキストを現在の言語で取得する</summary>
+        /// <returns></returns>
+        public override string ToString() {
+            return Text;
         }
         /// <summary>テキストを取得する</summary>
         /// <param name="language">言語</param>
