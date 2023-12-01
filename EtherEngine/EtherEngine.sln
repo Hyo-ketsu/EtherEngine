@@ -33,8 +33,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorMain", "Project\Edito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorUI", "Project\EditorUI\EditorUI.csproj", "{9C260F32-9684-4062-A29A-DF6B7C723990}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameMain", "Project\GameMain\GameMain.csproj", "{F49FC924-259A-443A-A6D7-56BF1793131B}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EngineLibrary", "Project\EngineLibrary\EngineLibrary.vcxproj", "{250757D6-44E7-4C42-B57D-2CAE39082EE1}"
 EndProject
 Global
@@ -133,18 +131,6 @@ Global
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.ActiveCfg = Editor_Release|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.ActiveCfg = Editor_Release|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.ActiveCfg = Editor_Release|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x64.ActiveCfg = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Debug|x86.ActiveCfg = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x64.ActiveCfg = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.Editor_Release|x86.ActiveCfg = GameTest_Release|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.ActiveCfg = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x64.Build.0 = Debug|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.ActiveCfg = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Debug|x86.Build.0 = Debug|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.ActiveCfg = GameTest_Release|x86
-		{F49FC924-259A-443A-A6D7-56BF1793131B}.GameTest_Release|x86.Build.0 = GameTest_Release|x86
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
