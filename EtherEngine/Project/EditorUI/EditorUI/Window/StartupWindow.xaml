@@ -7,22 +7,8 @@
         mc:Ignorable="d"
         Title="StartupWindow" Height="450" Width="800">
    <Grid>
-      <Grid.RowDefinitions>
-         <RowDefinition Height="auto"/>
-         <RowDefinition Height="auto"/>
-         <RowDefinition Height="auto"/>
-      </Grid.RowDefinitions>
-      
       <!-- VisualStadio設定 -->
-      <Grid>
-         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-         </Grid.RowDefinitions>
-
+      <StackPanel Margin="5,0,1,0">
          <!-- テキストテキスト表示 -->
          <local:MultiLanguageTextBlock Grid.Row="0">
             <local:MultiLanguageTextBlock.EditorText>
@@ -32,7 +18,7 @@
          </local:MultiLanguageTextBlock>
 
          <!-- エディション -->
-         <Grid Grid.Row="1">
+         <Grid>
             <Grid.ColumnDefinitions>
                <ColumnDefinition MaxWidth="20"/>
                <ColumnDefinition Width="auto"/>
@@ -50,7 +36,7 @@
          </Grid>
          
          <!-- バージョン -->
-         <Grid Grid.Row="2">
+         <Grid>
             <Grid.ColumnDefinitions>
                <ColumnDefinition MaxWidth="20"/>
                <ColumnDefinition Width="auto"/>
@@ -68,7 +54,7 @@
          </Grid>
          
          <!-- 使用パス表示 -->
-         <Grid Grid.Row="3">
+         <Grid>
             <Grid.ColumnDefinitions>
                <ColumnDefinition Width="auto"/>
                <ColumnDefinition Width="auto" />
@@ -86,7 +72,7 @@
          </Grid>
          
          <!-- 完了ボタン -->
-         <Grid Grid.Row="4">
+         <Grid>
             <Grid.ColumnDefinitions>
                <ColumnDefinition MinWidth="20" Width="auto"/>
                <ColumnDefinition Width="100"/>
@@ -94,6 +80,6 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1" Content="OK" Click="StartupEnd"/>
          </Grid>
-      </Grid>
+      </StackPanel>
    </Grid>
 </Window>

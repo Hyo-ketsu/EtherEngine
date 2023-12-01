@@ -9,23 +9,16 @@
         mc:Ignorable="d"
         Title="SceneView" Height="450" Width="800">
    <Grid>
-      <Grid.RowDefinitions>
-         <RowDefinition Height="auto"/>
-         <RowDefinition Height="auto"/>
-      </Grid.RowDefinitions>
-      
-      <!--  -->
-      <Grid Grid.Row="0">
+      <StackPanel>
+         <!-- シーンメニュー表示 -->
          <Menu>
             <MenuItem Header="hoge"></MenuItem>
          </Menu>
-      </Grid>
-      
-      <!-- シーン表示部分 -->
-      <Grid Grid.Row="1">
+
+         <!-- シーン表示部分 -->
          <WindowsFormsHost Grid.Row="1" SizeChanged="WindowsFormsHostSizeChanged">
             <wf:Panel x:Name="SceneViewWindowForms"/>
          </WindowsFormsHost>
-      </Grid>
+      </StackPanel>
    </Grid>
 </Window>

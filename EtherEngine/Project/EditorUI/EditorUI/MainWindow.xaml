@@ -10,7 +10,9 @@
    <Grid>
       <Grid.RowDefinitions>
          <RowDefinition Height="auto"/>
-         <RowDefinition Height="auto"/>
+         <RowDefinition Height="15"/>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="15"/>
       </Grid.RowDefinitions>
       
       <!-- メニュー -->
@@ -27,7 +29,9 @@
       </Menu>
       
       <!-- ウィンドウ本体 -->
-      <av:DockingManager>
-      </av:DockingManager>
+      <Grid Grid.Row="1">
+         <av:DockingManager>
+         </av:DockingManager>
+      </Grid>
    </Grid>
 </Window>
