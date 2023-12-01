@@ -30,6 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorMain", "Project\EditorMain\EditorMain.csproj", "{402B45D8-6B6C-4232-9352-F1D606C5298F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{250757D6-44E7-4C42-B57D-2CAE39082EE1} = {250757D6-44E7-4C42-B57D-2CAE39082EE1}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EditorUI", "Project\EditorUI\EditorUI.csproj", "{9C260F32-9684-4062-A29A-DF6B7C723990}"
 EndProject
@@ -41,10 +44,6 @@ Global
 		Editor_Debug|x86 = Editor_Debug|x86
 		Editor_Release|x64 = Editor_Release|x64
 		Editor_Release|x86 = Editor_Release|x86
-		GameTest_Debug|x64 = GameTest_Debug|x64
-		GameTest_Debug|x86 = GameTest_Debug|x86
-		GameTest_Release|x64 = GameTest_Release|x64
-		GameTest_Release|x86 = GameTest_Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
@@ -55,10 +54,6 @@ Global
 		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.Editor_Release|x86.ActiveCfg = Editor_Release|Win32
 		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.Editor_Release|x86.Build.0 = Editor_Release|Win32
-		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|Win32
-		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{3B6614F9-4B19-49B9-A78A-1FD0E3287B1D}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
@@ -67,14 +62,6 @@ Global
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Release|x86.ActiveCfg = Editor_Release|Win32
 		{75776CCC-0223-4F76-989D-2B9B089281C0}.Editor_Release|x86.Build.0 = Editor_Release|Win32
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Debug|x64.Build.0 = GameTest_Debug|x64
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|Win32
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Debug|x86.Build.0 = GameTest_Debug|Win32
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
-		{75776CCC-0223-4F76-989D-2B9B089281C0}.GameTest_Release|x86.Build.0 = GameTest_Release|Win32
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
@@ -83,14 +70,6 @@ Global
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Release|x86.ActiveCfg = Editor_Release|Win32
 		{8809734E-0717-4038-9F29-68984D325BF1}.Editor_Release|x86.Build.0 = Editor_Release|Win32
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Debug|x64.Build.0 = GameTest_Debug|x64
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|Win32
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Debug|x86.Build.0 = GameTest_Debug|Win32
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
-		{8809734E-0717-4038-9F29-68984D325BF1}.GameTest_Release|x86.Build.0 = GameTest_Release|Win32
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
@@ -99,26 +78,14 @@ Global
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Release|x86.ActiveCfg = Editor_Release|Win32
 		{688A54A1-1A61-4077-846E-E088F2CB833D}.Editor_Release|x86.Build.0 = Editor_Release|Win32
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x64.Build.0 = GameTest_Debug|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|Win32
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Debug|x86.Build.0 = GameTest_Debug|Win32
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
-		{688A54A1-1A61-4077-846E-E088F2CB833D}.GameTest_Release|x86.Build.0 = GameTest_Release|Win32
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Debug|x86.ActiveCfg = Editor_Debug|x86
 		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Debug|x86.Build.0 = Editor_Debug|x86
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x64.ActiveCfg = Release|x64
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x64.Build.0 = Release|x64
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x86.ActiveCfg = Release|x86
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x86.Build.0 = Release|x86
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Debug|x64.ActiveCfg = Editor_Debug|x64
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Debug|x86.ActiveCfg = Editor_Debug|x86
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Release|x64.ActiveCfg = Release|x64
-		{402B45D8-6B6C-4232-9352-F1D606C5298F}.GameTest_Release|x86.ActiveCfg = Release|x86
+		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x64.ActiveCfg = Editor_Release|x64
+		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x64.Build.0 = Editor_Release|x64
+		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x86.ActiveCfg = Editor_Release|x86
+		{402B45D8-6B6C-4232-9352-F1D606C5298F}.Editor_Release|x86.Build.0 = Editor_Release|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Debug|x86.ActiveCfg = Editor_Debug|x86
@@ -127,10 +94,6 @@ Global
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x86.ActiveCfg = Editor_Release|x86
 		{9C260F32-9684-4062-A29A-DF6B7C723990}.Editor_Release|x86.Build.0 = Editor_Release|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x64.ActiveCfg = Editor_Debug|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Debug|x86.ActiveCfg = Editor_Release|x86
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x64.ActiveCfg = Editor_Release|x64
-		{9C260F32-9684-4062-A29A-DF6B7C723990}.GameTest_Release|x86.ActiveCfg = Editor_Release|x86
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.ActiveCfg = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x64.Build.0 = Editor_Debug|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Debug|x86.ActiveCfg = Editor_Debug|Win32
@@ -139,14 +102,6 @@ Global
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Release|x64.Build.0 = Editor_Release|x64
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Release|x86.ActiveCfg = Editor_Release|Win32
 		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.Editor_Release|x86.Build.0 = Editor_Release|Win32
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Debug|x64.ActiveCfg = GameTest_Debug|x64
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Debug|x64.Build.0 = GameTest_Debug|x64
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Debug|x86.ActiveCfg = GameTest_Debug|Win32
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Debug|x86.Build.0 = GameTest_Debug|Win32
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x64.ActiveCfg = GameTest_Release|x64
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x64.Build.0 = GameTest_Release|x64
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x86.ActiveCfg = GameTest_Release|Win32
-		{250757D6-44E7-4C42-B57D-2CAE39082EE1}.GameTest_Release|x86.Build.0 = GameTest_Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

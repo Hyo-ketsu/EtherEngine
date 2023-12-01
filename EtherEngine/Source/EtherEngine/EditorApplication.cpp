@@ -11,7 +11,6 @@
 #include <EtherEngine/CommandPrompt.h>
 #include <EtherEngine/ProjectMediation.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
-#ifdef _DEBUG
 #include <EtherEngine/EditorCamera.h>
 #include <DirectX/ModelComponent.h>
 #include <DirectX/ShaderClass.h>
@@ -22,7 +21,6 @@
 #include <EtherEngine/Test/TestComponent.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
 #include <EtherEngine/EditorDefine.h>
-#endif // _DEBUG
 
 
 //----- EditorApplication ’è‹`

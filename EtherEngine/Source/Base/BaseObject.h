@@ -43,8 +43,8 @@ namespace EtherEngine {
         bool IsUnvalidObject(void) const;
 
     private:
-        std::string m_name;     // オブジェクト名
         IDClass m_id;           // 自身のID
+        std::string m_name;     // オブジェクト名
         bool m_isActive;        // そのオブジェクトが有効か
         bool m_isDelete;        // そのオブジェクトは削除済みか
     };

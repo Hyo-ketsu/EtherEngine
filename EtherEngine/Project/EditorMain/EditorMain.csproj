@@ -21,22 +21,7 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'">
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x86'">
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
-  </PropertyGroup>
-
+  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
@@ -45,6 +30,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x86'">
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x86'">
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

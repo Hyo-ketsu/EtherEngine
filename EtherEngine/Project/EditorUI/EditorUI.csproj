@@ -29,17 +29,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|AnyCPU'">
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x86'">
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
 
