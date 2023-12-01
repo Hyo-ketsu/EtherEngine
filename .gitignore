@@ -1,7 +1,7 @@
 *.cso
 EtherEngine/.vs/*
 EtherEngine/Binary
-EtherEngine/Object
+EtherEngine/Object/*
 EtherEngine/Debug
 EtherEngine/Project/EtherEngine/imgui.ini
 EtherEngine/Project/*/*.dll
@@ -9,8 +9,8 @@ EtherEngine/EtherEngineData/.vs/
 EtherEngine/EtherEngineData/Binary/
 EtherEngine/EtherEngineData/EtherEngineLibrary/
 EtherEngine/EtherEngineData/Object/
-EtherEngine/Project/EditorUI/obj/
-EtherEngine/Project/EditorMain/obj/
-EtherEngine/Project/EngineLibrary/obj/
-EtherEngine/Project/GameMain/obj/
-EtherEngine/Project/EtherEngine/obj/
+EtherEngine/Project/EditorUI/obj/*
+EtherEngine/Project/EditorMain/obj/*
+EtherEngine/Project/EngineLibrary/obj/*
+EtherEngine/Project/GameMain/obj/*
+EtherEngine/Project/EtherEngine/obj/*
