@@ -11,6 +11,6 @@ EtherEngine/EtherEngineData/EtherEngineLibrary/
 EtherEngine/EtherEngineData/Object/
 EtherEngine/Project/EditorUI/obj/
 EtherEngine/Project/EditorMain/obj/
-EtherEngine/Project/CPPCLI/obj/
+EtherEngine/Project/EngineLibrary/obj/
 EtherEngine/Project/GameMain/obj/
 EtherEngine/Project/EtherEngine/obj/
