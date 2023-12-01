@@ -480,7 +480,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|Win32'">
@@ -548,7 +549,8 @@ IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT</Command>
+      <Command>robocopy $(SolutionDir)DLL/Release/ $(OutDir) *.dll /E /COPY:DT
+IF %ERRORLEVEL% LSS 8 EXIT 0</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GameTest_Release|x64'">
