@@ -21,24 +21,36 @@ namespace EditorUI {
     public partial class EtherEngineApplication : Application {
         public delegate void EtherEngineMainFunction(int windowSizeX, int windowSizeY, string cmdLine, int nShowCmd);
 
-        public EtherEngineApplication(EtherEngineMainFunction mainFunction) {
+
+        /// <summary>コンストラクタ </summary>
+        public EtherEngineApplication() {
+            InitializeComponent();
+        }
+
+
+        /// <summary>初期化を行う</summary>
+        /// <param name="mainFunction">呼び出すメイン関数</param>
+        public void Init(EtherEngineMainFunction mainFunction) {
+            //----- 変数宣言
+            MainWindow? mainWindow = null;
+
             //----- UI関連処理
             Dispatcher.Invoke(() => {
-                m_mainWindow = new MainWindow();
-                m_mainWindow.Show();
+                mainWindow = new MainWindow();
+                mainWindow.Show();
             });
 
             //----- メイン関数スレッド立ち上げ
             var startFunction = new ThreadStart(() => {
                 try {
-                    while (m_mainWindow == null) { }
+                    while (mainWindow == null) { }
 
                     int? width = null;
                     int? height = null;
                     //----- UI関連処理
                     Dispatcher.Invoke(() => {
-                        width = (int)m_mainWindow.Width;
-                        height = (int)m_mainWindow.Height;
+                        width = (int)mainWindow.Width;
+                        height = (int)mainWindow.Height;
                     });
                     while (width == null || height == null) { }
 
@@ -71,8 +83,5 @@ namespace EditorUI {
             thread.Name = "Engine Main Thread";
             thread.Start();
         }
-
-
-        private MainWindow m_mainWindow;
     }
 }

@@ -12,13 +12,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 
 namespace EditorUI {
     /// <summary>
     /// SceneView.xaml の相互作用ロジック
     /// </summary>
-    public partial class SceneViewWindow : Window {
+    public partial class SceneViewWindow : MetroWindow {
         /// <summary>コンストラクタ</summary>
         internal SceneViewWindow() {
             //----- 初期化

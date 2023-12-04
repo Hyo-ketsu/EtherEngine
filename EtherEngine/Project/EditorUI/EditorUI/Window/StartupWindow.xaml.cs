@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 
 namespace EditorUI {
     /// <summary>
     /// StartupWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class StartupWindow : Window {
+    public partial class StartupWindow : MetroWindow {
         public StartupWindow() {
             InitializeComponent();
 

@@ -13,7 +13,8 @@ namespace EditorMain {
         [STAThread]
         static public void Main() {
             //----- アプリケーションを始動
-            var application = new EditorUI.EtherEngineApplication(EtherEngine.EtherEngineMainFunction.MainFunction);
+            var application = new EditorUI.EtherEngineApplication();
+            application.Init(EtherEngine.EtherEngineMainFunction.MainFunction);
             application.Run();
 
             //----- 終了処理

@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 
 namespace EditorUI {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : MetroWindow {
         public MainWindow() {
             //----- メインループ開始
             CompositionTarget.Rendering += UIMainFunction.MainFunction;

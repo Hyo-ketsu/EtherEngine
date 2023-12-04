@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 // @ MEMO : 頻繁に使用するなら例外を取ってそこからメッセージを出すようにする
 
 
@@ -18,7 +19,7 @@ namespace EditorUI {
     /// <summary>
     /// ExceptionPopUpWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class ExceptionPopupWindow : Window {
+    public partial class ExceptionPopupWindow : MetroWindow {
         /// <summary>コンストラクタ</summary>
         /// <param name="showText"></param>
         internal ExceptionPopupWindow(string showText) {
