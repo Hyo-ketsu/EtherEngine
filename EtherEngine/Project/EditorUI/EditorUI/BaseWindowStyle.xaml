@@ -20,25 +20,15 @@
 
    </ResourceDictionary.MergedDictionaries>
 
-   <!--  MahApps Brushes  -->
-   <SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="DarkGreen" />
-   <SolidColorBrush x:Key="MahApps.Brushes.AccentBase" Color="LawnGreen" />
-   <SolidColorBrush x:Key="MahApps.Brushes.Accent" Color="{DynamicResource Primary500}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.Accent2" Color="{DynamicResource Primary400}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.Accent3" Color="{DynamicResource Primary300}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.Accent4" Color="{DynamicResource Primary200}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="{DynamicResource Primary700}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.Selected.Foreground" Color="{DynamicResource Primary500Foreground}" />
-   <LinearGradientBrush x:Key="MahApps.Brushes.Progress" StartPoint="1.002,0.5" EndPoint="0.001,0.5">
-      <GradientStop Offset="0" Color="{DynamicResource Primary700}" />
-      <GradientStop Offset="1" Color="{DynamicResource Primary300}" />
-   </LinearGradientBrush>
-   <SolidColorBrush x:Key="MahApps.Brushes.CheckmarkFill" Color="{DynamicResource Primary500}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.RightArrowFill" Color="{DynamicResource Primary500}" />
-   <SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="{DynamicResource Primary500Foreground}" />
-   <SolidColorBrush
-                x:Key="MahApps.Brushes.IdealForegroundDisabled"
-                Opacity="0.4"
-                Color="{DynamicResource Primary500}" />
-
+   <!-- primary -->
+   <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#31472e"/>
+   <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#31472e"/>
+   <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#2b4f2d"/>
+   <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#31472e"/>
+   <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#1b3d21"/>
+   <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#31472e"/>
+   
+   <!-- accent -->
+   <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#452c26"/>
+   <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#31472e"/>
 </ResourceDictionary>

@@ -6,7 +6,7 @@
         xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:EditorUI"
         mc:Ignorable="d"
-        Title="ExceptionPopUpWindow" Height="200" Width="300">
+        Title="ExceptionPopupWindow" Height="200" Width="300">
    <Grid>
       <!-- グリッド定義 -->
       <Grid.RowDefinitions>

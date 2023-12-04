@@ -13,6 +13,7 @@ namespace EtherEngine {
     // コンストラクタ
     BaseMainWindow::BaseMainWindow(const std::string& name) 
         : Window(name) {
+        m_dxRender = Handle<DirectXRender>(DirectXRender());
     }
 
 
@@ -97,32 +98,9 @@ namespace EtherEngine {
         ShowWindow(m_hwnd.value(), m_cmdShow.value());
         UpdateWindow(m_hwnd.value());
         
-
-        //----- ビデオカードの検索
-        IDXGIFactory1* factory;
-        IDXGIAdapter1* adapter;
-        IDXGIAdapter1* adapterMax;
-        DXGI_ADAPTER_DESC descMax; // 現在の最大処理速度のビデオカード
-        UINT i = 0;
-        CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void**)&factory);
-        factory->EnumAdapters1(i, &adapter); i++;
-        adapterMax = adapter;
-        adapterMax->GetDesc(&descMax);
-        for (; factory->EnumAdapters1(i, &adapter) != DXGI_ERROR_NOT_FOUND; ++i) {
-            DXGI_ADAPTER_DESC desc;
-            adapter->GetDesc(&desc);
-
-            bool isHighPerformanceGPU = (desc.DedicatedVideoMemory > descMax.DedicatedVideoMemory);
-            if (isHighPerformanceGPU) {
-                adapterMax = adapter;
-                adapterMax->GetDesc(&descMax);
-            }
-        }
-
         //----- DirectXを初期化
         bool isFullScreen = false;  // フルスクリーン設定
 
-        m_dxRender = Handle<DirectXRender>(DirectXRender());
         m_dxRender.GetAtomicData().Init(m_windowSize, m_hwnd.value(), isFullScreen);
     }
 

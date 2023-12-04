@@ -35,6 +35,8 @@ namespace EtherEngine {
 
         // ウィンドウ関連の初期化
         void WindowFunction(void);
+        // DirectXの初期化
+        void DirectXInit(void);
 
 
         // 初期化関数

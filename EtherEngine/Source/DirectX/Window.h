@@ -40,7 +40,6 @@ namespace EtherEngine {
         // @ Arg1 : 設定するウィンドウのキャプション
         bool SetCaption(const char* name);
 
-
     protected:
         std::string m_name;               // ウィンドウの名前 
         std::optional<HWND> m_hwnd;       // ウィンドウハンドル
