@@ -22,9 +22,8 @@ namespace EditorUI {
         public StartupWindow() {
             InitializeComponent();
 
-            VM = new(new StartupVM());
-
-            DataContext = VM;
+            VM = DataContext as StartupVM;
+            if (VM == null) throw new NullReferenceException();
         }
 
 
@@ -33,14 +32,14 @@ namespace EditorUI {
         /// <param name="e"></param>
         private void StartupEnd(object sender, RoutedEventArgs e) {
             //----- パスが正当か
-            var inputPath = VM.Get.InputPathCheak();
+            var inputPath = VM.InputPathCheak();
 
             switch (inputPath) {
-            case StartupVMErrorCode.NoMSBuild:
+            case StartupVMErrorCodeEnum.NoMSBuild:
                 //----- MSBuild.exeが存在しない
                 MessageBox.Show(ms_noMSBuild.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 break;
-            case StartupVMErrorCode.OK:
+            case StartupVMErrorCodeEnum.OK:
                 //----- 指定したファイルが存在する。スタートアップ完了
                 MessageBox.Show(ms_okStartup.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
@@ -52,19 +51,19 @@ namespace EditorUI {
         /// <param name="e"></param>
         private void PathRefresh(object sender, RoutedEventArgs e) {
             //----- パスを更新する
-            var pathUpdate = VM.Get.PathUpdate();
+            var pathUpdate = VM.PathUpdate();
 
             switch (pathUpdate) {
-            case StartupVMErrorCode.NoVersion:
+            case StartupVMErrorCodeEnum.NoVersion:
                 MessageBox.Show(ms_noVersion.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 break;
-            case StartupVMErrorCode.NoEdition:
+            case StartupVMErrorCodeEnum.NoEdition:
                 MessageBox.Show(ms_noEdition.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 break;
-            case StartupVMErrorCode.NoVS:
+            case StartupVMErrorCodeEnum.NoVS:
                 MessageBox.Show(ms_noVSDirectory.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 break;
-            case StartupVMErrorCode.OK:
+            case StartupVMErrorCodeEnum.OK:
                 MessageBox.Show(ms_pathRefresh.Text, "Ether Engine", MessageBoxButton.OK, MessageBoxImage.Information);
                 break;
             }
@@ -72,7 +71,7 @@ namespace EditorUI {
 
 
         /// <summary>ViewModel</summary>
-        private VMObject<StartupVM> VM { get; set; }
+        private StartupVM VM { get; set; }
         /// <summary>MSBuild不足時のメッセージ</summary>
         private static readonly EditorText ms_noMSBuild = new EditorText(
             en: "MSBuild.exe does not exist in the following subdirectory.",

@@ -3,6 +3,9 @@
 #include <EtherEngine/ConvertManage.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #include <EtherEngine/EditorDefine.h>
+#include <EtherEngine/CommandPrompt.h>
+#include <Base/BaseUtility.h>
+#include <Base/BaseDefines.h>
 
 
 //----- ソースファイルが含まれている属性取得
@@ -45,11 +48,14 @@ namespace EtherEngine {
     // @ MEMO : 現在はエンジン起動時は強制的に「更新されている」ものとします（のちにこのファイル状況をエクスポートできるようにする？）
     void ProjectMediation::Init(const PathClass& sln, const PathClass& vcxproj) {
         //----- 入力ファイルcheck
-        if (sln.IsExists() == false && sln.GetExtension() != ".sln") {
-            throw std::exception("Error! Non Solution File");
-        }
+        // @ MEMO : 現状スルーします
+        //if (sln.IsExists() == false && sln.GetExtension() != ".sln") {
+        //    throw std::exception("Error! Non Solution File");
+        //}
         if (vcxproj.IsExists() == false && vcxproj.GetExtension() != ".vcxproj") {
-            throw std::exception("Error! Non Project File");
+            //----- ない。作成する
+            std::ofstream ofs(m_vcxproj.Get().c_str());
+            ofs << FileDefine::PROJECT_DATA;
         }
 
         //----- 入力
@@ -63,15 +69,17 @@ namespace EtherEngine {
     }
 
 
-    // .hや.cpp等をプロジェクトに追加する
+    // ファイルをプロジェクトに追加する
     bool ProjectMediation::AddSource(const PathClass& source) {
+        return true; // @ MEMO : csprojに切り替えたため不要
         //----- 宣言
         tinyxml2::XMLDocument vcxprojXml;
 
         //----- プロジェクトファイルを読み取る
-        if (vcxprojXml.LoadFile(m_vcxproj.Get().c_str()) != tinyxml2::XML_SUCCESS) {
-            //----- 失敗。例外を送出
-            throw std::exception("Error! Project file non");
+        while (vcxprojXml.LoadFile(m_vcxproj.Get().c_str()) != tinyxml2::XML_SUCCESS) {
+            //----- ない。作成する
+            std::ofstream ofs(m_vcxproj.Get().c_str());
+            ofs << FileDefine::PROJECT_DATA;
         }
 
         //----- 各要素を取得
@@ -123,8 +131,10 @@ namespace EtherEngine {
 
         return true;
     }
-    // .hや.cpp等をプロジェクトから削除する
+    // ファイルをプロジェクトから削除する
     bool ProjectMediation::DeleteSource(const PathClass& source) {
+        return true; // @ MEMO : csprojに切り替えたため不要
+
         //----- 宣言
         tinyxml2::XMLDocument vcxprojXml;
 

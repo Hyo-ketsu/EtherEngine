@@ -1,6 +1,7 @@
 #ifndef I_BASEDEFINES_H
 #define I_BASEDEFINES_H
 #include <Base/ConceptUtility.h>
+// @ MEMO : 現状ソリューションファイルを開くことは想定されていません
 
 
 //----- 定数定義
@@ -34,13 +35,41 @@ namespace EtherEngine {
             const std::string SCENE = ".scenedata"; // シーン情報の拡張子
             const std::string SCRIPT = ".cs";  // スクリプト用拡張子
             const std::string SOLUTION = ".sln";    // ソリューションの拡張子
-            const std::string PROJECT = ".vcxproj"; // プロジェクト拡張子
+            const std::string PROJECT = ".csproj"; // プロジェクト拡張子
             const std::string PROJECT_DATA = ".projdata"; // プロジェクト情報拡張子
         }
 
-        const std::string PROJECTNAME = "EtherEngineProject";   // プロジェクト名
+        const std::string PROJECT_NAME = "EtherEngineProject";   // プロジェクト名
+        const std::string PROJECT_DATA =    // プロジェクトファイル内容
+            R"(
+<Project Sdk="Microsoft.NET.Sdk">
 
-        const std::string SCRIPT_FILE_STRING = R"(//===== 仮で書いてます。のちに修正してください。=====//
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <BaseOutputPath>Build\</BaseOutputPath>
+    <BaseIntermediateOutputPath>Object\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>
+)";
+        const std::string SOLUTION_DATA = // ソリューションファイル内容
+            R"(
+
+)";
+
+        const std::string SCRIPT_FILE_STRING = 
+            R"(//===== 仮で書いてます。のちに修正してください。=====//
 #include <EngineLibrary/UserComponent.h>
 
 public ref class クラス名 : public UserBaseComponent {

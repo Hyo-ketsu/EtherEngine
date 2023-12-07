@@ -5,6 +5,38 @@
 namespace EtherEngine {
 	// コンストラクタ
 	DirectXRender::DirectXRender(void) {
+        //----- ドライバの種類選択
+        D3D_DRIVER_TYPE driverTypes[] = {
+            D3D_DRIVER_TYPE_HARDWARE,	// GPUで描画
+            D3D_DRIVER_TYPE_WARP,		// 高精度(低速
+            D3D_DRIVER_TYPE_REFERENCE,	// CPUで描画
+        };
+        uint numDriverTypes = ARRAYSIZE(driverTypes);
+
+        uint createDeviceFlags = 0;
+#ifdef _DEBUG
+        createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
+        //----- 機能レベル
+        D3D_FEATURE_LEVEL featureLevels[] = {
+            D3D_FEATURE_LEVEL_11_1,		// DirectX11.1対応GPUレベル
+            D3D_FEATURE_LEVEL_11_0,		// DirectX11対応GPUレベル
+            D3D_FEATURE_LEVEL_10_1,		// DirectX10.1対応GPUレベル
+            D3D_FEATURE_LEVEL_10_0,		// DirectX10対応GPUレベル
+            D3D_FEATURE_LEVEL_9_3,		// DirectX9.3対応GPUレベル
+            D3D_FEATURE_LEVEL_9_2,		// DirectX9.2対応GPUレベル
+            D3D_FEATURE_LEVEL_9_1		// Direct9.1対応GPUレベル
+        };
+        uint numFeatureLevels = ARRAYSIZE(featureLevels);
+
+        D3D_DRIVER_TYPE driverType;
+        D3D_FEATURE_LEVEL featureLevel;
+
+        for (uint driverTypeIndex = 0; driverTypeIndex < numDriverTypes; ++driverTypeIndex) {
+            driverType = driverTypes[driverTypeIndex];
+            D3D11CreateDevice(NULL, driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
+                D3D11_SDK_VERSION, m_device.GetEditable(), &featureLevel, m_context.GetEditable());
+        }
 	}
 	// デストラクタ
 	DirectXRender::~DirectXRender(void) {

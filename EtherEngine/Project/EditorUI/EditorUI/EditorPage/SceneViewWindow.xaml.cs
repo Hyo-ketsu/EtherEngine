@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AvalonDock.Layout;
 using MahApps.Metro.Controls;
 
 
@@ -19,7 +20,8 @@ namespace EditorUI {
     /// <summary>
     /// SceneView.xaml の相互作用ロジック
     /// </summary>
-    public partial class SceneViewWindow : MetroWindow {
+    [CreatedWindow("Scene View","シーン ビュー")]
+    public partial class SceneViewWindow : UserControl {
         /// <summary>コンストラクタ</summary>
         internal SceneViewWindow() {
             //----- 初期化

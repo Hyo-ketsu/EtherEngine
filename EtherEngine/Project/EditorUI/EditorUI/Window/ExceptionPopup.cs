@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Sockets;
@@ -11,7 +12,10 @@ using Reactive.Bindings;
 
 namespace EditorUI {
     /// <summary>ViewModel</summary>
-    public class ExceptionPopupVM {
+    public class ExceptionPopupVM : INotifyCollectionChanged {
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+
         /// <summary>コンストラクタ</summary>
         public ExceptionPopupVM() {
             CloseWindow.Subscribe(x => ((System.Windows.Window)x)?.Close());

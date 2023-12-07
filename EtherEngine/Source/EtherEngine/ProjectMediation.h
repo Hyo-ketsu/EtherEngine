@@ -31,11 +31,11 @@ namespace EtherEngine {
         void Uninit(void);
 
 
-        // .hや.cpp等をプロジェクトに追加する
+        // ファイルをプロジェクトに追加する
         // @ Ret  : 追加が行われたか
         // @ Arg1 : 入力ファイル(.hもしくは.cpp)
         bool AddSource(const PathClass& source);
-        // .hや.cpp等をプロジェクトから削除する
+        // ファイルをプロジェクトから削除する
         // @ Ret  : 削除が行われたか
         // @ Arg1 : 削除ファイル(.hもしくは.cpp)
         bool DeleteSource(const PathClass& source);

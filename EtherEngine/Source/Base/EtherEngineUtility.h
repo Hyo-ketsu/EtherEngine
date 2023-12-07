@@ -38,22 +38,6 @@ namespace EtherEngine {
 }
 
 
-//----- 便利関数 定義
-namespace EtherEngine {
-    // 入力ファイルの中身を全て読み取る
-    // @ Exce : ファイルが開けない
-    // @ Ret  : 読み取った結果
-    // @ Arg1 : 読み取るファイル
-    std::string RoadFileAll(const std::string& file);
-
-
-    // 文字列から特定の文字列を置換する
-    // @ Ret  : 置換後の文字列
-    // @ Arg1 : 検索元文字列
-    // @ Arg2 : 置換対象文字列
-    // @ Arg3 : 置換後文字列
-    std::string StringSubstitution(const std::string& target, const std::string& dest, const std::string& replacement);
-}
 //----- 便利クラス 定義
 namespace EtherEngine {
     // boolのトリガーを行うクラス

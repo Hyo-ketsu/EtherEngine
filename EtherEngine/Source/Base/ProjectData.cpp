@@ -1,6 +1,7 @@
 #include <Base/ProjectData.h>
 #include <Base/BaseDefines.h>
 #include <Base/EditorException.h>
+#include <Base/BaseUtility.h>
 
 
 //----- ProjectData 定義
@@ -12,7 +13,7 @@ namespace EtherEngine {
         if (path.HasExtension() && path.GetExtension() != FileDefine::Extended::PROJECT_DATA) throw EditorException("Error! Is File ProjectData File?");
 
         //----- 読み込み
-        Input(EtherEngine::RoadFileAll(path.Get()));
+        Input(Utility::RoadFileAll(path.Get()));
         m_path = path;
     }
     // デストラクタ

@@ -1,5 +1,5 @@
 #include <Base/PathClass.h>
-#include <Base/EtherEngineUtility.h>
+#include <Base/BaseUtility.h>
 #include <filesystem>
 
 
@@ -83,7 +83,7 @@ namespace EtherEngine {
         if (this->IsFile() == false) return false;
 
         //----- 同名ファイルを対象パスに作成
-        auto myFileString = RoadFileAll(m_path);
+        auto myFileString = Utility::RoadFileAll(m_path);
         (copyPath / this->GetFile()).Create_File(myFileString);
 
         return true;

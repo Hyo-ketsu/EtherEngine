@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -9,7 +10,10 @@ using System.Windows;
 
 namespace EditorUI {
     /// <summary>ViewModel</summary>
-    public class SceneViewVM {
+    public class SceneViewVM : INotifyCollectionChanged {
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+
         /// <summary>コンストラクタ</summary>
         /// <param name="sceneView">シーンビューのハンドル</param>
         /// <param name="size">初期シーンビューサイズ</param>

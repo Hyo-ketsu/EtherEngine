@@ -1,9 +1,9 @@
 #include <EtherEngine/ProjectEditorData.h>
 #include <Base/DirectoryNameDefine.h>
 #include <Base/BaseDefines.h>
-#include <Base/SceneLoader.h>
-#include <Base/EtherEngineUtility.h>
+#include <Base/BaseUtility.h>
 #include <Base/EditorException.h>
+#include <Base/SceneLoader.h>
 #include <EtherEngine/EditorDefine.h>
 
 
@@ -16,7 +16,7 @@ namespace EtherEngine {
         if (path.HasExtension() && path.GetExtension() != FileDefine::Extended::PROJECT_DATA) throw EditorException("Error! Is File ProjectData File?");
 
         //----- ì«Ç›çûÇ›
-        Input(EtherEngine::RoadFileAll(path.Get()));
+        Input(EtherEngine::Utility::RoadFileAll(path.Get()));
         m_path = path;
     }
 
@@ -43,7 +43,7 @@ namespace EtherEngine {
 
         //----- ì«Ç›çûÇ›
         try {
-            json = RoadFileAll(input);
+            json = Utility::RoadFileAll(input);
         }
         catch (...) {
             goto END;

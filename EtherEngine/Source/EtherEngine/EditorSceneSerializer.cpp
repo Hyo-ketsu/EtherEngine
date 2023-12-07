@@ -1,5 +1,6 @@
 #include <EtherEngine/EditorSceneSerializer.h>
 #include <Base/BaseDefines.h>
+#include <Base/BaseUtility.h>
 #include <Base/GameObjectStorage.h>
 
 
@@ -21,7 +22,7 @@ namespace EtherEngine {
         scene.open(fileName, std::ios::out);
 
         //----- シーン情報出力
-        json["SceneName"] = StringSubstitution(sceneData, "\\", "/");
+        json["SceneName"] = Utility::StringSubstitution(sceneData, "\\", "/");
 
         //----- ゲームオブジェクト取得・シーン別振り分け
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();

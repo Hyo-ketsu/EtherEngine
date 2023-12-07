@@ -9,6 +9,7 @@ using System.Windows.Resources;
 
 namespace EditorUI {
     /// <summary>エディターの各言語でのテキストを表現するクラス</summary>
+    [Serializable]
     public class EditorText {
         /// <summary>コンストラクタ</summary>
         /// <param name="en">英語(Default : "")</param>
@@ -37,6 +38,15 @@ namespace EditorUI {
         /// <returns>取得したテキスト</returns>
         public string Text {
             get { return GetText(ms_language); }
+        }
+        /// <summary>現在の言語のテキスト->ENの順に何らか設定されている文字を返却</summary>
+        public string SomeText {
+            get {
+                if (Text != "") {
+                    return Text; 
+                }
+                return EN;
+            }
         }
         /// <summary>テキストを現在の言語で取得する</summary>
         /// <returns></returns>

@@ -40,53 +40,7 @@ namespace EtherEngine {
 		sd.OutputWindow = hWnd;			// 関連付けるウインドウ
 		sd.Windowed = fullScreen ? FALSE : TRUE;
 		sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-
-		//----- ドライバの種類選択
-		D3D_DRIVER_TYPE driverTypes[] =
-		{
-			D3D_DRIVER_TYPE_HARDWARE,	// GPUで描画
-			D3D_DRIVER_TYPE_WARP,		// 高精度(低速
-			D3D_DRIVER_TYPE_REFERENCE,	// CPUで描画
-		};
-		UINT numDriverTypes = ARRAYSIZE(driverTypes);
-
-		UINT createDeviceFlags = 0;
-#ifdef _DEBUG
-		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-#endif
-		//----- 機能レベル
-		D3D_FEATURE_LEVEL featureLevels[] =
-		{
-			D3D_FEATURE_LEVEL_11_1,		// DirectX11.1対応GPUレベル
-			D3D_FEATURE_LEVEL_11_0,		// DirectX11対応GPUレベル
-			D3D_FEATURE_LEVEL_10_1,		// DirectX10.1対応GPUレベル
-			D3D_FEATURE_LEVEL_10_0,		// DirectX10対応GPUレベル
-			D3D_FEATURE_LEVEL_9_3,		// DirectX9.3対応GPUレベル
-			D3D_FEATURE_LEVEL_9_2,		// DirectX9.2対応GPUレベル
-			D3D_FEATURE_LEVEL_9_1		// Direct9.1対応GPUレベル
-		};
-		UINT numFeatureLevels = ARRAYSIZE(featureLevels);
-
-		D3D_DRIVER_TYPE driverType;
-		D3D_FEATURE_LEVEL featureLevel;
-
-		for (UINT driverTypeIndex = 0; driverTypeIndex < numDriverTypes; ++driverTypeIndex) {
-			driverType = driverTypes[driverTypeIndex];
-			hr = D3D11CreateDeviceAndSwapChain(
-				NULL,					// ディスプレイデバイスのアダプタ（NULLの場合最初に見つかったアダプタ）
-				driverType,				// デバイスドライバのタイプ
-				NULL,					// ソフトウェアラスタライザを使用する場合に指定する
-				createDeviceFlags,		// デバイスフラグ
-				featureLevels,			// 機能レベル
-				numFeatureLevels,		// 機能レベル数
-				D3D11_SDK_VERSION,		// 
-				&sd,					// スワップチェインの設定
-				m_swapChain.GetEditable(),			// IDXGIDwapChainインタフェース	
-				m_directX->GetEditableDevice(),		// ID3D11Deviceインタフェース
-				&featureLevel,		// サポートされている機能レベル
-				m_directX->GetEditableContext());	// デバイスコンテキスト
-			if (SUCCEEDED(hr)) break;
-		}
+		factory->CreateSwapChain(directX->GetDevice(), &sd, m_swapChain.GetEditable());
 		if (FAILED(hr)) throw EditorException(std::to_string(hr).c_str());
 
 		//--- レンダーターゲット作成

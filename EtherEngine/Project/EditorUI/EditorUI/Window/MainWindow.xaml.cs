@@ -25,11 +25,10 @@ namespace EditorUI {
 
             InitializeComponent();
 
-            DataContext = VM;
+            //----- Dockパネルを渡す
+            var vm = DataContext as MainVM;
+            vm.LayoutRoot = DockRoot;
+            vm.DockingManager = DockManager;
         }
-
-
-        /// <summary>保持しているViewModel</summary>
-        VMObject<MainViewModel> VM { set; get; } = new(new MainViewModel());
     }
 }

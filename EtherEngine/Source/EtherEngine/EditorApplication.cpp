@@ -74,7 +74,7 @@ namespace EtherEngine {
             StartupMessage^ message = nullptr;
             while (message == nullptr) { 
                 message = MessageQue<StartupMessage^>::GetEngineMessage();
-                ThisThreadSleep();
+                Utility::ThisThreadSleep();
             }
 
             //----- 取得したパスを設定
@@ -92,7 +92,7 @@ namespace EtherEngine {
         }
 
         m_initUninitPerformer.AddInitUninit(
-            []() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECTNAME + FileDefine::Extended::PROJECT); },
+            []() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECT_NAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECT_NAME + FileDefine::Extended::PROJECT); },
             []() { ProjectMediation::Get()->Uninit(); }
         );
     }
@@ -227,7 +227,7 @@ namespace EtherEngine {
                 GlobalTimer::Get()->Update();
 
                 //----- エディター更新処理
-                EditorUpdater::Get()->Update();
+                //EditorUpdater::Get()->Update();
 
                 //----- 更新処理
                 GameObjectUpdater::Get()->FixedUpdate();
@@ -243,11 +243,11 @@ namespace EtherEngine {
                     it.Draw();
                 }
 
-                //----- エディター描画処理
-                EditorUpdater::Get()->Draw();
+                ////----- エディター描画処理
+                //EditorUpdater::Get()->Draw();
 
-                //----- エディター描画後処理
-                EditorUpdater::Get()->LateDraw();
+                ////----- エディター描画後処理
+                //EditorUpdater::Get()->LateDraw();
 
                 //----- 描画後処理
                 for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {

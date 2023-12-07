@@ -6,7 +6,11 @@
         xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:EditorUI"
         mc:Ignorable="d"
+        TitleCharacterCasing="Normal"
         Title="StartupWindow" Height="450" Width="800">
+   <ma:MetroWindow.DataContext>
+      <local:StartupVM/>
+   </ma:MetroWindow.DataContext>
    <Grid>
       <!-- VisualStadio設定 -->
       <StackPanel Margin="5,0,1,0">
@@ -33,7 +37,7 @@
                </local:MultiLanguageTextBlock.EditorText>
             </local:MultiLanguageTextBlock>
             <ComboBox Grid.Column="2" MaxWidth="200"
-            ItemsSource="{Binding NoLockGet.VisualStudioEdition.Item}" SelectedItem="{Binding NoLockGet.VisualStudioEdition.Select}"/>
+            ItemsSource="{Binding VisualStudioEdition.Item}" SelectedItem="{Binding VisualStudioEdition.Select}"/>
          </Grid>
          
          <!-- バージョン -->
@@ -51,7 +55,7 @@
                </local:MultiLanguageTextBlock.EditorText>
             </local:MultiLanguageTextBlock>
             <ComboBox Grid.Column="2" MaxWidth="200"
-            ItemsSource="{Binding NoLockGet.VisualStudioVersion.Item}" SelectedItem="{Binding NoLockGet.VisualStudioVersion.Select}"/>
+            ItemsSource="{Binding VisualStudioVersion.Item}" SelectedItem="{Binding VisualStudioVersion.Select}"/>
          </Grid>
          
          <!-- 使用パス表示 -->
@@ -68,7 +72,7 @@
                                     JP="以下のパスが使用されます : "/>
                </local:MultiLanguageTextBlock.EditorText>
             </local:MultiLanguageTextBlock>
-            <TextBlock Grid.Column="1" Text="{Binding Get.VisualStudioPath.Value}"/>
+            <TextBox Grid.Column="1" Text="{Binding VisualStudioPath.Value}"/>
             <Button Grid.Column="2" Content="Path refresh" Click="PathRefresh" Margin="5,0,0,0"/>
          </Grid>
          

@@ -3,7 +3,7 @@
 #include <Base/DirectoryNameDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/GameObjectStorage.h>
-#include <Base/EtherEngineUtility.h>
+#include <Base/BaseUtility.h>
 
 
 namespace EtherEngine {
@@ -38,7 +38,7 @@ namespace EtherEngine {
         }
 
         //----- ¶¬
-        nlohmann::json json = nlohmann::json::parse(RoadFileAll(loadSceneName));
+        nlohmann::json json = nlohmann::json::parse(Utility::RoadFileAll(loadSceneName));
         for (auto& it : json["GameObjects"]) {
             auto gameObject = GameObjectStorage::Get()->CreateGameObject();
             gameObject.GetNoAtomicData().Input(it);

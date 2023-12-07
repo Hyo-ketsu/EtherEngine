@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,13 @@ namespace EditorUI {
 
 
     /// <summary>vsのエディション</summary>
-    public enum VisualStudioEdition {
+    public enum VisualStudioEditionEnum {
         Community = 0,
         Professional,
         None,
     }
     /// <summary>vsの年度</summary>
-    public enum VisualStudioVersion {
+    public enum VisualStudioVersionEnum {
         v2019 = 0,
         v2022,
         None,
@@ -34,7 +35,7 @@ namespace EditorUI {
 
 
     /// <summary>エラーコード</summary>
-    public enum StartupVMErrorCode { 
+    public enum StartupVMErrorCodeEnum { 
         NoVersion = 0,
         NoEdition,
         NoVS,
@@ -44,40 +45,39 @@ namespace EditorUI {
 
 
     /// <summary>ViewModel</summary>
-    public class StartupVM {
-        /// <summary>設定されたMSBuildパス</summary>
-        public string? MSBuildPath { get; private set; } = null;
+    public class StartupVM : INotifyCollectionChanged {
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
 
         /// <summary>入力されたパスが正当かチェック</summary>
         /// <returns></returns>
-        internal StartupVMErrorCode InputPathCheak() {
+        internal StartupVMErrorCodeEnum InputPathCheak() {
             //----- 変数宣言
             List<string> directorys = new();
 
             //----- Path自体がない
-            if (VisualStudioPath.Value == null) return StartupVMErrorCode.NoMSBuild;
+            if (VisualStudioPath.Value == null) return StartupVMErrorCodeEnum.NoMSBuild;
 
             //----- MSBuildが存在するかチェック
             var msbuilds = Directory.GetFiles(VisualStudioPath.Value, "MSBuild.exe", SearchOption.AllDirectories);
 
             if (msbuilds.Length > 0) {
                 //----- 存在した。1つ目の要素をpathとして取得
-                MSBuildPath = msbuilds[0];
+                var msbuildPath = msbuilds[0];
 
                 //----- メッセージを送信する
-                MessageQue<StartupMessage>.AddUIMessage(new(MSBuildPath));
+                MessageQue<StartupMessage>.AddUIMessage(new(msbuildPath));
 
                 //----- 返却
-                return StartupVMErrorCode.OK;
+                return StartupVMErrorCodeEnum.OK;
             }
             else {
-                return StartupVMErrorCode.NoMSBuild;
+                return StartupVMErrorCodeEnum.NoMSBuild;
             }
         }
         /// <summary>入力されたVSのバージョン・エディションに合わせてパスを更新する</summary>
         /// <returns>VSが存在していたか</returns>
-        internal StartupVMErrorCode PathUpdate() {
+        internal StartupVMErrorCodeEnum PathUpdate() {
             //----- 変数宣言
             string[] drives = Directory.GetLogicalDrives(); // 念のため全ドライブ走査
             const string path = "Program Files\\Microsoft Visual Studio";
@@ -88,25 +88,25 @@ namespace EditorUI {
 
             //----- バージョン等の文字列取得
             switch (VisualStudioEdition.Select) {
-            case EditorUI.VisualStudioEdition.Community:
+            case VisualStudioEditionEnum.Community:
                 edition = "Community";
                 break;
-            case EditorUI.VisualStudioEdition.Professional:
+            case VisualStudioEditionEnum.Professional:
                 edition = "Professional";
                 break;
             }
             switch (VisualStudioVersion.Select) {
-            case EditorUI.VisualStudioVersion.v2019:
+            case VisualStudioVersionEnum.v2019:
                 version = "2019";
                 break;
-            case EditorUI.VisualStudioVersion.v2022:
+            case VisualStudioVersionEnum.v2022:
                 version = "2022";
                 break;
             }
 
             //----- バージョン等が入力されているか
-            if (edition == null) return StartupVMErrorCode.NoEdition;
-            if (version == null) return StartupVMErrorCode.NoVersion;
+            if (edition == null) return StartupVMErrorCodeEnum.NoEdition;
+            if (version == null) return StartupVMErrorCodeEnum.NoVersion;
 
             //----- 指定したディレクトリが存在するか
             foreach (var drive in drives) {
@@ -119,19 +119,19 @@ namespace EditorUI {
             if (isDirectory) {
                 //----- 存在する。パスを追加する
                 this.VisualStudioPath.Value = vsDirectory;
-                return StartupVMErrorCode.OK;
+                return StartupVMErrorCodeEnum.OK;
             }
             else {
                 //----- 存在しない。
-                return StartupVMErrorCode.NoVS;
+                return StartupVMErrorCodeEnum.NoVS;
             }
         }
 
 
         /// <summary>設定されているvsのエディション</summary>
-        public EnumViewModel<VisualStudioEdition> VisualStudioEdition { get; set; } = new();
+        public EnumViewModel<VisualStudioEditionEnum> VisualStudioEdition { get; set; } = new();
         /// <summary>設定されているvsの年度</summary>
-        public EnumViewModel<VisualStudioVersion> VisualStudioVersion { get; set; } = new();
+        public EnumViewModel<VisualStudioVersionEnum> VisualStudioVersion { get; set; } = new();
         /// <summary>現在設定されているパス</summary>
         public ReactiveProperty<string> VisualStudioPath { get; set; } = new();
     }
