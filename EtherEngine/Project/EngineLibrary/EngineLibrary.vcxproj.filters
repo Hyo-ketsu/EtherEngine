@@ -36,13 +36,9 @@
     <ClInclude Include="..\..\Source\EngineLibrary\LogSystem.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\WrapperBaseUtility.h">
-      <Filter>Wrapper</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h">
       <Filter>Wrapper</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\MainInitFunction.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.h" />
   </ItemGroup>
   <ItemGroup>
@@ -68,20 +64,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\WrapperMutex.cpp">
-      <Filter>Wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="WrapperBaseUtility.cpp">
-      <Filter>Wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\WrapperBaseUtility.cpp">
-      <Filter>Wrapper</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp">
-      <Filter>Wrapper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\MainInitFunction.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.cpp">
       <Filter>Wrapper</Filter>
     </ClCompile>
   </ItemGroup>

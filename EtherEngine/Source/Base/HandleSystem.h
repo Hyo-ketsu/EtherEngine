@@ -102,7 +102,7 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     [[nodiscard]] std::pair<HandleNumberType, std::weak_ptr<nullptr_t>> HandleSystem<Type>::AddItem(Type&& item) {
         //----- ロック
-        auto lock = this->GetMutex().lock()->KeySpinLock();
+        auto lock = this->GetMutex()->KeySpinLock();
 
         //----- Handle生成
         HandleNumberType handle = EtherEngine::Random::GetRandom<HandleNumberType>();
@@ -138,7 +138,7 @@ namespace EtherEngine {
         //----- 存在すれば削除
         if (IsItemEnable(handle)) {
             //----- ロック
-            auto lock = this->GetMutex().lock()->KeySpinLock();
+            auto lock = this->GetMutex()->KeySpinLock();
 
             //----- カウントを 0 にし、その後カウント 0 要素を削除
             m_referenceCounter.find(handle)->second = 0;
@@ -186,7 +186,7 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     std::optional<NonAtomicData<Type>> HandleSystem<Type>::GetNoAtomicItem(const HandleNumberType& handle) {
         //----- ロック
-        auto lock = this->GetMutex().lock()->KeySpinLock();
+        auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 変数宣言
         auto ret = std::optional<NonAtomicData<Type>>();
@@ -205,7 +205,7 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     std::optional<AtomicData<Type>> HandleSystem<Type>::GetAtomicItem(const HandleNumberType& handle) {
         //----- ロック
-        auto lock = this->GetMutex().lock()->KeySpinLock();
+        auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 変数宣言
         auto ret = std::optional<AtomicData<Type>>();
@@ -224,7 +224,7 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     std::optional<AtomicReadData<Type>> HandleSystem<Type>::GetAtomicReadItem(const HandleNumberType& handle) {
         //----- ロック
-        auto lock = this->GetMutex().lock()->KeySpinLock();
+        auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 変数宣言
         auto ret = std::optional<AtomicReadData<Type>>();
@@ -243,7 +243,7 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     void HandleSystem<Type>::Delete0ReferenceCounter(const HandleNumberType& handle) {
         //----- ロック
-        auto lock = this->GetMutex().lock()->KeySpinLock();
+        auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 参照カウンタが0か
         if (m_referenceCounter.find(handle) != m_referenceCounter.end() && m_referenceCounter.find(handle)->second < 1) {

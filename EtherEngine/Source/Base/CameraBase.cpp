@@ -1,6 +1,6 @@
 #include <Base/CameraBase.h>
-#include <Base/BaseDefines.h>
 #include <Base/MathUtility.h>
+#include <Base/BaseDefines.h>
 #include <Base/Converter.h>
 #include <Base/CameraStorage.h>
 #include <Base/EditorException.h>

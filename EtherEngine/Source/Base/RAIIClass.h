@@ -8,9 +8,8 @@ namespace EtherEngine {
     class RAIIClass {
     public:
         // コンストラクタ
-        // @ Arg1 : コンストラクタ処理
-        // @ Arg2 : デストラクタ処理
-        RAIIClass(std::function<void(void)> init, std::function<void(void)> unInit);
+        // @ Arg1 : デストラクタ処理
+        RAIIClass(std::function<void(void)> unInit);
         // デストラクタ
         ~RAIIClass(void);
         RAIIClass(const RAIIClass& copy) = delete;

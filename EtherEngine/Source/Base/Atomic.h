@@ -4,6 +4,7 @@
 #include <Base/AtomicReadData.h>
 #include <Base/NonAtomicData.h>
 #include <Base/ThreadingUtility.h>
+#include <Base/Mutex.h>
 
 
 namespace EtherEngine {
@@ -41,7 +42,7 @@ namespace EtherEngine {
 
     private:
         std::unique_ptr<AtomicType> m_lock;  // 保持しているデータ
-        std::shared_ptr<Mutex>      m_mutex; // 排他用ミューテックス
+        Mutex m_mutex; // 排他用ミューテックス
     };
 }
 
@@ -53,15 +54,13 @@ namespace EtherEngine {
     // デフォルトコンストラクタ
     template <class AtomicType>
     Atomic<AtomicType>::Atomic(void)
-        : m_lock(nullptr)
-        , m_mutex(ThreadingUtility::GetMutex()) {
+        : m_lock(nullptr){
     }
     // コンストラクタ
     // @ Arg1 : 排他を行う情報
     template <class AtomicType>
     Atomic<AtomicType>::Atomic(AtomicType&& data) 
-        : m_lock(std::make_unique<AtomicType>(data))
-        , m_mutex(ThreadingUtility::GetMutex()) {
+        : m_lock(std::make_unique<AtomicType>(data)){
     }
     // デストラクタ
     template <class AtomicType>
@@ -72,7 +71,7 @@ namespace EtherEngine {
     template <class AtomicType>
     Atomic<AtomicType>::Atomic(Atomic&& move) noexcept {
         //----- ロックを行う
-        auto lock = move.m_mutex->KeyLock();
+        auto lock = move.m_mutex.KeyLock();
 
         //----- ムーブ
         m_lock = std::move(move.m_lock);
@@ -85,7 +84,7 @@ namespace EtherEngine {
     AtomicData<AtomicType> Atomic<AtomicType>::GetData(void) {
         //----- 排他データの作成と返却
         return std::move(AtomicData<AtomicType>(*m_lock,
-            [this](void) -> void { m_mutex->Lock(); }, [this](void) -> void { m_mutex->UnLock(); }));
+            [this](void) -> void { m_mutex.Lock(); }, [this](void) -> void { m_mutex.UnLock(); }));
     }
     // データを取得する
     // @ Ret  : 排他制御されていないデータ
@@ -100,7 +99,7 @@ namespace EtherEngine {
     // @ Ret  : ロックを取得できる（= ロックされていない）なら true
     template <class AtomicType>
     bool Atomic<AtomicType>::TryLock(void) {
-        bool lock = m_mutex->IsCanLock();
+        bool lock = m_mutex.IsCanLock();
         return lock;
     }
 }

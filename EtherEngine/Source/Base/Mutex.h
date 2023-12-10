@@ -1,33 +1,20 @@
 #ifndef I_MUTEX_H
 #define I_MUTEX_H
 #include <Base/RAIIClass.h>
-#include <Base/ManageMediation.h>
-
-
-// @ Memo : 定義自体はここでされていません。
 
 
 //----- Mutex 宣言
 namespace EtherEngine {
+    using MutexLockKey = RAIIClass;
+
+
     // mutexのラップクラス
     class Mutex {
-    protected:
-        // ロックをRAIIに則り行うクラス
-        class MutexLockKey {
-        public:
-            // コンストラクタ
-            // @ Arg1 : 親元の参照
-            MutexLockKey(Mutex& lock);
-            // デストラクタ
-            ~MutexLockKey(void);
-
-        private:
-            Mutex& m_lock;
-        };
-
     public:
+        // コンストラクタ
+        Mutex(void);
         // デストラクタ
-        virtual ~Mutex(void) {}
+        ~Mutex(void);
         // コピーコンストラクタ
         Mutex(const Mutex& move) = default;
         // ムーブコンストラクタ
@@ -36,32 +23,28 @@ namespace EtherEngine {
 
         // ロックを試行する
         // @ Memo : スレッドがロックされます
-        virtual bool TryLock(void) = 0;
+        bool TryLock(void);
         // ロックが施行できるか取得
         // @ Ret  : ロックが施行できるか
-        virtual bool IsCanLock(void) = 0;
+        bool IsCanLock(void);
 
 
         // ロックを行う（RAII）
         // @ Ret  : RAIIロック・アンロッククラス
-        virtual MutexLockKey KeyLock(void) = 0;
+        MutexLockKey KeyLock(void);
         // ロックを行う（RAII）
         // @ Ret  : RAIIロック・アンロッククラス
-        virtual MutexLockKey KeySpinLock(void) = 0;
+        MutexLockKey KeySpinLock(void);
 
 
         // 手動ロックを行う
-        virtual void Lock(void) = 0;
+        void Lock(void);
         // 手動スピンロックを行う
-        virtual void SpinLock(void) = 0;
+        void SpinLock(void);
         // 手動アンロックを行う
-        virtual void UnLock(void) = 0;
+        void UnLock(void);
 
     protected:
-        // コンストラクタ
-        Mutex(void) {}
-
-
         // ロック開始を通知する
         // @ Ret  : ロックが可能か
         bool LockMessage(void);
@@ -72,9 +55,11 @@ namespace EtherEngine {
 
         // 自身のロックを行う
         // @ Memo : 実装自体はスピンロックで行います
-        virtual MutexLockKey ThisLock(void) = 0;
+        MutexLockKey ThisLock(void);
 
 
+        HANDLE m_mutex;     // ミューテックスのハンドル
+        HANDLE m_thisMutex; // 自身に行う排他処理
         static thread_local uint ms_thisThreadLockCount;   // 自身のスレッドのロック数
     };
 }

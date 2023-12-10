@@ -80,7 +80,6 @@
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
-    <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
     <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
@@ -100,9 +99,8 @@
     <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
     <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
     <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
-    <ClCompile Include="..\..\Source\Base\ManageMediation.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
-    <ClCompile Include="..\..\Source\Base\SingletonManager.cpp" />
+    <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
@@ -187,8 +185,6 @@
       <Filter>Collision</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\Mutex.h" />
-    <ClInclude Include="..\..\Source\Base\ManageMediation.h" />
     <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
-    <ClInclude Include="..\..\Source\Base\SingletonManager.h" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,6 @@
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
 #include <Base/GameObjectUpdater.h>
-#include <EngineLibrary/EngineLibraryInit.h>
 #include <EngineLibrary/AssemblyHolder.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/CommandPrompt.h>
@@ -21,6 +20,7 @@
 #include <EtherEngine/Test/TestComponent.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
 #include <EtherEngine/EditorDefine.h>
+#include <Base/ThreadingUtility.h>
 
 
 //----- EditorApplication ’è‹`
@@ -74,7 +74,7 @@ namespace EtherEngine {
             StartupMessage^ message = nullptr;
             while (message == nullptr) { 
                 message = MessageQue<StartupMessage^>::GetEngineMessage();
-                Utility::ThisThreadSleep();
+                ThreadingUtility::ThisThreadSleep();
             }
 
             //----- æ“¾‚µ‚½ƒpƒX‚ğİ’è

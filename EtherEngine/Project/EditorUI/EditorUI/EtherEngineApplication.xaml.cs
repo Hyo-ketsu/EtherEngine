@@ -41,7 +41,7 @@ namespace EditorUI {
             });
 
             //----- メイン関数スレッド立ち上げ
-            var startFunction = new Task(() => {
+            var startFunction = new ThreadStart(() => {
                 try {
                     while (mainWindow == null) { }
 
@@ -79,9 +79,9 @@ namespace EditorUI {
                     });
                 }
             });
-            startFunction.Start();
-            //thread.Name = "Engine Main Thread";
-            //thread.Start();
+            Thread thread = new(startFunction);
+            thread.Name = "Engine Main Thread";
+            thread.Start();
         }
     }
 }

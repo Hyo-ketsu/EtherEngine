@@ -7,12 +7,12 @@
 namespace EtherEngine {
     // コンストラクタ
     IDClass::IDClass(void)
-        : m_number(GetNumber().AddNumber()) {
+        : m_number(ms_idClassStorage.AddNumber()) {
     }
     // コンストラクタ
     IDClass::IDClass(const IDNumberType& number)
         : m_number(number) {
-        GetNumber().AddNumber(number);
+        ms_idClassStorage.AddNumber(number);
     }
     // デストラクタ
     IDClass::~IDClass(void) {
@@ -29,24 +29,14 @@ namespace EtherEngine {
     }
 
 
-    // 番号を取得する
-    IDClassStorage& IDClass::GetNumber(void) {
-        if (ms_idClassStorage.has_value() == false) {
-            ms_idClassStorage = {};
-            return ms_idClassStorage.value();
-        }
-    }
-
-
-    std::optional<IDClassStorage> IDClass::ms_idClassStorage;    // IDを管理しているクラス
+    IDClassStorage IDClass::ms_idClassStorage;    // IDを管理しているクラス
 }
 
 
 //----- IDClassStorage定義
 namespace EtherEngine {
     // コンストラクタ
-    IDClassStorage::IDClassStorage(void) 
-        : m_mutex(ThreadingUtility::GetMutex()) {
+    IDClassStorage::IDClassStorage(void) {
     }
     // 番号を生成、追加する
     [[nodiscard]] IDNumberType IDClassStorage::AddNumber(void) {

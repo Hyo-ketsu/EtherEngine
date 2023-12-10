@@ -10,8 +10,8 @@ namespace EtherEngine {
         ~ManageFunctionInit(void) {}
 
 
-        void ENGINELIBRARY_API Init(void);
-        void ENGINELIBRARY_API Uninit(void);
+        static void ENGINELIBRARY_API Init(void);
+        static void ENGINELIBRARY_API Uninit(void);
         
     private:
         // コンストラクタ

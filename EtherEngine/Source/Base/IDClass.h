@@ -63,12 +63,7 @@ namespace EtherEngine {
         operator const IDNumberType&(void) const;
 
     private:
-        // 番号を取得する
-        // @ Ret  : 取得したIDクラス
-        IDClassStorage& GetNumber(void);
-
-
-        static std::optional<IDClassStorage> ms_idClassStorage;    // IDを管理しているクラス
+        static IDClassStorage ms_idClassStorage;    // IDを管理しているクラス
         IDNumberType m_number;                      // 自身が保持しているID番号
     };
 }

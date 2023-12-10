@@ -6,7 +6,6 @@
 #include <EngineLibrary/GameDrawComponent.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/AssemblyHolder.h>
-#include <EngineLibrary/WrapperMutex.h>
 
 
 //----- 関数定義
@@ -43,14 +42,6 @@ namespace EtherEngine {
         //----- 選択されない。nullptr返却
         return nullptr;
     }
-
-
-    auto GetMutex(void) {
-        return std::shared_ptr<Mutex>(new WrapperMutex());
-    }
-    void ThisThreadSleep(uint ms) {
-        System::Threading::Thread::Sleep(ms);
-    }
 }
 
 
@@ -63,9 +54,6 @@ namespace EtherEngine {
         GameObject::ms_getFullName = [](const std::string& name, const uint index = 0, const bool isSystem = false) -> std::string { 
             return GetFullName(name, index, isSystem);
         };
-
-        ThreadingUtility::ms_getMutex.SetLambda(GetMutex);
-        ThreadingUtility::ms_thisThreadSleep.SetLambda(ThisThreadSleep);
     }
     // 終了処理
     void ENGINELIBRARY_API ManageFunctionInit::Uninit(void) {

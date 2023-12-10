@@ -1,8 +1,10 @@
 #include <Base/ThreadingUtility.h>
 
 
-//----- ThreadingUtility 定義
 namespace EtherEngine {
-    ManageMediation<ThreadingUtility, void, uint> ThreadingUtility::ms_thisThreadSleep = decltype(ms_thisThreadSleep)();
-    ManageMediation<ThreadingUtility, std::shared_ptr<Mutex>> ThreadingUtility::ms_getMutex = decltype(ms_getMutex)();
+    // スレッド関連の処理を行う
+    namespace ThreadingUtility {
+        // 自身のスレッドを指定msスリープする
+        void ThisThreadSleep(uint ms) { Sleep(ms); }
+    }
 }
