@@ -15,10 +15,6 @@ namespace EtherEngine {
         ~EditorApplication(void);
 
 
-        // ウィンドウ機能使用可否ゲッター
-        bool GetIsWindowFunctionEnable(void) const { return m_isWindowFunctionEnable; }
-
-
         // ゲームモードを開始する
         // @ Memo : 既に開始している際はゲームモードの再起動を行います
         void StartGameMode(void);
@@ -29,12 +25,6 @@ namespace EtherEngine {
         // @ Memo : 開始していない場合は特に何も起こりません
         void EndGameMode(void);
 
-
-        // ウィンドウの移動などの有効無効を切り替える
-        // @ Arg1 : 有効無効の設定
-        // @ Arg2 : ウィンドウを閉じることも有効無効を切り替えるか(Default : true)
-        void SetWindowFunctionEnable(const bool isEnable, const bool isClose = true);
-        
     protected:
         // 初期化前関数
         void InitFirstFunction(void) override;
@@ -52,7 +42,6 @@ namespace EtherEngine {
         EditorApplication(void);
 
         bool m_isGameMode;  // ゲームを起動しているか
-        bool m_isWindowFunctionEnable;  // ウィンドウの機能が有効か
         std::unique_ptr<IMGUI> m_imGui; // 保持しているIMGUI
         std::unique_ptr<ProjectData> m_projectData; // 現在保持しているプロジェクトデータ
         std::unique_ptr<EditorData> m_editorData;   // 現在保持しているエディターデータ

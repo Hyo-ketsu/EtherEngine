@@ -28,8 +28,7 @@ namespace EtherEngine {
     // コンストラクタ
     EditorApplication::EditorApplication(void)
         : BaseMainWindow(WindowDefine::Name::EDITOR_APPLICATION)
-        , m_isGameMode(false) 
-        , m_isWindowFunctionEnable(true) {
+        , m_isGameMode(false) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -269,17 +268,5 @@ namespace EtherEngine {
     // ゲームモードを終了する
     void EditorApplication::EndGameMode(void) {
 
-    }
-
-
-    // ウィンドウの移動などの有効無効を切り替える
-    void EditorApplication::SetWindowFunctionEnable(const bool isEnable, const bool isClose) {
-        //----- 変数宣言
-        uint enable = isEnable ? MF_ENABLED : MF_BYCOMMAND | MF_GRAYED;
-
-        //----- 以下メニュー設定
-        if (isClose) EnableMenuItem(GetSystemMenu(GetHWND(), FALSE), SC_CLOSE, enable);
-
-        m_isWindowFunctionEnable = isEnable;
     }
 }
