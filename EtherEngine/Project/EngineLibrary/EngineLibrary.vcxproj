@@ -25,7 +25,8 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryInit.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\MainInitFunction.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
@@ -41,6 +42,8 @@
     <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperBaseUtility.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
@@ -49,7 +52,8 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryInit.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\MainInitFunction.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
@@ -71,6 +75,10 @@
     <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperBaseUtility.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperMutex.cpp" />
+    <ClCompile Include="WrapperBaseUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">

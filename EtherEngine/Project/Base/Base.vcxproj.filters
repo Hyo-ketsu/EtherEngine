@@ -93,13 +93,16 @@
     <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
-    <ClCompile Include="..\..\Source\Base\SpinLock.cpp" />
     <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
     <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
     <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
+    <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
+    <ClCompile Include="..\..\Source\Base\ManageMediation.cpp" />
+    <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\SingletonManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
@@ -145,7 +148,6 @@
     <ClInclude Include="..\..\Source\Base\CameraBase.h" />
     <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
     <ClInclude Include="..\..\Source\Base\CameraStorage.h" />
-    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h" />
     <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
     <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
@@ -174,7 +176,6 @@
     <ClInclude Include="..\..\Source\Base\SceneData.h" />
     <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
-    <ClInclude Include="..\..\Source\Base\SpinLock.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
     <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
@@ -182,5 +183,12 @@
     <ClInclude Include="..\..\Source\Base\WindowsDefine.h" />
     <ClInclude Include="..\..\Source\Base\EditorException.h" />
     <ClInclude Include="..\..\Source\Base\ProjectData.h" />
+    <ClInclude Include="..\..\Source\Base\CollisionBoxXBox.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\Mutex.h" />
+    <ClInclude Include="..\..\Source\Base\ManageMediation.h" />
+    <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
+    <ClInclude Include="..\..\Source\Base\SingletonManager.h" />
   </ItemGroup>
 </Project>

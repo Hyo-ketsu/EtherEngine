@@ -49,6 +49,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EditorUI\EditorUI.csproj" />
+    <ProjectReference Include="..\EngineLibrary\EngineLibrary.vcxproj" />
     <ProjectReference Include="..\EtherEngine\EtherEngine.vcxproj" />
   </ItemGroup>
 

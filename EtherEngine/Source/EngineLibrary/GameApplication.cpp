@@ -4,7 +4,7 @@
 #include <Base/WindowsDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>
-#include <EngineLibrary/EngineLibraryInit.h>
+#include <EngineLibrary/ManageFunctionInit.h>
 
 
 #ifdef _DEBUG

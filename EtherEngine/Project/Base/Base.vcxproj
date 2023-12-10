@@ -54,8 +54,10 @@
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
+    <ClCompile Include="..\..\Source\Base\ManageMediation.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
+    <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
     <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
     <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
@@ -67,7 +69,7 @@
     <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
-    <ClCompile Include="..\..\Source\Base\SpinLock.cpp" />
+    <ClCompile Include="..\..\Source\Base\SingletonManager.cpp" />
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Create</PrecompiledHeader>
@@ -76,6 +78,7 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
     <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
+    <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
@@ -119,8 +122,10 @@
     <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MainFunction.h" />
+    <ClInclude Include="..\..\Source\Base\ManageMediation.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
+    <ClInclude Include="..\..\Source\Base\Mutex.h" />
     <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
@@ -132,10 +137,11 @@
     <ClInclude Include="..\..\Source\Base\SceneData.h" />
     <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
-    <ClInclude Include="..\..\Source\Base\SpinLock.h" />
+    <ClInclude Include="..\..\Source\Base\SingletonManager.h" />
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
+    <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
     <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />

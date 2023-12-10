@@ -2,6 +2,10 @@
 #define I_SINGLETON_H
 #include <Base/AtomicData.h>
 #include <Base/AtomicReadData.h>
+#include <Base/Atomic.h>
+#include <Base/Mutex.h>
+#include <Base/SingletonManager.h>
+#include <Base/ThreadingUtility.h>
 
 
 //----- Singleton宣言
@@ -43,19 +47,17 @@ namespace EtherEngine {
 
         // ミューテックス取得
         // @ Ret  : ミューテックス
-        std::recursive_mutex& GetMutex(void);
+        std::weak_ptr<Mutex> GetMutex(void);
 
     protected:
         // コンストラクタ
-        Singleton(void) {}
+        Singleton(void);
         // デストラクタ
         virtual ~Singleton(void) {}
 
-
-        std::recursive_mutex m_mutex;   // サブクラス用ミューテックス
-
     private:
-        static std::mutex ms_updaetrMutex;                 // ミューテックス
+        std::shared_ptr<Mutex> m_mutex;   // サブクラス用ミューテックス
+        static std::shared_ptr<Mutex> ms_updaetrMutex;     // ミューテックス
         static std::unique_ptr<SingletonType> ms_instance; // シングルトンサブクラス
     };
 }
@@ -65,17 +67,25 @@ namespace EtherEngine {
 
 //----- Singleton実装
 namespace EtherEngine {
+    // コンストラクタ
+    template<SingletonConcept SingletonType>
+    Singleton<SingletonType>::Singleton(void)
+        : m_mutex(ThreadingUtility::GetMutex()) {
+    }
+
+
     // インスタンスの取得
     template<SingletonConcept SingletonType>
     SingletonType* const Singleton<SingletonType>::Get(void) {
         //----- インスタンスの生成判断
         if (!(ms_instance)) {
             //----- ロック
-            std::lock_guard<decltype(ms_updaetrMutex)> lock(ms_updaetrMutex);
+            auto lock = SingletonManager::Get()->GetMutex().lock()->KeyLock();
 
             //----- インスタンスの生成判断
             if (!(ms_instance)) {
-                //----- インスタンスが存在しないため生成
+                //----- インスタンスが存在しないため初期化
+                ms_updaetrMutex = ThreadingUtility::GetMutex();
                 ms_instance = std::unique_ptr<SingletonType>(new SingletonType());
             }
         }
@@ -87,7 +97,7 @@ namespace EtherEngine {
     template<SingletonConcept SingletonType>
     AtomicData<SingletonType* const> Singleton<SingletonType>::GetLock(void) {
         return AtomicData<SingletonType *const>(Get(),
-            []() -> void { ms_updaetrMutex.lock(); }, [=]() -> void { ms_updaetrMutex.unlock(); });
+            []() -> void { ms_updaetrMutex->Lock(); }, [=]() -> void { ms_updaetrMutex->UnLock(); });
     }
 
 
@@ -95,7 +105,7 @@ namespace EtherEngine {
     template<SingletonConcept SingletonType>
     void Singleton<SingletonType>::DeleteInstance(void) {
         //----- ロック
-        std::lock_guard<decltype(ms_updaetrMutex)> lock(ms_updaetrMutex);
+        auto lock = ms_updaetrMutex->KeyLock();
 
         //----- 明示的開放
         ms_instance.reset();
@@ -104,14 +114,14 @@ namespace EtherEngine {
 
     // ミューテックス取得
     template<SingletonConcept SingletonType>
-    std::recursive_mutex& Singleton<SingletonType>::GetMutex(void) {
-        return m_mutex;
+    std::weak_ptr<Mutex> Singleton<SingletonType>::GetMutex(void) {
+        return std::weak_ptr<Mutex>(m_mutex);
     }
 
 
 
     template <SingletonConcept SingletonType>
-    std::mutex Singleton<SingletonType>::ms_updaetrMutex; // ミューテックス
+    std::shared_ptr<Mutex> Singleton<SingletonType>::ms_updaetrMutex; // ミューテックス
     template <SingletonConcept SingletonType>
     std::unique_ptr<SingletonType> Singleton<SingletonType>::ms_instance; // シングルトンサブクラス
 }

@@ -25,12 +25,6 @@ namespace EtherEngine {
 //----- 便利関数 定義
 namespace EtherEngine {
     namespace Utility {
-        // 自身のスレッドを指定msスリープする
-        void ThisThreadSleep(uint ms) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-        }
-
-
         // 入力ファイルの中身を全て読み取る
         std::string RoadFileAll(const std::string& file) {
             //----- ファイルオープン

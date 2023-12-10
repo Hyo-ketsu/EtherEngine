@@ -46,6 +46,13 @@ namespace EtherEngine {
         template <typename T>
         concept NotObjectConcept = !(ObjectConcept<T>);
 
+        // コピー可能か判定するコンセプト
+        template <typename T>
+        concept CopyableConcept = !(std::is_copy_constructible_v<T>);
+        // コピー可能ではないか判定するコンセプト
+        template <typename T>
+        concept NotCopyableConcept = !(CopyableConcept<T>);
+
         // 特定の型を継承している、かつその特定の型ではないか判定するコンセプト
         template <typename T, typename U>
         concept SubClassOnly = BaseOfConcept<T, U> && NotSameConcept<T, U>;

@@ -1,6 +1,6 @@
 #ifndef I_IDCLASS_H
 #define I_IDCLASS_H
-#include <Base/SpinLock.h>
+#include <Base/Mutex.h>
 
 
 //-----
@@ -16,7 +16,7 @@ namespace EtherEngine {
     class IDClassStorage {
     public:
         // コンストラクタ
-        IDClassStorage(void) {}
+        IDClassStorage(void);
         // デストラクタ
         ~IDClassStorage(void) {}
 
@@ -30,7 +30,7 @@ namespace EtherEngine {
 
     private:
         std::vector<IDNumberType> m_number;   // 保持している番号
-        SpinLock m_spinlock; // スピンロック用変数
+        std::shared_ptr<Mutex> m_mutex; // スピンロック用変数
     };
 }
 
@@ -63,7 +63,12 @@ namespace EtherEngine {
         operator const IDNumberType&(void) const;
 
     private:
-        static IDClassStorage ms_idClassStorage;    // IDを管理しているクラス
+        // 番号を取得する
+        // @ Ret  : 取得したIDクラス
+        IDClassStorage& GetNumber(void);
+
+
+        static std::optional<IDClassStorage> ms_idClassStorage;    // IDを管理しているクラス
         IDNumberType m_number;                      // 自身が保持しているID番号
     };
 }

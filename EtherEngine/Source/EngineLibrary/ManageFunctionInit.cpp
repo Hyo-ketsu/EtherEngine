@@ -1,9 +1,12 @@
-#include <EngineLibrary/EngineLibraryInit.h>
+#include <EngineLibrary/ManageFunctionInit.h>
 #include <Base/GameObject.h>
+#include <Base/ThreadingUtility.h>
+#include <Base/Mutex.h>
 #include <EngineLibrary/GameComponent.h>
 #include <EngineLibrary/GameDrawComponent.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/AssemblyHolder.h>
+#include <EngineLibrary/WrapperMutex.h>
 
 
 //----- 関数定義
@@ -40,20 +43,31 @@ namespace EtherEngine {
         //----- 選択されない。nullptr返却
         return nullptr;
     }
+
+
+    auto GetMutex(void) {
+        return std::shared_ptr<Mutex>(new WrapperMutex());
+    }
+    void ThisThreadSleep(uint ms) {
+        System::Threading::Thread::Sleep(ms);
+    }
 }
 
 
 //----- 初期化・終了処理定義
 namespace EtherEngine {
     // 初期化処理
-    void EngineLibrary::Init(void) {
+    void ENGINELIBRARY_API ManageFunctionInit::Init(void) {
         GameObject::ms_getComponent = GetComponent;
         GameObject::ms_addComponentMenu = AddComponentMenu;
         GameObject::ms_getFullName = [](const std::string& name, const uint index = 0, const bool isSystem = false) -> std::string { 
             return GetFullName(name, index, isSystem);
         };
+
+        ThreadingUtility::ms_getMutex.SetLambda(GetMutex);
+        ThreadingUtility::ms_thisThreadSleep.SetLambda(ThisThreadSleep);
     }
     // 終了処理
-    void EngineLibrary::Uninit(void) {
+    void ENGINELIBRARY_API ManageFunctionInit::Uninit(void) {
     }
 }

@@ -419,6 +419,6 @@ namespace EtherEngine {
 
 
     std::function<std::shared_ptr<ComponentBase>(GameObject*, const std::string&)> GameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
-    std::function<std::shared_ptr<ComponentBase>(GameObject*)> GameObject::ms_addComponentMenu; // C++CLIのGameDrawComponentなどを取得するためのラムダ
-    std::function<std::string(const std::string&, const uint, const bool)> GameObject::ms_getFullName; // 各コンポーネント名の完全修飾名取得ラムダ
+    std::function<std::shared_ptr<ComponentBase>(GameObject*)> GameObject::ms_addComponentMenu = nullptr; // C++CLIのGameDrawComponentなどを取得するためのラムダ
+    std::function<std::string(const std::string&, const uint, const bool)> GameObject::ms_getFullName = nullptr; // 各コンポーネント名の完全修飾名取得ラムダ
 }
