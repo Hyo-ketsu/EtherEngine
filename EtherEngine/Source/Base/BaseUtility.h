@@ -2,6 +2,10 @@
 #define I_BASEUTILITY_H
 
 
+// deleteópÉ}ÉNÉç
+#define DELETE_NULL(pointer) delete pointer; pointer = nullptr
+
+
 namespace {
     template <typename T, typename U>
     concept equalConcept = requires(T t, U u) { t == u; };

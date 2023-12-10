@@ -6,10 +6,11 @@
 #include <DirectX/DirectX.h>
 
 
+#pragma unmanaged
 //----- BaseMainWindow宣言
 namespace EtherEngine {
     // 起動から終了まで存在しているウィンドウ
-    class ENGINELIBRARY_API BaseMainWindow : public Window {
+    class BaseMainWindow : public Window {
     public:
         // コンストラクタ
         // @ Arg1 : ウィンドウの名前
@@ -35,8 +36,6 @@ namespace EtherEngine {
 
         // ウィンドウ関連の初期化
         void WindowFunction(void);
-        // DirectXの初期化
-        void DirectXInit(void);
 
 
         // 初期化関数

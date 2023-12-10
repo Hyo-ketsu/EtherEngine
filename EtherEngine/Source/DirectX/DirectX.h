@@ -20,11 +20,11 @@ namespace EtherEngine {
         // ウィンドウ配列アクセサー
         std::vector<DXWindowRender>& AccessWindowRenders(void) { return m_windowRenders; }
         // Deviceゲッター
-        ID3D11Device* const GetDevice(void) const { return m_device.Get(); }
+        ID3D11Device* GetDevice(void) const { return m_device.Get(); }
         // 編集可能Deviceゲッター
         ID3D11Device** GetEditableDevice(void) { return m_device.GetEditable(); }
         // DeviceContextゲッター
-        ID3D11DeviceContext* const GetContext(void) const { return m_context.Get(); }
+        ID3D11DeviceContext* GetContext(void) const { return m_context.Get(); }
         // 編集可能DeviceContextゲッター
         ID3D11DeviceContext** GetEditableContext(void) { return m_context.GetEditable(); }
 

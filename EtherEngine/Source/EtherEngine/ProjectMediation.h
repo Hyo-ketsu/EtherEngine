@@ -4,6 +4,7 @@
 #include <Base/PathClass.h>
 
 
+#pragma unmanaged
 //----- ProjectMediation éŒ¾
 namespace EtherEngine {
     // vcxproj“™‚Æ‚Ì’‡‰î‚ğs‚¤ƒNƒ‰ƒX

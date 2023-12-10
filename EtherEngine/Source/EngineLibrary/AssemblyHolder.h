@@ -3,9 +3,9 @@
 #include <EngineLibrary/EngineLibraryDefine.h>
 
 
+#pragma managed
 //----- AssemblyHolder 定義
 namespace EtherEngine {
-#ifdef _ENGINELIBRARY
     // ゲームのアセンブリを保持したクラス
     public ref class AssemblyHolder {
     public:
@@ -35,7 +35,6 @@ namespace EtherEngine {
         static bool ms_isBuild = true;      // buildが成功しているか
         static bool ms_isUpdate = false;    // ソリューションが更新されているか
     };
-#endif
 }
 
 

@@ -13,7 +13,7 @@
 //    void Init(void) { m_hoge = 1; }
 //    int m_hoge;
 //};
-#define ETHER_ENGINE_MANAGE_SINGLETON(singletonType, initFunction) \
+#define ETHER_ENGINE_MANAGE_SINGLETON(singletonType) \
 public:\
 static property singletonType^ Get {\
 public:\
@@ -28,9 +28,7 @@ static void Delete(void) {\
     ms_instance = nullptr;\
 }\
 private:\
-singletonType(void) {\
-    initFunction;\
-}\
+singletonType(void);\
 static singletonType^ ms_instance = nullptr\
 
 

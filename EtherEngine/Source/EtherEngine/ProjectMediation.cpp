@@ -1,5 +1,4 @@
 #include <EtherEngine/ProjectMediation.h>
-#include <EngineLibrary/AssemblyHolder.h>
 #include <EtherEngine/ConvertManage.h>
 #include <EtherEngine/EditorAssemblyRefresh.h>
 #include <EtherEngine/EditorDefine.h>
@@ -8,6 +7,7 @@
 #include <Base/BaseDefines.h>
 
 
+#pragma unmanaged
 //----- ソースファイルが含まれている属性取得
 namespace EtherEngine {
     // ソースファイルが含まれている<ItemGroup>を取得する
@@ -188,8 +188,9 @@ namespace EtherEngine {
         //----- Refreshを実行する
         if (Refresh::AssemblyRefresh() == Refresh::RefreshStateType::Ok) {
             //----- リフレッシュが完了。アセンブリを格納 
-            auto assemblyPath = GetVcxproj().GetDirectory() / EditorFileDefine::Directory::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll";
-            AssemblyHolder::LoadAssembly(UNMANAGE_TO_MANAGE_STRING(assemblyPath.Get()));
+            // @ MEMO : とりあえずコメントアウト
+            //auto assemblyPath = GetVcxproj().GetDirectory() / EditorFileDefine::Directory::EDITOR_MIDDLE_DATA / GetVcxproj().GetFileName() + ".dll";
+            //AssemblyHolder::LoadAssembly(UNMANAGE_TO_MANAGE_STRING(assemblyPath.Get()));
             return true;
         }
         else {

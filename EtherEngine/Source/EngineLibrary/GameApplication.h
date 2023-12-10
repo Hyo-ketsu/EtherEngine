@@ -3,6 +3,7 @@
 #include <DirectX/DirectX.h>
 #include <EngineLibrary/BaseMainWindow.h>
 
+#pragma unmanaged
 
 namespace EtherEngine {
     // ゲームアプリケーションを表現するクラス
@@ -22,6 +23,7 @@ namespace EtherEngine {
         friend class Singleton<GameApplication>;
     };
 }
+#pragma managed
 //----- Wrapper
 namespace EtherEngine {
     namespace Wrapper {

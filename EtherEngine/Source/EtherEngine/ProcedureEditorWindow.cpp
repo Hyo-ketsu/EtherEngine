@@ -19,12 +19,6 @@ namespace EtherEngine {
         switch (message) {
             break;
         case WM_SYSCOMMAND:
-            //----- –³ŒøŽžŽg—p‚µ‚È‚¢
-            if (EditorApplication::Get()->GetIsWindowFunctionEnable() == false) {
-                if (wParam && SC_MINIMIZE == SC_MINIMIZE) return 0;
-                if (wParam && SC_MAXIMIZE == SC_MAXIMIZE) return 0;
-                if (wParam && SC_MOVE == SC_MOVE) return 0;
-            }
             break;
 
         case WM_SIZE:

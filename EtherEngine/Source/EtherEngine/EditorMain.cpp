@@ -9,9 +9,7 @@ namespace EtherEngine {
     // メイン関数
     void EtherEngineMainFunction::MainFunction(int windowSizeX, int windowSizeY, System::String^ cmdLine, int nShowCmd) {
         try {
-            EtherEngine::EditorApplication::Get()->SetApplicationData(nullptr, nullptr, nShowCmd);    // @ MEMO : ipCmdLineが必要だったら直して
-            EtherEngine::EditorApplication::Get()->SetWindSize({ windowSizeX,windowSizeY });
-            EtherEngine::EditorApplication::Get()->BaseMainFunction();
+            EtherEngine::EditorApplication::Get->MainFunction();
         }
         catch (const EditorException& exception) {
             //----- 全例外メッセージ取得

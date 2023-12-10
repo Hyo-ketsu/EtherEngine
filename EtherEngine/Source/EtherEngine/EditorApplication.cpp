@@ -5,7 +5,6 @@
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
 #include <Base/GameObjectUpdater.h>
-#include <EngineLibrary/AssemblyHolder.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/CommandPrompt.h>
 #include <EtherEngine/ProjectMediation.h>
@@ -23,89 +22,32 @@
 #include <Base/ThreadingUtility.h>
 
 
+#pragma managed
 //----- EditorApplication 定義
 namespace EtherEngine {
     // コンストラクタ
-    EditorApplication::EditorApplication(void)
-        : BaseMainWindow(WindowDefine::Name::EDITOR_APPLICATION)
-        , m_isGameMode(false) {
+    EditorApplication::EditorApplication(void) 
+        : m_isMainLoop(true)
+        , m_isGameMode(false)
+        , m_imGui(nullptr)
+        , m_projectData(nullptr)
+        , m_editorData(nullptr)
+        , m_initPerformer(new std::remove_pointer_t<decltype(m_initPerformer)>()) 
+        , m_dxRender(new std::remove_pointer_t<decltype(m_dxRender)>(Handle<DirectXRender>(DirectXRender()))) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
+        this->!EditorApplication();
+    }
+    // ファイナライザ
+    EditorApplication::!EditorApplication(void) {
+        DELETE_NULL(m_imGui);
+        DELETE_NULL(m_projectData);
+        DELETE_NULL(m_initPerformer);
+        DELETE_NULL(m_dxRender);
     }
 
 
-    // 初期化前関数
-    void EditorApplication::InitFirstFunction(void) {
-        //----- パス等のデータ読み取り
-//#ifdef _DEBUG
-        try {
-            m_projectData = std::make_unique<ProjectData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
-        }
-        catch (...) {
-            m_projectData = std::make_unique<ProjectData>();
-            m_projectData->SetMSBuildPath(R"(C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe)");
-            m_projectData.reset();  // 保存させるため。
-        }
-//#endif // _DEBUG
-    }
-    // 初期化後関数
-    void EditorApplication::InitLateFunction(void) {
-        m_initUninitPerformer.AddInitUninit(
-            [&]() { m_imGui = std::make_unique<IMGUI>(
-            m_dxRender.GetAtomicData().GetDevice(),
-            m_dxRender.GetAtomicData().GetContext(),
-            m_hwnd.value()); },
-            [&]() { m_imGui.reset(); }
-        );
-
-        //----- プロジェクト設定の読み込み
-        try {
-            m_projectData = std::make_unique<ProjectData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
-        }
-        catch (const EditorException& e) {
-            using namespace EditorUI;
-
-            //----- ない。スタートアップウィンドウ起動
-            auto VM = CreateEditorWindow::AddCreateWindow<StartupWindow^, StartupVM^>(true);
-
-            //----- スタートアップウィンドウ終了待ち
-            StartupMessage^ message = nullptr;
-            while (message == nullptr) { 
-                message = MessageQue<StartupMessage^>::GetEngineMessage();
-                ThreadingUtility::ThisThreadSleep();
-            }
-
-            //----- 取得したパスを設定
-            m_projectData = std::make_unique<ProjectData>();
-            m_projectData->SetMSBuildPath(ManageToUnmanage::String(message->Path));
-        }
-
-        //----- エディター設定の読み込み
-        try {
-            m_editorData = std::make_unique<EditorData>(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::EDITOR_SETTING);
-        }
-        catch (...) {
-            //----- ない。1から生成
-            m_editorData = std::make_unique<EditorData>();
-        }
-
-        m_initUninitPerformer.AddInitUninit(
-            []() { ProjectMediation::Get()->Init(PathClass::GetCurDirectory() / FileDefine::PROJECT_NAME + FileDefine::Extended::SOLUTION, PathClass::GetCurDirectory() / FileDefine::PROJECT_NAME + FileDefine::Extended::PROJECT); },
-            []() { ProjectMediation::Get()->Uninit(); }
-        );
-    }
-    // 初期化終了後関数
-    void EditorApplication::EndInitLateFunction(void) {
-
-    }
-    // 終了前関数
-    void EditorApplication::UninitFirstFunction(void) {
-#ifndef _DEBUG
-        //----- 出力
-        // @ MEMO : 面倒なんで後回し
-#endif // !_DEBUG
-    }
     // メイン関数
     void EditorApplication::MainFunction(void) {
 #ifdef _DEBUG
@@ -131,127 +73,128 @@ namespace EtherEngine {
         ////----- カメラ設定
         //m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID().GetId());
 #endif // _DEBUG
+        //m_imGui = new IMGUI(*m_dxRender->GetAtomicData().GetEditableDevice(), *m_dxRender->GetAtomicData().GetEditableContext(),);
 
-        //----- VS等の設定
-        // @ MEMO : 後で実装する
+        //----- プロジェクト設定の読み込み
+        try {
+            m_projectData = new ProjectData(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
+        }
+        catch (const EditorException& e) {
+            using namespace EditorUI;
 
-        // @ MEMO : テスト
-        Refresh::AssemblyRefresh();
+            //----- ない。スタートアップウィンドウ起動
+            auto VM = CreateEditorWindow::AddCreateWindow<StartupWindow^, StartupVM^>(true);
 
-        //----- メッセージループ
-        MSG message;
+            //----- スタートアップウィンドウ終了待ち
+            StartupMessage^ message = nullptr;
+            while (message == nullptr) {
+                message = MessageQue<StartupMessage^>::GetEngineMessage();
+                ThreadingUtility::ThisThreadSleep();
+            }
+
+            //----- 取得したパスを設定
+            m_projectData = new ProjectData();
+            m_projectData->SetMSBuildPath(ManageToUnmanage::String(message->Path));
+        }
+
+        //----- メインループ
         Timer fpsTimer;
         milliSecond frameSecond = 0;
-        while (GetIsGameLoop()) {
-            //----- メッセージ確認
-            if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
-                // メッセージを取得
-                // WM_QUITのみ、取得できないと判定される
-                if (!GetMessage(&message, NULL, 0, 0)) {
-                    // WM_QUITが届いた時だけ終了
-                    break;
+        while (m_isMainLoop) {
+            //----- ゲーム処理
+            frameSecond += fpsTimer.GetDeltaTime();
+
+            //----- ウィンドウ処理
+            // シーンウィンドウの追加
+            //while (true) {
+            //    //----- ウィンドウの取得(取得できなかったら終了)
+            //    auto window = EditorUI::GetEditorWindow::GetCreateWindow<EditorUI::SceneViewVM^>();
+            //    if (window == nullptr) break;
+
+            //    //----- 前準備
+            //    auto engineLock = window->GetEngineLock();  // ロック取得
+            //    auto size = engineLock.Item2->NewWindowSize;    // このウィンドウのサイズ
+            //    if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
+
+            //    //----- ラムダ用意
+            //    // @ MEMO : 結果的に参照をラムダでキャプチャしている。windowRenderが死んだら解放されるだろうけど要注意？
+            //    DrawFunctionLambda drawFunction = [&](Eigen::Matrix4f view, Eigen::Matrix4f projection) {    // ウィンドウで行う描画
+            //        GameObjectUpdater::Get()->Draw(view, projection);
+            //    };
+            //    msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
+            //    WindowEnableLambda enableFunction = [=]() -> bool {
+            //        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2 != nullptr;
+            //    };
+            //    WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
+            //        auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;
+            //        if (size.HasValue) {
+            //            //----- リサイズを行う
+            //            // @ MEMO : 現状行っておりません。
+            //        }
+            //    };
+
+            //    //----- 新規に作成
+            //    m_dxRender->GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y),static_cast<HWND>(engineLock.Item2->SceneViewTarget.ToPointer()),
+            //        false, drawFunction, enableFunction, windowFunction);
+            //}
+
+            ////----- アセンブリ存在チェック
+            //if (AssemblyHolder::IsLoadAssemblyEnable() == false && Refresh::GetRefreshState() != Refresh::RefreshStateType::CurrentlyRefresh) {
+            //    //----- Refreshを行う
+            //    if (false) {
+            //        ProjectMediation::Get()->RefreshAssembly();
+            //    }
+            //}
+
+            //----- シーンウィンドウ更新処理
+            auto& windowData = m_dxRender->GetAtomicData();
+            for (auto it = windowData.AccessWindowRenders().begin(); it != windowData.AccessWindowRenders().end();) {
+                //----- 生存チェック
+                if (it->GetWindowEnableFunction()()) {
+                    //----- 生存している。更新
+                    it->GetWindowFunction()(&*it);
+                    it++;
                 }
                 else {
-                    TranslateMessage(&message); // 届いたメッセージをWindowsに転送
-                    DispatchMessage(&message);  // 
+                    //----- 生存していない。削除
+                    windowData.AccessWindowRenders().erase(it);
                 }
             }
-            else {   
-                //----- ゲーム処理
-                frameSecond += fpsTimer.GetDeltaTime();
 
-                //----- ウィンドウ処理
-                // シーンウィンドウの追加
-                while (true) {
-                    //----- ウィンドウの取得(取得できなかったら終了)
-                    auto window = EditorUI::GetEditorWindow::GetCreateWindow<EditorUI::SceneViewVM^>();
-                    if (window == nullptr) break;
+            //----- FPS制御
+            if (frameSecond < ONE_FRAME * 1000) continue;
+            frameSecond = 0;
 
-                    //----- 前準備
-                    auto engineLock = window->GetEngineLock();  // ロック取得
-                    auto size = engineLock.Item2->NewWindowSize;    // このウィンドウのサイズ
-                    if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
+            //----- 更新
+            InputSystem::Update();
+            GlobalTimer::Get()->Update();
 
-                    //----- ラムダ用意
-                    // @ MEMO : 結果的に参照をラムダでキャプチャしている。windowRenderが死んだら解放されるだろうけど要注意？
-                    DrawFunctionLambda drawFunction = [&](Eigen::Matrix4f view, Eigen::Matrix4f projection) {    // ウィンドウで行う描画
-                        GameObjectUpdater::Get()->Draw(view, projection);
-                    };
-                    msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
-                    WindowEnableLambda enableFunction = [=]() -> bool {
-                        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2 != nullptr;
-                    };
-                    WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
-                        auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;
-                        if (size.HasValue) {
-                            //----- リサイズを行う
-                            // @ MEMO : 現状行っておりません。
-                        }
-                    };
+            //----- エディター更新処理
+            //EditorUpdater::Get()->Update();
 
-                    //----- 新規に作成
-                    m_dxRender.GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y),static_cast<HWND>(engineLock.Item2->SceneViewTarget.ToPointer()),
-                        false, drawFunction, enableFunction, windowFunction);
-                }
+            //----- 更新処理
+            GameObjectUpdater::Get()->FixedUpdate();
+            GameObjectUpdater::Get()->Update();
 
-                //----- アセンブリ存在チェック
-                if (AssemblyHolder::IsLoadAssemblyEnable() == false && Refresh::GetRefreshState() != Refresh::RefreshStateType::CurrentlyRefresh) {
-                    //----- Refreshを行う
-                    if (false) {
-                        ProjectMediation::Get()->RefreshAssembly();
-                    }
-                }
+            //----- 描画前処理
+            for (auto&& it : m_dxRender->GetAtomicData().AccessWindowRenders()) {
+                it.BeginDraw();
+            }
 
-                //----- シーンウィンドウ更新処理
-                auto& windowData = m_dxRender.GetAtomicData();
-                for (auto it = windowData.AccessWindowRenders().begin(); it != windowData.AccessWindowRenders().end();) {
-                    //----- 生存チェック
-                    if (it->GetWindowEnableFunction()()) {
-                        //----- 生存している。更新
-                        it->GetWindowFunction()(&*it);
-                        it++;
-                    }
-                    else {
-                        //----- 生存していない。削除
-                        windowData.AccessWindowRenders().erase(it);
-                    }
-                }
+            //----- 描画処理
+            for (auto&& it : m_dxRender->GetAtomicData().AccessWindowRenders()) {
+                it.Draw();
+            }
 
-                //----- FPS制御
-                if (frameSecond < ONE_FRAME * 1000) continue;
-                frameSecond = 0;
+            ////----- エディター描画処理
+            //EditorUpdater::Get()->Draw();
 
-                //----- 更新
-                InputSystem::Update();
-                GlobalTimer::Get()->Update();
+            ////----- エディター描画後処理
+            //EditorUpdater::Get()->LateDraw();
 
-                //----- エディター更新処理
-                //EditorUpdater::Get()->Update();
-
-                //----- 更新処理
-                GameObjectUpdater::Get()->FixedUpdate();
-                GameObjectUpdater::Get()->Update();
-
-                //----- 描画前処理
-                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
-                    it.BeginDraw();
-                }
-
-                //----- 描画処理
-                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
-                    it.Draw();
-                }
-
-                ////----- エディター描画処理
-                //EditorUpdater::Get()->Draw();
-
-                ////----- エディター描画後処理
-                //EditorUpdater::Get()->LateDraw();
-
-                //----- 描画後処理
-                for (auto&& it : m_dxRender.GetAtomicData().AccessWindowRenders()) {
-                    it.EndDraw();
-                }
+            //----- 描画後処理
+            for (auto&& it : m_dxRender->GetAtomicData().AccessWindowRenders()) {
+                it.EndDraw();
             }
         }
     }
