@@ -102,5 +102,9 @@ namespace EditorUI {
             en: "Path refresh completed.",
             jp: "パスのリフレッシュが完了しました。"
             );
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

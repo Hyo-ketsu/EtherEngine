@@ -11,17 +11,17 @@ namespace EditorUI {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class UseWindowAttribute : Attribute {
         /// <summary>コンストラクタ</summary>
+        /// <param name="showName">表示するウィンドウ名(Default : クラス名表示)</param>
         /// <param name="directory">ウィンドウを追加する階層(記述無し可)</param>
-        /// <param name="isAbbreviation">「Window」を無視するか</param>
-        public UseWindowAttribute(string directory = "", bool isAbbreviation = true) { 
+        public UseWindowAttribute(string? showName = null, string directory = "") { 
+            ShowName = showName;
             Directory = directory; 
-            IsAbbreviation = isAbbreviation;
         }
 
 
-        /// <summary>ウィンドウを追加する階層(記述無し可)</summary>
+        /// <summary>ウィンドウの表示名</summary>
+        public string? ShowName { get; set; }
+        /// <summary>ウィンドウを追加する階層</summary>
         public string Directory { get; private set; }
-        /// <summary>「Window」を無視するか</summary>
-        public bool IsAbbreviation { get; private set; }
     }
 }

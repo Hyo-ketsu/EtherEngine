@@ -31,9 +31,9 @@ namespace EtherEngine {
         , m_isGameMode(false)
         , m_imGui(nullptr)
         , m_projectData(nullptr)
-        , m_editorData(nullptr)
-        , m_initPerformer(new std::remove_pointer_t<decltype(m_initPerformer)>()) 
-        , m_dxRender(new std::remove_pointer_t<decltype(m_dxRender)>(Handle<DirectXRender>(DirectXRender()))) {
+        , m_editorData(nullptr) 
+        , m_dxRender(new Handle<DirectXRender>(DirectXRender())) 
+        , m_sceneView(gcnew System::Collections::Generic::List<EditorUI::SceneViewVM^>(1)) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -43,8 +43,8 @@ namespace EtherEngine {
     EditorApplication::!EditorApplication(void) {
         DELETE_NULL(m_imGui);
         DELETE_NULL(m_projectData);
-        DELETE_NULL(m_initPerformer);
         DELETE_NULL(m_dxRender);
+        m_sceneView = nullptr;
     }
 
 
@@ -75,27 +75,27 @@ namespace EtherEngine {
 #endif // _DEBUG
         //m_imGui = new IMGUI(*m_dxRender->GetAtomicData().GetEditableDevice(), *m_dxRender->GetAtomicData().GetEditableContext(),);
 
-        //----- プロジェクト設定の読み込み
-        try {
-            m_projectData = new ProjectData(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
-        }
-        catch (const EditorException& e) {
-            using namespace EditorUI;
+        ////----- プロジェクト設定の読み込み
+        //try {
+        //    m_projectData = new ProjectData(PathClass::GetCurDirectory() / EditorFileDefine::Directory::EDITOR_SETTING / EditorFileDefine::PROJECT_DATA);
+        //}
+        //catch (const EditorException& e) {
+        //    using namespace EditorUI;
 
-            //----- ない。スタートアップウィンドウ起動
-            auto VM = CreateEditorWindow::AddCreateWindow<StartupWindow^, StartupVM^>(true);
+        //    //----- ない。スタートアップウィンドウ起動
+        //    auto VM = CreateEditorWindow::AddCreateWindow<StartupWindow^, StartupVM^>(true);
 
-            //----- スタートアップウィンドウ終了待ち
-            StartupMessage^ message = nullptr;
-            while (message == nullptr) {
-                message = MessageQue<StartupMessage^>::GetEngineMessage();
-                ThreadingUtility::ThisThreadSleep();
-            }
+        //    //----- スタートアップウィンドウ終了待ち
+        //    StartupMessage^ message = nullptr;
+        //    while (message == nullptr) {
+        //        message = MessageQue<StartupMessage^>::GetEngineMessage();
+        //        ThreadingUtility::ThisThreadSleep();
+        //    }
 
-            //----- 取得したパスを設定
-            m_projectData = new ProjectData();
-            m_projectData->SetMSBuildPath(ManageToUnmanage::String(message->Path));
-        }
+        //    //----- 取得したパスを設定
+        //    m_projectData = new ProjectData();
+        //    m_projectData->SetMSBuildPath(ManageToUnmanage::String(message->Path));
+        //}
 
         //----- メインループ
         Timer fpsTimer;
@@ -106,37 +106,37 @@ namespace EtherEngine {
 
             //----- ウィンドウ処理
             // シーンウィンドウの追加
-            //while (true) {
-            //    //----- ウィンドウの取得(取得できなかったら終了)
-            //    auto window = EditorUI::GetEditorWindow::GetCreateWindow<EditorUI::SceneViewVM^>();
-            //    if (window == nullptr) break;
+            while (true) {
+                //----- ウィンドウの取得(取得できなかったら終了)
+                auto window = EditorUI::GetEditorWindow::GetCreateWindow<EditorUI::SceneViewVM^>();
+                if (window == nullptr) break;
 
-            //    //----- 前準備
-            //    auto engineLock = window->GetEngineLock();  // ロック取得
-            //    auto size = engineLock.Item2->NewWindowSize;    // このウィンドウのサイズ
-            //    if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
+                //----- 前準備
+                auto engineLock = window->GetEngineLock();  // ロック取得
+                auto size = engineLock.Item2->NewWindowSize;    // このウィンドウのサイズ
+                if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
 
-            //    //----- ラムダ用意
-            //    // @ MEMO : 結果的に参照をラムダでキャプチャしている。windowRenderが死んだら解放されるだろうけど要注意？
-            //    DrawFunctionLambda drawFunction = [&](Eigen::Matrix4f view, Eigen::Matrix4f projection) {    // ウィンドウで行う描画
-            //        GameObjectUpdater::Get()->Draw(view, projection);
-            //    };
-            //    msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
-            //    WindowEnableLambda enableFunction = [=]() -> bool {
-            //        return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2 != nullptr;
-            //    };
-            //    WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
-            //        auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;
-            //        if (size.HasValue) {
-            //            //----- リサイズを行う
-            //            // @ MEMO : 現状行っておりません。
-            //        }
-            //    };
+                //----- ラムダ用意
+                // @ MEMO : 結果的に参照をラムダでキャプチャしている。windowRenderが死んだら解放されるだろうけど要注意？
+                DrawFunctionLambda drawFunction = [&](Eigen::Matrix4f view, Eigen::Matrix4f projection) {    // ウィンドウで行う描画
+                    GameObjectUpdater::Get()->Draw(view, projection);
+                };
+                msclr::gcroot<decltype(window)> enableWindow = window;  // ウィンドウ生存確認lambdaでキャプチャするため
+                WindowEnableLambda enableFunction = [=]() -> bool {
+                    return enableWindow->GetEngineLock().Item2 != nullptr && enableWindow->GetEngineLock().Item2 != nullptr;
+                };
+                WindowFunctionLambda windowFunction = [=](DXWindowRender* const window) {   // ウィンドウでの追加処理。リサイズ検出
+                    auto size = enableWindow->GetEngineLock().Item2->NewWindowSize;
+                    if (size.HasValue) {
+                        //----- リサイズを行う
+                        // @ MEMO : 現状行っておりません。
+                    }
+                };
 
-            //    //----- 新規に作成
-            //    m_dxRender->GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y),static_cast<HWND>(engineLock.Item2->SceneViewTarget.ToPointer()),
-            //        false, drawFunction, enableFunction, windowFunction);
-            //}
+                //----- 新規に作成
+                m_dxRender->GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y),static_cast<HWND>(engineLock.Item2->SceneViewTarget.ToPointer()),
+                    false, drawFunction, enableFunction, windowFunction);
+            }
 
             ////----- アセンブリ存在チェック
             //if (AssemblyHolder::IsLoadAssemblyEnable() == false && Refresh::GetRefreshState() != Refresh::RefreshStateType::CurrentlyRefresh) {

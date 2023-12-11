@@ -45,6 +45,17 @@ namespace EditorUI {
                 try {
                     while (mainWindow == null) { }
 
+                    //----- スタートアップ実行
+                    if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
+                        //----- 存在する。
+                        // @ MEMO : 未記述
+                    }
+                    else {
+                        //----- 存在しない。スタートアップウィンドウ起動
+                        var startup = new StartupWindow();
+                        startup.Show();
+                    }
+
                     int? width = null;
                     int? height = null;
                     //----- UI関連処理

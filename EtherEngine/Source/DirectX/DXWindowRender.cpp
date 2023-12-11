@@ -1,21 +1,18 @@
 #include <DirectX/DXWindowRender.h>
 #include <Base/CameraStorage.h>
 #include <Base/EditorException.h>
+#include <Base/GameObjectUpdater.h>
 #include <DirectX/DirectX.h>
 
 
 //----- DXWindowRender 定義
 namespace EtherEngine {
 	// コンストラクタ
-	DXWindowRender::DXWindowRender(DirectXRender* directX, const Eigen::Vector2i size, const HWND& hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory,
-		const DrawFunctionLambda& drawFunction, const WindowEnableLambda& windowEnableFunction, const WindowFunctionLambda& windowFunction)
+	DXWindowRender::DXWindowRender(DirectXRender* directX, const Eigen::Vector2i size, const HWND& hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory)
 		: m_directX(directX)
 		, m_rtv(nullptr)
 		, m_dsv(nullptr) 
 		, m_dss(nullptr)
-		, m_drawFunction(drawFunction)
-		, m_enableFunction(windowEnableFunction)
-		, m_windowFunction(windowFunction)
 		, m_backColor(0.7f, 0.9f, 0.9f, 1.0f) {
 		//----- Nullチェック
 		if (directX == nullptr) throw EditorException("Error! directX is Null");
@@ -100,12 +97,6 @@ namespace EtherEngine {
 	}
 
 
-	// ウィンドウが生存しているか
-	bool DXWindowRender::IsEnableWindow(void) const {
-		return GetIsDirectXEnable() && m_enableFunction();
-	}
-
-
 	// 描画前処理
 	void DXWindowRender::BeginDraw(void) {
 		if (this->GetIsDirectXEnable() == false) return;
@@ -130,7 +121,7 @@ namespace EtherEngine {
 			auto camera = CameraStorage::Get()->GetData(m_mainCameraID);
 
 			//----- 描画
-			m_drawFunction(camera->GetView(), camera->GetProjection());
+			GameObjectUpdater::Get()->Draw(view, projection);
 
 			return true;
 		}

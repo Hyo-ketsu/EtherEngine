@@ -10,15 +10,18 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using AvalonDock;
 using AvalonDock.Layout;
+using ControlzEx.Standard;
 using Reactive.Bindings;
 
 
 namespace EditorUI {
     /// <summary>ウィンドウの生成情報</summary>
     public class CreateWindowData {
-        public CreateWindowData(string name, UserControl window, Action<Type> createCommnad) {
+        /// <summary>コンストラクタ</summary>
+        /// <param name="name"></param>
+        /// <param name="createCommnad"></param>
+        public CreateWindowData(string name, Action<Type> createCommnad) {
             Name = name;
-            Window = window;
             CreateCommnad.Subscribe(createWindow => {
                 createCommnad(createWindow);
             });
@@ -27,8 +30,6 @@ namespace EditorUI {
 
         /// <summary>ウィンドウ名</summary>
         public string Name { get; set; }
-        /// <summary>生成するウィンドウ</summary>
-        public UserControl Window { get; set; }
         /// <summary>ウィンドウ生成のコマンド</summary>
         public ReactiveCommand<Type> CreateCommnad { get; set; } = new();
     }
@@ -48,11 +49,16 @@ namespace EditorUI {
         /// <summary>ウィンドウ情報を生成する</summary>
         public void CreateWindowData() {
             //----- 初期化する
-            CreateWindow = new();return;
+            CreateWindow = new();
 
             //----- CreatedWindow属性が付与されているウィンドウの情報を生成する
-            //Assembly.get
-            for (; ;/*後で書き直してくれ*/ ) {
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            var windowTypes = types.Where(
+                type => 
+                type.GetCustomAttributes(typeof(UseWindowAttribute),true).Any() && 
+                type.IsSubclassOf(typeof(UserControl))).ToArray();
+
+            foreach (var window in windowTypes) {
                 var action = new Action<Type>(createWindowType => {
                     //----- Nullなら例外出力
                     if (LayoutRoot == null) throw new NullReferenceException();
@@ -91,10 +97,12 @@ namespace EditorUI {
                     anchorable.Float();
                 });
 
-                //var windowData = new CreateWindowData(,, action);
-
-                //CreateWindow.Add(windowData);
+                var windowData = new CreateWindowData(window.Name, action);
+                CreateWindow.Add(windowData);
             }
+
+            //----- ソートする
+            CreateWindow.OrderBy(window => window);
         }
 
 

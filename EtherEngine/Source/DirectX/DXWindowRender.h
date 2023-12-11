@@ -29,11 +29,7 @@ namespace EtherEngine {
         // @ Arg4 : フルスクリーン指定
         // @ Arg5 : ビデオカード指定
         // @ Arg6 : ファクトリ指定
-        // @ Arg7 : 描画関数で行う処理
-        // @ Arg8 : ウィンドウが生存しているか判定する関数
-        // @ Arg9 : その他ウィンドウ処理(Default : 何もしない)
-        DXWindowRender(DirectXRender* directX, const Eigen::Vector2i size, const HWND& hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory,
-            const DrawFunctionLambda& drawFunction, const WindowEnableLambda& windowEnableFunction, const WindowFunctionLambda& windowFunction);
+        DXWindowRender(DirectXRender* directX, const Eigen::Vector2i size, const HWND& hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory);
         // デストラクタ
         DXWindowRender(void);
 
@@ -55,17 +51,8 @@ namespace EtherEngine {
         const IDClass& GetCameraID(void) const { return m_mainCameraID; }
         // IDセッター
         void SetCameraID(const IDClass& in) { m_mainCameraID = in; }
-        // ウィンドウ生存関数ゲッター
-        WindowEnableLambda GetWindowEnableFunction(void) const { return m_enableFunction; }
-        // その他ウィンドウ処理ゲッター
-        WindowFunctionLambda GetWindowFunction(void) const { return m_windowFunction; }
         // 背景色アクセサー
         Eigen::Vector4f AccessBackColor(void) { return m_backColor; }
-
-
-        // ウィンドウが生存しているか
-        // @ Ret  :  ウィンドウが生存しているか
-        bool IsEnableWindow(void) const;
 
 
         // 描画前処理
@@ -85,9 +72,6 @@ namespace EtherEngine {
         ID3D11DepthStencilView* m_dsv;       // 
         ID3D11DepthStencilState* m_dss;      //
         IDClass m_mainCameraID;              // メインカメラID
-        DrawFunctionLambda m_drawFunction;   // 描画で行う処理
-        WindowEnableLambda m_enableFunction; // ウィンドウが生存しているか判定する関数
-        WindowFunctionLambda m_windowFunction; // その他のウィンドウ処理
         Eigen::Vector4f m_backColor;         // 背景色
     };
 }

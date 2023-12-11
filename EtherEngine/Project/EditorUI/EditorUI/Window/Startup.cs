@@ -8,32 +8,10 @@ using System.Threading.Tasks;
 using Reactive.Bindings;
 
 
+// @ 修正途中。後回し
+
+
 namespace EditorUI {
-    /// <summary>送信メッセージ</summary>
-    public class StartupMessage {
-        public StartupMessage(string path) { 
-            Path = path;
-        }
-
-
-        public string Path { get; private set; }
-    }
-
-
-    /// <summary>vsのエディション</summary>
-    public enum VisualStudioEditionEnum {
-        Community = 0,
-        Professional,
-        None,
-    }
-    /// <summary>vsの年度</summary>
-    public enum VisualStudioVersionEnum {
-        v2019 = 0,
-        v2022,
-        None,
-    }
-
-
     /// <summary>エラーコード</summary>
     public enum StartupVMErrorCodeEnum { 
         NoVersion = 0,
@@ -56,19 +34,7 @@ namespace EditorUI {
             List<string> directorys = new();
 
             //----- Path自体がない
-            if (VisualStudioPath.Value == null) return StartupVMErrorCodeEnum.NoMSBuild;
-
-            //----- MSBuildが存在するかチェック
-            var msbuilds = Directory.GetFiles(VisualStudioPath.Value, "MSBuild.exe", SearchOption.AllDirectories);
-
-            if (msbuilds.Length > 0) {
-                //----- 存在した。1つ目の要素をpathとして取得
-                var msbuildPath = msbuilds[0];
-
-                //----- メッセージを送信する
-                MessageQue<StartupMessage>.AddUIMessage(new(msbuildPath));
-
-                //----- 返却
+            if (VisualStudioPath.Value != null) {
                 return StartupVMErrorCodeEnum.OK;
             }
             else {
@@ -132,6 +98,15 @@ namespace EditorUI {
         public EnumViewModel<VisualStudioEditionEnum> VisualStudioEdition { get; set; } = new();
         /// <summary>設定されているvsの年度</summary>
         public EnumViewModel<VisualStudioVersionEnum> VisualStudioVersion { get; set; } = new();
+        /// <summary>設定されている言語</summary>
+        public EnumViewModel<EditorLanguageEnum> Language {
+            get { return m_language; }
+            set {
+                m_language = value;
+                EditorText.Language = value.Select; 
+            }
+        }
+        private EnumViewModel<EditorLanguageEnum> m_language = new();
         /// <summary>現在設定されているパス</summary>
         public ReactiveProperty<string> VisualStudioPath { get; set; } = new();
     }

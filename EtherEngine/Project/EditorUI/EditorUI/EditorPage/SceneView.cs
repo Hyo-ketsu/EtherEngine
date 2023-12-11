@@ -23,6 +23,9 @@ namespace EditorUI {
 
             //----- 生成時は即サイズが変更されたものとする
             NewWindowSize = new Vector2(size.X, size.Y);
+
+            //----- 自身をメッセージとして送信
+            MessageQue<SceneViewVM>.AddEngineMessage(this);
         }
 
 

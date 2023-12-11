@@ -20,7 +20,7 @@ namespace EditorUI {
     /// <summary>
     /// SceneView.xaml の相互作用ロジック
     /// </summary>
-    [CreatedWindow("Scene View","シーン ビュー")]
+    [CreatedWindow("Scene View", "シーン ビュー")]
     public partial class SceneViewWindow : UserControl {
         /// <summary>コンストラクタ</summary>
         internal SceneViewWindow() {

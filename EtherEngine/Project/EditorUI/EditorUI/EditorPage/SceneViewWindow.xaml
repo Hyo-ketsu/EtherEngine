@@ -12,11 +12,11 @@
       <StackPanel>
          <!-- シーンメニュー表示 -->
          <Menu>
-            <MenuItem Header="hoge"></MenuItem>
+            <MenuItem Header="SceneMenu"></MenuItem>
          </Menu>
 
          <!-- シーン表示部分 -->
-         <WindowsFormsHost Grid.Row="1" SizeChanged="WindowsFormsHostSizeChanged">
+         <WindowsFormsHost Grid.Row="1" MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged">
             <wf:Panel x:Name="SceneViewWindowForms"/>
          </WindowsFormsHost>
       </StackPanel>

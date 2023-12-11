@@ -51,8 +51,8 @@ namespace EtherEngine {
         IMGUI* m_imGui;     // 保持しているIMGUI
         ProjectData* m_projectData; // 現在保持しているプロジェクトデータ
         EditorData* m_editorData;   // 現在保持しているエディターデータ
-        InitUninitPerformer* m_initPerformer;   //
         BaseHandle<DirectXRender>* m_dxRender;  // 保持しているDirectX
+        System::Collections::Generic::List<EditorUI::SceneViewVM^>^ m_sceneView;    // 保持しているSceneView
     };
 }
 
