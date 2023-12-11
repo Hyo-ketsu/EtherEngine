@@ -1,6 +1,5 @@
 #include <EngineLibrary/GameApplication.h>
 #include <Base/Timer.h>
-#include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>

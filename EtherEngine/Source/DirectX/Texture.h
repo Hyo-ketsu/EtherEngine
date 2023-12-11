@@ -24,13 +24,13 @@ namespace EtherEngine {
         // テクスチャーを作成する
         // @ Arg1 : DirectX
         // @ Arg2 : 読み込みファイル名
-        HRESULT Create(const BaseHandle<DirectXRender>& directX, const std::string& file);
+        HRESULT Create(const Handle<DirectXRender>& directX, const std::string& file);
         // テクスチャーを作成する
         // @ Arg1 : DirectX
         // @ Arg2 : 画像フォーマット
         // @ Arg3 : 画像サイズ
         // @ Arg4 : データ(Default : nullptr)
-        HRESULT Create(const BaseHandle<DirectXRender>& directX, DXGI_FORMAT format, Eigen::Vector2<uint> size, const void* data = nullptr);
+        HRESULT Create(const Handle<DirectXRender>& directX, DXGI_FORMAT format, Eigen::Vector2<uint> size, const void* data = nullptr);
 
     protected:
         // テクスチャー作成
@@ -39,7 +39,7 @@ namespace EtherEngine {
         // @ Arg2 :
         // @ Arg3 : サイズ
         D3D11_TEXTURE2D_DESC MakeTextureDesc(DXGI_FORMAT format, Eigen::Vector2<uint> size);
-        virtual HRESULT CreateResource(const BaseHandle<DirectXRender>& directX, D3D11_TEXTURE2D_DESC& desc, const void* data);
+        virtual HRESULT CreateResource(const Handle<DirectXRender>& directX, D3D11_TEXTURE2D_DESC& desc, const void* data);
 
         Eigen::Vector2<uint> m_size;    // 画像サイズ
         ComPtr<ID3D11ShaderResourceView> m_shaderResourceView;

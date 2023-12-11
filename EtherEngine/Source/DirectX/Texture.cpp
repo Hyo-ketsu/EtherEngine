@@ -12,7 +12,7 @@ namespace EtherEngine {
 
 
     // テクスチャーを作成する
-    HRESULT Texture::Create(const BaseHandle<DirectXRender>& directX, const std::string& file) {
+    HRESULT Texture::Create(const Handle<DirectXRender>& directX, const std::string& file) {
 		//----- 変数宣言
 		HRESULT hr = S_OK;
 
@@ -37,7 +37,7 @@ namespace EtherEngine {
 		return hr;
     }
     // テクスチャーを作成する
-    HRESULT Texture::Create(const BaseHandle<DirectXRender>& directX, DXGI_FORMAT format, Eigen::Vector2<uint> size, const void* data) {
+    HRESULT Texture::Create(const Handle<DirectXRender>& directX, DXGI_FORMAT format, Eigen::Vector2<uint> size, const void* data) {
 		D3D11_TEXTURE2D_DESC desc = MakeTextureDesc(format, size);
 		return CreateResource(directX, desc, data);
     }
@@ -57,7 +57,7 @@ namespace EtherEngine {
 	}
 
 
-	HRESULT Texture::CreateResource(const BaseHandle<DirectXRender>& directX, D3D11_TEXTURE2D_DESC& desc, const void* data) {
+	HRESULT Texture::CreateResource(const Handle<DirectXRender>& directX, D3D11_TEXTURE2D_DESC& desc, const void* data) {
 		//----- 変数宣言
 		HRESULT hr = E_FAIL;
 

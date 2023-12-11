@@ -41,7 +41,7 @@ namespace EtherEngine {
         nlohmann::json json = nlohmann::json::parse(Utility::RoadFileAll(loadSceneName));
         for (auto& it : json["GameObjects"]) {
             auto gameObject = GameObjectStorage::Get()->CreateGameObject();
-            gameObject.GetNoAtomicData().Input(it);
+            gameObject.GetData().Input(it);
         }
 
         //----- 現在シーン設定
@@ -68,7 +68,7 @@ namespace EtherEngine {
 
         //----- ゲームオブジェクト削除
         for (auto&& it : GameObjectStorage::Get()->GetGameObjectAll()) {
-            if (it.GetNoAtomicData().GetScene() == data) {
+            if (it.GetData().GetScene() == data) {
                 GameObjectStorage::Get()->DeleteGameObject(it);
             }
         }

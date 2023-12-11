@@ -38,7 +38,7 @@ namespace EtherEngine {
 
 
     // ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş
-    void Model::Load(const std::string& file, const BaseHandle<DirectXRender>& directX, const float scale, const bool isFlip) {
+    void Model::Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale, const bool isFlip) {
         //----- assimp‚Ìİ’è
         Assimp::Importer importer;
         int flag = 0;

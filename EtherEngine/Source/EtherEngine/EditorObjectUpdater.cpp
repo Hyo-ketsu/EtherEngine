@@ -1,7 +1,6 @@
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <Base/ConceptUtility.h>
 #include <Base/EtherEngineUtility.h>
-#include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <EtherEngine/EditorApplication.h>
 #include <EtherEngine/EditorObjectStorage.h>
@@ -15,7 +14,7 @@ namespace EtherEngine {
     // @ Arg1 : オブジェクト情報
     // @ Arg2 : 表示名
     template <Concept::BaseOfConcept<EditorWindowBase> WindowType>
-    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>* windows, const std::string& name);
+    void ShowWindowMenu(std::vector<Handle<EditorObject>>* windows, const std::string& name);
 }
 
 
@@ -158,7 +157,7 @@ namespace EtherEngine {
 namespace EtherEngine {
     // メインメニューを表示する
     template <Concept::BaseOfConcept<EditorWindowBase> WindowType>
-    void ShowWindowMenu(std::vector<BaseHandle<EditorObject>>* windows, const std::string& name) {
+    void ShowWindowMenu(std::vector<Handle<EditorObject>>* windows, const std::string& name) {
         //----- 一応nullチェック
         if (windows == nullptr) throw std::exception("Error! Null");
 
@@ -173,11 +172,11 @@ namespace EtherEngine {
                 if (it.IsEnable() == false) continue;
                 if (count == 0) {   // 重複した名前が出た際に Hoge(1) などと照合するため
                     //----- 通常の検索
-                    if (it.GetNoAtomicData().GetName() == name) count++; 
+                    if (it.GetData().GetName() == name) count++; 
                 }
                 else {
                     //----- 検索
-                    if (Utility::IsDuplicationName(it.GetNoAtomicData().GetName(), name, count, Utility::DuplicationNameObjectName::ParenthesesNumber)) count++;
+                    if (Utility::IsDuplicationName(it.GetData().GetName(), name, count, Utility::DuplicationNameObjectName::ParenthesesNumber)) count++;
                 }
             }
 

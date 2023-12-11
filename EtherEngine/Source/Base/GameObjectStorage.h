@@ -15,15 +15,15 @@ namespace EtherEngine {
         // @ Ret  : 作成したゲームオブジェクトのハンドル
         // @ Arg1 : 座標(デフォルト : 座標・回転は0, 拡縮は1)
         // @ Arg2 : 名前(Default : GameObject)
-        BaseHandle<GameObject> CreateGameObject(const Transform& transform = Transform(), const std::string& name = "GameObject");
+        Handle<GameObject> CreateGameObject(const Transform& transform = Transform(), const std::string& name = "GameObject");
         // ゲームオブジェクトを削除する
         // @ Ret  : 削除されたか
         // @ Arg1 : 削除するゲームオブジェクトのハンドル
-        bool DeleteGameObject(const BaseHandle<GameObject>& gameObject);
+        bool DeleteGameObject(const Handle<GameObject>& gameObject);
 
 
         // 全てのゲームオブジェクトを取得する
-        std::vector<BaseHandle<GameObject>> GetGameObjectAll(void) const;
+        std::vector<Handle<GameObject>> GetGameObjectAll(void) const;
 
 
         // 削除済みのゲームオブジェクトを削除する
@@ -32,7 +32,7 @@ namespace EtherEngine {
     private:
         friend class Singleton<GameObjectStorage>;
 
-        std::vector<BaseHandle<GameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
+        std::vector<Handle<GameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
     };
 }
 

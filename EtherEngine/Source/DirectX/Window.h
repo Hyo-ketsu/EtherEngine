@@ -44,7 +44,7 @@ namespace EtherEngine {
         std::string m_name;               // ウィンドウの名前 
         std::optional<HWND> m_hwnd;       // ウィンドウハンドル
         Eigen::Array2<int>  m_windowSize; // ウィンドウのサイズ
-        BaseHandle<DirectXRender> m_dxRender;
+        Handle<DirectXRender> m_dxRender;
     };
 }
 

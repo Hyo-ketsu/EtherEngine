@@ -1,18 +1,17 @@
 #include <EtherEngine/EditorObjectStorage.h>
-#include <Base/HandleHelper.h>
 
 
 //----- EditorObjectStorage定義
 namespace EtherEngine {
     // 空のエディターオブジェクトを作成する
-    BaseHandle<EditorObject> EditorObjectStorage::CreateEditorObject(const Transform& transform) {
-        BaseHandle<EditorObject> handle = Handle<EditorObject>(EditorObject(transform));
+    Handle<EditorObject> EditorObjectStorage::CreateEditorObject(const Transform& transform) {
+        Handle<EditorObject> handle = Handle<EditorObject>(EditorObject(transform));
         handle.GetAtomicData().m_handle = handle;
         m_editorObjects.push_back(handle);
-        return handle;
+        return handle.GetRefHandle();
     }
     // エディターオブジェクトを削除する
-    bool EditorObjectStorage::DeleteEditorObject(const BaseHandle<EditorObject>& editorObject) {
+    bool EditorObjectStorage::DeleteEditorObject(const Handle<EditorObject>& editorObject) {
         //----- 削除するハンドルをなめる
         for (auto it = m_editorObjects.begin(); it != m_editorObjects.end(); it++) {
             if (*it == editorObject) {
@@ -29,7 +28,7 @@ namespace EtherEngine {
 
 
     // 全てのエディターオブジェクトを取得する
-    std::vector<BaseHandle<EditorObject>> EditorObjectStorage::GetEditorObjectAll(void) {
+    std::vector<Handle<EditorObject>> EditorObjectStorage::GetEditorObjectAll(void) {
         return m_editorObjects;
     }
 

@@ -31,7 +31,7 @@ namespace EtherEngine {
         void SetProc(const WNDPROC& in) { m_proc = in; }
 
         // DirectXゲッター
-        const BaseHandle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
+        const Handle<DirectXRender>& GetDirectX(void) const { return m_dxRender; }
 
 
         // ウィンドウ関連の初期化

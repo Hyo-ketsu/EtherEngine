@@ -4,7 +4,7 @@
 //----- ShaderBase定義
 namespace EtherEngine {
     // コンストラクタ
-    ShaderBase::ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile)
+    ShaderBase::ShaderBase(const Handle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile)
         : m_directxRender(directxRender)
         , m_shaderType(shaderType) {
         if (loadFile != "") {
@@ -98,7 +98,7 @@ namespace EtherEngine {
         //----- シェーダーにテクスチャーをセットする
         switch (m_shaderType) {
         case ShaderType::Vertex:
-            m_directxRender.GetNoAtomicData().GetContext()->VSSetShaderResources(slot, 1, &shaderResourceView);
+            m_directxRender.GetData().GetContext()->VSSetShaderResources(slot, 1, &shaderResourceView);
             break;
         case ShaderType::Pixel:
             m_directxRender.GetAtomicData().GetContext()->PSSetShaderResources(slot, 1, &shaderResourceView);
@@ -175,7 +175,7 @@ namespace EtherEngine {
 //----- VertexShader定義
 namespace EtherEngine {
     // コンストラクタ
-    VertexShader::VertexShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile)
+    VertexShader::VertexShader(const Handle<DirectXRender>& directxRender, const std::string& loadFile)
         : ShaderBase(directxRender, ShaderType::Vertex, loadFile) {
     }
     // デストラクタ
@@ -272,7 +272,7 @@ namespace EtherEngine {
 //----- PixelShader定義
 namespace EtherEngine {
     // コンストラクタ
-    PixelShader::PixelShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile)
+    PixelShader::PixelShader(const Handle<DirectXRender>& directxRender, const std::string& loadFile)
         : ShaderBase(directxRender, ShaderType::Pixel, loadFile) {
     }
     // デストラクタ

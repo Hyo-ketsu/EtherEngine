@@ -2,7 +2,7 @@
 
 namespace EtherEngine {
     // コンストラクタ
-    MeshBuffer::Description::Description(BaseHandle<DirectXRender> directXRender,
+    MeshBuffer::Description::Description(Handle<DirectXRender> directXRender,
         const void* vertex, uint vertexSize, uint vertexCount, bool isWrite,
         const void* index, uint indexSize, uint indexCount,
         D3D11_PRIMITIVE_TOPOLOGY topology) 

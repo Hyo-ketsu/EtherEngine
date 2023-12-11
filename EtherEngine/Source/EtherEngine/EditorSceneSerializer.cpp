@@ -28,7 +28,7 @@ namespace EtherEngine {
         auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
         decltype(gameObjects) sceneObject;
         for (auto& it : gameObjects) {
-            if (it.GetNoAtomicData().GetScene() == sceneData) {
+            if (it.GetData().GetScene() == sceneData) {
                 sceneObject.push_back(it);
             }
         }

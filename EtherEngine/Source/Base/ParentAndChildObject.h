@@ -1,7 +1,6 @@
 #ifndef I_PARENTANDCHILDOBJECT_H
 #define I_PARENTANDCHILDOBJECT_H
 #include <Base/Handle.h>
-#include <Base/HandleHelper.h>
 
 
 namespace EtherEngine {
@@ -27,7 +26,7 @@ namespace EtherEngine {
 
         // 親を設定する
         // @ Arg1 : 親に設定するハンドル
-        void SetParent(const BaseHandle<Type>& handle);
+        void SetParent(const Handle<Type>& handle);
 
         // 親へのアクセスを削除する
         void DeleteParent(void);
@@ -37,18 +36,18 @@ namespace EtherEngine {
 
         // 親を取得する
         // @ Ret  : 親要素へのハンドル
-        RefHandle<Type> GetParent(void) const;
+        Handle<Type> GetParent(void) const;
 
 
         // 子を追加する
         // @ Arg1 : 子として追加するハンドル
-        void AddChild(const BaseHandle<Type>& handle);
+        void AddChild(const Handle<Type>& handle);
 
         // インデックスで子へのアクセスを削除する
         // @ Arg1 : インデックス
         void DeleteChild(const uint index);
         // 指定ハンドルで子へのアクセスを削除する
-        void DeleteChild(const BaseHandle<Type>& handle);
+        void DeleteChild(const Handle<Type>& handle);
         // 全ての子へのアクセスを削除する
         void DeleteChildAll(void);
 
@@ -60,15 +59,15 @@ namespace EtherEngine {
 
         // インデックスで子へのアクセスを取得する
         // @ Arg1 : インデックス
-        RefHandle<Type> GetChild(const uint index);
+        Handle<Type> GetChild(const uint index);
         // 指定ハンドルで子へのアクセスを取得する
-        RefHandle<Type> GetChild(const BaseHandle<Type>& handle);
+        Handle<Type> GetChild(const Handle<Type>& handle);
         // 全ての子へのアクセスを取得する
-        std::vector<RefHandle<Type>> GetChildAll(void);
+        std::vector<Handle<Type>> GetChildAll(void);
 
     private:
-        RefHandle<Type>              m_parent;  // 親
-        std::vector<RefHandle<Type>> m_childs;  // 子
+        Handle<Type>              m_parent;  // 親
+        std::vector<Handle<Type>> m_childs;  // 子
     };
 }
 
@@ -78,7 +77,7 @@ namespace EtherEngine {
     // 親を設定する
     // @ Arg1 : 親に設定するハンドル
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::SetParent(const BaseHandle<Type>& handle) {
+    void ParentAndChildObject<Type>::SetParent(const Handle<Type>& handle) {
         m_parent = handle;
     }
 
@@ -97,7 +96,7 @@ namespace EtherEngine {
     // 親を取得する
     // @ Ret  : 親要素へのハンドル
     template <ParentAndChildObjectConcept Type>
-    RefHandle<Type> ParentAndChildObject<Type>::GetParent(void) const {
+    Handle<Type> ParentAndChildObject<Type>::GetParent(void) const {
         return m_parent;
     }
 
@@ -105,7 +104,7 @@ namespace EtherEngine {
     // 子を追加する
     // @ Arg1 : 子として追加するハンドル
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::AddChild(const BaseHandle<Type>& handle) {
+    void ParentAndChildObject<Type>::AddChild(const Handle<Type>& handle) {
         m_childs.push_back(handle);
     }
 
@@ -117,7 +116,7 @@ namespace EtherEngine {
     }
     // 指定ハンドルで子へのアクセスを削除する
     template <ParentAndChildObjectConcept Type>
-    void ParentAndChildObject<Type>::DeleteChild(const BaseHandle<Type>& handle) {
+    void ParentAndChildObject<Type>::DeleteChild(const Handle<Type>& handle) {
         for (int i = 0; i < m_childs.size(); i++) {
             if (m_childs[i] == handle) {
                 m_childs[i].DeleteRef();
@@ -146,12 +145,12 @@ namespace EtherEngine {
     // インデックスで子へのアクセスを取得する
     // @ Arg1 : インデックス
     template <ParentAndChildObjectConcept Type>
-    RefHandle<Type> ParentAndChildObject<Type>::GetChild(const uint index) {
+    Handle<Type> ParentAndChildObject<Type>::GetChild(const uint index) {
         return m_childs[index];
     }
     // 指定ハンドルで子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
-    RefHandle<Type> ParentAndChildObject<Type>::GetChild(const BaseHandle<Type>& handle) {
+    Handle<Type> ParentAndChildObject<Type>::GetChild(const Handle<Type>& handle) {
         for (int i = 0; i < m_childs.size(); i++) {
             if (m_childs[i] == handle) {
                 return m_childs[i];
@@ -160,7 +159,7 @@ namespace EtherEngine {
     }
     // 全ての子へのアクセスを取得する
     template <ParentAndChildObjectConcept Type>
-    std::vector<RefHandle<Type>> ParentAndChildObject<Type>::GetChildAll(void) {
+    std::vector<Handle<Type>> ParentAndChildObject<Type>::GetChildAll(void) {
         return m_childs;
     }
 }

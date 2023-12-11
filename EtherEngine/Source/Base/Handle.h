@@ -2,19 +2,20 @@
 #define I_HANDLE_H
 #include <Base/HandleSystem.h>
 #include <Base/EditorException.h>
+#include <Base/IDClass.h>
 
 
 namespace EtherEngine {
-    enum class HandleCountType {
+    enum class HandleCountType : bool {
         Count = 0,      // 参照カウントを行う
-        UnCount = 1,    // 参照カウントを行わない
+        UnCount,    // 参照カウントを行わない
     };
 
 
     // ハンドルとして使用できるか判定するコンセプト
     // @ Memo : 数値型でない、かつHandleNumberTypeに変換できるか
     template <typename T>
-    concept UseHandleConcept = std::is_arithmetic_v<T> && std::is_convertible_v<T, HandleNumberType>;
+    concept UseHandleConcept = std::is_arithmetic_v<T> && std::is_convertible_v<T, IDClass>;
 }
 
 
@@ -23,31 +24,42 @@ namespace EtherEngine {
     // 対象への参照を数値（ハンドル）として持った型
     // @ Temp1: 管理対象型
     template <HandleSystemConcept Type>
-    class BaseHandle {
+    class Handle {
     public:
         // コンストラクタ構築
-        // @ Arg1 : 生成数をカウントするか
-        // @ Arg2 : ハンドルとして追加する要素
-        BaseHandle(HandleCountType countType, Type&& item);
-        // コンストラクタ構築
-        // @ Arg1 : 生成数をカウントするか
-        BaseHandle(HandleCountType countType);
+        // @ Arg1 : ハンドルとして追加する要素
+        // @ Arg2 : 生成数をカウントするか(Default : カウントする)
+        Handle(Type&& item, HandleCountType countType = HandleCountType::Count);
+        // ID構築コンストラクタ
+        // @ Arg1 : コピーするID
+        // @ Arg2 : 生成数をカウントするか(Default : カウントする)
+        Handle(IDClass id, HandleCountType countType = HandleCountType::Count);
         // コンストラクタ
-        BaseHandle(void);
+        // @ Arg1 : 生成数をカウントするか(Default : カウントする)
+        Handle(HandleCountType countType = HandleCountType::Count);
         // デストラクタ
-        ~BaseHandle(void);
+        ~Handle(void);
         // コピーコンストラクタ
-        BaseHandle(const BaseHandle<Type>& copy);
-        // 代入演算子(Copy)
-        BaseHandle<Type>& operator=(const BaseHandle<Type>& copy);
-        // 代入演算子(Move)
-        BaseHandle<Type>& operator=(BaseHandle<Type>&& move);
+        Handle(const Handle<Type>& copy);
+        // ムーブコンストラクタ
+        Handle(Handle<Type>&& move);
+        // コピー代入
+        Handle<Type>& operator =(const Handle<Type>& copy);
+        // ムーブ代入
+        Handle<Type>& operator =(Handle<Type>&& move);
+
+
+        // 参照カウントを行うかゲッター
+        HandleCountType GetIsCountUp(void) const { return m_count; }
+
+
+        // 参照ハンドルを作成する
+        // @ Ret  : 参照ハンドル
+        Handle<Type> GetRefHandle(void);
 
 
         // このハンドルが指すものを削除する
         void Delete(void);
-        // このハンドルの参照を削除する
-        void DeleteRef(void);
 
 
         // Handleから排他制御されていない要素を取得する
@@ -56,19 +68,13 @@ namespace EtherEngine {
         // Handleから排他制御された要素を取得する
         // @ Ret  : 取得した要素
         AtomicData<Type> GetAtomicItem(void) const;
-        // Handleから排他制御された読み取り専用要素を取得する
-        // @ Ret  : 取得した要素
-        AtomicReadData<Type> GetAtomicReadItem(void) const;
 
         // Handleから排他制御されていない要素を直接取得する
         // @ Ret  : 取得した要素
-        Type& GetNoAtomicData(void) const;
+        Type& GetData(void) const;
         // Handleから排他制御された要素を直接取得する
         // @ Ret  : 取得した要素
         Type& GetAtomicData(void) const;
-        // Handleから排他制御された読み取り専用要素を直接取得する
-        // @ Ret  : 取得した要素
-        Type& GetAtomicReadData(void) const;
 
 
         // このHandleの保持している番号は有効か
@@ -80,21 +86,15 @@ namespace EtherEngine {
 
 
         // 同じものを指しているハンドルか
-        bool operator ==(const BaseHandle<Type>& comparison);
+        bool operator ==(const Handle<Type>& comparison);
         // 同じものを指していないハンドルか
-        bool operator !=(const BaseHandle<Type>& comparison);
+        bool operator !=(const Handle<Type>& comparison);
 
 
         // HandleNumber取得
-        HandleNumberType GetHandleNumber(void) const;
+        IDClass GetHandleNumber(void) const;
         // HandleNumber取得
-        operator HandleNumberType(void) const;
-
-
-        // 参照カウントを行うかゲッター
-        bool GetIsCountUp(void) const { return m_isCount; }
-        // 弱参照ハンドルゲッター
-        std::weak_ptr<nullptr_t> GetDeleteHandle(void) const { return m_deleteHandle; }
+        operator IDClass(void) const;
 
     protected:
         // 参照のカウントアップを行う
@@ -104,39 +104,9 @@ namespace EtherEngine {
         // @ Memo : 判定も行う
         void CountDown(void);
 
-        HandleNumberType m_handle; // 自身が保持しているHandle
-        bool m_isCount;            // カウントアップを行うか
-        std::weak_ptr<nullptr_t> m_deleteHandle;    // HandleSystem削除時にHandleSystemを使用するか
-    };
-}
-
-
-
-
-//----- Handle宣言
-namespace EtherEngine {
-    // 参照カウントを行うハンドル
-    template <HandleSystemConcept Type>
-    class Handle : public BaseHandle<Type> {
-    public:
-        using BaseHandle<Type>::BaseHandle;
-
-        // コンストラクタ構築
-        // @ Arg1 : ハンドルとして追加する要素
-        Handle(Type&& item);
-    };
-}
-//----- RefHandle宣言
-namespace EtherEngine {
-    // 参照カウントを行わないハンドル
-    template <HandleSystemConcept Type>
-    class RefHandle : public BaseHandle<Type> {
-    public:
-        using BaseHandle<Type>::BaseHandle;
-
-        // コンストラクタ構築
-        // @ Arg1 : ハンドルとして追加する要素
-        RefHandle(Type&& item);
+        IDClass m_id; // 自身が保持しているHandle
+        HandleCountType m_count;   // カウントアップを行うか
+        std::weak_ptr<ullint> m_deleteHandle;    // HandleSystem削除時にHandleSystemを使用するか
     };
 }
 
@@ -146,200 +116,171 @@ namespace EtherEngine {
 //----- Handle実装
 namespace EtherEngine {
     // コンストラクタ構築
-    // @ Arg1 : 生成数をカウントするか
-    // @ Arg2 : ハンドルとして追加する要素
+    // @ Arg1 : ハンドルとして追加する要素
+    // @ Arg2 : 生成数をカウントするか
     template <HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(HandleCountType countType, Type&& item) {
+    Handle<Type>::Handle(Type&& item, HandleCountType countType)
+        : Handle(countType) {
         //----- ハンドルとして構築
         auto handle = HandleSystem<Type>::Get()->AddItem(std::move(item));
 
         //----- メンバ初期化
-        m_handle = handle.first;
+        m_id = handle.first;
         m_deleteHandle = handle.second;
-
-        //----- ハンドルカウントを行うか
-        switch (countType) {
-        case HandleCountType::Count:
-            m_isCount = true;
-            break;
-        case HandleCountType::UnCount:
-            m_isCount = false;
-            break;
-        }
-
-        //----- カウントアップ
-        CountUp();
+    }
+    // ID構築コンストラクタ
+    // @ Arg1 : コピーするID
+    // @ Arg2 : 生成数をカウントするか(Default : true)
+    template <HandleSystemConcept Type>
+    Handle<Type>::Handle(IDClass id, HandleCountType countType) 
+        : Handle(countType) {
+        //----- メンバ初期化
+        m_id = id;
+        m_deleteHandle = HandleSystem<Type>::Get()->GetReferenceCount(m_id);
     }
     // コンストラクタ構築
     // @ Arg1 : 生成数をカウントするか
     template <HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(HandleCountType countType) {
-    }
-    // コンストラクタ
-    template<HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(void) {
+    Handle<Type>::Handle(HandleCountType countType) 
+        : m_count(countType) {
+        //----- カウントアップ
+        CountUp();
     }
     // デストラクタ
     template<HandleSystemConcept Type>
-    BaseHandle<Type>::~BaseHandle(void) {
+    Handle<Type>::~Handle(void) {
         CountDown();
     }
     // コピーコンストラクタ
     template<HandleSystemConcept Type>
-    BaseHandle<Type>::BaseHandle(const BaseHandle<Type>& copy)
-        : m_handle(copy.m_handle) 
-        , m_isCount(copy.m_isCount) 
+    Handle<Type>::Handle(const Handle<Type>& copy)
+        : m_id(copy.m_id) 
+        , m_count(copy.m_count) 
         , m_deleteHandle(copy.m_deleteHandle) {
         CountUp();
     }
-    // 代入演算子(Copy)
+    // ムーブコンストラクタ
     template<HandleSystemConcept Type>
-    BaseHandle<Type>& BaseHandle<Type>::operator=(const BaseHandle<Type>& copy) {
-        m_handle = copy.m_handle;
-        m_isCount = copy.m_isCount; 
-        m_deleteHandle = copy.m_deleteHandle;
-
+    Handle<Type>::Handle(Handle<Type>&& move)
+        : m_id(move.m_id)
+        , m_count(move.m_count)
+        , m_deleteHandle(move.m_deleteHandle) {
         CountUp();
-        return *this;
     }
-    // 代入演算子(Move)
+    // コピー代入
     template<HandleSystemConcept Type>
-    BaseHandle<Type>& BaseHandle<Type>::operator=(BaseHandle<Type>&& move) {
-        m_handle = move.m_handle;
-        m_isCount = move.m_isCount;
-        m_deleteHandle = move.m_deleteHandle;
-
+    Handle<Type>& Handle<Type>::operator =(const Handle<Type>& copy) {
+        m_id = copy.m_id;
+        m_count = copy.m_count;
+        m_deleteHandle = copy.m_deleteHandle;
         CountUp();
-        return *this;
+    }
+    // ムーブ代入
+    template<HandleSystemConcept Type>
+    Handle<Type>& Handle<Type>::operator =(Handle<Type>&& move) {
+        m_id = move.m_id;
+        m_count = move.m_count;
+        m_deleteHandle = move.m_deleteHandle;
+        CountUp();
+    }
+
+
+    // 参照ハンドルを作成する
+    // @ Ret  : 参照ハンドル
+    template<HandleSystemConcept Type>
+    Handle<Type> Handle<Type>::GetRefHandle(void) {
+        return Handle(m_id, HandleCountType::UnCount);
     }
 
 
     // このハンドルが指すものを削除する
     template<HandleSystemConcept Type>
-    void BaseHandle<Type>::Delete(void) {
-        HandleSystem<Type>::Get()->DeleteItem(m_handle);
-    }
-    // このハンドルの参照を削除する
-    template<HandleSystemConcept Type>
-    void BaseHandle<Type>::DeleteRef(void) {
-        CountDown();
-        m_handle = NO_CREATE_HANDLE_NUMBER;
+    void Handle<Type>::Delete(void) {
+        HandleSystem<Type>::Get()->DeleteItem(m_id);
     }
 
 
     // Handleから排他制御されていない要素を取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
-    NonAtomicData<Type> BaseHandle<Type>::GetNoAtomicItem(void) const {
+    NonAtomicData<Type> Handle<Type>::GetNoAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
-        return HandleSystem<Type>::Get()->GetNoAtomicItem(m_handle).value();
+        return HandleSystem<Type>::Get()->GetNoAtomicItem(m_id).value();
     }
     // Handleから排他制御された要素を取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
-    AtomicData<Type> BaseHandle<Type>::GetAtomicItem(void) const {
+    AtomicData<Type> Handle<Type>::GetAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
-        return HandleSystem<Type>::Get()->GetAtomicItem(m_handle).value();
+        return HandleSystem<Type>::Get()->GetAtomicItem(m_id).value();
     }
-    // Handleから排他制御された読み取り専用要素を取得する
-    // @ Ret  : 取得した要素
-    template<HandleSystemConcept Type>
-    AtomicReadData<Type> BaseHandle<Type>::GetAtomicReadItem(void) const {
-        if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
-        return HandleSystem<Type>::Get()->GetAtomicReadItem(m_handle).value();
-    }
+
 
     // Handleから排他制御されていない要素を直接取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
-    Type& BaseHandle<Type>::GetNoAtomicData(void) const {
+    Type& Handle<Type>::GetData(void) const {
         return GetNoAtomicItem().GetData();
     }
     // Handleから排他制御された要素を直接取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
-    Type& BaseHandle<Type>::GetAtomicData(void) const {
+    Type& Handle<Type>::GetAtomicData(void) const {
         return GetAtomicItem().GetData();
     }
-    // Handleから排他制御された読み取り専用要素を直接取得する
-    // @ Ret  : 取得した要素
-    template<HandleSystemConcept Type>
-    Type& BaseHandle<Type>::GetAtomicReadData(void) const {
-        return GetAtomicReadItem().GetData();
-    }
 
 
     // このHandleの保持している番号は有効か
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
     template<HandleSystemConcept Type>
-    bool BaseHandle<Type>::IsEnable(void) const {
-        return HandleSystem<Type>::Get()->IsItemEnable(m_handle);
+    bool Handle<Type>::IsEnable(void) const {
+        return HandleSystem<Type>::Get()->IsItemEnable(m_id);
     }
     // このHandleの保持している番号は有効か
     // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
     template<HandleSystemConcept Type>
-    BaseHandle<Type>::operator bool(void) const {
+    Handle<Type>::operator bool(void) const {
         return IsEnable();
     }
 
 
     // 同じものを指しているハンドルか
     template<HandleSystemConcept Type>
-    bool BaseHandle<Type>::operator ==(const BaseHandle<Type>& comparison) {
-        return comparison.GetHandleNumber() == m_handle;
+    bool Handle<Type>::operator ==(const Handle<Type>& comparison) {
+        return comparison.GetHandleNumber() == m_id;
     }
     // 同じものを指していないハンドルか
     template<HandleSystemConcept Type>
-    bool BaseHandle<Type>::operator !=(const BaseHandle<Type>& comparison) {
-        return comparison.GetHandleNumber() != m_handle;
+    bool Handle<Type>::operator !=(const Handle<Type>& comparison) {
+        return comparison.GetHandleNumber() != m_id;
     }
 
 
     // HandleNumber取得
     template<HandleSystemConcept Type>
-    HandleNumberType BaseHandle<Type>::GetHandleNumber(void) const {
-        return m_handle;
+    IDClass Handle<Type>::GetHandleNumber(void) const {
+        return m_id;
     }
     // HandleNumber取得
     template<HandleSystemConcept Type>
-    BaseHandle<Type>::operator HandleNumberType(void) const {
+    Handle<Type>::operator IDClass(void) const {
         return GetHandleNumber();
     }
 
 
     // 参照のカウントアップを行う
     template<HandleSystemConcept Type>
-    void BaseHandle<Type>::CountUp(void) {
-        if (m_isCount && m_deleteHandle.expired() == false) {
-            HandleSystem<Type>::Get()->CountUpItem(m_handle);
+    void Handle<Type>::CountUp(void) {
+        if (m_count == HandleCountType::Count && m_deleteHandle.expired() == false) {
+            HandleSystem<Type>::Get()->CountUpItem(m_id);
         }
     }
     // 参照のカウントダウンを行う
     template<HandleSystemConcept Type>
-    void BaseHandle<Type>::CountDown(void) {
-        if (m_isCount && m_deleteHandle.expired() == false) {
-            HandleSystem<Type>::Get()->CountDownItem(m_handle);
+    void Handle<Type>::CountDown(void) {
+        if (m_count == HandleCountType::Count && m_deleteHandle.expired() == false) {
+            HandleSystem<Type>::Get()->CountDownItem(m_id);
         }
-    }
-}
-
-
-//----- Handle実装
-namespace EtherEngine {
-    // コンストラクタ構築
-    // @ Arg1 : ハンドルとして追加する要素
-    template <HandleSystemConcept Type>
-    Handle<Type>::Handle(Type&& item)
-        : BaseHandle<Type>(HandleCountType::Count, std::move(item)) {
-    }
-}
-//----- RefHandle実装
-namespace EtherEngine {
-    // コンストラクタ構築
-    // @ Arg1 : ハンドルとして追加する要素
-    template <HandleSystemConcept Type>
-    RefHandle<Type>::RefHandle(Type&& item)
-        : BaseHandle<Type>(HandleCountType::UnCount, std::move(item)) {
     }
 }
 

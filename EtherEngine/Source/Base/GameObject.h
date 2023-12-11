@@ -7,7 +7,6 @@
 #include <Base/CollisionComponent.h>
 #include <Base/ConceptUtility.h>
 #include <Base/DrawComponent.h> 
-#include <Base/HandleHelper.h>
 #include <Base/Handle.h>
 #include <Base/Transform.h>
 #include <Base/Scene.h>
@@ -70,7 +69,7 @@ namespace EtherEngine {
 
 
         // ハンドルゲッター
-        const BaseHandle<GameObject>& GetHandle(void) const { return m_handle; }
+        const Handle<GameObject>& GetHandle(void) const { return m_handle; }
 
 
         // 衝突情報を削除・スタッキングする
@@ -152,7 +151,7 @@ namespace EtherEngine {
 
         Transform m_transform;  // 座標
         SceneData m_scene;      // 現在所属シーン
-        BaseHandle<GameObject> m_handle;    // 自身のハンドル
+        Handle<GameObject> m_handle;    // 自身のハンドル
         ParentAndChildObject<GameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント

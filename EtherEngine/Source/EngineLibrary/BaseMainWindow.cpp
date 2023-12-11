@@ -1,6 +1,5 @@
 #include <EngineLibrary/BaseMainWindow.h>
 #include <Base/WindowsDefine.h>
-#include <Base/HandleHelper.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <Base/GameObjectUpdater.h>

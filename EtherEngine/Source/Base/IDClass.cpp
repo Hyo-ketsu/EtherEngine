@@ -3,36 +3,6 @@
 #include <Base/ThreadingUtility.h>
 
 
-//----- IDClass定義
-namespace EtherEngine {
-    // コンストラクタ
-    IDClass::IDClass(void)
-        : m_number(ms_idClassStorage.AddNumber()) {
-    }
-    // コンストラクタ
-    IDClass::IDClass(const IDNumberType& number)
-        : m_number(number) {
-        ms_idClassStorage.AddNumber(number);
-    }
-    // デストラクタ
-    IDClass::~IDClass(void) {
-    }
-
-
-    // 番号を取得する
-    const IDNumberType& IDClass::Get(void) const {
-        return m_number;
-    }
-    // 番号を取得する
-    IDClass::operator const IDNumberType&(void) const {
-        return Get();
-    }
-
-
-    IDClassStorage IDClass::ms_idClassStorage;    // IDを管理しているクラス
-}
-
-
 //----- IDClassStorage定義
 namespace EtherEngine {
     // コンストラクタ
@@ -54,7 +24,6 @@ namespace EtherEngine {
             //----- 番号を追加する
             if (AddNumber(createNumber)) break;
         }
-
 
         //----- 返却
         return createNumber;
@@ -80,4 +49,41 @@ namespace EtherEngine {
         m_number.emplace(m_number.begin() + i, id);
         return true;
     }
+}
+
+
+
+
+//----- IDClass定義
+namespace EtherEngine {
+    // コンストラクタ
+    IDClass::IDClass(void)
+        : m_number(ms_idClassStorage.AddNumber()) {
+    }
+    // コンストラクタ
+    IDClass::IDClass(const IDNumberType& number)
+        : m_number(number) {
+        ms_idClassStorage.AddNumber(number);
+    }
+    // デストラクタ
+    IDClass::~IDClass(void) {
+    }
+
+
+    // 番号を取得する
+    const IDNumberType& IDClass::Get(void) const {
+        return m_number;
+    }
+    // 番号を取得する
+    IDClass::operator const IDNumberType& (void) const {
+        return Get();
+    }
+
+
+    // 比較
+    bool IDClass::operator ==(const IDClass& other) const {
+        return m_number == other.m_number;
+    }
+
+    IDClassStorage IDClass::ms_idClassStorage;    // IDを管理しているクラス
 }

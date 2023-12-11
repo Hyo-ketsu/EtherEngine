@@ -55,7 +55,7 @@ namespace EtherEngine {
         // @ Arg1 : DirectX
         // @ Arg2 : シェーダの種類
         // @ Arg3 : 読み込みシェーダー名(Default : "")
-        ShaderBase(const BaseHandle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile);
+        ShaderBase(const Handle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile);
 
 
         // シェーダファイルの読み込み後、シェーダの種類別に処理を行う
@@ -69,7 +69,7 @@ namespace EtherEngine {
         HRESULT Make(void* data, uint size);
 
 
-        BaseHandle<DirectXRender> m_directxRender;  // 保持しているDirectX
+        Handle<DirectXRender> m_directxRender;  // 保持しているDirectX
         ShaderType m_shaderType;  // このシェーダーの種類
     };
 }
@@ -83,7 +83,7 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : DirectX
         // @ Arg2 : 読み込みシェーダー名(Default : "")
-        VertexShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile = "");
+        VertexShader(const Handle<DirectXRender>& directxRender, const std::string& loadFile = "");
         // デストラクタ
         ~VertexShader(void) override;
 
@@ -109,7 +109,7 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : DirectX
         // @ Arg2 : 読み込みシェーダー名(Default : "")
-        PixelShader(const BaseHandle<DirectXRender>& directxRender, const std::string& loadFile = "");
+        PixelShader(const Handle<DirectXRender>& directxRender, const std::string& loadFile = "");
         // デストラクタ
         ~PixelShader(void) override;
 

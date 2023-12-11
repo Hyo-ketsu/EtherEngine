@@ -41,7 +41,7 @@ namespace EtherEngine {
         // @ Arg2 : DirectX
         // @ Arg3 : Šgk(Default : 1.0f)
         // @ Arg4 : ’¸“_”½“](Default : s‚í‚È‚¢)
-        void Load(const std::string& file, const BaseHandle<DirectXRender>& directX, const float scale = 1.0f, const bool isFlip = false);
+        void Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale = 1.0f, const bool isFlip = false);
 
 
         // ŠO•”o—Í

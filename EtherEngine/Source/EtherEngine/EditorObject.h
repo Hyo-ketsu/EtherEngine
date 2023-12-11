@@ -28,7 +28,7 @@ namespace EtherEngine {
 
 
         // ハンドルゲッター
-        BaseHandle<EditorObject> GetHandle(void) const { return m_handle; }
+        Handle<EditorObject> GetHandle(void) const { return m_handle; }
 
 
         // コンポーネントを追加する
@@ -78,7 +78,7 @@ namespace EtherEngine {
         friend class EditorObjectStorage;
 
         Transform m_transform;  // 座標
-        BaseHandle<EditorObject> m_handle;  // 自身のハンドル
+        Handle<EditorObject> m_handle;  // 自身のハンドル
         std::vector<std::shared_ptr<EditorComponentBase>> m_components;  // 保持しているコンポーネント
     };
 }

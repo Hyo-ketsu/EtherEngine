@@ -15,15 +15,15 @@ namespace EtherEngine {
         // 空のエディターオブジェクトを作成する
         // @ Ret  : 作成したエディターオブジェクトのハンドル
         // @ Arg1 : 座標(デフォルト : 座標・回転は0, 拡縮は1)
-        BaseHandle<EditorObject> CreateEditorObject(const Transform& transform = Transform());
+        Handle<EditorObject> CreateEditorObject(const Transform& transform = Transform());
         // エディターオブジェクトを削除する
         // @ Ret  : 削除が成功したか
         // @ Arg1 : 削除するオブジェクトのハンドル
-        bool DeleteEditorObject(const BaseHandle<EditorObject>& editorObject);
+        bool DeleteEditorObject(const Handle<EditorObject>& editorObject);
 
 
         // 全てのエディターオブジェクトを取得する
-        std::vector<BaseHandle<EditorObject>> GetEditorObjectAll(void);
+        std::vector<Handle<EditorObject>> GetEditorObjectAll(void);
 
 
         // 削除済みのエディターオブジェクトを削除する
@@ -32,7 +32,7 @@ namespace EtherEngine {
     private:
         friend class Singleton<EditorObjectStorage>;
 
-        std::vector<BaseHandle<EditorObject>> m_editorObjects;   // エディターオブジェクトのハンドル
+        std::vector<Handle<EditorObject>> m_editorObjects;   // エディターオブジェクトのハンドル
     };
 }
 

@@ -49,7 +49,6 @@
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\Handle.cpp" />
-    <ClCompile Include="..\..\Source\Base\HandleHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
@@ -114,7 +113,6 @@
     <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
-    <ClInclude Include="..\..\Source\Base\HandleHelper.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\IDClass.h" />

@@ -35,6 +35,8 @@ namespace EtherEngine {
 }
 
 
+
+
 //----- ID宣言
 namespace EtherEngine {
     // 一意の番号を持ったクラス
@@ -46,21 +48,25 @@ namespace EtherEngine {
         // @ Arg1 : 生成時に与える番号
         IDClass(const IDNumberType& number);
         // デストラクタ
-        virtual ~IDClass(void);
+        ~IDClass(void);
         // コピーコンストラクタ
         IDClass(const IDClass& copy) = default;
         // ムーブコンストラクタ
         IDClass(IDClass&& move) = default;
-        // コピー演算子
+        // コピー代入
         IDClass& operator =(const IDClass& copy) = default;
-        // コピー演算子
+        // ムーブ代入
         IDClass& operator =(IDClass&& move) = default;
 
 
         // 番号を取得する
         const IDNumberType& Get(void) const;
         // 番号を取得する
-        operator const IDNumberType&(void) const;
+        operator const IDNumberType& (void) const;
+
+
+        // 比較
+        bool operator ==(const IDClass& other) const;
 
     private:
         static IDClassStorage ms_idClassStorage;    // IDを管理しているクラス
@@ -69,6 +75,15 @@ namespace EtherEngine {
 }
 
 
+//----- ハッシュ用定義
+namespace std {
+    template <>
+    struct std::hash<EtherEngine::IDClass> {
+        std::size_t operator()(const EtherEngine::IDClass& key) const {
+            return std::hash<int>()(key.Get());
+        }
+    };
+}
 
 
 #endif // !I_IDCLASS_H
