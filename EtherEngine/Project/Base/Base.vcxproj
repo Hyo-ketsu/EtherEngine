@@ -19,9 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Base\Atomic.cpp" />
-    <ClCompile Include="..\..\Source\Base\AtomicData.cpp" />
-    <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
@@ -47,26 +44,16 @@
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
-    <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp" />
-    <ClCompile Include="..\..\Source\Base\Handle.cpp" />
-    <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
-    <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
-    <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
     <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
-    <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp" />
-    <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
     <ClCompile Include="..\..\Source\Base\ProjectData.cpp" />
     <ClCompile Include="..\..\Source\Base\RAIIClass.cpp" />
-    <ClCompile Include="..\..\Source\Base\Random.cpp" />
-    <ClCompile Include="..\..\Source\Base\RandomManage.cpp" />
     <ClCompile Include="..\..\Source\Base\Scene.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
-    <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Create</PrecompiledHeader>
@@ -74,18 +61,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
-    <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
-    <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
     <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Atomic.h" />
     <ClInclude Include="..\..\Source\Base\AtomicData.h" />
-    <ClInclude Include="..\..\Source\Base\AtomicReadData.h" />
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
     <ClInclude Include="..\..\Source\Base\BaseInput.h" />
     <ClInclude Include="..\..\Source\Base\BaseObject.h" />
@@ -117,7 +101,6 @@
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
-    <ClInclude Include="..\..\Source\Base\MainFunction.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\Mutex.h" />
@@ -132,8 +115,9 @@
     <ClInclude Include="..\..\Source\Base\SceneData.h" />
     <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
-    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
+    <ClInclude Include="..\..\Source\Base\stdafx\BaseInclude.h" />
+    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
     <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
     <ClInclude Include="..\..\Source\Base\ThreadPool.h" />

@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXWindowRender.cpp" />
@@ -52,6 +51,7 @@
     <ClInclude Include="..\..\Source\DirectX\ModelComponent.h" />
     <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h" />
     <ClInclude Include="..\..\Source\DirectX\ShaderClass.h" />
+    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXInclude.h" />
     <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
     <ClInclude Include="..\..\Source\DirectX\Texture.h" />
     <ClInclude Include="..\..\Source\DirectX\Window.h" />

@@ -111,7 +111,7 @@ namespace EtherEngine {
         m_referenceCounter.emplace(handle, refCounter);
 
         //----- •Ô‹p
-        return (handle, refCounter);
+        return std::pair<IDClass, std::weak_ptr<ullint>>(handle, refCounter);
     }
     // —v‘f‚ğíœ‚·‚é
     // @ Arg1 : íœ‚·‚é”Ô†

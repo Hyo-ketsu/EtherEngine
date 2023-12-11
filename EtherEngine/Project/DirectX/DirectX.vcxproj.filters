@@ -5,11 +5,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Stdafx">
+      <UniqueIdentifier>{427a25fa-5830-4bcb-bf60-486c31b8e715}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\DirectX\ComPointer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DirectX.cpp" />
-    <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Geometry.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
@@ -22,11 +23,13 @@
     <ClCompile Include="..\..\Source\DirectX\Window.cpp" />
     <ClCompile Include="..\..\Source\DirectX\WindowRetention.cpp" />
     <ClCompile Include="..\..\Source\DirectX\DXWindowRender.cpp" />
+    <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
+      <Filter>Stdafx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\DirectX\ComPointer.h" />
     <ClInclude Include="..\..\Source\DirectX\DirectX.h" />
-    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h" />
     <ClInclude Include="..\..\Source\DirectX\DXDrawComponent.h" />
     <ClInclude Include="..\..\Source\DirectX\Geometry.h" />
     <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
@@ -39,6 +42,12 @@
     <ClInclude Include="..\..\Source\DirectX\Window.h" />
     <ClInclude Include="..\..\Source\DirectX\WindowRetention.h" />
     <ClInclude Include="..\..\Source\DirectX\DXWindowRender.h" />
+    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXStdafx.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXInclude.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\..\Source\DirectX\Shader\PS_Test.hlsl">

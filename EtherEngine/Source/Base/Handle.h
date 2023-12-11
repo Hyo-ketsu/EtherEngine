@@ -174,6 +174,7 @@ namespace EtherEngine {
         m_count = copy.m_count;
         m_deleteHandle = copy.m_deleteHandle;
         CountUp();
+        return *this;
     }
     // ƒ€[ƒu‘ã“ü
     template<HandleSystemConcept Type>
@@ -182,6 +183,7 @@ namespace EtherEngine {
         m_count = move.m_count;
         m_deleteHandle = move.m_deleteHandle;
         CountUp();
+        return *this;
     }
 
 

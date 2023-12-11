@@ -1,7 +1,6 @@
 #ifndef I_ATOMIC_H
 #define I_ATOMIC_H
 #include <Base/AtomicData.h>
-#include <Base/AtomicReadData.h>
 #include <Base/NonAtomicData.h>
 #include <Base/ThreadingUtility.h>
 #include <Base/Mutex.h>

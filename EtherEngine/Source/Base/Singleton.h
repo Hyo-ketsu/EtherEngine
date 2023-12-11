@@ -2,7 +2,6 @@
 #define I_SINGLETON_H
 #include <Base/Mutex.h>
 #include <Base/AtomicData.h>
-#include <Base/AtomicReadData.h>
 #include <Base/Atomic.h>
 
 

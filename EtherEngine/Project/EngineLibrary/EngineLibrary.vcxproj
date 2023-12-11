@@ -36,6 +36,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryInclude.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />

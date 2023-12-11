@@ -85,6 +85,7 @@
     <ClInclude Include="..\..\Source\EtherEngine\ProcedureEditorWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectEditorData.h" />
     <ClInclude Include="..\..\Source\EtherEngine\ProjectMediation.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineInclude.h" />
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\EditorDebugWindow.h" />
     <ClInclude Include="..\..\Source\EtherEngine\Test\imgui_demo.h" />

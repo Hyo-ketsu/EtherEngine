@@ -17,17 +17,11 @@
     <Filter Include="XML">
       <UniqueIdentifier>{410f7e69-91fe-4232-9ed8-838182815b59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stdafx">
+      <UniqueIdentifier>{363ea0bd-3045-455a-9a79-869327b1db4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\Base\AtomicData.cpp">
-      <Filter>AtomicData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\AtomicReadData.cpp">
-      <Filter>AtomicData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Base\NonAtomicData.cpp">
-      <Filter>AtomicData</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Base\CollisionBase.cpp">
       <Filter>Collision</Filter>
     </ClCompile>
@@ -55,11 +49,9 @@
     <ClCompile Include="..\..\Source\Base\CollisionBoxXBox.cpp">
       <Filter>Collision\CollisionFunction</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Base\Atomic.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
-    <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraBase.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
@@ -73,33 +65,25 @@
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
-    <ClCompile Include="..\..\Source\Base\GraphicDefines.cpp" />
-    <ClCompile Include="..\..\Source\Base\Handle.cpp" />
-    <ClCompile Include="..\..\Source\Base\HandleSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
-    <ClCompile Include="..\..\Source\Base\MainFunction.cpp" />
-    <ClCompile Include="..\..\Source\Base\MessageQue.cpp" />
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
-    <ClCompile Include="..\..\Source\Base\ParentAndChildObject.cpp" />
     <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
     <ClCompile Include="..\..\Source\Base\ProjectData.cpp" />
     <ClCompile Include="..\..\Source\Base\RAIIClass.cpp" />
-    <ClCompile Include="..\..\Source\Base\Random.cpp" />
-    <ClCompile Include="..\..\Source\Base\RandomManage.cpp" />
     <ClCompile Include="..\..\Source\Base\Scene.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
     <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
-    <ClCompile Include="..\..\Source\Base\Singleton.cpp" />
-    <ClCompile Include="..\..\Source\Base\StorageSystem.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
-    <ClCompile Include="..\..\Source\Base\WindowsDefine.cpp" />
     <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
     <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
+    <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
+      <Filter>Stdafx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
@@ -132,15 +116,11 @@
     <ClInclude Include="..\..\Source\Base\AtomicData.h">
       <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\AtomicReadData.h">
-      <Filter>AtomicData</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Base\Atomic.h" />
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\BaseInput.h" />
     <ClInclude Include="..\..\Source\Base\BaseObject.h" />
-    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\BaseUtility.h" />
     <ClInclude Include="..\..\Source\Base\CameraBase.h" />
     <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
@@ -159,7 +139,6 @@
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
-    <ClInclude Include="..\..\Source\Base\MainFunction.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
@@ -184,5 +163,11 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\Mutex.h" />
     <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
+    <ClInclude Include="..\..\Source\Base\stdafx\BaseInclude.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

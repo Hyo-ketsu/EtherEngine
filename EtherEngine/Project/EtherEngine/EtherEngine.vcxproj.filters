@@ -20,6 +20,9 @@
     <Filter Include="Test">
       <UniqueIdentifier>{d51be2ee-43a9-42e0-b837-e5b361166874}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stdafx">
+      <UniqueIdentifier>{d39ad635-b3f2-43f7-ac57-e128e4155129}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EtherEngine\EditorCamera.cpp">
@@ -59,9 +62,6 @@
       <Filter>EngineSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp">
-      <Filter>EngineSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\ProcedureEditorWindow.cpp">
@@ -105,6 +105,9 @@
       <Filter>EngineSystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EtherEngine\ConvertManage.cpp" />
+    <ClCompile Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.cpp">
+      <Filter>Stdafx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EtherEngine\ImGuiClass.h">
@@ -158,9 +161,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorSceneSerializer.h">
       <Filter>EngineSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
-      <Filter>EngineSystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\Test\TestComponent.h">
       <Filter>Test</Filter>
     </ClInclude>
@@ -187,5 +187,11 @@
       <Filter>EngineSystem</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\ConvertManage.h" />
+    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineStdafx.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineInclude.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,6 +13,9 @@
     <Filter Include="Wrapper">
       <UniqueIdentifier>{a9537dc6-33df-4cb1-aa98-4a8b2fc23011}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stdafx">
+      <UniqueIdentifier>{3a93161d-ccde-4696-995b-f2bf147e92b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
@@ -27,7 +30,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
@@ -40,6 +42,12 @@
       <Filter>Wrapper</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryInclude.h">
+      <Filter>Stdafx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
@@ -55,7 +63,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
@@ -66,6 +73,9 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp">
       <Filter>Wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp">
+      <Filter>Stdafx</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
