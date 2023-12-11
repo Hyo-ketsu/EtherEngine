@@ -2,7 +2,7 @@
   "profiles": {
     "EditorMain": {
       "commandName": "Project",
-      "workingDirectory": "$(SolutionDir)/Debug",
+      "workingDirectory": "$(SolutionDir)/Debug/",
       "nativeDebugging": true
     }
   }
