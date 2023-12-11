@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="EditorUI\Control\ShowObjectItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EtherEngineApplication.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Window\EditorStartWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Window\ExceptionPopupWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Window\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EditorPage\OutLineWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EditorPage\SceneViewWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Window\StartupWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EditorPage\FileExplorerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EditorPage\InspectorWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="EditorUI\BaseWindowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Control\ShowObjectItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EtherEngineApplication.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Window\EditorStartWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Window\ExceptionPopupWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Window\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EditorPage\OutLineWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EditorPage\SceneViewWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Window\StartupWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EditorPage\FileExplorerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EditorPage\InspectorWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

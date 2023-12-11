@@ -10,7 +10,6 @@ namespace EtherEngine {
     }
     // デストラクタ
     ThreadPool::~ThreadPool(void) {
-        throw std::exception();
     }
 
 
