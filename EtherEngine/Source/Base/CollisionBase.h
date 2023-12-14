@@ -87,13 +87,13 @@ namespace EtherEngine {
         Eigen::Vector3f& AccessOffSet(void) { return m_offset; }
 
         // IDゲッター
-        const StorageID<CollisionBase>& GetId(void) const { return m_id; }
+        const IDClass& GetId(void) const { return m_id; }
 
     private:
         const CollisionShape     mc_shape;  // この当たり判定の形状
         CollisionType            m_type;    // この当たり判定の種類
         Eigen::Vector3f          m_offset;  // 当たり判定の移動量
-        StorageID<CollisionBase> m_id;      // 自身のID
+        IDClass                  m_id;      // 自身のID
     };
 }
 

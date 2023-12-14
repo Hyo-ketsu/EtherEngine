@@ -11,7 +11,7 @@ namespace EtherEngine {
     // 番号を生成、追加する
     [[nodiscard]] IDNumberType IDClassStorage::AddNumber(void) {
         //----- スピンロックを行う
-        auto lock = m_mutex->KeySpinLock();
+        auto lock = m_mutex.KeySpinLock();
 
         //----- 変数宣言
         IDNumberType createNumber;  // 現在の生成番号
@@ -31,7 +31,7 @@ namespace EtherEngine {
     // 番号を追加で保持する
     bool IDClassStorage::AddNumber(IDNumberType id) {
         //----- スピンロックを行う
-        auto lock = m_mutex->KeySpinLock();
+        auto lock = m_mutex.KeySpinLock();
 
         //----- 昇順でソートされているとして仮定、頭から舐める
         int i = 0;

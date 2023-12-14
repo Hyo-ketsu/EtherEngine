@@ -81,13 +81,20 @@ namespace EditorUI {
                         var pane = children as LayoutDocumentPane;
                         if (pane == null) continue;
 
-                        //----- LayoutDocumentPaneが存在する。追加する
+                        //----- LayoutDocumentPaneが存在する。追加
                         var document = new LayoutDocument();
                         document.Title = window.Name;
                         document.Content = window;
+
+                        //----- 終了時処理を追加できるのであれば追加する
+                        var closeInterface = window as IUserControlClose;
+                        if (closeInterface != null) {
+                            document.Closed += closeInterface.CloseEvent;
+                        }
                         pane.Children.Add(document);
                         return;
                     }
+
                     //----- 全てLayoutDocumentPaneGroupだった。フロートで生成
                     var anchorable = new LayoutAnchorable() {
                         Title = window.Name,

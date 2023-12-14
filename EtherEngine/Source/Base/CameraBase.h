@@ -1,7 +1,6 @@
 #ifndef I_CAMERABASE_H
 #define I_CAMERABASE_H
 #include <Base/IDClass.h>
-#include <Base/StorageSystem.h>
 #include <Base/EtherEngineUtility.h>
 
 
@@ -60,6 +59,16 @@ namespace EtherEngine {
         // 外部入力する
         void Input(const Json& input) override;
 
+
+        // ビュー行列を取得する
+        // @ Ret  : 取得したビュー行列
+        // @ Arg1 : 転置も行うか(Default : ture)
+        Eigen::Matrix4f GetView(const bool isTranspose = true) const;
+        // プロジェクション行列を取得する
+        // @ Ret  : 取得したプロジェクション行列
+        // @ Arg1 : 転置も行うか(Default : ture)
+        Eigen::Matrix4f GetProjection(const bool isTranspose = true) const;
+
     private:
         // 座標と注視点が同座標の場合に例外を出力します
         void CheckPosLookPosition(void) const;
@@ -84,20 +93,24 @@ namespace EtherEngine {
         // コンストラクタ
         // @ Arg1 : 座標
         // @ Arg2 : 注視点
-        CameraBase(const Eigen::Vector3f& pos, const Eigen::Vector3f& look);
+        // @ Arg3 : このカメラを登録するか(Default : true)
+        // @ Arg4 : 登録する際の優先順位(Default : 0)
+        CameraBase(const Eigen::Vector3f& pos, const Eigen::Vector3f& look, const bool isRegister, const int priority);
         // コンストラクタ
         // @ Arg1 : カメラ情報
-        CameraBase(const CameraData& data);
+        // @ Arg2 : このカメラを登録するか(Default : true)
+        // @ Arg3 : 登録する際の優先順位(Default : 0)
+        CameraBase(const CameraData& data, const bool isRegister, const int priority);
 
         // デストラクタ
         virtual ~CameraBase(void);
 
 
         // カメラ情報アクセサー
-        CameraData& AccessCameraData(void) { return m_cameraData; }
+        CameraData& AccessCameraData(void) { return *m_cameraData; }
 
         // IDゲッター
-        const StorageID<CameraBase> GetID(void) const { return m_id; }
+        const IDClass GetID(void) const { return m_id; }
 
 
         // ビュー行列を取得する
@@ -116,8 +129,8 @@ namespace EtherEngine {
         void Input(const Json& input) override;
 
     private:
-        CameraData m_cameraData;        // カメラ情報
-        StorageID<CameraBase> m_id;    // このobjectのID
+        std::shared_ptr<CameraData> m_cameraData;        // カメラ情報
+        IDClass m_id;    // このobjectのID
     };
 }
 

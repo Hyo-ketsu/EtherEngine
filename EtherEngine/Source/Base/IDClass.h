@@ -30,7 +30,7 @@ namespace EtherEngine {
 
     private:
         std::vector<IDNumberType> m_number;   // 保持している番号
-        std::shared_ptr<Mutex> m_mutex; // スピンロック用変数
+        Mutex m_mutex; // スピンロック用変数
     };
 }
 

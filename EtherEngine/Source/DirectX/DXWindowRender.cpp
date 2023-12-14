@@ -112,21 +112,13 @@ namespace EtherEngine {
 		m_directX->GetContext()->ClearDepthStencilView(m_dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
 	// •`‰æˆ—
-	bool DXWindowRender::Draw() {
+	bool DXWindowRender::Draw(const CameraData& cameraData) {
 		if (this->GetIsDirectXEnable() == false) return false;
 
-		//----- •`‰æ‚·‚é
-		if (CameraStorage::Get()->IsIDToData(m_mainCameraID)) {
-			//----- ƒJƒƒ‰æ“¾
-			auto camera = CameraStorage::Get()->GetData(m_mainCameraID);
+		//----- •`‰æ
+		GameObjectUpdater::Get()->Draw(cameraData.GetView(), cameraData.GetProjection());
 
-			//----- •`‰æ
-			GameObjectUpdater::Get()->Draw(view, projection);
-
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 	// •`‰æŒãˆ—
 	void DXWindowRender::EndDraw(void) {

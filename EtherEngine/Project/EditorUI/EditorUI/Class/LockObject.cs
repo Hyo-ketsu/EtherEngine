@@ -12,15 +12,19 @@ namespace EditorUI {
     /// <summary>UIとエンジンそれぞれでロックを行うクラス</summary>
     public abstract class LogicLockObject : IDisposable {
         /// <summary>コンストラクタ</summary>
-        public LogicLockObject() {
+        /// <param name="lockObject">ロックに使用するオブジェクト</param>
+        public LogicLockObject(object lockObject) {
             lock (this) {
+                m_lockObject = lockObject;
+
                 if (ms_isThisThreadLock.Value == true) return;
 
-                Monitor.Enter(ms_lockObject);
+                Monitor.Enter(m_lockObject);
             }
         }
         /// <summary>ファイナライザー</summary>
         ~LogicLockObject() {
+            // @ MEMO : ファイナライザでDisposeが呼ばれる = GCが行われるまでロックしっぱし。警告する？
             Dispose();
         }
         /// <summary></summary>
@@ -28,8 +32,8 @@ namespace EditorUI {
             if (m_isDispose) return;
             lock (this) {
                 //----- ロックを解除する
-                var isGetLock = Monitor.TryEnter(ms_lockObject);
-                if (isGetLock) Monitor.Exit(ms_lockObject);
+                var isGetLock = Monitor.TryEnter(m_lockObject);
+                if (isGetLock) Monitor.Exit(m_lockObject);
                 m_isDispose = true;
             }
         }
@@ -37,7 +41,7 @@ namespace EditorUI {
 
         private bool m_isDispose = false;
         /// <summary>ロックオブジェクト</summary>
-        static protected object ms_lockObject = new();
+        private object m_lockObject;
         /// <summary>自身のスレッドでロックされているか</summary>
         static protected ThreadLocal<bool> ms_isThisThreadLock = new(false);
     }
@@ -46,44 +50,51 @@ namespace EditorUI {
     /// <summary>エンジン側ロックオブジェクト</summary>
     public class EngineLock : LogicLockObject {
         /// <summary>コンストラクタ</summary>
-        public EngineLock()
-            : base() { 
+        /// <param name="lockObject">ロックに使用するオブジェクト</param>
+        public EngineLock(object lockObject)
+            : base(lockObject) { 
         }
     }
     /// <summary>UI側ロックオブジェクト</summary>
     internal class UILock : LogicLockObject {
         /// <summary>コンストラクタ</summary>
-        public UILock() 
-            : base() {
+        /// <param name="lockObject">ロックに使用するオブジェクト</param>
+        public UILock(object lockObject)
+            : base(lockObject) {
         }
     }
 
 
     /// <summary>エンジン側とUI側で使用されるオブジェクト</summary>
     /// <typeparam name="DataType">保持している型</typeparam>
-    public class AtomicData<DataType> {
+    public class EditorAtomic<DataType> {
         /// <summary>コンストラクタ</summary>
         /// <param name="data">保持させるデータ</param>
-        public AtomicData(DataType data) {
+        /// <param name="lockObject">ロックに使用するobject</param>
+        public EditorAtomic(DataType data, object lockObject) {
             m_data = data;
+            m_lockObject = lockObject;
         }
 
 
-        public AtomicData<CastDataType>? GetCast<CastDataType>() where CastDataType : class,DataType {
+        /// <summary>データをキャストして渡す</summary>
+        /// <typeparam name="CastDataType"></typeparam>
+        /// <returns></returns>
+        public EditorAtomic<CastDataType>? GetCast<CastDataType>() where CastDataType : class,DataType {
             var data = m_data as CastDataType;
-            return data != null ? new(data) : null;
+            return data != null ? new(data, m_lockObject) : null;
         }
 
 
         /// <summary>エンジン側ロックを獲得する</summary>
         /// <returns></returns>
         public (EngineLock,DataType) GetEngineLock() {
-            return new(new EngineLock(), m_data);
+            return new(new EngineLock(m_lockObject), m_data);
         }
         /// <summary>UI側ロックを獲得する</summary>
         /// <returns></returns>
         internal (UILock,DataType) GetUILock() {
-            return new(new UILock(), m_data);
+            return new(new UILock(m_lockObject), m_data);
         }
         /// <summary>ロックしないでデータを取得する</summary>
         /// <returns></returns>
@@ -95,5 +106,7 @@ namespace EditorUI {
 
         /// <summary>保持しているデータ</summary>
         private DataType m_data;
+        /// <summary>ロックに使用するオブジェクト</summary>
+        private object m_lockObject;
     }
 }

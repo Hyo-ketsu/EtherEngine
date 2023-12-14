@@ -120,27 +120,10 @@ namespace EtherEngine {
             throw EditorException("Exception! pos and look are the same coordinates.");
         }
     }
-}
-
-
-//----- CameraBase定義
-namespace EtherEngine {
-    // コンストラクタ
-    CameraBase::CameraBase(const Eigen::Vector3f& pos, const Eigen::Vector3f& look)
-        : CameraBase(CameraData(pos,look)) {
-    }
-    // コンストラクタ
-    CameraBase::CameraBase(const CameraData& data) 
-        : m_cameraData(data)
-        , m_id(CameraStorage::Get()->AddData(*this)) {
-    }
-    // デストラクタ
-    CameraBase::~CameraBase(void) {
-    }
 
 
     // ビュー行列を取得する
-    Eigen::Matrix4f CameraBase::GetView(const bool isTranspose) const {
+    Eigen::Matrix4f CameraData::GetView(const bool isTranspose) const {
         //----- 変数宣言
         DirectX::XMFLOAT3 pos;
         DirectX::XMFLOAT3 look;
@@ -148,9 +131,9 @@ namespace EtherEngine {
         Eigen::Matrix4f ret;
 
         //----- 初期化
-        MathConverter::EigenToDX(m_cameraData.GetPos(), &pos);
-        MathConverter::EigenToDX(m_cameraData.GetLook(), &look);
-        MathConverter::EigenToDX(m_cameraData.GetUp(), &up);
+        MathConverter::EigenToDX(GetPos(), &pos);
+        MathConverter::EigenToDX(GetLook(), &look);
+        MathConverter::EigenToDX(GetUp(), &up);
 
         //----- ビュー行列計算
         auto view = DirectX::XMMatrixLookAtLH(
@@ -159,7 +142,7 @@ namespace EtherEngine {
 
         //----- 転置
         if (isTranspose) view = DirectX::XMMatrixTranspose(view);
-        
+
         //----- 変換
         MathConverter::DXToEigen(view, &ret);
 
@@ -167,12 +150,12 @@ namespace EtherEngine {
         return ret;
     }
     // プロジェクション行列を取得する
-    Eigen::Matrix4f CameraBase::GetProjection(const bool isTranspose) const {
+    Eigen::Matrix4f CameraData::GetProjection(const bool isTranspose) const {
         //----- 変数宣言
         Eigen::Matrix4f ret;
 
         //----- プロジェクション行列計算
-        auto projection = DirectX::XMMatrixPerspectiveFovLH(m_cameraData.GetFovy(), m_cameraData.GetAspect(), m_cameraData.GetNear(), m_cameraData.GetFar());
+        auto projection = DirectX::XMMatrixPerspectiveFovLH(GetFovy(), GetAspect(), GetNear(), GetFar());
 
         //----- 転置
         if (isTranspose) projection = DirectX::XMMatrixTranspose(projection);
@@ -183,18 +166,47 @@ namespace EtherEngine {
         //----- 返却
         return ret;
     }
+}
+
+
+//----- CameraBase定義
+namespace EtherEngine {
+    // コンストラクタ
+    CameraBase::CameraBase(const Eigen::Vector3f& pos, const Eigen::Vector3f& look, const bool isRegister, const int priority)
+        : CameraBase(CameraData(pos, look), isRegister, priority) {
+    }
+    // コンストラクタ
+    CameraBase::CameraBase(const CameraData& data, const bool isRegister, const int priority)
+        : m_cameraData(std::make_shared<CameraData>(data)) {
+        if (isRegister) {
+            m_id = CameraSystem::Get()->AddData(std::weak_ptr<CameraData>(m_cameraData), priority);
+        }
+    }
+    // デストラクタ
+    CameraBase::~CameraBase(void) {
+    }
+
+
+    // ビュー行列を取得する
+    Eigen::Matrix4f CameraBase::GetView(const bool isTranspose) const {
+        return m_cameraData->GetView();
+    }
+    // プロジェクション行列を取得する
+    Eigen::Matrix4f CameraBase::GetProjection(const bool isTranspose) const {
+        return m_cameraData->GetProjection();
+    }
 
 
     // 外部出力する
     Json CameraBase::Output(void) {
         nlohmann::json json;
 
-        json["CameraBase"] = m_cameraData.Output();
+        json["CameraBase"] = m_cameraData->Output();
 
         return json;
     }
     // 入力する
     void CameraBase::Input(const Json& input) {
-        m_cameraData.Input(input["CameraBase"]);
+        m_cameraData->Input(input["CameraBase"]);
     }
 }

@@ -4,6 +4,12 @@
 #include <DirectX/stdafx/DirectXInclude.h>
 
 
+#include <ImGUI/stdafx/ImGUIStdafx.h>
+#include <IMGUI/imgui.h>
+#include <IMGUI/Platform/imgui_impl_dx11.h>
+#include <IMGUI/Platform/imgui_impl_win32.h>
+
+
 #include <msclr/gcroot.h>
 #include <vcclr.h>
 

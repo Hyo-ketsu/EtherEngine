@@ -20,7 +20,7 @@ namespace EditorUI {
     /// FileExplorerWindow.xaml の相互作用ロジック
     /// </summary>
     [CreatedWindow(en:"Explorer", jp:"エクスプローラー")]
-    public partial class FileExplorerWindow {
+    public partial class FileExplorerWindow : UserControl {
         public FileExplorerWindow() {
             InitializeComponent();
 

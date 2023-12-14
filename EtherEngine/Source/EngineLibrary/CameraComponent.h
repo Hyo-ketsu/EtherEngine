@@ -7,8 +7,8 @@
 
 
 //----- CameraComponent ’è‹`
+//#pragma managed
 namespace EtherEngine {
-#ifdef _ENGINELIBRARY
     public ref class CameraComponent : public UserBaseComponent {
     public: 
         // ‰Šú‰»ˆ—
@@ -23,7 +23,6 @@ namespace EtherEngine {
     protected:
         [Attribute::Serialize] UnmanageMaintainer<CameraBase> m_camera;   // ƒJƒƒ‰î•ñ
     }; 
-#endif
 }
 
 

@@ -24,6 +24,6 @@ namespace EtherEngine {
         : mc_shape(shape)
         , m_type(type) 
         , m_offset(offset)
-        , m_id(StorageSystem<CollisionBase>::Get()->AddData(*this)) {
+        , m_id(/*CameraSystem<CollisionBase>::Get()->AddData(*this)*/) {
     }
 }

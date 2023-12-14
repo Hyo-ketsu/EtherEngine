@@ -71,8 +71,8 @@ namespace EtherEngine {
 namespace EtherEngine {
     // コンストラクタ
     GlobalTimer::GlobalTimer(void) 
-        : m_firstTime(nullptr) 
-        , m_updateTime(nullptr) {
+        : m_firstTime(new TimePointer(std::chrono::steady_clock::now()))
+        , m_updateTime(new TimePointer(*m_firstTime)) {
     }
     // デストラクタ
     GlobalTimer::~GlobalTimer(void) {
@@ -83,8 +83,6 @@ namespace EtherEngine {
 
     // 初期化
     void GlobalTimer::Init(void) {
-        m_firstTime = new TimePointer(std::chrono::steady_clock::now());
-        m_updateTime = new TimePointer(*m_firstTime);
     }
     // 更新
     void GlobalTimer::Update(void) {
@@ -92,7 +90,6 @@ namespace EtherEngine {
     }
     // 終了
     void GlobalTimer::Uninit(void) {
-
     }
 
 

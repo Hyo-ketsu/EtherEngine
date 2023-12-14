@@ -1,6 +1,7 @@
 #ifndef I_DXWINDOWRENDER_H
 #define I_DXWINDOWRENDER_H
 #include <Base/IDClass.h>
+#include <Base/CameraBase.h>
 #include <DirectX/ComPointer.h>
 
 
@@ -29,6 +30,7 @@ namespace EtherEngine {
         // @ Arg4 : フルスクリーン指定
         // @ Arg5 : ビデオカード指定
         // @ Arg6 : ファクトリ指定
+        // @ Arg7 : ウィンドウが保持しているID
         DXWindowRender(DirectXRender* directX, const Eigen::Vector2i size, const HWND& hWnd, const bool fullScreen, IDXGIAdapter1* adapter, IDXGIFactory1* factory);
         // デストラクタ
         DXWindowRender(void);
@@ -36,7 +38,9 @@ namespace EtherEngine {
 
         // IDゲッター
         const IDClass& GetId(void) const { return m_id; }
-        // DirectXゲッター
+        // ウィンドウIDアクセサー
+        ullint& AccessWindowId(void) { return m_windowId; }
+        // DirectXゲッター 
         DirectXRender* const GetDirectX(void) const { return m_directX; }
         // DirectX生存ゲッター
         // @ Ret  : 生存していたら true 
@@ -47,10 +51,6 @@ namespace EtherEngine {
         ID3D11RenderTargetView* const GetRenderTargetView(void) const { return m_rtv; }
         // 深度バッファーゲッター
         ID3D11DepthStencilView* const GetDepthStencilView(void) const { return m_dsv; }
-        // IDゲッター
-        const IDClass& GetCameraID(void) const { return m_mainCameraID; }
-        // IDセッター
-        void SetCameraID(const IDClass& in) { m_mainCameraID = in; }
         // 背景色アクセサー
         Eigen::Vector4f AccessBackColor(void) { return m_backColor; }
 
@@ -59,19 +59,20 @@ namespace EtherEngine {
         void BeginDraw(void);
         // 描画処理
         // @ Ret  : 描画したか
-        bool Draw(void);
+        // @ Arg1 : カメラ情報
+        bool Draw(const CameraData& cameraData);
         // 描画後処理
         void EndDraw(void);
 
     private:
-        IDClass m_id;                        // 自身のid
+        IDClass m_id;                        // 自身のID
+        ullint m_windowId;                   // ウィンドウが保持しているID
         DirectXRender* m_directX;            // リソース
         std::weak_ptr<void> m_dxEnable;      // リソースの生存確認用
         ComPtr<IDXGISwapChain> m_swapChain;  // スワップチェイン
         ID3D11RenderTargetView* m_rtv;       // レンダーターゲット
         ID3D11DepthStencilView* m_dsv;       // 
         ID3D11DepthStencilState* m_dss;      //
-        IDClass m_mainCameraID;              // メインカメラID
         Eigen::Vector4f m_backColor;         // 背景色
     };
 }

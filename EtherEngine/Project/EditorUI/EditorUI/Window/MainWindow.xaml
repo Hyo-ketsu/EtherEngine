@@ -12,26 +12,16 @@
    <ma:MetroWindow.DataContext>
       <local:MainVM/>
    </ma:MetroWindow.DataContext>
-   
-   <ma:MetroWindow.Resources>
-      <!-- Menuの既定のスタイルを指定 -->
-      <Style TargetType="Menu" BasedOn="{StaticResource {x:Type Menu}}"/>
-      <!-- MenuItemの既定のスタイルを指定 -->
-      <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}"/>
-   </ma:MetroWindow.Resources>
-   
    <Grid>
       <Grid.RowDefinitions>
-         <RowDefinition Height="20"/>
-         <RowDefinition Height="15"/>
+         <RowDefinition Height="auto"/>
          <RowDefinition Height="*"/>
-         <RowDefinition Height="15"/>
       </Grid.RowDefinitions>
-
+      
       <!-- メニュー -->
-      <Menu Grid.Row="0" Name="Menu">
-         <MenuItem Header="Main"/>
-         <MenuItem Header="Window" ItemsSource="{Binding CreateWindow}">
+      <Menu Grid.Row="0">
+         <MenuItem Header="Main" Foreground="Black"/>
+         <MenuItem Header="Window" ItemsSource="{Binding CreateWindow}" Foreground="Black">
             <MenuItem.ItemContainerStyle>
                <Style TargetType="MenuItem">
                   <Setter Property="Header" Value="{Binding Name}" />
@@ -39,15 +29,13 @@
                </Style>
             </MenuItem.ItemContainerStyle>
          </MenuItem>
-         <MenuItem Header="UserWindow"/>
+         <MenuItemEx Header="UserWindow" Foreground="Black"/>
       </Menu>
 
       <!-- ウィンドウ本体 -->
-      <Grid Grid.Row="1">
-         <av:DockingManager Grid.Row="2" x:Name="DockManager">
-            <av:LayoutRoot x:Name="DockRoot">
-            </av:LayoutRoot>
-         </av:DockingManager>
-      </Grid>
+      <av:DockingManager Grid.Row="1" x:Name="DockManager">
+         <av:LayoutRoot x:Name="DockRoot">
+         </av:LayoutRoot>
+      </av:DockingManager>
    </Grid>
 </ma:MetroWindow>

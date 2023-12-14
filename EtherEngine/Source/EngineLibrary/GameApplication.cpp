@@ -3,6 +3,7 @@
 #include <Base/WindowsDefine.h>
 #include <Base/GameObjectUpdater.h>
 #include <Base/BaseInput.h>
+#include <Base/CameraStorage.h>
 #include <EngineLibrary/ManageFunctionInit.h>
 
 
@@ -80,7 +81,10 @@ namespace EtherEngine {
                 m_dxRender.GetAtomicData().AccessWindowRenders()[0].BeginDraw();
 
                 //----- •`‰æˆ—
-                m_dxRender.GetAtomicData().AccessWindowRenders()[0].Draw();
+                auto camera = CameraSystem::Get()->GetMainData();
+                if (camera.has_value()) {
+                    m_dxRender.GetAtomicData().AccessWindowRenders()[0].Draw(*camera);
+                }
 
                 //----- •`‰æŒãˆ—
                 m_dxRender.GetAtomicData().AccessWindowRenders()[0].EndDraw();

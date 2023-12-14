@@ -45,11 +45,7 @@ namespace EtherEngine {
         // @ Arg1 : フレームバッファの幅
         // @ Arg2 : DirectXを割り当てるウィンドウ
         // @ Arg3 : フルスクリーン指定
-        // @ Arg4 : 描画時に行う処理
-        // @ Arg5 : ウィンドウ生存チェック関数
-        // @ Arg6 : その他ウィンドウ処理
-        IDClass CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen, 
-            const DrawFunctionLambda& drwaFunction, const WindowEnableLambda& enableFunction, const WindowFunctionLambda& windowFunction);
+        IDClass CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen);
 
 
         // ウィンドウをIDで取得する

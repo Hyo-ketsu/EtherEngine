@@ -46,9 +46,7 @@ namespace EtherEngine {
 
 	// 初期化関数
 	void DirectXRender::Init(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen) {
-		//----- 作成
-		DrawFunctionLambda func = [](Eigen::Matrix4f view, Eigen::Matrix4f projection) { GameObjectUpdater::Get()->Draw(view, projection); };
-        CreateDrawWindow(size, hWnd, fullScreen, func, []() -> bool {return true; }, WindowFunctionLambda());
+        CreateDrawWindow(size, hWnd, fullScreen);
 	}
 	// 終了処理
 	void DirectXRender::Uninit(void) {
@@ -62,8 +60,7 @@ namespace EtherEngine {
 
 
     // ウィンドウを作成する
-    IDClass DirectXRender::CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen, 
-        const DrawFunctionLambda& drwaFunction, const WindowEnableLambda& enableFunction, const WindowFunctionLambda& windowFunction) {
+    IDClass DirectXRender::CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen) {
         //----- ビデオカードの検索
         IDXGIFactory1* factory;
         IDXGIAdapter1* adapter;
@@ -86,7 +83,7 @@ namespace EtherEngine {
         }
 
         //----- 作成
-        m_windowRenders.emplace_back(this, size, hWnd, fullScreen, adapter, factory, drwaFunction, enableFunction, windowFunction);
+        m_windowRenders.emplace_back(this, size, hWnd, fullScreen, adapter, factory);
         auto& ret = m_windowRenders.back().GetId();
 
         if (adapter) adapter->Release();

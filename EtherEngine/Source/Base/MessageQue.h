@@ -39,7 +39,7 @@ namespace EtherEngine {
 
     private:
         std::vector<std::variant<ArgsType...>> m_messages;  // 格納メッセージ
-        std::shared_ptr<Mutex> m_mutex;
+        Mutex m_mutex;
     };
 }
 
@@ -54,7 +54,7 @@ namespace EtherEngine {
     template <MessageTypeConcept MessageType>
     void MessageQue<ArgsType...>::Send(const MessageType& message) {
         //----- ロック取得
-        auto lock = m_mutex->KeySpinLock();
+        auto lock = m_mutex.KeySpinLock();
 
         //----- メッセージ追加
         m_messages.push_back(std::variant<ArgsType...>(message));
@@ -64,7 +64,7 @@ namespace EtherEngine {
     template <MessageTypeConcept ...ArgsType>
     std::optional<std::variant<ArgsType...>> MessageQue<ArgsType...>::Get(void) {
         //----- ロック取得
-        auto lock = m_mutex->KeySpinLock();
+        auto lock = m_mutex.KeySpinLock();
         
         //----- メッセージ取得
         if (m_messages.size() < 1) {
@@ -83,7 +83,7 @@ namespace EtherEngine {
     template <MessageTypeConcept ...ArgsType>
     uint MessageQue<ArgsType...>::GetMessageCount(void) {
         //----- ロック取得
-        auto lock = m_mutex->KeySpinLock();
+        auto lock = m_mutex.KeySpinLock();
 
         //----- 返却
         return m_messages.size();

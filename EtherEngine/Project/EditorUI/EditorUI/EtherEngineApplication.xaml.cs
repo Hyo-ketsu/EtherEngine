@@ -32,29 +32,33 @@ namespace EditorUI {
         /// <param name="mainFunction">呼び出すメイン関数</param>
         public void Init(EtherEngineMainFunction mainFunction) {
             //----- 変数宣言
+            bool isLock = false;
             MainWindow? mainWindow = null;
 
             //----- UI関連処理
             Dispatcher.Invoke(() => {
                 mainWindow = new MainWindow();
                 mainWindow.Show();
+
+                //----- スタートアップ実行
+                if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
+                    //----- 存在する。
+                    // @ MEMO : 未記述
+                }
+                else {
+                    //----- 存在しない。スタートアップウィンドウ起動
+                    var startup = new StartupWindow();
+                    startup.ShowDialog();
+                }
+
+                isLock = true;
             });
 
             //----- メイン関数スレッド立ち上げ
             var startFunction = new ThreadStart(() => {
                 try {
+                    while (isLock == false) { }
                     while (mainWindow == null) { }
-
-                    //----- スタートアップ実行
-                    if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
-                        //----- 存在する。
-                        // @ MEMO : 未記述
-                    }
-                    else {
-                        //----- 存在しない。スタートアップウィンドウ起動
-                        var startup = new StartupWindow();
-                        startup.Show();
-                    }
 
                     int? width = null;
                     int? height = null;

@@ -17,7 +17,7 @@ namespace EtherEngine {
         if (m_camera.HasValue() == false) {
             auto look = GetGameObject()->GetTransform().GetPostion();
             look.z() -= 1;
-            m_camera.SetValue(CameraBase(GetGameObject()->GetTransform().GetPostion(), look));
+            m_camera.SetValue(CameraBase(GetGameObject()->GetTransform().GetPostion(), look, true, 0)); // @ MEMO : ‰¼‚¤‚¿
         }
     }
     // XVˆ—
