@@ -20,16 +20,17 @@
       
       <!-- メニュー -->
       <Menu Grid.Row="0">
-         <MenuItem Header="Main" Foreground="Black"/>
+         <MenuItem Header="Main"/>
          <MenuItem Header="Window" ItemsSource="{Binding CreateWindow}" Foreground="Black">
             <MenuItem.ItemContainerStyle>
                <Style TargetType="MenuItem">
                   <Setter Property="Header" Value="{Binding Name}" />
-                  <Setter Property="Command" Value="{Binding CreateCommnad}" />
+                  <Setter Property="Command" Value="{Binding CreateCommnad}"/>
+                  <Setter Property="CommandParameter" Value="{Binding WindowType}"/>
                </Style>
             </MenuItem.ItemContainerStyle>
          </MenuItem>
-         <MenuItemEx Header="UserWindow" Foreground="Black"/>
+         <MenuItem Header="UserWindow" Foreground="Black"/>
       </Menu>
 
       <!-- ウィンドウ本体 -->

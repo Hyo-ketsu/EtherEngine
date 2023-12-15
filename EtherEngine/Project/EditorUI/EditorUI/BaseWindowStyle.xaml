@@ -10,7 +10,7 @@
 
       <!-- Material Design -->
       <theme:BundledTheme
-                    BaseTheme="Dark"
+                    BaseTheme="Light"
                     PrimaryColor="Teal"
                     SecondaryColor="Green"/>
       <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

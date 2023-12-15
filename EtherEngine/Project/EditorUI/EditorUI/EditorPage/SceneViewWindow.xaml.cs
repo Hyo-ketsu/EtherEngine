@@ -24,7 +24,7 @@ namespace EditorUI {
     [CreatedWindow("Scene View", "シーン ビュー")]
     public partial class SceneViewWindow : System.Windows.Controls.UserControl, IUserControlClose {
         /// <summary>コンストラクタ</summary>
-        internal SceneViewWindow() {
+        public SceneViewWindow() {
             //----- 初期化
             InitializeComponent();
 
@@ -43,9 +43,6 @@ namespace EditorUI {
         /// <param name="e"></param>
         /// <exception cref="Exception"></exception>
         public void WindowsFormsHostSizeChanged(object sender, SizeChangedEventArgs e) {
-            var windowsFormsHostPanel = (System.Windows.Forms.Panel)sender;
-            if (windowsFormsHostPanel != null) { throw new Exception(); }
-
             //----- 現在のサイズを取得
             var vm = DataContext as SceneViewVM;
             vm.NewWindowSize = new Vector2((float)e.NewSize.Width, (float)e.NewSize.Height);

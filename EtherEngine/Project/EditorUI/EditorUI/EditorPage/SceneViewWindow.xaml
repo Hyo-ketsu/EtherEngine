@@ -16,7 +16,7 @@
          </Menu>
 
          <!-- シーン表示部分 -->
-         <WindowsFormsHost Grid.Row="1" MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged">
+         <WindowsFormsHost MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged">
             <wf:Panel x:Name="SceneViewWindowForms"/>
          </WindowsFormsHost>
       </StackPanel>

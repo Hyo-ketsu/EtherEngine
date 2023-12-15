@@ -18,18 +18,22 @@ namespace EditorUI {
     /// <summary>ウィンドウの生成情報</summary>
     public class CreateWindowData {
         /// <summary>コンストラクタ</summary>
-        /// <param name="name"></param>
-        /// <param name="createCommnad"></param>
-        public CreateWindowData(string name, Action<Type> createCommnad) {
+        /// <param name="name">ウィンドウ名</param>
+        /// <param name="windowType">生成するウィンドウのType</param>
+        /// <param name="createCommnad">ウィンドウの生成Action</param>
+        public CreateWindowData(string name, Type windowType, Action<Type, string> createCommnad) {
             Name = name;
+            WindowType = windowType;
             CreateCommnad.Subscribe(createWindow => {
-                createCommnad(createWindow);
+                createCommnad(createWindow, Name);
             });
         }
 
 
         /// <summary>ウィンドウ名</summary>
         public string Name { get; set; }
+        /// <summary>生成するウィンドウのType</summary>
+        public Type WindowType { get; set; }
         /// <summary>ウィンドウ生成のコマンド</summary>
         public ReactiveCommand<Type> CreateCommnad { get; set; } = new();
     }
@@ -55,35 +59,42 @@ namespace EditorUI {
             var types = Assembly.GetExecutingAssembly().GetTypes();
             var windowTypes = types.Where(
                 type => 
-                type.GetCustomAttributes(typeof(UseWindowAttribute),true).Any() && 
+                type.GetCustomAttributes(typeof(CreatedWindowAttribute),true).Any() && 
                 type.IsSubclassOf(typeof(UserControl))).ToArray();
 
             foreach (var window in windowTypes) {
-                var action = new Action<Type>(createWindowType => {
+                var action = new Action<Type, string>((createWindowType, Name) => {
                     //----- Nullなら例外出力
                     if (LayoutRoot == null) throw new NullReferenceException();
                     if (DockingManager == null) throw new NullReferenceException();
 
                     //----- ウィンドウを作成する
-                    var window = Activator.CreateInstance(createWindowType) as UserControl;
-                    if (window == null) throw new NullReferenceException();
+                    var window = Activator.CreateInstance(createWindowType);
+                    var useControl = window as UserControl;
+                    if (useControl == null) throw new NullReferenceException();
+
+                    //----- 変数宣言
+                    uint groupCount = 0;
+                    LayoutDocumentPaneGroup? group = null;
 
                     //----- 追加する
                     // @ Memo : MeinWindowのPaneがない、もしくはPaneのみであればそこに生成、
                     // @ Memo : 複数に分割されていればフロートで生成します
-                    if (LayoutRoot.ChildrenCount < 1) {
+                    if (LayoutRoot.RootPanel.ChildrenCount < 1) {
                         //----- 子パネルがない。追加
                         var pane = new LayoutDocumentPane();
                         LayoutRoot.RootPanel.Children.Add(pane);
                     }
-                    foreach (var children in LayoutRoot.Children) {
-                        //----- LayoutDocumentPaneか?
+                    foreach (var children in LayoutRoot.RootPanel.Children) {
+                        //----- LayoutDocumentPaneもしくはLayoutDocumentPaneGroupか?
                         var pane = children as LayoutDocumentPane;
+                        group = children as LayoutDocumentPaneGroup;
+                        if (group != null) groupCount++;
                         if (pane == null) continue;
 
                         //----- LayoutDocumentPaneが存在する。追加
                         var document = new LayoutDocument();
-                        document.Title = window.Name;
+                        document.Title = Name;
                         document.Content = window;
 
                         //----- 終了時処理を追加できるのであれば追加する
@@ -95,16 +106,23 @@ namespace EditorUI {
                         return;
                     }
 
-                    //----- 全てLayoutDocumentPaneGroupだった。フロートで生成
-                    var anchorable = new LayoutAnchorable() {
-                        Title = window.Name,
-                        Content = window
-                    };
-                    anchorable.AddToLayout(DockingManager, AnchorableShowStrategy.Most);
-                    anchorable.Float();
+                    // @ MEMO : 現状不要だと思うけど必要になったら実装して
+                    if (false) { } //groupCount == 1) { //----- LayoutDocumentPaneGroupのみ }
+                    else { 
+                        //----- LayoutDocumentPaneGroupがないor全てだった。フロートで生成
+                        var anchorable = new LayoutAnchorable() {
+                            Title = Name,
+                            Content = window
+                        };
+                        anchorable.AddToLayout(DockingManager, AnchorableShowStrategy.Most);
+                        anchorable.Float();
+                    }
                 });
 
-                var windowData = new CreateWindowData(window.Name, action);
+                //----- 生成追加する
+                var createWindowAttribute = window.GetCustomAttribute<CreatedWindowAttribute>(false);
+                if (createWindowAttribute == null) throw new NullReferenceException();  // 念のため null チェック
+                var windowData = new CreateWindowData(createWindowAttribute.ShowText.Text, window, action);
                 CreateWindow.Add(windowData);
             }
 
