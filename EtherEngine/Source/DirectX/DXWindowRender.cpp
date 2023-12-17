@@ -37,7 +37,7 @@ namespace EtherEngine {
 		sd.OutputWindow = hWnd;			// 関連付けるウインドウ
 		sd.Windowed = fullScreen ? FALSE : TRUE;
 		sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-		factory->CreateSwapChain(directX->GetDevice(), &sd, m_swapChain.GetEditable());
+		hr = factory->CreateSwapChain(directX->GetDevice(), &sd, m_swapChain.GetEditable());
 		if (FAILED(hr)) throw EditorException(std::to_string(hr).c_str());
 
 		//--- レンダーターゲット作成

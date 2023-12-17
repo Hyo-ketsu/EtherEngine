@@ -12,7 +12,7 @@ namespace EtherEngine {
         // @ Arg1 : リスト
         // @ Arg2 : インデックス
         generic <typename Type>
-        static Type ListGet(System::Collections::Generic::List<Type>^ list, uint index);
+        static Type ListGet(System::Collections::Generic::List<Type>^ list, int index);
     };
 }
 

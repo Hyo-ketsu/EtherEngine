@@ -29,10 +29,10 @@ namespace EditorUI {
             SceneViewTarget = sceneView; 
 
             //----- 生成時は即サイズが変更されたものとする
-            NewWindowSize = new Vector2(size.X, size.Y);
+            m_newWindowSize = new Vector2(size.X, size.Y);
 
             //----- 自身をメッセージとして送信
-            EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM>>.AddEngineMessage(new(SceneViewMessageType.Add, new(this, LockObject)));
+            EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM>>.AddUIMessage(new(SceneViewMessageType.Add, new(this, LockObject)));
         }
         /// <summary>削除時処理</summary>
         /// <param name="sender"></param>
@@ -53,7 +53,7 @@ namespace EditorUI {
             get {
                 var ret = m_newWindowSize;
                 m_newWindowSize = null;
-                return m_newWindowSize;
+                return ret;
             }
             internal set {
                 if (m_newWindowSize != value) {

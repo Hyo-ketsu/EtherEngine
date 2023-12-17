@@ -121,7 +121,10 @@ namespace EtherEngine {
                 //----- 前準備
                 m_sceneView->Add(window->Data);
                 auto size = window->Data->NoLock->NewWindowSize;    // このウィンドウのサイズ
-                if (size.HasValue == false) throw std::exception("Error! Is SceneView size?");
+                while (size.HasValue == false) {
+                    ThreadingUtility::ThisThreadSleep();
+                    size = window->Data->NoLock->NewWindowSize;
+                }
 
                 //----- 新規に作成
                 auto id = m_dxRender->GetAtomicData().CreateDrawWindow(Eigen::Vector2i(size.Value.X, size.Value.Y), static_cast<HWND>(window->Data->NoLock->SceneViewTarget.ToPointer()), false);

@@ -5,6 +5,9 @@
 namespace EtherEngine {
 	// コンストラクタ
 	DirectXRender::DirectXRender(void) {
+        //----- 変数宣言
+        HRESULT hresult = E_FAIL;
+
         //----- ドライバの種類選択
         D3D_DRIVER_TYPE driverTypes[] = {
             D3D_DRIVER_TYPE_HARDWARE,	// GPUで描画
@@ -34,8 +37,16 @@ namespace EtherEngine {
 
         for (uint driverTypeIndex = 0; driverTypeIndex < numDriverTypes; ++driverTypeIndex) {
             driverType = driverTypes[driverTypeIndex];
-            D3D11CreateDevice(NULL, driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
+            hresult = D3D11CreateDevice(NULL, driverType, NULL, createDeviceFlags, featureLevels, numFeatureLevels,
                 D3D11_SDK_VERSION, m_device.GetEditable(), &featureLevel, m_context.GetEditable());
+
+            if (SUCCEEDED(hresult)) {
+                break; 
+            }
+        }
+
+        if (FAILED(hresult)) {
+            throw EditorException("DirectX Init");
         }
 	}
 	// デストラクタ

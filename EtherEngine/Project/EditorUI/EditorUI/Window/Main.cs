@@ -95,10 +95,10 @@ namespace EditorUI {
                         //----- LayoutDocumentPaneが存在する。追加
                         var document = new LayoutDocument();
                         document.Title = Name;
-                        document.Content = window;
+                        document.Content = useControl;
 
                         //----- 終了時処理を追加できるのであれば追加する
-                        var closeInterface = window as IUserControlClose;
+                        var closeInterface = useControl as IUserControlClose;
                         if (closeInterface != null) {
                             document.Closed += closeInterface.CloseEvent;
                         }

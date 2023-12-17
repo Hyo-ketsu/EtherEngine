@@ -2,7 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="EditorUI\Control\SceneViewRenderTarget.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EditorUI\Control\ShowObjectItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\EditorPage\LogWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="EditorUI\EtherEngineApplication.xaml.cs">
@@ -37,7 +43,13 @@
     <Page Update="EditorUI\BaseWindowStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="EditorUI\Control\SceneViewRenderTarget.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditorUI\Control\ShowObjectItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\EditorPage\LogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\EtherEngineApplication.xaml">

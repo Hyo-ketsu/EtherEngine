@@ -41,15 +41,16 @@ namespace EditorUI {
                 mainWindow.Show();
 
                 //----- スタートアップ実行
-                if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
-                    //----- 存在する。
-                    // @ MEMO : 未記述
-                }
-                else {
-                    //----- 存在しない。スタートアップウィンドウ起動
-                    var startup = new StartupWindow();
-                    startup.ShowDialog();
-                }
+                // @ MEMO : ひとまずコメントアウト
+                //if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
+                //    //----- 存在する。
+                //    // @ MEMO : 未記述
+                //}
+                //else {
+                //    //----- 存在しない。スタートアップウィンドウ起動
+                //    var startup = new StartupWindow();
+                //    startup.ShowDialog();
+                //}
 
                 isLock = true;
             });

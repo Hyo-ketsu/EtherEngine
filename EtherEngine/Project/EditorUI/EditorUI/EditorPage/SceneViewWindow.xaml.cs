@@ -29,7 +29,7 @@ namespace EditorUI {
             InitializeComponent();
 
             //----- ViewModel追加
-            DataContext = new SceneViewVM(SceneViewWindowForms.Handle, new Vector2(SceneViewWindowForms.Width, SceneViewWindowForms.Height));
+            DataContext = new SceneViewVM(SceneViewRenderTarget.Handle, new Vector2(SceneViewWindowForms.Width, SceneViewWindowForms.Height));
         }
         /// <summary>削除時処理</summary>
         public void CloseEvent(object? sender, EventArgs e) {
