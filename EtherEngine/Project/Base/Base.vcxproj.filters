@@ -110,13 +110,13 @@
     <ClInclude Include="..\..\Source\Base\CollisionStorage.h">
       <Filter>Collision</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\NonAtomicData.h">
+    <ClInclude Include="..\..\Source\Base\NonExclusionData.h">
       <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\AtomicData.h">
+    <ClInclude Include="..\..\Source\Base\ExclusionData.h">
       <Filter>AtomicData</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Base\Atomic.h" />
+    <ClInclude Include="..\..\Source\Base\ExclusionObject.h" />
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\BaseInput.h" />

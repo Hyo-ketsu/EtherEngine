@@ -52,7 +52,7 @@ namespace EtherEngine {
         ProjectData* m_projectData; // 現在保持しているプロジェクトデータ
         EditorData* m_editorData;   // 現在保持しているエディターデータ
         Handle<DirectXRender>* m_dxRender;  // 保持しているDirectX
-        System::Collections::Generic::List<EditorUI::EditorAtomic<EditorUI::SceneViewVM^>^>^ m_sceneView;    // 保持しているSceneView
+        System::Collections::Generic::List<EditorUI::EditorExclusionObject<EditorUI::SceneViewVM^>^>^ m_sceneView;    // 保持しているSceneView
     };
 }
 

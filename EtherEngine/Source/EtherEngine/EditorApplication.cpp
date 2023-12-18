@@ -34,7 +34,7 @@ namespace EtherEngine {
         , m_projectData(nullptr)
         , m_editorData(nullptr) 
         , m_dxRender(new Handle<DirectXRender>(DirectXRender())) 
-        , m_sceneView(gcnew System::Collections::Generic::List<EditorUI::EditorAtomic<EditorUI::SceneViewVM^>^>(0)) {
+        , m_sceneView(gcnew System::Collections::Generic::List<EditorUI::EditorExclusionObject<EditorUI::SceneViewVM^>^>(0)) {
     }
     // デストラクタ
     EditorApplication::~EditorApplication(void) {
@@ -101,8 +101,8 @@ namespace EtherEngine {
         using namespace EditorUI;
 
         //----- 変数宣言
-        List<MessageObject<SceneViewMessageType, EditorAtomic<SceneViewVM^>^>^>^ sceneViewMessage
-            = gcnew List<MessageObject<SceneViewMessageType, EditorAtomic<SceneViewVM^>^>^>(0);
+        List<MessageObject<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>^>^ sceneViewMessage
+            = gcnew List<MessageObject<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>^>(0);
 
         //----- メインループ
         Timer fpsTimer;
@@ -115,7 +115,7 @@ namespace EtherEngine {
             // シーンウィンドウの追加
             while (true) {
                 //----- ウィンドウの取得(取得できなかったら終了)
-                auto window = EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::Add);
+                auto window = EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::Add);
                 if (window == nullptr) break;
 
                 //----- 前準備
@@ -156,14 +156,14 @@ namespace EtherEngine {
 
             //----- SceneViewのメッセージの取得
             while (true) {
-                auto window = EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::Delete);
+                auto window = EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::Delete);
                 if (window == nullptr) break;
                 sceneViewMessage->Add(window);
             }
             //----- 描画処理
             for (int i = 0; i < m_sceneView->Count; i++) {
                 //----- 各要素の取得
-                auto sceneView = EditorUtility::ListGet<EditorAtomic<SceneViewVM^>^>(m_sceneView,i);
+                auto sceneView = EditorUtility::ListGet<EditorExclusionObject<SceneViewVM^>^>(m_sceneView,i);
                 auto& directXs = m_dxRender->GetAtomicData().AccessWindowRenders();
 
                 //----- ロックの取得

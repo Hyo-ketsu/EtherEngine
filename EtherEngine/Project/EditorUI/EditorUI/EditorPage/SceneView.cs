@@ -32,14 +32,14 @@ namespace EditorUI {
             m_newWindowSize = new Vector2(size.X, size.Y);
 
             //----- 自身をメッセージとして送信
-            EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM>>.AddUIMessage(new(SceneViewMessageType.Add, new(this, LockObject)));
+            EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM>>.AddUIMessage(new(SceneViewMessageType.Add, new(this, LockObject)));
         }
         /// <summary>削除時処理</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public void CloseEvent(object? sender, EventArgs e) {
             lock (LockObject) {
-                EditorMessageQue<SceneViewMessageType, EditorAtomic<SceneViewVM>>.AddEngineMessage(new(SceneViewMessageType.Delete, new(this, LockObject)));
+                EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM>>.AddEngineMessage(new(SceneViewMessageType.Delete, new(this, LockObject)));
             }
         }
 

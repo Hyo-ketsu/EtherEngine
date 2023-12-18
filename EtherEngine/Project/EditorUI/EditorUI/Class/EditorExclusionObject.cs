@@ -66,11 +66,11 @@ namespace EditorUI {
 
     /// <summary>エンジン側とUI側で使用されるオブジェクト</summary>
     /// <typeparam name="DataType">保持している型</typeparam>
-    public class EditorAtomic<DataType> {
+    public class EditorExclusionObject<DataType> {
         /// <summary>コンストラクタ</summary>
         /// <param name="data">保持させるデータ</param>
         /// <param name="lockObject">ロックに使用するobject</param>
-        public EditorAtomic(DataType data, object lockObject) {
+        public EditorExclusionObject(DataType data, object lockObject) {
             m_data = data;
             m_lockObject = lockObject;
         }
@@ -79,7 +79,7 @@ namespace EditorUI {
         /// <summary>データをキャストして渡す</summary>
         /// <typeparam name="CastDataType"></typeparam>
         /// <returns></returns>
-        public EditorAtomic<CastDataType>? GetCast<CastDataType>() where CastDataType : class,DataType {
+        public EditorExclusionObject<CastDataType>? GetCast<CastDataType>() where CastDataType : class,DataType {
             var data = m_data as CastDataType;
             return data != null ? new(data, m_lockObject) : null;
         }

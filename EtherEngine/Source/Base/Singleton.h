@@ -1,8 +1,8 @@
 #ifndef I_SINGLETON_H
 #define I_SINGLETON_H
 #include <Base/Mutex.h>
-#include <Base/AtomicData.h>
-#include <Base/Atomic.h>
+#include <Base/ExclusionData.h>
+#include <Base/ExclusionObject.h>
 
 
 //----- Singleton宣言
@@ -35,7 +35,7 @@ namespace EtherEngine {
         // インスタンスの取得
         // @ Memo : 取得と同時に読み取りロックを取得する
         // @ Ret  : 一個しか存在しないことが明確なインスタンス
-        static AtomicData<SingletonType* const> GetLock(void);
+        static ExclusionData<SingletonType* const> GetLock(void);
 
          
         // インスタンスの明示的解放
@@ -84,8 +84,8 @@ namespace EtherEngine {
     }
     // インスタンスの取得
     template<SingletonConcept SingletonType>
-    AtomicData<SingletonType* const> Singleton<SingletonType>::GetLock(void) {
-        return AtomicData<SingletonType *const>(Get(),
+    ExclusionData<SingletonType* const> Singleton<SingletonType>::GetLock(void) {
+        return ExclusionData<SingletonType *const>(Get(),
             []() -> void { ms_updaetrMutex.Lock(); }, [=]() -> void { ms_updaetrMutex.UnLock(); });
     }
 

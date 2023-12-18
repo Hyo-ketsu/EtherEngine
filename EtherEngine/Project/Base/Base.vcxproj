@@ -68,8 +68,8 @@
     <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\Base\Atomic.h" />
-    <ClInclude Include="..\..\Source\Base\AtomicData.h" />
+    <ClInclude Include="..\..\Source\Base\ExclusionObject.h" />
+    <ClInclude Include="..\..\Source\Base\ExclusionData.h" />
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
     <ClInclude Include="..\..\Source\Base\BaseInput.h" />
     <ClInclude Include="..\..\Source\Base\BaseObject.h" />
@@ -104,7 +104,7 @@
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\Mutex.h" />
-    <ClInclude Include="..\..\Source\Base\NonAtomicData.h" />
+    <ClInclude Include="..\..\Source\Base\NonExclusionData.h" />
     <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
     <ClInclude Include="..\..\Source\Base\ProjectData.h" />

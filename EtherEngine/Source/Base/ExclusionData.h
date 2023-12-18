@@ -1,25 +1,25 @@
-#ifndef I_ATOMICDATA_H
-#define I_ATOMICDATA_H
+#ifndef I_EXCLUSIONDATA_H
+#define I_EXCLUSIONDATA_H
 
 
 namespace EtherEngine {
     // 排他された情報を取得するクラス
     // @ Temp : データの型
     template <class DataType>
-    class AtomicData {
+    class ExclusionData {
     public:
-        AtomicData(const AtomicData<DataType>&) = delete;
-        AtomicData& operator=(AtomicData<DataType>&) = delete;
+        ExclusionData(const ExclusionData<DataType>&) = delete;
+        ExclusionData& operator=(ExclusionData<DataType>&) = delete;
 
         // コンストラクタ
         // @ Arg1 : データ
         // @ Arg2 : コンストラクタで実行される処理
         // @ Arg3 : デストラクタで実行される処理
-        AtomicData(DataType& data, std::function<void(void)> constructor, std::function<void(void)> destructor);
+        ExclusionData(DataType& data, std::function<void(void)> constructor, std::function<void(void)> destructor);
         // デストラクタ
-        ~AtomicData(void) noexcept;
+        ~ExclusionData(void) noexcept;
         // ムーブコンストラクタ
-        AtomicData(AtomicData<DataType>&& move) noexcept;
+        ExclusionData(ExclusionData<DataType>&& move) noexcept;
 
 
         // データを取得する
@@ -43,7 +43,7 @@ namespace EtherEngine {
     // @ Arg2 : コンストラクタで実行される処理
     // @ Arg3 : デストラクタで実行される処理
     template <class DataType>
-    AtomicData<DataType>::AtomicData(DataType& data, std::function<void(void)> constructor, std::function<void(void)> destructor)
+    ExclusionData<DataType>::ExclusionData(DataType& data, std::function<void(void)> constructor, std::function<void(void)> destructor)
         : m_atomicData(data)
         , m_constructor(constructor)
         , m_destructor(destructor) {
@@ -52,13 +52,13 @@ namespace EtherEngine {
     }
     // デストラクタ
     template <class DataType>
-    AtomicData<DataType>::~AtomicData(void) noexcept {
+    ExclusionData<DataType>::~ExclusionData(void) noexcept {
         //----- 終了時ラムダ実行
         if (this->m_destructor != nullptr) this->m_destructor();
     }
     // ムーブコンストラクタ
     template <class DataType>
-    AtomicData<DataType>::AtomicData(AtomicData<DataType>&& move) noexcept
+    ExclusionData<DataType>::ExclusionData(ExclusionData<DataType>&& move) noexcept
         : m_atomicData(move.m_atomicData)
         , m_constructor(move.m_constructor)
         , m_destructor(move.m_destructor) {
@@ -70,11 +70,11 @@ namespace EtherEngine {
     // データを取得する
     // @ Ret  : データ
     template <class DataType>
-    DataType& AtomicData<DataType>::GetData(void) const noexcept {
+    DataType& ExclusionData<DataType>::GetData(void) const noexcept {
         //----- 返却
         return this->m_atomicData;
     }
 }
 
 
-#endif // !I_ATOMICDATA_H
+#endif // !I_EXCLUSIONDATA_H

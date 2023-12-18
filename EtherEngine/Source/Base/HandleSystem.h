@@ -3,7 +3,7 @@
 #include <Base/ConceptUtility.h>
 #include <Base/Singleton.h>
 #include <Base/Random.h>
-#include <Base/Atomic.h>
+#include <Base/ExclusionObject.h>
 #include <Base/IDClass.h>
 
 
@@ -52,11 +52,11 @@ namespace EtherEngine {
         // Handleから排他制御されていない要素を取得する
         // @ Ret  : 取得した要素（optional）
         // @ Arg1 : Handle
-        std::optional<NonAtomicData<Type>> GetNoAtomicItem(const IDClass& handle);
+        std::optional<NonExclusionData<Type>> GetNoAtomicItem(const IDClass& handle);
         // Handleから排他制御された要素を取得する
         // @ Ret  : 取得した要素（optional）
         // @ Arg1 : Handle
-        std::optional<AtomicData<Type>> GetAtomicItem(const IDClass& handle);
+        std::optional<ExclusionData<Type>> GetAtomicItem(const IDClass& handle);
 
 
         // IDから参照数を取得する
@@ -73,7 +73,7 @@ namespace EtherEngine {
         void Delete0ReferenceCounter(const IDClass& handle);
 
 
-        std::unordered_map<IDClass, Atomic<Type>> m_item;     // 保持している要素の連想配列
+        std::unordered_map<IDClass, ExclusionObject<Type>> m_item;     // 保持している要素の連想配列
         std::unordered_map<IDClass, std::shared_ptr<ullint>> m_referenceCounter;    // 参照数
 
         friend class Singleton<HandleSystem<Type>>;
@@ -103,7 +103,7 @@ namespace EtherEngine {
         auto handle = IDClass();
 
         //----- 連想配列に格納
-        Atomic<Type> atomic(std::move(item));
+        ExclusionObject<Type> atomic(std::move(item));
         m_item.emplace(handle, std::move(atomic));
 
         //----- 参照カウンタ追加
@@ -169,16 +169,16 @@ namespace EtherEngine {
     // @ Ret  : 取得した要素（optional）
     // @ Arg1 : Handle
     template <HandleSystemConcept Type>
-    std::optional<NonAtomicData<Type>> HandleSystem<Type>::GetNoAtomicItem(const IDClass& handle) {
+    std::optional<NonExclusionData<Type>> HandleSystem<Type>::GetNoAtomicItem(const IDClass& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 変数宣言
-        auto ret = std::optional<NonAtomicData<Type>>();
+        auto ret = std::optional<NonExclusionData<Type>>();
 
         if (IsItemEnable(handle)) {
             //----- 存在する
-            ret.emplace(m_item.find(handle)->second.GetNonAtomicData());
+            ret.emplace(m_item.find(handle)->second.GetNonExclusionData());
         }
 
         //----- 返却
@@ -188,12 +188,12 @@ namespace EtherEngine {
     // @ Ret  : 取得した要素（optional）
     // @ Arg1 : Handle
     template <HandleSystemConcept Type>
-    std::optional<AtomicData<Type>> HandleSystem<Type>::GetAtomicItem(const IDClass& handle) {
+    std::optional<ExclusionData<Type>> HandleSystem<Type>::GetAtomicItem(const IDClass& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
         //----- 変数宣言
-        auto ret = std::optional<AtomicData<Type>>();
+        auto ret = std::optional<ExclusionData<Type>>();
 
         if (IsItemEnable(handle)) {
             //----- 存在する

@@ -64,10 +64,10 @@ namespace EtherEngine {
 
         // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚Ä‚¢‚È‚¢—v‘f‚ğæ“¾‚·‚é
         // @ Ret  : æ“¾‚µ‚½—v‘f
-        NonAtomicData<Type> GetNoAtomicItem(void) const;
+        NonExclusionData<Type> GetNoAtomicItem(void) const;
         // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚½—v‘f‚ğæ“¾‚·‚é
         // @ Ret  : æ“¾‚µ‚½—v‘f
-        AtomicData<Type> GetAtomicItem(void) const;
+        ExclusionData<Type> GetAtomicItem(void) const;
 
         // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚Ä‚¢‚È‚¢—v‘f‚ğ’¼Úæ“¾‚·‚é
         // @ Ret  : æ“¾‚µ‚½—v‘f
@@ -205,14 +205,14 @@ namespace EtherEngine {
     // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚Ä‚¢‚È‚¢—v‘f‚ğæ“¾‚·‚é
     // @ Ret  : æ“¾‚µ‚½—v‘f
     template<HandleSystemConcept Type>
-    NonAtomicData<Type> Handle<Type>::GetNoAtomicItem(void) const {
+    NonExclusionData<Type> Handle<Type>::GetNoAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetNoAtomicItem(m_id).value();
     }
     // Handle‚©‚ç”r‘¼§Œä‚³‚ê‚½—v‘f‚ğæ“¾‚·‚é
     // @ Ret  : æ“¾‚µ‚½—v‘f
     template<HandleSystemConcept Type>
-    AtomicData<Type> Handle<Type>::GetAtomicItem(void) const {
+    ExclusionData<Type> Handle<Type>::GetAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
         return HandleSystem<Type>::Get()->GetAtomicItem(m_id).value();
     }
