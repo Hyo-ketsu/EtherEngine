@@ -16,11 +16,12 @@ using System.Windows.Shapes;
 
 namespace EditorUI {
     /// <summary>
-    /// ShowObjectItem.xaml の相互作用ロジック
+    /// OldMenuItem.xaml の相互作用ロジック
     /// </summary>
-    public partial class ShowObjectItem : UserControl {
-        public ShowObjectItem() {
+    public partial class OldMenuItem : MenuItem {
+        public OldMenuItem() {
             InitializeComponent();
+            Items.Clear();
         }
     }
 }

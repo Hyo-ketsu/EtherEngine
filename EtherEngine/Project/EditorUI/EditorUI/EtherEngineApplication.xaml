@@ -8,7 +8,7 @@
    <Application.Resources>
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="/EditorUI;component/EditorUI/BaseWindowStyle.xaml"/>
+            <ResourceDictionary Source="/EditorUI;component/EditorUI/Style/BaseWindowStyle.xaml"/>
          </ResourceDictionary.MergedDictionaries>
       </ResourceDictionary>
    </Application.Resources>

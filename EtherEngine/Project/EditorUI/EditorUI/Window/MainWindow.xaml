@@ -13,30 +13,31 @@
       <local:MainVM/>
    </ma:MetroWindow.DataContext>
    <Grid>
-      <Grid.RowDefinitions>
-         <RowDefinition Height="auto"/>
-         <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-      
-      <!-- メニュー -->
-      <Menu Grid.Row="0">
-         <MenuItem Header="Main"/>
-         <MenuItem Header="Window" ItemsSource="{Binding CreateWindow}" Foreground="Black">
-            <MenuItem.ItemContainerStyle>
-               <Style TargetType="MenuItem">
-                  <Setter Property="Header" Value="{Binding Name}" />
-                  <Setter Property="Command" Value="{Binding CreateCommnad}"/>
-                  <Setter Property="CommandParameter" Value="{Binding WindowType}"/>
-               </Style>
-            </MenuItem.ItemContainerStyle>
-         </MenuItem>
-         <MenuItem Header="UserWindow" Foreground="Black"/>
-      </Menu>
+      <DockPanel>
+         <!-- メニュー -->
+         <local:OldMenu DockPanel.Dock="Top">
+            <local:OldMenuItem Header="Main"/>
+            <local:OldMenuItem Header="Window" ItemsSource="{Binding CreateWindow}" Foreground="Black">
+               <local:OldMenuItem.ItemContainerStyle>
+                  <Style TargetType="MenuItem">
+                     <Setter Property="Header" Value="{Binding Name}" />
+                     <Setter Property="Command" Value="{Binding CreateCommnad}"/>
+                     <Setter Property="CommandParameter" Value="{Binding WindowType}"/>
+                  </Style>
+               </local:OldMenuItem.ItemContainerStyle>
+            </local:OldMenuItem>
+            <local:OldMenuItem Header="UserWindow" Foreground="Black"/>
+         </local:OldMenu>
 
-      <!-- ウィンドウ本体 -->
-      <av:DockingManager Grid.Row="1" x:Name="DockManager">
-         <av:LayoutRoot x:Name="DockRoot">
-         </av:LayoutRoot>
-      </av:DockingManager>
+         <!-- 他の情報表示 -->
+         <Grid DockPanel.Dock="Bottom">
+         </Grid>
+
+         <!-- ウィンドウ本体 -->
+         <av:DockingManager x:Name="DockManager">
+            <av:LayoutRoot x:Name="DockRoot">
+            </av:LayoutRoot>
+         </av:DockingManager>
+      </DockPanel>
    </Grid>
 </ma:MetroWindow>
