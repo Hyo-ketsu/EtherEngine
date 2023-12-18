@@ -10,22 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MahApps.Metro.Controls;
 
 
 namespace EditorUI {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// LogWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : MetroWindow {
-        public MainWindow() {
+    [CreatedWindow(en: "Log window", jp: "ログ ウィンドウ")]
+    public partial class LogWindow : UserControl {
+        public LogWindow() {
             InitializeComponent();
-
-            //----- Dockパネルを渡す
-            var vm = DataContext as MainVM;
-            vm.LayoutRoot = DockRoot;
-            vm.DockingManager = DockManager;
         }
     }
 }

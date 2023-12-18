@@ -12,8 +12,8 @@ using Reactive.Bindings;
 
 namespace EditorUI {
     /// <summary>ViewModel</summary>
-    public class ExceptionPopupVM : INotifyCollectionChanged {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+    public class ExceptionPopupVM : INotifyPropertyChanged {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         /// <summary>コンストラクタ</summary>

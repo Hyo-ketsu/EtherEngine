@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="EditorUI.LogWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EditorUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+   <UserControl.DataContext>
+      <local:Log/>
+   </UserControl.DataContext>
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <!-- 各種ボタン表示 -->
+      <Grid>
+         <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+            <Button Width="auto" Content="Clear" Command="{Binding ClearButtonCommand}"/>
+         </StackPanel>
+      </Grid>
+
+      <!-- 実際のログ出力 -->
+      <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Logs}">
+         <DataGrid.Columns>
+            <DataGridTemplateColumn Header="Type">
+               <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                     <TextBlock Text="hoge"/>
+                  </DataTemplate>
+               </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Time">
+               <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                     <TextBlock Text="{Binding LogTime}"/>
+                  </DataTemplate>
+               </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Message">
+               <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                     <TextBlock Text="piyo"/>
+                  </DataTemplate>
+               </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+         </DataGrid.Columns>
+      </DataGrid>
+   </Grid>
+</UserControl>

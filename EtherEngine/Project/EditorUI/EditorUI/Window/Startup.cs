@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,8 +24,8 @@ namespace EditorUI {
 
 
     /// <summary>ViewModel</summary>
-    public class StartupVM : INotifyCollectionChanged {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+    public class StartupVM : INotifyPropertyChanged {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         /// <summary>入力されたパスが正当かチェック</summary>

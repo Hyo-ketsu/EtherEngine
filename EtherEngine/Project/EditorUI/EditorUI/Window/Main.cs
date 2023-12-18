@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
@@ -40,8 +41,8 @@ namespace EditorUI {
 
 
     /// <summary>ViewModel</summary>
-    public class MainVM : INotifyCollectionChanged {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+    public class MainVM : INotifyPropertyChanged {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         /// <summary>コンストラクタ</summary>

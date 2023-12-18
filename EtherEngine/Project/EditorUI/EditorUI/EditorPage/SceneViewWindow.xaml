@@ -14,9 +14,9 @@
          <RowDefinition Height="*"/>
       </Grid.RowDefinitions>
       <!-- シーンメニュー表示 -->
-      <Menu Grid.Row="0">
-         <MenuItem Header="SceneMenu"></MenuItem>
-      </Menu>
+      <local:OldMenu Grid.Row="0">
+         <local:OldMenuItem Header="SceneMenu"></local:OldMenuItem>
+      </local:OldMenu>
 
          <!-- シーン表示部分 -->
       <WindowsFormsHost Grid.Row="1" MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged" x:Name="WindowsFormsHost">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -17,8 +18,8 @@ namespace EditorUI {
 
 
     /// <summary>ViewModel</summary>
-    public class SceneViewVM : INotifyCollectionChanged, IUserControlClose {
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+    public class SceneViewVM : INotifyPropertyChanged, IUserControlClose  {
+        public event PropertyChangedEventHandler? PropertyChanged;
 
 
         /// <summary>コンストラクタ</summary>
