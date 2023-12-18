@@ -68,7 +68,7 @@ namespace EtherEngine {
         IDClass m_id;                        // 自身のID
         ullint m_windowId;                   // ウィンドウが保持しているID
         DirectXRender* m_directX;            // リソース
-        std::weak_ptr<void> m_dxEnable;      // リソースの生存確認用
+        std::weak_ptr<nullptr_t> m_dxEnable; // リソースの生存確認用
         ComPtr<IDXGISwapChain> m_swapChain;  // スワップチェイン
         ID3D11RenderTargetView* m_rtv;       // レンダーターゲット
         ID3D11DepthStencilView* m_dsv;       // 

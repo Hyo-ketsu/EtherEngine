@@ -7,17 +7,17 @@
 namespace EtherEngine {
     // コンストラクタ
     EnableCheckClass::EnableCheckClass(void) {
-        m_sharedPtr = decltype(m_sharedPtr)();
+        m_sharedPtr = std::make_shared<nullptr_t>();
     }
     // コピーコンストラクタ
     EnableCheckClass::EnableCheckClass(const EnableCheckClass& copy) {
-        m_sharedPtr = decltype(m_sharedPtr)();
+        m_sharedPtr = copy.m_sharedPtr;
     }
 
 
     // 生存確認用のキーを取得する
-    std::weak_ptr<void> EnableCheckClass::GetEnableKey(void) {
-        return std::weak_ptr<void>(m_sharedPtr);
+    std::weak_ptr<nullptr_t> EnableCheckClass::GetEnableKey(void) {
+        return std::weak_ptr<nullptr_t>(m_sharedPtr);
     }
 }
 

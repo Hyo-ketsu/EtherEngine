@@ -61,9 +61,9 @@ namespace EtherEngine {
         ////testGameObject.GetAtomicData().AddComponent("TestComponent");
 
         ////----- エディター用カメラ作成
-        //auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();
-        //cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;
-        //auto camera = cameraGameObejct.GetAtomicData().AddComponent<EditorCamera>();
+        auto cameraGameObejct = EditorObjectStorage::Get()->CreateEditorObject();
+        cameraGameObejct.GetAtomicData().AccessTransform().AccessPostion().z() = -5;
+        auto camera = cameraGameObejct.GetAtomicData().AddComponent<EditorCamera>();
 
         ////----- テスト用シェーダー追加
         //auto vs = VertexShader(this->GetDirectX());
@@ -192,7 +192,10 @@ namespace EtherEngine {
                     directXs[j].EndDraw();
                 }
                 
-                LOOP_END: {}
+                LOOP_END: {
+                //----- ロックの解除
+                delete lock.Item1;
+                }
             }
             ////----- エディター描画処理
             //EditorUpdater::Get()->Draw();

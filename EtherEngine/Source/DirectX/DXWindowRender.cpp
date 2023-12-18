@@ -17,7 +17,7 @@ namespace EtherEngine {
 		//----- Nullチェック
 		if (directX == nullptr) throw EditorException("Error! directX is Null");
 
-		//----- 生存確認
+		//----- 生存確認用のキーを取得
 		m_dxEnable = m_directX->GetEnableKey();
 
 		//----- 変数宣言

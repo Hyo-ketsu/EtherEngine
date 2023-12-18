@@ -23,14 +23,14 @@ namespace EtherEngine {
 
         // 生存確認用のキーを取得する
         // @ Ret  : 取得したキー
-        std::weak_ptr<void> GetEnableKey(void);
+        std::weak_ptr<nullptr_t> GetEnableKey(void);
 
     protected:
         // コンストラクタ
-        EnableCheckClass(void); 
+        EnableCheckClass(void);
 
     private:
-        std::shared_ptr<void> m_sharedPtr;
+        std::shared_ptr<nullptr_t> m_sharedPtr;
     };
 }
 

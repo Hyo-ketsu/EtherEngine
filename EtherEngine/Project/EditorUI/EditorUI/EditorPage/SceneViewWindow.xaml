@@ -9,16 +9,18 @@
         xmlns:local="clr-namespace:EditorUI"
         mc:Ignorable="d">
    <Grid>
-      <StackPanel>
-         <!-- シーンメニュー表示 -->
-         <Menu>
-            <MenuItem Header="SceneMenu"></MenuItem>
-         </Menu>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="auto"/>
+         <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <!-- シーンメニュー表示 -->
+      <Menu Grid.Row="0">
+         <MenuItem Header="SceneMenu"></MenuItem>
+      </Menu>
 
          <!-- シーン表示部分 -->
-         <WindowsFormsHost MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged">
-            <wf:Panel x:Name="SceneViewWindowForms"/>
-         </WindowsFormsHost>
-      </StackPanel>
+      <WindowsFormsHost Grid.Row="1" MinWidth="10" MinHeight="10" SizeChanged="WindowsFormsHostSizeChanged" x:Name="WindowsFormsHost">
+         <wf:Panel x:Name="SceneViewWindowForms"/>
+      </WindowsFormsHost>
    </Grid>
 </UserControl>

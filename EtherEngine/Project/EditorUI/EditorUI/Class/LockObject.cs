@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,16 +16,16 @@ namespace EditorUI {
         /// <param name="lockObject">ロックに使用するオブジェクト</param>
         public LogicLockObject(object lockObject) {
             lock (this) {
+                //----- フィールドの初期化
                 m_lockObject = lockObject;
 
-                if (ms_isThisThreadLock.Value == true) return;
-
+                //----- ロックを取得
                 Monitor.Enter(m_lockObject);
             }
         }
         /// <summary>ファイナライザー</summary>
         ~LogicLockObject() {
-            // @ MEMO : ファイナライザでDisposeが呼ばれる = GCが行われるまでロックしっぱし。警告する？
+            // @ MEMO : ファイナライザでDisposeが呼ばれる = GCが行われるまでロックしっぱなし。警告する？
             Dispose();
         }
         /// <summary></summary>
@@ -33,7 +34,7 @@ namespace EditorUI {
             lock (this) {
                 //----- ロックを解除する
                 var isGetLock = Monitor.TryEnter(m_lockObject);
-                if (isGetLock) Monitor.Exit(m_lockObject);
+                if (isGetLock) Monitor.Exit(m_lockObject); Monitor.Exit(m_lockObject);  // TryEnterの分のロックを解除する
                 m_isDispose = true;
             }
         }
@@ -42,8 +43,6 @@ namespace EditorUI {
         private bool m_isDispose = false;
         /// <summary>ロックオブジェクト</summary>
         private object m_lockObject;
-        /// <summary>自身のスレッドでロックされているか</summary>
-        static protected ThreadLocal<bool> ms_isThisThreadLock = new(false);
     }
 
 
@@ -108,5 +107,6 @@ namespace EditorUI {
         private DataType m_data;
         /// <summary>ロックに使用するオブジェクト</summary>
         private object m_lockObject;
+        private int m_lockCount;
     }
 }
