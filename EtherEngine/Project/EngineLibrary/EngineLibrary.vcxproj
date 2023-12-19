@@ -32,7 +32,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\LogSystem.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
@@ -59,7 +58,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />

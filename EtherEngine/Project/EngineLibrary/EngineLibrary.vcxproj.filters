@@ -35,7 +35,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\LogSystem.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h">
@@ -68,7 +67,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\LogSystem.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp">
