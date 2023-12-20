@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="EditorUI.MessageIcon"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:EditorUI"
+             mc:Ignorable="d">
+   <icon:PackIconVaadinIcons>
+      <icon:PackIconVaadinIcons.Style>
+         <Style TargetType="icon:PackIconVaadinIcons">
+            <Style.Triggers>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="None">
+                  <Setter Property="Kind" Value="CircleThin"/>
+               </DataTrigger>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="Info">
+                  <Setter Property="Kind" Value="InfoCircle"/>
+               </DataTrigger>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="Warning">
+                  <Setter Property="Kind" Value="ExclamationCircle"/>
+               </DataTrigger>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="Error">
+                  <Setter Property="Kind" Value="CloseCircle"/>
+               </DataTrigger>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="UserMessage">
+                  <Setter Property="Kind" Value="DotCircle"/>
+               </DataTrigger>
+            </Style.Triggers>
+         </Style>
+      </icon:PackIconVaadinIcons.Style>
+   </icon:PackIconVaadinIcons>
+</UserControl>

@@ -10,27 +10,12 @@ using Reactive.Bindings;
 
 
 namespace EditorUI {
-    /// <summary>ログの種類を指定する</summary>
-    public enum LogType {
-        /// <summary>特に何も指定しない</summary>
-        None = 0,
-        /// <summary>何かのメッセージ</summary>
-        Info,
-        /// <summary>警告</summary>
-        Warning,
-        /// <summary>エラー</summary>
-        Error,
-        /// <summary>使用ユーザーが発するメッセージ</summary>
-        UserMessage,
-    }
-
-
     /// <summary>表示するログを表現するクラス</summary>
     public class EditorLog {
         /// <summary>コンストラクタ</summary>
         /// <param name="logType">ログの種類</param>
         /// <param name="message">ログ</param>
-        public EditorLog(LogType logType, string message) {
+        public EditorLog(MessageType logType, string message) {
             //----- フィールドの初期化
             LogType = logType;
             Message = message;
@@ -42,7 +27,7 @@ namespace EditorUI {
 
 
         /// <summary>ログの内容を表す</summary>
-        public LogType LogType { get; private set; }
+        public MessageType LogType { get; private set; }
         /// <summary>ログを出力した時間</summary>
         public string LogTime { get; private set; }
         /// <summary>ログ</summary>
