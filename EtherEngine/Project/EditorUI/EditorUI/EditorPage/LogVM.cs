@@ -18,7 +18,7 @@ namespace EditorUI {
             //----- イベント登録
             ClearButtonCommand.Subscribe(() => { LogSystem.Get().DeleteLog(); });
 
-            LogSystem.Get().AddLog(new(LogType.Info, "Hoge")); // @ MEMO : テスト
+            LogSystem.Get().AddLog(new(MessageType.Info, "Hoge")); // @ MEMO : テスト
         }
 
 
