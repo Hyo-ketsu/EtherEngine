@@ -1,5 +1,6 @@
 #ifndef I_COLLISIONBASE_H
 #define I_COLLISIONBASE_H
+#include <Base/BaseDefines.h>
 #include <Base/StorageSystem.h>
 
 
@@ -87,13 +88,13 @@ namespace EtherEngine {
         Eigen::Vector3f& AccessOffSet(void) { return m_offset; }
 
         // IDゲッター
-        const IDClass& GetId(void) const { return m_id; }
+        const IDNumberType& GetId(void) const { return m_id; }
 
     private:
         const CollisionShape     mc_shape;  // この当たり判定の形状
         CollisionType            m_type;    // この当たり判定の種類
         Eigen::Vector3f          m_offset;  // 当たり判定の移動量
-        IDClass                  m_id;      // 自身のID
+        IDNumberType             m_id;      // 自身のID
     };
 }
 

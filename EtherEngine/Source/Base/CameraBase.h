@@ -1,6 +1,5 @@
 #ifndef I_CAMERABASE_H
 #define I_CAMERABASE_H
-#include <Base/IDClass.h>
 #include <Base/EtherEngineUtility.h>
 
 
@@ -10,9 +9,10 @@ namespace EtherEngine {
     class CameraData : public IInOuter {
     public:
         // コンストラクタ
-        // @ Arg1 : 座標
-        // @ Arg2 : 注視点
-        CameraData(const Eigen::Vector3f& pos, const Eigen::Vector3f& look);
+        // @ Arg1 : 保持しているオブジェクトのID
+        // @ Arg2 : 座標
+        // @ Arg3 : 注視点
+        CameraData(const IDNumberType& id, const Eigen::Vector3f& pos, const Eigen::Vector3f& look);
         // Jsonコンストラクタ
         // @ Arg1 : Json文字列
         CameraData(const std::string& json);
@@ -20,6 +20,8 @@ namespace EtherEngine {
         ~CameraData(void) {}
 
 
+        // IDゲッター
+        const IDNumberType& GetId(void) const { return m_id; }
         // 座標ゲッター
         Eigen::Vector3f GetPos(void) const;
         // 座標セッター
@@ -73,6 +75,7 @@ namespace EtherEngine {
         // 座標と注視点が同座標の場合に例外を出力します
         void CheckPosLookPosition(void) const;
 
+        IDNumberType    m_id;   // 保持しているオブジェクトのID
         Eigen::Vector3f m_pos;  // 座標
         Eigen::Vector3f m_look; // 注視点
         Eigen::Vector3f m_up;   // 上方向
@@ -110,7 +113,7 @@ namespace EtherEngine {
         CameraData& AccessCameraData(void) { return *m_cameraData; }
 
         // IDゲッター
-        const IDClass GetID(void) const { return m_id; }
+        const IDNumberType GetID(void) const { return m_id; }
 
 
         // ビュー行列を取得する
@@ -130,7 +133,7 @@ namespace EtherEngine {
 
     private:
         std::shared_ptr<CameraData> m_cameraData;        // カメラ情報
-        IDClass m_id;    // このobjectのID
+        IDNumberType m_id;    // このobjectのID
     };
 }
 

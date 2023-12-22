@@ -4,10 +4,22 @@
 // @ MEMO : 現状ソリューションファイルを開くことは想定されていません
 
 
+//----- 型エイリアス定義
+namespace EtherEngine {
+    // IDで使用する型
+    using IDNumberType = ullint;
+
+    // シーン判別型
+    using SceneType = IDNumberType;
+}
+
+
 //----- 定数定義
 namespace EtherEngine {
     //----- FPS
     const float ONE_FRAME = 1.f / 60.f;
+
+
 
 
     //----- 画面比率

@@ -18,7 +18,6 @@
 #include <EtherEngine/Test/TestComponent.h>
 #include <EtherEngine/Test/EditorDebugWindow.h>
 #include <EtherEngine/EditorDefine.h>
-#include <Base/ThreadingUtility.h>
 #include <Base/CameraStorage.h>
 #include <EtherEngine/EditorUtility.h>
 
@@ -122,7 +121,7 @@ namespace EtherEngine {
                 m_sceneView->Add(window->Data);
                 auto size = window->Data->NoLock->NewWindowSize;    // このウィンドウのサイズ
                 while (size.HasValue == false) {
-                    ThreadingUtility::ThisThreadSleep();
+                    Utility::ThisThreadSleep();
                     size = window->Data->NoLock->NewWindowSize;
                 }
 

@@ -2,7 +2,6 @@
 #define I_PROJECTEDITORDATA_H
 #include <Base/EtherEngineUtility.h>
 #include <Base/PathClass.h>
-#include <Base/Scene.h>
 
 
 //----- ProjectEditorData 宣言
@@ -20,9 +19,9 @@ namespace EtherEngine {
 
 
         // 現在シーンゲッター
-        const SceneData& GetCurrentScene(void) const { return m_currentScene; }
+        const SceneType& GetCurrentScene(void) const { return m_currentScene; }
         // 現在シーンセッター
-        void SetCurrentScene(const SceneData& in) { m_currentScene = in; }
+        void SetCurrentScene(const SceneType& in) { m_currentScene = in; }
 
 
         // 外部出力
@@ -31,7 +30,7 @@ namespace EtherEngine {
         void Input(const Json& input) override;
 
     private:
-        SceneData m_currentScene;   // 現在シーン
+        SceneType m_currentScene;   // 現在シーン
         PathClass m_path;           // 保持しているパス
     };
 }

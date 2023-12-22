@@ -44,16 +44,12 @@
     <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
-    <ClCompile Include="..\..\Source\Base\IDClass.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
     <ClCompile Include="..\..\Source\Base\PathClass.cpp" />
     <ClCompile Include="..\..\Source\Base\ProjectData.cpp" />
     <ClCompile Include="..\..\Source\Base\RAIIClass.cpp" />
-    <ClCompile Include="..\..\Source\Base\Scene.cpp" />
-    <ClCompile Include="..\..\Source\Base\SceneData.cpp" />
-    <ClCompile Include="..\..\Source\Base\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">Create</PrecompiledHeader>
@@ -61,7 +57,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\ObejctTag.cpp" />
-    <ClCompile Include="..\..\Source\Base\ThreadingUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\ThreadPool.cpp" />
     <ClCompile Include="..\..\Source\Base\Timer.cpp" />
     <ClCompile Include="..\..\Source\Base\Transform.cpp" />
@@ -99,7 +94,6 @@
     <ClInclude Include="..\..\Source\Base\Handle.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
-    <ClInclude Include="..\..\Source\Base\IDClass.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
@@ -111,15 +105,11 @@
     <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
     <ClInclude Include="..\..\Source\Base\RandomManage.h" />
-    <ClInclude Include="..\..\Source\Base\Scene.h" />
-    <ClInclude Include="..\..\Source\Base\SceneData.h" />
-    <ClInclude Include="..\..\Source\Base\SceneLoader.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
     <ClInclude Include="..\..\Source\Base\stdafx\BaseInclude.h" />
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
-    <ClInclude Include="..\..\Source\Base\ThreadingUtility.h" />
     <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
     <ClInclude Include="..\..\Source\Base\Timer.h" />
     <ClInclude Include="..\..\Source\Base\Transform.h" />

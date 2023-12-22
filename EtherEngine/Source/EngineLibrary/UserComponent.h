@@ -10,7 +10,7 @@
 //----- UseBaseComponent 宣言
 namespace EtherEngine {
 #ifdef _ENGINELIBRARY
-    public ref class UserBaseComponent : public Serializer, public IInspectorDrawer {
+    public ref class UserBaseComponent : public Serializer {
     public:
         // コンストラクタ
         // @ MEMO : 仮措置
@@ -37,11 +37,7 @@ namespace EtherEngine {
         virtual void CollisionEnd(void) {}
         // 衝突処理
         virtual void CollisionHit(void) {}
-
-
-        // Inspector表示
-        void DrawInspector(void) override; 
-
+        
     private:
         GameObject* m_gameObject; // 自身を保持しているゲームオブジェクト
     };

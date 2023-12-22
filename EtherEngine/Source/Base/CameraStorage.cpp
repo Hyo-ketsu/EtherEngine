@@ -4,16 +4,15 @@
 //----- CameraSystem 定義
 namespace EtherEngine {
     // データを追加する
-    [[nodiscard]] IDClass CameraSystem::AddData(std::weak_ptr<CameraData> data, int priority) {
+    [[nodiscard]] IDNumberType CameraSystem::AddData(std::weak_ptr<CameraData> data, int priority) {
         //----- IDの作成と追加
-        auto id = IDClass();
-        m_datas.emplace_back(id, data, priority);
+        m_datas.emplace_back(data.lock()->GetId(), data, priority);
 
         //----- 返却
-        return id;
+        return data.lock()->GetId();
     }
     // データを削除する
-    void CameraSystem::DeleteData(const IDClass& id) {
+    void CameraSystem::DeleteData(const IDNumberType& id) {
         if (m_datas.size() == 0) return;
         for (auto it = m_datas.begin(); it != m_datas.end(); it++) {
             if (std::get<0>(*it) == id) {
@@ -26,7 +25,7 @@ namespace EtherEngine {
 
 
     // データを取得する
-    std::optional<CameraData> CameraSystem::GetData(const IDClass& id) {
+    std::optional<CameraData> CameraSystem::GetData(const IDNumberType& id) {
         //----- 返却用変数宣言
         std::optional<CameraData> ret;
 

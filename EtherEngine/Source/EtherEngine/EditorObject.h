@@ -54,16 +54,6 @@ namespace EtherEngine {
         template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
         std::vector<std::weak_ptr<ComponentBase>> GetComponents(void);
 
-
-        // 外部出力
-        Json Output(void) override { return Json(); }
-        // 外部入力
-        void Input(const Json& json) override {}
-
-
-        // Inspector表示
-        void ShowInspector(void) override {}
-
     protected:
         // コンストラクタ
         // @ Arg1 : 生成座標

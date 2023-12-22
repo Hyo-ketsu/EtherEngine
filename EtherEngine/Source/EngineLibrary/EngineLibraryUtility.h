@@ -17,14 +17,6 @@ namespace EtherEngine {
         // ŠO•”“ü—Í‚·‚é
         void Deserialize(const std::string& input);
     };
-
-
-    // Inspector•\Ž¦Interface
-    public interface class IInspectorDrawer {
-    public:
-        // •\Ž¦‚·‚é
-        void DrawInspector(void);
-    };
 #endif
 }
 

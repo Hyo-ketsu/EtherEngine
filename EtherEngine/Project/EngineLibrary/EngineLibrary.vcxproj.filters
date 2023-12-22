@@ -16,56 +16,71 @@
     <Filter Include="Stdafx">
       <UniqueIdentifier>{3a93161d-ccde-4696-995b-f2bf147e92b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manage">
+      <UniqueIdentifier>{bbab1202-cf50-4c9c-a7fd-db9842dd0005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Native">
+      <UniqueIdentifier>{9a451753-e92b-4e5e-a4b8-944f4ed04ce5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h">
       <Filter>Wrapper</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h">
       <Filter>Stdafx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryInclude.h">
       <Filter>Stdafx</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
@@ -74,6 +89,42 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp">
       <Filter>Stdafx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp">
+      <Filter>Manage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

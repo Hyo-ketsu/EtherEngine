@@ -1,6 +1,5 @@
 #include <EngineLibrary/ManageFunctionInit.h>
 #include <Base/GameObject.h>
-#include <Base/ThreadingUtility.h>
 #include <Base/Mutex.h>
 #include <EngineLibrary/GameComponent.h>
 #include <EngineLibrary/GameDrawComponent.h>

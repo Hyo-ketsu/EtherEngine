@@ -41,7 +41,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\WrapperMainInitFunction.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
@@ -78,9 +77,6 @@
     </ProjectReference>
     <ProjectReference Include="..\DirectX\DirectX.vcxproj">
       <Project>{75776ccc-0223-4f76-989d-2b9b089281c0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\EditorUI\EditorUI.csproj">
-      <Project>{9c260f32-9684-4062-a29a-df6b7c723990}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ImGUI\ImGUI.vcxproj">
       <Project>{688a54a1-1a61-4077-846e-e088f2cb833d}</Project>

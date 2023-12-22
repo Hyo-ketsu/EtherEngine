@@ -54,7 +54,7 @@ namespace EtherEngine {
     // ŠO•”o—Í
     Json GameComponent::Output(void) {
         auto ret = Json(Json::parse(m_component->Serialize()));
-        ret["ComponentName"] = this->GetComponentName();
+        ret["ComponentName"] = this->GetId();
         ret["Active"] = this->GetActive();
         return ret;
     }
@@ -62,9 +62,5 @@ namespace EtherEngine {
     void GameComponent::Input(const Json& input) {
         m_component->Deserialize(input.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES));
         SetActive(input["Active"]);
-    }
-    // Inspector•\Ž¦
-    void GameComponent::ShowInspector(void) {
-        m_component->DrawInspector();
     }
 }

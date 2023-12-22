@@ -1,10 +1,10 @@
 #ifndef I_HANDLESYSTEM_H
 #define I_HANDLESYSTEM_H
 #include <Base/ConceptUtility.h>
+#include <Base/BaseDefines.h>
 #include <Base/Singleton.h>
 #include <Base/Random.h>
 #include <Base/ExclusionObject.h>
-#include <Base/IDClass.h>
 
 
 //----- 定数等定義
@@ -29,40 +29,40 @@ namespace EtherEngine {
         // @ Memo : 追加の際は若しくはHandleのコンストラクタご使用ください。
         // @ Ret  : 作成された要素へのHandle
         // @ Arg1 : 追加する要素（右辺値）
-        [[nodiscard]] std::pair<IDClass, std::weak_ptr<ullint>> AddItem(Type&& item);
+        [[nodiscard]] std::pair<IDNumberType, std::weak_ptr<ullint>> AddItem(Type&& item);
         // 要素を削除する
         // @ Arg1 : 削除する番号
-        void DeleteItem(const IDClass& handle);
+        void DeleteItem(const IDNumberType& handle);
 
 
         // 要素数のカウントアップ
         // @ Arg1 : カウントアップする番号
-        void CountUpItem(const IDClass& handle);
+        void CountUpItem(const IDNumberType& handle);
         // 要素数のカウントダウン
         // @ Arg1 : カウントダウンする番号
-        void CountDownItem(const IDClass& handle);
+        void CountDownItem(const IDNumberType& handle);
 
 
         // 指定した要素が存在するか
         // @ Ret  : 存在しない若しくは、カウンターが0以下なら false それ以外なら true
         // @ Arg1 : Handle
-        bool IsItemEnable(const IDClass& handle) const;
+        bool IsItemEnable(const IDNumberType& handle) const;
 
 
         // Handleから排他制御されていない要素を取得する
         // @ Ret  : 取得した要素（optional）
         // @ Arg1 : Handle
-        std::optional<NonExclusionData<Type>> GetNoAtomicItem(const IDClass& handle);
+        std::optional<NonExclusionData<Type>> GetNoAtomicItem(const IDNumberType& handle);
         // Handleから排他制御された要素を取得する
         // @ Ret  : 取得した要素（optional）
         // @ Arg1 : Handle
-        std::optional<ExclusionData<Type>> GetAtomicItem(const IDClass& handle);
+        std::optional<ExclusionData<Type>> GetAtomicItem(const IDNumberType& handle);
 
 
         // IDから参照数を取得する
         // @ Ret  : 取得した参照数
         // @ Arg1 : ID
-        std::weak_ptr<ullint> GetReferenceCount(const IDClass& handle);
+        std::weak_ptr<ullint> GetReferenceCount(const IDNumberType& handle);
 
     private:
         // コンストラクタ
@@ -70,11 +70,11 @@ namespace EtherEngine {
 
 
         // 参照数が0以下の要素を削除する
-        void Delete0ReferenceCounter(const IDClass& handle);
+        void Delete0ReferenceCounter(const IDNumberType& handle);
 
 
-        std::unordered_map<IDClass, ExclusionObject<Type>> m_item;     // 保持している要素の連想配列
-        std::unordered_map<IDClass, std::shared_ptr<ullint>> m_referenceCounter;    // 参照数
+        std::unordered_map<IDNumberType, ExclusionObject<Type>> m_item;     // 保持している要素の連想配列
+        std::unordered_map<IDNumberType, std::shared_ptr<ullint>> m_referenceCounter;    // 参照数
 
         friend class Singleton<HandleSystem<Type>>;
     };
@@ -95,12 +95,12 @@ namespace EtherEngine {
     // @ Ret  : 作成された要素へのHandle
     // @ Arg1 : 追加する要素（右辺値）
     template <HandleSystemConcept Type>
-    [[nodiscard]] std::pair<IDClass, std::weak_ptr<ullint>> HandleSystem<Type>::AddItem(Type&& item) {
+    [[nodiscard]] std::pair<IDNumberType, std::weak_ptr<ullint>> HandleSystem<Type>::AddItem(Type&& item) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
         //----- Handle生成
-        auto handle = IDClass();
+        auto handle = IDNumberType();
 
         //----- 連想配列に格納
         ExclusionObject<Type> atomic(std::move(item));
@@ -111,12 +111,12 @@ namespace EtherEngine {
         m_referenceCounter.emplace(handle, refCounter);
 
         //----- 返却
-        return std::pair<IDClass, std::weak_ptr<ullint>>(handle, refCounter);
+        return std::pair<IDNumberType, std::weak_ptr<ullint>>(handle, refCounter);
     }
     // 要素を削除する
     // @ Arg1 : 削除する番号
     template <HandleSystemConcept Type>
-    void HandleSystem<Type>::DeleteItem(const IDClass& handle) {
+    void HandleSystem<Type>::DeleteItem(const IDNumberType& handle) {
         //----- 存在すれば削除
         if (IsItemEnable(handle)) {
             //----- ロック
@@ -132,7 +132,7 @@ namespace EtherEngine {
     // 要素数のカウントアップ
     // @ Arg1 : 削除する番号
     template <HandleSystemConcept Type>
-    void HandleSystem<Type>::CountUpItem(const IDClass& handle) {
+    void HandleSystem<Type>::CountUpItem(const IDNumberType& handle) {
         auto reference = m_referenceCounter.find(handle);
         if (reference != m_referenceCounter.end()) {
             auto& count = reference->second;
@@ -142,7 +142,7 @@ namespace EtherEngine {
     // 要素数のカウントダウン
     // @ Arg1 : 削除する番号
     template <HandleSystemConcept Type>
-    void HandleSystem<Type>::CountDownItem(const IDClass& handle) {
+    void HandleSystem<Type>::CountDownItem(const IDNumberType& handle) {
         auto reference = m_referenceCounter.find(handle);
         if (reference != m_referenceCounter.end()) {
             auto& count = reference->second;
@@ -156,7 +156,7 @@ namespace EtherEngine {
     // @ Ret  : 存在しない若しくは、カウンターが0以下なら false それ以外なら true
     // @ Arg1 : Handle
     template <HandleSystemConcept Type>
-    bool HandleSystem<Type>::IsItemEnable(const IDClass& handle) const {
+    bool HandleSystem<Type>::IsItemEnable(const IDNumberType& handle) const {
         if (m_item.find(handle) == m_item.end()) return false;
         auto ref = m_referenceCounter.find(handle);
         if (  ref == m_referenceCounter.end()) return false;
@@ -169,7 +169,7 @@ namespace EtherEngine {
     // @ Ret  : 取得した要素（optional）
     // @ Arg1 : Handle
     template <HandleSystemConcept Type>
-    std::optional<NonExclusionData<Type>> HandleSystem<Type>::GetNoAtomicItem(const IDClass& handle) {
+    std::optional<NonExclusionData<Type>> HandleSystem<Type>::GetNoAtomicItem(const IDNumberType& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
@@ -188,7 +188,7 @@ namespace EtherEngine {
     // @ Ret  : 取得した要素（optional）
     // @ Arg1 : Handle
     template <HandleSystemConcept Type>
-    std::optional<ExclusionData<Type>> HandleSystem<Type>::GetAtomicItem(const IDClass& handle) {
+    std::optional<ExclusionData<Type>> HandleSystem<Type>::GetAtomicItem(const IDNumberType& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
@@ -207,7 +207,7 @@ namespace EtherEngine {
 
     // 参照数が0以下の要素を削除する
     template <HandleSystemConcept Type>
-    void HandleSystem<Type>::Delete0ReferenceCounter(const IDClass& handle) {
+    void HandleSystem<Type>::Delete0ReferenceCounter(const IDNumberType& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 
@@ -226,7 +226,7 @@ namespace EtherEngine {
     }
     // IDから参照数を取得する
     template <HandleSystemConcept Type>
-    std::weak_ptr<ullint> HandleSystem<Type>::GetReferenceCount(const IDClass& handle) {
+    std::weak_ptr<ullint> HandleSystem<Type>::GetReferenceCount(const IDNumberType& handle) {
         //----- ロック
         auto lock = this->GetMutex()->KeySpinLock();
 

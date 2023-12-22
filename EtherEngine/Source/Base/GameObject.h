@@ -9,7 +9,6 @@
 #include <Base/DrawComponent.h> 
 #include <Base/Handle.h>
 #include <Base/Transform.h>
-#include <Base/Scene.h>
 #include <Base/ParentAndChildObject.h>
 #include <Base/EtherEngineUtility.h>
 
@@ -35,6 +34,14 @@ namespace EtherEngine {
         void CollisionHit(void);
 
 
+        // 名前ゲッター
+        const std::string& GetName(void) const { return m_name; }
+        // 名前セッター
+        void SetName(const std::string& in) { m_name = in; }
+        // 名前アクセサー
+        std::string& AccessName(void) { return m_name; }
+
+
         // 座標ゲッター
         // @ Ret  : 絶対座標
         const Transform& GetTransform(void) const { return m_transform; }
@@ -56,9 +63,9 @@ namespace EtherEngine {
 
 
         // シーン情報ゲッター
-        const SceneData& GetScene(void) const { return m_scene; }
+        const SceneType& GetScene(void) const { return m_scene; }
         // シーン情報セッター
-        void SetScene(const SceneData& in) { m_scene = in; }
+        void SetScene(const SceneType& in) { m_scene = in; }
 
         // 親子関係ゲッター
         const ParentAndChildObject<GameObject> GetParentAndChild(void) const { return m_parentAndChild; }
@@ -102,38 +109,6 @@ namespace EtherEngine {
         // @ Ret  : 取得したコンポーネント（複数）
         template <Concept::SubClassOnly<ComponentBase> ComponentType>
         std::vector<std::weak_ptr<ComponentType>> GetComponents(void);
-        // コンポーネント追加
-        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
-        // @ Ret  : 追加したコンポーネント
-        // @ Arg1 : 追加コンポーネント名
-        std::weak_ptr<ComponentBase> AddComponent(const std::string& componentTypeName);
-        // コンポーネント削除
-        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
-        // @ Ret  : 削除したコンポーネント
-        // @ Arg1 : 削除コンポーネント名
-        bool DeleteComponent(const std::string& componentTypeName);
-        // コンポーネントを取得する
-        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
-        // @ Ret  : 取得したコンポーネント
-        // @ Arg1 : 取得するコンポーネント名
-        // @ Arg2 : 何番目のコンポーネントを使用するか(Default : 0)
-        std::weak_ptr<ComponentBase> GetComponent(const std::string& componentTypeName, uint index = 0);
-        // コンポーネントを取得する
-        // @ Memo : コンポーネント名が一意であればそのままで問題ないですが、重複する場合はHoge.Fugaの用に完全修飾名を与えてください。
-        // @ Ret  : 取得したコンポーネント
-        // @ Arg1 : 取得するコンポーネント名
-        // @ Arg2 : 何番目のコンポーネントを使用するか(Default : 0)
-        std::vector<std::weak_ptr<ComponentBase>> GetComponents(const std::string& componentTypeName);
-
-
-        // 外部出力
-        Json Output(void) override;
-        // 外部入力
-        void Input(const Json& input) override;
-
-
-        // Inspector表示
-        void ShowInspector(void) override;
 
     protected:
         // コンストラクタ
@@ -149,8 +124,9 @@ namespace EtherEngine {
         friend class GameObjectStorage;
         friend class ManageFunctionInit;
 
+        std::string m_name;     // 名前
         Transform m_transform;  // 座標
-        SceneData m_scene;      // 現在所属シーン
+        SceneType m_scene;      // 現在所属シーン
         Handle<GameObject> m_handle;    // 自身のハンドル
         ParentAndChildObject<GameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント

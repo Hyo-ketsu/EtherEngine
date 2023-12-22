@@ -71,7 +71,7 @@ namespace EtherEngine {
 
 
     // ウィンドウを作成する
-    IDClass DirectXRender::CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen) {
+    IDNumberType DirectXRender::CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen) {
         //----- ビデオカードの検索
         IDXGIFactory1* factory;
         IDXGIAdapter1* adapter;
@@ -106,7 +106,7 @@ namespace EtherEngine {
 
 
     // ウィンドウをIDで取得する
-    DXWindowRender* const DirectXRender::GetWindowRender(IDClass id) {
+    DXWindowRender* const DirectXRender::GetWindowRender(IDNumberType id) {
         for (auto&& it : m_windowRenders) {
             if (it.GetId() == id) {
                 return &it;

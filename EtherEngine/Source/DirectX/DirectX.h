@@ -45,14 +45,14 @@ namespace EtherEngine {
         // @ Arg1 : フレームバッファの幅
         // @ Arg2 : DirectXを割り当てるウィンドウ
         // @ Arg3 : フルスクリーン指定
-        IDClass CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen);
+        IDNumberType CreateDrawWindow(const Eigen::Vector2i size, const HWND hWnd, const bool fullScreen);
 
 
         // ウィンドウをIDで取得する
         // @ Ecex : 範囲外参照
         // @ Ret  : 取得したウィンドウ描画情報
         // @ Arg1 : ID
-        DXWindowRender* const GetWindowRender(IDClass id);
+        DXWindowRender* const GetWindowRender(IDNumberType id);
 
     private:
         std::vector<DXWindowRender> m_windowRenders;   //

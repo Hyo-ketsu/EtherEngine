@@ -1,5 +1,4 @@
 #include <Base/GameObjectStorage.h>
-#include <Base/SceneLoader.h>
 
 
 //----- GameObejctStorageéŒ¾
@@ -8,7 +7,8 @@ namespace EtherEngine {
     Handle<GameObject> GameObjectStorage::CreateGameObject(const Transform& transform, const std::string& name) {
         auto handle = Handle<GameObject>(GameObject(transform, name));
         handle.GetAtomicData().m_handle = handle;
-        if (SceneLoader::Get()->GetCurrentSceneData().has_value()) { handle.GetAtomicData().SetScene(SceneLoader::Get()->GetCurrentSceneData().value()); }
+        // @ MEMO : ƒV[ƒ“‚Ö‚Ì’Ç‰Á‚ ‚½‚èì‚è’¼‚µ
+        //if (SceneLoader::Get()->GetCurrentSceneData().has_value()) { handle.GetAtomicData().SetScene(SceneLoader::Get()->GetCurrentSceneData().value()); }
         m_gameObjects.push_back(handle);
         return handle.GetRefHandle();
     }

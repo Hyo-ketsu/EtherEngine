@@ -1,8 +1,8 @@
 #ifndef I_HANDLE_H
 #define I_HANDLE_H
 #include <Base/HandleSystem.h>
+#include <Base/BaseDefines.h>
 #include <Base/EditorException.h>
-#include <Base/IDClass.h>
 
 
 namespace EtherEngine {
@@ -15,7 +15,7 @@ namespace EtherEngine {
     // ハンドルとして使用できるか判定するコンセプト
     // @ Memo : 数値型でない、かつHandleNumberTypeに変換できるか
     template <typename T>
-    concept UseHandleConcept = std::is_arithmetic_v<T> && std::is_convertible_v<T, IDClass>;
+    concept UseHandleConcept = std::is_arithmetic_v<T> && std::is_convertible_v<T, IDNumberType>;
 }
 
 
@@ -33,7 +33,7 @@ namespace EtherEngine {
         // ID構築コンストラクタ
         // @ Arg1 : コピーするID
         // @ Arg2 : 生成数をカウントするか(Default : カウントする)
-        Handle(IDClass id, HandleCountType countType = HandleCountType::Count);
+        Handle(IDNumberType id, HandleCountType countType = HandleCountType::Count);
         // コンストラクタ
         // @ Arg1 : 生成数をカウントするか(Default : カウントする)
         Handle(HandleCountType countType = HandleCountType::Count);
@@ -92,9 +92,9 @@ namespace EtherEngine {
 
 
         // HandleNumber取得
-        IDClass GetHandleNumber(void) const;
+        IDNumberType GetHandleNumber(void) const;
         // HandleNumber取得
-        operator IDClass(void) const;
+        operator IDNumberType(void) const;
 
     protected:
         // 参照のカウントアップを行う
@@ -104,7 +104,7 @@ namespace EtherEngine {
         // @ Memo : 判定も行う
         void CountDown(void);
 
-        IDClass m_id; // 自身が保持しているHandle
+        IDNumberType m_id; // 自身が保持しているHandle
         HandleCountType m_count;   // カウントアップを行うか
         std::weak_ptr<ullint> m_deleteHandle;    // HandleSystem削除時にHandleSystemを使用するか
     };
@@ -132,7 +132,7 @@ namespace EtherEngine {
     // @ Arg1 : コピーするID
     // @ Arg2 : 生成数をカウントするか(Default : true)
     template <HandleSystemConcept Type>
-    Handle<Type>::Handle(IDClass id, HandleCountType countType) 
+    Handle<Type>::Handle(IDNumberType id, HandleCountType countType) 
         : Handle(countType) {
         //----- メンバ初期化
         m_id = id;
@@ -260,12 +260,12 @@ namespace EtherEngine {
 
     // HandleNumber取得
     template<HandleSystemConcept Type>
-    IDClass Handle<Type>::GetHandleNumber(void) const {
+    IDNumberType Handle<Type>::GetHandleNumber(void) const {
         return m_id;
     }
     // HandleNumber取得
     template<HandleSystemConcept Type>
-    Handle<Type>::operator IDClass(void) const {
+    Handle<Type>::operator IDNumberType(void) const {
         return GetHandleNumber();
     }
 

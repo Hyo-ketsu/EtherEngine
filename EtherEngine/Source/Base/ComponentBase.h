@@ -6,20 +6,10 @@
 #include <Base/Handle.h>
 
 
-//----- コンポーネント用定数
-namespace EtherEngine {
-    namespace Component {
-        const std::string TYPE_COMPONENT = "Component";                     // 通常コンポーネント定義名
-        const std::string TYPE_DRAW_COMPONENT = "DrawComponent";            // 描画コンポーネント定義名
-        const std::string TYPE_COLLISION_COMPONENT = "CollisionComponent";  // 当たり判定コンポーネント定義名
-    }
-}
-
-
 //----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase : public BaseObject{
+    class ComponentBase : public BaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト
@@ -49,14 +39,6 @@ namespace EtherEngine {
         // @ Memo : 循環参照の関係上面倒なことになっています。ヘルパーをご使用ください。
         // @ Arg1 : ゲームオブジェクトを格納する
         void GetParentObject(void** gameObject) const;
-
-
-        // コンポーネント名の取得
-        // @ Ret  : コンポーネント名
-        virtual std::string GetComponentName(void) const;
-        // コンポーネントタイプ名の取得
-        // @ Ret  : コンポーネントのタイプ
-        virtual std::string GetComponentTypeName(void) const;
 
 
         // 更新処理を行う

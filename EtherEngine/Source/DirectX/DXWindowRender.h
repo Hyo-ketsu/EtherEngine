@@ -1,6 +1,6 @@
 #ifndef I_DXWINDOWRENDER_H
 #define I_DXWINDOWRENDER_H
-#include <Base/IDClass.h>
+#include <Base/BaseDefines.h>
 #include <Base/CameraBase.h>
 #include <DirectX/ComPointer.h>
 
@@ -37,7 +37,7 @@ namespace EtherEngine {
 
 
         // IDゲッター
-        const IDClass& GetId(void) const { return m_id; }
+        const IDNumberType& GetId(void) const { return m_id; }
         // ウィンドウIDアクセサー
         ullint& AccessWindowId(void) { return m_windowId; }
         // DirectXゲッター 
@@ -65,7 +65,7 @@ namespace EtherEngine {
         void EndDraw(void);
 
     private:
-        IDClass m_id;                        // 自身のID
+        IDNumberType m_id;                   // 自身のID
         ullint m_windowId;                   // ウィンドウが保持しているID
         DirectXRender* m_directX;            // リソース
         std::weak_ptr<nullptr_t> m_dxEnable; // リソースの生存確認用

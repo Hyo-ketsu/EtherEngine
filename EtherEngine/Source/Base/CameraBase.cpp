@@ -9,8 +9,9 @@
 //----- CameraData定義
 namespace EtherEngine {
     // コンストラクタ
-    CameraData::CameraData(const Eigen::Vector3f& pos, const Eigen::Vector3f& look) 
-        : m_pos(pos)
+    CameraData::CameraData(const IDNumberType& id, const Eigen::Vector3f& pos, const Eigen::Vector3f& look)
+        : m_id(id)
+        , m_pos(pos)
         , m_look(look)
         , m_up(CameraDefine::UP)
         , m_fovy(CameraDefine::FOVY)
@@ -74,6 +75,7 @@ namespace EtherEngine {
     Json CameraData::Output(void) {
         nlohmann::json json;
 
+        json["CameraData"]["id"] = m_pos.x();
         json["CameraData"]["posX"] = m_pos.x();
         json["CameraData"]["posY"] = m_pos.y();
         json["CameraData"]["posZ"] = m_pos.z();
@@ -94,6 +96,7 @@ namespace EtherEngine {
     // 外部入力する
     void CameraData::Input(const Json& input) {
         auto& cameraData = input["CameraData"];
+        m_id = cameraData["id"];
         m_pos.x() = cameraData["posX"];
         m_pos.y() = cameraData["posY"];
         m_pos.z() = cameraData["posZ"];
@@ -173,7 +176,7 @@ namespace EtherEngine {
 namespace EtherEngine {
     // コンストラクタ
     CameraBase::CameraBase(const Eigen::Vector3f& pos, const Eigen::Vector3f& look, const bool isRegister, const int priority)
-        : CameraBase(CameraData(pos, look), isRegister, priority) {
+        : CameraBase(CameraData(m_id, pos, look), isRegister, priority) {
     }
     // コンストラクタ
     CameraBase::CameraBase(const CameraData& data, const bool isRegister, const int priority)

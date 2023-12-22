@@ -3,7 +3,6 @@
 #include <Base/BaseDefines.h>
 #include <Base/BaseUtility.h>
 #include <Base/EditorException.h>
-#include <Base/SceneLoader.h>
 #include <EtherEngine/EditorDefine.h>
 
 
@@ -53,7 +52,6 @@ namespace EtherEngine {
         // シーン読込
         if (json.contains("ProjectEditorData") && json["ProjectEditorData"].contains("CurrentScene")) {
             m_currentScene = json["ProjectEditorData"]["CurrentScene"];
-            SceneLoader::Get()->MoveScene(m_currentScene);
         }
         else {
             goto END;
@@ -64,9 +62,6 @@ namespace EtherEngine {
 
         //----- 読み込めなかった・もしくは項目が存在しなかった場合の処理
         END: {
-            //----- 存在しないためデフォルトシーンを作成、登録
-            m_currentScene = SceneData(DirectoryDefine::SCENE_DATA + '\\' + EditorDefine::EDITOR_DEFAULT_SCENE_NAME);
-            SceneLoader::Get()->RegistryScene(m_currentScene);
         }
     }
 }

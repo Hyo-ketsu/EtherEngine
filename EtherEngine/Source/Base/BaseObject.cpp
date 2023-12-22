@@ -5,8 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     BaseObject::BaseObject(const std::string& name) 
-        : m_name(name)
-        , m_isActive(true) 
+        : m_isActive(true) 
         , m_isDelete(false) {
     }
 

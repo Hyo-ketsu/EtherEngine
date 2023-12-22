@@ -7,17 +7,13 @@
 //----- GameCompnent 宣言
 namespace EtherEngine {
     // 
-    class ENGINELIBRARY_API GameComponent : public ComponentBase {
+    class ENGINELIBRARY_API GameComponent : public ComponentBase, public IInOuter {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します
         // @ Arg1 : 親ゲームオブジェクト
         // @ Arg2 : 生成コンポーネント名
         GameComponent(GameObject* gameObject, const std::string& componentName);
-
-
-        // 自身のコンポーネント名の取得
-        std::string GetComponentName(void) const override { return m_componentName; }
 
 
         // 開始処理
@@ -38,9 +34,6 @@ namespace EtherEngine {
         Json Output(void) override;
         // 外部入力
         void Input(const Json& input) override;
-
-        // Inspector表示
-        void ShowInspector(void) override;
 
     protected:
         std::string m_componentName;    // 自身のコンポーネント名

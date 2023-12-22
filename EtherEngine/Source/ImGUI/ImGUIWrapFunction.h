@@ -8,13 +8,6 @@
 //----- 各型表示関数 定義
 namespace EtherEngine {
     namespace ImGuiFunction {
-        // パラメーター表示
-        // @ Memo : vectorやlist等は未対応
-        // @ Ret  : 値が変更されたか
-        // @ Arg1 : 表示・変更する変数(参照)
-        // @ Arg2 : 表示文字列
-        template <typename Type>
-        bool ImGuiShow(Type& numberParam, const std::string& message);
         // 文字列表示
         // @ Ret  : 値が変更されたか
         // @ Arg1 : 表示・変更する文字列(参照)
@@ -62,32 +55,6 @@ namespace EtherEngine {
 //----- 各型表示関数 定義
 namespace EtherEngine {
     namespace ImGuiFunction {
-        // パラメーター表示
-        template <typename Type>
-        bool ImGuiShow(Type& numberParam, const std::string& message) {
-            //----- 指定の型以外の場合はエラーを出力
-            static_assert(
-                Concept::BaseOfConcept<Type, IInspectorShow> ||
-                Concept::ArithmeticConcept<Type> ||
-                Concept::SameConcept<Type, std::string>
-                , "Error! The type cannot be used with ImGuiShow");
-
-            //----- 表示
-            if constexpr (Concept::BaseOfConcept<Type, IInspectorShow>) {
-                //----- 独自型表示
-                numberParam.ShowInspector();
-            }
-            else if constexpr (Concept::ArithmeticConcept<Type>) {
-                //----- 数値表示
-                ShowNumber(numberParam, message);
-            }
-            else if constexpr (Concept::SameConcept<Type, std::string>) {
-                //----- 文字列表示（ただ、単一行で表現するものとする）
-                return ImGuiShow(numberParam, message, false);
-            }
-        }
-
-
         // 数値型をImGuiウィンドウに表示する関数
         template <Concept::ArithmeticConcept NumberType>
         bool ShowNumber(NumberType& numberParam, const std::string& message) {

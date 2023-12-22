@@ -1,6 +1,5 @@
 #include <Base/BaseUtility.h>
 #include <Base/EditorException.h>
-#include <chrono>
 
 
 //----- 生存確認用クラス 定義
@@ -25,6 +24,10 @@ namespace EtherEngine {
 //----- 便利関数 定義
 namespace EtherEngine {
     namespace Utility {
+        // 自身のスレッドを指定msスリープする
+        void ThisThreadSleep(uint ms) { Sleep(ms); }
+
+
         // 入力ファイルの中身を全て読み取る
         std::string RoadFileAll(const std::string& file) {
             //----- ファイルオープン

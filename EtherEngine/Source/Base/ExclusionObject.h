@@ -2,7 +2,6 @@
 #define I_EXCLUSIONOBJECT_H
 #include <Base/ExclusionData.h>
 #include <Base/NonExclusionData.h>
-#include <Base/ThreadingUtility.h>
 #include <Base/Mutex.h>
 
 

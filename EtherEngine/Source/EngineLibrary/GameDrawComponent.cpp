@@ -45,12 +45,6 @@ namespace EtherEngine {
     }
 
 
-    // コンポーネントタイプ名
-    std::string GameDrawComponent::GetComponentTypeName(void) const {
-        return Component::TYPE_DRAW_COMPONENT;
-    }
-
-
     // 外部出力
     Json GameDrawComponent::Output(void) {
         return GameComponent::Output();
@@ -58,9 +52,5 @@ namespace EtherEngine {
     // 外部入力
     void GameDrawComponent::Input(const Json& input) {
         GameComponent::Input(input);
-    }
-    // Inspector表示
-    void GameDrawComponent::ShowInspector(void) {
-        GameComponent::ShowInspector();
     }
 }

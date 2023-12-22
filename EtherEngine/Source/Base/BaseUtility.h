@@ -38,6 +38,11 @@ namespace EtherEngine {
 //----- 便利関数 宣言
 namespace EtherEngine {
     namespace Utility {
+        // 自身のスレッドを指定msスリープする
+        // @ Arg1 : スリープ秒数(Default : 60/1秒)
+        void ThisThreadSleep(uint ms = 16);
+
+
         // 全ての入力と比較する
         // @ Ret  : 比較結果
         // @ Temp : 比較元

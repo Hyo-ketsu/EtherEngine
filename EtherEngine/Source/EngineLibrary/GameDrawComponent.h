@@ -35,16 +35,10 @@ namespace EtherEngine {
         void Draw(void) override;
 
 
-        // コンポーネントタイプ名
-        std::string GetComponentTypeName(void) const override;
-
         // 外部出力
         Json Output(void) override;
         // 外部入力
         void Input(const Json& input) override;
-        // Inspector表示
-        void ShowInspector(void) override;
-
     };
 }
 

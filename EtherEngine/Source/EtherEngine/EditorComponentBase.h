@@ -27,14 +27,6 @@ namespace EtherEngine {
         // 削除時処理
         void DeleteFunction(void);
 
-
-        // 外部出力
-        Json Output(void) override { return Json(); }
-        // 外部入力
-        void Input(const Json& input) override {}
-        // Inspector表示
-        void ShowInspector(void) override {}
-
     protected:
         virtual void Start(void) {}
         virtual void Update(void) {}

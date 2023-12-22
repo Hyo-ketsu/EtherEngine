@@ -4,10 +4,6 @@
 #include <Base/PathClass.h>
 
 
-// DLL呼び出し用
-#define DLL_CALL(ReturnType) extern "C" __declspec(dllexport) ReturnType  
-
-
 //----- インターフェース定義
 namespace EtherEngine {
     //----- 型名定義
@@ -26,14 +22,6 @@ namespace EtherEngine {
         // 入力する
         // @ Arg1 : 入力文字列
         void InputString(const std::string& input);
-    };
-
-
-    // Inspector表示用インターフェイス
-    class IInspectorShow {
-    public:
-        // 表示する
-        virtual void ShowInspector(void) = 0;
     };
 }
 
