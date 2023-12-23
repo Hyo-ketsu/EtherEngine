@@ -51,7 +51,7 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
-    <ClCompile Include="..\..\Source\Base\BaseObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeBaseObject.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraBase.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
@@ -60,9 +60,9 @@
     <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Converter.cpp" />
-    <ClCompile Include="..\..\Source\Base\DrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\Base\DrawComponentBase.cpp" />
     <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp" />
-    <ClCompile Include="..\..\Source\Base\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeGameObject.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
@@ -115,7 +115,7 @@
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\BaseInput.h" />
-    <ClInclude Include="..\..\Source\Base\BaseObject.h" />
+    <ClInclude Include="..\..\Source\Base\NativeBaseObject.h" />
     <ClInclude Include="..\..\Source\Base\BaseUtility.h" />
     <ClInclude Include="..\..\Source\Base\CameraBase.h" />
     <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
@@ -124,9 +124,9 @@
     <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\Converter.h" />
-    <ClInclude Include="..\..\Source\Base\DrawComponent.h" />
+    <ClInclude Include="..\..\Source\Base\DrawComponentBase.h" />
     <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h" />
-    <ClInclude Include="..\..\Source\Base\GameObject.h" />
+    <ClInclude Include="..\..\Source\Base\NativeGameObject.h" />
     <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />
     <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
@@ -140,7 +140,6 @@
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
     <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
-    <ClInclude Include="..\..\Source\Base\RandomManage.h" />
     <ClInclude Include="..\..\Source\Base\Singleton.h" />
     <ClInclude Include="..\..\Source\Base\StorageSystem.h" />
     <ClInclude Include="..\..\Source\Base\ThreadPool.h" />
@@ -159,5 +158,6 @@
     <ClInclude Include="..\..\Source\Base\stdafx\BaseStdafx.h">
       <Filter>Stdafx</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Base\RandomManage.h" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="EditorUI\Control\MessageIcon.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EditorUI\Control\OldMenuItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="EditorUI\Control\MessageIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditorUI\Control\OldMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -77,9 +83,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\EditorPage\SceneViewWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="EditorUI\Window\MenuStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\Window\StartupWindow.xaml">

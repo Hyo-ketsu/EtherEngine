@@ -64,4 +64,8 @@
     <Folder Include="EditorUI\Resource\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EngineLibrary\EngineLibrary.vcxproj" />
+  </ItemGroup>
+
 </Project>
