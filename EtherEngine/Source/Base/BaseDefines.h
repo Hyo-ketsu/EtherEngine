@@ -82,7 +82,7 @@ namespace EtherEngine {
 
         const std::string SCRIPT_FILE_STRING = 
             R"(//===== 仮で書いてます。のちに修正してください。=====//
-#include <EngineLibrary/UserComponent.h>
+#include <EngineLibrary/Component.h>
 
 public ref class クラス名 : public UserBaseComponent {
 public:

@@ -6,23 +6,6 @@
 #include <EngineLibrary/ConvertManageToUnmanage.h>
 
 
-//----- インタフェース定義
-namespace EtherEngine {
-#ifdef _ENGINELIBRARY
-    // Serialize, DeserializeInterface
-    public interface class ISerializer {
-    public:
-        // 外部出力する
-        std::string Serialize(void);
-        // 外部入力する
-        void Deserialize(const std::string& input);
-    };
-#endif
-}
-
-
-
-
 //----- 完全修飾名取得関数 定義
 namespace EtherEngine {
     // 完全修飾名を取得する
@@ -44,112 +27,12 @@ namespace EtherEngine {
 
 
 
-#ifdef _ENGINELIBRARY
-//----- Serializer 宣言
-namespace EtherEngine {
-    // Serialize, Deserialize自体を行うクラス
-    public ref class Serializer : public ISerializer {
-    public:
-        // 外部出力する
-        std::string Serialize(void) override {
-            using namespace System::Reflection;
-
-            //----- 変数宣言
-            nlohmann::json serialize;   // 出力するJson文字列
-            System::Type^ thisType = GetType();
-
-            //----- 全てのFieldを取得、出力する
-            auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::DeclaredOnly);
-
-            //----- 出力するフィールドを判定する
-            for each (auto field in fields) {
-                //----- 出力フラグ宣言
-                bool isOutput = false;
-
-                //----- 公開しているかを代入
-                isOutput = field->IsPublic;
-
-                //----- 指定の属性が取得できるか
-                auto attributes = field->GetCustomAttributes(true);
-                for each (auto attribute in attributes) {
-                    if (isOutput) {
-                        //----- Public時。非公開属性か
-                        if (attribute->GetType() == System::Type::GetType("EtherEngineNonSerializeAttribute")) {
-                            //----- 定義されている。このループを終了
-                            isOutput = false;
-                            break;
-                        }
-                    }
-                    else {
-                        //----- 非Public時。公開属性か
-                        if (attribute->GetType() == System::Type::GetType("EtherEngineSerializeAttribute")) {
-                            //----- 定義されている。このループを終了
-                            isOutput = true;
-                            break;
-                        }
-                    }
-                }
-
-                //----- 公開するのであればJson出力
-                Serializer^ iSerialize = dynamic_cast<Serializer^>(field->GetValue(this));
-                if (iSerialize != nullptr) {
-                    serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)] = iSerialize->Serialize();
-                }
-                else {
-                    serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)] = ManageToUnmanage::String(field->ToString());
-                }
-            }
-
-            //----- 返却
-            return serialize.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES);
-        }
-        // 外部入力する
-        void Deserialize(const std::string& input) override {
-            using namespace System::Reflection;
-
-            //----- 変数宣言
-            nlohmann::json serialize = nlohmann::json::parse(input);   // 入力するJson文字列
-            System::Type^ thisType = GetType();
-
-            //----- 全てのFieldを取得、出力する
-            auto fields = thisType->GetFields(BindingFlags::NonPublic | BindingFlags::Public | BindingFlags::Instance);
-
-            //----- そもそも自コンポーネントが存在しなければ入力しない
-            if (serialize.contains(ManageToUnmanage::String(thisType->Name)) == false) return;
-
-            //----- 全てのFieldに対し入力する
-            for each (auto field in fields) {
-                //----- そのFieldが存在するか
-                if (serialize.contains(ManageToUnmanage::String(field->Name)) == false) continue;
-
-                //----- 代入
-                Serializer^ iSerialize = dynamic_cast<Serializer^>(field->GetValue(this));
-                if (iSerialize != nullptr) {
-                    iSerialize->Deserialize(serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)]);
-                }
-                else {
-                    try {
-                        //field->SetValue(this, System::Convert::ChangeType(UnmanageToManage::String(serialize[ManageToUnmanage::String(thisType->Name)][ManageToUnmanage::String(field->Name)]), field->FieldType));
-                    }
-                    catch (System::InvalidCastException^) {
-                    }
-                }
-            }
-        }
-    };
-}
-#endif
-
-
-
-
-#ifdef _ENGINELIBRARY
 //----- UnmanageMaintainer 宣言
 namespace EtherEngine {
     // Unmanage Class を value class で保持するクラス
     // @ Memo : 手動で解放処理を呼び出してください
     template <typename UnmanageType>
-    public value class UnmanageMaintainer : public ISerializer {
+    public value class UnmanageMaintainer {
     public:
         // ポインタを保持するコンストラクタ
         // @ Arg1 : 対象
@@ -157,13 +40,6 @@ namespace EtherEngine {
             : m_maintainer(maintainer)
             , m_isNew(false) {
         }
-        //// 生成を行うコンストラクタ
-        //// @ Args : 初期化に必要な変数
-        //template <typename ...ArgsType>
-        //UnmanageMaintainer(ArgsType... args)
-        //    : m_maintainer(new UnmanageType(args...))
-        //    , m_isNew(true) {
-        //}
         // コピーとnewを行うコンストラクタ
         // @ Arg1 : 対象
         UnmanageMaintainer(UnmanageType&& maintainer)
@@ -231,17 +107,10 @@ namespace EtherEngine {
         }
 
     private:
-        // 自動削除用クラス
-        ref class Deleter {
-        public:
-        };
-
-
         UnmanageType* m_maintainer; // 保持している対象
         bool m_isNew;               // 右辺値を受け取り構築したか
     };
 }
-#endif;
 
 
 #endif // !I_CPPCLIUtility_H

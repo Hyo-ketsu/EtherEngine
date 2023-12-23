@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     EditorObject::EditorObject(const Transform& transform, const std::string& name)
-        : BaseObject(name)
+        : NativeBaseObject(name)
         , m_transform(transform) {
     }
 

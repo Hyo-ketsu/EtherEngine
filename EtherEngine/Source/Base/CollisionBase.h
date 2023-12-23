@@ -47,7 +47,7 @@ namespace EtherEngine {
         void GetHitTarget(void** gameObject) const;
 
     private:
-        class GameObject* m_hitTarget; // Õ“Ë‘ÎÛ
+        class NativeGameObject* m_hitTarget; // Õ“Ë‘ÎÛ
     };
 }
 

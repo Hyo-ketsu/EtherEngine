@@ -1,4 +1,5 @@
 #include <EngineLibrary/CameraComponent.h>
+#include <EngineLibrary/GameObject.h>
 
 
 namespace EtherEngine {
@@ -15,7 +16,7 @@ namespace EtherEngine {
     // ‰Šú‰»ˆ—
     void CameraComponent::Start(void) {
         if (m_camera.HasValue() == false) {
-            auto look = GetGameObject()->GetTransform().GetPostion();
+            auto look = ParentGameObject->GetTransform().GetPostion();
             look.z() -= 1;
             m_camera.SetValue(CameraBase(GetGameObject()->GetTransform().GetPostion(), look, true, 0)); // @ MEMO : ‰¼‚¤‚¿
         }

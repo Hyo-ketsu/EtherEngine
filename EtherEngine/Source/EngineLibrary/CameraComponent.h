@@ -1,15 +1,14 @@
 #ifndef I_CAMERACOMPONENT_H
 #define I_CAMERACOMPONENT_H
 #include <Base/CameraBase.h>
-#include <EngineLibrary/UserComponent.h>
+#include <EngineLibrary/Component.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/AttributeDefine.h>
 
 
 //----- CameraComponent ’è‹`
-//#pragma managed
 namespace EtherEngine {
-    public ref class CameraComponent : public UserBaseComponent {
+    public ref class CameraComponent : public Component {
     public: 
         // ‰Šú‰»ˆ—
         void Start(void) override;

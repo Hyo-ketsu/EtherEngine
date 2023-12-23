@@ -1,12 +1,12 @@
 #include <Base/CollisionBase.h>
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 
 
 //----- CollisionHitData 定義
 namespace EtherEngine {
     // コンストラクタ
     CollisionHitData::CollisionHitData(void* gameObject) 
-        : m_hitTarget(static_cast<GameObject*>(gameObject)){
+        : m_hitTarget(static_cast<NativeGameObject*>(gameObject)){
     }
 
 

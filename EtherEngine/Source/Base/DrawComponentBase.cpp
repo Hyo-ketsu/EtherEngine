@@ -1,4 +1,4 @@
-#include <Base/DrawComponent.h>
+#include <Base/DrawComponentBase.h>
 
 
 //----- DrawComponentŽÀ‘•

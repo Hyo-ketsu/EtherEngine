@@ -1,18 +1,18 @@
 #ifndef I_MODELRENDER_H
 #define I_MODELRENDER_H
 #include <DirectX/Model.h>
-#include <EngineLibrary/UserDrawComponent.h>
+#include <EngineLibrary/WrapperDrawComponent.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 
 
 //----- ModelRender 宣言
 namespace EtherEngine {
 #ifdef _ENGINELIBRARY
-    public ref class ModelRender : UserDrawBaseComponent {
+    public ref class ModelRender : DrawBaseComponent {
     public:
         // コンストラクタ
         ModelRender(void)
-            : UserDrawBaseComponent() {
+            : DrawBaseComponent() {
             m_model.SetValue(Model());
         }
         // 描画関数

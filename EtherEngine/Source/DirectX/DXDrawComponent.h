@@ -1,7 +1,7 @@
 #ifndef I_DXDRAWCOMPONENT_H
 #define I_DXDRAWCOMPONENT_H
 #include <Base/GraphicDefines.h>
-#include <Base/DrawComponent.h>
+#include <Base/DrawComponentBase.h>
 #include <DirectX/ShaderClass.h>
 // @ MEMO : 不要では？
 
@@ -13,7 +13,7 @@ namespace EtherEngine {
         // @ Arg1 : ゲームオブジェクト
         // @ Arg2 : 頂点シェーダー
         // @ Arg3 : ピクセルシェーダー
-        DXDrawComponent(GameObject* gameObject, const VertexShader& vertexShader, const PixelShader& pixelShader);
+        DXDrawComponent(NativeGameObject* gameObject, const VertexShader& vertexShader, const PixelShader& pixelShader);
 
 
         // DX用描画関数

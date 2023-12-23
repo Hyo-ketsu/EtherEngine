@@ -1,19 +1,18 @@
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 #include <Base/GameObjectStorage.h>
 #include <Base/CollisionHelper.h>
-#include <ImGUI/ImGUIWrapFunction.h>
 
 
 namespace EtherEngine {
     // コンストラクタ
-    GameObject::GameObject(const Transform& transform, const std::string& name)
-        : BaseObject(name)
+    NativeGameObject::NativeGameObject(const Transform& transform, const std::string& name)
+        : NativeBaseObject(name)
         , m_transform(transform) {
     }
 
 
     // 更新処理を行う
-    void GameObject::Update(void) {
+    void NativeGameObject::Update(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -30,7 +29,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 物理更新処理を行う
-    void GameObject::FixedUpdate(void) {
+    void NativeGameObject::FixedUpdate(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -47,7 +46,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 描画処理を行う
-    void GameObject::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+    void NativeGameObject::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -60,7 +59,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 削除時処理を行う
-    void GameObject::Delete(void) {
+    void NativeGameObject::Delete(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -70,7 +69,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 衝突開始処理を行う
-    void GameObject::CollisionStart(void) {
+    void NativeGameObject::CollisionStart(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -106,7 +105,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 衝突終了処理を行う
-    void GameObject::CollisionEnd(void) {
+    void NativeGameObject::CollisionEnd(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -141,7 +140,7 @@ namespace EtherEngine {
         DeleteComponentsDelete();
     }
     // 衝突処理を行う
-    void GameObject::CollisionHit(void) {
+    void NativeGameObject::CollisionHit(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 
@@ -175,7 +174,7 @@ namespace EtherEngine {
 
 
     // 削除されたコンポーネントを削除する
-    void GameObject::DeleteComponentsDelete(void) {
+    void NativeGameObject::DeleteComponentsDelete(void) {
         for (auto it = m_components.begin(); it != m_components.end();) {
             //----- 削除するか
             if ((*it)->GetDelete()) {
@@ -200,27 +199,27 @@ namespace EtherEngine {
 
 
     // 相対座標ゲッター
-    const Transform& GameObject::GetLocalTransform(void) const {
+    const Transform& NativeGameObject::GetLocalTransform(void) const {
         return m_transform;
     }
     // 相対座標セッター
-    void GameObject::SetLocalTransform(const Transform& in) {
+    void NativeGameObject::SetLocalTransform(const Transform& in) {
         m_transform = in;
     }
 
 
     // 衝突情報を削除・スタッキングする
-    void GameObject::SidelineCollisionData(void) {
+    void NativeGameObject::SidelineCollisionData(void) {
         m_oldHitData = std::move(m_hitData);
         m_hitData = decltype(m_hitData)();
     }
     // 衝突情報を追加する
-    void GameObject::AddCollisionData(const CollisionHitData data) {
+    void NativeGameObject::AddCollisionData(const CollisionHitData data) {
         m_hitData.push_back(data);
     }
 
 
-    std::function<std::shared_ptr<ComponentBase>(GameObject*, const std::string&)> GameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
-    std::function<std::shared_ptr<ComponentBase>(GameObject*)> GameObject::ms_addComponentMenu = nullptr; // C++CLIのGameDrawComponentなどを取得するためのラムダ
-    std::function<std::string(const std::string&, const uint, const bool)> GameObject::ms_getFullName = nullptr; // 各コンポーネント名の完全修飾名取得ラムダ
+    std::function<std::shared_ptr<ComponentBase>(NativeGameObject*, const std::string&)> NativeGameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
+    std::function<std::shared_ptr<ComponentBase>(NativeGameObject*)> NativeGameObject::ms_addComponentMenu = nullptr; // C++CLIのGameDrawComponentなどを取得するためのラムダ
+    std::function<std::string(const std::string&, const uint, const bool)> NativeGameObject::ms_getFullName = nullptr; // 各コンポーネント名の完全修飾名取得ラムダ
 }

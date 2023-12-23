@@ -31,14 +31,14 @@ namespace EtherEngine {
     template <RandomManage::Number32_64ByteConcept Type>
     Type RandomManage::GetRandom(void) {
         //----- Ã“I•Ï”éŒ¾
-        std::unordered_map<Type, nullptr> random32map;
+        static std::unordered_map<Type, nullptr> usedNumber;
 
         //----- —”¶¬
-        auto ret = Random:::GetRandom<Type>();
+        auto ret = Random::GetRandom<Type>();
         
         //----- ¶¬‚ğŒJ‚è•Ô‚·
-        while (random32map.find(ret) == random32map.end()) {
-            ret = Random::Random32BitConcept<Type>();
+        while (usedNumber.find(ret) == usedNumber.end()) {
+            ret = Random::GetRandom<Type>();
         }
 
         //----- •Ô‹p

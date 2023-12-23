@@ -1,6 +1,6 @@
 #ifndef I_COMPONENTHELPER_H
 #define I_COMPONENTHELPER_H
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 
 
 //----- ComponentHelper宣言
@@ -10,11 +10,11 @@ namespace EtherEngine {
         // コンポーネントの所属ゲームオブジェクト取得
         // @ Ret  : 所属ゲームオブジェクト
         // @ Arg1 : 所属ゲームオブジェクトを取得したいコンポーネント
-        GameObject* const GetParentObject(const ComponentBase& component);
+        NativeGameObject* const GetParentObject(const ComponentBase& component);
         // コンポーネントの所属ゲームオブジェクト取得
         // @ Ret  : 所属ゲームオブジェクト
         // @ Arg1 : 所属ゲームオブジェクトを取得したいコンポーネント
-        GameObject* const GetParentObject(const ComponentBase* const component);
+        NativeGameObject* const GetParentObject(const ComponentBase* const component);
     };
 }
 

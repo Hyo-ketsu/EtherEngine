@@ -4,7 +4,7 @@
 #include <Base/CollisionBase.h>
 #include <Base/CollisionComponent.h>
 #include <Base/CollisionHelper.h>
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 // @ MEMO : 重かったらベクトル化できるよう要検討？
 
 
@@ -18,10 +18,10 @@ namespace EtherEngine {
             // @ Arg1 : 自身のゲームオブジェクトへのポインタ
             // @ Arg2 : 座標
             // @ Arg3 : 情報
-            CollisionCheckData(GameObject* gameObject, const Transform& transform, const CollisionData& data) : m_gameObject(gameObject), m_transform(transform), mc_data(data) {}
+            CollisionCheckData(NativeGameObject* gameObject, const Transform& transform, const CollisionData& data) : m_gameObject(gameObject), m_transform(transform), mc_data(data) {}
 
 
-            GameObject* m_gameObject;       // 自身のゲームオブジェクト
+            NativeGameObject* m_gameObject;       // 自身のゲームオブジェクト
             Transform m_transform;          // 座標
             const CollisionData& mc_data;   // 情報
         };

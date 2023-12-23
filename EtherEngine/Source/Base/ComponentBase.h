@@ -2,14 +2,14 @@
 #define I_COMPONENTBASE_H
 #include <Base/CollisionBase.h>
 #include <Base/EtherEngineUtility.h>
-#include <Base/BaseObject.h>
+#include <Base/NativeBaseObject.h>
 #include <Base/Handle.h>
 
 
 //----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase : public BaseObject {
+    class ComponentBase : public NativeBaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト
@@ -70,7 +70,7 @@ namespace EtherEngine {
         virtual void CollisionHit(void) = 0;
 
     private:
-        class GameObject* m_gameObject;   // 所属ゲームオブジェクト
+        class NativeGameObject* m_gameObject;   // 所属ゲームオブジェクト
         std::vector<CollisionHitData> m_hitData;    // 衝突コリジョンデータ
         bool m_isStart; // 既にStart処理を行っているか
     };

@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     EditorComponentBase::EditorComponentBase(void* editorObject)
-        : BaseObject("EditorComponent")
+        : NativeBaseObject("EditorComponent")
         , m_eidtorObject(editorObject) 
         , m_isStart(false) {
     }

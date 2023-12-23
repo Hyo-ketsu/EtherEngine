@@ -5,7 +5,7 @@
 //
 //namespace EtherEngine {
 //    // コンストラクタ
-//    ModelComponent::ModelComponent(GameObject* gameObject, const std::string& file, const Handle<DirectXRender>& directX, VertexShader& vertexShader, PixelShader& pixelShader,
+//    ModelComponent::ModelComponent(NativeGameObject* gameObject, const std::string& file, const Handle<DirectXRender>& directX, VertexShader& vertexShader, PixelShader& pixelShader,
 //        const float scale, const bool isFlip) 
 //        : DXDrawComponent(gameObject, vertexShader, pixelShader)
 //        , Model(file, directX, &vertexShader, &pixelShader,scale, isFlip) {

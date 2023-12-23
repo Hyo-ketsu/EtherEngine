@@ -1,20 +1,19 @@
-#ifndef I_USERDRAWCOMPONENT_H
-#define I_USERDRAWCOMPONENT_H
+#ifndef I_DRAWCOMPONENT_H
+#define I_DRAWCOMPONENT_H
 #include <DirectX/ShaderClass.h>
-#include <EngineLibrary/UserComponent.h>
+#include <EngineLibrary/Component.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/AttributeDefine.h>
 
 
-//----- UserDrawBaseComponent 宣言
+//----- DrawBaseComponent 宣言
 namespace EtherEngine {
-#ifdef _ENGINELIBRARY
     // 描画コンポーネント
-    public ref class UserDrawBaseComponent : public UserBaseComponent {
+    public ref class DrawBaseComponent : public Component {
     public:
         // コンストラクタ
-        UserDrawBaseComponent(void)
-            : UserBaseComponent()
+        DrawBaseComponent(void)
+            : Component()
             , m_vertexShader(nullptr)
             , m_pixelShader(nullptr) {
         }
@@ -61,8 +60,7 @@ namespace EtherEngine {
         UnmanageMaintainer<Eigen::Matrix4f> m_view;         // ビュー行列
         UnmanageMaintainer<Eigen::Matrix4f> m_projection;   // プロジェクション行列
     };
-#endif
 }
 
 
-#endif // !I_USERDRAWCOMPONENT_H
+#endif // !I_DRAWCOMPONENT_H

@@ -1,5 +1,5 @@
-#ifndef I_DRAWCOMPONENT_H
-#define I_DRAWCOMPONENT_H
+#ifndef I_DRAWCOMPONENTBase_H
+#define I_DRAWCOMPONENTBase_H
 #include <Base/ComponentBase.h>
 
 

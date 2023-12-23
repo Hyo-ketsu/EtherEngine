@@ -1,20 +1,20 @@
 #ifndef I_GAMEDRAWCOMPONENT_H
 #define I_GAMEDRAWCOMPONENT_H
-#include <Base/DrawComponent.h>
-#include <EngineLibrary/GameComponent.h>
-#include <EngineLibrary/UserDrawComponent.h>
+#include <Base/DrawComponentBase.h>
+#include <EngineLibrary/WrapperComponent.h>
+#include <EngineLibrary/WrapperDrawComponent.h>
 
 
 //----- 描画コンポーネント
 namespace EtherEngine {
     // 描画コンポーネント
-    class ENGINELIBRARY_API GameDrawComponent : public GameComponent, public virtual DrawComponent {
+    class ENGINELIBRARY_API WrapperDrawComponent : public WrapperComponent, public virtual DrawComponent {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します
         // @ Arg1 : 親ゲームオブジェクト
         // @ Arg2 : 生成コンポーネント名
-        GameDrawComponent(GameObject* gameObject, const std::string& componentName);
+        WrapperDrawComponent(NativeGameObject* gameObject, const std::string& componentName);
 
 
         // 開始処理

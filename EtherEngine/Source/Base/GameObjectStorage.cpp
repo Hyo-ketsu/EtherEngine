@@ -4,8 +4,8 @@
 //----- GameObejctStorage宣言
 namespace EtherEngine {
     // ゲームオブジェクトを作成する
-    Handle<GameObject> GameObjectStorage::CreateGameObject(const Transform& transform, const std::string& name) {
-        auto handle = Handle<GameObject>(GameObject(transform, name));
+    Handle<NativeGameObject> GameObjectStorage::CreateGameObject(const Transform& transform, const std::string& name) {
+        auto handle = Handle<NativeGameObject>(NativeGameObject(transform, name));
         handle.GetAtomicData().m_handle = handle;
         // @ MEMO : シーンへの追加あたり作り直し
         //if (SceneLoader::Get()->GetCurrentSceneData().has_value()) { handle.GetAtomicData().SetScene(SceneLoader::Get()->GetCurrentSceneData().value()); }
@@ -13,7 +13,7 @@ namespace EtherEngine {
         return handle.GetRefHandle();
     }
     // ゲームオブジェクトを削除する
-    bool GameObjectStorage::DeleteGameObject(const Handle<GameObject>& gameObject) {
+    bool GameObjectStorage::DeleteGameObject(const Handle<NativeGameObject>& gameObject) {
         //----- 削除するハンドルをなめる
         for (auto&& it : m_gameObjects){
             if (it == gameObject) {
@@ -30,7 +30,7 @@ namespace EtherEngine {
 
 
     // 全てのゲームオブジェクトを取得する
-    std::vector<Handle<GameObject>> GameObjectStorage::GetGameObjectAll(void) const{
+    std::vector<Handle<NativeGameObject>> GameObjectStorage::GetGameObjectAll(void) const{
         return m_gameObjects;
     }
 

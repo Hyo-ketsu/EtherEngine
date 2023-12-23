@@ -2,7 +2,7 @@
 //#define I_CAMERACOMPONENT_H
 //#include <Base/CameraBase.h>
 //#include <Base/ComponentBase.h>
-//#include <Base/GameObject.h>
+//#include <Base/NativeGameObject.h>
 //
 //
 ////----- CameraComponent宣言
@@ -12,7 +12,7 @@
 //        // コンストラクタ
 //        // @ Arg1 : ゲームオブジェクト
 //        // @ Arg2 : 注視点
-//        CameraComponent(GameObject* gameObject, const Eigen::Vector3f& look);
+//        CameraComponent(NativeGameObject* gameObject, const Eigen::Vector3f& look);
 //
 //
 //        // 更新処理

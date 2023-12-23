@@ -6,15 +6,15 @@ namespace EtherEngine {
     // 衝突対象ゲームオブジェクト取得
     // @ Ret  : 衝突対象ゲームオブジェクト
     // @ Arg1 : 衝突対象ゲームオブジェクトを取得したいコンポーネント
-    GameObject* const CollisionHelper::GetParentObject(const CollisionHitData& hitData) {
+    NativeGameObject* const CollisionHelper::GetParentObject(const CollisionHitData& hitData) {
         void* ret = nullptr;
         hitData.GetHitTarget(&ret);
-        return static_cast<GameObject*>(ret);
+        return static_cast<NativeGameObject*>(ret);
     }
     // 衝突対象ゲームオブジェクト取得
     // @ Ret  : 衝突対象ゲームオブジェクト
     // @ Arg1 : 衝突対象ゲームオブジェクトを取得したいコンポーネント
-    GameObject* const CollisionHelper::GetParentObject(const CollisionHitData* const hitData) {
+    NativeGameObject* const CollisionHelper::GetParentObject(const CollisionHitData* const hitData) {
         return GetParentObject(*hitData);
     }
 }

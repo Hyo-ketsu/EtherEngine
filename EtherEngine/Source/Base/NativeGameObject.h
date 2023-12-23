@@ -1,22 +1,22 @@
-#ifndef I_GAMEOBJECT_H
-#define I_GAMEOBJECT_H
+#ifndef I_NATIVEGAMEOBJECT_H
+#define I_NATIVEGAMEOBJECT_H
 #include <Base/BaseDefines.h>
-#include <Base/BaseObject.h>
+#include <Base/NativeBaseObject.h>
 #include <Base/ComponentBase.h>
 #include <Base/ComponentHelper.h>
 #include <Base/CollisionComponent.h>
 #include <Base/ConceptUtility.h>
-#include <Base/DrawComponent.h> 
+#include <Base/DrawComponentBase.h> 
 #include <Base/Handle.h>
 #include <Base/Transform.h>
 #include <Base/ParentAndChildObject.h>
 #include <Base/EtherEngineUtility.h>
 
 
-//----- GameObject 宣言
+//----- NativeGameObject 宣言
 namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
-    class GameObject : public BaseObject {
+    class NativeGameObject : public NativeBaseObject {
     public:
         // 更新処理を行う
         void Update(void);
@@ -68,15 +68,15 @@ namespace EtherEngine {
         void SetScene(const SceneType& in) { m_scene = in; }
 
         // 親子関係ゲッター
-        const ParentAndChildObject<GameObject> GetParentAndChild(void) const { return m_parentAndChild; }
+        const ParentAndChildObject<NativeGameObject> GetParentAndChild(void) const { return m_parentAndChild; }
         // 親子関係セッター
-        void SetParentAndChild(const ParentAndChildObject<GameObject>& in) { m_parentAndChild = in; }
+        void SetParentAndChild(const ParentAndChildObject<NativeGameObject>& in) { m_parentAndChild = in; }
         // 親子関係アクセサー
-        ParentAndChildObject<GameObject>& AccessParentAndChild(void) { return m_parentAndChild; }
+        ParentAndChildObject<NativeGameObject>& AccessParentAndChild(void) { return m_parentAndChild; }
 
 
         // ハンドルゲッター
-        const Handle<GameObject>& GetHandle(void) const { return m_handle; }
+        const Handle<NativeGameObject>& GetHandle(void) const { return m_handle; }
 
 
         // 衝突情報を削除・スタッキングする
@@ -113,8 +113,8 @@ namespace EtherEngine {
     protected:
         // コンストラクタ
         // @ Arg1 : 座標
-        // @ Arg2 : オブジェクト名(Default : GameObject)
-        GameObject(const Transform& transform, const std::string& name = "GameObject");
+        // @ Arg2 : オブジェクト名(Default : NativeGameObject)
+        NativeGameObject(const Transform& transform, const std::string& name = "GameObject");
 
     private:
         // 削除されたコンポーネントを削除する
@@ -127,16 +127,16 @@ namespace EtherEngine {
         std::string m_name;     // 名前
         Transform m_transform;  // 座標
         SceneType m_scene;      // 現在所属シーン
-        Handle<GameObject> m_handle;    // 自身のハンドル
-        ParentAndChildObject<GameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
+        Handle<NativeGameObject> m_handle;    // 自身のハンドル
+        ParentAndChildObject<NativeGameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
         std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
         std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
 
-        static std::function<std::shared_ptr<ComponentBase>(GameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
-        static std::function<std::shared_ptr<ComponentBase>(GameObject*)> ms_addComponentMenu; // AddComponent用のメニュー表示ラムダ
+        static std::function<std::shared_ptr<ComponentBase>(NativeGameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
+        static std::function<std::shared_ptr<ComponentBase>(NativeGameObject*)> ms_addComponentMenu; // AddComponent用のメニュー表示ラムダ
         static std::function<std::string(const std::string&, const uint, const bool)> ms_getFullName; // 各コンポーネント名の完全修飾名取得ラムダ
     };
 }
@@ -144,16 +144,16 @@ namespace EtherEngine {
 
 
 
-//----- GameObject 定義
+//----- NativeGameObject 定義
 namespace EtherEngine {
     // コンポーネント追加
     // @ Temp1: 追加するコンポーネントの型
     // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
     // @ Args : 追加コンポーネントのコンストラクタに使用する引数
     template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
-    std::weak_ptr<ComponentType> GameObject::AddComponent(ArgsType&& ...args) {
+    std::weak_ptr<ComponentType> NativeGameObject::AddComponent(ArgsType&& ...args) {
         //----- 警告表示
-        static_assert((std::is_constructible_v<ComponentType, GameObject*, ArgsType...>), "Error! AddComponent Args");
+        static_assert((std::is_constructible_v<ComponentType, NativeGameObject*, ArgsType...>), "Error! AddComponent Args");
 
         //----- 生成
         auto ptr = std::make_shared<ComponentType>(this, args...);
@@ -176,7 +176,7 @@ namespace EtherEngine {
     // @ Temp : 削除するコンポーネントの型
     // @ Ret  : 削除したか
     template <Concept::SubClassOnly<ComponentBase> ComponentType>
-    bool GameObject::DeleteComponent(void) {
+    bool NativeGameObject::DeleteComponent(void) {
         //------ 捜索
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             for (auto& component : m_drawComponents) {
@@ -216,7 +216,7 @@ namespace EtherEngine {
     // @ Ret  : 取得したコンポーネント
     // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
     template <Concept::SubClassOnly<ComponentBase> ComponentType>
-    std::weak_ptr<ComponentType> GameObject::GetComponent(uint index) {
+    std::weak_ptr<ComponentType> NativeGameObject::GetComponent(uint index) {
         //----- 取得
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             for (auto& component : m_drawComponents) {
@@ -271,7 +271,7 @@ namespace EtherEngine {
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント（複数）
     template <Concept::SubClassOnly<ComponentBase> ComponentType>
-    std::vector<std::weak_ptr<ComponentType>> GameObject::GetComponents(void) {
+    std::vector<std::weak_ptr<ComponentType>> NativeGameObject::GetComponents(void) {
         //----- 返却用変数宣言
         std::vector<std::weak_ptr<ComponentType>> ret;
 

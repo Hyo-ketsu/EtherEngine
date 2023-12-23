@@ -1,10 +1,10 @@
 //#include <Base/CameraComponent.h>
-//#include <Base/GameObject.h>
+//#include <Base/NativeGameObject.h>
 //
 //
 //namespace EtherEngine {
 //    // コンストラクタ
-//    CameraComponent::CameraComponent(GameObject* gameObject, const Eigen::Vector3f& look)  
+//    CameraComponent::CameraComponent(NativeGameObject* gameObject, const Eigen::Vector3f& look)  
 //        : ComponentBase(gameObject)
 //        , CameraBase({},look) {
 //        AccessCameraData().SetPos(ComponentHelper::GetParentObject(this)->AccessTransform().AccessPostion());

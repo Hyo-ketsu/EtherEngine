@@ -1,7 +1,7 @@
 #ifndef I_EDITOROBJECT_H
 #define I_EDITOROBJECT_H
 #include <Base/ConceptUtility.h>
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 #include <Base/Transform.h>
 #include <Base/Handle.h>
 #include <EtherEngine/EditorComponentBase.h>
@@ -9,7 +9,7 @@
 
 //----- EditorObjectéŒ¾
 namespace EtherEngine {
-    class EditorObject : public BaseObject {
+    class EditorObject : public NativeBaseObject {
     public:
         // XVˆ—‚ğs‚¤
         void Update(void);

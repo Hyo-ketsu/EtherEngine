@@ -1,7 +1,7 @@
 //#ifndef I_MODELCOMPONENT_H
 //#define I_MODELCOMPONENT_H
 //#include <Base/GraphicDefines.h>
-//#include <Base/DrawComponent.h>
+//#include <Base/DrawComponentBase.h>
 //#include <DirectX/DXDrawComponent.h>
 //#include <DirectX/Model.h>
 //
@@ -18,7 +18,7 @@
 //        // @ Arg5 : ピクセルシェーダー
 //        // @ Arg6 : 拡縮(Default : 1.0f)
 //        // @ Arg7 : 頂点反転(Default : 行わない)
-//        ModelComponent(GameObject* gameObject, const std::string& file, const Handle<DirectXRender>& directX, VertexShader& vertexShader, PixelShader& pixelShader,
+//        ModelComponent(NativeGameObject* gameObject, const std::string& file, const Handle<DirectXRender>& directX, VertexShader& vertexShader, PixelShader& pixelShader,
 //            const float scale = 1.0f, const bool isFlip = false);
 //
 //

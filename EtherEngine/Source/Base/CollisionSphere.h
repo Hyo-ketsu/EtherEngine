@@ -1,7 +1,7 @@
 #ifndef I_COLLISIONSPHERE_H
 #define I_COLLISIONSPHERE_H
 #include <Base/CollisionBase.h>
-#include <Base/GameObject.h>
+#include <Base/NativeGameObject.h>
 
 
 //----- CollisionSphere êÈåæ

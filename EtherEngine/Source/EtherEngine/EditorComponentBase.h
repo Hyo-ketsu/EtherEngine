@@ -1,11 +1,11 @@
 #ifndef I_EDITORCOMPONENTBASE_H
 #define I_EDITORCOMPONENTBASE_H
-#include <Base/BaseObject.h>
+#include <Base/NativeBaseObject.h>
 
 
 //----- EditorComponent宣言
 namespace EtherEngine {
-    class EditorComponentBase : public BaseObject {
+    class EditorComponentBase : public NativeBaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : エディターオブジェクト

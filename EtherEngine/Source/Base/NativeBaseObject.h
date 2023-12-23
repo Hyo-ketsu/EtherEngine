@@ -2,17 +2,16 @@
 #define I_BASEOBJECT_H_
 #include <Base/EtherEngineUtility.h>
 #include <Base/BaseDefines.h>
-// @ MEMO : ファイルパスを含めるか検討？
 
 
-//----- BaseObject 宣言
+//----- NativeBaseObject 宣言
 namespace EtherEngine {
     // エンジンで汎用的に使われる基底クラス
-    class BaseObject {
+    class NativeBaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : オブジェクト名
-        BaseObject(const std::string& name);
+        NativeBaseObject(const std::string& name);
 
 
         // IDゲッター
