@@ -26,15 +26,9 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h">
-      <Filter>Wrapper</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h">
       <Filter>Stdafx</Filter>
     </ClInclude>
@@ -50,16 +44,13 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h">
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseObject.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h">
+    <ClInclude Include="..\..\Source\EngineLibrary\Component.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h">
-      <Filter>Manage</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h">
+    <ClInclude Include="..\..\Source\EngineLibrary\DrawComponent.h">
       <Filter>Manage</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h">
@@ -74,19 +65,30 @@
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h">
       <Filter>Manage</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperDrawComponent.h">
+      <Filter>Native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h">
+      <Filter>Native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\IDClass.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\Scene.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp">
-      <Filter>Wrapper</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp">
       <Filter>Stdafx</Filter>
     </ClCompile>
@@ -99,16 +101,13 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp">
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseObject.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp">
+    <ClCompile Include="..\..\Source\EngineLibrary\Component.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp">
-      <Filter>Manage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp">
+    <ClCompile Include="..\..\Source\EngineLibrary\DrawComponent.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp">
@@ -124,6 +123,27 @@
       <Filter>Manage</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp">
+      <Filter>Native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp">
+      <Filter>Native</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\IDClass.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObject.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ClassLoader.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
   </ItemGroup>

@@ -22,41 +22,46 @@
     <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\ManageFunctionInit.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\IDClass.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\GameComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\GameDrawComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\Scene.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\WrapperDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelRender.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryInclude.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserBaseObject.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserDrawComponent.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\UserGameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\Component.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\DrawComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ClassLoader.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ManageFunctionInit.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\IDClass.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\GameComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\GameDrawComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
@@ -66,10 +71,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Editor_Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\UserBaseObject.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\UserGameObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\Component.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\DrawComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">
