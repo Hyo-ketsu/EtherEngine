@@ -4,9 +4,9 @@
 
 namespace EtherEngine {
     namespace Random {
-        // 数値型若しくは浮動小数、かつ指定したByte数か
+        // 指定したByte数か
         template <class T, int Byte>
-        concept RandomBitConcept = (std::is_integral_v<T> || std::is_floating_point_v<T>) && (int)sizeof(T) == Byte;
+        concept RandomBitConcept = (int)sizeof(T) == Byte;
 
 
         // 32bit(4Byte)乱数を生成する

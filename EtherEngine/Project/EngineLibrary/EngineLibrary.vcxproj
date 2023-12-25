@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\Scene.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\SceneLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
@@ -85,6 +87,11 @@
     <ProjectReference Include="..\ImGUI\ImGUI.vcxproj">
       <Project>{688a54a1-1a61-4077-846e-e088f2cb833d}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json">
+      <Version>8.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

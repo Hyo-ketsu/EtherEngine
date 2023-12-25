@@ -2,9 +2,8 @@
 #include <Base/WindowsDefine.h>
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <Base/Timer.h>
-#include <EngineLibrary/ManageFunctionInit.h>
 #include <EngineLibrary/AssemblyHolder.h>
 
 
@@ -114,7 +113,6 @@ namespace EtherEngine {
         InitFirstFunction();
 
         //----- ‰Šú‰»EI—¹ˆ—“o˜^
-        m_initUninitPerformer.AddInitUninit<ManageFunctionInit>();
         m_initUninitPerformer.AddInitUninit(GlobalTimer::Get());
         m_initUninitPerformer.AddInitUninit<InputSystem>();
 

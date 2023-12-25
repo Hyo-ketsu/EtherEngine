@@ -16,13 +16,13 @@ namespace EtherEngine {
     // ‰Šú‰»ˆ—
     void CameraComponent::Start(void) {
         if (m_camera.HasValue() == false) {
-            auto look = ParentGameObject->GetTransform().GetPostion();
+            auto look = ParentGameObject->NGameObject.GetData().GetTransform().GetPostion();
             look.z() -= 1;
-            m_camera.SetValue(CameraBase(GetGameObject()->GetTransform().GetPostion(), look, true, 0)); // @ MEMO : ‰¼‚¤‚¿
+            m_camera.SetValue(CameraBase(ParentGameObject->NGameObject.GetData().GetTransform().GetPostion(), look, true, 0)); // @ MEMO : ‰¼‚¤‚¿
         }
     }
     // XVˆ—
     void CameraComponent::Update(void) {
-        m_camera.GetValue().AccessCameraData().SetPos(GetGameObject()->GetTransform().GetPostion());
+        m_camera.GetValue().AccessCameraData().SetPos(ParentGameObject->NGameObject.GetData().GetTransform().GetPostion());
     }
 }

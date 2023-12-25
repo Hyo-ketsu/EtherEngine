@@ -7,7 +7,7 @@
 //----- GameCompnent 宣言
 namespace EtherEngine {
     // 
-    class ENGINELIBRARY_API WrapperComponent : public ComponentBase, public IInOuter {
+    class ENGINELIBRARY_API WrapperComponent : public ComponentBase {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します
@@ -29,14 +29,7 @@ namespace EtherEngine {
         // 衝突処理
         void CollisionHit(void);
 
-
-        // 外部出力
-        Json Output(void) override;
-        // 外部入力
-        void Input(const Json& input) override;
-
     protected:
-        std::string m_componentName;    // 自身のコンポーネント名
         msclr::gcroot<Component^> m_component;  // 保持しているコンポーネント
     };
 }

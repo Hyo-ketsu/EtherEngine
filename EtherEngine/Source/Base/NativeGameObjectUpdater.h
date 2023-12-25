@@ -1,6 +1,6 @@
 #ifndef I_GAMEOBJECTUPDATER_H
 #define I_GAMEOBJECTUPDATER_H
-#include <Base/GameObjectStorage.h>
+#include <Base/NativeGameObjectStorage.h>
 
 
 //----- GameObjectUpdaterêÈåæ

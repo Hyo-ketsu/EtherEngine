@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 
 namespace EditorUI {
@@ -22,7 +21,6 @@ namespace EditorUI {
         None,
     }
     /// <summary>エディターの設定を保持するクラス</summary>
-    [JsonObject]
     public class EditorSetting {
         /// <summary>コンストラクタ</summary>
         public EditorSetting() {}

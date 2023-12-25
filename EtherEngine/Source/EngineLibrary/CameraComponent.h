@@ -20,7 +20,7 @@ namespace EtherEngine {
         !CameraComponent(void);
 
     protected:
-        [Attribute::Serialize] UnmanageMaintainer<CameraBase> m_camera;   // ƒJƒƒ‰î•ñ
+        [Attribute::OutputAttribute] UnmanageMaintainer<CameraBase> m_camera;   // ƒJƒƒ‰î•ñ
     }; 
 }
 

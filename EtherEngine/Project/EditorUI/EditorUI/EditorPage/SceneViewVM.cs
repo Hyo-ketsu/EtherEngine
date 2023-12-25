@@ -65,7 +65,7 @@ namespace EditorUI {
 
 
         /// <summary>保持しているID</summary>
-        public EditorIDClass ID { get; private set; } = new();
+        public EtherEngine.IDClass ID { get; private set; } = new();
         /// <summary>新しいウィンドウのサイズ</summary>
         private Vector2? m_newWindowSize = null;
         /// <summary>排他処理用オブジェクト</summary>

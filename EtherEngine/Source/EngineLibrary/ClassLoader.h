@@ -9,17 +9,21 @@ namespace EtherEngine {
     public ref class ClassLoader {
     public:
         // クラスの情報を出力する
-        // @ Arg1 : 出力先
-        // @ Arg2 : 出力する型の実際のデータ
-        static void Output(PathString path, System::Object^ object);
+        // @ Ret  : 出力データ
+        // @ Arg1 : 出力する型の実際のデータ
+        static System::String^ Output(System::Object^ object);
         // クラスの情報を入力する
-        // @ Arg1 : 入力情報パス
+        // @ MEMO : 取得できなかったフィールド等を取得できるようにしておくべき。
+        // @ Arg1 : 入力情報データ
         // @ Arg2 : 入力する型の実際のデータ
-        static void Input(PathString path, System::Object^ object);
+        static void Input(System::String^ data, System::Object^ object);
         // クラスの各フィールドを出力する
         // @ MEMO : 後でプロパティも出力を行うようにする？
-        // @ Arg1 : 出力する型
-        static System::Collections::Generic::List<System::Object^>^ 
+        // @ Memo : 標準でSystem::Objectのフィールドは無視します
+        // @ Ret  : 出力した型一覧
+        // @ Arg1 : 出力するオブジェクト
+        // @ Arg2 : フィールドを取得する限界のクラス(Hoge->Fuga->PiyoでPiyoを指定した場合、Hoge,Fugaのフィールドを取得)
+        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Object^ out, System::Type^ overClass);
     };
 }
 

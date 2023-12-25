@@ -3,7 +3,7 @@
 #include <Base/WindowsDefine.h>
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <EtherEngine/EditorObjectUpdater.h>
 #include <EtherEngine/CommandPrompt.h>
 #include <EtherEngine/ProjectMediation.h>
@@ -12,7 +12,7 @@
 #include <DirectX/ModelComponent.h>
 #include <DirectX/ShaderClass.h>
 #include <Base/CollisionSphere.h>
-#include <Base/GameObjectStorage.h>
+#include <Base/NativeGameObjectStorage.h>
 #include <Base/CameraComponent.h>
 #include <EtherEngine/Test/TestDefine.h>
 #include <EtherEngine/Test/TestComponent.h>

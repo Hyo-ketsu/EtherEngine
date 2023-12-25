@@ -1,4 +1,4 @@
-#include <Base/GameObjectStorage.h>
+#include <Base/NativeGameObjectStorage.h>
 
 
 //----- GameObejctStorageéŒ¾

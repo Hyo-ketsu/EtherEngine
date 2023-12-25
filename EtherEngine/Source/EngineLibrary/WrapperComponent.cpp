@@ -11,8 +11,7 @@ namespace EtherEngine {
     // @ Arg1 : 親ゲームオブジェクト
     // @ Arg2 : 生成コンポーネント名
     WrapperComponent::WrapperComponent(NativeGameObject* gameObject, const std::string& componentName) 
-        : ComponentBase(gameObject, componentName) 
-        , m_componentName(componentName) {
+        : ComponentBase(gameObject, componentName) {
         // @ MEMO : 名前からの生成
         System::Type^ type = System::Type::GetType(UNMANAGE_TO_MANAGE_STRING(componentName));
         auto component = dynamic_cast<Component^>(System::Activator::CreateInstance(type));
@@ -49,21 +48,5 @@ namespace EtherEngine {
     // 衝突処理
     void WrapperComponent::CollisionHit(void) {
         m_component->CollisionHit();
-    }
-
-
-    // 外部出力
-    Json WrapperComponent::Output(void) {
-        // @ MEMO : 後で修正する
-        //auto ret = Json(Json::parse(m_component->Serialize()));
-        //ret["ComponentName"] = this->GetId();
-        //ret["Active"] = this->GetActive();
-        //return ret;
-    }
-    // 外部入力
-    void WrapperComponent::Input(const Json& input) {
-        // @ MEMO : 後で修正する
-        //m_component->Deserialize(input.dump(FileDefine::JSON_DUMP_NUMBER_OF_STAGES));
-        SetActive(input["Active"]);
     }
 }

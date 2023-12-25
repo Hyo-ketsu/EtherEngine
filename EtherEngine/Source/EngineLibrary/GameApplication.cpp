@@ -1,10 +1,9 @@
 #include <EngineLibrary/GameApplication.h>
 #include <Base/Timer.h>
 #include <Base/WindowsDefine.h>
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <Base/BaseInput.h>
 #include <Base/CameraStorage.h>
-#include <EngineLibrary/ManageFunctionInit.h>
 
 
 #ifdef _DEBUG

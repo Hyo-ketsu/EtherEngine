@@ -21,7 +21,7 @@ namespace EtherEngine {
         }
 
     private:
-        [Attribute::Serialize] UnmanageMaintainer<Model> m_model;   // •Ûƒ‚ƒfƒ‹
+        [Attribute::OutputAttribute] UnmanageMaintainer<Model> m_model;   // •Ûƒ‚ƒfƒ‹
     };
 #endif
 }

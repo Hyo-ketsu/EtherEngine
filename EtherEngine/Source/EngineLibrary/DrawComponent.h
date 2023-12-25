@@ -53,8 +53,8 @@ namespace EtherEngine {
         }
 
     private:
-        [Attribute::Serialize] System::String^ m_thisVertexShader; // 現在保持している頂点シェーダー名
-        [Attribute::Serialize] System::String^ m_thisPixelShader;  // 現在保持しているpixelシェーダー名
+        [Attribute::OutputAttribute] System::String^ m_thisVertexShader; // 現在保持している頂点シェーダー名
+        [Attribute::OutputAttribute] System::String^ m_thisPixelShader;  // 現在保持しているpixelシェーダー名
         VertexShader* m_vertexShader;    // 頂点シェーダー
         PixelShader* m_pixelShader;      // ピクセルシェーダー
         UnmanageMaintainer<Eigen::Matrix4f> m_view;         // ビュー行列

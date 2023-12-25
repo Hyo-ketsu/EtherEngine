@@ -1,5 +1,5 @@
 #include <DirectX/DirectX.h>
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 
 
 namespace EtherEngine {

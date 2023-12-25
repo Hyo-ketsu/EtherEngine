@@ -3,6 +3,7 @@
 #include <Base/BaseDefines.h>
 
 
+#pragma managed
 //----- IDClass 定義
 namespace EtherEngine {
     // IDを管理・表現するクラス

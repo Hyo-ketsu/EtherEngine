@@ -2,19 +2,20 @@
 #define I_ATTRIBUTEDEFINE_H
 
 
+#pragma managed
 namespace EtherEngine {
-#ifdef _ENGINELIBRARY
     namespace Attribute {
-        // Serialize,Deserializeするための属性
-        public ref class Serialize : System::Attribute {
+        // 入出力を行うための属性
+        [System::AttributeUsageAttribute(System::AttributeTargets::Field)]
+        public ref class OutputAttribute : System::Attribute {
         };
 
 
-        // Serialize,DeserializeされるものをSerialize,Deserializeしないための属性
-        public ref class NonSerialize : System::Attribute {
+        // 入出力が行われるものを入出力しないための属性
+        [System::AttributeUsageAttribute(System::AttributeTargets::Field)]
+        public ref class NoOutputAttribute : System::Attribute {
         };
     }
-#endif
 }
 
 

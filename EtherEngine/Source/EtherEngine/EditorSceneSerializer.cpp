@@ -1,7 +1,7 @@
 #include <EtherEngine/EditorSceneSerializer.h>
 #include <Base/BaseDefines.h>
 #include <Base/BaseUtility.h>
-#include <Base/GameObjectStorage.h>
+#include <Base/NativeGameObjectStorage.h>
 
 
 //----- EditorSceneSerialize ’è‹`

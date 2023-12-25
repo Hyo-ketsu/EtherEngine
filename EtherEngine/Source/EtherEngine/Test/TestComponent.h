@@ -1,6 +1,5 @@
 #ifndef I_TESTCOMPONENT_H
 #define I_TESTCOMPONENT_H
-#include <EngineLibrary/Component.h>
 
 
 //----- TestComponent éŒ¾

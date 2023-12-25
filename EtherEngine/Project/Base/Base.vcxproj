@@ -42,8 +42,8 @@
     <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
     <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\NativeGameObject.cpp" />
-    <ClCompile Include="..\..\Source\Base\GameObjectStorage.cpp" />
-    <ClCompile Include="..\..\Source\Base\GameObjectUpdater.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeGameObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeGameObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\Base\InitUninitPerformer.cpp" />
     <ClCompile Include="..\..\Source\Base\MathUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Mutex.cpp" />
@@ -88,8 +88,8 @@
     <ClInclude Include="..\..\Source\Base\EditorException.h" />
     <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h" />
     <ClInclude Include="..\..\Source\Base\NativeGameObject.h" />
-    <ClInclude Include="..\..\Source\Base\GameObjectStorage.h" />
-    <ClInclude Include="..\..\Source\Base\GameObjectUpdater.h" />
+    <ClInclude Include="..\..\Source\Base\NativeGameObjectStorage.h" />
+    <ClInclude Include="..\..\Source\Base\NativeGameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
     <ClInclude Include="..\..\Source\Base\HandleSystem.h" />

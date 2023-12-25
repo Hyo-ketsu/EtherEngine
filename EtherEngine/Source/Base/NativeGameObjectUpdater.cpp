@@ -1,4 +1,4 @@
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <Base/CollisionBase.h>
 #include <Base/CollisionFunction.h>
 

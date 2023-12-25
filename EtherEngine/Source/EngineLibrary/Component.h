@@ -2,11 +2,16 @@
 #define I_COMPONENT_H
 // @ MEMO : 実際にユーザーが記述するためのもととなるクラス
 #include <Base/NativeGameObject.h>
+#include <EngineLibrary/AttributeDefine.h>
 #include <EngineLibrary/ComponentInterface.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 #include <EngineLibrary/BaseObject.h>
-ref class GameObject;
-#include <EngineLibrary/GameObject.h>
+
+
+//----- 前方宣言
+namespace EtherEngine {
+    ref class GameObject;
+}
 
 
 #pragma managed
@@ -21,7 +26,6 @@ namespace EtherEngine {
         // ゲームオブジェクト
         property GameObject^ ParentGameObject {
             GameObject^ get(void);
-        internal: 
             void set(GameObject^ value);
         }
 
@@ -40,7 +44,8 @@ namespace EtherEngine {
         virtual void CollisionHit(void) {}
         
     private:
-        GameObject^ m_gameObject; // 自身を保持しているゲームオブジェクト
+        [Attribute::OutputAttribute]
+        GameObject^ m_gameObject;  // 親ゲームオブジェクトのID
     };
 }
 

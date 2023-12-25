@@ -43,14 +43,4 @@ namespace EtherEngine {
         userDrawBaseComponent->Bind();
         userDrawBaseComponent->Draw();
     }
-
-
-    // ŠO•”o—Í
-    Json WrapperDrawComponent::Output(void) {
-        return WrapperComponent::Output();
-    }
-    // ŠO•”“ü—Í
-    void WrapperDrawComponent::Input(const Json& input) {
-        WrapperComponent::Input(input);
-    }
 }

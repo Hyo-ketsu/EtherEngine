@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Base">
-      <UniqueIdentifier>{6902a6de-d980-4021-96d8-415c1f20bf9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{30c3502c-cfc1-4897-a911-1f22da85825d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="リソース ファイル">
       <UniqueIdentifier>{5472d816-0842-4487-8659-5281bdf130d9}</UniqueIdentifier>
     </Filter>
@@ -77,11 +71,16 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\Scene.h">
       <Filter>Manage</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\SceneLoader.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
@@ -144,6 +143,9 @@
       <Filter>Manage</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\ClassLoader.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\SceneLoader.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #include <EngineLibrary/Component.h>
+#include <EngineLibrary/GameObject.h>
 
 
 #pragma managed
@@ -12,9 +13,10 @@ namespace EtherEngine {
 
     // ゲームオブジェクト
     EtherEngine::GameObject^ Component::ParentGameObject::get(void) {
+        //----- 親オブジェクトを取得
         return m_gameObject;
     }
-    void Component::ParentGameObject::set(EtherEngine::GameObject^ value) {
+    void Component::ParentGameObject::set(GameObject^ value) {
         m_gameObject = value;
     }
 }

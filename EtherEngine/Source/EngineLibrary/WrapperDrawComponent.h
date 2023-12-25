@@ -33,12 +33,6 @@ namespace EtherEngine {
 
         // •`‰æ
         void Draw(void) override;
-
-
-        // ŠO•”o—Í
-        Json Output(void) override;
-        // ŠO•”“ü—Í
-        void Input(const Json& input) override;
     };
 }
 

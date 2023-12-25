@@ -1,7 +1,7 @@
 #include <DirectX/DXWindowRender.h>
 #include <Base/CameraStorage.h>
 #include <Base/EditorException.h>
-#include <Base/GameObjectUpdater.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <DirectX/DirectX.h>
 
 

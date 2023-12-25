@@ -5,12 +5,15 @@
 
 //----- Scene 宣言
 namespace EtherEngine {
-    //
+    // シーン
+    // @ MEMO : ひとまずクラスという体にして現状Jsonを読み込むだけにします
     public ref class Scene {
     public:
         // コンストラクタ
         // @ Arg1 : Json読み込みディレクトリ
-        Scene(PathString)
+        Scene(PathString json);
+
+    private:
     };
 }
 

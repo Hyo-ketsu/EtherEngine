@@ -1,20 +1,13 @@
 #include <Base/ComponentBase.h>
-#include <Base/NativeGameObject.h>
 
 
 //----- ComponentBase定義
 namespace EtherEngine {
     // コンストラクタ
-    ComponentBase::ComponentBase(void* gameObject, const std::string& name)
+    ComponentBase::ComponentBase(NativeGameObject* gameObject, const std::string& name)
         : NativeBaseObject(name)
         , m_isStart(false) 
-        , m_gameObject(static_cast<NativeGameObject*>(gameObject)) {
-    }
-
-
-    // 所属ゲームオブジェクトの取得
-    void ComponentBase::GetParentObject(void** gameObject) const {
-        *gameObject = m_gameObject;
+        , m_gameObject(gameObject) {
     }
 
 

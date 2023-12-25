@@ -1,5 +1,5 @@
 #include <Base/NativeGameObject.h>
-#include <Base/GameObjectStorage.h>
+#include <Base/NativeGameObjectStorage.h>
 #include <Base/CollisionHelper.h>
 
 

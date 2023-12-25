@@ -1,5 +1,6 @@
 #include <Base/CollisionFunction.h>
 #include <Base/ComponentHelper.h>
+#include <Base/NativeGameObject.h>
 
 #include <Base/CollisionSphere.h>
 #include <Base/CollisionSphereXSphereFunction.h>
@@ -64,7 +65,8 @@ namespace EtherEngine {
 
                 //----- 衝突していたら追加する
                 if (result.has_value()) {
-                    ComponentHelper::GetParentObject(*thisCollision.lock())->AddCollisionData(result.value());
+                    // @ MEMO : 後でやる
+                    //thisCollision.lock()->GetParentObject()->AddCollisionData(result.value());
                 }
             }
         }
@@ -73,16 +75,7 @@ namespace EtherEngine {
 
     // 当たり判定をとる
     std::optional<CollisionHitData> CollisionCheck(std::shared_ptr<CollisionComponent> thisCollision, std::shared_ptr<CollisionComponent> subjectCollision) {
-        //----- ゲームオブジェクトの取得
-        auto thisGameObject = ComponentHelper::GetParentObject(*thisCollision);
-        auto subjectGameObject = ComponentHelper::GetParentObject(*subjectCollision);
-
-        //----- 球 x 球
-        if (thisCollision->GetCollisionShape() == CollisionShape::Sphere && thisCollision->GetCollisionShape() == CollisionShape::Sphere) {
-            return Collision::SphereXSphereFunction(
-                CollSphere(thisGameObject, thisGameObject->GetTransform(), *thisCollision->GetCollision<CollisionSphere>()),
-                CollSphere(subjectGameObject, subjectGameObject->GetTransform(), *subjectCollision->GetCollision<CollisionSphere>()));
-        }
-        // @ MEMO : 実装途中
+        // @ MEMO : 未実装
+        return std::optional<CollisionHitData>();
     }
 }

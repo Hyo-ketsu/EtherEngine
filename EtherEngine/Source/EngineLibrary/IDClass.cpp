@@ -2,6 +2,7 @@
 #include <Base/RandomManage.h>
 
 
+#pragma managed
 //----- IDClass 定義
 namespace EtherEngine {
     // デフォルトコンストラクタ
@@ -9,7 +10,7 @@ namespace EtherEngine {
         : m_id(0) {
         //----- 0 以外の番号になるまで乱数生成する
         while (m_id == 0) {
-            m_id = RandomManage::GetRandom<IDNumberType>();
+            m_id = RandomManage<IDNumberType>::Get()->GetRandom();
         }
     }
     // IDを生成せず取得するコンストラクタ
