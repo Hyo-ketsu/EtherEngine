@@ -23,8 +23,16 @@ namespace EditorUI {
     public partial class FileExplorerWindow : UserControl {
         public FileExplorerWindow() {
             InitializeComponent();
+        }
 
-            DataContext = null;
+
+        private void PathSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            // @ MEMO : 時間があればMVVMに修正する
+            var vm = DataContext as FileExplorerVM;
+            var item = e.NewValue as FileExplorerItem;
+            if (vm == null) { throw new NullReferenceException(); }
+            if (item == null) { throw new NullReferenceException(); }
+            vm.ItemViewChanged(item.FullPath);
         }
     }
 }

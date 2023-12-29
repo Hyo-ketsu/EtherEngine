@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:av="https://github.com/Dirkster99/AvalonDock"
+        xmlns:be="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:EditorUI"
+        Height="auto" Width="auto"
         mc:Ignorable="d">
+   <UserControl.DataContext>
+      <local:FileExplorerVM/>
+   </UserControl.DataContext>
    <Grid>
       <Grid.RowDefinitions>
          <RowDefinition Height="15"/>
@@ -14,24 +19,29 @@
       </Grid.RowDefinitions>
 
       <!-- 現在パス等表示 -->
-
       <Grid Grid.Row="1">
-         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-         </Grid.ColumnDefinitions>
+         <Grid>
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="auto"/>
+               <ColumnDefinition Width="auto"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- パスビュー -->
+            <TreeView Grid.Column="0" ItemsSource="{Binding PathItems}" SelectedItemChanged="PathSelectedItemChanged">
+               <TreeView.ItemTemplate>
+                  <HierarchicalDataTemplate ItemsSource="{Binding SubPath}">
+                     <TextBlock Text="{Binding PathName}"/>
+                  </HierarchicalDataTemplate>
+               </TreeView.ItemTemplate>
+            </TreeView>
+            
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext"/>
 
-         <!-- パスビュー -->
-         <TreeView>
-            <TreeView.ItemTemplate>
-               <DataTemplate>
-                  <TextBlock Text="hoge"/>
-               </DataTemplate>
-            </TreeView.ItemTemplate>
-         </TreeView>
-
-         <!-- アイテムビュー -->
-
+            <!-- アイテムビュー -->
+            <ListView Grid.Column="2" ItemsSource="{Binding Files}">
+            </ListView>            
+         </Grid>
       </Grid>
    </Grid>
 </UserControl>
