@@ -22,11 +22,14 @@
     <ClInclude Include="..\..\Source\EngineLibrary\AssemblyHolder.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseObjectStorage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\IDClass.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryUtility.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
@@ -49,11 +52,14 @@
     <ClCompile Include="..\..\Source\EngineLibrary\AssemblyHolder.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ClassLoader.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameObject.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectUpdater.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\IDClass.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
@@ -89,8 +95,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Text.Json">
-      <Version>8.0.0</Version>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">

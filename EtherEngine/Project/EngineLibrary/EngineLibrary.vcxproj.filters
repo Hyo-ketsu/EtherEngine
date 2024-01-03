@@ -74,13 +74,22 @@
     <ClInclude Include="..\..\Source\EngineLibrary\Scene.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h">
       <Filter>Manage</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\SceneLoader.h">
       <Filter>Manage</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\BaseObjectStorage.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectUpdater.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
@@ -148,5 +157,12 @@
     <ClCompile Include="..\..\Source\EngineLibrary\SceneLoader.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\BaseObjectStorage.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectUpdater.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp" />
   </ItemGroup>
 </Project>

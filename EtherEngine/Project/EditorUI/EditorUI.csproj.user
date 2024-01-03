@@ -5,7 +5,19 @@
     <Compile Update="EditorUI\Control\MessageIcon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="EditorUI\Control\NumberInput.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Control\ObjectReference.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EditorUI\Control\OldMenuItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Control\OldTreeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Control\OldTreeViewItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="EditorUI\Control\RenameTextBlock.xaml.cs">
@@ -52,10 +64,22 @@
     <Page Update="EditorUI\Control\MessageIcon.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="EditorUI\Control\NumberInput.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Control\ObjectReference.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditorUI\Control\OldMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\Control\OldMenuItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Control\OldTreeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Control\OldTreeViewItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\Control\RenameTextBlock.xaml">
@@ -74,6 +98,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\Style\MenuStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Style\TreeViewStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="EditorUI\Window\EditorStartWindow.xaml">
