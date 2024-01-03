@@ -5,33 +5,33 @@
 
 namespace EtherEngine {
     // ゲームオブジェクトに更新処理を行う
-    void GameObjectUpdater::Update(void) {
-        auto updates = GameObjectStorage::Get()->GetGameObjectAll();
+    void NativeGameObjectUpdater::Update(void) {
+        auto updates = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : updates) {
             if (it.IsEnable() == false) continue;
 
             it.GetAtomicData().Update();
         }
-        GameObjectStorage::Get()->DeleteGameObjectsDelete();
+        NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
     }
     // ゲームオブジェクトに物理更新処理を行う
-    void GameObjectUpdater::FixedUpdate(void) {
+    void NativeGameObjectUpdater::FixedUpdate(void) {
         //----- 物理処理
         {
-            auto fixedUpdates = GameObjectStorage::Get()->GetGameObjectAll();
+            auto fixedUpdates = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
             for (auto& it : fixedUpdates) {
                 if (it.IsEnable() == false) continue;
 
                 it.GetAtomicData().FixedUpdate();
             }
-            GameObjectStorage::Get()->DeleteGameObjectsDelete();
+            NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
         }
 
         //----- ゲームオブジェクトの衝突情報削除
         {
-            auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
+            auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
             for (auto& it : collisions) {
                 if (it.IsEnable() == false) continue;
@@ -42,7 +42,7 @@ namespace EtherEngine {
 
         //----- 衝突判定
         {
-            auto gameObjects = GameObjectStorage::Get()->GetGameObjectAll();
+            auto gameObjects = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
             //----- 全てのゲームオブジェクトからCollisionComponentを取得、当たり判定処理を行う
             for (auto& thisGameObject : gameObjects) {  // 自身のゲームオブジェクト
@@ -70,48 +70,48 @@ namespace EtherEngine {
         //----- 各衝突処理実行
         {
             {
-                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
+                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionStart();
                 }
-                GameObjectStorage::Get()->DeleteGameObjectsDelete();
+                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
             {
-                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
+                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionEnd();
                 }
-                GameObjectStorage::Get()->DeleteGameObjectsDelete();
+                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
             {
-                auto collisions = GameObjectStorage::Get()->GetGameObjectAll();
+                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
                     it.GetAtomicData().CollisionHit();
                 }
-                GameObjectStorage::Get()->DeleteGameObjectsDelete();
+                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
         }
     }
 
 
     // ゲームオブジェクトの描画処理を行う
-    void GameObjectUpdater::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
-        auto draw = GameObjectStorage::Get()->GetGameObjectAll();
+    void NativeGameObjectUpdater::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+        auto draw = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : draw) {
             if (it.IsEnable() == false) continue;
 
             it.GetAtomicData().Draw(view, projection);
         }
-        GameObjectStorage::Get()->DeleteGameObjectsDelete();
+        NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
     }
 }

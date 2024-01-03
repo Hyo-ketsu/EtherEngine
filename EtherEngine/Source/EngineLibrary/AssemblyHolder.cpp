@@ -18,7 +18,7 @@ namespace EtherEngine {
 
 
     // アセンブリを読み込む
-    bool AssemblyHolder::LoadAssembly(PathString^ assemblyPath) {
+    bool AssemblyHolder::LoadAssembly(PathString assemblyPath) {
         //----- dllかファイルチェック
         if (System::IO::Path::Exists(assemblyPath->ToString()) == false) return false;
         if (System::IO::Path::HasExtension(assemblyPath->ToString()) && System::IO::Path::GetExtension(assemblyPath->ToString()) != ".dll") return false;

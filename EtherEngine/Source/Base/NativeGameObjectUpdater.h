@@ -5,7 +5,7 @@
 
 //----- GameObjectUpdater宣言
 namespace EtherEngine {
-    class GameObjectUpdater : public Singleton<GameObjectUpdater> {
+    class NativeGameObjectUpdater : public Singleton<NativeGameObjectUpdater> {
     public:
         // ゲームオブジェクトに更新処理を行う
         void Update(void);
@@ -19,9 +19,9 @@ namespace EtherEngine {
 
     private:
         // コンストラクタ
-        GameObjectUpdater(void) {}
+        NativeGameObjectUpdater(void) {}
 
-        friend class Singleton<GameObjectUpdater>;
+        friend class Singleton<NativeGameObjectUpdater>;
     };
 }
 

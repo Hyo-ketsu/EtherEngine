@@ -4,7 +4,7 @@
 //----- GameObejctStorage宣言
 namespace EtherEngine {
     // ゲームオブジェクトを作成する
-    Handle<NativeGameObject> GameObjectStorage::CreateGameObject(const Transform& transform, const std::string& name) {
+    Handle<NativeGameObject> NativeGameObjectStorage::CreateGameObject(const Transform& transform, const std::string& name) {
         auto handle = Handle<NativeGameObject>(NativeGameObject(transform, name));
         handle.GetAtomicData().m_handle = handle;
         // @ MEMO : シーンへの追加あたり作り直し
@@ -13,7 +13,7 @@ namespace EtherEngine {
         return handle.GetRefHandle();
     }
     // ゲームオブジェクトを削除する
-    bool GameObjectStorage::DeleteGameObject(const Handle<NativeGameObject>& gameObject) {
+    bool NativeGameObjectStorage::DeleteGameObject(const Handle<NativeGameObject>& gameObject) {
         //----- 削除するハンドルをなめる
         for (auto&& it : m_gameObjects){
             if (it == gameObject) {
@@ -30,13 +30,13 @@ namespace EtherEngine {
 
 
     // 全てのゲームオブジェクトを取得する
-    std::vector<Handle<NativeGameObject>> GameObjectStorage::GetGameObjectAll(void) const{
+    std::vector<Handle<NativeGameObject>> NativeGameObjectStorage::GetGameObjectAll(void) const{
         return m_gameObjects;
     }
 
 
     // 削除済みのゲームオブジェクトを削除する
-    void GameObjectStorage::DeleteGameObjectsDelete(void) {
+    void NativeGameObjectStorage::DeleteGameObjectsDelete(void) {
         for (auto it = m_gameObjects.begin(); it != m_gameObjects.end();) {
             if (it->GetAtomicData().GetDelete()) {
                 //----- 削除

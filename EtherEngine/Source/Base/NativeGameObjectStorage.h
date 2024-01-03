@@ -9,7 +9,7 @@
 //----- GameObejctStorage宣言
 namespace EtherEngine {
     // ゲームオブジェクトを管理するクラス
-    class GameObjectStorage : public Singleton<GameObjectStorage> {
+    class NativeGameObjectStorage : public Singleton<NativeGameObjectStorage> {
     public:
         // 空のゲームオブジェクトを作成する
         // @ Ret  : 作成したゲームオブジェクトのハンドル
@@ -30,7 +30,7 @@ namespace EtherEngine {
         void DeleteGameObjectsDelete(void);
 
     private:
-        friend class Singleton<GameObjectStorage>;
+        friend class Singleton<NativeGameObjectStorage>;
 
         std::vector<Handle<NativeGameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
     };

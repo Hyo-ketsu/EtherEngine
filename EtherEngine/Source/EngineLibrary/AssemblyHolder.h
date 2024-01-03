@@ -17,7 +17,7 @@ namespace EtherEngine {
         // アセンブリを読み込む
         // @ Ret  : アセンブリが読み込めたか
         // @ Arg1 : 読み込むアセンブリ名
-        static bool LoadAssembly(PathString^ assemblyPath);
+        static bool LoadAssembly(PathString assemblyPath);
         // 現在読み込みアセンブリを削除する
         static void DeleteAssembly(void);
 

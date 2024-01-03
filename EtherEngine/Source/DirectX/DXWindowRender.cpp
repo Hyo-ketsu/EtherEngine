@@ -116,7 +116,7 @@ namespace EtherEngine {
 		if (this->GetIsDirectXEnable() == false) return false;
 
 		//----- •`‰æ
-		GameObjectUpdater::Get()->Draw(cameraData.GetView(), cameraData.GetProjection());
+		NativeGameObjectUpdater::Get()->Draw(cameraData.GetView(), cameraData.GetProjection());
 
 		return true;
 	}

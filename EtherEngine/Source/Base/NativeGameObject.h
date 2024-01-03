@@ -121,7 +121,7 @@ namespace EtherEngine {
         void DeleteComponentsDelete(void);
 
 
-        friend class GameObjectStorage;
+        friend class NativeGameObjectStorage;
         friend class ManageFunctionInit;
 
         std::string m_name;     // –¼‘O
