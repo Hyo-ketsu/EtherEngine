@@ -7,7 +7,14 @@
         xmlns:av="https://github.com/Dirkster99/AvalonDock"
         xmlns:local="clr-namespace:EditorUI"
         mc:Ignorable="d">
+   <UserControl.DataContext>
+      <local:InspectorVM/>
+   </UserControl.DataContext>
    <Grid>
-
+      <StackPanel>
+         <!-- BaseObjectステータス表示 -->
+         <StackPanel x:Name="Inspector">
+         </StackPanel>
+      </StackPanel>
    </Grid>
 </UserControl>
