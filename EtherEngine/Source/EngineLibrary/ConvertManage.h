@@ -14,7 +14,7 @@ namespace EtherEngine {
 #define MANAGE_TO_UNMANAGE_CLASS_DECLARE  \
 namespace ManageToUnmanage {\
     std::string String(System::String^ manage);\
-    PathClass Path(PathString^ manage);\
+    PathClass Path(PathString manage);\
 }
 
 #define MANAGE_TO_UNMANAGE_CLASS_DEFINE \
@@ -28,7 +28,7 @@ namespace ManageToUnmanage {\
         }\
         return ret;\
     }\
-    PathClass Path(PathString^ manage) {\
+    PathClass Path(PathString manage) {\
         return PathClass(String(manage));\
     }\
 }

@@ -1,4 +1,5 @@
 #include <EngineLibrary/BaseObject.h>
+#include <EngineLibrary/BaseObjectStorage.h>
 
 
 #pragma managed
@@ -7,6 +8,7 @@ namespace EtherEngine {
     // コンストラクタ
     BaseObject::BaseObject(void) 
         : BaseObject(gcnew IDClass()) {
+        BaseObjectStorage::Get->AddBaseObject(this);
     }
     // コンストラクタ
     BaseObject::BaseObject(IDClass^ id) 

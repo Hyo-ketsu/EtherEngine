@@ -23,10 +23,16 @@ namespace EtherEngine {
             bool get(void) { return m_isActive; }
             void set(bool value) { m_isActive = value; }
         }
+        // 名前
+        property System::String^ Name {
+            System::String^ get(void) { return m_name; }
+            void set(System::String^ value) { m_name = value; }
+        }
 
     private:
         bool m_isActive;    // 有効になっているか
         IDClass^ m_id;      // id
+        System::String^ m_name; // オブジェクトの名前
     };
 }
 

@@ -150,8 +150,8 @@ namespace EtherEngine {
             //EditorUpdater::Get()->Update();
 
             //----- 更新処理
-            GameObjectUpdater::Get()->FixedUpdate();
-            GameObjectUpdater::Get()->Update();
+            NativeGameObjectUpdater::Get()->FixedUpdate();
+            NativeGameObjectUpdater::Get()->Update();
 
             //----- SceneViewのメッセージの取得
             while (true) {

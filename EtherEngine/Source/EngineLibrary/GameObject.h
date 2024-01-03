@@ -17,15 +17,18 @@ namespace EtherEngine {
 namespace EtherEngine {
     // ゲームオブジェクト
     public ref class GameObject : public BaseObject {
-    internal:
+    public:
         // コンストラクタ
         GameObject(void);
-
-    public:
         // デストラクタ
         ~GameObject(void);
         // ファイナライザ
         !GameObject(void);
+
+
+        // 自身を削除する
+        void Destroy(void);
+
 
         // ネイティブゲームオブジェクト
         property Handle<NativeGameObject> NGameObject {

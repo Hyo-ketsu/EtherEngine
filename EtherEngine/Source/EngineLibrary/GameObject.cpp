@@ -8,7 +8,7 @@
 namespace EtherEngine {
     // コンストラクタ
     GameObject::GameObject(void) {
-        m_handle = new std::remove_pointer_t<decltype(m_handle)>(GameObjectStorage::Get()->CreateGameObject());
+        m_handle = new std::remove_pointer_t<decltype(m_handle)>(NativeGameObjectStorage::Get()->CreateGameObject());
     }
     // デストラクタ
     GameObject::~GameObject(void) {
@@ -17,6 +17,12 @@ namespace EtherEngine {
     // ファイナライザ
     GameObject::!GameObject(void) {
         DELETE_NULL(m_handle);
+    }
+
+
+    // 自身を削除する
+    void GameObject::Destroy(void) {
+
     }
 
 

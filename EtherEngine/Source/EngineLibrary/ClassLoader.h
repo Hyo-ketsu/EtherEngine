@@ -3,6 +3,22 @@
 #include <EngineLibrary/EngineLibraryDefine.h>
 
 
+//----- EtherEngineJsonConverter 宣言
+namespace EtherEngine {
+    // このエンジンのJsonConverter
+    public ref class EtherEngineJsonConverter : Newtonsoft::Json::JsonConverter {
+    public:
+        void WriteJson(Newtonsoft::Json::JsonWriter^ writer, System::Object^ value, Newtonsoft::Json::JsonSerializer^ serializer) override;
+
+
+        System::Object^ ReadJson(Newtonsoft::Json::JsonReader^ reader, System::Type^ objectType, System::Object^ existingValue, Newtonsoft::Json::JsonSerializer^ serializer)  override;
+
+
+        bool CanConvert(System::Type^ objectType) override;
+    };
+}
+
+
 //----- ClassLoader 宣言
 namespace EtherEngine {
     // 指定したクラスを入出力するクラス

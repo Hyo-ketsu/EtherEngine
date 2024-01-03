@@ -4,7 +4,7 @@
 
 //----- 型定義・エイリアス
 namespace EtherEngine {
-    using PathString = System::String;  // パスを保持するクラス
+    using PathString = System::String^;  // パスを保持するクラス
 }
 
 

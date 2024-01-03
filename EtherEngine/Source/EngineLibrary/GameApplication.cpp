@@ -74,7 +74,7 @@ namespace EtherEngine {
                 frameSecond = 0;
 
                 //----- Updateˆ—
-                GameObjectUpdater::Get()->Update();
+                NativeGameObjectUpdater::Get()->Update();
 
                 //----- •`‰æ‘Oˆ—
                 m_dxRender.GetAtomicData().AccessWindowRenders()[0].BeginDraw();
