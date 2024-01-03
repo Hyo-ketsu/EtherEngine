@@ -1,18 +1,9 @@
-﻿<UserControl x:Class="EditorUI.ShowObjectItem"
+﻿<UserControl x:Class="EditorUI.NumberInput"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:EditorUI"
              mc:Ignorable="d">
-   <Grid Background="Gray">
-      <StackPanel Orientation="Horizontal">
-         <Button>
-            <icon:PackIconVaadinIcons Kind="DotCircle" />
-         </Button>
-         <TextBlock Text="hoge">
-         </TextBlock>
-      </StackPanel>
-   </Grid>
+   <TextBox x:Name="InputNumber" Text="{Binding InputNumberText.Value}" InputMethod.IsInputMethodEnabled="False" TextChanged="TextChanged"/>
 </UserControl>

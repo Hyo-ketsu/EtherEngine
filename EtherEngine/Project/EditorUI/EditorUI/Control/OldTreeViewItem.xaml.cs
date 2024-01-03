@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,18 +16,12 @@ using System.Windows.Shapes;
 
 namespace EditorUI {
     /// <summary>
-    /// ShowObjectItem.xaml の相互作用ロジック
+    /// OldTreeViewItem.xaml の相互作用ロジック
     /// </summary>
-    public partial class ShowObjectItem : UserControl, INotifyPropertyChanged {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-
-        /// <summary>コンストラクタ</summary>
-        public ShowObjectItem() {
+    public partial class OldTreeViewItem : TreeViewItem {
+        public OldTreeViewItem() {
             InitializeComponent();
+            Items.Clear();
         }
-
-
-        
     }
 }
