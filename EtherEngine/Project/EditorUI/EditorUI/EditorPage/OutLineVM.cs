@@ -43,7 +43,9 @@ namespace EditorUI {
 
             foreach (var gameObject in EtherEngine.GameObjectStorage.Get.GameObjects) {
                 var treeViewItem = new OldTreeViewItem();
-                treeViewItem.Header = gameObject.Name;
+                var renameInput = new RenameTextBlock();
+                renameInput.InputText.Value = gameObject.Name;
+                treeViewItem.Header = renameInput;
 
                 OldTreeView.Items.Add(treeViewItem);
             }
