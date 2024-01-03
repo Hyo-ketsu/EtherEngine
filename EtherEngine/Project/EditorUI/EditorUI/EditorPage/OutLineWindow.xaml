@@ -8,6 +8,7 @@
         xmlns:local="clr-namespace:EditorUI"
         mc:Ignorable="d">
    <Grid>
-
+      <local:OldTreeView x:Name="ObjectList">
+      </local:OldTreeView>
    </Grid>
 </UserControl>

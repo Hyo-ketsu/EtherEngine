@@ -23,6 +23,11 @@ namespace EditorUI {
     public partial class OutLineWindow : UserControl {
         public OutLineWindow() {
             InitializeComponent();
+
+            m_vm = new(ObjectList);
+            DataContext = m_vm;
         }
+
+        private OutLineVM m_vm;
     }
 }
