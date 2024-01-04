@@ -15,4 +15,10 @@ namespace EtherEngine {
         : m_isActive(true) 
         , m_id(id) {
     }
+
+
+    // イベントの発火を行う
+    void BaseObject::UpdateEventIgnition(System::EventArgs^ e) {
+        UpdateEvent(this, e);
+    }
 }

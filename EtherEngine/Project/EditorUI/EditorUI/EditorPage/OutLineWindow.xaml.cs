@@ -29,5 +29,14 @@ namespace EditorUI {
         }
 
         private OutLineVM m_vm;
+
+
+        private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {
+            var item = ObjectList.SelectedItem as OldTreeViewItem;
+            var baseObject = item?.TreeItem.Value as EtherEngine.BaseObject;
+            if (baseObject != null) {
+                InspectorVM.InspectoObject.Value = baseObject;
+            }
+        }
     }
 }

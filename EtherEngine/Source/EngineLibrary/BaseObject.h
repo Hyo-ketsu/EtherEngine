@@ -1,6 +1,7 @@
 #ifndef I_BASEOBJECT_H
 #define I_BASEOBJECT_H
 #include <EngineLibrary/IDClass.h>
+#include <EngineLibrary/AttributeDefine.h>
 
 
 #pragma managed
@@ -25,14 +26,21 @@ namespace EtherEngine {
         }
         // 名前
         property System::String^ Name {
-            System::String^ get(void) { return m_name; }
-            void set(System::String^ value) { m_name = value; }
+            System::String^ get(void) { return m_objectName; }
+            void set(System::String^ value) { m_objectName = value; }
         }
 
+        //----- イベント定義
+#ifdef _EDITOR
+        event System::EventHandler^ UpdateEvent;    // 更新時に発火するイベント
+        // イベントの発火を行う
+        void UpdateEventIgnition(System::EventArgs^ e);
+#endif // _EDITOR
+
     private:
-        bool m_isActive;    // 有効になっているか
+        [Attribute::OutputAttribute] bool m_isActive;    // 有効になっているか
         IDClass^ m_id;      // id
-        System::String^ m_name; // オブジェクトの名前
+        [Attribute::OutputAttribute] System::String^ m_objectName; // オブジェクトの名前
     };
 }
 

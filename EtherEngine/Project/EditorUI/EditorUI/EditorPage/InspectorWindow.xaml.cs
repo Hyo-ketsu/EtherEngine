@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AvalonDock.Layout;
 using MahApps.Metro.Controls;
+using Reactive.Bindings;
+using Reactive.Bindings.Binding;
+using Reactive.Bindings.Extensions;
 
 
 namespace EditorUI {
@@ -41,7 +44,7 @@ namespace EditorUI {
             Inspector.Children.Clear();
 
             //----- 型の情報取得
-            var classDatas = EtherEngine.ClassLoader.GetClassData(baseObject, typeof(EtherEngine.BaseObject));
+            var classDatas = EtherEngine.ClassLoader.GetClassData(baseObject, typeof(object));
 
             //----- それぞれの型に対応したコントロールを追加
             foreach (var classData in classDatas) {
@@ -61,11 +64,34 @@ namespace EditorUI {
                     // @ MEMO : 後回し
                     //numberInput.SetValue(classData.GetValue(baseObject) as );
                     Inspector.Children.Add(numberInput);
+
+                    continue;
                 }
                 if (classData.FieldType == typeof(string)) {
+                    //----- 変数宣言
+                    var stackPanel = new StackPanel();
+                    var label = new Label();
                     var textBox = new TextBox();
+
+                    //----- StackPanelにコントロールを代入
+                    stackPanel.Orientation = Orientation.Horizontal;
+                    stackPanel.Children.Add(label);
+                    stackPanel.Children.Add(textBox);
+
+                    //----- ラベルの編集
+                    label.Content = InspectorUtility.GetNonDecorationFieldName(classData.Name);
+
+                    //----- テキストボックスの修正
                     textBox.Text = classData.GetValue(baseObject) as string;
-                    Inspector.Children.Add(textBox);
+                    textBox.TextChanged += (_,_) => {
+                        classData.SetValue(baseObject, textBox.Text);
+                        baseObject.UpdateEventIgnition(EventArgs.Empty);
+                    };
+
+                    //----- 表示に追加
+                    Inspector.Children.Add(stackPanel);
+
+                    continue;
                 }
             }
         }

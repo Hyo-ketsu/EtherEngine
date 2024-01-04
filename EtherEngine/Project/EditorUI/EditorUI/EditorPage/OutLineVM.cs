@@ -23,11 +23,16 @@ namespace EditorUI {
 
             CompositionTarget.Rendering += UpdateGameObjectMethod;
 
+            //----- テストコード
             var gameObject = new GameObject();
             gameObject.Name = "HogeHoge";
             GameObjectStorage.Get.AddGameObject(gameObject);
         }
 
+
+        /// <summary>ゲームオブジェクトが更新されているか毎フレームチェックを行う</summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateGameObjectMethod(object? sender, EventArgs e) {
             if (GameObjectStorage.Get.UpdateGameObjectVersion != UpdateGameObjectVersion) {
                 UpdateOutLineView();
@@ -42,11 +47,22 @@ namespace EditorUI {
             OldTreeView.Items.Clear();
 
             foreach (var gameObject in EtherEngine.GameObjectStorage.Get.GameObjects) {
+                //----- コントロール作成
                 var treeViewItem = new OldTreeViewItem();
                 var renameInput = new RenameTextBlock();
-                renameInput.InputText.Value = gameObject.Name;
-                treeViewItem.Header = renameInput;
 
+                //----- 名前表示
+                renameInput.InputText.Value = gameObject.Name;
+                gameObject.UpdateEvent += (gameObject,_)=> {
+                    var baseObject = gameObject as EtherEngine.BaseObject;
+                    renameInput.InputText.Value = baseObject?.Name;
+                };
+
+                //----- ツリー
+                treeViewItem.Header = renameInput;
+                treeViewItem.TreeItem.Value = gameObject;
+
+                //----- TreeViewに追加する
                 OldTreeView.Items.Add(treeViewItem);
             }
         }
