@@ -24,11 +24,8 @@ namespace EditorUI {
         public OutLineWindow() {
             InitializeComponent();
 
-            m_vm = new(ObjectList);
-            DataContext = m_vm;
+            DataContext = new OutLineVM(ObjectList);
         }
-
-        private OutLineVM m_vm;
 
 
         private void SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e) {

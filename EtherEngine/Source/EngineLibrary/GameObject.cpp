@@ -1,6 +1,7 @@
 #include <EngineLibrary/GameObject.h>
 #include <Base/BaseUtility.h>
 #include <Base/NativeGameObjectStorage.h>
+#include <EngineLibrary/BaseObjectStorage.h>
 
 
 #pragma managed
@@ -16,13 +17,14 @@ namespace EtherEngine {
     }
     // ファイナライザ
     GameObject::!GameObject(void) {
+        BaseObjectStorage::Get->DeleteBaseObject(this);
         DELETE_NULL(m_handle);
     }
 
 
     // 自身を削除する
     void GameObject::Destroy(void) {
-
+        
     }
 
 

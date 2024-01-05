@@ -21,22 +21,22 @@ namespace EtherEngine {
     void GameObjectStorage::DeleteGameObject(GameObject^ gameObject) {
         for (int i = 0; i < m_gameObjects->Count; i++) {
             if (gameObject->ReferenceEquals(gameObject, m_gameObjects[i])) {
+                m_gameObjects[i]->~GameObject();
                 m_gameObjects->RemoveAt(i);
+                m_updateVersion++;
                 return;
             }
         }
-
-        m_updateVersion++;
     }
     // ゲームオブジェクトを削除する
     void GameObjectStorage::DeleteGameObject(IDClass^ id) {
         for (int i = 0; i < m_gameObjects->Count; i++) {
             if (m_gameObjects[i]->ID == id) {
+                m_gameObjects[i]->~GameObject();
                 m_gameObjects->RemoveAt(i);
+                m_updateVersion++;
                 return;
             }
         }
-
-        m_updateVersion++;
     }
 }

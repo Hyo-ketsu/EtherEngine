@@ -11,4 +11,21 @@
       <local:OldTreeView x:Name="ObjectList" SelectedItemChanged="SelectedItemChanged">
       </local:OldTreeView>
    </Grid>
+   
+   <UserControl.ContextMenu>
+      <ContextMenu>
+         <MenuItem Command="{Binding CreateCommand}">
+            <MenuItem.Header>
+               <local:EditorText EN="Create GameObject"
+                                 JP="ゲームオブジェクト作成"/>
+            </MenuItem.Header>
+         </MenuItem>
+         <MenuItem Command="{Binding DeleteCommand}">
+            <MenuItem.Header>
+               <local:EditorText EN="Delete GameObject"
+                                 JP="ゲームオブジェクト削除"/>
+            </MenuItem.Header>
+         </MenuItem>
+      </ContextMenu>
+   </UserControl.ContextMenu>
 </UserControl>

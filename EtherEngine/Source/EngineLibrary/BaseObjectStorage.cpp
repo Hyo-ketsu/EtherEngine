@@ -8,10 +8,33 @@ namespace EtherEngine {
         : m_baseObjects(gcnew System::Collections::Generic::List<BaseObject^>(0)) {
     }
 
+
     // BaseObject‚ğ’Ç‰Á‚·‚é
     void BaseObjectStorage::AddBaseObject(BaseObject^ baseObject) {
         m_baseObjects->Add(baseObject);
     }
+    // BaseObject‚ğíœ‚·‚é
+    void BaseObjectStorage::DeleteBaseObject(BaseObject^ baseObject) {
+        for (int i = 0; i < m_baseObjects->Count; i++) {
+            if (baseObject->ReferenceEquals(baseObject, m_baseObjects[i])) {
+                m_baseObjects[i]->~BaseObject();
+                m_baseObjects->RemoveAt(i);
+                return;
+            }
+        }
+    }
+    // BaseObject‚ğíœ‚·‚é
+    void BaseObjectStorage::DeleteBaseObject(IDClass^ id) {
+        for (int i = 0; i < m_baseObjects->Count; i++) {
+            if (m_baseObjects[i]->ID == id) {
+                m_baseObjects[i]->~BaseObject();
+                m_baseObjects->RemoveAt(i);
+                return;
+            }
+        }
+    }
+
+
     // ID‚ÅBaseObject‚ğæ“¾‚·‚é
     BaseObject^ BaseObjectStorage::GetBaseObject(IDClass^ id) {
         //----- ID‚ÅŒŸõ

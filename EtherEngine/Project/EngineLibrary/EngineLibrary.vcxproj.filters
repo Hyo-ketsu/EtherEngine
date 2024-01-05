@@ -89,7 +89,9 @@
     <ClInclude Include="..\..\Source\EngineLibrary\GameObjectUpdater.h">
       <Filter>Manage</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
@@ -163,6 +165,8 @@
     <ClCompile Include="..\..\Source\EngineLibrary\GameObjectUpdater.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

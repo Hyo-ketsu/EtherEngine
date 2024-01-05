@@ -13,6 +13,16 @@ namespace EtherEngine {
         // BaseObject‚ğ’Ç‰Á‚·‚é
         // @ Arg1 : ’Ç‰Á‚·‚éBaseObject
         void AddBaseObject(BaseObject^ baseObject);
+        // BaseObject‚ğíœ‚·‚é
+        // @ Ret  : íœ‚ªs‚í‚ê‚½‚©
+        // @ Arg1 : íœ‚·‚éBaseObject
+        void DeleteBaseObject(BaseObject^ baseObject);
+        // BaseObject‚ğíœ‚·‚é
+        // @ Ret  : íœ‚ªs‚í‚ê‚½‚©
+        // @ Arg1 : íœ‚·‚éBaseObject‚ÌID
+        void DeleteBaseObject(IDClass^ id);
+
+
         // ID‚ÅBaseObject‚ğæ“¾‚·‚é
         // @ Ret  : æ“¾‚µ‚½BaseObject
         // @ Arg1 : ID

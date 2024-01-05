@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,10 +24,26 @@ namespace EditorUI {
 
             CompositionTarget.Rendering += UpdateGameObjectMethod;
 
-            //----- テストコード
-            var gameObject = new GameObject();
-            gameObject.Name = "HogeHoge";
-            GameObjectStorage.Get.AddGameObject(gameObject);
+            //----- コマンド登録
+            CreateCommand.Subscribe(() => {
+                //----- 新規のゲームオブジェクト作成
+                var gameObject = new GameObject();
+                gameObject.Name = EditorDefine.NewCreateGameObjectName;
+                GameObjectStorage.Get.AddGameObject(gameObject);
+            });
+            DeleteCommand.Subscribe(() => {
+                //----- 現在選択中のオブジェクトを削除する
+                var select = OldTreeView.SelectedItem as OldTreeViewItem;
+                if (select != null) {
+                    int i = 0;
+                    foreach (var item in OldTreeView.Items) {
+                        if (select == item) {
+                            GameObjectStorage.Get.DeleteGameObject(GameObjectStorage.Get.GameObjects[i]);
+                        }
+                        i++;
+                    }
+                }
+            });
         }
 
 
@@ -66,6 +83,12 @@ namespace EditorUI {
                 OldTreeView.Items.Add(treeViewItem);
             }
         }
+
+
+        /// <summary>ゲームオブジェクト作成時の処理</summary>
+        public ReactiveCommand CreateCommand { get; private set; } = new();
+        /// <summary>ゲームオブジェクト削除時の処理</summary>
+        public ReactiveCommand DeleteCommand { get; private set; } = new();
 
         
         private OldTreeView OldTreeView { get; set; }
