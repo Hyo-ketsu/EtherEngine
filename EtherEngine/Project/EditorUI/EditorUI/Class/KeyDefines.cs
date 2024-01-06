@@ -11,5 +11,6 @@ namespace EditorUI {
     class KeyDefines {
         /// <summary>オブジェクト等のリネームに使用するキー</summary>
         public const Key RENAME = Key.F2;
+        public const Key DELETE = Key.Delete;
     }
 }

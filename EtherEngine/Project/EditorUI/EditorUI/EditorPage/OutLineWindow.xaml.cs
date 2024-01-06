@@ -24,7 +24,8 @@ namespace EditorUI {
         public OutLineWindow() {
             InitializeComponent();
 
-            DataContext = new OutLineVM(ObjectList);
+            m_vm = new(ObjectList);
+            DataContext = m_vm;
         }
 
 
@@ -35,5 +36,14 @@ namespace EditorUI {
                 InspectorVM.InspectoObject.Value = baseObject;
             }
         }
+
+        private void ObjectListKeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == KeyDefines.DELETE) {
+                m_vm.DeleteCommand.Execute();
+            }
+        }
+
+
+        private OutLineVM m_vm;
     }
 }
