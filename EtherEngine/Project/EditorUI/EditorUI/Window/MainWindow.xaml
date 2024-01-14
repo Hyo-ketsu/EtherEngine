@@ -6,12 +6,16 @@
         xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:av="https://github.com/Dirkster99/AvalonDock"
         xmlns:local="clr-namespace:EditorUI"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         TitleCharacterCasing="Normal"
         Title="MainWindow" Height="450" Width="800">
    <ma:MetroWindow.DataContext>
       <local:MainVM/>
    </ma:MetroWindow.DataContext>
+   <ma:MetroWindow.InputBindings>
+      <KeyBinding Key="LeftCtrl,R" Command="{Binding ReloadCommand}"/>
+   </ma:MetroWindow.InputBindings>
    <Grid>
       <DockPanel>
          <!-- メニュー -->
@@ -28,6 +32,40 @@
             </local:OldMenuItem>
             <local:OldMenuItem Header="UserWindow" Foreground="Black"/>
          </local:OldMenu>
+
+         <!-- エンジンコマンド表示 -->
+         <Grid DockPanel.Dock="Top" Margin="0,5,0,5">
+            <Grid>
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="auto"/>
+                  <ColumnDefinition Width="*"/>
+               </Grid.ColumnDefinitions>
+               
+               <!-- リロードボタン表示 -->
+               <StackPanel Grid.Column="0" Orientation="Horizontal">
+                  <Button Command="{Binding ReloadCommand}" Margin="2,0,2,0">
+                     <icon:PackIconVaadinIcons Kind="RotateRight"/>
+                  </Button>
+                  <Label>
+                     <Label.Content>
+                        <local:EditorText EN="Reload"
+                                          JP="リロード"/>
+                     </Label.Content>
+                  </Label>
+               </StackPanel>
+ 
+               <!-- ゲームボタン表示 -->
+               <StackPanel Grid.Column="1" Orientation="Horizontal">
+                  <Button Command="{Binding StartGameCommand}" Margin="2,0,2,0">
+                     <icon:PackIconVaadinIcons Kind="Play"/>
+                  </Button>
+                  <Button Command="{Binding EndGameCommand}" Margin="2,0,2,0">
+                     <icon:PackIconVaadinIcons Kind="Stop"/>
+                  </Button>
+               </StackPanel>
+            </Grid>
+         </Grid>
 
          <!-- 他の情報表示 -->
          <Grid DockPanel.Dock="Bottom">

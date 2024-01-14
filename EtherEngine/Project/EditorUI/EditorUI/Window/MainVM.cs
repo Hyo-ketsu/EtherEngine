@@ -132,6 +132,14 @@ namespace EditorUI {
         }
 
 
+        /// <summary>ゲーム開始処理</summary>
+        public ReactiveCommand StartGameCommand { get; private set; } = new();
+        /// <summary>ゲーム終了処理</summary>
+        public ReactiveCommand EndGameCommand { get; private set; } = new();
+        /// <summary>アセンブリのリロードを行う</summary>
+        public ReactiveCommand ReloadCommand { get; private set; } = new();       
+
+
         /// <summary>生成するウィンドウ</summary>
         public ReactiveCollection<CreateWindowData> CreateWindow { get; set; }
         /// <summary>DockManager</summary>
