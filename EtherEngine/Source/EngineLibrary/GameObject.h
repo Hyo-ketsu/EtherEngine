@@ -7,6 +7,7 @@ namespace EtherEngine {
     ref class Component;
 }
 #include <EngineLibrary/Component.h>
+#include <EngineLibrary/AttributeDefine.h>
 
 
 // @ MEMO : 余力があればGetComponentあたりを高速化する
@@ -32,7 +33,7 @@ namespace EtherEngine {
 
         // ネイティブゲームオブジェクト
         property Handle<NativeGameObject> NGameObject {
-            Handle<NativeGameObject> get(void) { return m_handle->GetRefHandle(); }
+            Handle<NativeGameObject> get(void) { return m_handle->GetHandle(); }
         }
 
 
@@ -60,14 +61,8 @@ namespace EtherEngine {
     private:
         System::Collections::Generic::List<Component^>^ m_componentList;
         Handle<NativeGameObject>* m_handle;
+        [Attribute::OutputAttribute] SceneType m_thisObjectScene;
     };
-}
-
-
-
-
-//----- GameObject 定義
-namespace EtherEngine {
 }
 
 

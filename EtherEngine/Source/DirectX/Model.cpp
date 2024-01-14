@@ -89,7 +89,7 @@ namespace EtherEngine {
 
             //----- メッシュを元に頂点バッファ作成
             MeshBuffer::Description desc = decltype(desc)(
-                directX,
+                directX.GetHandle(),
                 mesh.vertexs.data(),
                 sizeof(Vertex),
                 static_cast<uint>(mesh.vertexs.size()),

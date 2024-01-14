@@ -6,9 +6,9 @@ namespace EtherEngine {
     // 空のエディターオブジェクトを作成する
     Handle<EditorObject> EditorObjectStorage::CreateEditorObject(const Transform& transform) {
         Handle<EditorObject> handle = Handle<EditorObject>(EditorObject(transform));
-        handle.GetAtomicData().m_handle = handle;
-        m_editorObjects.push_back(handle);
-        return handle.GetRefHandle();
+        handle.GetAtomicData().m_handle = handle.GetHandle();
+        m_editorObjects.push_back(std::move(handle));
+        return m_editorObjects.back();
     }
     // エディターオブジェクトを削除する
     bool EditorObjectStorage::DeleteEditorObject(const Handle<EditorObject>& editorObject) {
@@ -38,7 +38,6 @@ namespace EtherEngine {
         for (auto it = m_editorObjects.begin(); it != m_editorObjects.end();) {
             if (it->GetAtomicData().GetDelete()) {
                 //----- 削除
-                it->Delete();
                 it = m_editorObjects.erase(it);
             }
             else {

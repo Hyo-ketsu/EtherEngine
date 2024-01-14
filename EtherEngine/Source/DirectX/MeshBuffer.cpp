@@ -6,7 +6,7 @@ namespace EtherEngine {
         const void* vertex, uint vertexSize, uint vertexCount, bool isWrite,
         const void* index, uint indexSize, uint indexCount,
         D3D11_PRIMITIVE_TOPOLOGY topology) 
-        : directXRender(directXRender)
+        : directXRender(directXRender.GetHandle())
         , vertex(vertex), vertexSize(vertexSize), vertexCount(vertexCount), isWrite(isWrite)
         , index(index), indexSize(indexSize), indexCount(indexCount), topology(topology) {
     }
@@ -14,7 +14,7 @@ namespace EtherEngine {
 
     // コンストラクタ
     MeshBuffer::MeshBuffer(const Description& desc)
-        : m_directxRender(desc.directXRender)
+        : m_directxRender(desc.directXRender.GetHandle())
         , m_vertexBuffer(nullptr)
         , m_vertexSize(0)
         , m_vertexCount(0)

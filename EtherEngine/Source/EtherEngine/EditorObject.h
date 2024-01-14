@@ -28,7 +28,7 @@ namespace EtherEngine {
 
 
         // ハンドルゲッター
-        Handle<EditorObject> GetHandle(void) const { return m_handle; }
+        Handle<EditorObject> GetHandle(void) const { return m_handle.GetHandle(); }
 
 
         // コンポーネントを追加する

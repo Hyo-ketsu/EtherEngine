@@ -20,6 +20,14 @@ namespace EtherEngine {
     public:
         // デストラクタ
         virtual ~ShaderBase(void);
+        // コピーコンストラクタ
+        ShaderBase(const ShaderBase& copy);
+        // ムーブコンストラクタ
+        ShaderBase(ShaderBase&& move) = default;
+        // コピー代入
+        ShaderBase& operator =(const ShaderBase& copy);
+        // ムーブ代入
+        ShaderBase& operator =(ShaderBase&& move) = default;
 
 
         // シェーダファイル(.cso)読み込み処理

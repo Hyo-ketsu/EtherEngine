@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     ShaderBase::ShaderBase(const Handle<DirectXRender>& directxRender, ShaderType shaderType, const std::string& loadFile)
-        : m_directxRender(directxRender)
+        : m_directxRender(directxRender.GetHandle())
         , m_shaderType(shaderType) {
         if (loadFile != "") {
             this->LoadFile(loadFile.c_str());
@@ -13,6 +13,23 @@ namespace EtherEngine {
     }
     // デストラクタ
     ShaderBase::~ShaderBase(void) {
+
+    }
+    // コピーコンストラクタ
+    ShaderBase::ShaderBase(const ShaderBase& copy) 
+        : m_directxRender(copy.m_directxRender.GetHandle())
+        , m_shaderType(copy.m_shaderType) {
+        m_buffers.resize(copy.m_buffers.size());
+        std::copy(copy.m_buffers.begin(), copy.m_buffers.end(), m_buffers.begin());
+    }
+    // コピー代入
+    ShaderBase& ShaderBase::operator =(const ShaderBase& copy) {
+        m_directxRender = copy.m_directxRender.GetHandle();
+        m_shaderType = copy.m_shaderType;
+        m_buffers.resize(copy.m_buffers.size());
+        std::copy(copy.m_buffers.begin(), copy.m_buffers.end(), m_buffers.begin());
+        
+        return *this;
     }
 
 

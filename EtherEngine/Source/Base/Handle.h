@@ -1,14 +1,23 @@
 #ifndef I_HANDLE_H
 #define I_HANDLE_H
-#include <Base/HandleSystem.h>
 #include <Base/BaseDefines.h>
 #include <Base/EditorException.h>
+#include <Base/ExclusionData.h>
+#include <Base/ExclusionObject.h>
+#include <Base/NonExclusionData.h>
+#include <Base/Random.h>
 
 
 namespace EtherEngine {
+    // ハンドル制約（クラスのみ）
+    template <typename T>
+    concept HandleSystemConcept = std::is_class_v<T>;
+
+
     enum class HandleCountType : bool {
-        Count = 0,      // 参照カウントを行う
+        Count = 0,  // 参照カウントを行う
         UnCount,    // 参照カウントを行わない
+        None,       // 何も参照がない
     };
 
 
@@ -26,40 +35,27 @@ namespace EtherEngine {
     template <HandleSystemConcept Type>
     class Handle {
     public:
-        // コンストラクタ構築
+        // デフォルトコンストラクタ
+        Handle(void);
+        // 構築コンストラクタ
         // @ Arg1 : ハンドルとして追加する要素
-        // @ Arg2 : 生成数をカウントするか(Default : カウントする)
-        Handle(Type&& item, HandleCountType countType = HandleCountType::Count);
-        // ID構築コンストラクタ
-        // @ Arg1 : コピーするID
-        // @ Arg2 : 生成数をカウントするか(Default : カウントする)
-        Handle(IDNumberType id, HandleCountType countType = HandleCountType::Count);
-        // コンストラクタ
-        // @ Arg1 : 生成数をカウントするか(Default : カウントする)
-        Handle(HandleCountType countType = HandleCountType::Count);
+        Handle(Type&& setItem);
         // デストラクタ
         ~Handle(void);
         // コピーコンストラクタ
         Handle(const Handle<Type>& copy);
         // ムーブコンストラクタ
+        // @ Memo : ポインタの移動を行います
         Handle(Handle<Type>&& move);
         // コピー代入
         Handle<Type>& operator =(const Handle<Type>& copy);
         // ムーブ代入
+        // @ Memo : ポインタの移動を行います
         Handle<Type>& operator =(Handle<Type>&& move);
 
 
         // 参照カウントを行うかゲッター
         HandleCountType GetIsCountUp(void) const { return m_count; }
-
-
-        // 参照ハンドルを作成する
-        // @ Ret  : 参照ハンドル
-        Handle<Type> GetRefHandle(void);
-
-
-        // このハンドルが指すものを削除する
-        void Delete(void);
 
 
         // Handleから排他制御されていない要素を取得する
@@ -77,11 +73,14 @@ namespace EtherEngine {
         Type& GetAtomicData(void) const;
 
 
-        // このHandleの保持している番号は有効か
-        // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
+        // 参照ハンドルを取得する
+        // @ Ret  : 参照がコピーされたハンドル
+        Handle<Type>&& GetHandle(void) const;
+
+
+        // このHandleはポインタを保持しているか
         bool IsEnable(void) const;
-        // このHandleの保持している番号は有効か
-        // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
+        // このHandleはポインタを保持しているか
         operator bool(void) const;
 
 
@@ -96,17 +95,10 @@ namespace EtherEngine {
         // HandleNumber取得
         operator IDNumberType(void) const;
 
-    protected:
-        // 参照のカウントアップを行う
-        // @ Memo : 判定も行う
-        void CountUp(void);
-        // 参照のカウントダウンも行う
-        // @ Memo : 判定も行う
-        void CountDown(void);
-
+    private:
         IDNumberType m_id; // 自身が保持しているHandle
         HandleCountType m_count;   // カウントアップを行うか
-        std::weak_ptr<ullint> m_deleteHandle;    // HandleSystem削除時にHandleSystemを使用するか
+        std::variant<std::shared_ptr<ExclusionObject<std::shared_ptr<Type>>>, std::shared_ptr<ExclusionObject<std::weak_ptr<Type>>>> m_item;    // 保持しているアイテム
     };
 }
 
@@ -115,65 +107,44 @@ namespace EtherEngine {
 
 //----- Handle実装
 namespace EtherEngine {
-    // コンストラクタ構築
-    // @ Arg1 : ハンドルとして追加する要素
-    // @ Arg2 : 生成数をカウントするか
+    // デフォルトコンストラクタ
     template <HandleSystemConcept Type>
-    Handle<Type>::Handle(Type&& item, HandleCountType countType)
-        : Handle(countType) {
-        //----- ハンドルとして構築
-        auto handle = HandleSystem<Type>::Get()->AddItem(std::move(item));
-
-        //----- メンバ初期化
-        m_id = handle.first;
-        m_deleteHandle = handle.second;
-    }
-    // ID構築コンストラクタ
-    // @ Arg1 : コピーするID
-    // @ Arg2 : 生成数をカウントするか(Default : true)
-    template <HandleSystemConcept Type>
-    Handle<Type>::Handle(IDNumberType id, HandleCountType countType) 
-        : Handle(countType) {
-        //----- メンバ初期化
-        m_id = id;
-        m_deleteHandle = HandleSystem<Type>::Get()->GetReferenceCount(m_id);
+    Handle<Type>::Handle(void) 
+        : m_id(0) 
+        , m_count(HandleCountType::None) {
     }
     // コンストラクタ構築
-    // @ Arg1 : 生成数をカウントするか
     template <HandleSystemConcept Type>
-    Handle<Type>::Handle(HandleCountType countType) 
-        : m_count(countType) {
-        //----- カウントアップ
-        CountUp();
+    Handle<Type>::Handle(Type&& setItem) 
+        : m_id(Random::GetRandom<IDNumberType>()) // @ MEMO : 適当に生成している。後で考える
+        , m_count(HandleCountType::Count)
+        , m_item(std::make_shared<ExclusionObject<std::shared_ptr<Type>>>(std::make_shared<Type>(std::move(setItem)))) {
     }
     // デストラクタ
     template<HandleSystemConcept Type>
     Handle<Type>::~Handle(void) {
-        CountDown();
     }
     // コピーコンストラクタ
     template<HandleSystemConcept Type>
     Handle<Type>::Handle(const Handle<Type>& copy)
-        : m_id(copy.m_id) 
-        , m_count(copy.m_count) 
-        , m_deleteHandle(copy.m_deleteHandle) {
-        CountUp();
+        : m_id(copy.m_id)
+        , m_count(copy.m_count)
+        , m_item(copy.m_item) {
     }
     // ムーブコンストラクタ
     template<HandleSystemConcept Type>
     Handle<Type>::Handle(Handle<Type>&& move)
         : m_id(move.m_id)
         , m_count(move.m_count)
-        , m_deleteHandle(move.m_deleteHandle) {
-        CountUp();
+        , m_item(move.m_item) {
     }
     // コピー代入
     template<HandleSystemConcept Type>
     Handle<Type>& Handle<Type>::operator =(const Handle<Type>& copy) {
         m_id = copy.m_id;
         m_count = copy.m_count;
-        m_deleteHandle = copy.m_deleteHandle;
-        CountUp();
+        m_item = copy.m_item;
+
         return *this;
     }
     // ムーブ代入
@@ -181,24 +152,8 @@ namespace EtherEngine {
     Handle<Type>& Handle<Type>::operator =(Handle<Type>&& move) {
         m_id = move.m_id;
         m_count = move.m_count;
-        m_deleteHandle = move.m_deleteHandle;
-        CountUp();
+        m_item = move.m_item;
         return *this;
-    }
-
-
-    // 参照ハンドルを作成する
-    // @ Ret  : 参照ハンドル
-    template<HandleSystemConcept Type>
-    Handle<Type> Handle<Type>::GetRefHandle(void) {
-        return Handle(m_id, HandleCountType::UnCount);
-    }
-
-
-    // このハンドルが指すものを削除する
-    template<HandleSystemConcept Type>
-    void Handle<Type>::Delete(void) {
-        HandleSystem<Type>::Get()->DeleteItem(m_id);
     }
 
 
@@ -207,14 +162,32 @@ namespace EtherEngine {
     template<HandleSystemConcept Type>
     NonExclusionData<Type> Handle<Type>::GetNoAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
-        return HandleSystem<Type>::Get()->GetNoAtomicItem(m_id).value();
+        switch (m_item.index()) {
+        case 0:
+            return NonExclusionData<Type>(*std::get<0>(m_item)->GetNonExclusionData().GetData());
+            break;
+        case 1:
+            return NonExclusionData<Type>(*std::get<1>(m_item)->GetNonExclusionData().GetData().lock());
+            break;
+        }
     }
     // Handleから排他制御された要素を取得する
     // @ Ret  : 取得した要素
     template<HandleSystemConcept Type>
     ExclusionData<Type> Handle<Type>::GetAtomicItem(void) const {
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
-        return HandleSystem<Type>::Get()->GetAtomicItem(m_id).value();
+        switch (m_item.index()) {
+        case 0: {
+            auto&& item = std::get<0>(m_item);
+            return ExclusionData<Type>(*item->GetNonExclusionData().GetData(), [&]() { item->Look(); }, [&]() { item->UnLock(); });
+            break;
+        }
+        case 1: {
+            auto&& item = std::get<1>(m_item);
+            return ExclusionData<Type>(*item->GetNonExclusionData().GetData().lock(), [&]() { item->Look(); }, [&]() { item->UnLock(); });
+            break;
+        }
+        }
     }
 
 
@@ -232,14 +205,46 @@ namespace EtherEngine {
     }
 
 
-    // このHandleの保持している番号は有効か
-    // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
+    // 参照ハンドルを取得する
+    template<HandleSystemConcept Type>
+    Handle<Type>&& Handle<Type>::GetHandle(void) const {
+        //----- 空ハンドルチェック
+        if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
+
+        //----- 参照を複製して生成
+        Handle<Type> ret;
+        ret.m_id = this->m_id;
+        ret.m_count = HandleCountType::UnCount;
+        switch (this->m_item.index()) {
+        case 0:
+            ret.m_item = std::make_shared<ExclusionObject<std::weak_ptr<Type>>>(std::weak_ptr<Type>(std::get<0>(m_item)->GetNonExclusionData().GetData()));
+            break;
+        case 1:
+            ret.m_item = std::make_shared<ExclusionObject<std::weak_ptr<Type>>>(std::weak_ptr<Type>(std::get<1>(m_item)->GetNonExclusionData().GetData()));
+            break;
+        }
+
+        //----- 返却
+        return std::move(ret);
+    }
+
+
+    // このHandleはポインタを保持しているか
     template<HandleSystemConcept Type>
     bool Handle<Type>::IsEnable(void) const {
-        return HandleSystem<Type>::Get()->IsItemEnable(m_id);
+        switch (m_item.index()) {
+        case std::variant_npos:
+            return false;
+            break;
+        case 0:
+            return std::get<0>(m_item)->GetNonExclusionData().GetData() != nullptr;
+            break;
+        case 1:
+            return !(std::get<1>(m_item)->GetNonExclusionData().GetData().expired());
+            break;
+        } 
     }
-    // このHandleの保持している番号は有効か
-    // @ Ret  : 既にHandleSystemで削除された値若しくは無効値なら false
+    // このHandleはポインタを保持しているか
     template<HandleSystemConcept Type>
     Handle<Type>::operator bool(void) const {
         return IsEnable();
@@ -267,22 +272,6 @@ namespace EtherEngine {
     template<HandleSystemConcept Type>
     Handle<Type>::operator IDNumberType(void) const {
         return GetHandleNumber();
-    }
-
-
-    // 参照のカウントアップを行う
-    template<HandleSystemConcept Type>
-    void Handle<Type>::CountUp(void) {
-        if (m_count == HandleCountType::Count && m_deleteHandle.expired() == false) {
-            HandleSystem<Type>::Get()->CountUpItem(m_id);
-        }
-    }
-    // 参照のカウントダウンを行う
-    template<HandleSystemConcept Type>
-    void Handle<Type>::CountDown(void) {
-        if (m_count == HandleCountType::Count && m_deleteHandle.expired() == false) {
-            HandleSystem<Type>::Get()->CountDownItem(m_id);
-        }
     }
 }
 
