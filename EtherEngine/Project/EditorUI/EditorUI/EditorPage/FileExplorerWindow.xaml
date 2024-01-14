@@ -39,8 +39,29 @@
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext"/>
 
             <!-- アイテムビュー -->
-            <ListView Grid.Column="2" ItemsSource="{Binding Files}">
-            </ListView>            
+            <ListView ItemsSource="{Binding Files}">
+               
+               <!-- 右クリックメニュー -->
+               <ListView.ContextMenu>
+                  <ContextMenu>
+                     <MenuItem>
+                        <!-- ヘッダー -->
+                        <MenuItem.Header>
+                           <local:EditorText EN="Create"
+                                             JP="作成"/>
+                        </MenuItem.Header>
+
+                        <!-- 実際に制作するアイテム -->
+                        <MenuItem>
+                           <MenuItem.Header>
+                              <local:EditorText EN="Script"
+                                                JP="スクリプト"/>
+                           </MenuItem.Header>
+                        </MenuItem>
+                     </MenuItem>
+                  </ContextMenu>
+               </ListView.ContextMenu>
+            </ListView>
          </Grid>
       </Grid>
    </Grid>
