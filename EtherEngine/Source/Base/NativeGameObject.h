@@ -9,7 +9,6 @@
 #include <Base/DrawComponentBase.h> 
 #include <Base/Handle.h>
 #include <Base/Transform.h>
-#include <Base/ParentAndChildObject.h>
 #include <Base/EtherEngineUtility.h>
 
 
@@ -67,13 +66,6 @@ namespace EtherEngine {
         // シーン情報セッター
         void SetScene(const SceneType& in) { m_scene = in; }
 
-        // 親子関係ゲッター
-        const ParentAndChildObject<NativeGameObject> GetParentAndChild(void) const { return m_parentAndChild; }
-        // 親子関係セッター
-        void SetParentAndChild(const ParentAndChildObject<NativeGameObject>& in) { m_parentAndChild = in; }
-        // 親子関係アクセサー
-        ParentAndChildObject<NativeGameObject>& AccessParentAndChild(void) { return m_parentAndChild; }
-
 
         // ハンドルゲッター
         const Handle<NativeGameObject>& GetHandle(void) const { return m_handle; }
@@ -128,16 +120,11 @@ namespace EtherEngine {
         Transform m_transform;  // 座標
         SceneType m_scene;      // 現在所属シーン
         Handle<NativeGameObject> m_handle;    // 自身のハンドル
-        ParentAndChildObject<NativeGameObject> m_parentAndChild;  // このゲームオブジェクトの親子関係
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント
         std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
         std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
         std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
-
-        static std::function<std::shared_ptr<ComponentBase>(NativeGameObject*, const std::string&)> ms_getComponent; // C++CLIのGameComponentなどを取得するためのラムダ
-        static std::function<std::shared_ptr<ComponentBase>(NativeGameObject*)> ms_addComponentMenu; // AddComponent用のメニュー表示ラムダ
-        static std::function<std::string(const std::string&, const uint, const bool)> ms_getFullName; // 各コンポーネント名の完全修飾名取得ラムダ
     };
 }
 

@@ -104,13 +104,13 @@ namespace EtherEngine {
 
 
     // ゲームオブジェクトの描画処理を行う
-    void NativeGameObjectUpdater::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+    void NativeGameObjectUpdater::Draw(const CameraData& camera) {
         auto draw = NativeGameObjectStorage::Get()->GetGameObjectAll();
 
         for (auto& it : draw) {
             if (it.IsEnable() == false) continue;
 
-            it.GetAtomicData().Draw(view, projection);
+            it.GetAtomicData().Draw(camera.GetView(), camera.GetProjection());
         }
         NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
     }

@@ -34,7 +34,7 @@ namespace EtherEngine {
 #ifdef _EDITOR
         event System::EventHandler^ UpdateEvent;    // 更新時に発火するイベント
         // イベントの発火を行う
-        void UpdateEventIgnition(System::EventArgs^ e);
+        void UpdateEventIgnition(System::EventArgs^ e) { UpdateEvent(this, e); }
 #endif // _EDITOR
 
     private:

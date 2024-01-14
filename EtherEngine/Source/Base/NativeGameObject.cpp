@@ -217,9 +217,4 @@ namespace EtherEngine {
     void NativeGameObject::AddCollisionData(const CollisionHitData data) {
         m_hitData.push_back(data);
     }
-
-
-    std::function<std::shared_ptr<ComponentBase>(NativeGameObject*, const std::string&)> NativeGameObject::ms_getComponent = nullptr; // C++CLIのGameComponentなどを取得するためのラムダ
-    std::function<std::shared_ptr<ComponentBase>(NativeGameObject*)> NativeGameObject::ms_addComponentMenu = nullptr; // C++CLIのGameDrawComponentなどを取得するためのラムダ
-    std::function<std::string(const std::string&, const uint, const bool)> NativeGameObject::ms_getFullName = nullptr; // 各コンポーネント名の完全修飾名取得ラムダ
 }
