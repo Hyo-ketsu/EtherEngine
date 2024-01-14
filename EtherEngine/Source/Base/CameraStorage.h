@@ -36,7 +36,7 @@ namespace EtherEngine {
         // コンストラクタ
         CameraSystem(void) {}
 
-        friend class Singleton<CameraSystem>;
+        friend class CentrallySingleton;
 
         std::vector<std::tuple<IDNumberType, std::weak_ptr<CameraData>, int>> m_datas;   // 保持しているデータ
     };

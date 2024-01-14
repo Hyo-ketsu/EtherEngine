@@ -36,7 +36,7 @@ namespace EtherEngine {
         TaskType GetTask(void);
 
 
-        friend class Singleton<ThreadPool>;
+        friend class CentrallySingleton;
 
         //static std::thread::id ms_mainThread;           // メインスレッドのID
     };

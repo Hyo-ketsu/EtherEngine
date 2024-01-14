@@ -58,7 +58,7 @@ namespace EtherEngine {
         // コンストラクタ
         ProjectMediation(void);
 
-        friend class Singleton<ProjectMediation>;
+        friend class CentrallySingleton;
 
         bool m_isUpdateFile;    // ファイルが更新されているか
         PathClass m_vcxproj;    // プロジェクトファイル

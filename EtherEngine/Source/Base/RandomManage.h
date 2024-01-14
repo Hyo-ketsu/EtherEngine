@@ -24,9 +24,9 @@ namespace EtherEngine {
         // コンストラクタ
         RandomManage(void) {}
 
-        friend class Singleton<RandomManage>;
+        friend class CentrallySingleton;
 
-        static std::vector<Type> m_usedNumber; // 保持している生成した番号
+        std::vector<Type> m_usedNumber; // 保持している生成した番号
     };
 }
 
@@ -66,10 +66,6 @@ namespace EtherEngine {
             }
         }
     }
-
-
-    template <Number32_64ByteConcept Type>
-    std::vector<Type> RandomManage<Type>::m_usedNumber; // 保持している生成した番号
 }
 
 

@@ -84,7 +84,7 @@ namespace EtherEngine {
         ForwardDeclaration::TimePointer* m_firstTime;   // 初期化時刻
         ForwardDeclaration::TimePointer* m_updateTime;  // フレーム開始時刻
 
-        friend class Singleton<GlobalTimer>;
+        friend class CentrallySingleton;
     };
 }
 

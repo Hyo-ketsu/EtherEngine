@@ -30,7 +30,7 @@ namespace EtherEngine {
         void DeleteGameObjectsDelete(void);
 
     private:
-        friend class Singleton<NativeGameObjectStorage>;
+        friend class CentrallySingleton;
 
         std::vector<Handle<NativeGameObject>> m_gameObjects;   // ゲームオブジェクトのハンドル
     };
