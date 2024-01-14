@@ -16,19 +16,22 @@
 #define ETHER_ENGINE_MANAGE_SINGLETON(singletonType) \
 public:\
 static property singletonType^ Get {\
-public:\
-    singletonType^ get(void) { \
+    public: singletonType^ get(void) { \
         if (ms_instance == nullptr) {\
             ms_instance = gcnew singletonType();\
         }\
         return ms_instance;\
     }\
+    protected: void set(singletonType^ value) {\
+        ms_instance = value;\
+    }\
 }\
 static void Delete(void) {\
     ms_instance = nullptr;\
 }\
-private:\
+protected:\
 singletonType(void);\
+private:\
 static singletonType^ ms_instance = nullptr\
 
 
