@@ -37,6 +37,7 @@ namespace EditorUI {
             }
         }
 
+
         private void ObjectListKeyDown(object sender, KeyEventArgs e) {
             if (e.Key == KeyDefines.DELETE) {
                 m_vm.DeleteCommand.Execute();

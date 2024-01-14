@@ -18,7 +18,7 @@ namespace EditorMain {
             application.Run();
 
             //----- 終了処理
-            EtherEngine.EditorApplication.Get.IsGameLoop = false;
+            EtherEngine.EditorApplication.Get.GameEnd();
         }
     }
 }
