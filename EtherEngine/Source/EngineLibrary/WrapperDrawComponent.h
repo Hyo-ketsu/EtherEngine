@@ -8,7 +8,7 @@
 //----- 描画コンポーネント
 namespace EtherEngine {
     // 描画コンポーネント
-    class ENGINELIBRARY_API WrapperDrawComponent : public WrapperComponent, public virtual DrawComponent {
+    class WrapperDrawComponent : public WrapperComponent, public virtual DrawComponent {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します
