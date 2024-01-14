@@ -1,5 +1,6 @@
 #ifndef I_SCENELOADER_H
 #define I_SCENELOADER_H
+#include <Base/BaseDefines.h>
 #include <EngineLibrary/ManageSingleton.h>
 
 
@@ -9,6 +10,9 @@ namespace EtherEngine {
         ETHER_ENGINE_MANAGE_SINGLETON(SceneLoader);
     public:
 
+
+    private:
+        System::Collections::Generic::List<SceneType>^ m_thisScenes;
     };
 }
 

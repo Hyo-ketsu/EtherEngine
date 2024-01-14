@@ -6,5 +6,6 @@ namespace EtherEngine {
     // コンストラクタ
     Scene::Scene(PathString json) {
         //----- Json読み込み
+
     }
 }
