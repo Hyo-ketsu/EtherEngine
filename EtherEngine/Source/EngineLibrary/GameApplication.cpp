@@ -1,96 +1,117 @@
 #include <EngineLibrary/GameApplication.h>
 #include <Base/Timer.h>
-#include <Base/WindowsDefine.h>
-#include <Base/NativeGameObjectUpdater.h>
 #include <Base/BaseInput.h>
+#include <Base/BaseDefines.h>
+#include <Base/NativeGameObjectUpdater.h>
+#include <Base/NativeGameObjectStorage.h>
 #include <Base/CameraStorage.h>
 
 
-#ifdef _DEBUG
-#ifdef _GAME_TEST
-#include <DirectX/ModelComponent.h>
-#include <DirectX/ShaderClass.h>
-#include <Base/CameraComponent.h>
-#include <EtherEngine/Test/TestDefine.h>
-#endif // _GAME_TEST
-#endif // _DEBUG
-
-
+//----- GameApplication 定義
+#pragma managed
 namespace EtherEngine {
     // コンストラクタ
     GameApplication::GameApplication(void)
-        : BaseMainWindow(WindowDefine::Name::GAME_APPLICATION) {
+        : m_isGameUpdate(true)
+        , m_isGameDraw(true)
+        , m_isLoop(true)
+        , m_dxRender(new Handle<DirectXRender>(DirectXRender())) {
     }
     // デストラクタ
     GameApplication::~GameApplication(void) {
-        HandleSystem<DirectXRender>::Get()->DeleteItem(m_dxRender);
+        this->!GameApplication();
+    }
+    // ファイナライザ
+    GameApplication::!GameApplication(void) {
+        Uninit();
     }
 
 
     // メイン関数
     void GameApplication::MainFunction(void) {
-#ifdef _DEBUG
-#ifdef _GAME_TEST
-        //----- テスト用シェーダー追加
-        auto vs = VertexShader(this->GetDirectX());
-        vs.LoadFile((TestDefine::TEST_ASSET_SHADER_PASS + "VS_Test.cso").c_str());
-        auto ps = PixelShader(this->GetDirectX());
-        ps.LoadCompile((TestDefine::TEST_ASSET_SHADER_PASS + "PS_Test.cso").c_str());
+        //----- 初期化イベント発火
+        InitEvent(this, System::EventArgs::Empty);
 
-        //----- テスト用ゲームオブジェクト追加
-        //auto testGameObject = GameObjectStorage::Get()->CreateGameObject(Transform());
-        //testGameObject.GetAtomicData().AddConponent<ModelComponent>(TestDefine::TEST_ASSET_MODEL_PASS + "TestAsset.obj", GameApplication::Get()->GetDirectX(),vs ,ps , 1.0f, false);
-        auto cameraGameObject = GameObjectStorage::Get()->CreateGameObject(Transform());
-        cameraGameObject.GetAtomicData().AccessTransform().AccessPostion().z() = -1;
-        auto camera = cameraGameObject.GetAtomicData().AddConponent<CameraComponent>(Eigen::Vector3f(0.0, 0.0, -3.0f));
-        m_dxRender.GetAtomicData().SetCameraID(camera.lock()->GetID());
-#endif // _GAME_TESTB
-#endif // _DEBUG
-
-        //----- メッセージループ
-        MSG message;
+        //----- メインループ
         Timer fpsTimer;
         milliSecond frameSecond = 0;
-        while (GetIsGameLoop()) {
-            //----- メッセージ確認
-            if (PeekMessage(&message, NULL, 0, 0, PM_NOREMOVE)) {
-                // メッセージを取得
-                // WM_QUITのみ、取得できないと判定される
-                if (!GetMessage(&message, NULL, 0, 0)) {
-                    // WM_QUITが届いた時だけ終了
-                    break;
-                }
-                else {
-                    TranslateMessage(&message); // 届いたメッセージをWindowsに転送
-                    DispatchMessage(&message);  // 
-                }
+        while (m_isLoop) {
+            //----- ゲームループ初期イベント発火
+            LoopFirstEvent(this, System::EventArgs::Empty);
+
+            //----- ゲーム処理
+            frameSecond += fpsTimer.GetDeltaTime();
+
+            //----- FPS制御
+            if (frameSecond < ONE_FRAME * 1000) continue;
+            frameSecond = 0;
+
+            //----- イベント用変数宣言
+            bool isUpdate = false;  // 何らかのゲーム処理が行われたか
+
+            //----- 入力やタイマー自体の更新
+            InputSystem::Update();
+            GlobalTimer::Get()->Update();
+
+            //----- ゲームループのイベント発火
+            if (m_isGameUpdate && m_isGameDraw) {
+                //----- どちらも更新。
+                GameLoopUpdateEvent(this, System::EventArgs::Empty);
             }
-            else {   //----- ゲーム処理
-                //----- 定期更新処理
-                frameSecond += fpsTimer.GetDeltaTime();
+            if (!(m_isGameUpdate && m_isGameDraw)) {
+                //----- どちらも更新しない。
+                GameLoopStopEvent(this, System::EventArgs::Empty);
+            }
 
-                //----- FPS制御
-                if (frameSecond < (ONE_FRAME * 1'000)) continue;
-                frameSecond = 0;
+            //----- 更新を行うかの判定
+            if (m_isGameUpdate) {
+                //----- 更新イベント発火
+                GameUpdateEvent(this, System::EventArgs::Empty);
 
-                //----- Update処理
+                //----- 更新処理
+                NativeGameObjectUpdater::Get()->FixedUpdate();
                 NativeGameObjectUpdater::Get()->Update();
+            }
 
-                //----- 描画前処理
-                m_dxRender.GetAtomicData().AccessWindowRenders()[0].BeginDraw();
+            //----- エディター更新処理
+            EditorUpdateEvent(this, System::EventArgs::Empty);
 
-                //----- 描画処理
+            //----- 描画処理
+            if (m_isGameDraw) {
+                //----- 全ウィンドウに対して描画処理
                 auto camera = CameraSystem::Get()->GetMainData();
                 if (camera.has_value()) {
-                    m_dxRender.GetAtomicData().AccessWindowRenders()[0].Draw(*camera);
-                }
+                    //----- 全ウィンドウ取得
+                    auto&& window = m_dxRender->GetData().AccessWindowRenders();
+                    for (auto&& it : window) {
+                        //----- 描画前処理
+                        it.BeginDraw();
 
-                //----- 描画後処理
-                m_dxRender.GetAtomicData().AccessWindowRenders()[0].EndDraw();
+                        {
+                            //----- エディター描画処理
+                            EditorDrawEvent(this, &*camera);
+
+                            //----- エディター後描画処理
+                            EditorLateDrawEvent(this, &*camera);
+
+                            //----- ゲームオブジェクト描画処理
+                            NativeGameObjectUpdater::Get()->Draw(*camera);
+                        }
+
+                        //----- 描画処理
+                        it.Draw(*camera);
+                        //----- 描画後処理
+                        it.EndDraw();
+                    }
+                }
             }
         }
+    }
 
-        //----- 終了処理
-        m_initUninitPerformer.UnInit();
+
+    // 終了処理
+    void GameApplication::Uninit(void) {
+        DELETE_NULL(m_dxRender);
+        UninitEvent(this, System::EventArgs::Empty);
     }
 }
