@@ -57,7 +57,6 @@
     <ClCompile Include="..\..\Source\Base\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraStorage.cpp" />
     <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
-    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
     <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Converter.cpp" />
     <ClCompile Include="..\..\Source\Base\DrawComponentBase.cpp" />
@@ -79,6 +78,8 @@
     <ClCompile Include="..\..\Source\Base\stdafx\BaseStdafx.cpp">
       <Filter>Stdafx</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
+    <ClCompile Include="..\..\Source\Base\CentrallySingleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Base\Xml\tinyxml2.h">
@@ -121,7 +122,6 @@
     <ClInclude Include="..\..\Source\Base\CameraComponent.h" />
     <ClInclude Include="..\..\Source\Base\CameraStorage.h" />
     <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
-    <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\Converter.h" />
     <ClInclude Include="..\..\Source\Base\DrawComponentBase.h" />
@@ -131,12 +131,10 @@
     <ClInclude Include="..\..\Source\Base\NativeGameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
-    <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\ObejctTag.h" />
-    <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
     <ClInclude Include="..\..\Source\Base\RAIIClass.h" />
     <ClInclude Include="..\..\Source\Base\Random.h" />
@@ -159,5 +157,7 @@
       <Filter>Stdafx</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Base\RandomManage.h" />
+    <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
+    <ClInclude Include="..\..\Source\Base\CentrallySingleton.h" />
   </ItemGroup>
 </Project>

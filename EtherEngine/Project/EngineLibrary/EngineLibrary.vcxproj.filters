@@ -92,6 +92,11 @@
     <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h">
       <Filter>Manage</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageLambda.h">
+      <Filter>Manage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageEnum.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
@@ -144,9 +149,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\IDClass.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp">
-      <Filter>Manage</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\GameObject.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
@@ -166,6 +168,12 @@
       <Filter>Manage</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageEnum.cpp">
+      <Filter>Manage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
   </ItemGroup>

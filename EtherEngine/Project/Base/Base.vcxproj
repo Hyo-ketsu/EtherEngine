@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Base\BaseDefines.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseInput.cpp" />
+    <ClCompile Include="..\..\Source\Base\CentrallySingleton.cpp" />
     <ClCompile Include="..\..\Source\Base\NativeBaseObject.cpp" />
     <ClCompile Include="..\..\Source\Base\BaseUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\CameraBase.cpp" />
@@ -63,6 +64,7 @@
     <ClCompile Include="..\..\Source\Base\Xml\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Base\CentrallySingleton.h" />
     <ClInclude Include="..\..\Source\Base\ExclusionObject.h" />
     <ClInclude Include="..\..\Source\Base\ExclusionData.h" />
     <ClInclude Include="..\..\Source\Base\BaseDefines.h" />
@@ -92,14 +94,12 @@
     <ClInclude Include="..\..\Source\Base\NativeGameObjectUpdater.h" />
     <ClInclude Include="..\..\Source\Base\GraphicDefines.h" />
     <ClInclude Include="..\..\Source\Base\Handle.h" />
-    <ClInclude Include="..\..\Source\Base\HandleSystem.h" />
     <ClInclude Include="..\..\Source\Base\BaseHelper.h" />
     <ClInclude Include="..\..\Source\Base\InitUninitPerformer.h" />
     <ClInclude Include="..\..\Source\Base\MathUtility.h" />
     <ClInclude Include="..\..\Source\Base\MessageQue.h" />
     <ClInclude Include="..\..\Source\Base\Mutex.h" />
     <ClInclude Include="..\..\Source\Base\NonExclusionData.h" />
-    <ClInclude Include="..\..\Source\Base\ParentAndChildObject.h" />
     <ClInclude Include="..\..\Source\Base\PathClass.h" />
     <ClInclude Include="..\..\Source\Base\ProjectData.h" />
     <ClInclude Include="..\..\Source\Base\RAIIClass.h" />

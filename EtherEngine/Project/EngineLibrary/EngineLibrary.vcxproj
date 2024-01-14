@@ -27,6 +27,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibraryDefine.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameObject.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameObjectStorage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameObjectUpdater.h" />
@@ -35,6 +36,8 @@
     <ClInclude Include="..\..\Source\EngineLibrary\CameraComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ComponentInterface.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\GameApplication.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageEnum.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ManageLambda.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\Scene.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\SceneLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h" />
@@ -57,6 +60,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryDefine.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameObject.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameObjectStorage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameObjectUpdater.cpp" />
@@ -66,11 +70,11 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ManageEnum.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\SceneLoader.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\ManageSingleton.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\stdafx\EngineLibraryStdafx.cpp">
@@ -176,8 +180,7 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib/um/x86</LibraryPath>
-    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
-    <CopyLocalProjectReference>true</CopyLocalProjectReference>
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
@@ -194,15 +197,14 @@
     <ExecutablePath>$(SolutionDir)Binary/;$(ExecutablePath)</ExecutablePath>
     <IncludePath>$(SolutionDir)Source/;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Library/;$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows\;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib/um/x64</LibraryPath>
-    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
-    <CopyLocalProjectReference>true</CopyLocalProjectReference>
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_ENGINELIBRARY;_EDITOR;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_EDITOR;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <SupportJustMyCode>false</SupportJustMyCode>
@@ -226,7 +228,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_ENGINELIBRARY;_EDITOR;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_EDITOR;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
@@ -250,7 +252,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_ENGINELIBRARY;_EDITOR;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_EDITOR;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <SupportJustMyCode>false</SupportJustMyCode>
@@ -274,7 +276,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>$(ProjectName)/stdafx/$(ProjectName)Stdafx.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_ENGINELIBRARY;_EDITOR;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_EDITOR;_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Library/</AdditionalIncludeDirectories>
       <SupportJustMyCode>false</SupportJustMyCode>
