@@ -4,6 +4,9 @@
 // @ MEMO : キーボード入力等があるので分離する？
 
 
+// MEMO : 多分いらん。放置ss
+
+
 //----- 各入力用ボタン入力設定
 namespace EtherEngine {
     // 各プラットフォーム用入力
@@ -69,6 +72,7 @@ namespace EtherEngine {
 namespace EtherEngine {
     // キー or ボタン入力を管理するクラス
     // @ MEMO : ひとまず Xbox の入力は後回し
+    // @ MEMO : シングルトン化したほうがいい
     class InputSystem {
     public:
         // 初期化
