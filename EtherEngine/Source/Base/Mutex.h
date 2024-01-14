@@ -16,46 +16,50 @@ namespace EtherEngine {
         // デストラクタ
         ~Mutex(void);
         // コピーコンストラクタ
-        Mutex(const Mutex& move) = default;
+        Mutex(const Mutex& move) = delete;
         // ムーブコンストラクタ
         Mutex(Mutex&& move) = default;
+        // コピー代入
+        Mutex& operator =(const Mutex& move) = delete;
+        // ムーブ代入
+        Mutex& operator =(Mutex&& move) = default;
 
 
         // ロックを試行する
         // @ Memo : スレッドがロックされます
-        bool TryLock(void);
+        bool TryLock(void) const;
         // ロックが施行できるか取得
         // @ Ret  : ロックが施行できるか
-        bool IsCanLock(void);
+        bool IsCanLock(void) const;
 
 
         // ロックを行う（RAII）
         // @ Ret  : RAIIロック・アンロッククラス
-        MutexLockKey KeyLock(void);
+        MutexLockKey KeyLock(void) const;
         // ロックを行う（RAII）
         // @ Ret  : RAIIロック・アンロッククラス
-        MutexLockKey KeySpinLock(void);
+        MutexLockKey KeySpinLock(void) const;
 
 
         // 手動ロックを行う
-        void Lock(void);
+        void Lock(void) const;
         // 手動スピンロックを行う
-        void SpinLock(void);
+        void SpinLock(void) const;
         // 手動アンロックを行う
-        void UnLock(void);
+        void UnLock(void) const;
 
     protected:
         // ロック開始を通知する
         // @ Ret  : ロックが可能か
-        bool LockMessage(void);
+        bool LockMessage(void) const;
         // ロック解除を通知する
         // @ Ret  : ロック解除が可能か
-        bool UnLockMessage(void);
+        bool UnLockMessage(void) const;
 
 
         // 自身のロックを行う
         // @ Memo : 実装自体はスピンロックで行います
-        MutexLockKey ThisLock(void);
+        MutexLockKey ThisLock(void) const;
 
 
         HANDLE m_mutex;     // ミューテックスのハンドル

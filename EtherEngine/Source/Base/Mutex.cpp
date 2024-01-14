@@ -15,7 +15,7 @@ namespace EtherEngine {
 
 
     // ロックを試行する
-    bool Mutex::TryLock(void) {
+    bool Mutex::TryLock(void) const {
         //----- ロックを取得
         if (LockMessage()) {
             return WaitForSingleObject(m_mutex, 0);
@@ -25,7 +25,7 @@ namespace EtherEngine {
         }
     }
     // ロックが施行できるか取得
-    bool Mutex::IsCanLock(void) {
+    bool Mutex::IsCanLock(void) const {
         //----- ロックを取得
         auto ret = TryLock();
 
@@ -39,7 +39,7 @@ namespace EtherEngine {
 
 
     // ロックを行う（RAII）
-    MutexLockKey Mutex::KeyLock(void) {
+    MutexLockKey Mutex::KeyLock(void) const {
         //----- ロックを取得する
         Lock();
 
@@ -47,7 +47,7 @@ namespace EtherEngine {
         return MutexLockKey([this]() { UnLock(); });
     }
     // ロックを行う（RAII）
-    MutexLockKey Mutex::KeySpinLock(void) {
+    MutexLockKey Mutex::KeySpinLock(void) const {
         //----- スピンロックを行う
         SpinLock();
 
@@ -57,14 +57,14 @@ namespace EtherEngine {
 
 
     // 手動ロックを行う
-    void Mutex::Lock(void) {
+    void Mutex::Lock(void) const {
         if (LockMessage()) {
             //----- ロックを取得する
             WaitForSingleObject(m_mutex, INFINITE);
         }
     }
     // 手動スピンロックを行う
-    void Mutex::SpinLock(void) {
+    void Mutex::SpinLock(void) const {
         if (LockMessage()) {
             //----- スピンロック
             while (WaitForSingleObject(m_mutex, 0) != WAIT_OBJECT_0) {
@@ -72,7 +72,7 @@ namespace EtherEngine {
         }
     }
     // 手動アンロックを行う
-    void Mutex::UnLock(void) {
+    void Mutex::UnLock(void) const {
         //----- アンロックを行う
         if (UnLockMessage()) {
             ReleaseMutex(m_mutex);
@@ -81,7 +81,7 @@ namespace EtherEngine {
     
 
     // 自身のロックを行う
-    MutexLockKey Mutex::ThisLock(void) {
+    MutexLockKey Mutex::ThisLock(void) const {
         //----- スピンロック
         while (WaitForSingleObject(m_thisMutex, 0) != WAIT_OBJECT_0) {
         }
@@ -92,7 +92,7 @@ namespace EtherEngine {
 
 
     // ロック開始を通知する
-    bool Mutex::LockMessage(void) {
+    bool Mutex::LockMessage(void) const {
         //----- ロックする
         auto lock = ThisLock();
 
@@ -110,7 +110,7 @@ namespace EtherEngine {
         }
     }
     // ロック解除を通知する
-    bool Mutex::UnLockMessage(void) {
+    bool Mutex::UnLockMessage(void) const {
         //----- ロックする
         auto lock = ThisLock();
 
