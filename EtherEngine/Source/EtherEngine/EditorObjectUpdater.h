@@ -19,7 +19,7 @@ namespace EtherEngine {
         // コンストラクタ
         EditorUpdater(void) {}
 
-        friend class Singleton<EditorUpdater>;
+        friend class CentrallySingleton;
 
         std::vector<Handle<EditorObject>> m_windows; // 現在表示しているウィンドウ一覧
     };

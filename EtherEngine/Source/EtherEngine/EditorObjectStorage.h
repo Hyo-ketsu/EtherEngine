@@ -30,7 +30,7 @@ namespace EtherEngine {
         void DeleteEditorObjectsDelete(void);
 
     private:
-        friend class Singleton<EditorObjectStorage>;
+        friend class CentrallySingleton;
 
         std::vector<Handle<EditorObject>> m_editorObjects;   // エディターオブジェクトのハンドル
     };
