@@ -17,12 +17,6 @@ namespace EtherEngine {
     }
 
 
-    // カレントディレクトリゲッター
-    PathClass PathClass::GetCurDirectory(void) {
-        return PathClass(current_path().string());
-    }
-
-
     // 拡張子含めたファイル名取得
     std::string PathClass::GetFile(void) const {
         return path(m_path).filename().string();

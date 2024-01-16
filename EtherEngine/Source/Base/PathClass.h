@@ -26,10 +26,6 @@ namespace EtherEngine {
         PathClass& operator =(PathClass&& move) = default;
 
 
-        // カレントディレクトリゲッター
-        static PathClass GetCurDirectory(void);
-
-
         // 拡張子含めたファイル名取得
         // @ Ret  : 拡張子含めたファイル名(例 : Hoge.exe)
         std::string GetFile(void) const;
