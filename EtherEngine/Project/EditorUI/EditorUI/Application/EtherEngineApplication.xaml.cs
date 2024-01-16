@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -32,34 +33,31 @@ namespace EditorUI {
         /// <param name="mainFunction">呼び出すメイン関数</param>
         public void Init(EtherEngineMainFunction mainFunction) {
             //----- 変数宣言
-            bool isLock = false;
             MainWindow? mainWindow = null;
 
             //----- UI関連処理
             Dispatcher.Invoke(() => {
+                //----- 内部的なメインウィンドウ立ち上げ
                 mainWindow = new MainWindow();
+
+                //----- スタートアップ
+                var startupWindow = new StartupWindow();
+                startupWindow.ShowDialog();
+
+                //----- キャンセルだったら終了する
+                if (IsCancelStartup) { 
+                    mainWindow.Close(); return; 
+                }
+
+                //----- エディターのメインウィンドウ立ち上げ
                 mainWindow.Show();
-
-                //----- スタートアップ実行
-                // @ MEMO : ひとまずコメントアウト
-                //if (System.IO.File.Exists(EditorSetting.OutPutFileName)) {
-                //    //----- 存在する。
-                //    // @ MEMO : 未記述
-                //}
-                //else {
-                //    //----- 存在しない。スタートアップウィンドウ起動
-                //    var startup = new StartupWindow();
-                //    startup.ShowDialog();
-                //}
-
-                isLock = true;
             });
 
             //----- メイン関数スレッド立ち上げ
             var startFunction = new ThreadStart(() => {
                 try {
-                    while (isLock == false) { }
-                    while (mainWindow == null) { }
+                    while (mainWindow == null && IsCancelStartup == false) { }
+                    if (IsCancelStartup) return;
 
                     int? width = null;
                     int? height = null;
@@ -95,9 +93,15 @@ namespace EditorUI {
                     });
                 }
             });
-            Thread thread = new(startFunction);
-            thread.Name = "Engine Main Thread";
-            thread.Start();
+            m_thread = new(startFunction);
+            m_thread.Name = "Engine Main Thread";
+            m_thread.Start();
         }
+
+
+        /// <summary>Startupせずに終了したか</summary>
+        public bool IsCancelStartup { get; set; } = false;
+        /// <summary>保持しているエンジンスレッド</summary>
+        private Thread? m_thread;
     }
 }

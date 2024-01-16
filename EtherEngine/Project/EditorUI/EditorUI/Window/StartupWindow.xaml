@@ -5,107 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ma="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:EditorUI"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         TitleCharacterCasing="Normal"
-        Title="StartupWindow" Height="auto" Width="auto">
+        Closing="WindowClosing"
+        Title="Startup" Height="400" Width="800">
    <ma:MetroWindow.DataContext>
       <local:StartupVM/>
    </ma:MetroWindow.DataContext>
    <Grid>
       <StackPanel>
-         <!-- 言語設定 -->
-         <Grid Margin="0,4,0,4">
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition MaxWidth="20"/>
-               <ColumnDefinition Width="auto"/>
-               <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+         <local:LanguageButton/>
 
-            <local:MultiLanguageTextBlock Grid.Column="1">
-               <local:MultiLanguageTextBlock.EditorText>
-                  <local:EditorText EN="Language : " 
-                                    JP="言語"/>
-               </local:MultiLanguageTextBlock.EditorText>
-            </local:MultiLanguageTextBlock>
-            <ComboBox Grid.Column="2" MaxWidth="200"
-            ItemsSource="{Binding Language.Item}" SelectedItem="{Binding Language.Select}"/>
-         </Grid>
-         
-         
-         <!-- VisualStadio設定 -->
-         <!-- テキストテキスト表示 -->
-         <local:MultiLanguageTextBlock Grid.Row="0" Margin="0,4,0,4">
-            <local:MultiLanguageTextBlock.EditorText>
-               <local:EditorText EN="Please select the version edition of Visual Studio that you want to use." 
-                                 JP="使用する Visual Studioのバージョンエディションを選択して下さい。"/>
-            </local:MultiLanguageTextBlock.EditorText>
-         </local:MultiLanguageTextBlock>
+         <!-- パス一覧 -->
+         <!-- @ MEMO : 今は新規パスのみ。後は仮 -->
+         <StackPanel>
+            <!-- 新規パス -->
+            <ListView>
+               <ListViewItem MouseDoubleClick="NewPathMouseDoubleClick">
+                  <ListViewItem.Content>
+                     <Label>
+                        <Label.Content>
+                           <local:EditorTextControl EN="New Path……"
+                                                    JP="新しいパス……"/>
+                        </Label.Content>
+                     </Label>
+                  </ListViewItem.Content>
+               </ListViewItem>
+            </ListView>
 
-         <!-- エディション -->
-         <Grid Margin="0,4,0,4">
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition MaxWidth="20"/>
-               <ColumnDefinition Width="auto"/>
-               <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <local:MultiLanguageTextBlock Grid.Column="1">
-               <local:MultiLanguageTextBlock.EditorText>
-                  <local:EditorText EN="Edition : " 
-                                    JP="エディション"/>
-               </local:MultiLanguageTextBlock.EditorText>
-            </local:MultiLanguageTextBlock>
-            <ComboBox Grid.Column="2" MaxWidth="200"
-            ItemsSource="{Binding VisualStudioEdition.Item}" SelectedItem="{Binding VisualStudioEdition.Select}"/>
-         </Grid>
-         
-         <!-- バージョン -->
-         <Grid Margin="0,4,0,4">
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition MaxWidth="20"/>
-               <ColumnDefinition Width="auto"/>
-               <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <local:MultiLanguageTextBlock Grid.Column="1">
-               <local:MultiLanguageTextBlock.EditorText>
-                  <local:EditorText EN="Version : " 
-                                    JP="バージョン"/>
-               </local:MultiLanguageTextBlock.EditorText>
-            </local:MultiLanguageTextBlock>
-            <ComboBox Grid.Column="2" MaxWidth="200"
-            ItemsSource="{Binding VisualStudioVersion.Item}" SelectedItem="{Binding VisualStudioVersion.Select}"/>
-         </Grid>
-         
-         <!-- 使用パス表示 -->
-         <Grid Margin="0,4,0,4">
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="auto"/>
-               <ColumnDefinition Width="auto" />
-               <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <local:MultiLanguageTextBlock Grid.Column="0">
-               <local:MultiLanguageTextBlock.EditorText>
-                  <local:EditorText EN="The following paths are used : " 
-                                    JP="以下のパスが使用されます : "/>
-               </local:MultiLanguageTextBlock.EditorText>
-            </local:MultiLanguageTextBlock>
-            <TextBox Grid.Column="1" Text="{Binding VisualStudioPath.Value}"/>
-            <Button Grid.Column="2" Content="Path refresh" Click="PathRefresh" Margin="5,0,0,0"/>
-         </Grid>
-         
-         <!-- 完了ボタン -->
-         <Grid Margin="0,4,0,4">
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition MinWidth="20" Width="auto"/>
-               <ColumnDefinition Width="100"/>
-               <ColumnDefinition MinWidth="10" Width="auto"/>
-               <ColumnDefinition MinWidth="100" Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="OK" Click="StartupEnd"/>
-            <Button Grid.Column="3" Content="No Use" Click="Button_Click"/>
-         </Grid>
+            <!-- 使用したことのあるパス -->
+            <ListView ItemsSource="{Binding Paths}">
+               <ListView.ItemTemplate>
+                  <DataTemplate>
+                     <TextBlock Text="hoge"/>
+                  </DataTemplate>
+               </ListView.ItemTemplate>
+            </ListView>
+         </StackPanel>
       </StackPanel>
    </Grid>
 </ma:MetroWindow>
