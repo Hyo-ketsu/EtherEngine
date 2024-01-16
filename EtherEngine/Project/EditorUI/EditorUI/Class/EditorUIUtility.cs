@@ -11,10 +11,8 @@ namespace EditorUI {
     [TypeConverter(typeof(EditorLanguageEnum))]
     public enum EditorLanguageEnum {
         /// <summary>英語</summary>
-        EN = 0, 
+        EN = 0,
         /// <summary>日本語</summary>
-        JP,     
-        /// <summary>言語未設定</summary>
-        None,   
+        JP,
     }
 }

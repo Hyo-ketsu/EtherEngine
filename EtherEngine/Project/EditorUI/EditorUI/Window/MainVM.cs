@@ -123,7 +123,7 @@ namespace EditorUI {
                 //----- 生成追加する
                 var createWindowAttribute = window.GetCustomAttribute<CreatedWindowAttribute>(false);
                 if (createWindowAttribute == null) throw new NullReferenceException();  // 念のため null チェック
-                var windowData = new CreateWindowData(createWindowAttribute.ShowText.Text, window, action);
+                var windowData = new CreateWindowData(createWindowAttribute.ShowText.ToString(), window, action);
                 CreateWindow.Add(windowData);
             }
 

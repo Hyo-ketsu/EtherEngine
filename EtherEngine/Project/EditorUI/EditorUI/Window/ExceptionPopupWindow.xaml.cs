@@ -26,7 +26,7 @@ namespace EditorUI {
             InitializeComponent();
 
             //----- テキスト追加
-            m_vm.ShowText.Value = mr_editorText.Text + "\n";
+            m_vm.ShowText.Value = mr_editorText.ToString() + "\n";
             m_vm.ShowText.Value += showText;
 
             //----- バインディング

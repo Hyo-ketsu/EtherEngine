@@ -49,7 +49,7 @@ namespace EditorUI {
             var newEditorText = (EditorText)e.NewValue;
 
             //----- 代入
-            textBlock.Text = newEditorText?.Text;
+            textBlock.Text = newEditorText?.ToString();
         }
 
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Resources;
+using Reactive.Bindings;
 
 
 namespace EditorUI {
@@ -22,36 +23,24 @@ namespace EditorUI {
         }
 
 
-        /// <summary>現在の言語設定</summary>
-        public static EditorLanguageEnum Language {
-            get { return ms_language; }
-            set { ms_language = value; }
-        }
-
         /// <summary>英語</summary>
         public string EN { set; get; } = new("");
         /// <summary>日本語</summary>
         public string JP { set; get; } = new("");
 
 
-        /// <summary>テキストを現在の言語で取得する</summary>
-        /// <returns>取得したテキスト</returns>
-        public string Text {
-            get { return GetText(ms_language); }
-        }
         /// <summary>現在の言語のテキスト->ENの順に何らか設定されている文字を返却</summary>
         public string SomeText {
             get {
-                if (Text != "") {
-                    return Text; 
-                }
-                return EN;
+                if (EN != null) { return EN; }
+                if (JP != null) { return JP; }
+                return new("");
             }
         }
         /// <summary>テキストを現在の言語で取得する</summary>
         /// <returns></returns>
         public override string ToString() {
-            return Text;
+            return GetText(EditorSetting.Get.Language.Value);
         }
         /// <summary>テキストを取得する</summary>
         /// <param name="language">言語</param>
@@ -67,9 +56,5 @@ namespace EditorUI {
                 return "";
             }
         }
-
-
-        /// <summary>現在の言語設定</summary>
-        private static EditorLanguageEnum ms_language = EditorLanguageEnum.EN;
     }
 }

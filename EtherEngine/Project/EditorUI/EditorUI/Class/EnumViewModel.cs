@@ -36,6 +36,6 @@ namespace EditorUI {
         public ReactiveCollection<EnumType> Item { get; set; } = new();
         /// <summary>選択している要素</summary>
         public EnumType Select { get { return SelectValue.Value; } set { SelectValue.Value = value; } }
-        private ReactiveProperty<EnumType> SelectValue { get; set; } = new();
+        public ReactiveProperty<EnumType> SelectValue { get; private set; } = new();
     }
 }

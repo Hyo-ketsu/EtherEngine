@@ -47,15 +47,15 @@
                      <MenuItem>
                         <!-- ヘッダー -->
                         <MenuItem.Header>
-                           <local:EditorText EN="Create"
-                                             JP="作成"/>
+                           <local:EditorTextControl EN="Create"
+                                                    JP="作成"/>
                         </MenuItem.Header>
 
                         <!-- 実際に制作するアイテム -->
                         <MenuItem>
                            <MenuItem.Header>
-                              <local:EditorText EN="Script"
-                                                JP="スクリプト"/>
+                              <local:EditorTextControl EN="Script"
+                                                       JP="スクリプト"/>
                            </MenuItem.Header>
                         </MenuItem>
                      </MenuItem>
