@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="EditorUI\Control\EditorTextControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="EditorUI\Control\LanguageButton.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="EditorUI\Control\MessageIcon.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +67,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="EditorUI\Control\EditorTextControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditorUI\Control\LanguageButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="EditorUI\Control\MessageIcon.xaml">
       <SubType>Designer</SubType>
     </Page>
