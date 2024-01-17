@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using MahApps.Metro.Controls;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 
 namespace EditorUI {
@@ -46,6 +47,12 @@ namespace EditorUI {
                 //----- 選択されているか
                 if (openFile.ShowDialog() != CommonFileDialogResult.Ok) return;
 
+                //----- 半角大文字小文字アルファベットと半角記号以外がパスにあったら検知する
+                if (Regex.IsMatch(openFile.FileName, @"^[a-zA-Z0-9\s\p{P}]+$") == false) {
+                    System.Windows.MessageBox.Show(mr_pathFraud.ToString());
+                    return;
+                }
+
                 //----- 選択されている。取得してウィンドウを閉じる
                 m_path = openFile.FileName;
                 m_isFolderChoice = true;
@@ -63,7 +70,9 @@ namespace EditorUI {
         }
 
 
-        private readonly EditorText mr_newPathTitle = new(en:"Use Folder……", "使用するフォルダを選択……");
+        private readonly EditorText mr_newPathTitle = new(en:"Use Folder……", jp:"使用するフォルダを選択……");
+        private readonly EditorText mr_pathFraud = new(en:"The path contains alphabets and symbols. Please select again.", 
+                                                       jp: "パスにアルファベット、記号が含まれています。選択しなおしてください。");
         /// <summary>保持しているパス</summary>
         private string m_path;
         /// <summary>フォルダーが選択された後か</summary>

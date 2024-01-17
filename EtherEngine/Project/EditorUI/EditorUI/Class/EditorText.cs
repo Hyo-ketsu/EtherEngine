@@ -51,7 +51,6 @@ namespace EditorUI {
                 return EN;
             case EditorLanguageEnum.JP:
                 return JP;
-            case EditorLanguageEnum.None:
             default:
                 return "";
             }

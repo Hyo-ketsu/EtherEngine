@@ -39,7 +39,7 @@
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ResizeBehavior="PreviousAndNext"/>
 
             <!-- アイテムビュー -->
-            <ListView ItemsSource="{Binding Files}">
+            <ListView Grid.Column="2" ItemsSource="{Binding Files}">
                
                <!-- 右クリックメニュー -->
                <ListView.ContextMenu>
