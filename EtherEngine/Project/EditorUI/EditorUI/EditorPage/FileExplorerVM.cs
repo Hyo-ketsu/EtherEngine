@@ -41,6 +41,35 @@ namespace EditorUI {
         /// <summary>コンストラクタ</summary>
         public FileExplorerVM() {
             PathUpdate();
+
+            CreateCommand.Subscribe(extend => {
+                var fileCreate = (string createFile) => {
+                    //----- 同名ファイルがなければ作成
+                    if (System.IO.File.Exists(m_currentDirectory + createFile) == false) {
+                        var currentDirectory = new FileInfo(m_currentDirectory + System.IO.Path.PathSeparator + createFile);
+                        currentDirectory.Create();
+
+                        //----- ファイルが作成できた。
+                        return true;
+                    }
+                    else {
+                        //----- ファイルが作成できなかった。
+                        return false;
+                    }
+                };
+
+                //----- ファイル名がなく、そのまま作成できる
+                if (fileCreate(EditorDefine.NewCreateFile.ToString() + extend)) return;
+
+                //----- 番号を加算しながらチェック
+                for (uint i = 0;; i++) {
+                    if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend) == false) return;
+                }
+            });
+
+            DeleteCommand.Subscribe(delete => {
+                System.IO.File.Delete(delete);
+            });
         }
         /// <summary>選択ディレクトリが変更された際にItemViewを更新する</summary>
         /// <param name="changeDirectory">変更先</param>
@@ -51,7 +80,7 @@ namespace EditorUI {
             //----- 表示用データ作成
             var files = Directory.GetFiles(changeDirectory);
             foreach (var file in files) {
-                Files.Add(file);
+                Files.Add(new (file));
             }
         }
 
@@ -78,9 +107,16 @@ namespace EditorUI {
         }
 
 
+        /// <summary>ファイル作成</summary>
+        public ReactiveCommand<string> CreateCommand { get; private set; } = new();
+        /// <summary>ファイル削除</summary>
+        public ReactiveCommand<string> DeleteCommand { get; private set; } = new();
         /// <summary>保持しているパス</summary>
         public ReactiveCollection<FileExplorerItem> PathItems { get; private set; } = new();
         /// <summary>表示しているカレントディレクトリのファイル</summary>
-        public ReactiveCollection<string> Files { get; private set; } = new();
+        public ReactiveCollection<ReactiveProperty<string>> Files { get; private set; } = new();
+
+        /// <summary>保持しているカレントディレクトリ</summary>
+        private string m_currentDirectory;
     }
 }

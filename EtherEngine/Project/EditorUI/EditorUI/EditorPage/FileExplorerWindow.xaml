@@ -40,7 +40,18 @@
 
             <!-- アイテムビュー -->
             <ListView Grid.Column="2" ItemsSource="{Binding Files}">
-               
+               <ListView.View>
+                  <GridView>
+                     <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                           <DataTemplate>
+                              <local:RenameTextBlock InputText="{Binding Value}"/>
+                           </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                     </GridViewColumn>
+                  </GridView>
+               </ListView.View>
+
                <!-- 右クリックメニュー -->
                <ListView.ContextMenu>
                   <ContextMenu>
@@ -52,10 +63,16 @@
                         </MenuItem.Header>
 
                         <!-- 実際に制作するアイテム -->
-                        <MenuItem>
+                        <MenuItem  Command="{Binding CreateCommand}" CommandParameter=".cs">
                            <MenuItem.Header>
                               <local:EditorTextControl EN="Script"
                                                        JP="スクリプト"/>
+                           </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem  Command="{Binding CreateCommand}" CommandParameter=".txt">
+                           <MenuItem.Header>
+                              <local:EditorTextControl EN="Text"
+                                                       JP="テキスト"/>
                            </MenuItem.Header>
                         </MenuItem>
                      </MenuItem>
