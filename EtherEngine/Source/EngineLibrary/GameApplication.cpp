@@ -33,18 +33,15 @@ namespace EtherEngine {
         InitEvent(this, System::EventArgs::Empty);
 
         //----- メインループ
-        Timer fpsTimer;
-        milliSecond frameSecond = 0;
+        System::Diagnostics::Stopwatch^ fpsWatch = System::Diagnostics::Stopwatch::StartNew();
         while (m_isLoop) {
             //----- ゲームループ初期イベント発火
             LoopFirstEvent(this, System::EventArgs::Empty);
 
-            //----- ゲーム処理
-            frameSecond += fpsTimer.GetDeltaTime();
-
             //----- FPS制御
-            if (frameSecond < ONE_FRAME * 1000) continue;
-            frameSecond = 0;
+            if (fpsWatch->Elapsed.Milliseconds < ONE_FRAME * 1000) continue;
+            fpsWatch->Reset();
+            fpsWatch->Start();
 
             //----- イベント用変数宣言
             bool isUpdate = false;  // 何らかのゲーム処理が行われたか

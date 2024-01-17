@@ -30,6 +30,7 @@ namespace EtherEngine {
 
         //----- シングルトンのインスタンス設定
         GameApplication::Get = this;
+
         //----- イベント登録
         this->InitEvent += ETHER_ENGINE_MANAGE_LAMBDA_USE(System::EventHandler, InitEvent);
         this->LoopFirstEvent += gcnew System::EventHandler(this, &EditorApplication::SceneViewFunction);

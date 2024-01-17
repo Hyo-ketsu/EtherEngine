@@ -9,11 +9,9 @@ namespace EtherEngine {
     public ref class EtherEngineMainFunction {
     public:
         // メイン関数
-        // @ Arg1 : ウィンドウ横サイズ
-        // @ Arg2 : ウィンドウ縦サイズ
-        // @ Arg3 : コマンドライン(Default : "")
-        // @ Arg4 : 
-        static void MainFunction(int windowSizeX, int windowSizeY, System::String^ cmdLine, int nShowCmd);
+        // @ Arg1 : コマンドライン(Default : "")
+        // @ Arg2 : 
+        static void MainFunction(System::String^ cmdLine, int nShowCmd);
     };
 }
 

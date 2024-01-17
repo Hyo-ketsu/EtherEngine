@@ -7,7 +7,7 @@
 //----- EtherEngineMainFunction ’è‹`
 namespace EtherEngine {
     // ƒƒCƒ“ŠÖ”
-    void EtherEngineMainFunction::MainFunction(int windowSizeX, int windowSizeY, System::String^ cmdLine, int nShowCmd) {
+    void EtherEngineMainFunction::MainFunction(System::String^ cmdLine, int nShowCmd) {
         try {
             EtherEngine::EditorApplication::Get->MainFunction();
         }
