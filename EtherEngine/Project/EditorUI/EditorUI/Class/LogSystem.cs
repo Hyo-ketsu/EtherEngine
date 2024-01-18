@@ -41,16 +41,18 @@ namespace EditorUI {
         /// <summary>コンストラクタ</summary>
         private LogSystem() {
         }
-        /// <summary>instance取得関数</summary>
+        /// <summary>Instance</summary>
         /// <returns></returns>
-        public static LogSystem Get() {
-            lock(LockObject) {
-                if (LockObject == null) {
-                    LockObject = new();
+        public static LogSystem Get {
+            get {
+                lock (LockObject) {
+                    if (LockObject == null) {
+                        LockObject = new();
+                    }
                 }
-            }
 
-            return Instance;
+                return Instance;
+            }
         }
 
 
