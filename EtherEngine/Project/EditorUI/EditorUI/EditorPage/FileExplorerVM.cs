@@ -45,7 +45,7 @@ namespace EditorUI {
             CreateCommand.Subscribe(extend => {
                 var fileCreate = (string createFile) => {
                     //----- 同名ファイルがなければ作成
-                    if (System.IO.File.Exists(m_currentDirectory + createFile) == false) {
+                    if (System.IO.File.Exists(m_currentDirectory + System.IO.Path.DirectorySeparatorChar + createFile) == false) {
                         var currentDirectory = new FileInfo(m_currentDirectory + System.IO.Path.DirectorySeparatorChar + createFile);
                         currentDirectory.Create();
 
@@ -62,7 +62,7 @@ namespace EditorUI {
                 if (fileCreate(EditorDefine.NewCreateFile.ToString() + extend)) return;
 
                 //----- 番号を加算しながらチェック
-                for (uint i = 0;; i++) {
+                for (int i = 1;; i++) {
                     if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend) == false) return;
                 }
             });
@@ -75,12 +75,13 @@ namespace EditorUI {
         /// <param name="changeDirectory">変更先</param>
         public void ItemViewChanged(string changeDirectory) {
             //----- 初期化
+            m_currentDirectory = changeDirectory;
             Files.Clear();
 
             //----- 表示用データ作成
             var files = Directory.GetFiles(changeDirectory);
             foreach (var file in files) {
-                Files.Add(new (file));
+                Files.Add(new (System.IO.Path.GetFileName(file)));
             }
         }
 

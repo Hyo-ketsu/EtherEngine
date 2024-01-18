@@ -35,6 +35,9 @@ namespace EditorUI {
             //----- 変数宣言
             MainWindow? mainWindow = null;
 
+            //----- エディターのカレントディレクトリ設定
+            EditorDirectory.Directory = System.IO.Directory.GetCurrentDirectory();
+
             //----- UI関連処理
             Dispatcher.Invoke(() => {
                 //----- 内部的なメインウィンドウ立ち上げ

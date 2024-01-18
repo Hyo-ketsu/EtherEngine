@@ -48,6 +48,9 @@
                               <local:RenameTextBlock Text="{Binding Value}"/>
                            </DataTemplate>
                         </GridViewColumn.CellTemplate>
+                        <GridViewColumn.DisplayMemberBinding>
+                           <Binding Path="Value"/>
+                        </GridViewColumn.DisplayMemberBinding>
                      </GridViewColumn>
                   </GridView>
                </ListView.View>

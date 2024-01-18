@@ -48,6 +48,10 @@ namespace EditorUI {
         /// <summary>コンストラクタ</summary>
         public MainVM() {
             CreateWindowData();
+
+            ReloadCommand.Subscribe(_ => {
+                GameReloader.ProjectLoad();
+            });
         }
 
 
