@@ -47,11 +47,11 @@ namespace EditorUI {
                 //----- 選択されているか
                 if (openFile.ShowDialog() != CommonFileDialogResult.Ok) return;
 
-                //----- 半角大文字小文字アルファベットと半角記号以外がパスにあったら検知する
-                if (Regex.IsMatch(openFile.FileName, @"^[a-zA-Z0-9\s\p{P}]+$") == false) {
-                    System.Windows.MessageBox.Show(mr_pathFraud.ToString());
-                    return;
-                }
+                ////-----半角大文字小文字アルファベットと半角記号以外がパスにあったら検知する
+                //if (Regex.IsMatch(openFile.FileName, @"^[a-zA-Z0-9\s\p{P}]+$") == false) {
+                //    System.Windows.MessageBox.Show(mr_pathFraud.ToString());
+                //    return;
+                //}
 
                 //----- 選択されている。取得してウィンドウを閉じる
                 m_path = openFile.FileName;
