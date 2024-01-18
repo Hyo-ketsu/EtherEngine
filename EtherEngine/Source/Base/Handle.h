@@ -75,7 +75,7 @@ namespace EtherEngine {
 
         // 参照ハンドルを取得する
         // @ Ret  : 参照がコピーされたハンドル
-        Handle<Type>&& GetHandle(void) const;
+        Handle<Type> GetHandle(void) const;
 
 
         // このHandleはポインタを保持しているか
@@ -207,7 +207,7 @@ namespace EtherEngine {
 
     // 参照ハンドルを取得する
     template<HandleSystemConcept Type>
-    Handle<Type>&& Handle<Type>::GetHandle(void) const {
+    Handle<Type> Handle<Type>::GetHandle(void) const {
         //----- 空ハンドルチェック
         if (this->IsEnable() == false) throw EditorException("Erorr! Accessing unused handles.");
 
@@ -225,7 +225,7 @@ namespace EtherEngine {
         }
 
         //----- 返却
-        return std::move(ret);
+        return ret;
     }
 
 
