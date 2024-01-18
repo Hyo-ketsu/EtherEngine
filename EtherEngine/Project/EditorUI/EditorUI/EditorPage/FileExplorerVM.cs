@@ -46,7 +46,7 @@ namespace EditorUI {
                 var fileCreate = (string createFile) => {
                     //----- 同名ファイルがなければ作成
                     if (System.IO.File.Exists(m_currentDirectory + createFile) == false) {
-                        var currentDirectory = new FileInfo(m_currentDirectory + System.IO.Path.PathSeparator + createFile);
+                        var currentDirectory = new FileInfo(m_currentDirectory + System.IO.Path.DirectorySeparatorChar + createFile);
                         currentDirectory.Create();
 
                         //----- ファイルが作成できた。

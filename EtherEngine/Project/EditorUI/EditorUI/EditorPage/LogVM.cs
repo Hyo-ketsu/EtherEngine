@@ -16,12 +16,12 @@ namespace EditorUI {
         /// <summary>コンストラクタ</summary>
         public Log() {
             //----- イベント登録
-            ClearButtonCommand.Subscribe(() => { LogSystem.Get().DeleteLog(); });
+            ClearButtonCommand.Subscribe(() => { LogSystem.Get.DeleteLog(); });
         }
 
 
         /// <summary>保持しているログ</summary>
-        public ReactiveCollection<EditorLog> Logs => LogSystem.Get().Logs;
+        public ReactiveCollection<EditorLog> Logs => LogSystem.Get.Logs;
         /// <summary>Clearボタンが押された際の処理</summary>
         public ReactiveCommand ClearButtonCommand { get; private set; } = new();
     }

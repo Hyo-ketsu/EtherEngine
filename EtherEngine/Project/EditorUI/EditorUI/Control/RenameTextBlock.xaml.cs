@@ -91,6 +91,8 @@ namespace EditorUI {
         }
 
 
+        /// <summary>表示テキスト</summary>
+        public string Text { get { return InputText.Value; } set { InputText.Value = value; } }
         /// <summary>入力されているテキスト</summary>
         public ReactiveProperty<string> InputText { get; set; } = new();
         /// <summary>フォーカスが外れているか</summary>

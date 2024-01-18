@@ -45,7 +45,7 @@
                      <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                            <DataTemplate>
-                              <local:RenameTextBlock InputText="{Binding Value}"/>
+                              <local:RenameTextBlock Text="{Binding Value}"/>
                            </DataTemplate>
                         </GridViewColumn.CellTemplate>
                      </GridViewColumn>
