@@ -182,7 +182,7 @@
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x86);</ReferencePath>
-    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
     <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Debug|x64'">
@@ -193,7 +193,7 @@
     <OutDir>$(SolutionDir)Binary/$(Platform)/$(Configuration)/$(TargetFramework)-windows</OutDir>
     <IntDir>$(SolutionDir)Object/$(ProjectName)/$(Platform)/$(Configuration)/</IntDir>
     <ReferencePath>$(VC_ReferencesPath_x64);</ReferencePath>
-    <CopyCppRuntimeToOutputDir>false</CopyCppRuntimeToOutputDir>
+    <CopyCppRuntimeToOutputDir>true</CopyCppRuntimeToOutputDir>
     <CopyLocalProjectReference>true</CopyLocalProjectReference>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Editor_Release|Win32'">
