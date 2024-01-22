@@ -24,26 +24,30 @@
       </Grid>
 
       <!-- 実際のログ出力 -->
-      <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding Logs}">
+      <DataGrid Grid.Row="1" ItemsSource="{Binding Logs}"
+                AutoGenerateColumns="False" 
+                CanUserDeleteRows="False"
+                CanUserAddRows="False"
+                SelectionUnit="CellOrRowHeader">
          <DataGrid.Columns>
             <DataGridTemplateColumn Header="Type">
                <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
-                     <local:MessageIcon/>
+                     <local:MessageIcon Type="{Binding Value.LogType}"/>
                   </DataTemplate>
                </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTemplateColumn Header="Time">
                <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
-                     <TextBlock Text="{Binding LogTime}"/>
+                     <TextBlock Text="{Binding Value.LogTime}"/>
                   </DataTemplate>
                </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTemplateColumn Header="Message">
                <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
-                     <TextBlock Text="{Binding Message}"/>
+                     <TextBlock Text="{Binding Value.Message}"/>
                   </DataTemplate>
                </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>

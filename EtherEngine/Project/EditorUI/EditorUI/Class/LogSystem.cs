@@ -46,8 +46,8 @@ namespace EditorUI {
         public static LogSystem Get {
             get {
                 lock (LockObject) {
-                    if (LockObject == null) {
-                        LockObject = new();
+                    if (Instance == null) {
+                        Instance = new();
                     }
                 }
 
@@ -56,37 +56,49 @@ namespace EditorUI {
         }
 
 
+        /// <summary>ログ追加時のイベント</summary>
+        public event EventHandler<EditorLog> AddLogEvent;
+        /// <summary>ログ削除時のイベント</summary>
+        public event EventHandler DeleteLogEvent;
+
+
         /// <summary>ログを追加する</summary>
         /// <param name="addLog">追加するログ</param>
         public void AddLog(EditorLog addLog) {
             lock (LockObject) {
                 Logs.Add(addLog);
+                if (AddLogEvent != null) AddLogEvent(this, addLog);
             }
         }
         /// <summary>保持しているログをすべて削除する</summary>
         public void DeleteLog() {
             lock (LockObject) {
                 Logs.Clear();
+                if (AddLogEvent != null) DeleteLogEvent(this, EventArgs.Empty);
+            }
+        }
+        /// <summary>全てのログを取得する</summary>
+        /// <returns></returns>
+        public ReactiveCollection<EditorLog> GetAllLog() {
+            lock (LockObject) {
+                //----- 変数宣言
+                ReactiveCollection<EditorLog> ret = new();
+
+                //----- コピーする
+                foreach (var log in Logs) {
+                    ret.Add(log);
+                }
+
+                return ret;
             }
         }
 
 
-        /// <summary>ログが更新されたかを表す(フラグが立っていれば折る)</summary>
-        /// <returns></returns>
-        internal bool GetIsUpdate() {
-            var ret = m_isUpdate;
-            m_isUpdate = false;
-            return ret;
-        }
-
-
         /// <summary>保持しているログ</summary>
-        public ReactiveCollection<EditorLog> Logs { get; private set; } = new();
+        public List<EditorLog> Logs { get; private set; } = new();
         /// <summary>保持しているインスタンス</summary>
-        private static LogSystem Instance { get; set; } = new();
+        private static LogSystem Instance { get; set; }
         /// <summary>ロックオブジェクト</summary>
-        private static object LockObject { get; set; } = new ();
-        /// <summary>ログが（追加・削除）更新されたか</summary>
-        private bool m_isUpdate = false;
+        private static object LockObject { get; set; } = new();
     }
 }
