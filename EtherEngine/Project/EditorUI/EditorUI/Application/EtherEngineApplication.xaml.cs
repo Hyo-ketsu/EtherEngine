@@ -15,6 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Build.Locator;
 
 
 namespace EditorUI {
@@ -32,6 +33,9 @@ namespace EditorUI {
         /// <summary>初期化を行う</summary>
         /// <param name="mainFunction">呼び出すメイン関数</param>
         public void Init(EtherEngineMainFunction mainFunction) {
+            //----- MSBuildのランタイム登録
+            MSBuildLocator.RegisterDefaults();
+
             //----- 変数宣言
             MainWindow? mainWindow = null;
 

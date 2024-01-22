@@ -50,7 +50,7 @@ namespace EditorUI {
             CreateWindowData();
 
             ReloadCommand.Subscribe(_ => {
-                GameReloader.ProjectLoad();
+                GameReloader.Get.ProjectLoad(BuildConfiguration.Debug);
             });
         }
 

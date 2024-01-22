@@ -16,7 +16,18 @@ namespace EditorUI {
         Warning,
         /// <summary>エラー</summary>
         Error,
+        /// <summary>ビルド時の出力(警告やエラーではないもの)</summary>
+        BuildMessage,
         /// <summary>使用ユーザーが発するメッセージ</summary>
         UserMessage,
+    }
+
+
+    /// <summary>ビルド種類</summary>
+    public enum BuildConfiguration {
+        /// <summary>完全デバッグ</summary>
+        Debug = 0,
+        /// <summary>製品リリース</summary>
+        Release,
     }
 }
