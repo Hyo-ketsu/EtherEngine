@@ -5,9 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Reflection.Emit;
-using System.Reflection;
-using Microsoft.Build.Locator;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
@@ -21,11 +18,11 @@ namespace EditorUI {
         /// <summary>インスタンスの取得</summary>
         static public GameReloader Get {
             get {
-                if (ms_instance == null) {
-                    ms_instance = new();
+                if (Instance == null) {
+                    Instance = new();
                 }
 
-                return ms_instance;
+                return Instance;
             }
         }
 
@@ -40,11 +37,15 @@ namespace EditorUI {
         /// <summary>プロジェクトのビルド</summary>
         /// <param name="configuration">ビルド種類</param>
         public void ProjectLoad(BuildConfiguration configuration) {
+            //----- 現在ビルド中なら何もしない
+            // @ MEMO : 現在はシングルスレッドでのアクセスを想定しているためboolでいい。マルチスレッドでアクセスするつもりがあるならlock使って
+            if (m_isBuild) return;
+
             //----- プロジェクトがなければ作成しておく
             ProjectCreate();
 
             //----- 変数宣言
-            var sln = Directory.GetCurrentDirectory() + EditorDefine.GameSourceSolutionName;    // ソリューションのパス
+            var sln = Path.Combine(Directory.GetCurrentDirectory(), EditorDefine.GameSourceSolutionName);    // ソリューションのパス
 
             //----- プロジェクトコレクションの作成
             var projectCollection = new ProjectCollection();
@@ -60,7 +61,7 @@ namespace EditorUI {
             };
 
             //----- ビルドスレッド立ち上げ
-            bool isBuildEnd = false;    // ビルドが終了したか
+            m_isBuild = true;
             var buildTask = Task.Run(() => {
                 //----- Nugetの初期化
                 var restoreRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Restore" }, null);
@@ -70,12 +71,12 @@ namespace EditorUI {
                 var buildRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Build" }, null);
                 var buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, buildRequest);
 
-                isBuildEnd = true;
+                m_isBuild = false;
             });
 
             //----- メッセージスレッド立ち上げ
             var messageTask = Task.Run(() => {
-                while (isBuildEnd == false) {
+                while (m_isBuild) {
                     //----- 変数宣言
                     EditorLog log = null;
 
@@ -102,7 +103,7 @@ namespace EditorUI {
         /// <summary>プロジェクト作成</summary>
         public void ProjectCreate() {
             //----- 変数宣言
-            string path = Directory.GetCurrentDirectory() + EditorDefine.GameSourceMainName;
+            string path = Path.Combine(Directory.GetCurrentDirectory(), EditorDefine.GameSourceMainName);
 
             //----- エントリーポイントがあるか
             if (Path.Exists(path) == false) {
@@ -111,14 +112,14 @@ namespace EditorUI {
             }
 
             //----- csprojが存在するか
-            path = Directory.GetCurrentDirectory() + EditorDefine.GameSourceProjectName;
+            path = Path.Combine(Directory.GetCurrentDirectory(), EditorDefine.GameSourceProjectName);
             if (Path.Exists(path) == false) {
                 //----- ない。作成
                 File.WriteAllText(path, EditorDefine.GameSourceProjectSource);
             }
-            
+
             //----- slnが存在するか
-            path = Directory.GetCurrentDirectory() + EditorDefine.GameSourceSolutionName;
+            path = Path.Combine(Directory.GetCurrentDirectory(), EditorDefine.GameSourceSolutionName);
             if (Path.Exists(path) == false) {
                 //----- ない。作成
                 File.WriteAllText(path, EditorDefine.GameSourceSolutionSource);
@@ -126,6 +127,9 @@ namespace EditorUI {
         }
 
 
-        static private GameReloader ms_instance;
+        /// <summary>保持しているインスタンス</summary>
+        static private GameReloader? Instance { get; set; }
+        /// <summary>ビルドしているか</summary>
+        private bool m_isBuild;
     }
 }
