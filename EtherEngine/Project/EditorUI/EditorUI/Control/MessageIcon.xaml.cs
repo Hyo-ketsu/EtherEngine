@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EditorUI;
 using Reactive.Bindings;
 
 
@@ -41,13 +40,13 @@ namespace EditorUI {
 
 
         /// <summary>表示しているメッセージタイプ</summary>
-        public MessageType Type {
+        public MessageType Type { 
             get { return (MessageType)GetValue(TypeProperty); }
-            set { SetValue(TypeProperty, value); }
+            set { SetValue(TypeProperty, value); ThisType.Value = value; } 
         }
 
 
-        /// <summary>表示しているメッセージタイプ</summary>
-        public ReactiveProperty<MessageType> MessageType { get; private set; } = new(EditorUI.MessageType.None);
+        /// <summary>保持しているメッセージタイプ</summary>
+        public ReactiveProperty<MessageType> ThisType { get; private set; } = new();
     }
 }

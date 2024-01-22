@@ -6,26 +6,27 @@
              xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:EditorUI"
              mc:Ignorable="d">
+   <!-- @ MEMO : アイコンのエラーは後回し -->
    <icon:PackIconVaadinIcons>
       <icon:PackIconVaadinIcons.Style>
          <Style TargetType="icon:PackIconVaadinIcons">
             <Style.Triggers>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="None">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="None">
                   <Setter Property="Kind" Value="CircleThin"/>
                </DataTrigger>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="Info">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="Info">
                   <Setter Property="Kind" Value="InfoCircle"/>
                </DataTrigger>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="Warning">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="Warning">
                   <Setter Property="Kind" Value="ExclamationCircle"/>
                </DataTrigger>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="Error">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="Error">
                   <Setter Property="Kind" Value="CloseCircle"/>
                </DataTrigger>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="BuildMessage">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="BuildMessage">
                   <Setter Property="Kind" Value="CheckCircle"/>
                </DataTrigger>
-               <DataTrigger Binding="{Binding MessageType.Value}" Value="UserMessage">
+               <DataTrigger Binding="{Binding ThisType.Value}" Value="UserMessage">
                   <Setter Property="Kind" Value="DotCircle"/>
                </DataTrigger>
             </Style.Triggers>
