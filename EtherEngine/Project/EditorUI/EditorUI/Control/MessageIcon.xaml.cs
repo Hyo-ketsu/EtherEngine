@@ -32,6 +32,21 @@ namespace EditorUI {
         }
 
 
+        public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
+            "Type", 
+            typeof(MessageType),
+            typeof(MessageIcon), 
+            new PropertyMetadata(default(MessageType))
+        );
+
+
+        /// <summary>表示しているメッセージタイプ</summary>
+        public MessageType Type {
+            get { return (MessageType)GetValue(TypeProperty); }
+            set { SetValue(TypeProperty, value); }
+        }
+
+
         /// <summary>表示しているメッセージタイプ</summary>
         public ReactiveProperty<MessageType> MessageType { get; private set; } = new(EditorUI.MessageType.None);
     }

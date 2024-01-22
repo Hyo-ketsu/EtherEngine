@@ -22,6 +22,9 @@
                <DataTrigger Binding="{Binding MessageType.Value}" Value="Error">
                   <Setter Property="Kind" Value="CloseCircle"/>
                </DataTrigger>
+               <DataTrigger Binding="{Binding MessageType.Value}" Value="BuildMessage">
+                  <Setter Property="Kind" Value="CheckCircle"/>
+               </DataTrigger>
                <DataTrigger Binding="{Binding MessageType.Value}" Value="UserMessage">
                   <Setter Property="Kind" Value="DotCircle"/>
                </DataTrigger>
