@@ -65,11 +65,11 @@ namespace EditorUI {
             var buildTask = Task.Run(() => {
                 //----- Nugetの初期化
                 var restoreRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Restore" }, null);
-                BuildManager.DefaultBuildManager.Build(buildParameters, restoreRequest);
+                var buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, restoreRequest);
 
                 //----- ビルドを行う
                 var buildRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Build" }, null);
-                var buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, buildRequest);
+                buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, buildRequest);
 
                 m_isBuild = false;
             });

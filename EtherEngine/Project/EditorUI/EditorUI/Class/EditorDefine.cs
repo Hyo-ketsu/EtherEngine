@@ -39,7 +39,6 @@ namespace GameSource {
         /// <summary>プロジェクトソース</summary>
         public static readonly string GameSourceProjectSource = @"
 <Project Sdk=""Microsoft.NET.Sdk"">
-
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -56,19 +55,17 @@ namespace GameSource {
   <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Release|AnyCPU'"">
     <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
   </PropertyGroup>
-
 </Project>
 ";
         /// <summary>ソリューション名(拡張子含む)</summary>
         public static readonly string GameSourceSolutionName = "GameSource.sln";
         /// <summary>ソリューションソース</summary>
         public static readonly string GameSourceSolutionSource = @"
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""GameSource"", ""GameSource.csproj"", ""{4DF722E2-5AC6-4769-BE7F-D9A2E2E9365B}""
+Project(""{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"") = ""GameSource"", ""GameSource.csproj"", ""{8AE5AFFC-2635-41B1-B7A6-66223169DC77}""
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,16 +73,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4DF722E2-5AC6-4769-BE7F-D9A2E2E9365B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DF722E2-5AC6-4769-BE7F-D9A2E2E9365B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DF722E2-5AC6-4769-BE7F-D9A2E2E9365B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4DF722E2-5AC6-4769-BE7F-D9A2E2E9365B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AE5AFFC-2635-41B1-B7A6-66223169DC77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE5AFFC-2635-41B1-B7A6-66223169DC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE5AFFC-2635-41B1-B7A6-66223169DC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE5AFFC-2635-41B1-B7A6-66223169DC77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E91887B5-B99F-4C2F-AC25-846F6E0FF352}
+		SolutionGuid = {22BC75AA-A0D7-4CAA-9FAF-7D5E80F39DAB}
 	EndGlobalSection
 EndGlobal
 ";

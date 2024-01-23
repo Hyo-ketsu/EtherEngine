@@ -18,18 +18,17 @@ namespace EditorUI {
 
             //----- 頭の「m_変数名」,「_変数名」の削除
             if (ret[0] == '_') {
-                ret.Remove(0, 1);
+                ret = ret.Remove(0, 1);
             }
             if (ret[0] == 'm' && ret[1] == '_') {
-                ret.Remove(0, 2);
+                ret = ret.Remove(0, 2);
             }
 
             //----- 頭の小文字を大文字にする
             if (char.IsLower(ret[0])) {
-                ret.Remove(0, 0);
-                var copyText = new string(ret);
+                var copyText = ret.Remove(0, 1);
                 var upperChar = char.ToUpper(ret[0]);
-                ret = upperChar + ret;
+                ret = upperChar + copyText;
             }
 
             return ret;
