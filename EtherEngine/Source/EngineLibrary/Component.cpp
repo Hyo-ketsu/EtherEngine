@@ -12,7 +12,7 @@ namespace EtherEngine {
 
 
     // ゲームオブジェクト
-    EtherEngine::GameObject^ Component::ParentGameObject::get(void) {
+    GameObject^ Component::ParentGameObject::get(void) {
         //----- 親オブジェクトを取得
         return m_gameObject;
     }

@@ -40,20 +40,22 @@ namespace GameSource {
         public static readonly string GameSourceProjectSource = @"
 <Project Sdk=""Microsoft.NET.Sdk"">
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>GameSource.GameMain</StartupObject>
+    <BaseOutputPath>Object\</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <BaseIntermediateOutputPath>Object\GameSource\</BaseIntermediateOutputPath>
   </PropertyGroup>
-
+	
   <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"">
-    <DefineConstants>$(DefineConstants);_DEBUG</DefineConstants>
+	<OutputPath>Object\</OutputPath>
+	<IntermediateOutputPath>Object\GameSource\$(Configuration)\$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
-
   <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Release|AnyCPU'"">
-    <DefineConstants>$(DefineConstants);_RELEASE</DefineConstants>
+	<OutputPath>Object\</OutputPath>
+	<IntermediateOutputPath>Object\GameSource\$(Configuration)\$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
 </Project>
 ";

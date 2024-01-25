@@ -1,5 +1,5 @@
-#ifndef I_GAMEOBJECTSTORAGE_H
-#define I_GAMEOBJECTSTORAGE_H
+#ifndef I_NATIVEGAMEOBJECTSTORAGE_H
+#define I_NATIVEGAMEOBJECTSTORAGE_H
 #include <Base/Singleton.h>
 #include <Base/Handle.h>
 #include <Base/NativeGameObject.h>
@@ -20,6 +20,9 @@ namespace EtherEngine {
         // @ Ret  : 削除されたか
         // @ Arg1 : 削除するゲームオブジェクトのハンドル
         bool DeleteGameObject(const Handle<NativeGameObject>& gameObject);
+        // ゲームオブジェクトを削除する
+        // @ Arg1 : 削除するシーン
+        void DeleteGameObject(const SceneIDType& deleteScene);
 
 
         // 全てのゲームオブジェクトを取得する
@@ -37,4 +40,4 @@ namespace EtherEngine {
 }
 
 
-#endif // !I_GAMEOBJECTSTORAGE_H
+#endif // !I_NATIVEGAMEOBJECTSTORAGE_H

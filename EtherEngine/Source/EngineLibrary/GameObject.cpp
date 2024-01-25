@@ -2,6 +2,7 @@
 #include <Base/BaseUtility.h>
 #include <Base/NativeGameObjectStorage.h>
 #include <EngineLibrary/BaseObjectStorage.h>
+#include <EngineLibrary/GameObjectStorage.h>
 
 
 #pragma managed
@@ -23,8 +24,14 @@ namespace EtherEngine {
 
 
     // 自身を削除する
-    void GameObject::Destroy(void) {
-        
+    void GameObject::Destroy(void) {   
+        GameObjectStorage::Get->DeleteGameObject(this);
+    }
+
+
+    // 入力したシーンのオブジェクトか判定する
+    bool GameObject::IsSceneObject(Scene scene) {
+        return NGameObject.GetData().GetScene() == scene.GetSceneID();
     }
 
 

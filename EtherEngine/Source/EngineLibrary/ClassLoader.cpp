@@ -43,7 +43,6 @@ namespace EtherEngine {
         for each (auto deserializeField in deserializeFields) {
             Linq::JToken^ value;
             if (jsonObject->TryGetValue(deserializeField->Name, System::StringComparison::OrdinalIgnoreCase, value)) {
-                // Deserialize the property value
                 deserializeField->SetValue(newInstance, value->ToObject(deserializeField->FieldType));
             }
         }
@@ -62,9 +61,8 @@ namespace EtherEngine {
 namespace EtherEngine {
     // クラスの情報を出力する
     System::String^ ClassLoader::Output(System::Object^ object) {
-        // @ MEMO : 後回し
         //----- クラス情報取得
-        //auto fields = GetClassData(object, BaseObject::typeid);
+        auto fields = GetClassData(object, BaseObject::typeid);
         return gcnew System::String("");
     }
     // クラスの情報を入力する

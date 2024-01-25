@@ -8,6 +8,7 @@ namespace EtherEngine {
 }
 #include <EngineLibrary/Component.h>
 #include <EngineLibrary/AttributeDefine.h>
+#include <EngineLibrary/Scene.h>
 
 
 // @ MEMO : 余力があればGetComponentあたりを高速化する
@@ -37,6 +38,10 @@ namespace EtherEngine {
         }
 
 
+        // 入力したシーンのオブジェクトか判定する
+        bool IsSceneObject(Scene scene);
+
+
         // コンポーネントを追加する
         // @ Temp : 追加するコンポーネント
         // @ Ret  : 取得したコンポーネント
@@ -59,9 +64,9 @@ namespace EtherEngine {
         bool DeleteComponent(void);
 
     private:
-        System::Collections::Generic::List<Component^>^ m_componentList;
+        [Attribute::OutputAttribute] System::Collections::Generic::List<Component^>^ m_componentList;
         Handle<NativeGameObject>* m_handle;
-        [Attribute::OutputAttribute] SceneType m_thisObjectScene;
+        [Attribute::OutputAttribute] SceneIDType m_thisObjectScene;
     };
 }
 

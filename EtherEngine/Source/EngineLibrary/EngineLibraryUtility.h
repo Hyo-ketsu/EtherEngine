@@ -6,25 +6,32 @@
 #include <EngineLibrary/ConvertManageToUnmanage.h>
 
 
-//----- 完全修飾名取得関数 定義
+#pragma managed
+//----- 便利関数定義
 namespace EtherEngine {
-    // 完全修飾名を取得する
-    // @ Exce : クラス名が存在しない
-    // @ Ret  : 完全修飾名(Hoge.Fuga)
-    // @ Arg1 : クラス名
-    // @ Arg2 : 何番名の名前空間を採用するか(Default : 0)。例として"Foo.Hoge", "Bar.Hoge"を、0番を指定すると"Foo.Hoge"を取得する
-    // @ Arg3 : System名前空間を含めるか(Default : 含めない。false)
-    std::string GetFullName(const std::string& className, const uint index = 0, const bool isSystem = false);
-    // 完全修飾名を取得する
-    // @ Exce : クラス名が存在しない
-    // @ Ret  : 完全修飾名(Hoge.Fuga)
-    // @ Arg1 : クラス名
-    // @ Arg2 : 何番名の名前空間を採用するか(Default : 0)。例として"Foo.Hoge", "Bar.Hoge"を、0番を指定すると"Foo.Hoge"を取得する
-    // @ Arg3 : System名前空間を含めるか(Default : 含めない。false)
-    System::String^ GetFullName(System::String^ className, const uint index = 0, const bool isSystem = false);
+#pragma managed
+    //----- 便利関数定義
+    namespace EtherEngine {
+        public ref class EditorUtility {
+        public:
+            // Listから指定したインデックスの要素を取得する
+            // @ Ret  : 取得した要素
+            // @ Arg1 : リスト
+            // @ Arg2 : インデックス
+            generic <typename Type>
+            static Type ListGet(System::Collections::Generic::List<Type>^ list, int index);
+        };
+    }
+    public ref class EditorUtility {
+    public:
+        // Listから指定したインデックスの要素を取得する
+        // @ Ret  : 取得した要素
+        // @ Arg1 : リスト
+        // @ Arg2 : インデックス
+        generic <typename Type>
+        static Type ListGet(System::Collections::Generic::List<Type>^ list, int index);
+    };
 }
-
-
 
 
 //----- UnmanageMaintainer 宣言

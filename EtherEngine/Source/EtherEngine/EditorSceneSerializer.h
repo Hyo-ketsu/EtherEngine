@@ -9,7 +9,7 @@ namespace EtherEngine {
     // 現在のシーン状態を出力する関数
     // @ Arg1 : 出力先パス
     // @ Arg2 : 出力シーン
-    void EditorSceneSerialize(const PathClass& path, const SceneType& sceneData);
+    void EditorSceneSerialize(const PathClass& path, const SceneIDType& sceneData);
 }
 
 

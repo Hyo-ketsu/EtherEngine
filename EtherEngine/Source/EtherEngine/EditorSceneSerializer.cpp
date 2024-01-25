@@ -7,7 +7,7 @@
 //----- EditorSceneSerialize 定義
 namespace EtherEngine {
     // 現在のシーン状態を出力する関数
-    void EditorSceneSerialize(const PathClass& path, const SceneType& sceneData) {
+    void EditorSceneSerialize(const PathClass& path, const SceneIDType& sceneData) {
         ////----- 変数宣言
         //nlohmann::json json;
         //std::ofstream scene;

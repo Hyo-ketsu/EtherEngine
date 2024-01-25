@@ -62,9 +62,9 @@ namespace EtherEngine {
 
 
         // シーン情報ゲッター
-        const SceneType& GetScene(void) const { return m_scene; }
+        const SceneIDType& GetScene(void) const { return m_scene; }
         // シーン情報セッター
-        void SetScene(const SceneType& in) { m_scene = in; }
+        void SetScene(const SceneIDType& in) { m_scene = in; }
 
 
         // ハンドルゲッター
@@ -118,7 +118,7 @@ namespace EtherEngine {
 
         std::string m_name;     // 名前
         Transform m_transform;  // 座標
-        SceneType m_scene;      // 現在所属シーン
+        SceneIDType m_scene;      // 現在所属シーン
         Handle<NativeGameObject> m_handle;    // 自身のハンドル
         std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント

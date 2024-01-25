@@ -6,14 +6,20 @@
 //----- Scene 宣言
 namespace EtherEngine {
     // シーン
-    // @ MEMO : ひとまずクラスという体にして現状Jsonを読み込むだけにします
     public ref class Scene : BaseObject {
     public:
         // コンストラクタ
-        // @ Arg1 : Json読み込みディレクトリ
-        Scene(PathString json);
+        Scene(void);
 
-    private:
+
+        // シーン番号を取得する
+        // @ Ret  : 取得したシーン番号
+        SceneIDType GetSceneID(void);
+
+
+        // シーンの情報を取得する
+        // @ Arg1 : シーンの中身の情報のJson
+        virtual System::String^ GetScene(void) = 0;
     };
 }
 

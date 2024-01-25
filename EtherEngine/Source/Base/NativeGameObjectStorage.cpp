@@ -1,4 +1,5 @@
 #include <Base/NativeGameObjectStorage.h>
+#include <Base/NativeGameObjectUpdater.h>
 
 
 //----- GameObejctStorage宣言
@@ -13,8 +14,7 @@ namespace EtherEngine {
         handle.GetAtomicData().m_handle = handle;
 
         //----- シーンへの追加
-        // @ MEMO : シーンへの追加あたり作り直し
-        //if (SceneLoader::Get()->GetCurrentSceneData().has_value()) { handle.GetAtomicData().SetScene(SceneLoader::Get()->GetCurrentSceneData().value()); }
+        handle.GetAtomicData().SetScene(NativeGameObjectUpdater::Get()->GetCurrentSceneID()); 
 
         //----- 返却
         return handle;
@@ -22,7 +22,7 @@ namespace EtherEngine {
     // ゲームオブジェクトを削除する
     bool NativeGameObjectStorage::DeleteGameObject(const Handle<NativeGameObject>& gameObject) {
         //----- 削除するハンドルをなめる
-        for (auto&& it : m_gameObjects){
+        for (auto&& it : m_gameObjects) {
             if (it == gameObject) {
                 //----- 同ハンドル。削除する
                 it.GetAtomicData().Delete();
@@ -33,6 +33,22 @@ namespace EtherEngine {
 
         //----- 同じハンドルが存在しない
         return false;
+    }
+    // ゲームオブジェクトを削除する
+    void NativeGameObjectStorage::DeleteGameObject(const SceneIDType& deleteScene) {
+        //----- 削除するべきゲームオブジェクトを走査する
+        for (int i = 0; i < m_gameObjects.size(); ) {
+            auto&& gameObject = m_gameObjects[i];
+            if (gameObject.GetData().GetScene() == deleteScene) {
+                //----- 削除する
+                gameObject.GetAtomicData().Delete();
+                gameObject.GetAtomicData().DeleteObject();
+            }
+            else {
+                //----- 削除しない。次のインデックスを調査
+                i++;
+            }
+        }
     }
 
 

@@ -19,9 +19,9 @@ namespace EtherEngine {
 
 
         // 現在シーンゲッター
-        const SceneType& GetCurrentScene(void) const { return m_currentScene; }
+        const SceneIDType& GetCurrentScene(void) const { return m_currentScene; }
         // 現在シーンセッター
-        void SetCurrentScene(const SceneType& in) { m_currentScene = in; }
+        void SetCurrentScene(const SceneIDType& in) { m_currentScene = in; }
 
 
         // 外部出力
@@ -30,7 +30,7 @@ namespace EtherEngine {
         void Input(const Json& input) override;
 
     private:
-        SceneType m_currentScene;   // 現在シーン
+        SceneIDType m_currentScene;   // 現在シーン
         PathClass m_path;           // 保持しているパス
     };
 }

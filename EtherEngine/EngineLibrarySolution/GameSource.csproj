@@ -1,9 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath>Object\</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <BaseIntermediateOutputPath>Object\GameSource\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+	
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	<OutputPath>Object\</OutputPath>
+	<IntermediateOutputPath>Object\GameSource\$(Configuration)\$(Platform)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	<OutputPath>Object\</OutputPath>
+	<IntermediateOutputPath>Object\GameSource\$(Configuration)\$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
 
 </Project>

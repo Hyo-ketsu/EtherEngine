@@ -11,6 +11,10 @@ namespace EtherEngine {
         for (auto& it : updates) {
             if (it.IsEnable() == false) continue;
 
+            //----- 現在シーン設定
+            SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+            //----- 更新
             it.GetAtomicData().Update();
         }
         NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
@@ -24,6 +28,10 @@ namespace EtherEngine {
             for (auto& it : fixedUpdates) {
                 if (it.IsEnable() == false) continue;
 
+                //----- 現在シーン設定
+                SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+                //----- 更新
                 it.GetAtomicData().FixedUpdate();
             }
             NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
@@ -36,6 +44,10 @@ namespace EtherEngine {
             for (auto& it : collisions) {
                 if (it.IsEnable() == false) continue;
 
+                //----- 現在シーン設定
+                SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+                //----- 更新
                 it.GetAtomicData().SidelineCollisionData();
             }
         }
@@ -75,6 +87,10 @@ namespace EtherEngine {
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
+                    //----- 現在シーン設定
+                    SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+                    //----- 更新
                     it.GetAtomicData().CollisionStart();
                 }
                 NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
@@ -85,6 +101,10 @@ namespace EtherEngine {
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
+                    //----- 現在シーン設定
+                    SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+                    //----- 更新
                     it.GetAtomicData().CollisionEnd();
                 }
                 NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
@@ -95,6 +115,10 @@ namespace EtherEngine {
                 for (auto& it : collisions) {
                     if (it.IsEnable() == false) continue;
 
+                    //----- 現在シーン設定
+                    SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+                    //----- 更新
                     it.GetAtomicData().CollisionHit();
                 }
                 NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
@@ -110,6 +134,10 @@ namespace EtherEngine {
         for (auto& it : draw) {
             if (it.IsEnable() == false) continue;
 
+            //----- 現在シーン設定
+            SetCurrentSceneID(it.GetAtomicData().GetScene());
+
+            //----- 更新
             it.GetAtomicData().Draw(camera.GetView(), camera.GetProjection());
         }
         NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();

@@ -10,7 +10,7 @@ namespace EtherEngine {
     using IDNumberType = ullint;
 
     // ÉVÅ[Éìîªï å^
-    using SceneType = IDNumberType;
+    using SceneIDType = IDNumberType;
 }
 
 
