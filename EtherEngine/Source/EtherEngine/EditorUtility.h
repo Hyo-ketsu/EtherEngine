@@ -1,6 +1,9 @@
 #ifndef I_EDITORUTILITY_H
 #define I_EDITORUTILITY_H
-#include <EngineLibrary/EngineLibraryUtility.h>
+
+
+namespace EtherEngine {
+}
 
 
 #endif // !I_EDITORUTILITY_H

@@ -23,8 +23,8 @@ namespace EtherEngine {
 
 
         property System::String^ LoadAssemblyPath {
-            System::String^ get(void) { return ms_loadAssemblyPath; }
-            void set(System::String^ value) { ms_loadAssemblyPath = value; }
+            System::String^ get(void) { return m_loadAssemblyPath; }
+            void set(System::String^ value) { m_loadAssemblyPath = value; }
         }
 
 
@@ -40,9 +40,9 @@ namespace EtherEngine {
         bool IsLoadAssemblyEnable(void);
 
     private:
-        System::String^ ms_loadAssemblyPath;   // assemblyを読み込むパス
-        System::Reflection::Assembly^ ms_assembly;   // 現在保持しているアセンブリ
-        System::Runtime::Loader::AssemblyLoadContext^ ms_assemblyLoadContext;   // 現在保持しているアセンブリ
+        System::String^ m_loadAssemblyPath;   // assemblyを読み込むパス
+        System::Reflection::Assembly^ m_assembly;   // 現在保持しているアセンブリ
+        System::Runtime::Loader::AssemblyLoadContext^ m_assemblyLoadContext;   // 現在保持しているアセンブリ
     };
 }
 

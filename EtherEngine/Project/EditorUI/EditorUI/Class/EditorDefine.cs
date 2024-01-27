@@ -17,6 +17,8 @@ namespace EditorUI {
         /// <summary>ファイル作成時の名前</summary>
         public static readonly EditorText NewCreateFile;
 
+        /// <summary>プロジェクト名</summary>
+        public static readonly string GameSourceName = "GameSource";
         /// <summary>プロジェクトエントリーポイント名(拡張子含む)</summary>
         public static readonly string GameSourceMainName = "GameMain.cs";
         /// <summary>プロジェクトエントリーポイントソース</summary>
@@ -35,7 +37,7 @@ namespace GameSource {
 }
 ";
         /// <summary>プロジェクト名(拡張子含む)</summary>
-        public static readonly string GameSourceProjectName = "GameSource.csproj";
+        public static readonly string GameSourceProjectName = GameSourceName + ".csproj";
         /// <summary>プロジェクトソース</summary>
         public static readonly string GameSourceProjectSource = @"
 <Project Sdk=""Microsoft.NET.Sdk"">
@@ -60,7 +62,7 @@ namespace GameSource {
 </Project>
 ";
         /// <summary>ソリューション名(拡張子含む)</summary>
-        public static readonly string GameSourceSolutionName = "GameSource.sln";
+        public static readonly string GameSourceSolutionName = GameSourceName + ".sln";
         /// <summary>ソリューションソース</summary>
         public static readonly string GameSourceSolutionSource = @"
 Microsoft Visual Studio Solution File, Format Version 12.00

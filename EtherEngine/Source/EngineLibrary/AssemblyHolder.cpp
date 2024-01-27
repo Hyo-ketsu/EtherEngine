@@ -9,9 +9,9 @@ using namespace System::Runtime::Loader;
 namespace EtherEngine {
     // コンストラクタ
     AssemblyHolder::AssemblyHolder(void) 
-        : ms_loadAssemblyPath(nullptr) 
-        , ms_assembly(nullptr)
-        , ms_assemblyLoadContext(gcnew AssemblyLoadContext("EngineContext", true)) {
+        : m_loadAssemblyPath(nullptr) 
+        , m_assembly(nullptr)
+        , m_assemblyLoadContext(gcnew AssemblyLoadContext("EngineContext", true)) {
     }
     // デストラクタ
     AssemblyHolder::~AssemblyHolder(void) {
@@ -20,39 +20,38 @@ namespace EtherEngine {
     // ファイナライザ
     AssemblyHolder::!AssemblyHolder(void) {
         DeleteAssembly();
-        ms_assemblyLoadContext = nullptr;
+        m_assemblyLoadContext = nullptr;
     }
 
 
     // アセンブリを取得する
     System::Reflection::Assembly^ AssemblyHolder::GetAssembly(void) {
-        if (ms_assembly == nullptr) {
+        if (m_assembly == nullptr) {
             //----- assemblyを読み込む
             LoadAssembly();
         }
         else {
             //----- アセンブリ返却
-            return ms_assembly;
+            return m_assembly;
         }
     }
 
 
-    // アセンブリを読み込むh
+    // アセンブリを読み込む
     bool AssemblyHolder::LoadAssembly(void) {
         //----- dllかファイルチェック
-        if (System::IO::Path::Exists(ms_loadAssemblyPath) == false) return false;
-        if (System::IO::Path::HasExtension(ms_loadAssemblyPath) && System::IO::Path::GetExtension(ms_loadAssemblyPath) != ".dll") return false;
+        if (System::IO::Path::Exists(m_loadAssemblyPath) == false) return false;
+        if (System::IO::Path::HasExtension(m_loadAssemblyPath) && System::IO::Path::GetExtension(m_loadAssemblyPath) != ".dll") return false;
                 
-
         //----- 読み込む
-        ms_assembly = ms_assemblyLoadContext->LoadFromAssemblyPath(ms_loadAssemblyPath);
+        m_assembly = m_assemblyLoadContext->LoadFromAssemblyPath(m_loadAssemblyPath);
 
         return true;
     }
     // 現在読み込みアセンブリを削除する
     void AssemblyHolder::DeleteAssembly(void) {
-        ms_assembly = nullptr;
-        ms_assemblyLoadContext->Unload();
+        m_assembly = nullptr;
+        m_assemblyLoadContext->Unload();
         System::GC::Collect();
         System::GC::WaitForPendingFinalizers();
     }
@@ -60,6 +59,6 @@ namespace EtherEngine {
 
     // 現在読み込みアセンブリが存在するか
     bool AssemblyHolder::IsLoadAssemblyEnable(void) {
-        return ms_assembly == nullptr ? false : true;
+        return m_assembly == nullptr ? false : true;
     }
 }

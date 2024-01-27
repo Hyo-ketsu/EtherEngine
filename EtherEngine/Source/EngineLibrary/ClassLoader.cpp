@@ -19,8 +19,17 @@ namespace EtherEngine {
         //----- 全てシリアライズする
         for each (auto serializeField in serializeFields) {
             writer->WritePropertyName(serializeField->Name);
-            writer->WriteValue(serializeField);
-            serializer->Serialize(writer, serializeField->GetValue(value));
+            auto fieldValue = serializeField->GetValue(value);
+            if (fieldValue == nullptr) {
+                writer->WriteNull();
+                continue;
+            }
+            if (fieldValue->GetType()->IsPrimitive || fieldValue->GetType() == String::typeid) {
+                writer->WriteValue(fieldValue);
+            }
+            else {
+                serializer->Serialize(writer, fieldValue);
+            }
         }
 
         writer->WriteEndObject();
@@ -43,7 +52,14 @@ namespace EtherEngine {
         for each (auto deserializeField in deserializeFields) {
             Linq::JToken^ value;
             if (jsonObject->TryGetValue(deserializeField->Name, System::StringComparison::OrdinalIgnoreCase, value)) {
-                deserializeField->SetValue(newInstance, value->ToObject(deserializeField->FieldType));
+                if (jsonObject->TryGetValue(deserializeField->Name, System::StringComparison::OrdinalIgnoreCase, value)) {
+                    if (deserializeField->FieldType->IsPrimitive || deserializeField->FieldType == System::String::typeid) {
+                        deserializeField->SetValue(newInstance, System::Convert::ChangeType(value->ToObject<System::Object^>(), deserializeField->FieldType));
+                    }
+                    else {
+                        deserializeField->SetValue(newInstance, value->ToObject(deserializeField->FieldType));
+                    }
+                }
             }
         }
 
@@ -61,13 +77,29 @@ namespace EtherEngine {
 namespace EtherEngine {
     // クラスの情報を出力する
     System::String^ ClassLoader::Output(System::Object^ object) {
-        //----- クラス情報取得
-        auto fields = GetClassData(object, BaseObject::typeid);
-        return gcnew System::String("");
+        using namespace Newtonsoft::Json;
+
+        auto serializer = gcnew JsonSerializer();
+        serializer->Converters->Add(gcnew EtherEngineJsonConverter());
+        auto stringWriter = gcnew System::IO::StringWriter();
+        auto jsonWriter = gcnew JsonTextWriter(stringWriter);
+        serializer->Serialize(jsonWriter, object);
+        return stringWriter->ToString();
     }
     // クラスの情報を入力する
     void ClassLoader::Input(System::String^ data, System::Object^ object) {
-        // @ MEMO : 後回し
+        using namespace Newtonsoft::Json;
+        using namespace System;
+        using namespace System::IO;
+        using namespace System::Collections;
+        using namespace System::Collections::Generic;
+
+        // クラス情報をJsonに入力
+        auto serializer = gcnew JsonSerializer();
+        serializer->Converters->Add(gcnew EtherEngineJsonConverter());
+        auto stringReader = gcnew StringReader(data);
+        auto jsonReader = gcnew JsonTextReader(stringReader);
+        auto newInstance = serializer->Deserialize(jsonReader, object->GetType());
     }
     // クラスの各フィールドを出力する
     System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Object^ out, System::Type^ overClass) {

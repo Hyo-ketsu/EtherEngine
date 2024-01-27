@@ -13,6 +13,7 @@ namespace EditorUI {
             eventSource.AnyEventRaised += EventSource_AnyEventRaised;
         }
 
+
         /// <summary>ログ追加時</summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

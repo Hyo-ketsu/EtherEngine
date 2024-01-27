@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using EditorUI;
+using EtherEngine;
 
 
 namespace EditorMain {
@@ -13,12 +13,12 @@ namespace EditorMain {
         [STAThread]
         static public void Main() {
             //----- アプリケーションを始動
-            var application = new EditorUI.EtherEngineApplication();
-            application.Init(EtherEngine.EtherEngineMainFunction.MainFunction);
+            var application = new EtherEngineApplication();
+            application.Init(EtherEngineMainFunction.MainFunction);
             application.Run();
 
             //----- 終了処理
-            EtherEngine.EditorApplication.Get.GameEnd();
+            EditorApplication.Get.GameEnd();
         }
     }
 }

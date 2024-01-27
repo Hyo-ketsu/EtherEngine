@@ -10,18 +10,6 @@
 //----- 便利関数定義
 namespace EtherEngine {
 #pragma managed
-    //----- 便利関数定義
-    namespace EtherEngine {
-        public ref class EditorUtility {
-        public:
-            // Listから指定したインデックスの要素を取得する
-            // @ Ret  : 取得した要素
-            // @ Arg1 : リスト
-            // @ Arg2 : インデックス
-            generic <typename Type>
-            static Type ListGet(System::Collections::Generic::List<Type>^ list, int index);
-        };
-    }
     public ref class EditorUtility {
     public:
         // Listから指定したインデックスの要素を取得する
