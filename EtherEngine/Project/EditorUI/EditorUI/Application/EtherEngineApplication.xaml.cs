@@ -15,6 +15,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EtherEngine;
 using Microsoft.Build.Locator;
 
 
@@ -34,7 +35,7 @@ namespace EditorUI {
         /// <param name="mainFunction">呼び出すメイン関数</param>
         public void Init(EtherEngineMainFunction mainFunction) {
             //----- MSBuildのランタイム登録
-            MSBuildLocator.RegisterDefaults();
+            //MSBuildLocator.RegisterDefaults();
 
             //----- 変数宣言
             MainWindow? mainWindow = null;
@@ -63,9 +64,14 @@ namespace EditorUI {
             //----- メイン関数スレッド立ち上げ
             var startFunction = new ThreadStart(() => {
                 try {
+                    //----- メインウィンドウが立ち上がったら続行、キャンセルされたら終了
                     while (mainWindow == null && IsCancelStartup == false) { }
                     if (IsCancelStartup) return;
 
+                    //----- 初期シーン作成
+                    SceneLoader.Get.MoveScene(new EditorDefaultScene(""));
+
+                    //----- メイン関数の実行
                     mainFunction("", 0);
                 } catch (System.Runtime.InteropServices.SEHException exception) { // エディターを開始出来ない例外をキャッチ
                     //----- 変数宣言

@@ -6,8 +6,18 @@
 
 
 // @ MEMO : 想定するJsonの作り
-// "ゲームオブジェクト名" : {
-//     "ID" : "なんちゃら"
+// {
+//     "ID" : 123456789
+//     "Name" : "なんちゃら"
+//     "Component" :  {
+//         "PlayerComponent" : {
+//              // 以下コンポーネントのデータ
+//          }
+//     }
+// }
+// {
+//     "ID" : 123456789
+//     "Name" : "なんちゃら"
 //     "Component" :  {
 //         "PlayerComponent" : {
 //              // 以下コンポーネントのデータ
@@ -32,9 +42,8 @@ namespace EtherEngine {
         void DeleteAllScene(void);
         // シーンを移動する
         // @ Memo : 全て削除後、シーンを追加する形です
-        // @ Genr : 追加するシーン
-        generic <typename SceneType> where SceneType : Scene
-        void MoveScene(void);
+        // @ arg1 : 追加するシーン
+        void MoveScene(Scene^ moveScene);
 
 
         // 指定シーンを取得する

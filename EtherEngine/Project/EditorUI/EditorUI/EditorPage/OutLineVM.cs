@@ -29,7 +29,6 @@ namespace EditorUI {
                 //----- 新規のゲームオブジェクト作成
                 var gameObject = new GameObject();
                 gameObject.Name = EditorDefine.NewCreateGameObjectName.ToString();
-                GameObjectStorage.Get.AddGameObject(gameObject);
             });
             DeleteCommand.Subscribe(() => {
                 //----- 現在選択中のオブジェクトを削除する

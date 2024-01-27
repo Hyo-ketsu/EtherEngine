@@ -62,9 +62,9 @@ namespace EditorUI {
                 Loggers = new ILogger[] { gameLoaderLogger }
             };
 
-            //----- ビルドスレッド立ち上げ
+            //----- ビルドスレッドタスク設定
             m_isBuild = true;
-            var buildTask = Task.Run(() => {
+            var buildThread = new Thread(() => { 
                 //----- シーンファイル一斉捜査
                 //@ MEMO : ビルドするときに.sceneの中身(Json)を.csに出力、Sceneを継承したクラスとして同時にビルドさせる
 
@@ -82,34 +82,47 @@ namespace EditorUI {
                 //----- DLLのロード
                 if (configuration == BuildConfiguration.Debug) {
                     //----- メインプロジェクトから出力ディレクトリを取得
-                    string outputPath = null;
-                    var project = XDocument.Parse(EditorDefine.GameSourceSolutionSource);
+                    string outputPath = Directory.GetCurrentDirectory();
+                    var project = XDocument.Parse(EditorDefine.GameSourceProjectSource);
                     var nameSpace = project.Root.Name.Namespace;
                     foreach (var propGroup in project.Descendants(nameSpace + "PropertyGroup")) {
                         var condition = propGroup.Attribute("Condition")?.Value;
                         if (condition == "'$(Configuration)|$(Platform)'=='Debug|AnyCPU'") {
-                            outputPath = propGroup.Element(nameSpace + "OutputPath")?.Value;
+                            outputPath = Path.Combine(outputPath, propGroup.Element(nameSpace + "OutputPath")?.Value, EditorDefine.GameSourceName + ".dll");
                         }
                     }
 
                     //----- リロードを行う
                     GameApplication.Get.IsGameUpdate = false;   // ゲームの更新を止め、更新停止イベントで処理する
-                    GameApplication.Get.GameLoopStopEvent += (_, _) => {
-                        //----- 現在シーン状況出力
-                        var sceneData = SceneWriter.SaveScene(EtherEngine.SceneLoader)
+                    var sceneReload = new EventHandler((_,_) => {
+                        //----- 現在ゲームオブジェクト出力
+                        var sceneData = SceneWriter.SaveScene();
 
                         //----- assemblyのロード
                         AssemblyHolder.Get.LoadAssemblyPath = outputPath;
                         AssemblyHolder.Get.LoadAssembly();
 
                         //----- シーンを再読み込み
+                        // 一旦クリアする
+                        if (GameObjectStorage.Get.GameObjects.Count != 0) {
+                            while (GameObjectStorage.Get.GameObjects.Count != 0) {
+                                GameObjectStorage.Get.DeleteGameObject(GameObjectStorage.Get.GameObjects[0]);
+                            }
 
-                    }
+                            //----- 読み込み
+                            SceneLoader.Get.MoveScene(SceneWriter.LoadDataScene(sceneData));
+                        }
+
+                        //----- 終了。
+                        GameApplication.Get.IsGameUpdate = true;
+                    });
+                    GameApplication.Get.GameLoopStopEvent += sceneReload;
+                    GameApplication.Get.GameLoopStopEvent += (_,_) => { GameApplication.Get.GameLoopStopEvent -= sceneReload; };
                 }
             });
 
-            //----- メッセージスレッド立ち上げ
-            var messageTask = Task.Run(() => {
+            //----- メッセージスレッドタスク設定
+            var messageThread = new Thread(() => {
                 while (m_isBuild) {
                     //----- 変数宣言
                     EditorLog log = null;
@@ -118,8 +131,7 @@ namespace EditorUI {
                     lock (gameLoaderLogger.LockObject) {
                         //----- ログが追加されていないなら無視する
                         if (gameLoaderLogger.Logs.Count == 0) {
-                            Thread.Sleep(1);
-                            continue;
+                            goto END;
                         }
 
                         //----- ログを取得
@@ -129,8 +141,15 @@ namespace EditorUI {
 
                     //----- ログを追加
                     LogSystem.Get.AddLog(log);
+                    END: { Thread.Sleep(1); }
                 }
             });
+
+            //----- 両スレッド設定
+            messageThread.Name = "Message Thread";
+            buildThread.Name = "Build Thread";
+            messageThread.Start();
+            buildThread.Start();
         }
 
 
@@ -164,6 +183,6 @@ namespace EditorUI {
         /// <summary>保持しているインスタンス</summary>
         static private GameReloader? Instance { get; set; }
         /// <summary>ビルドしているか</summary>
-        private bool m_isBuild;
+        private bool m_isBuild = false;
     }
 }

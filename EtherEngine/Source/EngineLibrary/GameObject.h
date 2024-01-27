@@ -39,7 +39,7 @@ namespace EtherEngine {
 
 
         // 入力したシーンのオブジェクトか判定する
-        bool IsSceneObject(Scene scene);
+        bool IsSceneObject(Scene^ scene);
 
 
         // コンポーネントを追加する
@@ -66,7 +66,7 @@ namespace EtherEngine {
     private:
         [Attribute::OutputAttribute] System::Collections::Generic::List<Component^>^ m_componentList;
         Handle<NativeGameObject>* m_handle;
-        [Attribute::OutputAttribute] SceneIDType m_thisObjectScene;
+        SceneIDType m_thisObjectScene;
     };
 }
 

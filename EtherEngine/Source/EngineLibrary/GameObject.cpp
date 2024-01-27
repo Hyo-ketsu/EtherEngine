@@ -11,6 +11,7 @@ namespace EtherEngine {
     // コンストラクタ
     GameObject::GameObject(void) {
         m_handle = new std::remove_pointer_t<decltype(m_handle)>(NativeGameObjectStorage::Get()->CreateGameObject());
+        GameObjectStorage::Get->AddGameObject(this);
     }
     // デストラクタ
     GameObject::~GameObject(void) {
@@ -30,8 +31,8 @@ namespace EtherEngine {
 
 
     // 入力したシーンのオブジェクトか判定する
-    bool GameObject::IsSceneObject(Scene scene) {
-        return NGameObject.GetData().GetScene() == scene.GetSceneID();
+    bool GameObject::IsSceneObject(Scene^ scene) {
+        return NGameObject.GetData().GetScene() == scene->GetSceneID();
     }
 
 
