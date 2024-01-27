@@ -68,7 +68,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\CameraComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ComponentInterface.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\GameApplication.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ManageEnum.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp" />

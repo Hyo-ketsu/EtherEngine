@@ -94,7 +94,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorAssemblyRefresh.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectEditorData.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\ProjectMediation.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EtherEngineAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorMain.cpp">
       <Filter>EngineSystem</Filter>
     </ClCompile>
@@ -182,7 +181,6 @@
     <ClInclude Include="..\..\Source\EtherEngine\EditorMain.h">
       <Filter>EngineSystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EtherEngine\EditorUtility.h" />
     <ClInclude Include="..\..\Source\EtherEngine\CommandPrompt.h">
       <Filter>EngineSystem</Filter>
     </ClInclude>
@@ -192,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EtherEngine\stdafx\EtherEngineInclude.h">
       <Filter>Stdafx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\EtherEngine\EditorUtility.h">
+      <Filter>EngineSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

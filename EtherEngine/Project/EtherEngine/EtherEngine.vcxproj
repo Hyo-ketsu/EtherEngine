@@ -34,7 +34,6 @@
     <ClCompile Include="..\..\Source\EtherEngine\EditorSceneSerializer.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorUtility.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\EditorWindowBase.cpp" />
-    <ClCompile Include="..\..\Source\EtherEngine\EtherEngineAssemblyInfo.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileCreater.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileDeleter.cpp" />
     <ClCompile Include="..\..\Source\EtherEngine\FileOpener.cpp" />

@@ -137,9 +137,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryAssemblyInfo.cpp">
-      <Filter>Manage</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp">
       <Filter>Native</Filter>
     </ClCompile>
