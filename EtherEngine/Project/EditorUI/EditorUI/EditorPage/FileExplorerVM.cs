@@ -63,7 +63,7 @@ namespace EditorUI {
 
                 //----- 番号を加算しながらチェック
                 for (int i = 1;; i++) {
-                    if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend) == false) return;
+                    if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend)) return;
                 }
             });
 
