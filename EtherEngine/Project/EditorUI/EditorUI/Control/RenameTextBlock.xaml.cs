@@ -24,11 +24,21 @@ namespace EditorUI {
         public event PropertyChangedEventHandler? PropertyChanged;
 
 
+        /// <summary>テキスト変更時のイベント</summary>
+        public event EventHandler<string> TextChanged;
+
+
         /// <summary>コンストラクタ</summary>
         public RenameTextBlock() {
             InitializeComponent();
             RenameEnd();
             DataContext = this;
+            ShowText.PropertyChanged += (_, _) => {
+                //----- 変更時にイベントを発火させる
+                if (m_isInputText) {
+                    if (TextChanged != null) TextChanged.Invoke(this, ShowText.Value);
+                }
+            };
         }
 
 
@@ -91,11 +101,22 @@ namespace EditorUI {
         }
 
 
-        /// <summary>表示テキスト</summary>
-        public string Text { get { return InputText.Value; } set { InputText.Value = value; } }
-        /// <summary>入力されているテキスト</summary>
-        public ReactiveProperty<string> InputText { get; set; } = new();
+        public string Text {
+            get { return ShowText.Value; }
+            set { ShowText.Value = value; }
+        }
+        /// <summary>イベントを発火させないでテキストを設定する</summary>
+        public string InputText { 
+            set {
+                m_isInputText = false;
+                ShowText.Value = value;
+                m_isInputText = true;
+            } 
+        }
+        public ReactiveProperty<string> ShowText { get; private set; } = new("");
         /// <summary>フォーカスが外れているか</summary>
-        private bool m_isLeave = false; 
+        private bool m_isLeave = false;
+        /// <summary>イベントを発火させるか</summary>
+        private bool m_isInputText = true;
     }
 }

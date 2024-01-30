@@ -11,7 +11,7 @@
              MouseEnter="RenameMouseEnter"
              MouseLeave="RenameMouseLeave">
    <Grid>
-      <TextBlock x:Name="Show" Text="{Binding InputText.Value}"/>
-      <TextBox x:Name="Rename" Text="{Binding InputText.Value}" CaretBrush="Black"/>
+      <TextBlock x:Name="Show" Text="{Binding ShowText.Value}"/>
+      <TextBox x:Name="Rename" Text="{Binding ShowText.Value}" CaretBrush="Black"/>
    </Grid>
 </UserControl>

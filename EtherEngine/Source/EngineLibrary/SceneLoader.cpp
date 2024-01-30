@@ -31,7 +31,7 @@ namespace EtherEngine {
         //----- シーンに基づいてゲームオブジェクトを生成する
         auto sceneJson = JObject::Parse(addScene->GetScene());
         for each (auto gameObject in sceneJson) {
-            ClassLoader::Input(gameObject.Value->ToString(), gcnew GameObject());   // @ Memo : gameObjectのエラーは無視して下さい……正常にビルドできます
+            ClassLoader::Input(gameObject.Value->ToString(), GameObject::typeid);   // @ Memo : gameObjectのエラーは無視して下さい……正常にビルドできます
         }
     }
     // シーンを削除する

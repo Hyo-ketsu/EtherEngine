@@ -37,8 +37,10 @@ namespace EditorUI {
         public static string SaveScene() {
             //----- ゲームオブジェクトをシリアライズする
             JObject ret = new();
+            int i = 0;
             foreach (var gameObject in GameObjectStorage.Get.GameObjects) {
-                ret.Add("", ClassLoader.Output(gameObject));
+                if (gameObject != null) ret.Add("GameObject " + i, ClassLoader.Output(gameObject));
+                i++;
             }
 
             //----- 返却

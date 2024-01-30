@@ -66,13 +66,13 @@
                         </MenuItem.Header>
 
                         <!-- 実際に制作するアイテム -->
-                        <MenuItem  Command="{Binding CreateCommand}" CommandParameter=".cs">
+                        <MenuItem Command="{Binding CreateCommand}" CommandParameter=".cs">
                            <MenuItem.Header>
                               <local:EditorTextControl EN="Script"
                                                        JP="スクリプト"/>
                            </MenuItem.Header>
                         </MenuItem>
-                        <MenuItem  Command="{Binding CreateCommand}" CommandParameter=".txt">
+                        <MenuItem Command="{Binding CreateCommand}" CommandParameter=".txt">
                            <MenuItem.Header>
                               <local:EditorTextControl EN="Text"
                                                        JP="テキスト"/>

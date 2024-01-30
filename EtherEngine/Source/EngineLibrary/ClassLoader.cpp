@@ -46,15 +46,15 @@ namespace EtherEngine {
         auto newInstance = System::Activator::CreateInstance(objectType);
 
         //----- デシリアライズ用変数宣言
-        auto deserializeFields = ClassLoader::GetClassData(objectType, System::Object::typeid);
+        auto deserializeFields = ClassLoader::GetClassData(newInstance, System::Object::typeid);
 
         //----- 
         for each (auto deserializeField in deserializeFields) {
             Linq::JToken^ value;
             if (jsonObject->TryGetValue(deserializeField->Name, System::StringComparison::OrdinalIgnoreCase, value)) {
                 if (jsonObject->TryGetValue(deserializeField->Name, System::StringComparison::OrdinalIgnoreCase, value)) {
-                    if (deserializeField->FieldType->IsPrimitive || deserializeField->FieldType == System::String::typeid) {
-                        deserializeField->SetValue(newInstance, System::Convert::ChangeType(value->ToObject<System::Object^>(), deserializeField->FieldType));
+                    if (deserializeField->FieldType->IsPrimitive) {
+                        deserializeField->SetValue(newInstance, System::Convert::ChangeType(value->ToObject(deserializeField->FieldType), deserializeField->FieldType));
                     }
                     else {
                         deserializeField->SetValue(newInstance, value->ToObject(deserializeField->FieldType));
@@ -87,7 +87,7 @@ namespace EtherEngine {
         return stringWriter->ToString();
     }
     // クラスの情報を入力する
-    void ClassLoader::Input(System::String^ data, System::Object^ object) {
+    void ClassLoader::Input(System::String^ data, System::Type^ type) {
         using namespace Newtonsoft::Json;
         using namespace System;
         using namespace System::IO;
@@ -99,7 +99,7 @@ namespace EtherEngine {
         serializer->Converters->Add(gcnew EtherEngineJsonConverter());
         auto stringReader = gcnew StringReader(data);
         auto jsonReader = gcnew JsonTextReader(stringReader);
-        auto newInstance = serializer->Deserialize(jsonReader, object->GetType());
+        auto newInstance = serializer->Deserialize(jsonReader, type);
     }
     // クラスの各フィールドを出力する
     System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Object^ out, System::Type^ overClass) {
@@ -111,7 +111,7 @@ namespace EtherEngine {
         List<FieldInfo^>^ ret = gcnew List<FieldInfo^>(0);
 
         //----- 変数宣言
-        Type^ type = out->GetType();
+        Type^ type = (out == Type::typeid) ? safe_cast<Type^>(out) : out->GetType(); // outがTypeならそのまま取得、それ以外ならTypeを取得
 
         //----- 型取得
         // @ Memo : スーパークラスがSystem::Object または指定したクラスになるまでフィールドを取得し続ける

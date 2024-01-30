@@ -104,10 +104,9 @@ namespace EditorUI {
 
                         //----- シーンを再読み込み
                         // 一旦クリアする
-                        if (GameObjectStorage.Get.GameObjects.Count != 0) {
-                            while (GameObjectStorage.Get.GameObjects.Count != 0) {
-                                GameObjectStorage.Get.DeleteGameObject(GameObjectStorage.Get.GameObjects[0]);
-                            }
+                        lock (GameObjectStorage.Get.LockObject) {
+                            //----- 削除
+                            GameObjectStorage.Get.DeleteAllGameObject();
 
                             //----- 読み込み
                             SceneLoader.Get.MoveScene(SceneWriter.LoadDataScene(sceneData));

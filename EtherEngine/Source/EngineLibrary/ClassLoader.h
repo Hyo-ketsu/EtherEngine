@@ -31,8 +31,8 @@ namespace EtherEngine {
         // クラスの情報を入力する
         // @ MEMO : 取得できなかったフィールド等を取得できるようにしておくべき。
         // @ Arg1 : 入力情報データ
-        // @ Arg2 : 入力する型の実際のデータ
-        static void Input(System::String^ data, System::Object^ object);
+        // @ Arg2 : 入力する型
+        static void Input(System::String^ data, System::Type^ type);
         // クラスの各フィールドを出力する
         // @ MEMO : 後でプロパティも出力を行うようにする？
         // @ Memo : 標準でSystem::Objectのフィールドは無視します

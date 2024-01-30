@@ -14,13 +14,13 @@ namespace EtherEngine {
         // @ Arg1 : 追加するゲームオブジェクト
         void AddGameObject(GameObject^ gameObject);
         // ゲームオブジェクトを削除する
-        // @ Ret  : 削除が行われたか
         // @ Arg1 : 削除するゲームオブジェクト
         void DeleteGameObject(GameObject^ gameObject);
         // ゲームオブジェクトを削除する
-        // @ Ret  : 削除が行われたか
         // @ Arg1 : 削除するゲームオブジェクト
         void DeleteGameObject(IDClass^ id);
+        // ゲームオブジェクトを全削除する
+        void DeleteAllGameObject(void);
 
 
         // ゲームオブジェクトの追加・削除バージョン

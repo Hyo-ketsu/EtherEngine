@@ -39,4 +39,13 @@ namespace EtherEngine {
             }
         }
     }
+    // ゲームオブジェクトを全削除する
+    // @ Ret  : 削除が行われたか
+    void GameObjectStorage::DeleteAllGameObject(void) {
+        while (m_gameObjects->Count != 0) {
+            EditorUtility::ListGet(m_gameObjects, 0)->~GameObject();
+            m_gameObjects->RemoveAt(0);
+        }
+        m_updateVersion++;
+    }
 }

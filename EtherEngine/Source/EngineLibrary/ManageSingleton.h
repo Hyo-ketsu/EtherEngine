@@ -19,6 +19,7 @@ static property singletonType^ Get {\
     public: singletonType^ get(void) { \
         if (ms_instance == nullptr) {\
             ms_instance = gcnew singletonType();\
+            ms_instance->m_lockObject = gcnew System::Object();\
         }\
         return ms_instance;\
     }\
@@ -29,6 +30,12 @@ static property singletonType^ Get {\
 static void Delete(void) {\
     ms_instance = nullptr;\
 }\
+public:\
+property System::Object^ LockObject {\
+    System::Object^ get(void) { return m_lockObject; }\
+}\
+private:\
+System::Object^ m_lockObject;\
 protected:\
 singletonType(void);\
 private:\

@@ -50,9 +50,11 @@ namespace EditorUI {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void UpdateGameObjectMethod(object? sender, EventArgs e) {
-            if (GameObjectStorage.Get.UpdateGameObjectVersion != UpdateGameObjectVersion) {
-                UpdateOutLineView();
-                UpdateGameObjectVersion = GameObjectStorage.Get.UpdateGameObjectVersion;
+            lock (GameObjectStorage.Get.LockObject) {
+                if (GameObjectStorage.Get.UpdateGameObjectVersion != UpdateGameObjectVersion) {
+                    UpdateOutLineView();
+                    UpdateGameObjectVersion = GameObjectStorage.Get.UpdateGameObjectVersion;
+                }
             }
         }
 
@@ -60,18 +62,24 @@ namespace EditorUI {
         /// <summary>OutLineViewを更新する</summary>
         private void UpdateOutLineView() {
             //----- とりあえずリストを初期化
-            OldTreeView.Items.Clear();
+            while (OldTreeView.Items.Count != 0) OldTreeView.Items.RemoveAt(0);
 
             foreach (var gameObject in EtherEngine.GameObjectStorage.Get.GameObjects) {
                 //----- コントロール作成
                 var treeViewItem = new OldTreeViewItem();
                 var renameInput = new RenameTextBlock();
 
-                //----- 名前表示
-                renameInput.InputText.Value = gameObject.Name;
-                gameObject.UpdateEvent += (gameObject,_)=> {
+                //----- 名前を設定
+                renameInput.InputText = gameObject.Name;
+                //----- 改名テキストブロックに入力時にゲームオブジェクトの名前を変える
+                renameInput.TextChanged += (_, text) => {
+                    gameObject.Name = text;
+                };
+
+                //----- ゲームオブジェクト名変更時にテキストブロックの表示を変える
+                gameObject.UpdateEvent += (gameObject, _) => {
                     var baseObject = gameObject as EtherEngine.BaseObject;
-                    renameInput.InputText.Value = baseObject?.Name;
+                    renameInput.InputText = baseObject?.Name;
                 };
 
                 //----- ツリー
