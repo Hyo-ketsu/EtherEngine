@@ -42,6 +42,9 @@ namespace EditorUI {
         public FileExplorerVM() {
             PathUpdate();
 
+            //----- アイテム表示パスをカレントディレクトリで初期化
+            m_currentDirectory = Directory.GetCurrentDirectory();
+
             CreateCommand.Subscribe(extend => {
                 var fileCreate = (string createFile) => {
                     //----- 同名ファイルがなければ作成
@@ -59,27 +62,31 @@ namespace EditorUI {
                 };
 
                 //----- ファイル名がなく、そのまま作成できる
-                if (fileCreate(EditorDefine.NewCreateFile.ToString() + extend)) return;
+                if (fileCreate(EditorDefine.NewCreateFile.ToString() + extend)) goto END;
 
                 //----- 番号を加算しながらチェック
                 for (int i = 1;; i++) {
-                    if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend)) return;
+                    if (fileCreate(EditorDefine.NewCreateFile.ToString() + " " + i + extend)) goto END;
+                }
+
+                END: {
+                    ItemViewChanged();
+                    return;
                 }
             });
 
             DeleteCommand.Subscribe(delete => {
-                System.IO.File.Delete(delete);
+                File.Delete(delete);
+                ItemViewChanged();
             });
         }
         /// <summary>選択ディレクトリが変更された際にItemViewを更新する</summary>
-        /// <param name="changeDirectory">変更先</param>
-        public void ItemViewChanged(string changeDirectory) {
+        public void ItemViewChanged() {
             //----- 初期化
-            m_currentDirectory = changeDirectory;
             Files.Clear();
 
             //----- 表示用データ作成
-            var files = Directory.GetFiles(changeDirectory);
+            var files = Directory.GetFiles(CurrentDirectory);
             foreach (var file in files) {
                 Files.Add(new (System.IO.Path.GetFileName(file)));
             }
@@ -116,8 +123,14 @@ namespace EditorUI {
         public ReactiveCollection<FileExplorerItem> PathItems { get; private set; } = new();
         /// <summary>表示しているカレントディレクトリのファイル</summary>
         public ReactiveCollection<ReactiveProperty<string>> Files { get; private set; } = new();
-
         /// <summary>保持しているカレントディレクトリ</summary>
+        public string CurrentDirectory { 
+            private get { return m_currentDirectory; }
+            set {
+                m_currentDirectory = value;
+                ItemViewChanged();
+            }
+        }
         private string m_currentDirectory;
     }
 }

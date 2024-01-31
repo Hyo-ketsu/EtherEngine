@@ -32,7 +32,7 @@ namespace EditorUI {
             var item = e.NewValue as FileExplorerItem;
             if (vm == null) { throw new NullReferenceException(); }
             if (item == null) { throw new NullReferenceException(); }
-            vm.ItemViewChanged(item.FullPath);
+            vm.CurrentDirectory = item.FullPath;
         }
     }
 }
