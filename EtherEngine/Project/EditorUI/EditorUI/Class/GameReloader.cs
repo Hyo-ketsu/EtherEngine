@@ -64,17 +64,35 @@ namespace EditorUI {
 
             //----- ビルドスレッドタスク設定
             m_isBuild = true;
-            var buildThread = new Thread(() => { 
+            var buildThread = new Thread(() => {
                 //----- シーンファイル一斉捜査
                 //@ MEMO : ビルドするときに.sceneの中身(Json)を.csに出力、Sceneを継承したクラスとして同時にビルドさせる
 
-                //----- Nugetの初期化
+                //----- 区切り出力
+                LogSystem.Get.AddLog(new EditorLog(MessageType.None, EditorDefine.BuildMessageSeparate));
+
+                //----- Nuget初期化
                 var restoreRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Restore" }, null);
-                var buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, restoreRequest);
+                var buildResult = BuildManager.DefaultBuildManager.Build(new BuildParameters(projectCollection), restoreRequest);
+
+                //----- 区切り出力
+                LogSystem.Get.AddLog(new EditorLog(MessageType.None, EditorDefine.BuildMessageSeparate));
 
                 //----- ビルドを行う
                 var buildRequest = new BuildRequestData(sln, globalProperty, null, new[] { "Build" }, null);
                 buildResult = BuildManager.DefaultBuildManager.Build(buildParameters, buildRequest);
+                //----- ビルドの結果をログに出す
+                if (buildResult.OverallResult == BuildResultCode.Success) {
+                    //----- 成功
+                    LogSystem.Get.AddLog(new EditorLog(MessageType.BuildMessage, EditorDefine.BuildSuccess.ToString()));
+                }
+                else {
+                    //----- 失敗
+                    LogSystem.Get.AddLog(new EditorLog(MessageType.BuildMessage, EditorDefine.BuildFailed.ToString()));
+                }
+
+                //----- 区切り出力
+                LogSystem.Get.AddLog(new EditorLog(MessageType.None, EditorDefine.BuildMessageSeparate));
 
                 //----- ビルド完了
                 m_isBuild = false;

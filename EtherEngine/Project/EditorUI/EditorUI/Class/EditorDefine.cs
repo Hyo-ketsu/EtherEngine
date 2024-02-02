@@ -10,12 +10,22 @@ namespace EditorUI {
         static EditorDefine() {
             NewCreateGameObjectName = new(en: "New GameObject", jp: "新しいゲームオブジェクト");
             NewCreateFile = new(en: "New File", jp: "New File");
+            BuildSuccess = new(en: "*** Build Success! ***", jp: "*** ビルド成功! ***");
+            BuildFailed = new(en: "*** Build Failed…… ***", jp: "*** ビルド失敗…… ***");
         }
 
         /// <summary>ゲームオブジェクト作成時の名前</summary>
         public static readonly EditorText NewCreateGameObjectName;
         /// <summary>ファイル作成時の名前</summary>
         public static readonly EditorText NewCreateFile;
+
+        /// <summary>ビルド成功時の出力ログ</summary>
+        public static readonly EditorText BuildSuccess;
+        /// <summary>ビルド失敗時の出力ログ</summary>
+        public static readonly EditorText BuildFailed;
+
+        /// <summary>ビルドメッセージのセパレート</summary>
+        public static readonly string BuildMessageSeparate = "=========================================";
 
         /// <summary>プロジェクト名</summary>
         public static readonly string GameSourceName = "GameSource";
