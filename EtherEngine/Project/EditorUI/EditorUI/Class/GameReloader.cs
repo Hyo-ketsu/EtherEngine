@@ -118,6 +118,7 @@ namespace EditorUI {
 
                         //----- assemblyのロード
                         AssemblyHolder.Get.LoadAssemblyPath = outputPath;
+                        AssemblyHolder.Get.DeleteAssembly();
                         AssemblyHolder.Get.LoadAssembly();
 
                         //----- シーンを再読み込み

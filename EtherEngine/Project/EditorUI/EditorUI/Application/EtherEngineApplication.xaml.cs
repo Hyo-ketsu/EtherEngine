@@ -35,7 +35,7 @@ namespace EditorUI {
         /// <param name="mainFunction">呼び出すメイン関数</param>
         public void Init(EtherEngineMainFunction mainFunction) {
             //----- MSBuildのランタイム登録
-            //MSBuildLocator.RegisterDefaults();
+            MSBuildLocator.RegisterDefaults();
 
             //----- 変数宣言
             MainWindow? mainWindow = null;
