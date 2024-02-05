@@ -64,7 +64,8 @@ namespace EtherEngine {
         bool DeleteComponent(void);
 
     private:
-        [Attribute::OutputAttribute] System::Collections::Generic::List<Component^>^ m_componentList;
+        [Attribute::OutputAttribute, Attribute::BaseObjectSerializeAttribute] 
+            System::Collections::Generic::List<Component^>^ m_componentList;
         Handle<NativeGameObject>* m_handle;
         SceneIDType m_thisObjectScene;
     };
