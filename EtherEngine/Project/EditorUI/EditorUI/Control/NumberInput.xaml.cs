@@ -101,55 +101,55 @@ namespace EditorUI {
             }
 
             // @ MEMO : やる気があればやる
-            ////----- 先頭の0削除
-            //if (!(isAllZero)) {
-            //    //----- 全て0ではない。0削除を行う。0削除ラムダ定義
-            //    var zeroClear = (string text) => {
-            //        //----- 変数宣言
-            //        string ret = new("");
-            //        bool notZero = false;
+            //----- 先頭の0削除
+            if (false && !(isAllZero)) {
+                ////----- 全て0ではない。0削除を行う。0削除ラムダ定義
+                //var zeroClear = (string text) => {
+                //    //----- 変数宣言
+                //    string ret = new("");
+                //    bool notZero = false;
 
-            //        foreach (var letter in text) {
-            //            if (!(notZero)) {
-            //                //----- 0,-以外が来るまで0を無視
-            //                if (letter == '0' || letter == '-') {
-            //                    continue;
-            //                }
-            //                else {
-            //                    //----- 終了フラグを立てる
-            //                    ret += ret + letter;
-            //                    notZero = true;
-            //                }
-            //            }
-            //            else {
-            //                //----- 0以外が来ている。ひたすらコピー
-            //                ret += ret + letter;
-            //            }
-            //        }
+                //    foreach (var letter in text) {
+                //        if (!(notZero)) {
+                //            //----- 0,-以外が来るまで0を無視
+                //            if (letter == '0' || letter == '-') {
+                //                continue;
+                //            }
+                //            else {
+                //                //----- 終了フラグを立てる
+                //                ret += ret + letter;
+                //                notZero = true;
+                //            }
+                //        }
+                //        else {
+                //            //----- 0以外が来ている。ひたすらコピー
+                //            ret += ret + letter;
+                //        }
+                //    }
 
-            //        return ret;
-            //    };
+                //    return ret;
+                //};
 
-            //    //----- 整数部の0削除
-            //    formatText = zeroClear(formatText);
-            //    //----- 少数部の0削除
-            //    string text = new("");
-            //    foreach (var letter in formatText.Reverse()) {
-            //        text += letter;
-            //    }
-            //    formatText = zeroClear(text);
-            //    //----- 先ほどの反転を修正する
-            //    text = new("");
-            //    foreach (var letter in formatText.Reverse()) {
-            //        text += letter;
-            //    }
+                ////----- 整数部の0削除
+                //formatText = zeroClear(formatText);
+                ////----- 少数部の0削除
+                //string text = new("");
+                //foreach (var letter in formatText.Reverse()) {
+                //    text += letter;
+                //}
+                //formatText = zeroClear(text);
+                ////----- 先ほどの反転を修正する
+                //text = new("");
+                //foreach (var letter in formatText.Reverse()) {
+                //    text += letter;
+                //}
 
-            //    //----- 少数点前
-            //}
-            //else {
-            //    //----- 全て0。削除は行わない
-            //    formatText = newText;
-            //}
+                ////----- 少数点前
+            }
+            else {
+                //----- 全て0。削除は行わない
+                formatText = newText;
+            }
 
             //----- 文字の入力
             InputNumber.Text = formatText;
