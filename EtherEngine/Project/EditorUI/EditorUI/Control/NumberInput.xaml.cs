@@ -33,7 +33,7 @@ namespace EditorUI {
             //----- 文字列を数値に変換
             return (Type)Convert.ChangeType(InputNumberText.Value, typeof(Type));
         }
-        public void SetNumber<Type>(Type inputNumber) where Type :IConvertible {
+        public void SetNumber(object inputNumber) {
             //----- 数値を文字列に変換
             InputNumberText.Value = inputNumber.ToString();
         }
@@ -46,8 +46,11 @@ namespace EditorUI {
             IsTextChanged = true;
 
             //----- 変数宣言
-            string newText = new("");
+            string newText = new("");       // 不適切な記号等を省略後
+            string formatText = new("");    // 0削除後の綺麗な文字列
             bool isPeriod = false;  // ピリオドがすでに入力されていたか
+            bool isMinus = false;   // マイナス記号が入力されているか
+            bool isAllZero = true;  // 入力が全て0か
 
             //----- 入力が指定された文字以外か判定
             for (int i = 0; i < InputNumber.Text.Length; i++) { 
@@ -55,27 +58,41 @@ namespace EditorUI {
                 var letter = InputNumber.Text[i];
 
                 //----- 入力された文字列が各型と合致しているか判定
-                // @ Memo : 以下の正しくない入力が検知された際入力を終了します
+                // @ Memo : 以下の正しくない入力が検知された際その文字を省略して入力します
                 //----- 0~9の数値、マイナス、小数点以外
-                if (char.IsDigit(letter) == false && letter != '-' && letter != '.') break;
+                if (char.IsDigit(letter) == false && letter != '-' && letter != '.') continue;
 
-                //----- 型が非符号なのに - が入力されている
-                if ((NumberType == typeof(uint) || NumberType == typeof(ulong) || NumberType == typeof(ushort)) && letter == '-') break;
+                //----- 入力が0以外?
+                if (letter != '0') {
+                    isAllZero = true;
+                }
 
-                //----- 先頭以外での - の入力
-                if (i > 0 && letter == '-') break;
+                //----- マイナスの入力?
+                if (letter == '-') {
+                    //----- 型が非符号なのに - が入力されている
+                    if (NumberType == typeof(uint) || NumberType == typeof(ulong) || NumberType == typeof(ushort)) continue;
+
+                    //----- 先頭以外での - の入力
+                    if (i > 0) continue;
+
+                    //----- 入力フラグ設定
+                    isMinus = true;
+                }
 
                 //----- 小数点の入力？
                 if (letter == '.') {
-                    //----- すでに小数点は入力されている。不正
-                    if (isPeriod) break;
+                    //----- 非浮動小数なのに小数点(ピリオド)が入力されている
+                    if (NumberType != typeof(float) && NumberType != typeof(double) && NumberType != typeof(decimal)) continue;
+
+                    //----- すでに小数点は入力されている
+                    if (isPeriod) continue;
 
                     //----- 先頭、もしくはマイナスの後の小数点であれば頭に0を足す
                     if (i == 0 || i == 1 && InputNumber.Text[0] ==  '-') {
                         newText += '0';
                     }
 
-                    //----- 入力フラグの入力
+                    //----- 入力フラグ設定
                     isPeriod = true;
                 }
 
@@ -83,8 +100,59 @@ namespace EditorUI {
                 newText += letter;
             }
 
+            // @ MEMO : やる気があればやる
+            ////----- 先頭の0削除
+            //if (!(isAllZero)) {
+            //    //----- 全て0ではない。0削除を行う。0削除ラムダ定義
+            //    var zeroClear = (string text) => {
+            //        //----- 変数宣言
+            //        string ret = new("");
+            //        bool notZero = false;
+
+            //        foreach (var letter in text) {
+            //            if (!(notZero)) {
+            //                //----- 0,-以外が来るまで0を無視
+            //                if (letter == '0' || letter == '-') {
+            //                    continue;
+            //                }
+            //                else {
+            //                    //----- 終了フラグを立てる
+            //                    ret += ret + letter;
+            //                    notZero = true;
+            //                }
+            //            }
+            //            else {
+            //                //----- 0以外が来ている。ひたすらコピー
+            //                ret += ret + letter;
+            //            }
+            //        }
+
+            //        return ret;
+            //    };
+
+            //    //----- 整数部の0削除
+            //    formatText = zeroClear(formatText);
+            //    //----- 少数部の0削除
+            //    string text = new("");
+            //    foreach (var letter in formatText.Reverse()) {
+            //        text += letter;
+            //    }
+            //    formatText = zeroClear(text);
+            //    //----- 先ほどの反転を修正する
+            //    text = new("");
+            //    foreach (var letter in formatText.Reverse()) {
+            //        text += letter;
+            //    }
+
+            //    //----- 少数点前
+            //}
+            //else {
+            //    //----- 全て0。削除は行わない
+            //    formatText = newText;
+            //}
+
             //----- 文字の入力
-            InputNumber.Text = newText;
+            InputNumber.Text = formatText;
 
             //----- 修正終了
             IsTextChanged = false;
