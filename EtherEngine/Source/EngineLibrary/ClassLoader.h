@@ -33,13 +33,18 @@ namespace EtherEngine {
         // @ Arg1 : 入力情報データ
         // @ Arg2 : 入力する型
         static void Input(System::String^ data, System::Type^ type);
-        // クラスの各フィールドを出力する
-        // @ MEMO : 後でプロパティも出力を行うようにする？
+        // クラスの各フィールドを出力する。スーパークラスのフィールドも取得する
         // @ Memo : 標準でSystem::Objectのフィールドは無視します
         // @ Ret  : 出力した型一覧
         // @ Arg1 : 出力するオブジェクト
         // @ Arg2 : フィールドを取得する限界のクラス(Hoge->Fuga->PiyoでPiyoを指定した場合、Hoge,Fugaのフィールドを取得)
-        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Object^ out, System::Type^ overClass);
+        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Type^ out, System::Type^ overClass);
+        // クラスの各フィールドを出力する。自クラスのみ
+        // @ MEMO : 後でプロパティも出力を行うようにする？
+        // @ Memo : 標準でSystem::Objectのフィールドは無視します
+        // @ Ret  : 出力した型一覧
+        // @ Arg1 : 出力するオブジェクト
+        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Type^ out);
     };
 }
 

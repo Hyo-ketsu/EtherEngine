@@ -11,7 +11,7 @@ namespace EtherEngine {
         using namespace System::Collections::Generic;
 
         //----- シリアライズ用変数宣言
-        auto serializeFields = ClassLoader::GetClassData(value, System::Object::typeid);
+        auto serializeFields = ClassLoader::GetClassData(value->GetType(), System::Object::typeid);
 
         //----- 書き込みを開始する
         writer->WriteStartObject();
@@ -46,7 +46,7 @@ namespace EtherEngine {
         auto newInstance = System::Activator::CreateInstance(objectType);
 
         //----- デシリアライズ用変数宣言
-        auto deserializeFields = ClassLoader::GetClassData(newInstance, System::Object::typeid);
+        auto deserializeFields = ClassLoader::GetClassData(objectType, System::Object::typeid);
 
         //----- 
         for each (auto deserializeField in deserializeFields) {
@@ -102,7 +102,7 @@ namespace EtherEngine {
         auto newInstance = serializer->Deserialize(jsonReader, type);
     }
     // クラスの各フィールドを出力する
-    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Object^ out, System::Type^ overClass) {
+    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out, System::Type^ overClass) {
         using namespace System;
         using namespace System::Reflection;
         using namespace System::Collections::Generic;
@@ -111,13 +111,13 @@ namespace EtherEngine {
         List<FieldInfo^>^ ret = gcnew List<FieldInfo^>(0);
 
         //----- 変数宣言
-        Type^ type = (out == Type::typeid) ? safe_cast<Type^>(out) : out->GetType(); // outがTypeならそのまま取得、それ以外ならTypeを取得
+        auto type = out;
 
         //----- 型取得
         // @ Memo : スーパークラスがSystem::Object または指定したクラスになるまでフィールドを取得し続ける
         while (type != Object::typeid && type != overClass) {
             //----- その型のフィールド取得
-            for each (auto field in type->GetFields(BindingFlags::Instance | BindingFlags::Public | BindingFlags::NonPublic | BindingFlags::FlattenHierarchy)) {
+            for each (auto field in type->GetFields(BindingFlags::DeclaredOnly | BindingFlags::Instance | BindingFlags::Public | BindingFlags::NonPublic | BindingFlags::FlattenHierarchy)) {
                 //----- そのフィールドが入出力可能か
                 if (field->IsPublic) {
                     //----- パブリック。非入出力属性があればリストに追加しない
@@ -153,5 +153,9 @@ namespace EtherEngine {
 
         //----- 返却
         return ret;
+    }
+    // クラスの各フィールドを出力する。自クラスのみ
+    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out) {
+        return GetClassData(out, out->BaseType);
     }
 }
