@@ -11,7 +11,7 @@
       <local:InspectorHeaderBaseObjectVM/>
    </UserControl.DataContext>
    
-   <StackPanel Orientation="Vertical">
+   <StackPanel Orientation="Horizontal">
       <!-- アイコン・アクティブ表示 -->
       <Grid>
          <icon:PackIconVaadinIcons Kind="{Binding ShowIconType}" />
@@ -37,7 +37,7 @@
                                         JP="オブジェクト名"/>
             </local:SeparateLabelContents.LabelContents>
             <local:SeparateLabelContents.Contents>
-               <TextBox Text="{Binding Name}"/>
+               <local:RenameTextBlock Text="{Binding Text.Value}" x:Name="ObjectName"/>
             </local:SeparateLabelContents.Contents>
          </local:SeparateLabelContents>
       </StackPanel>

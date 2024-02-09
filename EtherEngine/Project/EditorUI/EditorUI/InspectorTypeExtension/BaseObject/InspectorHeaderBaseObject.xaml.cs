@@ -36,6 +36,7 @@ namespace EditorUI {
                 IsActive.Value = m_baseObject.Active;
                 Name.Value = m_baseObject.Name;
                 ID.Value = m_baseObject.ID.ID;
+
             }
         }
 
