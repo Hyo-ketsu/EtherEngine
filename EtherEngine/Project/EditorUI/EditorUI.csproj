@@ -57,17 +57,42 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="EditorUI\Style\BaseWindowStyle.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EditorUI\Resource\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EngineLibrary\EngineLibrary.vcxproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+	<!-- デフォルトで追加されるものの無視 -->
+    <None Include="obj\" Visible="false" />
+
+	<!-- MSBuild関連で追加されるやつの無視 -->
+	<None Include="SdkResolvers\" Visible="false" />
+	<None Include="Properties\" Visible="false" />
+	<None Include="Current\" Visible="false" />
+	<None Include="ref\" Visible="false" />
+	<None Include="Microsoft.Common.CrossTargeting.targets" Visible="false" />
+	<None Include="Microsoft.Common.CurrentVersion.targets" Visible="false" />
+	<None Include="Microsoft.Common.overridetasks" Visible="false" />
+	<None Include="Microsoft.Common.targets" Visible="false" />
+	<None Include="Microsoft.Common.tasks" Visible="false" />
+	<None Include="Microsoft.CSharp.CrossTargeting.targets" Visible="false" />
+	<None Include="Microsoft.CSharp.CurrentVersion.targets" Visible="false" />
+	<None Include="Microsoft.CSharp.targets" Visible="false" />
+	<None Include="Microsoft.Managed.After.targets" Visible="false" />
+	<None Include="Microsoft.Managed.Before.targets" Visible="false" />
+	<None Include="Microsoft.Managed.targets" Visible="false" />
+	<None Include="Microsoft.NET.props" Visible="false" />
+	<None Include="Microsoft.NETFramework.CurrentVersion.props" Visible="false" />
+	<None Include="Microsoft.NETFramework.CurrentVersion.targets" Visible="false" />
+	<None Include="Microsoft.NETFramework.props" Visible="false" />
+	<None Include="Microsoft.NETFramework.targets" Visible="false" />
+	<None Include="Microsoft.VisualBasic.CrossTargeting.targets" Visible="false" />
+	<None Include="Microsoft.VisualBasic.CurrentVersion.targets" Visible="false" />
+	<None Include="Microsoft.VisualBasic.targets" Visible="false" />
+	<None Include="Microsoft.VisualStudioVersion.v11.Common.props" Visible="false" />
+	<None Include="Microsoft.VisualStudioVersion.v12.Common.props" Visible="false" />
+	<None Include="Microsoft.VisualStudioVersion.v14.Common.props" Visible="false" />
+	<None Include="MSBuild.dll" Visible="false" />
+	<None Include="MSBuild.runtimeconfig.json" Visible="false" />
   </ItemGroup>
 
 </Project>

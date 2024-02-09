@@ -52,4 +52,9 @@
     <ProjectReference Include="..\EtherEngine\EtherEngine.vcxproj" />
   </ItemGroup>
 
+  <ItemGroup>
+  	<None Include="obj\" Visible="false" />
+  	<None Include="Properties\" Visible="false" />
+  </ItemGroup>
+
 </Project>
