@@ -61,14 +61,7 @@
   </ItemGroup>
 	
   <ItemGroup>
-	<!-- デフォルトで追加されるものの無視 -->
-    <None Include="obj\" Visible="false" />
-
 	<!-- MSBuild関連で追加されるやつの無視 -->
-	<None Include="SdkResolvers\" Visible="false" />
-	<None Include="Properties\" Visible="false" />
-	<None Include="Current\" Visible="false" />
-	<None Include="ref\" Visible="false" />
 	<None Include="Microsoft.Common.CrossTargeting.targets" Visible="false" />
 	<None Include="Microsoft.Common.CurrentVersion.targets" Visible="false" />
 	<None Include="Microsoft.Common.overridetasks" Visible="false" />
