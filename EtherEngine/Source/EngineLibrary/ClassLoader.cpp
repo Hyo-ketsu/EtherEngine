@@ -11,7 +11,7 @@ namespace EtherEngine {
         using namespace System::Collections::Generic;
 
         //----- シリアライズ用変数宣言
-        auto serializeFields = ClassLoader::GetClassData(value->GetType(), System::Object::typeid);
+        auto serializeFields = ClassLoader::GetClassData(value->GetType(), GetClassDataOption::None, System::Object::typeid);
 
         //----- 書き込みを開始する
         writer->WriteStartObject();
@@ -46,7 +46,7 @@ namespace EtherEngine {
         auto newInstance = System::Activator::CreateInstance(objectType);
 
         //----- デシリアライズ用変数宣言
-        auto deserializeFields = ClassLoader::GetClassData(objectType, System::Object::typeid);
+        auto deserializeFields = ClassLoader::GetClassData(objectType, GetClassDataOption::None, System::Object::typeid);
 
         //----- 
         for each (auto deserializeField in deserializeFields) {
@@ -102,7 +102,7 @@ namespace EtherEngine {
         auto newInstance = serializer->Deserialize(jsonReader, type);
     }
     // クラスの各フィールドを出力する
-    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out, System::Type^ overClass) {
+    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out, GetClassDataOption option, System::Type^ overClass) {
         using namespace System;
         using namespace System::Reflection;
         using namespace System::Collections::Generic;
@@ -120,24 +120,39 @@ namespace EtherEngine {
             for each (auto field in type->GetFields(BindingFlags::DeclaredOnly | BindingFlags::Instance | BindingFlags::Public | BindingFlags::NonPublic | BindingFlags::FlattenHierarchy)) {
                 //----- そのフィールドが入出力可能か
                 if (field->IsPublic) {
-                    //----- パブリック。非入出力属性があればリストに追加しない
+                    //----- パブリック。属性をチェックし出力するか判定
                     for each (auto attribute in field->GetCustomAttributes(true)) {
-                        if (attribute->GetType() == Attribute::NoOutputAttribute::typeid) {
-                            goto END_FIELD;
+                        //----- 非入出力属性があれば終了。追加しない
+                        if (attribute->GetType() == Attribute::NoOutputAttribute::typeid) goto END_FIELD;
+
+                        //----- オプション : エディター非表示があれば終了。追加しない
+                        if (option == decltype(option)::Editor) {
+                            if (attribute->GetType() == Attribute::NonEditorOutputAttribute::typeid) goto END_FIELD;
                         }
                     }
-
-                    //----- 非入出力属性がなかった。リストに追加
+                    
+                    //----- 出力できる。リストに追加
                     ret->Add(field);
                 }
                 else {
                     //----- 非パブリック。入出力属性があればリストに追加
                     // @ Memo : 非入出力属性は無視します
+                    bool isAddList = false; // 追加できるなら true 
                     for each (auto attribute in field->GetCustomAttributes(true)) {
+                        //----- 入出力属性があるか
                         if (attribute->GetType() == Attribute::OutputAttribute::typeid) {
-                            //----- 入出力属性があった。リストに追加
-                            ret->Add(field);
+                            //----- 追加フラグを立てる
+                            isAddList = true;
                         }
+                        //----- オプション : エディター非表示があれば終了。追加しない
+                        if (option == decltype(option)::Editor) {
+                            if (attribute->GetType() == Attribute::NonEditorOutputAttribute::typeid) goto END_FIELD;
+                        }
+                    }
+
+                    //----- 追加できるなら追加
+                    if (isAddList) {
+                        ret->Add(field);
                     }
                 }
 
@@ -155,7 +170,7 @@ namespace EtherEngine {
         return ret;
     }
     // クラスの各フィールドを出力する。自クラスのみ
-    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out) {
-        return GetClassData(out, out->BaseType);
+    System::Collections::Generic::List<System::Reflection::FieldInfo^>^ ClassLoader::GetClassData(System::Type^ out, GetClassDataOption option) {
+        return GetClassData(out, option, out->BaseType);
     }
 }

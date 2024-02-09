@@ -38,9 +38,11 @@ namespace EtherEngine {
 #endif // _EDITOR
 
     private:
-        [Attribute::OutputAttribute] bool m_isActive;    // 有効になっているか
+        [Attribute::OutputAttribute, Attribute::NonEditorOutputAttribute] 
+            bool m_isActive;    // 有効になっているか
         IDClass^ m_id;      // id
-        [Attribute::OutputAttribute] System::String^ m_objectName; // オブジェクトの名前
+        [Attribute::OutputAttribute, Attribute::NonEditorOutputAttribute] 
+            System::String^ m_objectName; // オブジェクトの名前
     };
 }
 
