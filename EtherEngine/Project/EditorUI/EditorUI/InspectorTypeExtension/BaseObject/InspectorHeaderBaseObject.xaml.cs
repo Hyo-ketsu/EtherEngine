@@ -31,12 +31,16 @@ namespace EditorUI {
         public BaseObject BaseObejct {
             set {
                 m_baseObject = value;
-                // @ MEMO : これでよかったか？　要確認
                 TypeName.Value = m_baseObject.GetType().Name;
                 IsActive.Value = m_baseObject.Active;
                 Name.Value = m_baseObject.Name;
+                Name.Subscribe(value => {
+                    if (m_baseObject != null) {
+                        m_baseObject.Name = value;
+                        m_baseObject.UpdateEventIgnition(EventArgs.Empty);
+                    }
+                });
                 ID.Value = m_baseObject.ID.ID;
-
             }
         }
 
@@ -44,9 +48,9 @@ namespace EditorUI {
         /// <summary>タイプ名</summary>
         public ReactiveProperty<string> TypeName { get; private set; } = new();
         /// <summary>有効無効の設定</summary>
-        public ReactiveProperty<bool> IsActive { get; set; } = new();
+        public ReactiveProperty<bool> IsActive { get; private set; } = new();
         /// <summary>オブジェクト名</summary>
-        public ReactiveProperty<string> Name { get; set; } = new();
+        public ReactiveProperty<string> Name { get; private set; } = new();
         /// <summary>ID表示</summary>
         public ReactiveProperty<ulong> ID { get; private set; } = new();
         /// <summary>表示するアイコン</summary>

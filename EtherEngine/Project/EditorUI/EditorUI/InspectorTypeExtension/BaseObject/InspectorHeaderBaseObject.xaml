@@ -37,7 +37,7 @@
                                         JP="オブジェクト名"/>
             </local:SeparateLabelContents.LabelContents>
             <local:SeparateLabelContents.Contents>
-               <local:RenameTextBlock Text="{Binding Text.Value}" x:Name="ObjectName"/>
+               <TextBox Text="{Binding Name.Value}"/>
             </local:SeparateLabelContents.Contents>
          </local:SeparateLabelContents>
       </StackPanel>
