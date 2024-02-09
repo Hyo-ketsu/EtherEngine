@@ -65,19 +65,19 @@ namespace EditorUI {
             var type = baseObject.GetType();
             while (type != typeof(object) && type != null) {
                 //----- 型の情報取得
-                var classDatas = ClassLoader.GetClassData(type);
+                var classDatas = ClassLoader.GetClassData(type, GetClassDataOption.Editor);
 
                 //----- Header表示
-                var header = InspectorTypeHeaderAttribute.GetInspectorExtension(type);
+                var header = InspectorTypeHeaderAttribute.GetInspectorExtension(type, baseObject);
                 if (header != null) {
                     //----- Headerを取得して追加する
                     addInspector(header);
                 }
 
                 //----- 型表示
-                var typeShow = InspectorTypeShowAttribute.GetInspectorExtension(type);
+                var typeShow = InspectorTypeTypeShowAttribute.GetInspectorExtension(type, baseObject);
                 if (typeShow != null) {
-                    //----- 特殊表示。
+                    //----- 特殊表示
                     addInspector(typeShow);
                 }
                 else {
@@ -104,29 +104,30 @@ namespace EditorUI {
                         if (classData.FieldType == typeof(int) || classData.FieldType == typeof(short) || classData.FieldType == typeof(long) ||
                             classData.FieldType == typeof(uint) || classData.FieldType == typeof(ushort) || classData.FieldType == typeof(ulong) ||
                             classData.FieldType == typeof(float)) {
+                            //----- コントロール生成
                             var numberInput = new NumberInput();
+                            var contents = new SeparateLabelContents();
+
+                            //----- 各コントロール設定
+                            contents.Text = GetNonDecorationFieldName(classData.Name);
+                            contents.Contents = numberInput;
                             numberInput.NumberType = classData.FieldType;
                             numberInput.SetNumber(classData.GetValue(baseObject));
 
                             //----- stackパネルに追加
-                            showInspector.Children.Add(numberInput);
+                            showInspector.Children.Add(contents);
 
                             continue;
                         }
                         //----- 文字列
                         if (classData.FieldType == typeof(string)) {
-                            //----- 変数宣言
-                            var textStackPanel = new StackPanel();
-                            var label = new Label();
+                            //----- コントロール生成
+                            var contents = new SeparateLabelContents();
                             var textBox = new TextBox();
 
-                            //----- StackPanelにコントロールを代入
-                            textStackPanel.Orientation = Orientation.Horizontal;
-                            textStackPanel.Children.Add(label);
-                            textStackPanel.Children.Add(textBox);
-
-                            //----- ラベルの編集
-                            label.Content = GetNonDecorationFieldName(classData.Name);
+                            //----- 各コントロール設定
+                            contents.Text = GetNonDecorationFieldName(classData.Name);
+                            contents.Contents = textBox;
 
                             //----- テキストボックスの修正
                             textBox.Text = classData.GetValue(baseObject) as string;
@@ -136,7 +137,7 @@ namespace EditorUI {
                             };
 
                             //----- stackパネルに追加
-                            showInspector.Children.Add(textStackPanel);
+                            showInspector.Children.Add(contents);
 
                             continue;
                         }
@@ -144,7 +145,7 @@ namespace EditorUI {
                 }
 
                 //----- 終端表示
-                var backShow = InspectorTypeBackShowAttribute.GetInspectorExtension(type);
+                var backShow = InspectorTypeFooterAttribute.GetInspectorExtension(type, baseObject);
                 if (backShow != null) {
                     //----- BackShowリストに追加
                     backShows.Add(backShow);    // ここだけ HeaderとTypeShowと違います

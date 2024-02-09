@@ -63,7 +63,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EditorUI\EditorPage\Inspector\" />
     <Folder Include="EditorUI\Resource\" />
   </ItemGroup>
 

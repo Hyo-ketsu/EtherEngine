@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="EditorUI.InspectorHeaderBaseObject"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:EditorUI"
+             mc:Ignorable="d"
+             d:Width="800" d:Height="800">
+   <UserControl.DataContext>
+      <local:InspectorHeaderBaseObjectVM/>
+   </UserControl.DataContext>
+   
+   <StackPanel Orientation="Vertical">
+      <!-- アイコン・アクティブ表示 -->
+      <Grid>
+         <icon:PackIconVaadinIcons Kind="{Binding ShowIconType}" />
+
+      </Grid>
+      
+      <!-- 詳細情報表示 -->
+      <StackPanel>
+         <!-- 型名表示 -->
+         <local:SeparateLabelContents>
+            <local:SeparateLabelContents.LabelContents>
+               <local:EditorTextControl EN="Type name"
+                                        JP="型名"/>
+            </local:SeparateLabelContents.LabelContents>
+            <local:SeparateLabelContents.Contents>
+               <TextBlock Text="{Binding TypeName}"/>
+            </local:SeparateLabelContents.Contents>
+         </local:SeparateLabelContents>
+         <!-- オブジェクト名表示 -->
+         <local:SeparateLabelContents>
+            <local:SeparateLabelContents.LabelContents>
+               <local:EditorTextControl EN="Object name"
+                                        JP="オブジェクト名"/>
+            </local:SeparateLabelContents.LabelContents>
+            <local:SeparateLabelContents.Contents>
+               <TextBox Text="{Binding Name}"/>
+            </local:SeparateLabelContents.Contents>
+         </local:SeparateLabelContents>
+      </StackPanel>
+   </StackPanel>
+</UserControl>

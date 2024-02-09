@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -67,6 +68,9 @@ namespace EditorUI {
                     //----- メインウィンドウが立ち上がったら続行、キャンセルされたら終了
                     while (mainWindow == null && IsCancelStartup == false) { }
                     if (IsCancelStartup) return;
+
+                    //----- 初期化
+                    EditorExtensionInit.Init(Assembly.GetExecutingAssembly());
 
                     //----- 初期シーン作成
                     SceneLoader.Get.MoveScene(new EditorDefaultScene(""));
