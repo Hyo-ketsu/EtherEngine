@@ -16,6 +16,9 @@
     <Filter Include="Native">
       <UniqueIdentifier>{9a451753-e92b-4e5e-a4b8-944f4ed04ce5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manage\Component">
+      <UniqueIdentifier>{4c5eeb8b-26e8-4dcf-8799-83e0b8e3b796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
