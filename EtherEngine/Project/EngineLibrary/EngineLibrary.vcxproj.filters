@@ -100,6 +100,7 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\ManageEnum.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ClassData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
@@ -176,5 +177,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibrarySingletonGetter.cpp">
       <Filter>Manage</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\EngineLibrary\ClassData.cpp" />
   </ItemGroup>
 </Project>

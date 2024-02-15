@@ -1,6 +1,7 @@
 #ifndef I_CLASSLOADER_H
 #define I_CLASSLOADER_H
 #include <EngineLibrary/EngineLibraryDefine.h>
+#include <EngineLibrary/ClassData.h>
 
 
 //----- EtherEngineJsonConverter 宣言
@@ -46,14 +47,13 @@ namespace EtherEngine {
         // @ Arg1 : 出力するオブジェクト
         // @ Arg2 : オプション
         // @ Arg3 : フィールドを取得する限界のクラス(Hoge->Fuga->PiyoでPiyoを指定した場合、Hoge,Fugaのフィールドを取得)
-        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Type^ out, GetClassDataOption option, System::Type^ overClass);
+        static System::Collections::Generic::List<ClassData^>^ GetClassData(System::Type^ out, GetClassDataOption option, System::Type^ overClass);
         // クラスの各フィールドを出力する。自クラスのみ
-        // @ MEMO : 後でプロパティも出力を行うようにする？
         // @ Memo : 標準でSystem::Objectのフィールドは無視します
         // @ Ret  : 出力した型一覧
         // @ Arg1 : 出力するオブジェクト
         // @ Arg2 : オプション
-        static System::Collections::Generic::List<System::Reflection::FieldInfo^>^ GetClassData(System::Type^ out, GetClassDataOption option);
+        static System::Collections::Generic::List<ClassData^>^ GetClassData(System::Type^ out, GetClassDataOption option);
     };
 }
 

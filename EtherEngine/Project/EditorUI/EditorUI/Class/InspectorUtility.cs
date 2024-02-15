@@ -84,7 +84,7 @@ namespace EditorUI {
                     //----- デフォルト表示。それぞれの型に対応したコントロールを追加
                     foreach (var classData in classDatas) {
                         //----- BaseObject       
-                        if (classData.FieldType == typeof(BaseObject)) {
+                        if (classData.TypeData == typeof(BaseObject)) {
                             continue;
                             if (false) {
                                 //----- 非参照。再帰して表示
@@ -101,17 +101,17 @@ namespace EditorUI {
                             continue;
                         }
                         //----- 数値型
-                        if (classData.FieldType == typeof(int) || classData.FieldType == typeof(short) || classData.FieldType == typeof(long) ||
-                            classData.FieldType == typeof(uint) || classData.FieldType == typeof(ushort) || classData.FieldType == typeof(ulong) ||
-                            classData.FieldType == typeof(float)) {
+                        if (classData.TypeData == typeof(int) || classData.TypeData == typeof(short) || classData.TypeData == typeof(long) ||
+                            classData.TypeData == typeof(uint) || classData.TypeData == typeof(ushort) || classData.TypeData == typeof(ulong) ||
+                            classData.TypeData == typeof(float)) {
                             //----- コントロール生成
                             var numberInput = new NumberInput();
                             var contents = new SeparateLabelContents();
 
                             //----- 各コントロール設定
-                            contents.Text = GetNonDecorationFieldName(classData.Name);
+                            contents.Text = GetNonDecorationFieldName(classData.Menber.Name);
                             contents.Contents = numberInput;
-                            numberInput.NumberType = classData.FieldType;
+                            numberInput.NumberType = classData.TypeData;
                             numberInput.SetNumber(classData.GetValue(baseObject));
 
                             //----- stackパネルに追加
@@ -120,13 +120,13 @@ namespace EditorUI {
                             continue;
                         }
                         //----- 文字列
-                        if (classData.FieldType == typeof(string)) {
+                        if (classData.TypeData == typeof(string)) {
                             //----- コントロール生成
                             var contents = new SeparateLabelContents();
                             var textBox = new TextBox();
 
                             //----- 各コントロール設定
-                            contents.Text = GetNonDecorationFieldName(classData.Name);
+                            contents.Text = GetNonDecorationFieldName(classData.Menber.Name);
                             contents.Contents = textBox;
 
                             //----- テキストボックスの修正

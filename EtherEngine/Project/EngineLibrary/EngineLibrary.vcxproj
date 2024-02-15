@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\Source\EngineLibrary\AttributeDefine.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseMainWindow.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\BaseObjectStorage.h" />
+    <ClInclude Include="..\..\Source\EngineLibrary\ClassData.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ClassLoader.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManage.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.h" />
@@ -56,6 +57,7 @@
     <ClCompile Include="..\..\Source\EngineLibrary\AttributeDefine.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseMainWindow.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\BaseObjectStorage.cpp" />
+    <ClCompile Include="..\..\Source\EngineLibrary\ClassData.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ClassLoader.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManage.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ConvertManageToUnmanage.cpp" />
