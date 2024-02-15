@@ -39,8 +39,10 @@ namespace EtherEngine {
         std::vector<CollisionHitData>& AccessCollisionHitData(void) { return m_hitData; }
 
 
+        // 追加時処理を行う
+        void CreateFunction(void);
         // 更新処理を行う
-        void UpdateFuntion(void);
+        void UpdateFunction(void);
         // 物理更新処理を行う
         // @ MEMO : しばらく実装予定なし
         void FixedUpdateFunction(void) {}
@@ -54,6 +56,8 @@ namespace EtherEngine {
         void CollisionHitFunction(void);
 
     protected:
+        // 追加時処理
+        virtual void Create(void) = 0;
         // 開始処理
         virtual void Start(void) = 0;
         // 更新処理

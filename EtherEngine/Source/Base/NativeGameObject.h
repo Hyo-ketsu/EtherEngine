@@ -145,6 +145,9 @@ namespace EtherEngine {
         //----- ê∂ê¨
         auto ptr = std::make_shared<ComponentType>(this, args...);
 
+        //----- í«â¡éûèàóùé¿çs
+        ptr->CreateFunction();
+
         //----- í«â¡
         if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
             m_drawComponents.push_back(ptr);

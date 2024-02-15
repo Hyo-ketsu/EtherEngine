@@ -43,6 +43,11 @@ namespace EtherEngine {
         auto ret = safe_cast<ComponentType>(System::Activator::CreateInstance(ComponentType::typeid));
         ret->ParentGameObject = this;
         m_componentList->Add(ret);
+
+        //----- 追加時処理実行
+        ret->Create();
+
+        //----- 返却
         return ret;
     }
     // コンポーネントを取得する

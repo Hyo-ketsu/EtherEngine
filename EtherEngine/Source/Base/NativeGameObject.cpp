@@ -18,13 +18,13 @@ namespace EtherEngine {
 
         //----- 通常コンポーネントの更新処理
         for (auto& component : m_components) {
-            component->UpdateFuntion();
+            component->UpdateFunction();
         }
         DeleteComponentsDelete();
 
         //----- 描画コンポーネントの更新処理
         for (auto& component : m_drawComponents) {
-            component->UpdateFuntion();
+            component->UpdateFunction();
         }
         DeleteComponentsDelete();
     }

@@ -11,8 +11,15 @@ namespace EtherEngine {
     }
 
 
+    // 追加時処理を行う
+    void ComponentBase::CreateFunction(void) {
+        //----- アクティブチェックは行いません
+
+        //----- 追加時処理実行
+        Create();
+    }
     // 更新処理を行う
-    void ComponentBase::UpdateFuntion(void) {
+    void ComponentBase::UpdateFunction(void) {
         //----- アクティブチェック
         if (IsUnvalidObject()) return;
 

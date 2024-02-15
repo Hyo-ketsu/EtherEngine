@@ -30,6 +30,8 @@ namespace EtherEngine {
         }
 
 
+        // 追加時処理
+        virtual void Create(void) {}
         // 開始処理
         virtual void Start(void) {}
         // 更新処理
