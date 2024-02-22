@@ -4,11 +4,15 @@
 //----- DrawComponent実装
 namespace EtherEngine {
     // 描画処理を行う
-    void DrawComponent::DrawFuntion(void) {
+    void NativeDrawComponent::DrawFuntion(void) {
         //----- アクティブチェック
-        if (GetActive() == false) return;
-        if (GetDelete()) return;
-
+        if (this->IsUnvalidObject()) return;
+        Update();
+        //----- アクティブチェック
+        if (this->IsUnvalidObject()) return;
         Draw();
+        //----- アクティブチェック
+        if (this->IsUnvalidObject()) return;
+        LateUpdate();
     }
 }

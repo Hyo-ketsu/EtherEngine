@@ -5,9 +5,9 @@
 
 //----- DrawComponent宣言
 namespace EtherEngine {
-    class DrawComponent : public ComponentBase {
+    class NativeDrawComponent : public NativeComponent {
     public:
-        using ComponentBase::ComponentBase;
+        using NativeComponent::NativeComponent;
 
         // 描画処理を行う
         void DrawFuntion(void);
@@ -26,6 +26,11 @@ namespace EtherEngine {
         virtual void DrawPlatformFunction(void) {}
         // 描画処理
         virtual void Draw(void) = 0;
+        // 描画前更新処理
+        virtual void Update(void) {}
+        // 描画後更新処理
+        virtual void LateUpdate(void) {}
+
 
     private:
         Eigen::Matrix4f m_view; // ビュー行列
