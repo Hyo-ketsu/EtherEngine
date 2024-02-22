@@ -9,31 +9,49 @@
 //----- DrawBaseComponent 宣言
 namespace EtherEngine {
     // 描画コンポーネント
-    public ref class DrawBaseComponent : public Component {
+    public ref class DrawComponent : public Component {
     public:
         // コンストラクタ
-        DrawBaseComponent(void)
-            : Component()
-            , m_vertexShader(nullptr)
-            , m_pixelShader(nullptr) {
-        }
+        DrawComponent(void);
+        // デストラクタ
+        ~DrawComponent(void);
+        // ファイナライザ
+        !DrawComponent(void);
+
+
         // 描画処理を行う
         virtual void Draw(void) {}
 
 
+        // ビュー行列
+        property System::Numerics::Matrix4x4 View {
+            System::Numerics::Matrix4x4 get(void);
+            void set(System::Numerics::Matrix4x4 value);
+        }
+        // プロジェクション行列
+        property System::Numerics::Matrix4x4 Projection {
+            System::Numerics::Matrix4x4 get(void);
+            void set(System::Numerics::Matrix4x4 value);
+        }
         // ビュー行列ゲッター
         UnmanageMaintainer<Eigen::Matrix4f> GetView(void) { return m_view; }
         // ビュー行列セッター
-        void SetView(UnmanageMaintainer<Eigen::Matrix4f> in) { m_view = in; }
+        void SetView(Eigen::Matrix4f in) { m_view = UnmanageMaintainer<Eigen::Matrix4f>(&in); }
         // プロジェクション行列ゲッター
         UnmanageMaintainer<Eigen::Matrix4f> GetProjection(void) { return m_projection; }
         // プロジェクション行列セッター
-        void SetProjection(UnmanageMaintainer<Eigen::Matrix4f> in) { m_projection = in; }
+        void SetProjection(Eigen::Matrix4f in) { m_projection = UnmanageMaintainer<Eigen::Matrix4f>(&in); }
 
-        // 頂点シェーダー名アクセサー
-        System::String^ AccessThisVertexShader(void) { return m_thisVertexShader; }
-        // ピクセルシェーダー名アクセサー
-        System::String^ AccessThisPixelShader(void) { return m_thisPixelShader; }
+        // 頂点シェーダー名
+        property System::String^ VertexShaderName {
+            System::String^ get(void) { return m_thisVertexShader; }
+            void set(System::String^ value);
+        }
+        // ピクセルシェーダー名
+        property System::String^ PixelShaderName {
+            System::String^ get(void) { return m_thisPixelShader; }
+            void set(System::String^ value);
+        }
 
         // 頂点シェーダーゲッター
         VertexShader* const GetVertexShader(void) { return m_vertexShader; }
