@@ -17,20 +17,8 @@ namespace EtherEngine {
     // シーン上のゲームを構成するオブジェクトを表現する
     class NativeGameObject : public NativeBaseObject {
     public:
-        // 更新処理を行う
-        void Update(void);
-        // 物理更新処理を行う
-        void FixedUpdate(void);
         // 描画処理を行う
         void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
-        // 削除時処理を行う
-        void Delete(void);
-        // 衝突開始処理を行う
-        void CollisionStart(void);
-        // 衝突終了処理を行う
-        void CollisionEnd(void);
-        // 衝突処理を行う
-        void CollisionHit(void);
 
 
         // 名前ゲッター
@@ -83,23 +71,23 @@ namespace EtherEngine {
         // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
         // @ Ret  : 追加したコンポーネント
         // @ Args : 追加コンポーネントのコンストラクタに使用する引数
-        template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
+        template <Concept::SubClassOnly<NativeComponent> ComponentType, typename ...ArgsType>
         std::weak_ptr<ComponentType> AddComponent(ArgsType&& ...args);
         // コンポーネント削除
         // @ Temp : 削除するコンポーネントの型
         // @ Ret  : 削除したか
-        template <Concept::SubClassOnly<ComponentBase> ComponentType>
+        template <Concept::SubClassOnly<NativeComponent> ComponentType>
         bool DeleteComponent(void);
         // コンポーネントを取得する
         // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント
         // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
-        template <Concept::SubClassOnly<ComponentBase> ComponentType>
+        template <Concept::SubClassOnly<NativeComponent> ComponentType>
         std::weak_ptr<ComponentType> GetComponent(uint index = 0);
         // コンポーネントを複数取得する
         // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント（複数）
-        template <Concept::SubClassOnly<ComponentBase> ComponentType>
+        template <Concept::SubClassOnly<NativeComponent> ComponentType>
         std::vector<std::weak_ptr<ComponentType>> GetComponents(void);
 
     protected:
@@ -120,9 +108,8 @@ namespace EtherEngine {
         Transform m_transform;  // 座標
         SceneIDType m_scene;      // 現在所属シーン
         Handle<NativeGameObject> m_handle;    // 自身のハンドル
-        std::vector<std::shared_ptr<ComponentBase>> m_components;     // 通常のコンポーネント
         std::vector<std::shared_ptr<CollisionComponent>> m_collisions;// 当たり判定コンポーネント
-        std::vector<std::shared_ptr<DrawComponent>> m_drawComponents; // 描画コンポーネント
+        std::vector<std::shared_ptr<NativeDrawComponent>> m_drawComponents; // 描画コンポーネント
         std::vector<CollisionHitData> m_hitData;     // 保持しているそのフレームの当たり判定情報
         std::vector<CollisionHitData> m_oldHitData;  // 保持している前フレームの当たり判定情報
     };
@@ -137,7 +124,7 @@ namespace EtherEngine {
     // @ Temp1: 追加するコンポーネントの型
     // @ Temps: 追加コンポーネントのコンストラクタに使用する引数
     // @ Args : 追加コンポーネントのコンストラクタに使用する引数
-    template <Concept::SubClassOnly<ComponentBase> ComponentType, typename ...ArgsType>
+    template <Concept::SubClassOnly<NativeComponent> ComponentType, typename ...ArgsType>
     std::weak_ptr<ComponentType> NativeGameObject::AddComponent(ArgsType&& ...args) {
         //----- 警告表示
         static_assert((std::is_constructible_v<ComponentType, NativeGameObject*, ArgsType...>), "Error! AddComponent Args");
@@ -149,14 +136,11 @@ namespace EtherEngine {
         ptr->CreateFunction();
 
         //----- 追加
-        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+        if constexpr (Concept::BaseOfConcept<ComponentType, NativeDrawComponent>) {
             m_drawComponents.push_back(ptr);
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
             m_collisions.push_back(ptr);
-        }
-        else {
-            m_components.push_back(ptr);
         }
 
         //----- 返却
@@ -165,10 +149,10 @@ namespace EtherEngine {
     // コンポーネント削除
     // @ Temp : 削除するコンポーネントの型
     // @ Ret  : 削除したか
-    template <Concept::SubClassOnly<ComponentBase> ComponentType>
+    template <Concept::SubClassOnly<NativeComponent> ComponentType>
     bool NativeGameObject::DeleteComponent(void) {
         //------ 捜索
-        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+        if constexpr (Concept::BaseOfConcept<ComponentType, NativeDrawComponent>) {
             for (auto& component : m_drawComponents) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 削除
@@ -205,10 +189,10 @@ namespace EtherEngine {
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント
     // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
-    template <Concept::SubClassOnly<ComponentBase> ComponentType>
+    template <Concept::SubClassOnly<NativeComponent> ComponentType>
     std::weak_ptr<ComponentType> NativeGameObject::GetComponent(uint index) {
         //----- 取得
-        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+        if constexpr (Concept::BaseOfConcept<ComponentType, NativeDrawComponent>) {
             for (auto& component : m_drawComponents) {
                 if (dynamic_cast<ComponentType>(component) != nullptr) {
                     //----- 指定番号か
@@ -260,13 +244,13 @@ namespace EtherEngine {
     // コンポーネントを複数取得する
     // @ Temp : 取得するコンポーネント型(ComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント（複数）
-    template <Concept::SubClassOnly<ComponentBase> ComponentType>
+    template <Concept::SubClassOnly<NativeComponent> ComponentType>
     std::vector<std::weak_ptr<ComponentType>> NativeGameObject::GetComponents(void) {
         //----- 返却用変数宣言
         std::vector<std::weak_ptr<ComponentType>> ret;
 
         //----- 取得
-        if constexpr (Concept::BaseOfConcept<ComponentType, DrawComponent>) {
+        if constexpr (Concept::BaseOfConcept<ComponentType, NativeDrawComponent>) {
             for (auto& component : m_drawComponents) {
                 if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
                     //----- 返却用変数に追加

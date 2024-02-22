@@ -38,44 +38,35 @@ namespace EtherEngine {
         }
 
         //----- ゲームオブジェクトの衝突情報削除
-        {
-            auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
+        for (auto& it : NativeGameObjectStorage::Get()->GetGameObjectAll()) {
+            if (it.IsEnable() == false) continue;
 
-            for (auto& it : collisions) {
-                if (it.IsEnable() == false) continue;
+            //----- 現在シーン設定
+            SetCurrentSceneID(it.GetAtomicData().GetScene());
 
-                //----- 現在シーン設定
-                SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-                //----- 更新
-                it.GetAtomicData().SidelineCollisionData();
-            }
+            //----- 更新
+            it.GetAtomicData().SidelineCollisionData();
         }
 
-        //----- 衝突判定
-        {
-            auto gameObjects = NativeGameObjectStorage::Get()->GetGameObjectAll();
+        //----- 全てのゲームオブジェクトからCollisionComponentを取得、当たり判定処理を行う
+        for (auto& thisGameObject : NativeGameObjectStorage::Get()->GetGameObjectAll()) {  // 自身のゲームオブジェクト
+            for (auto& subjectCollision : NativeGameObjectStorage::Get()->GetGameObjectAll()) {    // 対象のゲームオブジェクト
+                //----- 変数宣言
+                decltype(auto) thisAtomic = thisGameObject.GetAtomicData();
+                decltype(auto) subjectAtomic = subjectCollision.GetAtomicData();
 
-            //----- 全てのゲームオブジェクトからCollisionComponentを取得、当たり判定処理を行う
-            for (auto& thisGameObject : gameObjects) {  // 自身のゲームオブジェクト
-                for (auto& subjectCollision : gameObjects) {    // 対象のゲームオブジェクト
-                    //----- 変数宣言
-                    decltype(auto) thisAtomic = thisGameObject.GetAtomicData();
-                    decltype(auto) subjectAtomic = subjectCollision.GetAtomicData();
+                //----- 判定チェック(ガード節)
+                // どちらかが使用不可ならスルーする
+                if (thisAtomic.IsUnvalidObject() || subjectAtomic.IsUnvalidObject()) continue;
+                // 同オブジェクトならスルーする
+                if (thisAtomic.GetId() == subjectAtomic.GetId()) continue;
 
-                    //----- 判定チェック(ガード節)
-                    // どちらかが使用不可ならスルーする
-                    if (thisAtomic.IsUnvalidObject() || subjectAtomic.IsUnvalidObject()) continue;
-                    // 同オブジェクトならスルーする
-                    if (thisAtomic.GetId() == subjectAtomic.GetId()) continue;
+                //----- コリジョンの取得
+                auto thisCollisions = thisAtomic.GetComponents<CollisionComponent>();
+                auto subjectCollisions = subjectAtomic.GetComponents<CollisionComponent>();
 
-                    //----- コリジョンの取得
-                    auto thisCollisions = thisAtomic.GetComponents<CollisionComponent>();
-                    auto subjectCollisions = subjectAtomic.GetComponents<CollisionComponent>();
-
-                    //----- 判定
-                    AllCollisionCheck(thisCollisions, subjectCollisions);
-                }
+                //----- 判定
+                AllCollisionCheck(thisCollisions, subjectCollisions);
             }
         }
 
