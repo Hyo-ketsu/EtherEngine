@@ -25,7 +25,7 @@ namespace EtherEngine {
         for (auto&& it : m_gameObjects) {
             if (it == gameObject) {
                 //----- “¯ƒnƒ“ƒhƒ‹Bíœ‚·‚é
-                it.GetAtomicData().Delete();
+                //it.GetAtomicData().Delete();
                 it.GetAtomicData().DeleteObject();
                 return true;
             }
@@ -41,7 +41,7 @@ namespace EtherEngine {
             auto&& gameObject = m_gameObjects[i];
             if (gameObject.GetData().GetScene() == deleteScene) {
                 //----- íœ‚·‚é
-                gameObject.GetAtomicData().Delete();
+                //gameObject.GetAtomicData().Delete();
                 gameObject.GetAtomicData().DeleteObject();
             }
             else {

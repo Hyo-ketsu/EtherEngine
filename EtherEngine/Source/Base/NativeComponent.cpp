@@ -1,4 +1,4 @@
-#include <Base/ComponentBase.h>
+#include <Base/NativeComponent.h>
 
 
 //----- ComponentBase’è‹`

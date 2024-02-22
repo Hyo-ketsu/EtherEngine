@@ -1,14 +1,13 @@
 #ifndef I_GAMEDRAWCOMPONENT_H
 #define I_GAMEDRAWCOMPONENT_H
-#include <Base/DrawComponentBase.h>
-#include <EngineLibrary/WrapperComponent.h>
+#include <Base/NativeDrawComponent.h>
 #include <EngineLibrary/WrapperDrawComponent.h>
 
 
 //----- 描画コンポーネント
 namespace EtherEngine {
     // 描画コンポーネント
-    class WrapperDrawComponent : public WrapperComponent, public virtual NativeDrawComponent {
+    public ref class WrapperDrawComponent : public Component {
     public:
         // コンストラクタ
         // @ Memo : コンポーネントが生成できなければ例外を送出します
@@ -17,18 +16,10 @@ namespace EtherEngine {
         WrapperDrawComponent(NativeGameObject* gameObject, const std::string& componentName);
 
 
-        // 開始処理
-        void Start(void) override;
-        // 更新処理
+        // 描画前更新処理
         void Update(void) override;
-        // 削除時処理
-        void Delete(void) override;
-        // 衝突開始処理
-        void CollisionStart(void) override;
-        // 衝突終了処理
-        void CollisionEnd(void) override;
-        // 衝突処理
-        void CollisionHit(void) override;
+        // 描画後更新処理
+        void LateUpdate(void) override;
 
 
         // 描画

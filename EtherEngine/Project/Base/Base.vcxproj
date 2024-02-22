@@ -35,11 +35,10 @@
     <ClCompile Include="..\..\Source\Base\CollisionSphere.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionSphereXSphereFunction.cpp" />
     <ClCompile Include="..\..\Source\Base\CollisionStorage.cpp" />
-    <ClCompile Include="..\..\Source\Base\ComponentBase.cpp" />
-    <ClCompile Include="..\..\Source\Base\ComponentHelper.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeComponent.cpp" />
     <ClCompile Include="..\..\Source\Base\ConceptUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\Converter.cpp" />
-    <ClCompile Include="..\..\Source\Base\DrawComponentBase.cpp" />
+    <ClCompile Include="..\..\Source\Base\NativeDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\Base\EditorException.cpp" />
     <ClCompile Include="..\..\Source\Base\EtherEngineUtility.cpp" />
     <ClCompile Include="..\..\Source\Base\NativeGameObject.cpp" />
@@ -82,11 +81,10 @@
     <ClInclude Include="..\..\Source\Base\CollisionSphere.h" />
     <ClInclude Include="..\..\Source\Base\CollisionSphereXSphereFunction.h" />
     <ClInclude Include="..\..\Source\Base\CollisionStorage.h" />
-    <ClInclude Include="..\..\Source\Base\ComponentBase.h" />
-    <ClInclude Include="..\..\Source\Base\ComponentHelper.h" />
+    <ClInclude Include="..\..\Source\Base\NativeComponent.h" />
     <ClInclude Include="..\..\Source\Base\ConceptUtility.h" />
     <ClInclude Include="..\..\Source\Base\Converter.h" />
-    <ClInclude Include="..\..\Source\Base\DrawComponentBase.h" />
+    <ClInclude Include="..\..\Source\Base\NativeDrawComponent.h" />
     <ClInclude Include="..\..\Source\Base\EditorException.h" />
     <ClInclude Include="..\..\Source\Base\EtherEngineUtility.h" />
     <ClInclude Include="..\..\Source\Base\NativeGameObject.h" />

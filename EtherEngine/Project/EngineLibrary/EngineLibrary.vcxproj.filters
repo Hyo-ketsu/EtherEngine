@@ -65,9 +65,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperDrawComponent.h">
       <Filter>Native</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h">
-      <Filter>Native</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EngineLibrary\IDClass.h">
       <Filter>Manage</Filter>
     </ClInclude>
@@ -140,9 +137,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\EngineLibraryUtility.cpp">
       <Filter>Manage</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp">
-      <Filter>Native</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp">
       <Filter>Native</Filter>

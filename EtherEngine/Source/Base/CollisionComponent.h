@@ -1,6 +1,6 @@
 #ifndef I_COLLISIONCOMPONENT_H
 #define I_COLLISIONCOMPONENT_H
-#include <Base/ComponentBase.h>
+#include <Base/NativeComponent.h>
 #include <Base/CollisionBase.h>
 #include <Base/ConceptUtility.h>
 

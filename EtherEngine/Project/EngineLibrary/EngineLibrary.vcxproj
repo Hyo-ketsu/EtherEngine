@@ -41,7 +41,6 @@
     <ClInclude Include="..\..\Source\EngineLibrary\ManageLambda.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\Scene.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\SceneLoader.h" />
-    <ClInclude Include="..\..\Source\EngineLibrary\WrapperComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\WrapperDrawComponent.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ManageSingleton.h" />
     <ClInclude Include="..\..\Source\EngineLibrary\ModelComponent.h" />
@@ -74,7 +73,6 @@
     <ClCompile Include="..\..\Source\EngineLibrary\ManageEnum.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\Scene.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\SceneLoader.cpp" />
-    <ClCompile Include="..\..\Source\EngineLibrary\WrapperComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\WrapperDrawComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\EngineLibrary\ModelRender.cpp" />

@@ -1,7 +1,7 @@
 #ifndef I_DXDRAWCOMPONENT_H
 #define I_DXDRAWCOMPONENT_H
 #include <Base/GraphicDefines.h>
-#include <Base/DrawComponentBase.h>
+#include <Base/NativeDrawComponent.h>
 #include <DirectX/ShaderClass.h>
 // @ MEMO : ïsóvÇ≈ÇÕÅH
 

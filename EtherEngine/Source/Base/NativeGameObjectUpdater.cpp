@@ -4,39 +4,8 @@
 
 
 namespace EtherEngine {
-    // ゲームオブジェクトに更新処理を行う
-    void NativeGameObjectUpdater::Update(void) {
-        auto updates = NativeGameObjectStorage::Get()->GetGameObjectAll();
-
-        for (auto& it : updates) {
-            if (it.IsEnable() == false) continue;
-
-            //----- 現在シーン設定
-            SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-            //----- 更新
-            it.GetAtomicData().Update();
-        }
-        NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
-    }
     // ゲームオブジェクトに物理更新処理を行う
     void NativeGameObjectUpdater::FixedUpdate(void) {
-        //----- 物理処理
-        {
-            auto fixedUpdates = NativeGameObjectStorage::Get()->GetGameObjectAll();
-
-            for (auto& it : fixedUpdates) {
-                if (it.IsEnable() == false) continue;
-
-                //----- 現在シーン設定
-                SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-                //----- 更新
-                it.GetAtomicData().FixedUpdate();
-            }
-            NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
-        }
-
         //----- ゲームオブジェクトの衝突情報削除
         for (auto& it : NativeGameObjectStorage::Get()->GetGameObjectAll()) {
             if (it.IsEnable() == false) continue;
@@ -67,52 +36,6 @@ namespace EtherEngine {
 
                 //----- 判定
                 AllCollisionCheck(thisCollisions, subjectCollisions);
-            }
-        }
-
-        //----- 各衝突処理実行
-        {
-            {
-                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
-
-                for (auto& it : collisions) {
-                    if (it.IsEnable() == false) continue;
-
-                    //----- 現在シーン設定
-                    SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-                    //----- 更新
-                    it.GetAtomicData().CollisionStart();
-                }
-                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
-            }
-            {
-                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
-
-                for (auto& it : collisions) {
-                    if (it.IsEnable() == false) continue;
-
-                    //----- 現在シーン設定
-                    SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-                    //----- 更新
-                    it.GetAtomicData().CollisionEnd();
-                }
-                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
-            }
-            {
-                auto collisions = NativeGameObjectStorage::Get()->GetGameObjectAll();
-
-                for (auto& it : collisions) {
-                    if (it.IsEnable() == false) continue;
-
-                    //----- 現在シーン設定
-                    SetCurrentSceneID(it.GetAtomicData().GetScene());
-
-                    //----- 更新
-                    it.GetAtomicData().CollisionHit();
-                }
-                NativeGameObjectStorage::Get()->DeleteGameObjectsDelete();
             }
         }
     }

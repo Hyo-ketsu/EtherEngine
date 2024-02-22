@@ -2,11 +2,10 @@
 #define I_NATIVEGAMEOBJECT_H
 #include <Base/BaseDefines.h>
 #include <Base/NativeBaseObject.h>
-#include <Base/ComponentBase.h>
-#include <Base/ComponentHelper.h>
+#include <Base/NativeComponent.h>
 #include <Base/CollisionComponent.h>
 #include <Base/ConceptUtility.h>
-#include <Base/DrawComponentBase.h> 
+#include <Base/NativeDrawComponent.h> 
 #include <Base/Handle.h>
 #include <Base/Transform.h>
 #include <Base/EtherEngineUtility.h>
@@ -172,16 +171,6 @@ namespace EtherEngine {
                 }
             }
         }
-        else {
-            for (auto& component : m_components) {
-                if (dynamic_cast<ComponentType>(component) != nullptr) {
-                    //----- íœ
-                    component->DeleteFuntion();
-                    component->DeleteObject();
-                    return true;
-                }
-            }
-        }
 
         return false;
     }
@@ -222,21 +211,6 @@ namespace EtherEngine {
                 }
             }
         }
-        else {
-            for (auto& component : m_components) {
-                if (dynamic_cast<ComponentType>(component) != nullptr) {
-                    //----- w’è”Ô†‚©
-                    if (index != 0) {
-                        //----- w’è‚Ì”Ô†‚Ü‚Å’B‚µ‚Ä‚¢‚È‚¢B”Ô†‚ğ1íŒ¸‚µ‚Äæ“¾‚ğŒp‘±‚·‚é
-                        index--;
-                        continue;
-                    }
-
-                    //----- •Ô‹p
-                    return std::weak_ptr<ComponentType>(component);
-                }
-            }
-        }
 
         //----- –³Œø’l•Ô‹p
         return std::weak_ptr<ComponentType>();
@@ -260,14 +234,6 @@ namespace EtherEngine {
         }
         else if constexpr (Concept::BaseOfConcept<ComponentType, CollisionComponent>) {
             for (auto& component : m_collisions) {
-                if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
-                    //----- •Ô‹p—p•Ï”‚É’Ç‰Á
-                    ret.push_back(std::weak_ptr<ComponentType>(component));
-                }
-            }
-        }
-        else {
-            for (auto& component : m_components) {
                 if (dynamic_cast<ComponentType*>(component.get()) != nullptr) {
                     //----- •Ô‹p—p•Ï”‚É’Ç‰Á
                     ret.push_back(std::weak_ptr<ComponentType>(component));

@@ -8,8 +8,6 @@
 namespace EtherEngine {
     class NativeGameObjectUpdater : public Singleton<NativeGameObjectUpdater> {
     public:
-        // ゲームオブジェクトに更新処理を行う
-        void Update(void);
         // ゲームオブジェクトに物理更新処理を行う
         void FixedUpdate(void);
 

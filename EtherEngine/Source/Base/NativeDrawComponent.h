@@ -1,6 +1,6 @@
 #ifndef I_DRAWCOMPONENTBase_H
 #define I_DRAWCOMPONENTBase_H
-#include <Base/ComponentBase.h>
+#include <Base/NativeComponent.h>
 
 
 //----- DrawComponentéŒ¾
