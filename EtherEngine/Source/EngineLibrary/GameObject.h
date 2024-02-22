@@ -42,6 +42,24 @@ namespace EtherEngine {
         bool IsSceneObject(Scene^ scene);
 
 
+        // 更新処理を行う
+        void Update(void);
+        // 更新後処理を行う
+        void LateUpdate(void);
+        // 物理更新処理を行う
+        void FixedUpdate(void);
+        // 描画処理を行う
+        void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
+        // 削除時処理を行う
+        void Delete(void);
+        // 衝突開始処理を行う
+        void CollisionStart(void);
+        // 衝突終了処理を行う
+        void CollisionEnd(void);
+        // 衝突処理を行う
+        void CollisionHit(void);
+
+
         // コンポーネントを追加する
         // @ Temp : 追加するコンポーネント
         // @ Ret  : 取得したコンポーネント
@@ -64,10 +82,15 @@ namespace EtherEngine {
         bool DeleteComponent(void);
 
     private:
+        // 削除済みのコンポーネントを削除する
+        void DeleteComponents(void);
+
+
         [Attribute::OutputAttribute, Attribute::BaseObjectSerializeAttribute] 
-            System::Collections::Generic::List<Component^>^ m_componentList;
-        Handle<NativeGameObject>* m_handle;
-        SceneIDType m_thisObjectScene;
+            System::Collections::Generic::List<Component^>^ m_components;    // 保持しているコンポーネント
+        System::Collections::Generic::List<Component^>^ m_deleteComponents;  // 削除コンポーネント
+        Handle<NativeGameObject>* m_handle; // 保持しているNativeのGameObjectのHandle
+        SceneIDType m_thisObjectScene;      // 現在シーン
     };
 }
 

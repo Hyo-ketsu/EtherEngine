@@ -36,6 +36,8 @@ namespace EtherEngine {
         virtual void Start(void) {}
         // 更新処理
         virtual void Update(void) {}
+        // 更新後処理
+        virtual void LateUpdate(void) {}
         // 削除時処理
         virtual void Delete(void) {}
         // 衝突開始処理

@@ -3,13 +3,16 @@
 #include <Base/NativeGameObjectStorage.h>
 #include <EngineLibrary/BaseObjectStorage.h>
 #include <EngineLibrary/GameObjectStorage.h>
+#include <EngineLibrary/DrawComponent.h>
 
 
 #pragma managed
 //----- GameObject 定義
 namespace EtherEngine {
     // コンストラクタ
-    GameObject::GameObject(void) {
+    GameObject::GameObject(void)
+        : m_components(gcnew System::Collections::Generic::List<Component^>(0)) 
+        , m_deleteComponents(gcnew System::Collections::Generic::List<Component^>(0)) {
         m_handle = new std::remove_pointer_t<decltype(m_handle)>(NativeGameObjectStorage::Get()->CreateGameObject());
         GameObjectStorage::Get->AddGameObject(this);
     }
@@ -36,13 +39,103 @@ namespace EtherEngine {
     }
 
 
+    // 更新処理を行う
+    void GameObject::Update(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->Update();
+        }
+
+        DeleteComponents();
+    }
+    // 更新後処理を行う
+    void GameObject::LateUpdate(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->LateUpdate();
+        }
+
+        DeleteComponents();
+    }
+    // 物理更新処理を行う
+    void GameObject::FixedUpdate(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->Update();
+        }
+
+        DeleteComponents();
+    }
+    // 描画処理を行う
+    void GameObject::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            auto drawComponent = dynamic_cast<DrawComponent^>(it);
+
+            if (drawComponent != nullptr) {
+                drawComponent->SetView(view);
+                drawComponent->SetProjection(projection);
+
+                drawComponent->Draw();
+            }
+        }
+
+        DeleteComponents();
+    }
+    // 削除時処理を行う
+    void GameObject::Delete(void) {
+
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->Delete();
+        }
+
+        DeleteComponents();
+    }
+    // 衝突開始処理を行う
+    void GameObject::CollisionStart(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->CollisionStart();
+        }
+
+        DeleteComponents();
+    }
+    // 衝突終了処理を行う
+    void GameObject::CollisionEnd(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->CollisionEnd();
+        }
+
+        DeleteComponents();
+    }
+    // 衝突処理を行う
+    void GameObject::CollisionHit(void) {
+        for each (auto it in m_components) {
+            if (it->IsUnvalidObject()) continue;
+
+            it->CollisionHit();
+        }
+
+        DeleteComponents();
+    }
+
+
     // コンポーネントを追加する
     generic <typename ComponentType>
     ComponentType GameObject::AddComponent(void) {
         //----- コンポーネントを追加する
         auto ret = safe_cast<ComponentType>(System::Activator::CreateInstance(ComponentType::typeid));
         ret->ParentGameObject = this;
-        m_componentList->Add(ret);
+        m_components->Add(ret);
 
         //----- 追加時処理実行
         ret->Create();
@@ -54,7 +147,7 @@ namespace EtherEngine {
     generic <typename ComponentType>
     ComponentType GameObject::GetComponent(void) {
         //----- コンポーネント総なめ
-        for each (auto it in m_componentList) {
+        for each (auto it in m_components) {
             if (it->GetType() == ComponentType::typeid) {
                 return safe_cast<ComponentType>(it);
             }
@@ -70,7 +163,7 @@ namespace EtherEngine {
         System::Collections::Generic::List<ComponentType>^ ret = gcnew System::Collections::Generic::List<ComponentType>(0);
 
         //----- コンポーネント総なめ
-        for each (auto it in m_componentList) {
+        for each (auto it in m_components) {
             if (it->GetType() == ComponentType::typeid) {
                 ret->Add(safe_cast<ComponentType>(it));
             }
@@ -83,12 +176,23 @@ namespace EtherEngine {
     generic <typename ComponentType>
     bool GameObject::DeleteComponent(void) {
         //----- コンポーネント総なめ
-        for (int i = 0; i < m_componentList->Count; i++) {
-            if (m_componentList[i]->GetType() == ComponentType::typeid) {
-                m_componentList->RemoveAt(i);
+        for each (auto it in m_components) {
+            if (it->GetType() == ComponentType::typeid) {
+                m_deleteComponents->Add(it);
+                return true;
             }
         }
 
         return false;
+    }
+
+
+    // 削除済みのコンポーネントを削除する
+    void GameObject::DeleteComponents(void) {
+        for each (auto it in m_deleteComponents) {
+            m_components->Remove(it);
+        }
+
+        m_deleteComponents->Clear();
     }
 }
