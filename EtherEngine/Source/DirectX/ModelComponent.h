@@ -8,7 +8,7 @@
 //
 ////----- ModelComponent宣言
 //namespace EtherEngine {
-//    class ModelComponent : public DXDrawComponent, public Model {
+//    class ModelComponent : public DXDrawComponent, public ModelBase {
 //    public:
 //        // コンストラクタ
 //        // @ Arg1 : ゲームオブジェクト

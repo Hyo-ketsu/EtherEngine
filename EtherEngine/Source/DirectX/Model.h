@@ -8,15 +8,20 @@
 #include <DirectX/ShaderClass.h>
 
 
-//----- Model宣言
+//----- ModelData 宣言
+namespace EtherEngine {
+}
+
+
+//----- ModelBase 宣言
 namespace EtherEngine {
     // モデルを表現するクラス
-    class Model : public IInOuter {
+    class ModelBase {
     public:
         // コンストラクタ
-        Model(void);
+        ModelBase(void);
         // デストラクタ
-        ~Model(void);
+        ~ModelBase(void);
 
 
         // 読み込みモデル名ゲッター
@@ -42,12 +47,6 @@ namespace EtherEngine {
         // @ Arg3 : 拡縮(Default : 1.0f)
         // @ Arg4 : 頂点反転(Default : 行わない)
         void Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale = 1.0f, const bool isFlip = false);
-
-
-        // 外部出力
-        Json Output(void) override;
-        // 外部入力
-        void Input(const Json& input) override;
 
     protected:
         bool m_isLoad;              // 読み込みができたか

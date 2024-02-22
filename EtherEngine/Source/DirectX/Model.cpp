@@ -5,7 +5,7 @@
 
 namespace EtherEngine {
     // コンストラクタ
-    Model::Model(void) 
+    ModelBase::ModelBase(void) 
         : m_isLoad(false)
         , m_isFlip(false)
         , m_scale(1.0f)
@@ -13,12 +13,12 @@ namespace EtherEngine {
         , m_textureSlot(0) {
     }
     // デストラクタ
-    Model::~Model(void) {
+    ModelBase::~ModelBase(void) {
     }
 
 
     // 描画
-    bool Model::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection, PixelShader* pixelShader) {
+    bool ModelBase::DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection, PixelShader* pixelShader) {
         //----- 読み込みが行われていなければ例外送出
         if (m_isLoad == false) return false;
 
@@ -38,7 +38,7 @@ namespace EtherEngine {
 
 
     // モデルを読み込む
-    void Model::Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale, const bool isFlip) {
+    void ModelBase::Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale, const bool isFlip) {
         //----- assimpの設定
         Assimp::Importer importer;
         int flag = 0;
@@ -169,23 +169,5 @@ namespace EtherEngine {
 
         //----- 読込フラグを立てる
         m_isLoad = true;
-    }
-
-
-    // 外部出力
-    Json Model::Output(void) {
-        nlohmann::json json;
-
-        json["Model"]["LoadFile"] = m_loadModel;
-        json["Model"]["Filp"] = m_isFlip;
-        json["Model"]["Scale"] = m_scale;
-
-        return json;
-    }
-    // 外部入力
-    void Model::Input(const Json& input) {
-        m_loadModel = input["Model"]["LoadFile"];
-        m_isFlip = input["Model"]["Filp"];
-        m_scale = input["Model"]["Scale"];
     }
 }
