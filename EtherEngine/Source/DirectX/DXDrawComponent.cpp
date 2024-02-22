@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     DXDrawComponent::DXDrawComponent(NativeGameObject* gameObject, const VertexShader& vertexShader, const PixelShader& pixelShader)
-        : DrawComponent(gameObject)
+        : NativeDrawComponent(gameObject)
         , m_vertexShader(vertexShader)
         , m_pixelShader(pixelShader) {
     }

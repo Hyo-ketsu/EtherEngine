@@ -7,7 +7,7 @@
 
 //----- DXDrawComponent宣言
 namespace EtherEngine {
-    class DXDrawComponent : public DrawComponent {
+    class DXDrawComponent : public NativeDrawComponent {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト
