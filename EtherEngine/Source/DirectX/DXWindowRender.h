@@ -57,10 +57,6 @@ namespace EtherEngine {
 
         // •`‰æ‘Oˆ—
         void BeginDraw(void);
-        // •`‰æˆ—
-        // @ Ret  : •`‰æ‚µ‚½‚©
-        // @ Arg1 : ƒJƒƒ‰î•ñ
-        bool Draw(const CameraData& cameraData);
         // •`‰æŒãˆ—
         void EndDraw(void);
 

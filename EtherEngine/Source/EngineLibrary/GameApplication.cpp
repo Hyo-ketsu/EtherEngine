@@ -2,9 +2,8 @@
 #include <Base/Timer.h>
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
-#include <Base/NativeGameObjectUpdater.h>
-#include <Base/NativeGameObjectStorage.h>
 #include <Base/CameraStorage.h>
+#include <EngineLibrary/GameObjectUpdater.h>
 
 
 //----- GameApplication 定義
@@ -66,8 +65,7 @@ namespace EtherEngine {
                 GameUpdateEvent(this, System::EventArgs::Empty);
 
                 //----- 更新処理
-                NativeGameObjectUpdater::Get()->FixedUpdate();
-                NativeGameObjectUpdater::Get()->Update();
+
             }
 
             //----- エディター更新処理
@@ -84,19 +82,18 @@ namespace EtherEngine {
                         //----- 描画前処理
                         it.BeginDraw();
 
+                        //----- 描画処理
                         {
+                            //----- ゲームオブジェクト描画処理
+                            NativeGameObjectUpdater::Get()->Draw(*camera);
+
                             //----- エディター描画処理
                             EditorDrawEvent(this, &*camera);
 
                             //----- エディター後描画処理
                             EditorLateDrawEvent(this, &*camera);
-
-                            //----- ゲームオブジェクト描画処理
-                            NativeGameObjectUpdater::Get()->Draw(*camera);
                         }
 
-                        //----- 描画処理
-                        it.Draw(*camera);
                         //----- 描画後処理
                         it.EndDraw();
                     }

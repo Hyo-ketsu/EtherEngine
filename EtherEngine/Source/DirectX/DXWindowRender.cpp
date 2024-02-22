@@ -105,15 +105,6 @@ namespace EtherEngine {
 		m_directX->GetContext()->ClearRenderTargetView(m_rtv, m_backColor.array().data());
 		m_directX->GetContext()->ClearDepthStencilView(m_dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
-	// •`‰æˆ—
-	bool DXWindowRender::Draw(const CameraData& cameraData) {
-		if (this->GetIsDirectXEnable() == false) return false;
-
-		//----- •`‰æ
-		NativeGameObjectUpdater::Get()->Draw(cameraData);
-
-		return true;
-	}
 	// •`‰æŒãˆ—
 	void DXWindowRender::EndDraw(void) {
 		if (this->GetIsDirectXEnable() == false) return;
