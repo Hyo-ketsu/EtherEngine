@@ -1,19 +1,18 @@
 #ifndef I_MODELRENDER_H
 #define I_MODELRENDER_H
 #include <DirectX/Model.h>
-#include <EngineLibrary/WrapperDrawComponent.h>
+#include <EngineLibrary/DrawComponent.h>
 #include <EngineLibrary/EngineLibraryUtility.h>
 
 
 //----- ModelRender 宣言
 namespace EtherEngine {
-#ifdef _ENGINELIBRARY
-    public ref class ModelRender : DrawBaseComponent {
+    public ref class ModelRender : NativeDrawComponent {
     public:
         // コンストラクタ
         ModelRender(void)
-            : DrawBaseComponent() {
-            m_model.SetValue(Model());
+            : DrawComponent() {
+            m_model.SetValue(ModelBase());
         }
         // 描画関数
         void Draw(void) override {
@@ -21,9 +20,8 @@ namespace EtherEngine {
         }
 
     private:
-        [Attribute::OutputAttribute] UnmanageMaintainer<Model> m_model;   // 保持モデル
+        [Attribute::OutputAttribute] UnmanageMaintainer<ModelBase> m_model;   // 保持モデル
     };
-#endif
 }
 
 

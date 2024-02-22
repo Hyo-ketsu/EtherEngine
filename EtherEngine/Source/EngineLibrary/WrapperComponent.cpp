@@ -11,7 +11,7 @@ namespace EtherEngine {
     // @ Arg1 : 親ゲームオブジェクト
     // @ Arg2 : 生成コンポーネント名
     WrapperComponent::WrapperComponent(NativeGameObject* gameObject, const std::string& componentName) 
-        : ComponentBase(gameObject, componentName) {
+        : NativeComponentBase(gameObject, componentName) {
         // @ MEMO : 名前からの生成
         System::Type^ type = System::Type::GetType(UNMANAGE_TO_MANAGE_STRING(componentName));
         auto component = dynamic_cast<Component^>(System::Activator::CreateInstance(type));

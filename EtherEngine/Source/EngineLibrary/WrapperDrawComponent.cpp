@@ -7,7 +7,7 @@ namespace EtherEngine {
     // コンストラクタ
     WrapperDrawComponent::WrapperDrawComponent(NativeGameObject* gameObject, const std::string& componentName)
         : WrapperComponent(gameObject, componentName) 
-        , DrawComponent(gameObject, componentName) {
+        , NativeDrawComponent(gameObject, componentName) {
     }
     // 開始処理
     void WrapperDrawComponent::Start(void) {
@@ -37,7 +37,7 @@ namespace EtherEngine {
     void WrapperDrawComponent::Draw(void) {    
         //----- キャスト
         auto userBaseComponent = safe_cast<Component^>(m_component);
-        auto userDrawBaseComponent = dynamic_cast<DrawBaseComponent^>(userBaseComponent);
+        auto userDrawBaseComponent = dynamic_cast<DrawComponent^>(userBaseComponent);
 
         //----- 描画
         userDrawBaseComponent->Bind();
