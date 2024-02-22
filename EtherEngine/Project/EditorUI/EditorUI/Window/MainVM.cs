@@ -49,6 +49,7 @@ namespace EditorUI {
         public MainVM() {
             CreateWindowData();
 
+            //----- リロードコマンド
             ReloadCommand.Subscribe(_ => {
                 GameReloader.Get.ProjectLoad(BuildConfiguration.Debug);
             });
