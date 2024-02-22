@@ -8,7 +8,7 @@
 //----- CollisionComponent 宣言
 namespace EtherEngine {
     // 当たり判定のコンポーネント
-    class CollisionComponent : public ComponentBase {
+    class CollisionComponent : public NativeComponent {
     public:
         // コンストラクタ
         // @ Temp : コリジョンのタイプ
@@ -38,7 +38,7 @@ namespace EtherEngine {
     // コンストラクタ
     template <Concept::SubClassOnly<CollisionBase> Type>
     CollisionComponent::CollisionComponent(void* gameObject, const Type& collision) 
-        : ComponentBase(gameObject) 
+        : NativeComponent(gameObject) 
         , m_collision(std::make_shared<Type>(collision)) {
     }
 }

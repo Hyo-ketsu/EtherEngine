@@ -10,22 +10,21 @@ class NativeGameObject;
 //----- ComponentBase 宣言
 namespace EtherEngine {
     // コンポーネントの基礎となるクラス
-    class ComponentBase : public NativeBaseObject {
+    class NativeComponent : public NativeBaseObject {
     public:
         // コンストラクタ
         // @ Arg1 : ゲームオブジェクト
-        // @ Arg2 : コンポーネント名(Default : "Conponent")
-        ComponentBase(NativeGameObject* gameObject, const std::string& name = "Component");
+        NativeComponent(NativeGameObject* gameObject);
         // デストラクタ
-        virtual ~ComponentBase(void) {}
+        virtual ~NativeComponent(void) {}
         // コピーコンストラクタ
-        ComponentBase(const ComponentBase& copy) = delete;
+        NativeComponent(const NativeComponent& copy) = delete;
         // ムーブコンストラクタ
-        ComponentBase(ComponentBase&& move) = default;
+        NativeComponent(NativeComponent&& move) = default;
         // コピー代入
-        ComponentBase& operator =(const ComponentBase& copy) = delete;
+        NativeComponent& operator =(const NativeComponent& copy) = delete;
         // ムーブ代入
-        ComponentBase& operator =(ComponentBase&& move) = default;
+        NativeComponent& operator =(NativeComponent&& move) = default;
 
 
         // 親オブジェクトゲッター
@@ -38,43 +37,9 @@ namespace EtherEngine {
         // 衝突コリジョンデータアクセサー
         std::vector<CollisionHitData>& AccessCollisionHitData(void) { return m_hitData; }
 
-
-        // 追加時処理を行う
-        void CreateFunction(void);
-        // 更新処理を行う
-        void UpdateFunction(void);
-        // 物理更新処理を行う
-        // @ MEMO : しばらく実装予定なし
-        void FixedUpdateFunction(void) {}
-        // 削除時処理を行う
-        void DeleteFuntion(void);
-        // 衝突開始時処理を行う
-        void CollisionStartFunction(void);
-        // 衝突終了時処理を行う
-        void CollisionEndFunction(void);
-        // 衝突時処理を行う
-        void CollisionHitFunction(void);
-
-    protected:
-        // 追加時処理
-        virtual void Create(void) = 0;
-        // 開始処理
-        virtual void Start(void) = 0;
-        // 更新処理
-        virtual void Update(void) = 0;
-        // 削除時処理
-        virtual void Delete(void) = 0;
-        // 衝突開始処理
-        virtual void CollisionStart(void) = 0;
-        // 衝突終了処理
-        virtual void CollisionEnd(void) = 0;
-        // 衝突処理
-        virtual void CollisionHit(void) = 0;
-
     private:
         NativeGameObject* m_gameObject;             // 所属ゲームオブジェクト
         std::vector<CollisionHitData> m_hitData;    // 衝突コリジョンデータ
-        bool m_isStart; // 既にStart処理を行っているか
     };
 }
 
