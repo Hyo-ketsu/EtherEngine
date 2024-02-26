@@ -47,12 +47,12 @@ namespace EtherEngine {
         // @ Ret  : 取得したコンポーネント
         // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
         template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
-        std::weak_ptr<NativeComponentBase> GetComponent(uint index = 0);
+        std::weak_ptr<NativeComponent> GetComponent(uint index = 0);
         // コンポーネントを複数取得する
         // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
         // @ Ret  : 取得したコンポーネント（複数）
         template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
-        std::vector<std::weak_ptr<NativeComponentBase>> GetComponents(void);
+        std::vector<std::weak_ptr<NativeComponent>> GetComponents(void);
 
     protected:
         // コンストラクタ
@@ -109,7 +109,7 @@ namespace EtherEngine {
     // @ Ret  : 取得したコンポーネント
     // @ Arg1 : 何番目のコンポーネントを使用するか(Default : 0)
     template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
-    std::weak_ptr<NativeComponentBase> EditorObject::GetComponent(uint index) {
+    std::weak_ptr<NativeComponent> EditorObject::GetComponent(uint index) {
         for (auto& component : m_components) {
             if (dynamic_cast<ComponentType>(component) != nullptr) {
                 //----- 指定番号か
@@ -130,9 +130,9 @@ namespace EtherEngine {
     // @ Temp : 取得するコンポーネント型(EditorComponentBaseは使用不可)
     // @ Ret  : 取得したコンポーネント（複数）
     template <Concept::SubClassOnly<EditorComponentBase> ComponentType>
-    std::vector<std::weak_ptr<NativeComponentBase>> EditorObject::GetComponents(void) {
+    std::vector<std::weak_ptr<NativeComponent>> EditorObject::GetComponents(void) {
         //----- 返却用変数宣言
-        std::vector<std::weak_ptr<NativeComponentBase>> ret;
+        std::vector<std::weak_ptr<NativeComponent>> ret;
 
         //----- 取得
         for (auto& component : m_components) {

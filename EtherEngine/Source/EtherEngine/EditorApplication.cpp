@@ -64,7 +64,7 @@ namespace EtherEngine {
         //----- SceneViewのメッセージの取得
         List<EditorExclusionObject<SceneViewVM^>^>^ messages = gcnew List<EditorExclusionObject<SceneViewVM^>^>(0);
         while (true) {
-            auto window = EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::IsDelete);
+            auto window = EditorMessageQue<SceneViewMessageType, EditorExclusionObject<SceneViewVM^>^>::GetEngineMessage(SceneViewMessageType::Delete);
             if (window == nullptr) break;
             messages->Add(window->Data);
         }

@@ -32,7 +32,7 @@ namespace EditorUI {
             set {
                 m_baseObject = value;
                 TypeName.Value = m_baseObject.GetType().Name;
-                IsActive.Value = m_baseObject.Active;
+                IsActive.Value = m_baseObject.IsActive;
                 Name.Value = m_baseObject.Name;
                 Name.Subscribe(value => {
                     if (m_baseObject != null) {
