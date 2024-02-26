@@ -1,5 +1,4 @@
 #include <Base/CollisionFunction.h>
-#include <Base/ComponentHelper.h>
 #include <Base/NativeGameObject.h>
 
 #include <Base/CollisionSphere.h>
