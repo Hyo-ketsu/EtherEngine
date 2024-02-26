@@ -29,6 +29,12 @@ namespace EtherEngine {
     template <typename UnmanageType>
     public value class UnmanageMaintainer {
     public:
+        // デフォルト構築が可能であればデフォルト構築する
+        template <std::is_constructible_v<UnmanageType>>
+        UnmanageMaintainer(void)
+            : m_maintainer(new UnmanageType())
+            , m_isNew(true) {
+        }
         // ポインタを保持するコンストラクタ
         // @ Arg1 : 対象
         UnmanageMaintainer(UnmanageType* maintainer)
