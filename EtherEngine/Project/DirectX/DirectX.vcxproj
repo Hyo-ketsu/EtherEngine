@@ -26,7 +26,6 @@
     <ClCompile Include="..\..\Source\DirectX\Mesh.cpp" />
     <ClCompile Include="..\..\Source\DirectX\MeshBuffer.cpp" />
     <ClCompile Include="..\..\Source\DirectX\Model.cpp" />
-    <ClCompile Include="..\..\Source\DirectX\ModelComponent.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ProcedureGameWindow.cpp" />
     <ClCompile Include="..\..\Source\DirectX\ShaderClass.cpp" />
     <ClCompile Include="..\..\Source\DirectX\stdafx\DirectXStdafx.cpp">
@@ -48,7 +47,6 @@
     <ClInclude Include="..\..\Source\DirectX\Mesh.h" />
     <ClInclude Include="..\..\Source\DirectX\MeshBuffer.h" />
     <ClInclude Include="..\..\Source\DirectX\Model.h" />
-    <ClInclude Include="..\..\Source\DirectX\ModelComponent.h" />
     <ClInclude Include="..\..\Source\DirectX\ProcedureGameWindow.h" />
     <ClInclude Include="..\..\Source\DirectX\ShaderClass.h" />
     <ClInclude Include="..\..\Source\DirectX\stdafx\DirectXInclude.h" />
