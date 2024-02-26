@@ -24,8 +24,20 @@ namespace EtherEngine {
         ~ModelBase(void);
 
 
+        // 読み込みができたか
+        bool GetIsLoad(void) const { return m_isLoad; }
+        // 読み込み頂点反転ゲッター
+        const bool GetIsFlip(void) const { return m_isFlip; }
+        // 読み込み頂点反転セッター
+        void SetIsFlip(const bool in) { m_isFlip = in; }
+        // 読み込みスケールゲッター
+        const float GetScale(void) const { return m_scale; }
+        // 読み込みスケールセッター
+        void SetScale(const float in) { m_scale = in; }
         // 読み込みモデル名ゲッター
         const std::string& GetLoadModel(void) const { return m_loadModel; }
+        // 読み込みモデル名セッター
+        void SetLoadModel(const std::string& in) { m_loadModel = in; }
 
         // 描画テクスチャースロットゲッター
         uint GetTextureSlot(void) const { return m_textureSlot; }
@@ -41,12 +53,11 @@ namespace EtherEngine {
         // @ Arg4 : ピクセルシェーダー
         bool DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection, PixelShader* pixelShader);
 
+
         // モデルを読み込む
-        // @ Arg1 : 読み込みファイル名
-        // @ Arg2 : DirectX
-        // @ Arg3 : 拡縮(Default : 1.0f)
-        // @ Arg4 : 頂点反転(Default : 行わない)
-        void Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale = 1.0f, const bool isFlip = false);
+        // @ Ret  : 読み込みエラー内容
+        // @ Arg1 : DirectX
+        std::string Load(const Handle<DirectXRender>& directX);
 
     protected:
         bool m_isLoad;              // 読み込みができたか

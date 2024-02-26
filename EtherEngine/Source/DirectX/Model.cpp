@@ -38,7 +38,13 @@ namespace EtherEngine {
 
 
     // モデルを読み込む
-    void ModelBase::Load(const std::string& file, const Handle<DirectXRender>& directX, const float scale, const bool isFlip) {
+    std::string ModelBase::Load(const Handle<DirectXRender>& directX) {
+        //----- 返却変数宣言
+        std::string ret;
+
+        //----- 読み込み完了フラグを折る
+        m_isLoad = false;
+
         //----- assimpの設定
         Assimp::Importer importer;
         int flag = 0;
@@ -46,12 +52,14 @@ namespace EtherEngine {
         flag |= aiProcess_JoinIdenticalVertices;
         flag |= aiProcess_FlipUVs;
         flag |= aiProcess_PreTransformVertices;
-        if (isFlip) flag |= aiProcess_MakeLeftHanded;
+        if (m_isFlip) flag |= aiProcess_MakeLeftHanded;
 
         //----- assimpで読み込み
-        auto scene = importer.ReadFile(file, flag);
+        auto scene = importer.ReadFile(m_loadModel, flag);
         if (!scene) {
-            throw EditorException((importer.GetErrorString() + std::string(" Don't Created")).c_str());
+            ret += importer.GetErrorString();
+            ret += " Don't Created";
+            return ret;
         }
 
         //----- メッシュの作成
@@ -69,7 +77,7 @@ namespace EtherEngine {
                 aiVector3D normal = scene->mMeshes[i]->HasNormals() ? scene->mMeshes[i]->mNormals[j] : zero;
 
                 //----- 値を設定
-                mesh.vertexs[j].pos    = Eigen::Vector3f(pos.x * scale, pos.y * scale, pos.z * scale);
+                mesh.vertexs[j].pos    = Eigen::Vector3f(pos.x * m_scale, pos.y * m_scale, pos.z * m_scale);
                 mesh.vertexs[j].normal = Eigen::Vector3f(normal.x, normal.y, normal.z);
                 mesh.vertexs[j].uv     = Eigen::Vector2f(uv.x, uv.y);
             }
@@ -107,7 +115,7 @@ namespace EtherEngine {
 
         //----- マテリアルの作成
         // ファイルの探索
-        std::string dir = file;
+        std::string dir = m_loadModel;
         dir = dir.substr(0, dir.find_last_of('/') + 1);
         //----- マテリアル
         aiColor3D color(0.0f, 0.0f, 0.0f);
@@ -151,7 +159,10 @@ namespace EtherEngine {
                 }
                 //----- 失敗していたら例外を吐く
                 if (FAILED(hr)) {
-                    throw EditorException((std::string(path.C_Str()) + "No Texture").c_str());
+                    ret += path.C_Str();
+                    ret += " No Texture";
+
+                    return ret;
                 }
             }
             else {
@@ -162,12 +173,10 @@ namespace EtherEngine {
             m_materials.push_back(std::move(material));
         }
 
-        //----- 読込ステータス保持
-        m_isFlip = isFlip;
-        m_scale = scale;
-        m_loadModel = file;
-
         //----- 読込フラグを立てる
         m_isLoad = true;
+
+        //----- 返却
+        return ret;
     }
 }
