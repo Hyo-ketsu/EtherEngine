@@ -1,4 +1,5 @@
 #include <EngineLibrary/DrawComponent.h>
+#include <EngineLibrary/GameApplication.h>
 
 
 namespace EtherEngine {
@@ -7,8 +8,9 @@ namespace EtherEngine {
         : Component()
         , m_vertexShader(nullptr)
         , m_pixelShader(nullptr) 
-        , m_view() 
-        , m_projection() {
+        , m_view(UnmanageMaintainer<Eigen::Matrix4f>())
+        , m_projection(UnmanageMaintainer<Eigen::Matrix4f>())
+        , m_directX(GameApplication::Get->GetDirectX()) {
     }
     // デストラクタ
     DrawComponent::~DrawComponent(void) {
@@ -72,5 +74,4 @@ namespace EtherEngine {
     void DrawComponent::PixelShaderName::set(System::String^ value) {
         m_thisPixelShader = value;
     }
-
 }

@@ -34,13 +34,13 @@ namespace EtherEngine {
             void set(System::Numerics::Matrix4x4 value);
         }
         // ビュー行列ゲッター
-        UnmanageMaintainer<Eigen::Matrix4f> GetView(void) { return m_view; }
+        Eigen::Matrix4f GetView(void) { return m_view.GetValue(); }
         // ビュー行列セッター
-        void SetView(Eigen::Matrix4f in) { m_view = UnmanageMaintainer<Eigen::Matrix4f>(&in); }
+        void SetView(Eigen::Matrix4f in) { m_view.SetValue(std::move(in)); }
         // プロジェクション行列ゲッター
-        UnmanageMaintainer<Eigen::Matrix4f> GetProjection(void) { return m_projection; }
+        Eigen::Matrix4f GetProjection(void) { return m_projection.GetValue(); }
         // プロジェクション行列セッター
-        void SetProjection(Eigen::Matrix4f in) { m_projection = UnmanageMaintainer<Eigen::Matrix4f>(&in); }
+        void SetProjection(Eigen::Matrix4f in) { m_projection.SetValue(std::move(in)); }
 
         // 頂点シェーダー名
         property System::String^ VertexShaderName {
@@ -70,6 +70,11 @@ namespace EtherEngine {
             // @ MEMO : 未実装
         }
 
+
+    protected:
+        // DirectXゲッター
+        Handle<DirectXRender>* GetDirectX(void) { return m_directX; }
+
     private:
         [Attribute::OutputAttribute] System::String^ m_thisVertexShader; // 現在保持している頂点シェーダー名
         [Attribute::OutputAttribute] System::String^ m_thisPixelShader;  // 現在保持しているpixelシェーダー名
@@ -77,6 +82,7 @@ namespace EtherEngine {
         PixelShader* m_pixelShader;      // ピクセルシェーダー
         UnmanageMaintainer<Eigen::Matrix4f> m_view;         // ビュー行列
         UnmanageMaintainer<Eigen::Matrix4f> m_projection;   // プロジェクション行列
+        Handle<DirectXRender>* m_directX;
     };
 }
 
