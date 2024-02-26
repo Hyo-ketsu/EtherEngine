@@ -23,7 +23,7 @@ namespace EtherEngine {
         Eigen::Vector4f diffuse;    // 拡散光
         Eigen::Vector4f ambient;    // 環境光
         Eigen::Vector4f specular;   // 反射光
-        std::unique_ptr<Texture> texture;    // テクスチャー
+        std::shared_ptr<Texture> texture;    // テクスチャー
 
         Material(void) = default;
         Material(const Material& copy) = default;

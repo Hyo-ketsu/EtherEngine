@@ -3,6 +3,7 @@
 #include <Base/BaseInput.h>
 #include <Base/BaseDefines.h>
 #include <Base/CameraStorage.h>
+#include <Base/NativeGameObjectUpdater.h>
 #include <EngineLibrary/GameObjectUpdater.h>
 
 

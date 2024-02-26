@@ -5,6 +5,11 @@
 
 //----- GameObjectUpdater 定義
 namespace EtherEngine {
+    // コンストラクタ
+    GameObjectUpdater::GameObjectUpdater(void) {
+    }
+
+
     void GameObjectUpdater::Update(void) {
         //----- 物理更新
         NativeGameObjectUpdater::Get()->FixedUpdate();
@@ -18,7 +23,6 @@ namespace EtherEngine {
         }
 
         //----- 更新処理
-        NativeGameObjectUpdater::Get()->Update();
         {
             for each (auto it in GameObjectStorage::Get->GameObjects) {
                 if (it->IsUnvalidObject() == false) continue;

@@ -1,5 +1,6 @@
 #ifndef I_NATIVEGAMEOBJECTUPDATER_H
 #define I_NATIVEGAMEOBJECTUPDATER_H
+#include <Base/Singleton.h>
 #include <Base/NativeGameObjectStorage.h>
 #include <Base/CameraBase.h>
 
@@ -8,6 +9,10 @@
 namespace EtherEngine {
     class NativeGameObjectUpdater : public Singleton<NativeGameObjectUpdater> {
     public:
+        // デストラクタ
+        ~NativeGameObjectUpdater(void) {}
+
+
         // ゲームオブジェクトに物理更新処理を行う
         void FixedUpdate(void);
 
@@ -24,11 +29,11 @@ namespace EtherEngine {
 
     private:
         // コンストラクタ
-        NativeGameObjectUpdater(void) {}
-
-        SceneIDType m_currentScene; // 現在シーン情報
+        NativeGameObjectUpdater(void) : m_currentScene(0) {}
 
         friend class CentrallySingleton;
+
+        SceneIDType m_currentScene; // 現在シーン情報
     };
 }
 
