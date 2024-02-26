@@ -7,6 +7,18 @@
 //----- ïœä∑É}ÉNÉç
 namespace EtherEngine {
 #define UNMANAGE_TO_MANAGE_STRING(text) gcnew System::String(text.c_str())
+#define UNMANAGE_TO_MANAGE_MATRIX_SET(nativeMatrix, manageMatrix) \
+    for (int i = 0; i < 4; i++) {\
+        for (int j = 0; j < 4; j++) {\
+            MatrixHelper::SetElement(manageMatrix, i, j, nativeMatrix(i, j));\
+        }\
+    }
+#define MANAGE_TO_UNMANAGE_MATRIX_SET(manageMatrix, nativeMatrix)\
+    for (int i = 0; i < 4; i++) {\
+        for (int j = 0; j < 4; j++) {\
+            (nativeMatrix)(i, j) = MatrixHelper::GetElement(manageMatrix, i, j);\
+        }\
+    }
 }
 
 

@@ -6,8 +6,13 @@
 #include <EngineLibrary/ConvertManageToUnmanage.h>
 
 
+//----- 変換関数 定義
+namespace EtherEngine {
+}
+
+
 #pragma managed
-//----- 便利関数定義
+//----- 便利関数 定義
 namespace EtherEngine {
 #pragma managed
     public ref class EditorUtility {
@@ -19,6 +24,23 @@ namespace EtherEngine {
         generic <typename Type>
         static Type ListGet(System::Collections::Generic::List<Type>^ list, int index);
     };
+
+
+    static public ref class MatrixHelper {
+    public:
+        // 4x4行列の行・列インデックスから数値を取得する
+        // @ Ret  : 取得した値
+        // @ Arg1 : 値を取得する行列
+        // @ Arg2 : 行
+        // @ Arg3 : 列
+        static float GetElement(System::Numerics::Matrix4x4% matrix, int row, int column);
+        // 4x4行列の行・列インデックスから数値を設定する
+        // @ Arg1 : 値を設定する行列
+        // @ Arg2 : 行
+        // @ Arg3 : 列
+        // @ Arg4 : 設定する値
+        static void SetElement(System::Numerics::Matrix4x4% matrix, int row, int column, float value);
+    };
 }
 
 
@@ -29,12 +51,6 @@ namespace EtherEngine {
     template <typename UnmanageType>
     public value class UnmanageMaintainer {
     public:
-        // デフォルト構築が可能であればデフォルト構築する
-        template <std::is_constructible_v<UnmanageType>>
-        UnmanageMaintainer(void)
-            : m_maintainer(new UnmanageType())
-            , m_isNew(true) {
-        }
         // ポインタを保持するコンストラクタ
         // @ Arg1 : 対象
         UnmanageMaintainer(UnmanageType* maintainer)
@@ -43,7 +59,7 @@ namespace EtherEngine {
         }
         // コピーとnewを行うコンストラクタ
         // @ Arg1 : 対象
-        UnmanageMaintainer(UnmanageType&& maintainer)
+        UnmanageMaintainer(UnmanageType& maintainer)
             : m_maintainer(new UnmanageType(maintainer))
             , m_isNew(true) {
         }
@@ -54,6 +70,12 @@ namespace EtherEngine {
                 m_maintainer = nullptr;
             }
             m_isNew = false;
+        }
+
+
+        // 保持自体をコピーして取得する
+        UnmanageMaintainer<UnmanageType> GetUnmanageMaintainer(void) {
+            return UnmanageMaintainer<UnmanageType>(*m_maintainer);
         }
 
 
@@ -68,6 +90,13 @@ namespace EtherEngine {
         UnmanageType& GetValue(void) {
             if (HasValue() == false) throw EditorException("Error! Non Maintainer");
             return *m_maintainer;
+        }
+        // 対象を取得する
+        // @ Memo : 対象が無ければ例外を出力します
+        // @ Ret  : 対象
+        UnmanageType* GetPointer(void) {
+            if (HasValue() == false) throw EditorException("Error! Non Maintainer");
+            return m_maintainer;
         }
         // 対象を設定する
         // @ Arg1 : 対象

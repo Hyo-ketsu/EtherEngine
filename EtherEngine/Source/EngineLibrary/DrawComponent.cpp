@@ -27,41 +27,25 @@ namespace EtherEngine {
     System::Numerics::Matrix4x4 DrawComponent::View::get(void) {
         System::Numerics::Matrix4x4 ret;
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                ret[i][j] = m_view.GetValue()(i, j);
-            }
-        }
+        UNMANAGE_TO_MANAGE_MATRIX_SET(m_view.GetValue(), ret);
 
         return ret;
     }
     // ビュー行列
     void DrawComponent::View::set(System::Numerics::Matrix4x4 value) {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                m_view.GetValue()(i, j) = value[i][j];
-            }
-        }
+        MANAGE_TO_UNMANAGE_MATRIX_SET(value, m_view.GetValue());
     }
     // プロジェクション行列
     System::Numerics::Matrix4x4 DrawComponent::Projection::get(void) {
         System::Numerics::Matrix4x4 ret;
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                ret[i][j] = m_projection.GetValue()(i, j);
-            }
-        }
+        UNMANAGE_TO_MANAGE_MATRIX_SET(m_projection.GetValue(), ret);
 
         return ret;
     }
     // プロジェクション行列
     void DrawComponent::Projection::set(System::Numerics::Matrix4x4 value) {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                m_projection.GetValue()(i, j) = value[i][j];
-            }
-        }
+        MANAGE_TO_UNMANAGE_MATRIX_SET(value, m_projection.GetValue());
     }
 
 
