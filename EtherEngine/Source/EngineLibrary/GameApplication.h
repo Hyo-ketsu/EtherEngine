@@ -24,6 +24,8 @@ namespace EtherEngine {
 
         // DirectXゲッター
         void GetDirectX(void** pointer) { *pointer = m_dxRender; }
+        // DirectXゲッター
+        Handle<DirectXRender>* GetDirectX(void) { return m_dxRender; }
 
 
         // ゲームオブジェクト更新プロパティ
