@@ -49,7 +49,7 @@ namespace EtherEngine {
         // 物理更新処理を行う
         void FixedUpdate(void);
         // 描画処理を行う
-        void Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection);
+        void Draw(UnmanageMaintainer<Eigen::Matrix4f> view, UnmanageMaintainer<Eigen::Matrix4f> projection);
         // 削除時処理を行う
         void Delete(void);
         // 衝突開始処理を行う

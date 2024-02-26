@@ -34,13 +34,13 @@ namespace EtherEngine {
             void set(System::Numerics::Matrix4x4 value);
         }
         // ビュー行列ゲッター
-        Eigen::Matrix4f GetView(void) { return m_view.GetValue(); }
+        UnmanageMaintainer<Eigen::Matrix4f> GetView(void) { return m_view.GetUnmanageMaintainer(); }
         // ビュー行列セッター
-        void SetView(Eigen::Matrix4f in) { m_view.SetValue(std::move(in)); }
+        void SetView(UnmanageMaintainer<Eigen::Matrix4f> in) { m_view = in.GetUnmanageMaintainer(); }
         // プロジェクション行列ゲッター
-        Eigen::Matrix4f GetProjection(void) { return m_projection.GetValue(); }
+        UnmanageMaintainer<Eigen::Matrix4f> GetProjection(void) { return m_projection.GetUnmanageMaintainer(); }
         // プロジェクション行列セッター
-        void SetProjection(Eigen::Matrix4f in) { m_projection.SetValue(std::move(in)); }
+        void SetProjection(UnmanageMaintainer<Eigen::Matrix4f> in) { m_projection = in.GetUnmanageMaintainer(); }
 
         // 頂点シェーダー名
         property System::String^ VertexShaderName {

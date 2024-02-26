@@ -70,15 +70,15 @@ namespace EtherEngine {
         DeleteComponents();
     }
     // •`‰æˆ—‚ğs‚¤
-    void GameObject::Draw(const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection) {
+    void GameObject::Draw(UnmanageMaintainer<Eigen::Matrix4f> view, UnmanageMaintainer<Eigen::Matrix4f> projection) {
         for each (auto it in m_components) {
             if (it->IsUnvalidObject()) continue;
 
             auto drawComponent = dynamic_cast<DrawComponent^>(it);
 
             if (drawComponent != nullptr) {
-                drawComponent->SetView(view);
-                drawComponent->SetProjection(projection);
+                drawComponent->SetView(view.GetUnmanageMaintainer());
+                drawComponent->SetProjection(projection.GetUnmanageMaintainer());
 
                 drawComponent->Draw();
             }
