@@ -5,7 +5,7 @@
 namespace EtherEngine {
     // コンストラクタ
     ModelRender::ModelRender(void) 
-        : m_model(ModelBase()) {
+        : m_model(UnmanageMaintainer<ModelBase>(new ModelBase())) {
     }
     // デストラクタ
     ModelRender::~ModelRender(void) {

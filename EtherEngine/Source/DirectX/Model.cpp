@@ -35,6 +35,10 @@ namespace EtherEngine {
 
         return true;
     }
+    // •`‰æ
+    bool ModelBase::DrawModel(const Transform& transform, const Eigen::Matrix4f* view, const Eigen::Matrix4f* projection, PixelShader* pixelShader) {
+        return DrawModel(transform.CreateWorld(), *view, *projection, pixelShader);
+    }
 
 
     // ƒ‚ƒfƒ‹‚ğ“Ç‚İ‚Ş

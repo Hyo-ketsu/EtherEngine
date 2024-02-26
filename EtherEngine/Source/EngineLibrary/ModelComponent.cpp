@@ -19,8 +19,8 @@ namespace EtherEngine {
 
         //----- “Ç‚Ýž‚Ý‚ª‚Å‚«‚½‚È‚ç•`‰æ
         if (m_modelRender->IsLoad) {
-            m_modelRender->GetModelBase().DrawModel(ParentGameObject->NGameObject.GetData().GetTransform().CreateWorld(),
-                GetView(), GetProjection(), GetPixelShader());
+            m_modelRender->GetModelBase().DrawModel(ParentGameObject->NGameObject.GetData().GetTransform(),
+                GetView().GetPointer(), GetProjection().GetPointer(), GetPixelShader());
         }
     }
 }

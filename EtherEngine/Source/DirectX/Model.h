@@ -2,6 +2,7 @@
 #define I_MODEL_H
 #include <Base/GraphicDefines.h>
 #include <Base/EtherEngineUtility.h>
+#include <Base/Transform.h>
 #include <DirectX/Mesh.h>
 #include <DirectX/MeshBuffer.h>
 #include <DirectX/Texture.h>
@@ -52,6 +53,13 @@ namespace EtherEngine {
         // @ Arg3 : プロジェクション行列
         // @ Arg4 : ピクセルシェーダー
         bool DrawModel(const Eigen::Matrix4f& world, const Eigen::Matrix4f& view, const Eigen::Matrix4f& projection, PixelShader* pixelShader);
+        // 描画
+        // @ Ret  : 描画したか
+        // @ Arg1 : トランスフォーム
+        // @ Arg2 : ビュー行列
+        // @ Arg3 : プロジェクション行列
+        // @ Arg4 : ピクセルシェーダー
+        bool DrawModel(const Transform& transform, const Eigen::Matrix4f* view, const Eigen::Matrix4f* projection, PixelShader* pixelShader);
 
 
         // モデルを読み込む
